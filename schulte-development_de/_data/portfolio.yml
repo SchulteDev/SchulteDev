@@ -1,0 +1,24 @@
+- title: Union Investment
+  description: Technical architect
+  img: ui.svg
+  url: https://www.union-investment.de
+- title: Saloodo!
+  description: Senior Golang engineer
+  img: saloodo.svg
+  url: https://www.saloodo.com
+- title: Trusted Shops
+  description: Senior JavaEE engineer
+  img: trusted-shops.svg
+  url: https://www.trustedshops.de
+- title: Allianz
+  description: Senior JavaEE engineer
+  img: allianz.svg
+  url: https://www.allianz.de
+- title: Toom
+  description: Senior JavaEE engineer
+  img: toom.svg
+  url: https://toom.de
+- title: Billiger Mietwagen
+  description: PHP engineer
+  img: billiger-mietwagen.png
+  url: https://www.billiger-mietwagen.de/
