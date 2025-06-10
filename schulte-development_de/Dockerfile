@@ -1,6 +1,6 @@
 FROM ruby:3.4-alpine
 
-RUN apk add --no-cache build-base cmake gcc libffi-dev
+RUN apk add --no-cache build-base libffi-dev
 WORKDIR /app
 
 # because of Docker layering (caching)

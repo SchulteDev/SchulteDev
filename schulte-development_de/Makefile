@@ -1,5 +1,5 @@
 serve:
-	bundle exec jekyll serve --force_polling --livereload
+	bundle exec jekyll serve --force_polling --livereload --incremental
 
 clean:
 	-rm -r .jekyll-cache
