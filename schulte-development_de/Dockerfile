@@ -1,12 +1,13 @@
-FROM ruby:3.2-alpine
+FROM ruby:3.4-alpine
 
-RUN apk add --no-cache build-base cmake gcc git
+RUN apk add --no-cache build-base cmake gcc libffi-dev
 WORKDIR /app
 
 # because of Docker layering (caching)
 COPY Gemfile* ./
 
-RUN bundle install
+RUN bundle config set force_ruby_platform true &&  \
+    bundle install
 COPY . .
 EXPOSE 4000 35729
 
