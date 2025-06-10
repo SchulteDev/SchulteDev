@@ -36,6 +36,8 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Validate Jekyll configuration
+        run: bundle exec jekyll doctor
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
@@ -44,6 +46,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./schulte-development_de/_site
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
