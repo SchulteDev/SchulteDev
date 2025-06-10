@@ -113,40 +113,60 @@ Freelance | Remote*
 
 ### December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL Group)
 
-*[Saloodo!](https://www.saloodo.com) ([DHL](https://en.wikipedia.org/wiki/DHL) Group) | Freelance | Part-Time | Remote*
+*[Saloodo!](https://www.saloodo.com) ([DHL](https://en.wikipedia.org/wiki/DHL) Group) | Freelance |
+Part-Time | Remote*
 
-**Context:** Digital freight platform requiring seamless integration between operational systems and Salesforce CRM
+**Context:** Digital freight platform requiring seamless integration between operational systems and
+Salesforce CRM
 
 **Technical Challenges:**
 
-- **Scale:** Periodic full data synchronization of ~10 million records requiring database query optimization and multi-threading
-- **Real-time sync:** Near real-time propagation of data updates from Saloodo to Salesforce with minimal latency
-- **Data inconsistency:** Saloodo's database schema contained numerous inconsistencies including incorrect types and malformed JSON values requiring robust error handling
-- **Solo ownership:** As the sole developer, responsible for architecture decisions, implementation, operations, and monitoring without team support
+- **Scale:** Periodic full data synchronization of ~10 million records requiring database query
+  optimization and multi-threading
+- **Real-time sync:** Near real-time propagation of data updates from Saloodo to Salesforce with
+  minimal latency
+- **Data inconsistency:** Saloodo's database schema contained numerous inconsistencies including
+  incorrect types and malformed JSON values requiring robust error handling
+- **Solo ownership:** As the sole developer, responsible for architecture decisions, implementation,
+  operations, and monitoring without team support
 
 **Key Contributions:**
 
-- Took on this part-time assignment alongside my work at [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment) as it offered the opportunity to use Golang professionally for the first time
-- Sole developer for critical middleware component transferring Saloodo platform data to Salesforce Lightning Cloud
-- Designed and implemented fault-tolerant, event-driven architecture with continuous loop execution and automatic retry mechanisms
-- Achieved 70% test coverage on 2,776 lines of code with 5-second test execution time using Dockertest for PostgreSQL integration
-- Implemented sophisticated database query optimizations and multi-threading for handling ~10 million record synchronizations
-- Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect types)
-- Owned complete software lifecycle: requirements engineering, design, development, monitoring, and operations
+- Took on this part-time assignment alongside my work at
+  [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment) as it
+  offered the opportunity to use Golang professionally for the first time
+- Sole developer for critical middleware component transferring Saloodo platform data to Salesforce
+  Lightning Cloud
+- Designed and implemented fault-tolerant, stateless architecture with continuous loop execution
+  and automatic retry mechanisms
+- Achieved 70% test coverage on 2,776 lines of code with 5-second test execution time using
+  Dockertest for PostgreSQL integration
+- Implemented sophisticated database query optimizations and multi-threading for handling ~10
+  million record synchronizations
+- Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect
+  types)
+- Owned complete software lifecycle: requirements engineering, design, development, monitoring, and
+  operations
 - Established comprehensive monitoring with ELK Stack and Dynatrace for proactive issue detection
 
 **Impact:**
 
-- **100% production uptime** throughout 3-year tenure through fault-tolerant design and comprehensive testing
-- **Business-critical operation:** Enabled Saloodo's CRM functionality by maintaining data synchronization between operational systems and Salesforce
-- **Near real-time performance:** Achieved data propagation within minutes despite Saloodo database bottlenecks
-- **Continuous operation:** Implemented robust endless-loop architecture handling millions of transactions
+- **100% production uptime** throughout 3-year tenure through fault-tolerant design and
+  comprehensive testing
+- **Business-critical operation:** Enabled Saloodo's CRM functionality by maintaining data
+  synchronization between operational systems and Salesforce
+- **Near real-time performance:** Achieved data propagation within minutes despite Saloodo database
+  bottlenecks
+- **Continuous operation:** Implemented robust endless-loop architecture handling millions of
+  transactions
 - Demonstrated production-grade Golang expertise in mission-critical environment
 - Proved reliability by providing partial operational readiness support
 
-**Technologies:** Golang, PostgreSQL, Salesforce Lightning Cloud, Salesforce Bulk API, Docker, Kubernetes
+**Technologies:** Golang, PostgreSQL, Salesforce Lightning Cloud, Salesforce Bulk API, Docker,
+Kubernetes
 
-**Frameworks & Tools:** 
+**Frameworks & Tools:**
+
 - **Golang:** cobra/viper (CLI), sqlx (database), testify/dockertest (testing), logrus (logging)
 - **CI/CD:** GitHub Actions, Travis CI, ArgoCD, Release Please Bot, Dependabot
 - **Monitoring:** ELK Stack (Kibana), Dynatrace
@@ -175,12 +195,14 @@ Freelance | Remote*
 
 *[Trusted Shops](https://www.trustedshops.com) | Freelance | Cologne*
 
-**Context:** E-commerce trust provider requiring modernization of legacy systems and cloud-native transformation
+**Context:** E-commerce trust provider requiring modernization of legacy systems and cloud-native
+transformation
 
 **Technical Challenges:**
 
 - **Legacy modernization:** Migration from JavaEE6 monolith to cloud-native architecture
-- **Integration complexity:** Implementing seamless integration with Salesforce and Zuora for subscription management
+- **Integration complexity:** Implementing seamless integration with Salesforce and Zuora for
+  subscription management
 - **AWS adoption:** Designing and implementing cloud-native solutions leveraging AWS services
 - **Quality assurance:** Establishing contract testing practices across microservices
 
@@ -212,9 +234,11 @@ Freelance | Remote*
 - **Enhanced reliability** with contract testing preventing integration issues
 - **Accelerated development** by establishing cloud-native CI/CD pipelines
 
-**Technologies:** AWS (EKS, API Gateway, Lambda, S3, SQS), Java, Spring Boot, Micronaut, Pact, Terraform, Docker
+**Technologies:** AWS (EKS, API Gateway, Lambda, S3, SQS), Java, Spring Boot, Micronaut, Pact,
+Terraform, Docker
 
 **Frameworks & Tools:**
+
 - **Java:** Spring Boot, Micronaut (lightweight microservices)
 - **Cloud:** AWS Lambda (serverless), EKS (Kubernetes), API Gateway
 - **Integration:** Salesforce, Zuora (subscription management)
