@@ -1,7 +1,6 @@
 ---
 layout: page
-css:
-  - /assets/css/index.css
+css: /assets/index.css
 ---
 
 # About me
