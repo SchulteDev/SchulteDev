@@ -1,4 +1,4 @@
-name: Build, deploy to GitHubPage on main
+name: schulte-development.de | Build, deploy to GitHubPage on main
 
 on:
   push:
