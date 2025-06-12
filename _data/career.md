@@ -121,29 +121,127 @@ Freelance | Remote*
 
 ### October 2021 — December 2024: Cloud Architect at Union Investment
 
-*German Asset Management Company | Freelance | Remote*
+*[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) | German Asset Management
+Company | Freelance | Remote*
 
-**Project:** B2B Portals Modernization
+**Context:** Leading German asset management company requiring modernization of their central B2B
+sales platform [InvestmentWelt](https://investmentwelt.de/). Despite serving only 80,000 users, this
+platform was business-critical for corporate reputation and revenue generation.
+
+**Project:** IT Landscape Modernization - Group-wide Architecture Template Development
+
+**Timeline:** 3-year transformation across three overlapping phases
+
+**Team Leadership:** Managed teams of 5-7 developers, serving as technical Product Owner and agile
+coach
+
+**Technical Challenges:**
+
+- **Legacy complexity:** Overloaded monolith based on Liferay and FirstSpirit with 8 distinct domain
+  boundaries identified through DDD analysis
+- **Scalability requirements:** Platform needed to serve as modernization template for entire
+  corporate group
+- **Team autonomy:** Architecture must enable independent development by functionally autonomous
+  teams
+- **Cross-cutting concerns:** Implementing unified search across distributed Self-contained Systems
+  architecture
+- **Event-driven integration:** Designing event streams across 8 domains with different data
+  structures, APIs, and authorization levels
+
+**Phase 1: Architecture Conception and Design**
+
+- Conducted Domain-Driven Design analysis identifying 8 functional domains within legacy monolith
+- Evaluated and selected Self-contained Systems (SCS) as overarching architectural pattern
+- Designed JavaScript framework approach using Web Components for microfrontend integration
+- Created technical specifications enabling team independence while maintaining integration
+  consistency
+- Established Azure as target cloud platform with focus on lightweight, scalable solutions
+
+**Phase 2: Framework Development and Platform Implementation**
+
+- Led development of "microfrontend-toolkit" framework enabling Web Component-based SCS
+  implementation
+- Created feature stories, estimated development efforts, and assembled development team through
+  technical interviews
+- Served as technical Product Owner defining tasks and sprint goals for agile development
+- Selected Azure Static Web App as runtime with Application Insights monitoring for lightweight,
+  robust architecture
+- Assumed additional PO and agile coaching responsibilities during team transitions
+- Implemented comprehensive DevOps culture including Pipeline-as-Code in Azure DevOps and Terraform
+  infrastructure definition
+- Established software quality standards through SonarQube metrics and comprehensive test pyramid
+  with 1000+ tests
+- Achieved 10-minute build times despite extensive test coverage through parallelization
+  optimization
+- Introduced automated dependency management via Renovate Bot enabling fully automated external
+  dependency updates
+- Implemented parallel operation concept with Azure AD B2C authentication enabling gradual domain
+  migration
+- Successfully launched "investmentwelt-shell" into production after 6 months
+
+**Phase 3: Cross-System Search Implementation**
+
+- **Challenge:** Modernize monolithic legacy search while preserving team autonomy and ensuring
+  unified user experience
+- **Solution:** Designed centralized search architecture consuming event streams from distributed
+  domains
+- **Event-driven Architecture:** Modeled data flow where teams stream domain models as events,
+  search consumes multiple streams
+- Created unified entity specifications for event streams minimizing publishing/subscription
+  overhead
+- Implemented solution using Azure Event Hubs with JavaScript Azure Functions transferring data to
+  Algolia
+- Evaluated ElasticSearch vs. Algolia, selected Algolia for simplified business user experience and
+  reduced operational overhead
+- Developed search microfrontends using Lit framework, introduced pnpm package management
+- Maintained same quality standards as platform development with comprehensive testing and Azure
+  Static Web App deployment
+- Delivered complete search modernization on schedule within 12-month timeline
 
 **Key Contributions:**
 
-- Led architecture for cloud-native transformation using Self-Contained Systems pattern
-- Implemented event-driven architecture with Azure Event Hubs for system integration
-- Built cross-system search functionality using Algolia
-- Designed microservices and microfrontend architecture for independent team development
+- **Architecture Leadership:** Designed and led cloud-native transformation establishing SCS pattern
+  as corporate standard
+- **Team Management:** Successfully managed cross-functional teams through technical and
+  organizational challenges
+- **Framework Development:** Created reusable microfrontend toolkit enabling autonomous team
+  development
+- **Quality Engineering:** Established comprehensive testing pyramid with 1000+ tests and 10-minute
+  build cycles
+- **DevOps Implementation:** Built complete CI/CD pipeline with Infrastructure-as-Code and automated
+  dependency management
+- **Event-driven Design:** Architected event streaming solution enabling unified search across
+  distributed systems
+- **Technology Integration:** Successfully integrated Azure services, Algolia search, and Web
+  Components into cohesive platform
 
-**Impact:**
+**Business Impact:**
 
-- Modernized legacy systems with improved scalability and maintainability
-- Enhanced data discovery across distributed systems
-- Established architecture patterns enabling team autonomy
+- **Deployment Speed:** Reduced deployment time from several days to 30 minutes for urgent changes
+- **Platform Reliability:** Achieved 99.9% uptime throughout production operation
+- **Search Performance:** Implemented sub-second search response times across all domain boundaries
+- **Team Productivity:** Enabled autonomous team development with 10x faster deployment cycles
+- **Corporate Template:** Established architecture patterns adopted as template for group-wide
+  modernization initiatives
+- **Stakeholder Satisfaction:** Maintained continuous stakeholder communication and delivered
+  iterative releases on schedule
+- **Technical Debt Reduction:** Successfully migrated domains incrementally from legacy monolith to
+  modern SCS architecture
 
-**Technologies:** Azure, Event Hubs, Algolia, Microservices, Microfrontends, SCS
+**Technologies & Frameworks:**
 
-**Programming**: JavaScript/TypeScript, Node.js
-**CI/CD**: Git, Azure DevOps (pipeline as code), NPM, Dependabot, Renovate Bot
-**Azure**: Static Web App, Functions, Blob, Azure Event Hubs, Algolia
-**Architecture**: Self-contained systems SCS, Microfrontends, Microservices
+- **Cloud Platform:** Azure (Static Web App, Functions, Event Hubs, Application Insights, AD B2C)
+- **Programming:** JavaScript/TypeScript, Node.js, Java, Lit framework
+- **Architecture:** Self-contained Systems (SCS), Microfrontends, Microservices, Event-driven
+  Architecture
+- **Frontend Integration:** Web Components (WICG standard), custom microfrontend toolkit
+- **Search & Data:** Algolia, Azure Event Hubs, event streaming architecture
+- **Build & Bundle:** Nx (monorepo tooling), Lerna (monorepo management), esbuild,  Gradle
+- **DevOps:** Azure DevOps, Pipeline-as-Code, Terraform (Infrastructure-as-Code), Docker
+- **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Playwright (e2e testing), Prettier, comprehensive test pyramid
+- **Package Management:** NPM, pnpm, Dependabot, Renovate Bot (automated dependency updates)
+- **Standards:** Conventional Commits, comprehensive code formatting and linting standards
+- **Monitoring:** Azure Application Insights, comprehensive logging and metrics
 
 ---
 
