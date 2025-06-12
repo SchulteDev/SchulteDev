@@ -73,13 +73,49 @@ Freelance | Remote*
 
 **Context:** Major German state bank and central institution for savings banks in Baden-Württemberg
 
+**Project:** "Phoenix" IT Modernization (~80 people) - Migration to Azure-based "Skywalker" platform
+
+**Timeline:** Since November 2024 (Skywalker platform development started 2023)
+
+**Team:** 9 people (one of 3 teams providing Skywalker platform access)
+
+**Responsibility:** 10 of 30 applications under parallel technical supervision
+
+**Technical Challenges:**
+
+- Cataloging hundreds of legacy applications for Skywalker migration assessment
+- Strategic multi-cloud scenario development
+  ([Azure](https://azure.microsoft.com), [Elastisys Welkin](https://elastisys.io/welkin/))
+- Platform gap identification in production-unused Skywalker environment
+- Complex application portfolio with diverse technical stacks requiring individualized migration
+  approaches
+
 **Key Contributions:**
 
-- Designing and implementing cloud architecture solutions for banking sector
-- Leading Azure Kubernetes Service (AKS) implementation and optimization
-- Providing technical guidance for digital transformation initiatives
+- Application cataloging and assessment using
+  [R-methodology (cloud migration)](https://aws.amazon.com/de/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/)
+- Multi-cloud strategy development for Azure and potential
+  [Elastisys Welkin](https://elastisys.io/welkin/) integration
+- Creation of technical templates and analysis processes for application assessment
+- Conducting in-depth technical assessments to determine Skywalker compatibility
+- IT design and Azure component specification for compatible applications
+- Consultation on deployment, backup, and monitoring strategies
+- Cost analysis using Azure Calculator for migration planning
+- Platform gap identification and improvement initiative support
 
-**Technologies:** Azure, AKS, Kubernetes, Cloud Architecture
+**Impact:**
+
+- **50% of candidate applications** identified as Skywalker-incompatible → initiated platform
+  improvements
+- **Platform evolution:** Gap identification enabled targeted Skywalker platform enhancements
+- **Migration readiness:** Established comprehensive assessment framework for large-scale enterprise
+  migration
+- **Technical expertise:** Leveraged experience with Spring Boot, Tomcat, IIS, Oracle, MS-SQL,
+  PostgreSQL for rapid application understanding
+
+**Technologies:** Azure, AKS, Kubernetes, Spring Boot, Tomcat, IIS, Oracle, MS-SQL, PostgreSQL
+
+**Tools:** Jira, Confluence, draw.io, Outlook, Citrix, Webex
 
 ---
 
