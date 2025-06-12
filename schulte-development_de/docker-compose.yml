@@ -3,7 +3,7 @@ services:
     build: .
     ports:
       - "4000:4000"
-      - "35729:35729"
+      - "35729:35729" # live reload port
     volumes:
       - .:/app
       - /app/vendor/bundle  # exclude vendor directory from sync
