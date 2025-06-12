@@ -375,7 +375,7 @@ Terraform, Docker
 
 ## Personal Projects
 
-### January 2025 - May 2025
+### January 2025 - May 2025: AI support for my tax software
 
 To simplify my tax return, I developed a CLI application that automatically captured
 documents using Azure Document Intelligence and entered them into the document manager of
