@@ -21,48 +21,100 @@ focusing on technical details and professional growth rather than marketing lang
 
 ## Professional Summary
 
-Technology professional with 15+ years in software engineering (10+ as freelancer) specializing in:
+Technology professional with 18+ years in software engineering (11+ as freelancer) specializing in:
 
-- Backend development (Java, Golang)
-- Cloud architecture and implementation (AWS, Azure, GCP)
-- Microservices and distributed systems
-- DevOps and Continuous Integration
-- Team Lead
+- Backend development and system architecture (Java, Golang, TypeScript)
+- Cloud-native solutions and multi-cloud strategies (AWS, Azure, GCP)
+- Microservices, event-driven architecture, and distributed systems
+- DevOps automation and enterprise CI/CD pipelines
+- Technical leadership and team management
 
-Demonstrated expertise in creating efficient, maintainable solutions for enterprise environments
-with a focus on technical excellence and innovation.
+Proven track record in enterprise modernization, from legacy monolith migrations to cloud-native
+platforms, with expertise in Self-contained Systems (SCS), software-quality & -testing, and scalable
+architectures serving millions of users.
 
 ## General techniques
 
-### Main programming languages
+### Core Programming Languages
 
-Java can be described as my programming mother tongue. I have gained a lot of experience with Golang
-in recent years and am an advanced user. I have also worked with JavaScript/TypeScript (Node.js/NPM)
-from time to time, depending on project requirements.
+**Java** can be described as my programming mother tongue with 18+ years of experience across
+enterprise environments. **Golang** has become my preferred language for cloud-native development
+with 4+ years of professional experience, particularly in microservices and middleware systems.
+**PHP** was my foundation (8+ years) during early career and social platform development.
+I also work with **TypeScript/JavaScript** for Node.js/(P)NPM applications frontend integration when
+required.
 
-### Architecture
+### Architecture & Design
 
-I have experience in creating both low-level and high-level IT architectures.
+I have extensive experience creating both low-level and high-level IT architectures, specializing
+in:
 
-### Testing, CI/CD
+- **Microservices and distributed systems** with Self-contained Systems (SCS) patterns
+- **Event-driven architecture** using event streams, message queues, and domain boundaries
+- **Cloud-native design** leveraging serverless, containerization, and managed services
+- **Legacy modernization** including monolith decomposition and incremental migration strategies
+- **Multi-cloud strategies** across AWS, Azure, and GCP platforms
 
-Extensive automation and software testing are a matter of course for me. I have experience with
-pipelines-as-code and the optimisation of test and build executions. I cover the majority of my
-programming with unit tests, I have a basic command of the common frameworks for unit and e2e
-testing in my programming language. I have experience with the common build tools in the Java,
-Golang and JavaScript ecosystem.
+### Cloud Platforms & DevOps
 
-### Techniques
+**AWS:** EKS, Lambda, API Gateway, S3, SQS, CloudFormation with 7+ years experience  
+**Azure:** Static Web Apps, Functions, Event Hubs, AKS, AD B2C with 4+ years experience  
+**GCP:** Kubernetes Engine, Cloud Functions, Firebase integration
 
-- Depending on the application, I generally use Clean Architecture, Clean Code and Conventional
-  Commits
-- I am used to working with agile process models such as Scrum, Kanban and SAFe
+**Infrastructure & Automation:**
 
-### Leadership
+- Container orchestration with Docker and Kubernetes
+- Infrastructure-as-Code using Terraform and Helm
+- CI/CD pipeline design with Jenkins, Azure DevOps, GitHub Actions
+- Automated dependency management and security updates
 
-As an IT architect, Head of Development and interim PO, I have proven and developed my
-organisational and leadership skills.
-I have organised and supported teams in the implementation of complex software projects.
+### Testing & Quality Assurance
+
+Comprehensive test automation is fundamental to my development approach:
+
+- **Unit testing:** JUnit, Mockito, Jest
+- **Integration testing:** Dockertest, comprehensive database testing
+- **Contract testing:** Pact framework for microservices integration
+- **End-to-end testing:** Selenium, Playwright, automated UI validation
+- **Build optimization:** Parallel test execution, 10-minute build cycles despite 1000+ tests
+
+### Technical Stack
+
+**Backend Frameworks:** Spring Boot, Quarkus, Micronaut, Tomcat, Glassfish, Node.js, JavaEE   
+**Frontend Integration:** Web Components, Lit framework, microfrontend architectures  
+**Databases:** PostgreSQL, MySQL, Oracle, MS-SQL, Redis  
+**Message Systems:** Kafka, Azure Event Hubs, SQS  
+**Search & Analytics:** Algolia, ElasticSearch, Azure Application Insights  
+**Monitoring:** ELK Stack, Grafana, Dynatrace, SonarQube
+
+### Development Practices
+
+I consistently apply modern software engineering practices:
+
+- **Code Quality:** Clean Architecture, Clean Code principles, Conventional Commits
+- **Agile Methodologies:** Scrum, Kanban, SAFe with hands-on Product Owner experience
+- **API Design:** REST/HATEOAS, OAuth2, comprehensive documentation standards
+- **Monorepo Management:** Nx, Lerna, pnpm for complex multi-service projects
+
+### Leadership & Team Management
+
+As IT architect, Head of Development, and interim Product Owner, I have developed strong
+organizational and leadership capabilities:
+
+- **Team Leadership:** Successfully managed cross-functional teams of 5-9 developers
+- **Technical Mentoring:** Conducted workshops on contract testing, architecture patterns
+- **Stakeholder Management:** Regular communication with business stakeholders and executives
+- **Agile Coaching:** Facilitated sprint planning, retrospectives, and process improvements
+- **Hiring & Onboarding:** Technical interviews, team assembly, and developer onboarding
+
+### Specialized Expertise
+
+- **Contract Testing:** Deep expertise with Pact framework for microservices reliability
+- **Developer Tooling:** Custom framework development, build optimization, automation tools
+- **Code Quality Metrics:** SonarQube integration, automated quality gates, technical debt
+  management
+- **Event Stream Processing:** Real-time data pipelines, event sourcing patterns
+- **Enterprise Integration:** Salesforce, Zuora, legacy system modernization
 
 ## Professional Experience
 
@@ -236,9 +288,10 @@ coach
   Architecture
 - **Frontend Integration:** Web Components (WICG standard), custom microfrontend toolkit
 - **Search & Data:** Algolia, Azure Event Hubs, event streaming architecture
-- **Build & Bundle:** Nx (monorepo tooling), Lerna (monorepo management), esbuild,  Gradle
+- **Build & Bundle:** Nx (monorepo tooling), Lerna (monorepo management), esbuild, Gradle
 - **DevOps:** Azure DevOps, Pipeline-as-Code, Terraform (Infrastructure-as-Code), Docker
-- **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Playwright (e2e testing), Prettier, comprehensive test pyramid
+- **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Playwright (e2e testing),
+  Prettier, comprehensive test pyramid
 - **Package Management:** NPM, pnpm, Dependabot, Renovate Bot (automated dependency updates)
 - **Standards:** Conventional Commits, comprehensive code formatting and linting standards
 - **Monitoring:** Azure Application Insights, comprehensive logging and metrics
@@ -518,36 +571,12 @@ a forum for my friend group and later for my graduating class.
 Typically, I also discovered computer games for myself. This led to my decision to study Computer
 Visualistics in Koblenz.
 
-## Technical Expertise
+### Certifications & Recognition
 
-### Core Competencies
-
-- **Languages:** Java (15+ yrs), Golang (5+ yrs), PHP (8+ yrs), TypeScript/JavaScript
-- **Cloud Platforms:** AWS, Azure, GCP
-- **Architecture:** Microservices, Event-Driven, Self-Contained Systems (SCS)
-- **DevOps:** Docker, Kubernetes, CI/CD (Jenkins, Bamboo, GitLab CI)
-
-### Technical Stack
-
-- **Backend:** Spring Boot, Quarkus, Micronaut, JavaEE
-- **Infrastructure:** Terraform, Helm, Kubernetes
-- **Databases:** PostgreSQL, MySQL, Redis
-- **Testing:** JUnit, Mockito, Pact (Contract Testing)
-- **Integration:** REST APIs, OAuth2, Kafka, SQS
-- **Monitoring:** ELK Stack, Grafana
-
-### Specialized Knowledge
-
-- Contract testing methodologies
-- Cloud-native application design
-- Developer tooling and automation
-- Code quality metrics and analysis
-
-### Certifications
-
-- StackOverflow: [4000+ reputation points](https://stackoverflow.com/users/1645517/markus-schulte)
-- GitHub contributions: https://github.com/SchulteMarkus
-- Java SE 8 TechCheck: 93/100 score (2018)
+- **StackOverflow:** [4000+ reputation points](https://stackoverflow.com/users/1645517/markus-schulte) demonstrating community contributions
+- **Java SE 8 TechCheck:** 93/100 score (2018)
+- **Atlassian Marketplace:** Successful commercial add-on developer with 83 global customers
+- **GitHub:** Active open-source contributor at https://github.com/SchulteMarkus
 
 ## Career Breaks
 
@@ -555,7 +584,7 @@ Visualistics in Koblenz.
 
 *During COVID-19 pandemic*
 
-### August 2015 — December 2015: Sabbatical
+### August 2015 — December 2015: Career Break
 
 *Transition to freelance consulting*
 
