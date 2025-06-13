@@ -1,14 +1,15 @@
-FROM ruby:3.4-alpine
+FROM ruby:3.4-slim
 
-RUN apk add --no-cache build-base libffi-dev
+RUN apt-get update && apt-get install -y build-essential && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
+USER nobody
 
 # because of Docker layering (caching)
-COPY Gemfile* ./
+COPY --chown=nobody:nogroup Gemfile Gemfile.lock ./
 
-RUN bundle config set force_ruby_platform true &&  \
+RUN bundle config set force_ruby_platform true && \
     bundle install
-COPY . .
+COPY --chown=nobody:nogroup . .
 EXPOSE 4000 35729
 
 CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--force_polling", "--livereload", "--incremental"]
