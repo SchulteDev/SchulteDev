@@ -14,16 +14,9 @@ export const OUTPUT_FILE = process.env.GITHUB_OUTPUT || '/tmp/github_output.txt'
 export const API_MODEL = process.env.API_MODEL || 'claude-opus-4-20250514';
 export const MAX_TOKENS = parseInt(process.env.MAX_TOKENS || '8000');
 
-// Validation settings
-export const MIN_LATEX_LINES = parseInt(process.env.MIN_LATEX_LINES || '50');
-export const MAX_LATEX_SIZE = parseInt(process.env.MAX_LATEX_SIZE || '1000000'); // 1MB
-
 // Backup settings
 export const CREATE_BACKUP = process.env.CREATE_BACKUP === 'true';
 export const BACKUP_DIR = process.env.BACKUP_DIR || 'backups';
-
-// Debug settings
-export const DEBUG = process.env.DEBUG === 'true';
 
 // Check if running in GitHub Actions
 export const isGithubActions = () => {
