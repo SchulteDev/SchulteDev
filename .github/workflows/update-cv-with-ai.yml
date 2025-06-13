@@ -5,6 +5,15 @@ on:
     branches: [ main ]
     paths: [ 'career.md' ]
   workflow_dispatch:
+    inputs:
+      rebuild_mode:
+        description: 'CV Generation Mode'
+        required: true
+        default: 'incremental'
+        type: choice
+        options:
+          - incremental
+          - full_rebuild
 
 permissions:
   contents: write
@@ -17,80 +26,61 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - name: Check if career.md changed
-        id: changes
-        run: |
-          if git diff HEAD~1 HEAD --name-only | grep -q "career.md"; then
-            echo "career_changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "career_changed=false" >> $GITHUB_OUTPUT
-          fi
-      - name: Get career.md diff for Claude
-        if: steps.changes.outputs.career_changed == 'true'
-        run: |
-          echo "Getting changes for Claude transformation..."
-          git diff HEAD~1 HEAD career.md > career_changes.diff
-      - name: Transform with Claude 4 Opus
-        if: steps.changes.outputs.career_changed == 'true'
+
+      - name: Detect changes and determine mode
+        id: mode
+        env:
+          REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
+        run: ./scripts/detect-changes.sh
+
+      - name: Transform with Claude 4 Opus (Incremental)
+        if: steps.mode.outputs.process_mode == 'incremental'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          curl -X POST "https://api.anthropic.com/v1/messages" \
-            -H "Content-Type: application/json" \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -d '{
-              "model": "claude-opus-4",
-              "max_tokens": 8000,
-              "thinking": {
-                "mode": "extended"
-              },
-              "messages": [{
-                "role": "user",
-                "content": "You are an expert LaTeX document designer and professional CV writer. I need you to transform career updates into a high-quality anti-CV format.\n\n**Current LaTeX document:**\n```latex\n'"'"'$(cat anti-cv.tex)'"'"'\n```\n\n**Career changes detected:**\n```diff\n'"'"'$(cat career_changes.diff)'"'"'\n```\n\n**Instructions:**\n1. Use extended thinking to analyze the changes and plan the optimal integration\n2. Maintain the humorous anti-CV tone with heart-stab (♡) and squiggly arrow (↝) symbols\n3. Ensure professional information is accurately incorporated\n4. Optimize LaTeX formatting for visual appeal and readability\n5. Consider typography, spacing, and layout improvements\n6. Ensure all LaTeX syntax is correct and compilable\n\n**Requirements:**\n- Return ONLY the complete updated LaTeX code\n- No explanations or markdown formatting\n- Ensure the document compiles without errors\n- Maintain consistency with existing styling\n\nPlease think through this carefully and produce the highest quality CV possible."
-              }]
-            }' > claude_response.json
+        run: ./scripts/transform-incremental.sh
 
-          # Extract the updated LaTeX from Claude's response
-          jq -r '.content[0].text' claude_response.json > updated_anti-cv.tex
+      - name: Transform with Claude 4 Opus (Full Rebuild)
+        if: steps.mode.outputs.process_mode == 'full_rebuild'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: ./scripts/transform-full-rebuild.sh
 
-          # Validate the response and use it
-          if [ -s updated_anti-cv.tex ] && grep -q "\\documentclass" updated_anti-cv.tex; then
-            mv updated_anti-cv.tex anti-cv.tex
-            echo "✅ Successfully updated anti-cv.tex with Claude 4 Opus"
-          else
-            echo "❌ Claude response invalid, keeping original anti-cv.tex"
-            echo "Claude response:"
-            cat claude_response.json
-          fi
+      - name: Validate and apply changes
+        if: steps.mode.outputs.process_mode != 'skip'
+        run: ./scripts/validate-response.sh ${{ steps.mode.outputs.process_mode }}
+
       - name: Compile LaTeX to PDF
-        if: steps.changes.outputs.career_changed == 'true'
+        if: steps.mode.outputs.process_mode != 'skip'
         uses: xu-cheng/latex-action@v3
         with:
           root_file: anti-cv.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
       - name: Upload PDF to GitHub Releases
-        if: steps.changes.outputs.career_changed == 'true'
+        if: steps.mode.outputs.process_mode != 'skip'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: cv-latest
           name: "Latest CV - Markus Schulte"
           body: |
-            🤖 Auto-generated CV from career.md changes (Claude 4 Opus Enhanced)
+            🤖 Auto-generated CV (Claude 4 Opus Enhanced)
 
             **AI Model:** Claude 4 Opus with Extended Thinking
-            **Changes detected in:** career.md
+            **Generation Mode:** ${{ steps.mode.outputs.process_mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
+            **Trigger:** ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto (career.md change)' }}
             **Generated on:** ${{ github.event.head_commit.timestamp }}
             **Commit:** ${{ github.sha }}
 
             📄 Direct download: [markus-schulte-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf)
           files: anti-cv.pdf
-          prerelease: true
+          prerelease: false
           make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Output download link
-        if: steps.changes.outputs.career_changed == 'true'
+        if: steps.mode.outputs.process_mode != 'skip'
         run: |
           echo "✅ CV updated successfully with Claude 4 Opus!"
+          echo "🎯 Mode: ${{ steps.mode.outputs.process_mode }}"
           echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf"
