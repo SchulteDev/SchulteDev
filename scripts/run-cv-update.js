@@ -88,6 +88,7 @@ const main = async () => {
       try {
         await transformFullRebuild();
         mode = 'full_rebuild';
+        // The full rebuild is complete, continue with processing
       } catch (error) {
         logger.error('Full rebuild transformation failed');
         process.exit(1);

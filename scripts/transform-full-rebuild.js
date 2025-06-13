@@ -15,7 +15,7 @@ export const main = async () => {
     const prompt = buildCvPrompt('full_rebuild');
     if (!prompt) {
       logger.error('Failed to build prompt');
-      process.exit(1);
+      throw new Error('Failed to build prompt');
     }
 
     // Make API call
@@ -24,18 +24,12 @@ export const main = async () => {
       logger.success('Full rebuild response received');
     } else {
       logger.error('API call failed');
-      process.exit(1);
+      throw new Error('API call failed');
     }
   } catch (error) {
     logger.error(`Error in full rebuild: ${error.message}`);
-    process.exit(1);
+    throw error;
   }
 };
 
-// Run the main function
-main().then(() => {
-  logger.debug('Full rebuild completed');
-}).catch(error => {
-  logger.error(`Unhandled error in full rebuild: ${error.message}`);
-  process.exit(1);
-});
+// Remove the standalone execution - it's handled by run-cv-update.js

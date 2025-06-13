@@ -56,7 +56,8 @@ export const main = async () => {
       if (process.env.REBUILD_MODE === 'full_rebuild') {
         setOutput('mode', 'full_rebuild');
         logger.info('🔄 Manual trigger: Switching to full rebuild');
-        process.exit(0);
+        // Don't exit here - let the parent handle it
+        throw new Error('SWITCH_TO_FULL_REBUILD');
       }
       setOutput('mode', 'incremental');
       logger.info('📝 Manual trigger: Incremental mode');
@@ -65,7 +66,7 @@ export const main = async () => {
     // Generate diff
     const shouldContinue = await generateDiff();
     if (!shouldContinue) {
-      process.exit(0);
+      return; // Return instead of exit
     }
 
     // Check if diff is empty
@@ -73,7 +74,7 @@ export const main = async () => {
     if (!diffContent || diffContent.trim() === '' || diffContent === 'No changes detected') {
       logger.info('ℹ️ No actual changes to process');
       setOutput('mode', 'skip');
-      process.exit(0);
+      return; // Return instead of exit
     }
 
     // Build prompt using shared function
@@ -81,7 +82,7 @@ export const main = async () => {
     if (!prompt) {
       logger.error('Failed to build prompt');
       fs.unlinkSync(DIFF_FILE);
-      process.exit(1);
+      throw new Error('Failed to build prompt');
     }
 
     // Make API call
@@ -105,9 +106,12 @@ export const main = async () => {
           logger.error(`Failed to delete diff file: ${unlinkError.message}`);
         }
       }
-      process.exit(1);
+      throw new Error('API call failed');
     }
   } catch (error) {
+    if (error.message === 'SWITCH_TO_FULL_REBUILD') {
+      throw error; // Re-throw to let parent handle
+    }
     logger.error(`Error in incremental transformation: ${error.message}`);
     // Cleanup
     if (fs.existsSync(DIFF_FILE)) {
@@ -117,14 +121,8 @@ export const main = async () => {
         logger.error(`Failed to delete diff file: ${unlinkError.message}`);
       }
     }
-    process.exit(1);
+    throw error;
   }
 };
 
-// Run the main function
-main().then(() => {
-  logger.debug('Incremental transformation completed');
-}).catch(error => {
-  logger.error(`Unhandled error in incremental transformation: ${error.message}`);
-  process.exit(1);
-});
+// Remove the standalone execution - it's handled by run-cv-update.js
