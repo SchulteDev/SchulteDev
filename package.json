@@ -4,7 +4,7 @@
   "description": "AI-powered CV generation and transformation scripts",
   "type": "module",
   "scripts": {
-    "test": "echo \"Warn: no test specified\" && exit 0",
+    "test": "npm run cv:test",
     "cv:update": "node scripts/run-cv-update.js",
     "cv:full-rebuild": "node scripts/transform-full-rebuild.js",
     "cv:incremental": "node scripts/transform-incremental.js",
