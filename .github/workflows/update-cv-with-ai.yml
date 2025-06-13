@@ -6,11 +6,13 @@ on:
     paths:
       - '_data/career.md'
       - 'scripts/**'
+      - 'package*.json'
   pull_request:
     branches: [ '*' ]
     paths:
       - '_data/career.md'
       - 'scripts/**'
+      - 'package*.json'
   workflow_dispatch:
     inputs:
       rebuild_mode:
