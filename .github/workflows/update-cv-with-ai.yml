@@ -93,6 +93,12 @@ jobs:
           git diff --staged --quiet || git commit -m "Update CV: ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }}"
           git push
 
+      - name: Delete existing release
+        if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: gh release delete cv-latest --yes || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload PDF to GitHub Releases
         if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v2
@@ -101,16 +107,17 @@ jobs:
           name: "Latest CV - Markus Schulte"
           body: |
             🤖 Auto-generated CV (Claude 4 Opus Enhanced)
+
             **AI Model:** Claude 4 Opus with Extended Thinking
             **Generation Mode:** ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
             **Trigger:** ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto (career.md change)' }}
             **Generated on:** ${{ steps.timestamp.outputs.generated_date }}
             **Commit:** ${{ github.sha }}
+
             📄 Direct download: [markus-schulte-dev-anti-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf)
           files: markus-schulte-dev-anti-cv.pdf
           prerelease: false
           make_latest: true
-          overwrite: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
