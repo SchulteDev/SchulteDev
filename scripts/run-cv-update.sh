@@ -23,7 +23,7 @@ if [ "$MODE" = "full_rebuild" ]; then
     PROCESS_MODE="full_rebuild"
 else
     # Clean up any existing response file first
-    rm "$RESPONSE_FILE"
+    rm -f "$RESPONSE_FILE"
 
     # Run incremental transformation
     "$SCRIPT_DIR/transform-incremental.sh"
