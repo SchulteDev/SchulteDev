@@ -1,0 +1,12 @@
+todo: <a href='https://outlook.office365.com/owa/calendar/Schultedevelopment1@schulte-development.de/bookings/'>Online planen</a>
+einbetten (eigene Seite)?
+
+- https://www.geekcell.io/
+- https://www.dinodino.cloud/
+- https://attalitech.com/
+-- https://github.com/daattali/attalitech
+
+- https://github.com/katzefudder/katzefudder
+-- https://www.katzefudder.de/
+
+- https://codeministry.de/

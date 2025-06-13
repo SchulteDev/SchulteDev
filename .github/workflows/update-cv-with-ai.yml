@@ -3,7 +3,7 @@ name: AI-Powered CV Update with GitHub Releases
 on:
   push:
     branches: [ main ]
-    paths: [ 'career.md' ]
+    paths: [ '_data/career.md' ]
   workflow_dispatch:
     inputs:
       rebuild_mode:
@@ -18,6 +18,11 @@ on:
 permissions:
   contents: write
 
+env:
+  CAREER_FILE: _data/career.md
+  CV_FILE: cv/anti-cv.tex
+  RESPONSE_FILE: claude_response.json
+
 jobs:
   update-cv-with-ai:
     runs-on: ubuntu-latest
@@ -27,37 +32,22 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Detect changes and determine mode
-        id: mode
+      - name: Transform with Claude
+        id: transform
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
-        run: ./scripts/detect-changes.sh
-
-      - name: Transform with Claude 4 Opus (Incremental)
-        if: steps.mode.outputs.process_mode == 'incremental'
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: ./scripts/transform-incremental.sh
-
-      - name: Transform with Claude 4 Opus (Full Rebuild)
-        if: steps.mode.outputs.process_mode == 'full_rebuild'
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: ./scripts/transform-full-rebuild.sh
-
-      - name: Validate and apply changes
-        if: steps.mode.outputs.process_mode != 'skip'
-        run: ./scripts/validate-response.sh ${{ steps.mode.outputs.process_mode }}
+        run: ./scripts/run-cv-update.sh
 
       - name: Compile LaTeX to PDF
-        if: steps.mode.outputs.process_mode != 'skip'
+        if: success() && steps.transform.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v3
         with:
           root_file: anti-cv.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Upload PDF to GitHub Releases
-        if: steps.mode.outputs.process_mode != 'skip'
+        if: success() && steps.transform.outputs.mode != 'skip'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: cv-latest
@@ -66,7 +56,7 @@ jobs:
             🤖 Auto-generated CV (Claude 4 Opus Enhanced)
 
             **AI Model:** Claude 4 Opus with Extended Thinking
-            **Generation Mode:** ${{ steps.mode.outputs.process_mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
+            **Generation Mode:** ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
             **Trigger:** ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto (career.md change)' }}
             **Generated on:** ${{ github.event.head_commit.timestamp }}
             **Commit:** ${{ github.sha }}
@@ -79,8 +69,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Output download link
-        if: steps.mode.outputs.process_mode != 'skip'
+        if: success() && steps.transform.outputs.mode != 'skip'
         run: |
           echo "✅ CV updated successfully with Claude 4 Opus!"
-          echo "🎯 Mode: ${{ steps.mode.outputs.process_mode }}"
+          echo "🎯 Mode: ${{ steps.transform.outputs.mode }}"
           echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf"

@@ -1,55 +1,56 @@
 #!/bin/bash
 set -e
 
+# Source configuration
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+source "$SCRIPT_DIR/claude-api.sh"
+
 echo "🔄 Starting incremental transformation..."
 
-if [ -z "$ANTHROPIC_API_KEY" ]; then
-    echo "❌ ANTHROPIC_API_KEY not set"
+# Detect if we need to process
+if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+    if [ "${REBUILD_MODE:-incremental}" = "full_rebuild" ]; then
+        set_output "process_mode" "full_rebuild"
+        echo "🔄 Manual trigger: Switching to full rebuild"
+        exit 0
+    fi
+    set_output "process_mode" "incremental"
+    echo "📝 Manual trigger: Incremental mode"
+    git diff HEAD~1 HEAD "$CAREER_FILE" > "$DIFF_FILE" || echo "No changes detected" > "$DIFF_FILE"
+else
+    if git diff HEAD~1 HEAD --name-only | grep -q "$CAREER_FILE"; then
+        set_output "process_mode" "incremental"
+        echo "🔍 Auto-trigger: Changes detected in $CAREER_FILE"
+        git diff HEAD~1 HEAD "$CAREER_FILE" > "$DIFF_FILE"
+    else
+        set_output "process_mode" "skip"
+        echo "⏭️ Auto-trigger: No changes in $CAREER_FILE"
+        exit 0
+    fi
+fi
+
+# Check if diff is empty
+if [ ! -s "$DIFF_FILE" ] || [ "$(cat "$DIFF_FILE")" = "No changes detected" ]; then
+    echo "⚠️ No actual changes to process"
+    exit 0
+fi
+
+# Build prompt using shared function
+PROMPT=$(build_cv_prompt "incremental")
+if [ $? -ne 0 ]; then
+    echo "❌ Failed to build prompt"
+    rm -f "$DIFF_FILE"
     exit 1
 fi
 
-# Use jq to properly construct the JSON payload
-jq -n \
-  --arg model "claude-opus-4-20250514" \
-  --arg content "You are an expert LaTeX document designer and professional CV writer. I need you to transform career updates into a high-quality anti-CV format.
-
-**Current LaTeX document:**
-\`\`\`latex
-$(jq -Rs . cv/anti-cv.tex)
-\`\`\`
-
-**Career changes detected:**
-\`\`\`diff
-$(jq -Rs . cv/career_changes.diff)
-\`\`\`
-
-**Instructions:**
-1. Use extended thinking to analyze the changes and plan the optimal integration
-2. Maintain the humorous anti-CV tone with heart-stab (♡) and squiggly arrow (↝) symbols
-3. Ensure professional information is accurately incorporated
-4. Optimize LaTeX formatting for visual appeal and readability
-5. Consider typography, spacing, and layout improvements
-6. Ensure all LaTeX syntax is correct and compilable
-
-**Requirements:**
-- Return ONLY the complete updated LaTeX code
-- No explanations or markdown formatting
-- Ensure the document compiles without errors
-- Maintain consistency with existing styling
-- Do NOT include any thinking process or explanations in your response
-
-Please think through this carefully and produce the highest quality CV possible." \
-  '{
-    model: $model,
-    max_tokens: 8000,
-    messages: [{
-      role: "user",
-      content: $content
-    }]
-  }' | curl -X POST "https://api.anthropic.com/v1/messages" \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -d @- > claude_response.json
-
-echo "✅ Incremental transformation response received"
+# Make API call
+if call_claude_api "$PROMPT"; then
+    echo "✅ Incremental transformation response received"
+    # Cleanup
+    rm -f "$DIFF_FILE"
+else
+    echo "❌ API call failed"
+    rm -f "$DIFF_FILE"
+    exit 1
+fi
