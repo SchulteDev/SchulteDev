@@ -18,20 +18,22 @@ scripts/
 ```
 GitHub Action / Local Test
          ↓
-  run-cv-update.sh
+  run-cv-update
          ↓
   Determines mode
     ↙        ↘
 transform-    transform-
 incremental   full-rebuild
     ↘        ↙
-  claude-api.sh
+  claude-api
   (API + prompts)
          ↓
-  run-cv-update.sh
-  (validation + placement)
+  run-cv-update
+(validation + placement)
          ↓
-    CV Updated
+  Recommit changes  
+         ↓
+    CV updated
 ```
 
 ## Usage Examples
@@ -106,6 +108,7 @@ npm run cv:full-rebuild
 - `CV_FILE` - Output LaTeX (default: `cv/markus-schulte-dev-anti-cv.tex`)
 - `RESPONSE_FILE` - API response (default: `claude_response.json`)
 - `DIFF_FILE` - Git diff for incremental (default: `career_changes.diff`)
+- `TEMP_FILE` - Temporary file for processing (default: `temp_cv.tex`)
 
 ### Optional Settings
 
@@ -113,6 +116,12 @@ npm run cv:full-rebuild
 - `SKIP_API` - Skip API call for testing (default: false)
 - `DRY_RUN` - Show what would be done (default: false)
 - `REBUILD_MODE` - For GitHub Actions (incremental/full_rebuild)
+
+### GitHub Actions Specific
+
+- `GITHUB_OUTPUT` - Used for setting workflow outputs
+- `GITHUB_EVENT_NAME` - Determines trigger context
+- `GITHUB_REF` - Branch reference for conditional operations
 
 ## Key Improvements
 
@@ -142,10 +151,20 @@ npm run cv:full-rebuild
 
 `run-cv-update.js` handles:
 
-- Mode selection
-- Running appropriate transformation
-- LaTeX extraction
-- Basic validation (file exists, has \documentclass)
-- Optional backup
-- File placement
-- Cleanup
+- Mode determination (from GitHub inputs or defaults)
+- Running appropriate transformation (incremental/full_rebuild)
+- LaTeX extraction and validation
+- GitHub Actions output setting
+- Optional backup creation
+- File placement and cleanup
+- Comprehensive error handling with proper exit codes
+
+### 5. **Workflow Integration**
+
+The architecture properly integrates with GitHub Actions by:
+
+- Setting required outputs for workflow decisions
+- Handling different trigger scenarios (push, PR, manual)
+- Providing proper error states and cleanup
+- Supporting artifact collection for debugging
+- Enabling conditional PDF compilation and release creation
