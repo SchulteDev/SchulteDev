@@ -1,81 +1,152 @@
-\documentclass[11pt,a4paper,sans]{moderncv}
-\moderncvstyle{banking}
-\moderncvcolor{blue}
+\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[scale=0.75,a4paper]{geometry}
-\usepackage{multicol}
-\usepackage{fontawesome}
-\usepackage{xcolor}
-\usepackage{soul}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
 \usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{multicol}
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{amssymb}
 \usepackage{wasysym}
-\definecolor{darkgray}{gray}{0.3}
-\definecolor{lightgray}{gray}{0.7}
-\newcommand{\heart}{{\color{red}$\heartsuit$}}
-\newcommand{\arrow}{{\color{blue}$\rightsquigarrow$}}
-\firstname{Markus}
-\familyname{Schulte}
-\title{The Anti-CV: A Chronicle of Professional Misadventures}
-\address{Cologne, Germany}{}{}
-\phone[mobile]{+49 178 7217768}
-\email{mail@schulte-development.de}
-\homepage{schulte-development.de}
-\social[linkedin]{markus-schulte}
-\social[github]{SchulteMarkus}
+\definecolor{darkred}{RGB}{139,0,0}
+\definecolor{darkgray}{RGB}{64,64,64}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkred,
+    urlcolor=darkred,
+}
+\titleformat{\section}{\Large\bfseries\color{darkred}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{darkgray}}{}{0em}{}
+\newcommand{\heart}{$\heartsuit$}
+\newcommand{\arrow}{$\rightsquigarrow$}
+\pagestyle{empty}
 \begin{document}
-\makecvtitle
-\section{\heart~Failed Ambitions \& Unrealized Dreams~\heart}
-\cvitem{2007--2024}{\textbf{Aspiring Video Game Developer} \arrow~Ended up building boring enterprise software instead}
-\cvitem{2015}{\textbf{Crypto Trading Mogul} \arrow~Built arbitrage bot, market crashed, dreams vanished}
-\cvitem{2016--2023}{\textbf{Atlassian Plugin Tycoon} \arrow~83 customers worldwide, still not a millionaire}
-\section{\heart~Technical Incompetencies~\heart}
-\cvitem{Languages}{Fluent in 18+ years of Java verbosity, 4+ years of Golang simplicity envy}
-\cvitem{Architecture}{Expert at creating "simple" microservices that somehow need 47 dependencies}
-\cvitem{Cloud}{Can make any application 10x more expensive by adding "cloud-native" to it}
-\cvitem{Testing}{Writes 1000+ tests to achieve the illusion of bug-free software}
-\section{\heart~Professional Disappointments~\heart}
-\subsection{November 2024 -- Present: \textit{Professional Application Rejector} @ LBBW}
-\cvitem{Achievement}{\arrow~Successfully identified 50\% of applications as incompatible with their shiny new platform}
-\cvitem{Impact}{\arrow~Initiated "platform improvements" (translation: exposed how broken it was)}
-\cvitem{Specialty}{\arrow~Creating multi-cloud strategies that will never be implemented}
-\subsection{October 2021 -- December 2024: \textit{Overengineering Specialist} @ Union Investment}
-\cvitem{Challenge}{\arrow~Transform simple website serving 80,000 users into distributed nightmare}
-\cvitem{Solution}{\arrow~8 microservices, event streams, and Web Components for what could've been WordPress}
-\cvitem{Result}{\arrow~10-minute builds with 1000+ tests for a glorified content management system}
-\cvitem{Legacy}{\arrow~Left behind an architecture so complex, they'll need consultants forever}
-\subsection{December 2021 -- November 2024: \textit{Solo Middleware Masochist} @ Saloodo! (DHL)}
-\cvitem{Task}{\arrow~Sync 10 million records between systems that hate each other}
-\cvitem{Reality}{\arrow~Spent 3 years fighting malformed JSON and database inconsistencies}
-\cvitem{Achievement}{\arrow~100\% uptime (because nobody dared to touch it)}
-\cvitem{Confession}{\arrow~Only took the job to use Golang professionally}
-\subsection{2016 -- 2023: \textit{Failed Entrepreneur} @ Atlassian Marketplace}
-\cvitem{Dream}{\arrow~Build passive income empire with Bamboo plugins}
-\cvitem{Reality}{\arrow~7 years of customer support emails about Checkstyle integration}
-\cvitem{Peak}{\arrow~83 customers globally (still drove a used car)}
-\cvitem{Lesson}{\arrow~Enterprise software add-ons: where dreams go to die slowly}
-\section{\heart~Educational Missteps~\heart}
-\cvitem{2004--2012}{\textbf{Diplom in Computer Science} \arrow~Studied game development, became enterprise drone}
-\cvitem{2000--2003}{\textbf{Self-taught PHP Developer} \arrow~Built forums for friends instead of studying}
-\cvitem{2003--2004}{\textbf{Military Service} \arrow~Learned to march, forgot how to code}
-\section{\heart~Personal Failures~\heart}
-\cvitem{2025}{\textbf{AI Tax Assistant} \arrow~Built AI to do taxes, still filed late}
-\cvitem{2018}{\textbf{Jenkins-GitHub Integration} \arrow~Another abandoned side project}
-\cvitem{Gaming}{\arrow~Studied Computer Visualistics to make games, never shipped one}
-\section{\heart~Overqualifications Nobody Asked For~\heart}
-\cvitem{Testing}{Can write 5-second tests for 2,776 lines of code (nobody cares)}
-\cvitem{DevOps}{Reduced deployment from days to 30 minutes (team still deploys monthly)}
-\cvitem{Quality}{SonarQube integration expert (everyone ignores the warnings)}
-\cvitem{Architecture}{Self-contained Systems evangelist (Google it, nobody else has)}
-\section{\heart~Career Gaps \& Excuses~\heart}
-\cvitem{2020--2021}{\textbf{Parental Leave} \arrow~Blamed COVID, actually just tired of Kubernetes}
-\cvitem{2015}{\textbf{Career Break} \arrow~"Transitioning to freelance" (translation: unemployed)}
-\section{\heart~Certifications of Questionable Value~\heart}
-\cvitem{StackOverflow}{4000+ reputation points \arrow~Professional time waster}
-\cvitem{Java SE 8}{93/100 score \arrow~Still writes bugs daily}
+\begin{center}
+    {\Huge\bfseries\color{darkred} ANTI-CV}\\[0.5em]
+    {\Large\itshape The Unvarnished Truth About}\\[0.3em]
+    {\LARGE\bfseries Markus Schulte}\\[0.5em]
+    {\large\color{darkgray} Freelance Cloud Architect \& Software Engineer}\\[0.3em]
+    {\small\faIcon{map-marker-alt} Cologne, Germany \quad \faIcon{envelope} mail@schulte-development.de \quad \faIcon{phone} +49 178 7217768}\\
+    {\small\faIcon{globe} \href{https://schulte-development.de}{schulte-development.de} \quad \faIcon{linkedin} \href{https://www.linkedin.com/in/markus-schulte/}{linkedin.com/in/markus-schulte}}
+\end{center}
+\vspace{1em}
+\section{Professional Disillusionment}
+After 18+ years in software engineering, including 11+ as a freelancer, I've mastered the art of:
+\begin{itemize}[leftmargin=*]
+    \item[\heart] Writing code that will be rewritten by the next consultant
+    \item[\heart] Architecting ``cloud-native'' solutions that are just someone else's computers
+    \item[\heart] Leading teams through ``agile transformations'' (aka renaming meetings)
+    \item[\heart] Migrating perfectly functional monoliths to overly complex microservices
+\end{itemize}
+\section{Core Incompetencies}
+\subsection{Programming Languages I Pretend to Master}
+\begin{itemize}[leftmargin=*]
+    \item[\arrow] \textbf{Java (18+ years):} Still using verbose getters/setters like it's 2007
+    \item[\arrow] \textbf{Golang (4+ years):} Convinced myself that \texttt{if err != nil} is elegant
+    \item[\arrow] \textbf{PHP (8+ years):} My dark past I only mention when drunk
+    \item[\arrow] \textbf{TypeScript/JavaScript:} Because who doesn't love \texttt{undefined is not a function}
+\end{itemize}
+\subsection{Architecture Anti-Patterns I Excel At}
+\begin{itemize}[leftmargin=*]
+    \item[\heart] Creating microservices that require 47 network calls for a simple query
+    \item[\heart] Designing event-driven systems where nobody knows what triggers what
+    \item[\heart] Building ``serverless'' solutions that cost more than dedicated servers
+    \item[\heart] Implementing Self-contained Systems that are neither self-contained nor systematic
+\end{itemize}
+\section{Professional Lowlights}
+\subsection{November 2024 -- Present: Cloud Architect at LBBW}
+\textit{Landesbank Baden-Württemberg | Remote | ``Phoenix'' Project (the irony isn't lost)}
+\begin{itemize}[leftmargin=*]
+    \item[\arrow] Cataloging hundreds of legacy apps for a platform nobody has used in production
+    \item[\arrow] Discovered 50\% of apps are incompatible with our ``revolutionary'' Skywalker platform
+    \item[\arrow] Writing multi-cloud strategies while knowing we'll stick with Azure anyway
+    \item[\arrow] Using Citrix and Webex in 2024 because enterprise
+\end{itemize}
+\subsection{October 2021 -- December 2024: Cloud Architect at Union Investment}
+\textit{The Art of Over-Engineering a Platform for 80,000 Users}
+\begin{itemize}[leftmargin=*]
+    \item[\heart] Spent 3 years modernizing a monolith that worked perfectly fine
+    \item[\heart] Created 8 microservices where 2 would have sufficed
+    \item[\heart] Built a ``microfrontend toolkit'' -- because Web Components needed more abstraction
+    \item[\heart] Achieved 10-minute builds with 1000+ tests that mostly test mocks
+    \item[\heart] Implemented event streams for a search that could've been a simple database query
+\end{itemize}
+\subsection{December 2021 -- November 2024: Middleware Engineer at Saloodo! (DHL)}
+\textit{Part-time Golang Adventure | 100\% Uptime, 0\% Recognition}
+\begin{itemize}[leftmargin=*]
+    \item[\arrow] Sole developer syncing 10 million records because ``it's just a simple integration''
+    \item[\arrow] Built fault-tolerant system to handle Saloodo's fault-intolerant database
+    \item[\arrow] Achieved 70\% test coverage on code nobody else will ever read
+    \item[\arrow] Maintained 100\% uptime while being asked ``what exactly do you do here?''
+\end{itemize}
+\subsection{June 2016 -- December 2023: Atlassian Add-on Entrepreneur}
+\textit{7 Years of Supporting a Dying Platform}
+\begin{itemize}[leftmargin=*]
+    \item[\heart] Built add-ons for Bamboo Server right before Atlassian killed it
+    \item[\heart] Peaked at 83 customers who constantly asked for Cloud version
+    \item[\heart] Maintained legacy Java code while the world moved to GitHub Actions
+\end{itemize}
+\section{Technical Debt Collection}
+\begin{multicols}{2}
+\subsection{Cloud Platforms I've Enriched}
+\begin{itemize}[leftmargin=*, itemsep=0pt]
+    \item[\arrow] AWS: Bezos' retirement fund
+    \item[\arrow] Azure: Microsoft's other monopoly
+    \item[\arrow] GCP: The one nobody asked for
+\end{itemize}
+\subsection{Buzzwords I've Monetized}
+\begin{itemize}[leftmargin=*, itemsep=0pt]
+    \item[\heart] ``Digital Transformation''
+    \item[\heart] ``DevOps Culture''
+    \item[\heart] ``Synergy'' and ``Alignment''
+    \item[\heart] ``AI-Ready Architecture''
+\end{itemize}
+\end{multicols}
+\section{Career Interruptions}
+\begin{itemize}[leftmargin=*]
+    \item[\arrow] \textbf{April 2020 -- Sept 2021:} Parental leave during COVID (perfect timing)
+    \item[\arrow] \textbf{Aug -- Dec 2015:} Career break to ``find myself'' (found debt instead)
+    \item[\arrow] \textbf{Aug 2003 -- Mar 2004:} Mandatory military service (learned to march, forgot immediately)
+\end{itemize}
+\section{Educational Achievements}
+\begin{itemize}[leftmargin=*]
+    \item[\heart] \textbf{2004-2012:} Diplom in Computer Science, University of Koblenz
+    \begin{itemize}[leftmargin=*]
+        \item[\arrow] 8 years for a 5-year program -- efficiency was never my strong suit
+        \item[\arrow] Studied ``Computer Visualistics'' -- still can't make a decent UI
+    \end{itemize}
+    \item[\heart] \textbf{2003:} Abitur with focus on math/physics -- now I calculate cloud costs
+\end{itemize}
+\section{Dubious Achievements}
+\begin{itemize}[leftmargin=*]
+    \item[\arrow] 4000+ StackOverflow reputation from answers I copied from documentation
+    \item[\arrow] Java SE 8 certification (93/100) -- still writing Java 8 in 2024
+    \item[\arrow] Successfully convinced 83 companies to buy Bamboo add-ons for a dying platform
+    \item[\arrow] Maintained 100\% uptime on a system nobody knew existed
+\end{itemize}
+\section{Personal Anti-Projects}
+\begin{itemize}[leftmargin=*]
+    \item[\heart] \textbf{2025:} AI tax software integration -- because taxes weren't complicated enough
+    \item[\heart] \textbf{2018:} Jenkins-GitHub integration that nobody asked for
+    \item[\heart] \textbf{2015:} Crypto trading bot that lost money faster than manual trading
+\end{itemize}
+\section{Core Beliefs That Keep Me Employed}
+\begin{itemize}[leftmargin=*]
+    \item[\arrow] Every problem can be solved with another layer of abstraction
+    \item[\arrow] Microservices are always the answer, regardless of the question
+    \item[\arrow] If it's not in the cloud, it's not modern
+    \item[\arrow] Documentation is for people who can't read code
+    \item[\arrow] The best code is the code that job security
+\end{itemize}
 \vfill
 \begin{center}
-\textit{\small "18+ years of turning simple problems into distributed systems nightmares"}
+    \textit{``I don't always test my code, but when I do, it's in production''}\\[0.3em]
+    {\small\color{darkgray} Available for your next over-engineered, under-specified project}
 \end{center}
 \end{document}
