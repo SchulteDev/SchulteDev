@@ -169,6 +169,18 @@ export const buildCvPrompt = (mode) => {
 - Use defensive programming - check that all referenced labels exist
 - Generate LaTeX that has been tested for common compilation pitfalls`;
 
+  const documentStructureGuidelines = `
+**Document Structure Requirements:**
+- START with a prominent header section containing name, title, and contact information
+- IMMEDIATELY follow with a comprehensive summary section that provides an overview of the entire document
+- The summary should be substantial and appear on the first page
+- Use clear visual hierarchy with the header being the most prominent element
+- Structure the summary to give readers a complete picture before diving into details
+- Make the first page self-contained with header + summary providing full context
+- Use professional formatting that makes the header and summary stand out visually
+- Ensure the summary captures the essence and key points of the entire document
+- Create a layout where someone reading just the first page gets the complete picture`;
+
   const commonInstructions = `
 **Instructions:**
 1. Use extended thinking to analyze and plan the optimal document structure
@@ -178,6 +190,7 @@ export const buildCvPrompt = (mode) => {
 5. Prioritize ZERO compilation errors over fancy features
 6. Generate LaTeX that will compile successfully in automated environments
 7. Use conservative, well-tested package combinations
+8. ALWAYS include a prominent header and comprehensive summary on the first page
 
 **Critical Success Criteria:**
 - Document MUST compile without errors in GitHub Actions CI/CD
@@ -186,13 +199,15 @@ export const buildCvPrompt = (mode) => {
 - Ensure all fonts and symbols render correctly across different systems
 - Generate clean, maintainable LaTeX code
 - Test all package interactions for compatibility
+- Create documents with header + summary structure on first page
 
 **Response Format:**
 - Return ONLY the complete LaTeX document code
 - No explanations, markdown formatting, or commentary
 - Ensure the LaTeX will compile successfully on first attempt
 - Focus on reliability and compatibility over advanced features
-- Make it the best possible anti-CV that actually compiles`;
+- Make it the best possible anti-CV that actually compiles
+- Structure with prominent header and comprehensive summary on first page`;
 
   switch (mode) {
     case 'incremental': {
@@ -224,11 +239,14 @@ ${fs.readFileSync(DIFF_FILE, 'utf8')}
 
 ${latexCompatibilityRules}
 
+${documentStructureGuidelines}
+
 ${commonInstructions}
 - Maintain consistency with existing styling while fixing all compilation errors
 - Prioritize successful compilation over preserving exact formatting
+- Ensure the document follows the header + summary structure pattern
 
-Please fix all LaTeX errors and produce a compilation-ready CV.`;
+Please fix all LaTeX errors and produce a compilation-ready CV with proper first-page structure.`;
       break;
     }
 
@@ -247,12 +265,15 @@ ${fs.readFileSync(CAREER_FILE, 'utf8')}
 
 ${latexCompatibilityRules}
 
+${documentStructureGuidelines}
+
 ${commonInstructions}
 - Include \\documentclass and all necessary setup
 - Build from scratch with compilation safety as top priority
 - Use only proven, standard LaTeX patterns
+- Structure with prominent header and comprehensive summary on first page
 
-Please create a complete anti-CV that compiles perfectly on first attempt.`;
+Please create a complete anti-CV that compiles perfectly on first attempt and follows the header + summary first-page structure.`;
       break;
     }
 
