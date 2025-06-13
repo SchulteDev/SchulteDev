@@ -1,0 +1,82 @@
+name: AI-Powered CV Update with GitHub Releases
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'career.md' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-cv-with-ai:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Check if career.md changed
+        id: changes
+        run: |
+          if git diff HEAD~1 HEAD --name-only | grep -q "career.md"; then
+            echo "career_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "career_changed=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Get career.md diff for Claude
+        if: steps.changes.outputs.career_changed == 'true'
+        run: |
+          echo "Getting changes for Claude transformation..."
+          git diff HEAD~1 HEAD career.md > career_changes.diff
+      - name: Transform with Claude
+        if: steps.changes.outputs.career_changed == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          curl -X POST "https://api.anthropic.com/v1/messages" \
+            -H "Content-Type: application/json" \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -d '{
+              "model": "claude-3-5-sonnet-20241022",
+              "max_tokens": 4000,
+              "messages": [{
+                "role": "user",
+                "content": "Transform this career markdown into LaTeX format for an anti-CV. Current main.tex: '"'"'$(cat main.tex)'"'"' \n\nCareer changes: '"'"'$(cat career_changes.diff)'"'"' \n\nPlease update the LaTeX maintaining the humorous anti-CV tone with heart-stab (♡) and squiggly arrow (↝) symbols while incorporating the professional information. Return ONLY the updated LaTeX code."
+              }]
+            }' > claude_response.json
+
+          # Extract the updated LaTeX from Claude's response
+          jq -r '.content[0].text' claude_response.json > main.tex
+      - name: Compile LaTeX to PDF
+        if: steps.changes.outputs.career_changed == 'true'
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Upload PDF to GitHub Releases
+        if: steps.changes.outputs.career_changed == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: cv-latest
+          name: "Latest CV - Markus Schulte"
+          body: |
+            🤖 Auto-generated CV from career.md changes
+
+            **Changes detected in:** career.md
+            **Generated on:** ${{ github.event.head_commit.timestamp }}
+            **Commit:** ${{ github.sha }}
+
+            📄 Direct download: [markus-schulte-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/main.pdf)
+          files: main.pdf
+          prerelease: false
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Output download link
+        if: steps.changes.outputs.career_changed == 'true'
+        run: |
+          echo "✅ CV updated successfully!"
+          echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/main.pdf"
