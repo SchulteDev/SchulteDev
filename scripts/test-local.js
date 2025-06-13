@@ -60,13 +60,6 @@ logger.info(`Running in ${MODE} mode`);
 
 // Check prerequisites
 const checkPrerequisites = async () => {
-  // try {
-  //   await execAsync('where git');
-  // } catch (error) {
-  //   logger.error('Missing prerequisite: git');
-  //   process.exit(1);
-  // }
-
   if (!fs.existsSync(CAREER_FILE)) {
     logger.error(`Missing prerequisite: ${CAREER_FILE} file`);
     process.exit(1);
