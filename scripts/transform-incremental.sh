@@ -32,7 +32,8 @@ fi
 
 # Check if diff is empty
 if [ ! -s "$DIFF_FILE" ] || [ "$(cat "$DIFF_FILE")" = "No changes detected" ]; then
-    echo "⚠️ No actual changes to process"
+    echo "ℹ️ No actual changes to process"
+    set_output "process_mode" "skip"
     exit 0
 fi
 

@@ -25,9 +25,8 @@ if [ "$MODE" = "full_rebuild" ]; then
     "$SCRIPT_DIR/transform-full-rebuild.sh"
     PROCESS_MODE="full_rebuild"
 else
-    # Run incremental (which handles detection)
     "$SCRIPT_DIR/transform-incremental.sh"
-    
+
     # Read the process mode from output
     if [ -f "$OUTPUT_FILE" ]; then
         PROCESS_MODE=$(grep "process_mode=" "$OUTPUT_FILE" | cut -d'=' -f2 | head -1)
@@ -39,10 +38,14 @@ fi
 # Exit if no processing needed
 if [ "$PROCESS_MODE" = "skip" ]; then
     log_info "No changes to process, skipping validation and compilation"
+    # Set outputs for GitHub Actions
+    if is_github_actions; then
+        echo "mode=skip" >> "$GITHUB_OUTPUT"
+    fi
     exit 0
 fi
 
-# Extract and validate LaTeX response
+# Extract and validate LaTeX response (rest remains the same)
 log_info "Processing response..."
 TEMP_FILE="temp_cv.tex"
 
