@@ -72,7 +72,10 @@ jobs:
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: node scripts/run-cv-update.js
 
-      # Option 1: Stick with xu-cheng/latex-action (recommended - it's maintained)
+      - name: Set generation timestamp
+        id: timestamp
+        run: echo "generated_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_OUTPUT
+
       - name: Compile LaTeX to PDF
         if: success() && steps.transform.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v3
@@ -101,7 +104,7 @@ jobs:
             **AI Model:** Claude 4 Opus with Extended Thinking
             **Generation Mode:** ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
             **Trigger:** ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto (career.md change)' }}
-            **Generated on:** ${{ steps.transform.outputs.generated_date || github.event.head_commit.timestamp || github.event.commits[0].timestamp }}
+            **Generated on:** ${{ steps.timestamp.outputs.generated_date }}
             **Commit:** ${{ github.sha }}
 
             📄 Direct download: [markus-schulte-dev-anti-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf)
