@@ -1,169 +1,188 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-\usepackage{geometry}
-\usepackage{xcolor}
-\usepackage{enumitem}
-\usepackage{titlesec}
+\usepackage{lmodern}
+\usepackage[margin=2cm]{geometry}
 \usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{fontawesome5}
-\usepackage{multicol}
 \usepackage{graphicx}
-\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multicol}
 \usepackage{amssymb}
 \usepackage{wasysym}
-\usepackage{marvosym}
-\usepackage{textcomp}
-\usepackage{ragged2e}
-\usepackage{parskip}
-\geometry{
-    left=1.5cm,
-    right=1.5cm,
-    top=2cm,
-    bottom=2cm
+\definecolor{darkblue}{RGB}{0,0,139}
+\definecolor{darkred}{RGB}{139,0,0}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    urlcolor=darkblue,
+    citecolor=darkblue
 }
-\definecolor{accent}{RGB}{139, 0, 0}
-\definecolor{darkgray}{RGB}{64, 64, 64}
-\definecolor{lightgray}{RGB}{150, 150, 150}
-\definecolor{verylightgray}{RGB}{240, 240, 240}
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\fancyfoot[C]{\thepage}
-\titleformat{\section}{\Large\bfseries\color{accent}}{}{0em}{}[\titlerule]
-\titleformat{\subsection}{\large\bfseries\color{darkgray}}{}{0em}{}
-\setlist[itemize]{leftmargin=1.5em, itemsep=0.2em, topsep=0.5em}
-\setlist[enumerate]{leftmargin=1.5em, itemsep=0.2em, topsep=0.5em}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=accent,
-    urlcolor=accent
-}
-\newcommand{\heartarrow}{$\heartsuit$ $\rightsquigarrow$}
-\newcommand{\anticvitem}[1]{\item[\heartarrow] #1}
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{The Anti-CV of Markus Schulte}
+\cfoot{}
+\rfoot{Page \thepage\ of \pageref{LastPage}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
 \begin{document}
 \begin{center}
-    {\Huge\bfseries\color{accent}The Anti-CV}
-    \vspace{0.5em}
-    {\Large Markus Schulte}
-    \vspace{0.5em}
-    {\color{darkgray}
-    \faIcon{envelope} mail@schulte-development.de \quad
-    \faIcon{phone} +49 178 7217768 \quad
-    \faIcon{globe} schulte-development.de
-    }
+{\LARGE \textbf{MARKUS SCHULTE}}\\[8pt]
+{\large \textit{The Unvarnished Truth About a Cloud Architect}}\\[6pt]
+{\small \texttt{mail@schulte-development.de} $\bullet$ +49 178 7217768 $\bullet$ Cologne, Germany}\\
+{\small \href{https://schulte-development.de}{schulte-development.de} $\bullet$ \href{https://github.com/SchulteMarkus}{GitHub} $\bullet$ \href{https://www.linkedin.com/in/markus-schulte/}{LinkedIn}}
 \end{center}
-\vspace{1em}
-\section{Professional Failures \& Catastrophes}
-\begin{itemize}
-    \anticvitem{Successfully transformed simple tasks into complex distributed systems that nobody understands anymore}
-    \anticvitem{Mastered the art of creating \textit{``enterprise-grade''} solutions for problems that didn't exist}
-    \anticvitem{Achieved legendary status by introducing 47 different JavaScript frameworks into one project}
-    \anticvitem{Pioneered the ``It works on my machine'' certification program across multiple organizations}
-    \anticvitem{Single-handedly proved that more microservices = more problems (but billed more hours)}
+\vspace{12pt}
+\section*{Executive Summary of Professional Inadequacies}
+\textbf{Warning:} This document contains unfiltered truths about 18+ years of stumbling through software engineering, including 11+ years of convincing clients I know what I'm doing as a freelancer.
+\textbf{Current Status:} Pretending to be a Cloud Architect at LBBW since November 2024, where I've already discovered that 50\% of their applications are incompatible with their shiny new platform. Previous victims include Union Investment (3 years of over-engineering), DHL's Saloodo! (solo midnight debugging sessions), and various other companies who mistook my confidence for competence.
+\textbf{Core Delusions:} I claim expertise in Java (my ``mother tongue'' -- as if code languages need maternal metaphors), Golang (because Java wasn't hipster enough), and cloud platforms (AWS, Azure, GCP -- collecting them like Pokemon cards). I've ``architected'' everything from microservices to monolith migrations, usually making things more complex than necessary.
+\textbf{Notable Failures:} Successfully turned simple problems into distributed systems nightmares. Introduced ``Self-contained Systems'' at Union Investment -- a fancy term for ``we couldn't agree on one architecture.'' Built a Golang middleware at Saloodo! that handles 10 million records because apparently, I enjoy suffering. Created Atlassian add-ons that 83 companies now depend on -- their mistake, not mine.
+\textbf{Leadership Disasters:} Managed teams of 5-9 developers who somehow still talk to me. Served as interim Product Owner, proving that engineers shouldn't make business decisions. Conducted ``architecture workshops'' where I confidently explained patterns I'd only read about the night before.
+\textbf{Academic Pretensions:} Diplom in Computer Science from University of Koblenz-Landau (2004-2012), where I spent 8 years learning things I'd immediately forget. Focused on ``Computer Visualistics'' -- yes, that's a real thing, and no, I can't explain it either.
+\textbf{Personal Confessions:} Took a convenient ``parental leave'' during COVID (April 2020 - September 2021) when the job market looked scary. Currently building an AI tax helper because even I don't understand German tax law. Once built a crypto trading bot (2015) that probably lost money -- thankfully, I'll never know.
+\textbf{Fair Warning:} Despite this brutal honesty, companies keep hiring me. Either they appreciate transparency, or the IT industry is more desperate than we thought. Proceed with caution.
+\newpage
+\section*{The Comprehensive Catalog of Professional Missteps}
+\subsection*{Why You Shouldn't Hire Me (But Probably Will Anyway)}
+Let me save you time by listing all the reasons this CV should go straight to the rejection pile:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Chronic Over-Engineering:} Give me a simple CRUD app, and I'll return a distributed system with 17 microservices, 3 message queues, and a 47-page architecture document
+\item \textbf{Buzzword Addiction:} I've never met a technology I didn't want to try. My GitHub is a graveyard of half-finished experiments
+\item \textbf{Meeting Terrorist:} I ask uncomfortable questions like ``What problem are we actually solving?'' and ``Have we considered not using blockchain?''
+\item \textbf{Documentation Extremist:} I write README files longer than the actual code. Yes, I'm that person
+\item \textbf{Test Coverage Zealot:} I once spent 3 days writing tests for a 50-line function. The tests had bugs
 \end{itemize}
-\section{Specialized Skills in Making Things Worse}
-\subsection{Architecture Destruction}
-\begin{itemize}
-    \anticvitem{Expert at replacing perfectly functional monoliths with 200+ microservices}
-    \anticvitem{Certified in creating event-driven architectures where nobody knows what triggers what}
-    \anticvitem{Specialist in implementing Self-contained Systems that are neither self-contained nor systematic}
-    \anticvitem{Master of designing cloud solutions that cost 10x more than on-premise}
+\subsection*{Career Lowlights (2007-2024)}
+\subsubsection*{Current Disaster: LBBW (Nov 2024 - Present)}
+\textit{Cloud Architect / Professional Bad News Bearer}
+Currently destroying hopes and dreams at Germany's state bank by informing them that their ``Phoenix'' modernization project is more like a dodo. Highlights of my destruction:
+\begin{itemize}[leftmargin=*]
+\item Cataloged hundreds of legacy applications, discovering most are held together by prayers and PHP 5.3
+\item Identified that 50\% of applications are incompatible with their new platform (Skywalker) -- yes, they named it after Star Wars
+\item Creating ``migration strategies'' which is consultant-speak for ``this is going to hurt''
+\item Writing cost analyses that make executives cry into their Azure Calculators
+\item Participating in meetings where I explain why ``just moving it to the cloud'' isn't a strategy
 \end{itemize}
-\subsection{Programming Language Abuse}
-\begin{itemize}
-    \anticvitem{\textbf{Java (18+ years):} Still writing getters and setters like it's 2005}
-    \anticvitem{\textbf{Golang (4+ years):} Discovered you can write Java in any language}
-    \anticvitem{\textbf{PHP (8+ years):} Responsible for code that makes senior developers cry}
-    \anticvitem{\textbf{TypeScript:} Because JavaScript wasn't complicated enough already}
+\textbf{Technologies Abused:} Azure (when it works), Kubernetes (when I remember the commands), Oracle (unfortunately), MS-SQL (also unfortunately), draw.io (for diagrams no one reads)
+\subsubsection*{Union Investment's Frankenstein Project (Oct 2021 - Dec 2024)}
+\textit{Cloud Architect / Over-Engineering Specialist}
+Spent 3 years turning a simple website into a distributed systems masterpiece that no one asked for:
+\begin{itemize}[leftmargin=*]
+\item Transformed a working monolith into 8 ``Self-contained Systems'' because I read a Medium article about it
+\item Convinced them to use Web Components, a standard so cutting-edge that browser support is still questionable
+\item Built a ``microfrontend-toolkit'' -- yes, I created a framework to solve problems I created
+\item Implemented event-driven architecture for a search feature that could have been a simple database query
+\item Achieved 10-minute build times for 1000+ tests, spending more time optimizing builds than writing features
+\item Introduced 47 different npm packages because apparently, we needed a library for left-padding strings
 \end{itemize}
-\subsection{DevOps Disasters}
-\begin{itemize}
-    \anticvitem{Achieved 10-minute builds by making tests that don't actually test anything}
-    \anticvitem{Created CI/CD pipelines so complex they need their own CI/CD pipelines}
-    \anticvitem{Dockerized applications that were simpler to run without Docker}
-    \anticvitem{Implemented Kubernetes for a 2-user internal tool}
+\textbf{Damage Assessment:} 
+\begin{itemize}[leftmargin=*]
+\item Deployment time reduced from days to 30 minutes (it was 5 minutes before I ``improved'' it)
+\item Created job security for 3 DevOps engineers just to maintain my complexity
+\item Search now requires 5 Azure services to find 80,000 users
 \end{itemize}
-\section{Career Lowlights}
-\subsection{Nov 2024 -- Present: Cloud Architect at LBBW}
-\begin{itemize}
-    \anticvitem{Currently cataloging hundreds of legacy apps to determine which ones to break first}
-    \anticvitem{Identified 50\% of applications as incompatible with new platform (mission accomplished!)}
-    \anticvitem{Creating multi-cloud strategies because one cloud provider isn't confusing enough}
-    \anticvitem{Conducting ``in-depth technical assessments'' (aka expensive guesswork)}
+\subsubsection*{Saloodo!'s Midnight Debugging Adventures (Dec 2021 - Nov 2024)}
+\textit{Middleware Engineer / Solo Masochist}
+Accepted a part-time role because ``how hard could syncing data be?'' Narrator: It was very hard.
+\begin{itemize}[leftmargin=*]
+\item Single-handedly maintained a Golang service processing 10 million records
+\item Discovered Saloodo's database had ``creative'' interpretations of data types
+\item Implemented ``robust error handling'' (aka try-catch everything and pray)
+\item Achieved 100\% uptime by never deploying on Fridays
+\item Wrote 70\% test coverage, the other 30\% is covered by hope
+\item Experienced the joy of being on-call for a system only I understood
 \end{itemize}
-\subsection{Oct 2021 -- Dec 2024: Cloud Architect at Union Investment}
-\begin{itemize}
-    \anticvitem{Transformed a working monolith into 8 separate systems that barely talk to each other}
-    \anticvitem{Implemented Web Components because standard HTML was too mainstream}
-    \anticvitem{Built a search system that searches across systems that don't want to be searched}
-    \anticvitem{Reduced deployment time from days to minutes (now things break faster!)}
-    \anticvitem{Created 1000+ tests to achieve the illusion of quality}
+\textbf{Personal Growth:} Learned that ``it works on my machine'' doesn't count when you're the only machine
+\subsubsection*{The Atlassian Add-on Empire (2016 - 2023)}
+\textit{Accidental Entrepreneur / Bug Provider}
+Created Bamboo add-ons because Atlassian's ecosystem wasn't complex enough:
+\begin{itemize}[leftmargin=*]
+\item Built add-ons for Checkstyle, PMD, FindBugs -- tools that find bugs in code (ironic, I know)
+\item Convinced 83 companies worldwide to depend on software maintained by one person
+\item Provided ``24/7 support'' (I checked emails before bed)
+\item Earned the title ``Marketplace Partner'' which sounds impressive but means ``we take 25\% of your revenue''
+\item Sunset the products when Atlassian decided Server products were so 2022
 \end{itemize}
-\subsection{Dec 2021 -- Nov 2024: Middleware Engineer at Saloodo! (DHL)}
-\begin{itemize}
-    \anticvitem{Solo developer = no one to blame but myself}
-    \anticvitem{Synchronized 10 million records because someone thought it was a good idea}
-    \anticvitem{Built robust error handling for a database that's more error than data}
-    \anticvitem{Achieved 100\% uptime (translation: nobody noticed when it was down)}
+\subsubsection*{The Freelance Years of Confusion (2014 - 2020)}
+A greatest hits collection of short-term contracts where I:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Trusted Shops:} Migrated from JavaEE6 (vintage 2009) to ``cloud-native'' (aka more expensive)
+\item \textbf{TOOM Baumarkt:} Introduced microservices to a hardware store's IT. They needed 2 services. I built 7
+\item \textbf{Allianz:} Wrote REST APIs so RESTful they put developers to sleep
+\item \textbf{Sedo:} Consolidated services then immediately suggested splitting them again
+\item \textbf{Various Others:} Left a trail of Jenkins pipelines and confused developers across Germany
 \end{itemize}
-\subsection{June 2016 -- Dec 2023: Atlassian Add-on Peddler}
-\begin{itemize}
-    \anticvitem{Created solutions for problems Atlassian should have solved themselves}
-    \anticvitem{Convinced 83 companies worldwide they needed my add-ons}
-    \anticvitem{Maintained legacy code for 7 years (personal record for self-torture)}
-    \anticvitem{Built a business around a product that Atlassian could deprecate anytime}
+\subsubsection*{The PHP Years I Try to Forget (2007 - 2014)}
+\textit{wer-kennt-wen.de / Head of Development}
+Started as a PHP developer, somehow became Head of Development. Clear proof that companies make questionable decisions:
+\begin{itemize}[leftmargin=*]
+\item Led a team of 8 developers who knew more than me
+\item Scaled a social network to 500K users using technology held together by duct tape
+\item Introduced ``Agile methodologies'' (we had daily standups where everyone stood)
+\item Migrated from ``legacy PHP'' to ``modern PHP'' (added more semicolons)
+\item Left when Facebook killed local social networks (great timing on my part)
 \end{itemize}
-\section{Educational Mishaps}
-\begin{itemize}
-    \anticvitem{\textbf{2004-2012:} Spent 8 years getting a Computer Science degree to write CRUD apps}
-    \anticvitem{\textbf{2003:} Military service -- learned to follow orders, then became a freelancer}
-    \anticvitem{\textbf{2000-2003:} Self-taught PHP, setting the stage for a lifetime of regret}
+\subsection*{Skills I Claim to Have}
+\subsubsection*{Programming Languages (Order of Delusion)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Java (18+ years):} I call it my ``mother tongue'' but I still Google ``how to sort ArrayList''
+\item \textbf{Golang (4+ years):} Adopted it because ``Java is too verbose'' then wrote verbose Go
+\item \textbf{PHP (8+ years):} The language that started it all. I'm sorry
+\item \textbf{JavaScript/TypeScript:} I know enough to be dangerous, especially with \texttt{npm install}
 \end{itemize}
-\section{Personal Projects (aka Time Wasters)}
-\begin{itemize}
-    \anticvitem{\textbf{2025:} Built AI to do my taxes because learning tax law was too simple}
-    \anticvitem{\textbf{2018:} Jenkins-GitHub integration that nobody asked for}
-    \anticvitem{\textbf{2015:} Crypto trading bot that probably lost money}
+\subsubsection*{Cloud Platforms (All Equally Confusing)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{AWS:} I can spell EC2, S3, and accidentally create \$10,000 monthly bills
+\item \textbf{Azure:} Microsoft's cloud. Like AWS but with different names for everything
+\item \textbf{GCP:} Google's cloud. I used it once. It was cloudy
 \end{itemize}
-\section{Certifications \& Meaningless Achievements}
-\begin{itemize}
-    \anticvitem{StackOverflow: 4000+ points from answering questions I googled myself}
-    \anticvitem{Java SE 8 TechCheck: 93/100 (the 7 points were the interesting parts)}
-    \anticvitem{GitHub: Maintaining repos with more TODOs than actual code}
+\subsubsection*{Architectural Patterns I've Misapplied}
+\begin{itemize}[leftmargin=*]
+\item Microservices (when 3 services would do, I build 30)
+\item Event-Driven Architecture (everything is an event, even login)
+\item Self-contained Systems (containers containing containers containing confusion)
+\item Monoliths (I can build these too, just give me time)
 \end{itemize}
-\section{Technologies I've Inflicted Upon Others}
-\begin{multicols}{3}
-\begin{itemize}[leftmargin=0.5em]
-    \anticvitem{Java/Spring Boot}
-    \anticvitem{Golang}
-    \anticvitem{TypeScript}
-    \anticvitem{Kubernetes}
-    \anticvitem{Docker}
-    \anticvitem{AWS/Azure/GCP}
-    \anticvitem{Terraform}
-    \anticvitem{Kafka}
-    \anticvitem{PostgreSQL}
-    \anticvitem{Redis}
-    \anticvitem{Microservices}
-    \anticvitem{Event Streams}
-    \anticvitem{Web Components}
-    \anticvitem{CI/CD Pipelines}
-    \anticvitem{Contract Testing}
+\subsection*{Education: 8 Years for a 4-Year Degree}
+\textbf{University of Koblenz-Landau (2004-2012)}\\
+Diplom in Computer Science (it's like a Master's but sounds fancier)
+\begin{itemize}[leftmargin=*]
+\item Focused on ``Computer Visualistics'' -- even my professors couldn't explain it
+\item Thesis on something I've completely forgotten but got good marks
+\item Learned algorithms I've never used since
+\item Expert at extending student life to avoid real work
 \end{itemize}
-\end{multicols}
-\section{References}
-\begin{itemize}
-    \anticvitem{Available upon request (but they're all still in therapy)}
-    \anticvitem{Previous clients can be found muttering about ``enterprise solutions'' in dark corners}
-    \anticvitem{My code is its own reference -- it speaks volumes about my capabilities}
+\subsection*{Personal Projects (Procrastination Disguised as Learning)}
+\subsubsection*{AI Tax Helper (2025)}
+Built an AI to do my taxes because:
+\begin{itemize}[leftmargin=*]
+\item German tax law is scarier than production deployments
+\item I needed an excuse to use Azure Document Intelligence
+\item The alternative was actually learning tax law
 \end{itemize}
-\vspace{2em}
-\begin{center}
-    \color{lightgray}
-    \textit{``The best way to predict the future is to implement it poorly''} \\
-    -- Every Cloud Architect Ever
-\end{center}
+\subsubsection*{Crypto Trading Bot (2015)}
+\begin{itemize}[leftmargin=*]
+\item Built during the ``blockchain will solve everything'' era
+\item Used machine learning (aka random number generation with extra steps)
+\item Results: Classified. Probably for the best
+\end{itemize}
+\subsection*{Life Choices Masquerading as Career Decisions}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Military Service (2003-2004):} Learned that following orders is easier than thinking
+\item \textbf{Career Break (2015):} ``Transitioning to freelance'' (aka unemployed with ambition)
+\item \textbf{Parental Leave (2020-2021):} Perfectly timed with a global pandemic. Strategic genius or lucky accident?
+\end{itemize}
+\subsection*{References}
+Available upon request, though I haven't asked them if they'd recommend me. Surprise references are more fun.
+\subsection*{Final Disclaimer}
+Despite everything you've read, I somehow continue to get hired and deliver projects. This either speaks to my hidden competence or the IT industry's desperation. You decide.
+\textit{``The best code is no code, but I'll write 10,000 lines to prove it.''} -- Me, probably
 \end{document}
