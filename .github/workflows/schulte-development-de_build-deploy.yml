@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - '*'
+    paths:
+      - 'schulte-development_de/**'
   pull_request:
     branches:
       - '*'
+    paths:
+      - 'schulte-development_de/**'
   workflow_dispatch:
 
 permissions:
