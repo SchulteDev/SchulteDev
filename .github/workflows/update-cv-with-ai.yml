@@ -43,7 +43,7 @@ jobs:
         if: success() && steps.transform.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: anti-cv.tex
+          root_file: ${{ env.CV_FILE }}
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Upload PDF to GitHub Releases
