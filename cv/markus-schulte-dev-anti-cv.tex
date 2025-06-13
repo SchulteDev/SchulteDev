@@ -1,16 +1,15 @@
 \documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage[margin=2cm]{geometry}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
 \usepackage{tabularx}
-\usepackage{array}
 \usepackage{multicol}
 \usepackage{amssymb}
 \usepackage{wasysym}
@@ -21,168 +20,222 @@
     colorlinks=true,
     linkcolor=darkblue,
     urlcolor=darkblue,
-    citecolor=darkblue
+    pdftitle={The Magnificent Anti-CV of Markus Schulte},
+    pdfauthor={Markus Schulte}
 }
 \pagestyle{fancy}
 \fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\lfoot{The Anti-CV of Markus Schulte}
-\cfoot{}
-\rfoot{Page \thepage\ of \pageref{LastPage}}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt}
+\lhead{\small The Anti-CV of Markus Schulte}
+\rhead{\small \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headsep}{10pt}
+\titleformat{\section}{\Large\bfseries\color{darkblue}}{\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{darkgreen}}{\thesubsection}{1em}{}
 \begin{document}
 \begin{center}
-{\LARGE \textbf{MARKUS SCHULTE}}\\[8pt]
-{\large \textit{The Unvarnished Truth About a Cloud Architect}}\\[6pt]
-{\small \texttt{mail@schulte-development.de} $\bullet$ +49 178 7217768 $\bullet$ Cologne, Germany}\\
-{\small \href{https://schulte-development.de}{schulte-development.de} $\bullet$ \href{https://github.com/SchulteMarkus}{GitHub} $\bullet$ \href{https://www.linkedin.com/in/markus-schulte/}{LinkedIn}}
+    {\Huge\bfseries Markus Schulte}\\[0.3cm]
+    {\Large\textit{Master of Overengineering \& Professional Buzzword Collector}}\\[0.2cm]
+    {\large Cloud Architect Who Actually Understands What He's Architecting}\\[0.3cm]
+    \begin{tabular}{c c c}
+        \href{mailto:mail@schulte-development.de}{mail@schulte-development.de} & 
+        \phone\ +49 178 7217768 & 
+        Cologne, Germany
+    \end{tabular}\\[0.1cm]
+    \href{https://schulte-development.de}{schulte-development.de} \textbar\ 
+    \href{https://linkedin.com/in/markus-schulte/}{LinkedIn} \textbar\ 
+    \href{https://github.com/SchulteMarkus}{GitHub} \textbar\ 
+    \href{https://stackoverflow.com/users/1645517/markus-schulte}{StackOverflow}
 \end{center}
-\vspace{12pt}
-\section*{Executive Summary of Professional Inadequacies}
-\textbf{Warning:} This document contains unfiltered truths about 18+ years of stumbling through software engineering, including 11+ years of convincing clients I know what I'm doing as a freelancer.
-\textbf{Current Status:} Pretending to be a Cloud Architect at LBBW since November 2024, where I've already discovered that 50\% of their applications are incompatible with their shiny new platform. Previous victims include Union Investment (3 years of over-engineering), DHL's Saloodo! (solo midnight debugging sessions), and various other companies who mistook my confidence for competence.
-\textbf{Core Delusions:} I claim expertise in Java (my ``mother tongue'' -- as if code languages need maternal metaphors), Golang (because Java wasn't hipster enough), and cloud platforms (AWS, Azure, GCP -- collecting them like Pokemon cards). I've ``architected'' everything from microservices to monolith migrations, usually making things more complex than necessary.
-\textbf{Notable Failures:} Successfully turned simple problems into distributed systems nightmares. Introduced ``Self-contained Systems'' at Union Investment -- a fancy term for ``we couldn't agree on one architecture.'' Built a Golang middleware at Saloodo! that handles 10 million records because apparently, I enjoy suffering. Created Atlassian add-ons that 83 companies now depend on -- their mistake, not mine.
-\textbf{Leadership Disasters:} Managed teams of 5-9 developers who somehow still talk to me. Served as interim Product Owner, proving that engineers shouldn't make business decisions. Conducted ``architecture workshops'' where I confidently explained patterns I'd only read about the night before.
-\textbf{Academic Pretensions:} Diplom in Computer Science from University of Koblenz-Landau (2004-2012), where I spent 8 years learning things I'd immediately forget. Focused on ``Computer Visualistics'' -- yes, that's a real thing, and no, I can't explain it either.
-\textbf{Personal Confessions:} Took a convenient ``parental leave'' during COVID (April 2020 - September 2021) when the job market looked scary. Currently building an AI tax helper because even I don't understand German tax law. Once built a crypto trading bot (2015) that probably lost money -- thankfully, I'll never know.
-\textbf{Fair Warning:} Despite this brutal honesty, companies keep hiring me. Either they appreciate transparency, or the IT industry is more desperate than we thought. Proceed with caution.
+\vspace{0.3cm}
+\section*{Executive Summary: 18 Years of Making Computers Do Things They Probably Shouldn't}
+Welcome to the anti-CV of a developer who started his career convincing PHP to behave like a real programming language and evolved into someone who now charges enterprises substantial fees to explain why their monoliths need to become microservices (spoiler: they usually don't, but the budget is already approved).
+\textbf{Career Highlights That Sound Impressive at Conferences:}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item \textbf{18+ years} of convincing management that rewriting everything in the latest framework will definitely solve all problems this time
+    \item \textbf{11+ years freelancing} = successfully avoiding office politics while charging 3x more for the same work
+    \item Transformed from PHP developer (the dark ages) to Java expert to Golang enthusiast (following the hype cycle perfectly)
+    \item Currently helping a German bank (\textbf{LBBW}) migrate to Azure while discovering their "cloud-ready" platform isn't ready for 50\% of their applications
+    \item Previously spent 3 years at \textbf{Union Investment} building a microfrontend framework nobody asked for (but everyone now depends on)
+    \item Maintained a critical data sync for \textbf{DHL's Saloodo!} that handled 10 million records without breaking once (my proudest achievement that nobody will ever notice)
+    \item Created Atlassian Bamboo add-ons that 83 companies worldwide used to measure how bad their code really was
+\end{itemize}
+\textbf{Technical Expertise (Buzzword Bingo Edition):}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item \textbf{Languages:} Java (mother tongue), Golang (current crush), PHP (we don't talk about it), TypeScript (when forced)
+    \item \textbf{Cloud Platforms:} AWS (7 years of making Bezos richer), Azure (4 years of Microsoft's "unique" approach), GCP (I've used it)
+    \item \textbf{Architecture Patterns:} Microservices (because monoliths are so 2010), Event-driven (everything is an event if you squint), Self-contained Systems (my favorite oxymoron)
+    \item \textbf{DevOps Theater:} Kubernetes (YAML engineering), Docker (it works on my container), Terraform (infrastructure as code as YAML)
+    \item \textbf{Testing Philosophy:} Write tests until the coverage report turns green, then write 10 more to impress SonarQube
+\end{itemize}
+\textbf{Professional Achievements That Actually Matter:}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item Reduced deployment time from "several days" to "30 minutes" (Union Investment still deploys monthly)
+    \item Achieved 100\% uptime for 3 years straight (by writing code so paranoid it retries everything forever)
+    \item Built CI/CD pipelines that run 1000+ tests in 10 minutes (90\% of which test that tests are working)
+    \item Successfully convinced multiple enterprises that Web Components are the future (they're not, but the demos looked cool)
+    \item Managed teams of 5-9 developers without anyone rage-quitting (a minor miracle in IT)
+\end{itemize}
+This anti-CV chronicles a journey from writing PHP forums in 2003 to architecting cloud solutions that cost more than small countries' GDP. It's a tale of technical debt creation and occasional repayment, of frameworks adopted and abandoned, and of constantly explaining why "it works on my machine" isn't a valid deployment strategy.
 \newpage
-\section*{The Comprehensive Catalog of Professional Missteps}
-\subsection*{Why You Shouldn't Hire Me (But Probably Will Anyway)}
-Let me save you time by listing all the reasons this CV should go straight to the rejection pile:
+\section{Professional Philosophy}
+\subsection{Core Beliefs That Pay the Bills}
 \begin{itemize}[leftmargin=*]
-\item \textbf{Chronic Over-Engineering:} Give me a simple CRUD app, and I'll return a distributed system with 17 microservices, 3 message queues, and a 47-page architecture document
-\item \textbf{Buzzword Addiction:} I've never met a technology I didn't want to try. My GitHub is a graveyard of half-finished experiments
-\item \textbf{Meeting Terrorist:} I ask uncomfortable questions like ``What problem are we actually solving?'' and ``Have we considered not using blockchain?''
-\item \textbf{Documentation Extremist:} I write README files longer than the actual code. Yes, I'm that person
-\item \textbf{Test Coverage Zealot:} I once spent 3 days writing tests for a 50-line function. The tests had bugs
+    \item \textbf{The Microservices Paradox:} Solving the problems of one application by creating 47 smaller problems
+    \item \textbf{The Cloud Native Way:} Why run one server when you can orchestrate 50 containers across 3 availability zones?
+    \item \textbf{The Agile Manifesto:} Two-week sprints to plan what we'll actually build in the next quarter
+    \item \textbf{The DevOps Dream:} Automate everything so thoroughly that only you understand how to fix it when it breaks
+    \item \textbf{The Testing Pyramid:} Unit tests for coverage, integration tests for confidence, and one manual test before production because YOLO
 \end{itemize}
-\subsection*{Career Lowlights (2007-2024)}
-\subsubsection*{Current Disaster: LBBW (Nov 2024 - Present)}
-\textit{Cloud Architect / Professional Bad News Bearer}
-Currently destroying hopes and dreams at Germany's state bank by informing them that their ``Phoenix'' modernization project is more like a dodo. Highlights of my destruction:
+\section{Career Trajectory: From PHP Sinner to Cloud Saint}
+\subsection{Current Gig: Teaching Banks That Cloud != Magic (Nov 2024 - Present)}
+\textbf{LBBW - Landesbank Baden-Württemberg} \textbar\ \textit{Cloud Architect}
 \begin{itemize}[leftmargin=*]
-\item Cataloged hundreds of legacy applications, discovering most are held together by prayers and PHP 5.3
-\item Identified that 50\% of applications are incompatible with their new platform (Skywalker) -- yes, they named it after Star Wars
-\item Creating ``migration strategies'' which is consultant-speak for ``this is going to hurt''
-\item Writing cost analyses that make executives cry into their Azure Calculators
-\item Participating in meetings where I explain why ``just moving it to the cloud'' isn't a strategy
+    \item Discovering that "Phoenix" project (80 people) built a "Skywalker" platform that can't handle 50\% of legacy apps
+    \item Creating elaborate Excel sheets to document why each application can't move to the cloud (yet)
+    \item Perfecting the art of saying "it depends" to every architectural question
+    \item Writing multi-cloud strategies knowing full well they'll stick with Azure forever
+    \item Attending meetings about meetings to plan migration meetings
 \end{itemize}
-\textbf{Technologies Abused:} Azure (when it works), Kubernetes (when I remember the commands), Oracle (unfortunately), MS-SQL (also unfortunately), draw.io (for diagrams no one reads)
-\subsubsection*{Union Investment's Frankenstein Project (Oct 2021 - Dec 2024)}
-\textit{Cloud Architect / Over-Engineering Specialist}
-Spent 3 years turning a simple website into a distributed systems masterpiece that no one asked for:
+\textbf{Technologies I Pretend to Understand:} Azure (everything is a Resource Group), AKS (Kubernetes with Microsoft characteristics), Oracle (still exists apparently), MS-SQL (Oracle but Microsoft)
+\subsection{Three Years of Overengineering Excellence (Oct 2021 - Dec 2024)}
+\textbf{Union Investment} \textbar\ \textit{Cloud Architect \& Occasional Product Owner}
+\textbf{Mission:} Transform a Liferay/FirstSpirit monolith into microservices because that's what everyone's doing
+\textbf{Phase 1 - Architecture Astronaut:}
 \begin{itemize}[leftmargin=*]
-\item Transformed a working monolith into 8 ``Self-contained Systems'' because I read a Medium article about it
-\item Convinced them to use Web Components, a standard so cutting-edge that browser support is still questionable
-\item Built a ``microfrontend-toolkit'' -- yes, I created a framework to solve problems I created
-\item Implemented event-driven architecture for a search feature that could have been a simple database query
-\item Achieved 10-minute build times for 1000+ tests, spending more time optimizing builds than writing features
-\item Introduced 47 different npm packages because apparently, we needed a library for left-padding strings
+    \item Conducted "Domain-Driven Design" workshops (drew boxes with arrows between them)
+    \item Convinced everyone that Self-contained Systems are totally different from microservices
+    \item Designed a microfrontend architecture that nobody asked for but everyone now maintains
+    \item Selected Azure Static Web Apps because "serverless is the future" (and cheap)
 \end{itemize}
-\textbf{Damage Assessment:} 
+\textbf{Phase 2 - Framework Factory:}
 \begin{itemize}[leftmargin=*]
-\item Deployment time reduced from days to 30 minutes (it was 5 minutes before I ``improved'' it)
-\item Created job security for 3 DevOps engineers just to maintain my complexity
-\item Search now requires 5 Azure services to find 80,000 users
+    \item Built "microfrontend-toolkit" - because every project needs a custom framework
+    \item Implemented Web Components before they were cool (they're still not)
+    \item Created CI/CD pipelines with more steps than a Rube Goldberg machine
+    \item Achieved 1000+ tests running in 10 minutes (mostly testing the test framework)
+    \item Introduced Renovate Bot - now receiving 47 dependency update PRs daily
 \end{itemize}
-\subsubsection*{Saloodo!'s Midnight Debugging Adventures (Dec 2021 - Nov 2024)}
-\textit{Middleware Engineer / Solo Masochist}
-Accepted a part-time role because ``how hard could syncing data be?'' Narrator: It was very hard.
+\textbf{Phase 3 - Search Saga:}
 \begin{itemize}[leftmargin=*]
-\item Single-handedly maintained a Golang service processing 10 million records
-\item Discovered Saloodo's database had ``creative'' interpretations of data types
-\item Implemented ``robust error handling'' (aka try-catch everything and pray)
-\item Achieved 100\% uptime by never deploying on Fridays
-\item Wrote 70\% test coverage, the other 30\% is covered by hope
-\item Experienced the joy of being on-call for a system only I understood
+    \item Replaced working monolith search with distributed search that required 6 months to achieve feature parity
+    \item Chose Algolia over ElasticSearch because "it has better developer experience" (it's more expensive)
+    \item Built event streaming architecture where 8 teams publish events nobody else consumes
+    \item Delivered on time by redefining "done" several times
 \end{itemize}
-\textbf{Personal Growth:} Learned that ``it works on my machine'' doesn't count when you're the only machine
-\subsubsection*{The Atlassian Add-on Empire (2016 - 2023)}
-\textit{Accidental Entrepreneur / Bug Provider}
-Created Bamboo add-ons because Atlassian's ecosystem wasn't complex enough:
+\textbf{Technologies Accumulated:} Azure (Static Web Apps, Functions, Event Hubs - the holy trinity), JavaScript/TypeScript (reluctantly), Web Components (still explaining what they are), Lit (because React is too mainstream), Event-driven Architecture (everything is an event), Nx/Lerna (monorepo tools for our distributed system)
+\subsection{Part-Time Golang Evangelism (Dec 2021 - Nov 2024)}
+\textbf{Saloodo! (DHL Group)} \textbar\ \textit{Middleware Engineer}
 \begin{itemize}[leftmargin=*]
-\item Built add-ons for Checkstyle, PMD, FindBugs -- tools that find bugs in code (ironic, I know)
-\item Convinced 83 companies worldwide to depend on software maintained by one person
-\item Provided ``24/7 support'' (I checked emails before bed)
-\item Earned the title ``Marketplace Partner'' which sounds impressive but means ``we take 25\% of your revenue''
-\item Sunset the products when Atlassian decided Server products were so 2022
+    \item Sole developer of critical data sync that nobody knew existed until I went on vacation
+    \item Wrote Golang code so clean it achieved 70\% test coverage (the other 30\% is "error handling")
+    \item Synchronized 10 million records nightly while Saloodo's database cried
+    \item Implemented "fault-tolerant" architecture (infinite retry loops)
+    \item Maintained 100\% uptime by never deploying on Fridays
 \end{itemize}
-\subsubsection*{The Freelance Years of Confusion (2014 - 2020)}
-A greatest hits collection of short-term contracts where I:
+\textbf{Achievement Unlocked:} Proved that one developer can maintain production systems if they're paranoid enough
+\subsection{The Atlassian Side Hustle (2016 - 2023)}
+\textbf{Solo Entrepreneur} \textbar\ \textit{Creating Problems and Selling Solutions}
 \begin{itemize}[leftmargin=*]
-\item \textbf{Trusted Shops:} Migrated from JavaEE6 (vintage 2009) to ``cloud-native'' (aka more expensive)
-\item \textbf{TOOM Baumarkt:} Introduced microservices to a hardware store's IT. They needed 2 services. I built 7
-\item \textbf{Allianz:} Wrote REST APIs so RESTful they put developers to sleep
-\item \textbf{Sedo:} Consolidated services then immediately suggested splitting them again
-\item \textbf{Various Others:} Left a trail of Jenkins pipelines and confused developers across Germany
+    \item Built Bamboo add-ons because Bamboo lacked basic features Jenkins had in 2010
+    \item Convinced 83 companies worldwide to pay for code quality metrics they'll ignore
+    \item Maintained compatibility with 7 years of Bamboo versions (pain level: extreme)
+    \item Learned that "lifetime license" means "until I'm tired of supporting it"
 \end{itemize}
-\subsubsection*{The PHP Years I Try to Forget (2007 - 2014)}
-\textit{wer-kennt-wen.de / Head of Development}
-Started as a PHP developer, somehow became Head of Development. Clear proof that companies make questionable decisions:
+\subsection{The Consulting Years (2014 - 2021)}
+\textit{Various companies who needed someone to blame for architectural decisions}
+\textbf{Greatest Hits Include:}
 \begin{itemize}[leftmargin=*]
-\item Led a team of 8 developers who knew more than me
-\item Scaled a social network to 500K users using technology held together by duct tape
-\item Introduced ``Agile methodologies'' (we had daily standups where everyone stood)
-\item Migrated from ``legacy PHP'' to ``modern PHP'' (added more semicolons)
-\item Left when Facebook killed local social networks (great timing on my part)
+    \item \textbf{Trusted Shops:} Migrated JavaEE6 to microservices (replaced 1 problem with 12)
+    \item \textbf{Allianz:} Built CloudFoundry apps before Kubernetes won the container wars
+    \item \textbf{toom Baumarkt:} Introduced Golang before the team was ready (they weren't)
+    \item \textbf{Multiple startups:} Implemented CI/CD pipelines more complex than their actual products
 \end{itemize}
-\subsection*{Skills I Claim to Have}
-\subsubsection*{Programming Languages (Order of Delusion)}
+\subsection{The PHP Years We Don't Talk About (2007 - 2014)}
+\textbf{wer-kennt-wen.de} \textbar\ \textit{From Developer to Head of Development}
 \begin{itemize}[leftmargin=*]
-\item \textbf{Java (18+ years):} I call it my ``mother tongue'' but I still Google ``how to sort ArrayList''
-\item \textbf{Golang (4+ years):} Adopted it because ``Java is too verbose'' then wrote verbose Go
-\item \textbf{PHP (8+ years):} The language that started it all. I'm sorry
-\item \textbf{JavaScript/TypeScript:} I know enough to be dangerous, especially with \texttt{npm install}
+    \item Started when "Social Network" meant "PHP + MySQL + prayers"
+    \item Scaled platform to 500K users using revolutionary technique called "more servers"
+    \item Led team of 8 developers who all thought they could do my job better
+    \item Introduced "modern" practices like version control and not coding directly on production
+    \item Left before Facebook killed every German social network
 \end{itemize}
-\subsubsection*{Cloud Platforms (All Equally Confusing)}
+\section{Technical Skills (Buzzword Compliance Section)}
+\subsection{Programming Languages - A Love-Hate Relationship}
 \begin{itemize}[leftmargin=*]
-\item \textbf{AWS:} I can spell EC2, S3, and accidentally create \$10,000 monthly bills
-\item \textbf{Azure:} Microsoft's cloud. Like AWS but with different names for everything
-\item \textbf{GCP:} Google's cloud. I used it once. It was cloudy
+    \item \textbf{Java (18+ years):} Like an old marriage - comfortable, predictable, occasionally surprising
+    \item \textbf{Golang (4+ years):} The mistress I actually want to commit to
+    \item \textbf{PHP (8+ years):} The ex we're still friends with but don't invite to parties
+    \item \textbf{TypeScript/JavaScript:} The necessary evil for "full-stack" credibility
+    \item \textbf{YAML:} Not a programming language but 80\% of my job
 \end{itemize}
-\subsubsection*{Architectural Patterns I've Misapplied}
+\subsection{Cloud Platforms - Expensive Ways to Run Computers}
 \begin{itemize}[leftmargin=*]
-\item Microservices (when 3 services would do, I build 30)
-\item Event-Driven Architecture (everything is an event, even login)
-\item Self-contained Systems (containers containing containers containing confusion)
-\item Monoliths (I can build these too, just give me time)
+    \item \textbf{AWS:} 7 years of explaining why the bill is so high
+    \item \textbf{Azure:} 4 years of Microsoft's "enterprise-grade" everything
+    \item \textbf{GCP:} Used it once, added to resume forever
 \end{itemize}
-\subsection*{Education: 8 Years for a 4-Year Degree}
-\textbf{University of Koblenz-Landau (2004-2012)}\\
-Diplom in Computer Science (it's like a Master's but sounds fancier)
+\subsection{Architectural Patterns - Drawing Boxes and Arrows}
 \begin{itemize}[leftmargin=*]
-\item Focused on ``Computer Visualistics'' -- even my professors couldn't explain it
-\item Thesis on something I've completely forgotten but got good marks
-\item Learned algorithms I've never used since
-\item Expert at extending student life to avoid real work
+    \item \textbf{Microservices:} Because distributed systems are fun to debug at 3 AM
+    \item \textbf{Event-Driven:} Everything is an event if you publish it to Kafka
+    \item \textbf{Serverless:} Servers maintained by someone else's nightmares
+    \item \textbf{Self-contained Systems:} Microservices with better marketing
 \end{itemize}
-\subsection*{Personal Projects (Procrastination Disguised as Learning)}
-\subsubsection*{AI Tax Helper (2025)}
-Built an AI to do my taxes because:
+\subsection{DevOps Toolchain - Automation Theatre}
 \begin{itemize}[leftmargin=*]
-\item German tax law is scarier than production deployments
-\item I needed an excuse to use Azure Document Intelligence
-\item The alternative was actually learning tax law
+    \item \textbf{Kubernetes:} YAML engineering at its finest
+    \item \textbf{Docker:} "But it works in my container!"
+    \item \textbf{Terraform:} Infrastructure as Code as YAML as Pain
+    \item \textbf{Jenkins/Azure DevOps/GitHub Actions:} Different ways to run bash scripts
 \end{itemize}
-\subsubsection*{Crypto Trading Bot (2015)}
+\section{Personal Projects (Proof I Code for Fun)}
+\subsection{AI-Powered Tax Evasion... Helper (2025)}
+Built a CLI tool that uses Azure AI to automate German tax software because apparently I hate free time
 \begin{itemize}[leftmargin=*]
-\item Built during the ``blockchain will solve everything'' era
-\item Used machine learning (aka random number generation with extra steps)
-\item Results: Classified. Probably for the best
+    \item Uses AI to read receipts I should have organized months ago
+    \item Golang because every personal project needs to be "cloud-native"
+    \item 90\% error handling, 10\% actual functionality
 \end{itemize}
-\subsection*{Life Choices Masquerading as Career Decisions}
+\subsection{Jenkins GitHub Integration (2018)}
+Created integration nobody asked for between two tools heading toward obsolescence
 \begin{itemize}[leftmargin=*]
-\item \textbf{Military Service (2003-2004):} Learned that following orders is easier than thinking
-\item \textbf{Career Break (2015):} ``Transitioning to freelance'' (aka unemployed with ambition)
-\item \textbf{Parental Leave (2020-2021):} Perfectly timed with a global pandemic. Strategic genius or lucky accident?
+    \item Multi-tenant architecture for my single-user POC
+    \item Used Google Cloud because I had free credits
+    \item Abandoned when GitHub Actions was announced
 \end{itemize}
-\subsection*{References}
-Available upon request, though I haven't asked them if they'd recommend me. Surprise references are more fun.
-\subsection*{Final Disclaimer}
-Despite everything you've read, I somehow continue to get hired and deliver projects. This either speaks to my hidden competence or the IT industry's desperation. You decide.
-\textit{``The best code is no code, but I'll write 10,000 lines to prove it.''} -- Me, probably
+\subsection{Crypto Trading Bot (2015)}
+Lost money automatically using machine learning
+\begin{itemize}[leftmargin=*]
+    \item Implemented complex algorithms to buy high and sell low
+    \item Machine learning determined I should have bought Bitcoin in 2010
+    \item Shut down after realizing the exchange fees exceeded profits
+\end{itemize}
+\section{Education \& Certifications}
+\subsection{Formal Education}
+\textbf{Diplom in Computer Science} (2004-2012)\\
+University of Koblenz-Landau\\
+\textit{Spent 8 years learning theory I'd never use while teaching myself PHP on the side}
+\subsection{Certifications \& Achievements}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{StackOverflow:} 4000+ points from answering questions I googled first
+    \item \textbf{Java SE 8 Certification:} 93/100 - The 7 points were for using var
+    \item \textbf{Atlassian Marketplace:} Top vendor until they sunset the product
+    \item \textbf{GitHub:} 50+ repos of half-finished projects
+\end{itemize}
+\section{Life Events That Impacted Billing}
+\subsection{Parental Leave (Apr 2020 - Sep 2021)}
+Discovered that managing a baby is harder than managing Kubernetes clusters
+\subsection{Military Service (Aug 2003 - Mar 2004)}
+Learned that German efficiency doesn't apply to military IT systems
+\section{References}
+\textit{"Markus delivered exactly what we didn't know we needed"} - Every client ever
+\textit{"His code is self-documenting"} - Developer who never reads documentation
+\textit{"Worth every penny"} - CFO who doesn't know the hourly rate
+\textit{"The tests he writes actually catch bugs"} - QA engineer out of a job
+\vfill
+\begin{center}
+    \small\textit{This anti-CV was generated with 100\% organic buzzwords and free-range technologies}\\
+    \textit{No monoliths were harmed in the making of this document}\\
+    \textit{\LaTeX\ source available upon request (warning: even more overengineered than the projects described)}
+\end{center}
 \end{document}
