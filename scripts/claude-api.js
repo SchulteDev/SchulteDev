@@ -133,36 +133,66 @@ export const buildCvPrompt = (mode) => {
   const baseInstructions = 'You are an expert LaTeX document designer and professional CV writer.';
 
   const latexCompatibilityRules = `
-**GitHub Actions LaTeX Requirements:**
-- This document will be compiled automatically in GitHub Actions using xu-cheng/latex-action
-- Use modern, widely-supported packages available in standard TeXLive distributions
-- Ensure compatibility with automated compilation environments (no interactive prompts)
-- Use robust package combinations that work reliably in Docker containers
-- Follow proper package loading order for consistent compilation
-- Avoid experimental or cutting-edge packages that might not be available
-- Generate LaTeX that compiles successfully with: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-- Ensure all fonts and dependencies are commonly available in CI environments
-- Use packages that handle encoding and internationalization properly`;
+**Critical LaTeX Compilation Requirements:**
+- This document MUST compile successfully in GitHub Actions using xu-cheng/latex-action
+- Use ONLY packages available in standard TeXLive distributions
+- Ensure ZERO compilation errors or warnings that could halt the build
+- Generate LaTeX that compiles with: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+**Package Usage Rules:**
+- Load packages in correct order to avoid conflicts
+- Use \\usepackage{lastpage} for page numbering and reference with \\pageref{LastPage} (not \\lastpage)
+- For fonts: stick to standard font families (avoid custom font shapes that may be undefined)
+- Use \\usepackage[T1]{fontenc} for proper font encoding
+- Include \\usepackage{lmodern} for better font rendering if using sans-serif fonts
+- Test all symbol usage (heart, arrows) with proper math mode or symbol packages
+
+**Robust Footer Implementation:**
+- For page numbering use: \\rfoot{Page \\thepage\\ of \\pageref{LastPage}}
+- Ensure proper spacing with \\ instead of direct spaces
+- Load fancyhdr package BEFORE setting page styles
+
+**Font and Style Safety:**
+- Use standard font combinations that exist in all TeXLive installations
+- Avoid bold sans-serif combinations that may not exist (like T1/cmss/b/n)
+- Use \\textbf{} for bold text instead of relying on font shape definitions
+- Include font packages like lmodern or latin1 for better compatibility
+
+**Symbol and Special Character Handling:**
+- Use proper LaTeX commands for symbols (\\heartsuit, \\rightsquigarrow)
+- Ensure all symbols are in appropriate modes (math mode for mathematical symbols)
+- Test unicode compatibility with inputenc package
+
+**Error Prevention:**
+- Avoid undefined control sequences by using standard LaTeX commands
+- Include proper package dependencies for all features used
+- Use defensive programming - check that all referenced labels exist
+- Generate LaTeX that has been tested for common compilation pitfalls`;
 
   const commonInstructions = `
 **Instructions:**
-1. Use extended thinking to analyze and plan the optimal document
-2. Maintain the humorous anti-CV tone with heart-stab (♡) and squiggly arrow (↝) symbols
+1. Use extended thinking to analyze and plan the optimal document structure
+2. Maintain the humorous anti-CV tone with proper symbol usage
 3. Ensure professional information is accurately incorporated
-4. Apply modern LaTeX best practices for typography and design
-5. Ensure excellent visual hierarchy and readability
-6. Optimize LaTeX formatting for visual appeal
-7. Generate LaTeX optimized for automated GitHub Actions compilation
-${latexCompatibilityRules}
+4. Apply modern LaTeX best practices with bulletproof compilation
+5. Prioritize ZERO compilation errors over fancy features
+6. Generate LaTeX that will compile successfully in automated environments
+7. Use conservative, well-tested package combinations
 
-**Requirements:**
+**Critical Success Criteria:**
+- Document MUST compile without errors in GitHub Actions CI/CD
+- Use only standard, widely-available LaTeX packages
+- Implement robust error-free page numbering with lastpage package
+- Ensure all fonts and symbols render correctly across different systems
+- Generate clean, maintainable LaTeX code
+- Test all package interactions for compatibility
+
+**Response Format:**
 - Return ONLY the complete LaTeX document code
-- No explanations or markdown formatting
-- Ensure robust compilation in GitHub Actions CI/CD environment
-- Use battle-tested package combinations suitable for automated processing
-- Optimize for xu-cheng/latex-action compilation pipeline
-- Make it the best possible anti-CV design
-- Do NOT include any thinking process or explanations in your response`;
+- No explanations, markdown formatting, or commentary
+- Ensure the LaTeX will compile successfully on first attempt
+- Focus on reliability and compatibility over advanced features
+- Make it the best possible anti-CV that actually compiles`;
 
   switch (mode) {
     case 'incremental': {
@@ -175,9 +205,9 @@ ${latexCompatibilityRules}
         return null;
       }
 
-      prompt = `${baseInstructions} I need you to transform career updates into a high-quality anti-CV format.
+      prompt = `${baseInstructions} I need you to fix LaTeX compilation issues and transform career updates into a high-quality anti-CV format.
 
-**Current LaTeX document:**
+**Current LaTeX document (has compilation errors):**
 \`\`\`latex
 ${fs.readFileSync(CV_FILE, 'utf8')}
 \`\`\`
@@ -187,10 +217,18 @@ ${fs.readFileSync(CV_FILE, 'utf8')}
 ${fs.readFileSync(DIFF_FILE, 'utf8')}
 \`\`\`
 
-${commonInstructions}
-- Maintain consistency with existing styling
+**CRITICAL: Fix these specific issues:**
+- Font shape 'T1/cmss/b/n' undefined error
+- Undefined control sequence \\lastpage error
+- Any other compilation issues that would prevent successful PDF generation
 
-Please think through this carefully and produce the highest quality CV possible.`;
+${latexCompatibilityRules}
+
+${commonInstructions}
+- Maintain consistency with existing styling while fixing all compilation errors
+- Prioritize successful compilation over preserving exact formatting
+
+Please fix all LaTeX errors and produce a compilation-ready CV.`;
       break;
     }
 
@@ -200,19 +238,21 @@ Please think through this carefully and produce the highest quality CV possible.
         return null;
       }
 
-      prompt = `${baseInstructions} I need you to create a complete anti-CV from scratch using the provided career information.
+      prompt = `${baseInstructions} I need you to create a complete, compilation-safe anti-CV from scratch.
 
 **Complete career information:**
 \`\`\`markdown
 ${fs.readFileSync(CAREER_FILE, 'utf8')}
 \`\`\`
 
-**Instructions:**
-1. Create a COMPLETE anti-CV LaTeX document from scratch
+${latexCompatibilityRules}
+
 ${commonInstructions}
 - Include \\documentclass and all necessary setup
+- Build from scratch with compilation safety as top priority
+- Use only proven, standard LaTeX patterns
 
-Please create the highest quality complete anti-CV possible.`;
+Please create a complete anti-CV that compiles perfectly on first attempt.`;
       break;
     }
 
