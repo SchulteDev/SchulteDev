@@ -17,9 +17,6 @@ fi
 
 log_info "Starting CV update workflow in $MODE mode..."
 
-# Make scripts executable
-chmod +x "$SCRIPT_DIR"/*.sh
-
 # Run the appropriate transformation
 if [ "$MODE" = "full_rebuild" ]; then
     "$SCRIPT_DIR/transform-full-rebuild.sh"
