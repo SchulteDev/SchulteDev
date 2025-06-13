@@ -47,19 +47,19 @@ jobs:
               },
               "messages": [{
                 "role": "user",
-                "content": "You are an expert LaTeX document designer and professional CV writer. I need you to transform career updates into a high-quality anti-CV format.\n\n**Current LaTeX document:**\n```latex\n'"'"'$(cat main.tex)'"'"'\n```\n\n**Career changes detected:**\n```diff\n'"'"'$(cat career_changes.diff)'"'"'\n```\n\n**Instructions:**\n1. Use extended thinking to analyze the changes and plan the optimal integration\n2. Maintain the humorous anti-CV tone with heart-stab (♡) and squiggly arrow (↝) symbols\n3. Ensure professional information is accurately incorporated\n4. Optimize LaTeX formatting for visual appeal and readability\n5. Consider typography, spacing, and layout improvements\n6. Ensure all LaTeX syntax is correct and compilable\n\n**Requirements:**\n- Return ONLY the complete updated LaTeX code\n- No explanations or markdown formatting\n- Ensure the document compiles without errors\n- Maintain consistency with existing styling\n\nPlease think through this carefully and produce the highest quality CV possible."
+                "content": "You are an expert LaTeX document designer and professional CV writer. I need you to transform career updates into a high-quality anti-CV format.\n\n**Current LaTeX document:**\n```latex\n'"'"'$(cat anti-cv.tex)'"'"'\n```\n\n**Career changes detected:**\n```diff\n'"'"'$(cat career_changes.diff)'"'"'\n```\n\n**Instructions:**\n1. Use extended thinking to analyze the changes and plan the optimal integration\n2. Maintain the humorous anti-CV tone with heart-stab (♡) and squiggly arrow (↝) symbols\n3. Ensure professional information is accurately incorporated\n4. Optimize LaTeX formatting for visual appeal and readability\n5. Consider typography, spacing, and layout improvements\n6. Ensure all LaTeX syntax is correct and compilable\n\n**Requirements:**\n- Return ONLY the complete updated LaTeX code\n- No explanations or markdown formatting\n- Ensure the document compiles without errors\n- Maintain consistency with existing styling\n\nPlease think through this carefully and produce the highest quality CV possible."
               }]
             }' > claude_response.json
 
           # Extract the updated LaTeX from Claude's response
-          jq -r '.content[0].text' claude_response.json > updated_main.tex
+          jq -r '.content[0].text' claude_response.json > updated_anti-cv.tex
 
           # Validate the response and use it
-          if [ -s updated_main.tex ] && grep -q "\\documentclass" updated_main.tex; then
-            mv updated_main.tex main.tex
-            echo "✅ Successfully updated main.tex with Claude 4 Opus"
+          if [ -s updated_anti-cv.tex ] && grep -q "\\documentclass" updated_anti-cv.tex; then
+            mv updated_anti-cv.tex anti-cv.tex
+            echo "✅ Successfully updated anti-cv.tex with Claude 4 Opus"
           else
-            echo "❌ Claude response invalid, keeping original main.tex"
+            echo "❌ Claude response invalid, keeping original anti-cv.tex"
             echo "Claude response:"
             cat claude_response.json
           fi
@@ -67,7 +67,7 @@ jobs:
         if: steps.changes.outputs.career_changed == 'true'
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
+          root_file: anti-cv.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Upload PDF to GitHub Releases
         if: steps.changes.outputs.career_changed == 'true'
@@ -83,9 +83,9 @@ jobs:
             **Generated on:** ${{ github.event.head_commit.timestamp }}
             **Commit:** ${{ github.sha }}
 
-            📄 Direct download: [markus-schulte-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/main.pdf)
-          files: main.pdf
-          prerelease: false
+            📄 Direct download: [markus-schulte-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf)
+          files: anti-cv.pdf
+          prerelease: true
           make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -93,4 +93,4 @@ jobs:
         if: steps.changes.outputs.career_changed == 'true'
         run: |
           echo "✅ CV updated successfully with Claude 4 Opus!"
-          echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/main.pdf"
+          echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf"
