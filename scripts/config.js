@@ -6,7 +6,7 @@ import path from 'path';
 
 // File paths
 export const CAREER_FILE = process.env.CAREER_FILE || '_data/career.md';
-export const CV_FILE = process.env.CV_FILE || 'cv/anti-cv.tex';
+export const CV_FILE = process.env.CV_FILE || 'cv/markus-schulte-dev-anti-cv.tex';
 export const DIFF_FILE = process.env.DIFF_FILE || 'career_changes.diff';
 export const RESPONSE_FILE = process.env.RESPONSE_FILE || 'claude_response.json';
 export const TEMP_FILE = process.env.TEMP_FILE || 'temp_cv.tex';

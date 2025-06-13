@@ -27,7 +27,7 @@ permissions:
 
 env:
   CAREER_FILE: _data/career.md
-  CV_FILE: cv/anti-cv.tex
+  CV_FILE: cv/markus-schulte-dev-anti-cv.tex
   RESPONSE_FILE: claude_response.json
 
 jobs:
@@ -104,8 +104,8 @@ jobs:
             **Generated on:** ${{ steps.transform.outputs.generated_date || github.event.head_commit.timestamp || github.event.commits[0].timestamp }}
             **Commit:** ${{ github.sha }}
 
-            📄 Direct download: [markus-schulte-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf)
-          files: anti-cv.pdf
+            📄 Direct download: [markus-schulte-dev-anti-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf)
+          files: markus-schulte-dev-anti-cv.pdf
           prerelease: false
           make_latest: true
         env:
@@ -117,7 +117,7 @@ jobs:
           echo "✅ CV updated successfully with Claude 4 Opus!"
           echo "🎯 Mode: ${{ steps.transform.outputs.mode }}"
           if [[ "${{ github.ref }}" == "refs/heads/main" && "${{ github.event_name }}" != "pull_request" ]]; then
-            echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf"
+            echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf"
           else
             echo "📝 Branch/PR build - PDF not uploaded to releases"
           fi
@@ -130,6 +130,6 @@ jobs:
           path: |
             *.log
             ${{ env.CV_FILE }}
-            anti-cv.pdf
+            markus-schulte-dev-anti-cv.pdf
             claude_response.json
           retention-days: 7

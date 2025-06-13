@@ -103,7 +103,7 @@ npm run cv:full-rebuild
 ### Optional Paths
 
 - `CAREER_FILE` - Input markdown (default: `_data/career.md`)
-- `CV_FILE` - Output LaTeX (default: `cv/anti-cv.tex`)
+- `CV_FILE` - Output LaTeX (default: `cv/markus-schulte-dev-anti-cv.tex`)
 - `RESPONSE_FILE` - API response (default: `claude_response.json`)
 - `DIFF_FILE` - Git diff for incremental (default: `career_changes.diff`)
 
