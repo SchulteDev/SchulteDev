@@ -2,227 +2,168 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage[margin=2cm]{geometry}
+\usepackage{geometry}
 \usepackage{xcolor}
-\usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
 \usepackage{hyperref}
 \usepackage{fontawesome5}
 \usepackage{multicol}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\usepackage{datetime}
-\usepackage{soul}
 \usepackage{amssymb}
 \usepackage{wasysym}
-% Colors
-\definecolor{anticolor}{RGB}{150,0,0}
-\definecolor{heartcolor}{RGB}{220,20,60}
-\definecolor{squigglecolor}{RGB}{0,100,0}
-\definecolor{graytext}{RGB}{100,100,100}
-\definecolor{lightgray}{RGB}{240,240,240}
-% Custom commands
-\newcommand{\heartstab}{{\color{heartcolor}$\heartsuit$}}
-\newcommand{\squigglearrow}{{\color{squigglecolor}$\rightsquigarrow$}}
-\newcommand{\antiemph}[1]{{\color{anticolor}\textbf{#1}}}
-% Section formatting
-\titleformat{\section}{\Large\bfseries\color{anticolor}}{\thesection}{1em}{}[\titlerule]
-\titleformat{\subsection}{\large\bfseries\color{anticolor}}{\thesubsection}{1em}{}
-% Header and footer
+\usepackage{marvosym}
+\usepackage{textcomp}
+\usepackage{ragged2e}
+\usepackage{parskip}
+\geometry{
+    left=1.5cm,
+    right=1.5cm,
+    top=2cm,
+    bottom=2cm
+}
+\definecolor{accent}{RGB}{139, 0, 0}
+\definecolor{darkgray}{RGB}{64, 64, 64}
+\definecolor{lightgray}{RGB}{150, 150, 150}
+\definecolor{verylightgray}{RGB}{240, 240, 240}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\textit{Anti-CV of Markus Schulte}}
-\fancyhead[R]{\small\textit{Page \thepage\ of \pageref{LastPage}}}
-\fancyfoot[C]{\small\textit{``Where dreams go to die since 2007''}}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
-% Hyperref setup
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+\titleformat{\section}{\Large\bfseries\color{accent}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{darkgray}}{}{0em}{}
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.2em, topsep=0.5em}
+\setlist[enumerate]{leftmargin=1.5em, itemsep=0.2em, topsep=0.5em}
 \hypersetup{
-  colorlinks=true,
-  linkcolor=anticolor,
-  urlcolor=anticolor,
-  pdftitle={Anti-CV - Markus Schulte},
-  pdfauthor={Markus Schulte}
+    colorlinks=true,
+    linkcolor=accent,
+    urlcolor=accent
 }
+\newcommand{\heartarrow}{$\heartsuit$ $\rightsquigarrow$}
+\newcommand{\anticvitem}[1]{\item[\heartarrow] #1}
 \begin{document}
-  \begin{center}
-  {\Huge\bfseries\color{anticolor}ANTI-CURRICULUM VITAE}
-    \\[0.5em]
-    {\Large\textit{A Chronicle of Overengineering \& Existential Dread}}\\[1em]
-    {\large\bfseries Markus Schulte}\\[0.3em]
-    {\small\color{graytext}Cloud Architect | Complexity Enthusiast | Meeting Survivor}\\[0.5em]
-    \begin{tabular}{c c c}
-      \faEnvelope\ mail@schulte-development.de & \faPhone\ +49 178 7217768 & \faGlobe\ schulte-development.de \\
-      \faLinkedin\ /in/markus-schulte          & \faGithub\ SchulteMarkus  & \faStackOverflow\ 1645517
-    \end{tabular}
-  \end{center}
-  \vspace{1em}
-
-
-  \section{Professional Disillusionment Summary}
-  Veteran of \antiemph{18+ years} in the software trenches (11+ as a mercenary freelancer), specializing in:
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item \heartstab\ Building systems so complex that even I forget how they work
-    \item \heartstab\ Converting simple problems into distributed nightmares across AWS, Azure, and GCP
-    \item \heartstab\ Writing microservices that require 47 other microservices to say ``Hello World''
-    \item \heartstab\ Automating myself out of jobs with DevOps pipelines that nobody else understands
-    \item \heartstab\ Leading teams to question their career choices through ``agile'' methodologies
-  \end{itemize}
-  \textit{Proven track record of making legacy systems worse before making them better, with expertise in creating Self-contained Systems that are neither self-contained nor systematic.}
-
-
-  \section{Core Incompetencies}
-
-  \subsection{Programming Languages I Pretend to Master}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item \squigglearrow\ \textbf{Java (18+ years):} Still discovering new ways AbstractSingletonProxyFactoryBean can hurt you
-    \item \squigglearrow\ \textbf{Golang (4+ years):} Because error handling wasn't tedious enough already
-    \item \squigglearrow\ \textbf{PHP (8+ years):} My dark past that haunts me in technical interviews
-    \item \squigglearrow\ \textbf{TypeScript/JavaScript:} When backend isn't painful enough, I dabble in frontend chaos
-  \end{itemize}
-
-  \subsection{Architecture Anti-Patterns I've Mastered}
-  \begin{multicols}{2}
-    \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
-      \item \heartstab\ Microservices that share databases
-      \item \heartstab\ Event-driven spaghetti systems
-      \item \heartstab\ Cloud-native vendor lock-in
-      \item \heartstab\ Legacy modernization that creates new legacy
-      \item \heartstab\ Multi-cloud strategies ensuring maximum billing
-      \item \heartstab\ Serverless functions that never stop running
-    \end{itemize}
-  \end{multicols}
-
-  \subsection{DevOps Disasters}
-  \textit{``If it's not broken, you're not trying hard enough''}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item \antiemph{Container Orchestration:} Making simple apps require a PhD to deploy
-    \item \antiemph{Infrastructure-as-Code:} Terraform scripts that terraform your budget
-    \item \antiemph{CI/CD Pipelines:} 45-minute builds for 10-line changes
-    \item \antiemph{Monitoring:} 17 different tools to tell you everything is on fire
-  \end{itemize}
-
-
-  \section{Professional Misadventures}
-
-  \subsection{\texorpdfstring{\heartstab}{} November 2024 -- Present: Cloud Archaeologist at LBBW}
-  \textit{Landesbank Baden-Württemberg | Freelance | Remote | ``Phoenix'' Project (The Irony)}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item \squigglearrow\ Cataloging hundreds of legacy apps like a digital mortician
-    \item \squigglearrow\ Discovering that 50\% of applications are incompatible with our ``revolutionary'' platform
-    \item \squigglearrow\ Creating multi-cloud strategies because one cloud wasn't expensive enough
-    \item \squigglearrow\ Writing documentation that will be ignored in favor of tribal knowledge
-    \item \squigglearrow\ Participating in meetings about meetings about migration strategies
-  \end{itemize}
-  \textit{Achievement Unlocked: Made Azure Calculator cry with our cost projections}
-
-  \subsection{\texorpdfstring{\heartstab}{} October 2021 -- December 2024: Overengineering Specialist at Union Investment}
-  \textit{3 Years of Making Simple Things Complex | Remote}
-  \textbf{Phase 1: Architecture Astronaut}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item Identified 8 domains in a monolith that was working perfectly fine
-    \item Convinced everyone that Self-contained Systems would solve problems we didn't have
-    \item Designed microfrontends because regular frontends weren't complicated enough
-  \end{itemize}
-  \textbf{Phase 2: Framework Factory}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item Built a ``microfrontend-toolkit'' that required 200-page documentation
-    \item Achieved 10-minute builds with only 1000+ tests (and 3 hours of debugging when they fail)
-    \item Implemented Pipeline-as-Code, creating pipelines that needed their own pipelines
-  \end{itemize}
-  \textbf{Phase 3: Search for Meaning (Literally)}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item Replaced working monolithic search with distributed search requiring event streams
-    \item Chose Algolia over ElasticSearch to ensure vendor lock-in
-    \item Created ``unified'' search that's anything but unified
-  \end{itemize}
-  \textit{Successfully reduced deployment time from days to minutes, increasing deployment anxiety from minutes to days}
-
-  \subsection{\texorpdfstring{\heartstab}{} December 2021 -- November 2024: Midnight Oil Burner at Saloodo! (DHL)}
-  \textit{Part-time Golang Masochist | Remote}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item \squigglearrow\ Sole developer syndrome: When something breaks, there's only one person to blame
-    \item \squigglearrow\ Syncing 10 million records because ``SELECT *'' is a valid architecture pattern
-    \item \squigglearrow\ Writing error handlers for Saloodo's ``creative'' data types
-    \item \squigglearrow\ Achieving 100\% uptime (translation: nobody noticed when it was down)
-    \item \squigglearrow\ Learning Golang on production systems like a true professional
-  \end{itemize}
-
-  \subsection{\texorpdfstring{\heartstab}{} June 2016 -- December 2023: Atlassian Marketplace Monopolist}
-  \textit{Self-Employed Add-on Overlord}
-  Built add-ons for Atlassian Bamboo because Jenkins was too mainstream:
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item Created solutions for problems that could be solved with grep
-    \item Maintained backwards compatibility with Bamboo versions nobody should use
-    \item Provided ``24/7 support'' (checked email twice a week)
-    \item Convinced 83 companies worldwide that they needed my add-ons
-  \end{itemize}
-  \textit{Peak achievement: Customer from Fortune 500 company using my add-on held together with digital duct tape}
-
-
-  \section{Brief Encounters with Sanity}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item \antiemph{2020 (3 months):} Sedo GmbH - Consolidated microservices back into a monolith (the circle of life)
-    \item \antiemph{2018-2019:} Trusted Shops - Migrated from working JavaEE to ``modern'' cloud chaos
-    \item \antiemph{2017-2018:} Allianz - Built CloudFoundry apps that nobody at Allianz understood
-    \item \antiemph{2016-2017:} toom Baumarkt - Introduced Golang; they're still recovering
-    \item \antiemph{2014-2016:} Various companies - Spread the gospel of CI/CD complexity
-  \end{itemize}
-
-
-  \section{Academic Credentials}
-
-  \subsection{2004-2012: Diploma in Overengineering (Computer Science)}
-  \textit{University of Koblenz-Landau}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item Spent 8 years learning theory I'd never use in practice
-    \item Majored in Computer Visualistics (still don't know what that means)
-    \item Wrote a thesis nobody read about algorithms nobody uses
-  \end{itemize}
-
-
-  \section{Certifications \& Meaningless Achievements}
-  \begin{multicols}{2}
-    \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
-      \item \heartstab\ StackOverflow: 4000+ points for explaining why your code doesn't work
-      \item \heartstab\ Java SE 8 TechCheck: 93/100 (the 7 points were the useful parts)
-      \item \heartstab\ GitHub: Maintaining repos with more TODOs than features
-      \item \heartstab\ Atlassian Marketplace: Proof that people will pay for anything
-    \end{itemize}
-  \end{multicols}
-
-
-  \section{Career Interruptions (When Life Made Sense)}
-  \begin{itemize}[leftmargin=*,itemsep=0pt]
-    \item \textbf{April 2020 -- Sept 2021:} Parental Leave - Discovered babies have better error handling than most software
-    \item \textbf{Aug -- Dec 2015:} Career Break - Brief moment of clarity before returning to the madness
-    \item \textbf{Aug 2003 -- Mar 2004:} Military Service - Where following orders actually made sense
-  \end{itemize}
-
-
-  \section{Technical Debt Collection}
-  \begin{multicols}{3}
-    \footnotesize
-    \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
-      \item AWS (7+ years of bills)
-      \item Azure (4+ years of confusion)
-      \item Kubernetes (yaml hell)
-      \item Docker (``it works on my machine'')
-      \item Terraform (infrastructure as debt)
-      \item Jenkins (pipeline nightmares)
-      \item Spring Boot (annotation addiction)
-      \item Microservices (macro problems)
-      \item Event Streams (eventual inconsistency)
-      \item REST APIs (never actually restful)
-      \item OAuth2 (security theater)
-      \item Agile (neither agile nor methodical)
-    \end{itemize}
-  \end{multicols}
-  \vfill
-  \begin{center}
-    \textit{``I don't always test my code, but when I do, I do it in production''}\\[0.5em]
-    \small\color{graytext}References available upon request (but they're all crying)
-  \end{center}
+\begin{center}
+    {\Huge\bfseries\color{accent}The Anti-CV}
+    \vspace{0.5em}
+    {\Large Markus Schulte}
+    \vspace{0.5em}
+    {\color{darkgray}
+    \faIcon{envelope} mail@schulte-development.de \quad
+    \faIcon{phone} +49 178 7217768 \quad
+    \faIcon{globe} schulte-development.de
+    }
+\end{center}
+\vspace{1em}
+\section{Professional Failures \& Catastrophes}
+\begin{itemize}
+    \anticvitem{Successfully transformed simple tasks into complex distributed systems that nobody understands anymore}
+    \anticvitem{Mastered the art of creating \textit{``enterprise-grade''} solutions for problems that didn't exist}
+    \anticvitem{Achieved legendary status by introducing 47 different JavaScript frameworks into one project}
+    \anticvitem{Pioneered the ``It works on my machine'' certification program across multiple organizations}
+    \anticvitem{Single-handedly proved that more microservices = more problems (but billed more hours)}
+\end{itemize}
+\section{Specialized Skills in Making Things Worse}
+\subsection{Architecture Destruction}
+\begin{itemize}
+    \anticvitem{Expert at replacing perfectly functional monoliths with 200+ microservices}
+    \anticvitem{Certified in creating event-driven architectures where nobody knows what triggers what}
+    \anticvitem{Specialist in implementing Self-contained Systems that are neither self-contained nor systematic}
+    \anticvitem{Master of designing cloud solutions that cost 10x more than on-premise}
+\end{itemize}
+\subsection{Programming Language Abuse}
+\begin{itemize}
+    \anticvitem{\textbf{Java (18+ years):} Still writing getters and setters like it's 2005}
+    \anticvitem{\textbf{Golang (4+ years):} Discovered you can write Java in any language}
+    \anticvitem{\textbf{PHP (8+ years):} Responsible for code that makes senior developers cry}
+    \anticvitem{\textbf{TypeScript:} Because JavaScript wasn't complicated enough already}
+\end{itemize}
+\subsection{DevOps Disasters}
+\begin{itemize}
+    \anticvitem{Achieved 10-minute builds by making tests that don't actually test anything}
+    \anticvitem{Created CI/CD pipelines so complex they need their own CI/CD pipelines}
+    \anticvitem{Dockerized applications that were simpler to run without Docker}
+    \anticvitem{Implemented Kubernetes for a 2-user internal tool}
+\end{itemize}
+\section{Career Lowlights}
+\subsection{Nov 2024 -- Present: Cloud Architect at LBBW}
+\begin{itemize}
+    \anticvitem{Currently cataloging hundreds of legacy apps to determine which ones to break first}
+    \anticvitem{Identified 50\% of applications as incompatible with new platform (mission accomplished!)}
+    \anticvitem{Creating multi-cloud strategies because one cloud provider isn't confusing enough}
+    \anticvitem{Conducting ``in-depth technical assessments'' (aka expensive guesswork)}
+\end{itemize}
+\subsection{Oct 2021 -- Dec 2024: Cloud Architect at Union Investment}
+\begin{itemize}
+    \anticvitem{Transformed a working monolith into 8 separate systems that barely talk to each other}
+    \anticvitem{Implemented Web Components because standard HTML was too mainstream}
+    \anticvitem{Built a search system that searches across systems that don't want to be searched}
+    \anticvitem{Reduced deployment time from days to minutes (now things break faster!)}
+    \anticvitem{Created 1000+ tests to achieve the illusion of quality}
+\end{itemize}
+\subsection{Dec 2021 -- Nov 2024: Middleware Engineer at Saloodo! (DHL)}
+\begin{itemize}
+    \anticvitem{Solo developer = no one to blame but myself}
+    \anticvitem{Synchronized 10 million records because someone thought it was a good idea}
+    \anticvitem{Built robust error handling for a database that's more error than data}
+    \anticvitem{Achieved 100\% uptime (translation: nobody noticed when it was down)}
+\end{itemize}
+\subsection{June 2016 -- Dec 2023: Atlassian Add-on Peddler}
+\begin{itemize}
+    \anticvitem{Created solutions for problems Atlassian should have solved themselves}
+    \anticvitem{Convinced 83 companies worldwide they needed my add-ons}
+    \anticvitem{Maintained legacy code for 7 years (personal record for self-torture)}
+    \anticvitem{Built a business around a product that Atlassian could deprecate anytime}
+\end{itemize}
+\section{Educational Mishaps}
+\begin{itemize}
+    \anticvitem{\textbf{2004-2012:} Spent 8 years getting a Computer Science degree to write CRUD apps}
+    \anticvitem{\textbf{2003:} Military service -- learned to follow orders, then became a freelancer}
+    \anticvitem{\textbf{2000-2003:} Self-taught PHP, setting the stage for a lifetime of regret}
+\end{itemize}
+\section{Personal Projects (aka Time Wasters)}
+\begin{itemize}
+    \anticvitem{\textbf{2025:} Built AI to do my taxes because learning tax law was too simple}
+    \anticvitem{\textbf{2018:} Jenkins-GitHub integration that nobody asked for}
+    \anticvitem{\textbf{2015:} Crypto trading bot that probably lost money}
+\end{itemize}
+\section{Certifications \& Meaningless Achievements}
+\begin{itemize}
+    \anticvitem{StackOverflow: 4000+ points from answering questions I googled myself}
+    \anticvitem{Java SE 8 TechCheck: 93/100 (the 7 points were the interesting parts)}
+    \anticvitem{GitHub: Maintaining repos with more TODOs than actual code}
+\end{itemize}
+\section{Technologies I've Inflicted Upon Others}
+\begin{multicols}{3}
+\begin{itemize}[leftmargin=0.5em]
+    \anticvitem{Java/Spring Boot}
+    \anticvitem{Golang}
+    \anticvitem{TypeScript}
+    \anticvitem{Kubernetes}
+    \anticvitem{Docker}
+    \anticvitem{AWS/Azure/GCP}
+    \anticvitem{Terraform}
+    \anticvitem{Kafka}
+    \anticvitem{PostgreSQL}
+    \anticvitem{Redis}
+    \anticvitem{Microservices}
+    \anticvitem{Event Streams}
+    \anticvitem{Web Components}
+    \anticvitem{CI/CD Pipelines}
+    \anticvitem{Contract Testing}
+\end{itemize}
+\end{multicols}
+\section{References}
+\begin{itemize}
+    \anticvitem{Available upon request (but they're all still in therapy)}
+    \anticvitem{Previous clients can be found muttering about ``enterprise solutions'' in dark corners}
+    \anticvitem{My code is its own reference -- it speaks volumes about my capabilities}
+\end{itemize}
+\vspace{2em}
+\begin{center}
+    \color{lightgray}
+    \textit{``The best way to predict the future is to implement it poorly''} \\
+    -- Every Cloud Architect Ever
+\end{center}
 \end{document}
