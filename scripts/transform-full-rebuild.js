@@ -31,5 +31,3 @@ export const main = async () => {
     throw error;
   }
 };
-
-// Remove the standalone execution - it's handled by run-cv-update.js
