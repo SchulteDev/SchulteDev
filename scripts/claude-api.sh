@@ -12,19 +12,19 @@ MAX_TOKENS="${MAX_TOKENS:-8000}"
 # Function to make Claude API call
 call_claude_api() {
     local prompt="$1"
-    
+
     if [ -z "$ANTHROPIC_API_KEY" ]; then
         echo "❌ ANTHROPIC_API_KEY not set"
         return 1
     fi
-    
+
     if [ -z "$prompt" ]; then
         echo "❌ No prompt provided"
         return 1
     fi
-    
+
     echo "🤖 Calling Claude API..."
-    
+
     jq -n \
       --arg model "$API_MODEL" \
       --arg content "$prompt" \
@@ -41,14 +41,14 @@ call_claude_api() {
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
       -d @- > "$RESPONSE_FILE"
-    
+
     # Check if response is valid
     if ! jq -e '.content[0].text' "$RESPONSE_FILE" >/dev/null 2>&1; then
         echo "❌ Invalid API response:"
         jq . "$RESPONSE_FILE" | head -20
         return 1
     fi
-    
+
     echo "✅ API response received"
     return 0
 }
@@ -56,12 +56,12 @@ call_claude_api() {
 # Function to extract LaTeX from response
 extract_latex() {
     local output_file="$1"
-    
+
     if [ -z "$output_file" ]; then
         echo "❌ No output file specified"
         return 1
     fi
-    
+
     # Extract text, remove extended_thinking tags, code block markers, and clean up
     jq -r '.content[0].text' "$RESPONSE_FILE" | \
       sed '/<extended_thinking>/,/<\/extended_thinking>/d' | \
@@ -73,12 +73,26 @@ extract_latex() {
     return 0
 }
 
-# Function to build CV transformation prompt
 build_cv_prompt() {
     local mode="$1"
     local prompt=""
-    
+
     local base_instructions="You are an expert LaTeX document designer and professional CV writer."
+    local github_actions_context="
+**Deployment Context:**
+This LaTeX document will be automatically compiled in a GitHub Actions CI/CD environment using xu-cheng/latex-action with TeXLive distribution. The compilation must be robust and reliable for automated processing."
+
+    local latex_compatibility_rules="
+**GitHub Actions LaTeX Requirements:**
+- Use modern, widely-supported packages available in standard TeXLive distributions
+- Ensure compatibility with automated compilation environments (no interactive prompts)
+- Use robust package combinations that work reliably in Docker containers
+- Follow proper package loading order for consistent compilation
+- Avoid experimental or cutting-edge packages that might not be available
+- Generate LaTeX that compiles successfully with: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+- Ensure all fonts and dependencies are commonly available in CI environments
+- Use packages that handle encoding and internationalization properly"
+
     local common_instructions="
 **Instructions:**
 1. Use extended thinking to analyze and plan the optimal document
@@ -87,70 +101,15 @@ build_cv_prompt() {
 4. Apply modern LaTeX best practices for typography and design
 5. Ensure excellent visual hierarchy and readability
 6. Optimize LaTeX formatting for visual appeal
-7. Ensure all LaTeX syntax is correct and compilable
+7. Generate LaTeX optimized for automated GitHub Action compilation
+$github_actions_context
+$latex_compatibility_rules
 
 **Requirements:**
 - Return ONLY the complete LaTeX document code
 - No explanations or markdown formatting
-- Ensure the document compiles without errors
+- Ensure robust compilation in GitHub Actions CI/CD environment
+- Use battle-tested package combinations suitable for automated processing
+- Optimize for xu-cheng/latex-action compilation pipeline
 - Make it the best possible anti-CV design
 - Do NOT include any thinking process or explanations in your response"
-    
-    case "$mode" in
-        incremental)
-            if [ ! -f "$CV_FILE" ]; then
-                echo "❌ CV file not found: $CV_FILE"
-                return 1
-            fi
-            if [ ! -f "$DIFF_FILE" ]; then
-                echo "❌ Diff file not found: $DIFF_FILE"
-                return 1
-            fi
-            
-            prompt="$base_instructions I need you to transform career updates into a high-quality anti-CV format.
-
-**Current LaTeX document:**
-\`\`\`latex
-$(cat "$CV_FILE")
-\`\`\`
-
-**Career changes detected:**
-\`\`\`diff
-$(cat "$DIFF_FILE")
-\`\`\`
-
-$common_instructions
-- Maintain consistency with existing styling
-
-Please think through this carefully and produce the highest quality CV possible."
-            ;;
-            
-        full_rebuild)
-            if [ ! -f "$CAREER_FILE" ]; then
-                echo "❌ Career file not found: $CAREER_FILE"
-                return 1
-            fi
-            
-            prompt="$base_instructions I need you to create a complete anti-CV from scratch using the provided career information.
-
-**Complete career information:**
-\`\`\`markdown
-$(cat "$CAREER_FILE")
-\`\`\`
-
-**Instructions:**
-1. Create a COMPLETE anti-CV LaTeX document from scratch
-$common_instructions
-- Include \\documentclass and all necessary setup
-
-Please create the highest quality complete anti-CV possible."
-            ;;
-            
-        *)
-            echo "❌ Invalid mode: $mode"
-            return 1
-            ;;
-    esac
-    
-    echo "$prompt"
-}
