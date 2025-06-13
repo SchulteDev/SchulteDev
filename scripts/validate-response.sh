@@ -15,13 +15,15 @@ else
     exit 1
 fi
 
-# Extract LaTeX from Claude's response
-jq -r '.content[0].text' claude_response.json > "$OUTPUT_FILE"
+# Extract LaTeX from Claude's response and filter out extended_thinking
+jq -r '.content[0].text' claude_response.json | \
+  sed '/<extended_thinking>/,/<\/extended_thinking>/d' | \
+  sed '/^$/d' > "$OUTPUT_FILE"
 
 # Validate the response
-if [ -s "$OUTPUT_FILE" ] && grep -q "\\documentclass" "$OUTPUT_FILE"; then
+if [ -s "$OUTPUT_FILE" ] && grep -q '\\documentclass' "$OUTPUT_FILE"; then
     mv "$OUTPUT_FILE" "$FINAL_FILE"
-    echo "✅ Successfully updated $FINAL_FILE with Claude 4 Opus ($MODE)"
+    echo "✅ Successfully updated $FINAL_FILE ($MODE)"
 
     # Show some stats
     LINES=$(wc -l < "$FINAL_FILE")
@@ -29,15 +31,15 @@ if [ -s "$OUTPUT_FILE" ] && grep -q "\\documentclass" "$OUTPUT_FILE"; then
     echo "📊 Document stats: $LINES lines, $SIZE bytes"
 
     # Basic LaTeX syntax check
-    if grep -q "\\begin{document}" "$FINAL_FILE" && grep -q "\\end{document}" "$FINAL_FILE"; then
+    if grep -q '\\begin{document}' "$FINAL_FILE" && grep -q '\\end{document}' "$FINAL_FILE"; then
         echo "✅ Basic LaTeX structure validated"
     else
-        echo "⚠️ Warning: Missing \\begin{document} or \\end{document}"
+        printf "⚠️ Warning: Missing \\begin{document} or \\end{document}\n"
     fi
 else
     echo "❌ Claude response invalid, keeping original $FINAL_FILE"
     echo "🔍 Claude response debug:"
-    cat claude_response.json | jq -r '.content[0].text' | head -n 10
+    jq -r '.content[0].text' claude_response.json | head -n 10
     echo "..."
     exit 1
 fi

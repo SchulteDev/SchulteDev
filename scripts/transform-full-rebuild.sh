@@ -1,14 +1,12 @@
 #!/bin/bash
 set -e
 
-echo "🏗️ Starting full rebuild with Claude 4 Opus..."
+echo "🏗️ Starting full rebuild..."
 
 if [ -z "$ANTHROPIC_API_KEY" ]; then
     echo "❌ ANTHROPIC_API_KEY not set"
     exit 1
 fi
-
-echo "📤 Starting full rebuild..."
 
 # Use jq to properly construct the JSON payload
 jq -n \
@@ -17,7 +15,7 @@ jq -n \
 
 **Complete career information:**
 \`\`\`markdown
-$(cat _data/career.md | jq -Rs .)
+$(jq -Rs . _data/career.md)
 \`\`\`
 
 **Instructions:**
@@ -35,8 +33,9 @@ $(cat _data/career.md | jq -Rs .)
 - No explanations or markdown formatting
 - Ensure the document compiles without errors
 - Make it the best possible anti-CV design
+- Do NOT include any thinking process or explanations in your response
 
-Please think through this carefully and create the highest quality complete anti-CV possible." \
+Please create the highest quality complete anti-CV possible." \
   '{
     model: $model,
     max_tokens: 8000,
