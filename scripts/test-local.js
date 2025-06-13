@@ -60,34 +60,25 @@ logger.info(`Running in ${MODE} mode`);
 
 // Check prerequisites
 const checkPrerequisites = async () => {
-  const missing = [];
+  // try {
+  //   await execAsync('where git');
+  // } catch (error) {
+  //   logger.error('Missing prerequisite: git');
+  //   process.exit(1);
+  // }
 
-  // Check required commands
-  for (const cmd of ['git']) {
-    try {
-      await execAsync(`where ${cmd}`);
-    } catch (error) {
-      missing.push(cmd);
-    }
-  }
-
-  // Check required files
   if (!fs.existsSync(CAREER_FILE)) {
-    missing.push(`${CAREER_FILE} file`);
+    logger.error(`Missing prerequisite: ${CAREER_FILE} file`);
+    process.exit(1);
   }
 
   if (MODE === 'incremental' && !fs.existsSync(CV_FILE)) {
-    missing.push(`${CV_FILE} file`);
+    logger.error(`Missing prerequisite: ${CV_FILE} file`);
+    process.exit(1);
   }
 
-  // Check API key
   if (SKIP_API !== true && !process.env.ANTHROPIC_API_KEY) {
-    missing.push('ANTHROPIC_API_KEY environment variable');
-  }
-
-  if (missing.length > 0) {
-    logger.error('Missing prerequisites:');
-    missing.forEach(item => console.log(`  - ${item}`));
+    logger.error('Missing prerequisite: ANTHROPIC_API_KEY environment variable');
     process.exit(1);
   }
 };
