@@ -14,8 +14,6 @@ import {extractLatex} from './claude-api.js';
 import {main as transformFullRebuild} from './transform-full-rebuild.js';
 import {main as transformIncremental} from './transform-incremental.js';
 
-// No longer needed as we're directly importing the transform functions
-
 // Cleanup function
 const cleanup = (tempFile) => {
   if (fs.existsSync(tempFile)) {
