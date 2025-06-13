@@ -1,13 +1,6 @@
 // config.js - Central configuration for CV generation scripts
 
 import fs from 'fs';
-import path from 'path';
-import {fileURLToPath} from 'url';
-import {logDebug} from './logger.js';
-
-// Get the directory name of the current module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // File paths
 export const CAREER_FILE = process.env.CAREER_FILE || '_data/career.md';
@@ -46,21 +39,3 @@ export const setOutput = (name, value) => {
   }
 };
 
-// Validate required files exist
-export const validateFiles = () => {
-  const missingFiles = [];
-
-  if (!fs.existsSync(CAREER_FILE)) {
-    missingFiles.push(CAREER_FILE);
-  }
-
-  return missingFiles.length <= 0;
-};
-
-// Create backup directory if it doesn't exist
-export const ensureBackupDir = () => {
-  if (CREATE_BACKUP && !fs.existsSync(BACKUP_DIR)) {
-    fs.mkdirSync(BACKUP_DIR, {recursive: true});
-    logDebug(`Created backup directory: ${BACKUP_DIR}`);
-  }
-};

@@ -9,5 +9,4 @@ const logger = consola.create({
   level: DEBUG ? 5 : 3, // 5 = debug, 3 = info
 });
 
-export const logDebug = (message) => DEBUG ? logger.debug(message) : null;
 export default logger;
