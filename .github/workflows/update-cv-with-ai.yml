@@ -2,8 +2,15 @@ name: AI-Powered CV Update with GitHub Releases
 
 on:
   push:
-    branches: [ main ]
-    paths: [ '_data/career.md' ]
+    branches: [ '*' ]
+    paths:
+      - '_data/career.md'
+      - 'scripts/**'
+  pull_request:
+    branches: [ '*' ]
+    paths:
+      - '_data/career.md'
+      - 'scripts/**'
   workflow_dispatch:
     inputs:
       rebuild_mode:
@@ -20,7 +27,7 @@ permissions:
 
 env:
   CAREER_FILE: _data/career.md
-  CV_FILE: cv/anti-cv.tex
+  CV_FILE: cv/markus-schulte-dev-anti-cv.tex
   RESPONSE_FILE: claude_response.json
 
 jobs:
@@ -43,12 +50,31 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test CV update with dry run
+        env:
+          DRY_RUN: true
+          SKIP_API: true
+        run: npm run cv:test
+
       - name: Transform with Claude
         id: transform
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
-        run: ./scripts/run-cv-update.sh
+        run: node scripts/run-cv-update.js
+
+      - name: Set generation timestamp
+        id: timestamp
+        run: echo "generated_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_OUTPUT
 
       - name: Compile LaTeX to PDF
         if: success() && steps.transform.outputs.mode != 'skip'
@@ -58,7 +84,7 @@ jobs:
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Commit updated LaTeX file
-        if: success() && steps.transform.outputs.mode != 'skip'
+        if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -67,7 +93,7 @@ jobs:
           git push
 
       - name: Upload PDF to GitHub Releases
-        if: success() && steps.transform.outputs.mode != 'skip'
+        if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: cv-latest
@@ -78,11 +104,11 @@ jobs:
             **AI Model:** Claude 4 Opus with Extended Thinking
             **Generation Mode:** ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
             **Trigger:** ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto (career.md change)' }}
-            **Generated on:** ${{ github.event.head_commit.timestamp }}
+            **Generated on:** ${{ steps.timestamp.outputs.generated_date }}
             **Commit:** ${{ github.sha }}
 
-            📄 Direct download: [markus-schulte-anti-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf)
-          files: anti-cv.pdf
+            📄 Direct download: [markus-schulte-dev-anti-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf)
+          files: markus-schulte-dev-anti-cv.pdf
           prerelease: false
           make_latest: true
         env:
@@ -93,15 +119,20 @@ jobs:
         run: |
           echo "✅ CV updated successfully with Claude 4 Opus!"
           echo "🎯 Mode: ${{ steps.transform.outputs.mode }}"
-          echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/anti-cv.pdf"
+          if [[ "${{ github.ref }}" == "refs/heads/main" && "${{ github.event_name }}" != "pull_request" ]]; then
+            echo "📄 Download link: https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf"
+          else
+            echo "📝 Branch/PR build - PDF not uploaded to releases"
+          fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cv-build-logs
+          name: cv-build-logs-${{ github.run_id }}-${{ github.sha }}
           path: |
             *.log
             ${{ env.CV_FILE }}
+            markus-schulte-dev-anti-cv.pdf
             claude_response.json
           retention-days: 7

@@ -4,12 +4,13 @@
 
 ```
 scripts/
-├── config.sh                 # Central configuration & helper functions
-├── claude-api.sh             # Shared API logic & prompt builder
-├── run-cv-update.sh          # Main workflow orchestrator (includes validation)
-├── transform-incremental.sh  # Incremental update (includes detection)
-├── transform-full-rebuild.sh # Full rebuild from scratch
-└── test-local.sh             # Local testing utility
+├── config.js                 # Central configuration & environment variables
+├── logger.js                 # Simple logging with Consola
+├── claude-api.js             # Shared API logic using Anthropic SDK
+├── run-cv-update.js          # Main workflow orchestrator (includes validation)
+├── transform-incremental.js  # Incremental update (includes detection)
+├── transform-full-rebuild.js # Full rebuild from scratch
+└── test-local.js             # Local testing utility
 ```
 
 ## Data Flow
@@ -17,94 +18,153 @@ scripts/
 ```
 GitHub Action / Local Test
          ↓
-  run-cv-update.sh
+  run-cv-update
          ↓
   Determines mode
     ↙        ↘
 transform-    transform-
 incremental   full-rebuild
     ↘        ↙
-  claude-api.sh
+  claude-api
   (API + prompts)
          ↓
-  run-cv-update.sh
-  (validation + placement)
+  run-cv-update
+(validation + placement)
          ↓
-    CV Updated
+  Recommit changes  
+         ↓
+    CV updated
 ```
 
 ## Usage Examples
 
 ### Local Testing
+
 ```bash
-export ANTHROPIC_API_KEY="your-key-here"
+# Option 1: Create a .env file (recommended)
+# Create a file named .env in the project root with:
+# ANTHROPIC_API_KEY=your-key-here
+# DEBUG=true  # Optional for verbose logging
 
-# Test with real API
-./scripts/test-local.sh incremental
+# Option 2: Set API key in terminal
+export ANTHROPIC_API_KEY="your-key-here"  # Unix/Linux/macOS
+# or
+set ANTHROPIC_API_KEY="your-key-here"     # Windows Command Prompt
+# or
+$env:ANTHROPIC_API_KEY="your-key-here"    # Windows PowerShell
 
-# Test full rebuild
-./scripts/test-local.sh full_rebuild
+# Using npm scripts (recommended)
+npm run cv:test            # Incremental update
+npm run cv:test:full       # Full rebuild
+
+# Direct Node.js execution
+node scripts/test-local.js incremental
+node scripts/test-local.js full_rebuild
 
 # Skip API (use existing claude_response.json)
-SKIP_API=true ./scripts/test-local.sh
+set SKIP_API=true && node scripts/test-local.js
 
 # Dry run
-DRY_RUN=true ./scripts/test-local.sh
+set DRY_RUN=true && node scripts/test-local.js
 ```
 
 ### Custom Configuration
+
 ```bash
 # Override paths
-CAREER_FILE=my_career.md CV_FILE=output/cv.tex ./scripts/test-local.sh
+set CAREER_FILE=my_career.md
+set CV_FILE=output/cv.tex
+node scripts/test-local.js
 
 # Create backups
-CREATE_BACKUP=true ./scripts/test-local.sh
+set CREATE_BACKUP=true && node scripts/test-local.js
 ```
 
 ### Direct Script Usage
+
 ```bash
 # Just run the update (GitHub Actions uses this)
-./scripts/run-cv-update.sh
+node scripts/run-cv-update.js
 
 # Run specific transformation
-./scripts/transform-incremental.sh
-./scripts/transform-full-rebuild.sh
+node scripts/transform-incremental.js
+node scripts/transform-full-rebuild.js
+
+# Using npm scripts
+npm run cv:update
+npm run cv:incremental
+npm run cv:full-rebuild
 ```
 
 ## Environment Variables
 
 ### Required
+
 - `ANTHROPIC_API_KEY` - API key for Claude
 
 ### Optional Paths
+
 - `CAREER_FILE` - Input markdown (default: `_data/career.md`)
-- `CV_FILE` - Output LaTeX (default: `cv/anti-cv.tex`)
+- `CV_FILE` - Output LaTeX (default: `cv/markus-schulte-dev-anti-cv.tex`)
 - `RESPONSE_FILE` - API response (default: `claude_response.json`)
 - `DIFF_FILE` - Git diff for incremental (default: `career_changes.diff`)
+- `TEMP_FILE` - Temporary file for processing (default: `temp_cv.tex`)
 
 ### Optional Settings
+
 - `CREATE_BACKUP` - Backup before updating (default: false)
 - `SKIP_API` - Skip API call for testing (default: false)
 - `DRY_RUN` - Show what would be done (default: false)
 - `REBUILD_MODE` - For GitHub Actions (incremental/full_rebuild)
 
+### GitHub Actions Specific
+
+- `GITHUB_OUTPUT` - Used for setting workflow outputs
+- `GITHUB_EVENT_NAME` - Determines trigger context
+- `GITHUB_REF` - Branch reference for conditional operations
+
 ## Key Improvements
 
-### 1. **Shared Components**
-- `config.sh` - Environment variables and logging functions
-- `claude-api.sh` - API calls, LaTeX extraction, and prompt building
+### 1. **JavaScript-Based Architecture**
 
-### 2. **Simplified Architecture**
-- Removed `detect-changes.sh` - logic merged into `transform-incremental.sh`
-- Removed `validate-response.sh` - validation integrated into `run-cv-update.sh`
+- Modern JavaScript ES modules for better code organization
+- Async/await for cleaner asynchronous code
+- Error handling with try/catch blocks
+- NPM scripts for easier command execution
+- Official Anthropic SDK for reliable API integration
+- Consola for simple, efficient logging
+
+### 2. **Shared Components**
+
+- `config.js` - Environment variables and configuration settings
+- `logger.js` - Simplified logging with Consola
+- `claude-api.js` - API calls using Anthropic SDK, LaTeX extraction, and prompt building
+
+### 3. **Simplified Architecture**
+
+- Modular code structure with clear imports/exports
+- Consistent error handling across all scripts
+- Improved logging with emoji indicators
 - Fewer files, clearer responsibilities
 
-### 3. **Main Orchestrator**
-`run-cv-update.sh` now handles:
-- Mode selection
-- Running appropriate transformation
-- LaTeX extraction
-- Basic validation (file exists, has \documentclass)
-- Optional backup
-- File placement
-- Cleanup
+### 4. **Main Orchestrator**
+
+`run-cv-update.js` handles:
+
+- Mode determination (from GitHub inputs or defaults)
+- Running appropriate transformation (incremental/full_rebuild)
+- LaTeX extraction and validation
+- GitHub Actions output setting
+- Optional backup creation
+- File placement and cleanup
+- Comprehensive error handling with proper exit codes
+
+### 5. **Workflow Integration**
+
+The architecture properly integrates with GitHub Actions by:
+
+- Setting required outputs for workflow decisions
+- Handling different trigger scenarios (push, PR, manual)
+- Providing proper error states and cleanup
+- Supporting artifact collection for debugging
+- Enabling conditional PDF compilation and release creation
