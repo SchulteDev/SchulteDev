@@ -33,19 +33,20 @@ else
     else
         PROCESS_MODE="incremental"
     fi
-fi
 
-# Exit if no processing needed
-if [ "$PROCESS_MODE" = "skip" ]; then
-    log_info "No changes to process, skipping validation and compilation"
-    # Set outputs for GitHub Actions
-    if is_github_actions; then
-        echo "mode=skip" >> "$GITHUB_OUTPUT"
+    # Check immediately after reading the mode
+    if [ "$PROCESS_MODE" = "skip" ]; then
+        log_info "No changes to process, skipping validation and compilation"
+        # Set outputs for GitHub Actions
+        if is_github_actions; then
+            echo "mode=skip" >> "$GITHUB_OUTPUT"
+        fi
+        exit 0
     fi
-    exit 0
 fi
 
-# Extract and validate LaTeX response (rest remains the same)
+# At this point we only have full_rebuild or incremental with actual changes
+# Extract and validate LaTeX response
 log_info "Processing response..."
 TEMP_FILE="temp_cv.tex"
 
