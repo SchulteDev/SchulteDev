@@ -19,6 +19,10 @@ export MAX_LATEX_SIZE="${MAX_LATEX_SIZE:-1000000}"  # 1MB
 
 # Backup settings
 export CREATE_BACKUP="${CREATE_BACKUP:-true}"
+export BACKUP_DIR="${BACKUP_DIR:-backups}"
+
+# Debug settings
+export DEBUG="${DEBUG:-false}"
 
 # Helper functions
 log_info() {
@@ -37,6 +41,12 @@ log_warning() {
     echo "⚠️ $1"
 }
 
+log_debug() {
+    if [ "$DEBUG" = "true" ]; then
+        echo "🐛 $1"
+    fi
+}
+
 # Check if running in GitHub Actions
 is_github_actions() {
     [ -n "$GITHUB_ACTIONS" ]
@@ -51,5 +61,29 @@ set_output() {
         echo "$name=$value" >> "$OUTPUT_FILE"
     else
         echo "Output: $name=$value"
+    fi
+}
+
+# Validate required files exist
+validate_files() {
+    local missing_files=()
+
+    if [ ! -f "$CAREER_FILE" ]; then
+        missing_files+=("$CAREER_FILE")
+    fi
+
+    if [ ${#missing_files[@]} -gt 0 ]; then
+        log_error "Missing required files: ${missing_files[*]}"
+        return 1
+    fi
+
+    return 0
+}
+
+# Create backup directory if it doesn't exist
+ensure_backup_dir() {
+    if [ "$CREATE_BACKUP" = "true" ] && [ ! -d "$BACKUP_DIR" ]; then
+        mkdir -p "$BACKUP_DIR"
+        log_debug "Created backup directory: $BACKUP_DIR"
     fi
 }
