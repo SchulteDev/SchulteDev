@@ -17,6 +17,9 @@ export MAX_TOKENS="${MAX_TOKENS:-8000}"
 export MIN_LATEX_LINES="${MIN_LATEX_LINES:-50}"
 export MAX_LATEX_SIZE="${MAX_LATEX_SIZE:-1000000}"  # 1MB
 
+# Backup settings
+export CREATE_BACKUP="${CREATE_BACKUP:-true}"
+
 # Helper functions
 log_info() {
     echo "ℹ️ $1"
@@ -43,7 +46,7 @@ is_github_actions() {
 set_output() {
     local name="$1"
     local value="$2"
-    
+
     if is_github_actions; then
         echo "$name=$value" >> "$OUTPUT_FILE"
     else
