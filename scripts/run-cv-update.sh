@@ -69,7 +69,6 @@ fi
 # At this point we only have full_rebuild or incremental with actual changes
 # Extract and validate LaTeX response
 log_info "Processing response..."
-TEMP_FILE="temp_cv.tex"
 
 if ! extract_latex "$TEMP_FILE"; then
     log_error "Failed to extract LaTeX from response"

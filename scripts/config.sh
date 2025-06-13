@@ -6,6 +6,7 @@ export CAREER_FILE="${CAREER_FILE:-_data/career.md}"
 export CV_FILE="${CV_FILE:-cv/anti-cv.tex}"
 export DIFF_FILE="${DIFF_FILE:-career_changes.diff}"
 export RESPONSE_FILE="${RESPONSE_FILE:-claude_response.json}"
+export TEMP_FILE="${TEMP_FILE:-temp_cv.tex}"
 export OUTPUT_FILE="${GITHUB_OUTPUT:-/tmp/github_output.txt}"
 
 # API configuration
