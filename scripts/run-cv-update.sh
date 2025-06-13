@@ -1,7 +1,7 @@
 #!/bin/bash
 # run-cv-update.sh - Main entry point for CV update workflow
 
-set -e
+set -euo pipefail
 
 # Source configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -22,19 +22,19 @@ if [ "$MODE" = "full_rebuild" ]; then
     "$SCRIPT_DIR/transform-full-rebuild.sh"
     PROCESS_MODE="full_rebuild"
 else
+    # Clean up any existing response file first
+    rm "$RESPONSE_FILE"
+
+    # Run incremental transformation
     "$SCRIPT_DIR/transform-incremental.sh"
 
-    # Read the process mode from output
-    if [ -f "$OUTPUT_FILE" ]; then
-        PROCESS_MODE=$(grep "process_mode=" "$OUTPUT_FILE" | cut -d'=' -f2 | head -1)
-    else
+    # Check if response file was created (indicating changes were processed)
+    if [ -f "$RESPONSE_FILE" ] && [ -s "$RESPONSE_FILE" ]; then
         PROCESS_MODE="incremental"
-    fi
-
-    # Check immediately after reading the mode
-    if [ "$PROCESS_MODE" = "skip" ]; then
+        log_info "Response file found, proceeding with processing"
+    else
+        # No response file means no changes to process
         log_info "No changes to process, skipping validation and compilation"
-        # Set outputs for GitHub Actions
         if is_github_actions; then
             echo "mode=skip" >> "$GITHUB_OUTPUT"
         fi
