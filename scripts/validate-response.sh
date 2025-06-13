@@ -5,12 +5,11 @@ MODE="$1"
 echo "🔍 Validating Claude response for $MODE mode..."
 
 # Extract the response
+FINAL_FILE="cv/anti-cv.tex"
 if [ "$MODE" = "incremental" ]; then
     OUTPUT_FILE="updated_anti-cv.tex"
-    FINAL_FILE="anti-cv.tex"
 elif [ "$MODE" = "full_rebuild" ]; then
     OUTPUT_FILE="new_anti-cv.tex"
-    FINAL_FILE="anti-cv.tex"
 else
     echo "❌ Invalid mode: $MODE"
     exit 1

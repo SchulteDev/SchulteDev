@@ -9,15 +9,15 @@ if [ -z "$ANTHROPIC_API_KEY" ]; then
 fi
 
 # Escape content for JSON
-CURRENT_LATEX=$(cat anti-cv.tex | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | awk '{printf "%s\\n", $0}')
-CAREER_CHANGES=$(cat career_changes.diff | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | awk '{printf "%s\\n", $0}')
+CURRENT_LATEX=$(cat cv/anti-cv.tex | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | awk '{printf "%s\\n", $0}')
+CAREER_CHANGES=$(cat cv/career_changes.diff | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | awk '{printf "%s\\n", $0}')
 
 echo "📤 Sending request to Claude 4 Opus..."
 
 curl -X POST "https://api.anthropic.com/v1/messages" \
   -H "Content-Type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2025-04-14" \
   -d "{
     \"model\": \"claude-opus-4\",
     \"max_tokens\": 8000,
