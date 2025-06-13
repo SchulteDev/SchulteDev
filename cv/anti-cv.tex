@@ -1,182 +1,81 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LaTeX Template: Curriculum Vitae
-%
-% Source: http://www.howtotex.com/
-% Feel free to distribute this template, but please keep the
-% referal to HowToTeX.com.
-% Date: July 2011
-%
-% Author of Anti-CV: Stephen Fay
-% Fork on github https://github.com/dcxSt/anti-cv
-%
-
-\documentclass[paper=a4,fontsize=11pt]{scrartcl} % KOMA-article class
-
-\usepackage[english]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage[protrusion=true,expansion=true]{microtype}
-\usepackage{amsmath,amsfonts,amsthm}     % Math packages
-\usepackage{graphicx}                    % Enable pdflatex
-\usepackage[svgnames]{xcolor}            % Colors by their 'svgnames'
-\usepackage[margin=0.5in]{geometry}
-\textheight=700px                    % Saving trees ;-)
-\usepackage{url}
-
-\usepackage{tikz}
-\usepackage{kpfonts} % for \varheartsuit , also changes font
-\usepackage{color}
-\newcommand*\Hs{\ensuremath{\color{red}\varheartsuit}}
-
-%%% Heart-stab command
-\newcommand{\heartstab}{%
-  \begin{tikzpicture}%
-  \draw [line width=0.0mm, white] (3.5ex,0.4ex) -- (3.5ex,0.4ex);
-  \Large{$\Hs$};
-  \draw [line width=0.30mm, black] (-0.7ex,0.7ex) -- (1.2ex,1.2ex);%
-  \draw [line width=0.50mm, black] (0.8ex,0.65ex) -- (0.55ex,1.45ex);%
-  \end{tikzpicture}%
-}
-
-%%% Squiggly arrow
-\newcommand{\squigarr}{
-    {\Large \color{blue}$\rightsquigarrow$}
-}
-
-\usepackage[colorlinks=true,urlcolor=purple]{hyperref}
-
-\frenchspacing              % Better looking spacings after periods
-\pagestyle{empty}           % No pagenumbers/headers/footers
-
-%%% Custom sectioning (sectsty package)
-%%% ------------------------------------------------------------
-\usepackage{sectsty}
-
-\sectionfont{%			            % Change font of \section command
-  \usefont{OT1}{phv}{b}{n}%		% bch-b-n: CharterBT-Bold font
-  \sectionrule{0pt}{0pt}{-5pt}{3pt}}
-
-%%% Macros
-%%% ------------------------------------------------------------
-\newlength{\spacebox}
-\settowidth{\spacebox}{8888888888}      % Box to align text
-\newcommand{\sepspace}{\vspace*{0.5em}}    % Vertical space macro
-
-\newcommand{\MyName}[1]{ % Name
-  \Huge \usefont{OT1}{phv}{b}{n} \hfill #1
-  \par \normalsize \normalfont}
-
-\newcommand{\MySlogan}[1]{ % Slogan (optional)
-  \large \usefont{OT1}{phv}{m}{n}\hfill \textit{#1}
-  \par \normalsize \normalfont}
-
-
-\newcommand{\NameEmailPhoneSiteGithub}[6]{
-  \Huge \usefont{OT1}{phv}{m}{n} \textbf{#1}
-  \large \usefont{OT1}{phv}{m}{n} \hfill #2\hspace{25pt}#3
-
-  \textit{Technical Cloud Architect}\hfill \textit{website } #4 \hspace{25pt}\textit{linkedin } #5 \hspace{25pt}\textit{github } #6
-  \par \normalsize \normalfont
-}
-
-\newcommand{\NewPart}[1]{\section*{\uppercase{#1}}}
-
-\newcommand{\SkillsEntry}[2]{      % Same as \PersonalEntry
-  \noindent\hangindent=2em\hangafter=0 % Indentation
-  \parbox{\spacebox}{        % Box to align text
-    \textit{#1}}         % Entry name (birth, address, etc.)
-  \hspace{1.5em} #2 \par}    % Entry value
-
-
-%%% Begin Document
-%%% ------------------------------------------------------------
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.75,a4paper]{geometry}
+\usepackage{multicol}
+\usepackage{fontawesome}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{wasysym}
+\definecolor{darkgray}{gray}{0.3}
+\definecolor{lightgray}{gray}{0.7}
+\newcommand{\heart}{{\color{red}$\heartsuit$}}
+\newcommand{\arrow}{{\color{blue}$\rightsquigarrow$}}
+\firstname{Markus}
+\familyname{Schulte}
+\title{The Anti-CV: A Chronicle of Professional Misadventures}
+\address{Cologne, Germany}{}{}
+\phone[mobile]{+49 178 7217768}
+\email{mail@schulte-development.de}
+\homepage{schulte-development.de}
+\social[linkedin]{markus-schulte}
+\social[github]{SchulteMarkus}
 \begin{document}
-
-%% you can upload a photo and include it here...
-  \begin{wrapfigure}{l}{0.5\textwidth}
-    \vspace*{-2em}
-    \includegraphics[width=0.15\textwidth]{../assets/markus-schulte}
-  \end{wrapfigure}
-
-% ALTERNATIVE PICTURE SETTINGS TO THE ABOVE :
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \iffalse
-    \begin{figure}
-%  \includegraphics[width=\linewidth]{picture-of-me1.jpg}
-%  \caption{
-      \includegraphics[width=.15\textwidth,left]{picture-of-me1.jpg}
-%    caption{left aligned image}
-%    \label{fig:me}
-    \end{figure}
-  \fi
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\MyName{Stephen Fay}
-
-%\MySlogan{Curriculum Vitae}
-
-  \NameEmailPhoneSiteGithub{Markus Schulte}{+49 (178) 721 7768}{mail@schulte-development.de}{\href{https://schulte-development.de}{schulte-development.de}}{\href{https://www.linkedin.com/in/markus-schulte/}{linkedin.com/in/markus-schulte/}}{\href{https://github.com/SchulteDev}{github.com/SchulteDev}}
-
-
-  \sepspace
-
-%%% Education
-%%% ------------------------------------------------------------
-  \NewPart{Key}{}
-  \begin{itemize}
-    \item[\heartstab] Heart-stab. Professional rejections and things I messed up.
-    \item[\squigarr] Squigly arrow. What did I learn? What were the consequences?
-  \end{itemize}
-
-  \NewPart{Education}{}
-
-% Jesse said to make a hybrid of bothe CV's, so more bullet-points but also need adequate description
-  \begin{itemize}
-    \item[\heartstab] \textbf{High-school:} Never took German class seriously. To this day I don't speak German.
-    \item[\squigarr] I think I learned my lesson. I regret not having learned German, I wish I could speak to my German colleagues in their mother tongue now.
-  \end{itemize}
-
-  \sepspace
-
-
-%%% Work experience
-%%% ------------------------------------------------------------
-  \NewPart{Work Experiance}{}
-
-  \begin{itemize}
-    \item[\heartstab] Summer 2021 Rejected from XYZ.
-    \item[\heartstab] Summer 2021, didn't participate in the final round of the Alibaba math competition.
-    \item[\heartstab] Spring 2021 University research scholarship, my sloppy last minute application was rejected \squigarr Don't make a last minuet sloppy application. Write multiple drafts days in advance.
-    \item[\heartstab] DEF, rejected \squigarr they replied and were cordial, and told me they would get back to me if they needed me in the future.
-    \item[\heartstab] Lorum Ipsum rejected me \squigarr twitter DMs work better than cold emails.
-  \end{itemize}
-
-
-
-  \sepspace
-
-%%% Skills
-%%% ------------------------------------------------------------
-  \NewPart{Skills}{}
-
-  \SkillsEntry{French}{Never really worked on my written french. My reading speed in French is abysmal.}
-  \SkillsEntry{German}{Never took German class seriously. My speaking skills are abysmal.}
-  \SkillsEntry{Software}{I struggle to get the hang of JS for a long time.}
-
-%%% Achievements
-%%% -----------------------------------------------------------
-
-  \NewPart{Achievements and Interests}{}
-
-  \begin{itemize}
-    \item[\heartstab] Dropped out of University Club summer 2021 as the team lead. \squigarr Don't bite off more than you can chew. Don't accept something just because you can.
-    \item[\heartstab] Didn't complete the 2021 DEFG international math competition final round because of self-esteem issues. \squigarr Don't be scared of losing at stuff. Nothing ever comes out of self pity.
-    \item[\heartstab] Never applied to University entrance scholarship \squigarr this would have been good to have, as a credential, and for money, even though the fees are not too dear here it's still easy money.
-    \item[\heartstab] I haven't played any music in years \squigarr sometimes you need to make sacrifices to get what you want. You can't have everything you want at the same time. Though sad I think it was a good decision.
-  \end{itemize}
-
-%\fi
-
-
+\makecvtitle
+\section{\heart~Failed Ambitions \& Unrealized Dreams~\heart}
+\cvitem{2007--2024}{\textbf{Aspiring Video Game Developer} \arrow~Ended up building boring enterprise software instead}
+\cvitem{2015}{\textbf{Crypto Trading Mogul} \arrow~Built arbitrage bot, market crashed, dreams vanished}
+\cvitem{2016--2023}{\textbf{Atlassian Plugin Tycoon} \arrow~83 customers worldwide, still not a millionaire}
+\section{\heart~Technical Incompetencies~\heart}
+\cvitem{Languages}{Fluent in 18+ years of Java verbosity, 4+ years of Golang simplicity envy}
+\cvitem{Architecture}{Expert at creating "simple" microservices that somehow need 47 dependencies}
+\cvitem{Cloud}{Can make any application 10x more expensive by adding "cloud-native" to it}
+\cvitem{Testing}{Writes 1000+ tests to achieve the illusion of bug-free software}
+\section{\heart~Professional Disappointments~\heart}
+\subsection{November 2024 -- Present: \textit{Professional Application Rejector} @ LBBW}
+\cvitem{Achievement}{\arrow~Successfully identified 50\% of applications as incompatible with their shiny new platform}
+\cvitem{Impact}{\arrow~Initiated "platform improvements" (translation: exposed how broken it was)}
+\cvitem{Specialty}{\arrow~Creating multi-cloud strategies that will never be implemented}
+\subsection{October 2021 -- December 2024: \textit{Overengineering Specialist} @ Union Investment}
+\cvitem{Challenge}{\arrow~Transform simple website serving 80,000 users into distributed nightmare}
+\cvitem{Solution}{\arrow~8 microservices, event streams, and Web Components for what could've been WordPress}
+\cvitem{Result}{\arrow~10-minute builds with 1000+ tests for a glorified content management system}
+\cvitem{Legacy}{\arrow~Left behind an architecture so complex, they'll need consultants forever}
+\subsection{December 2021 -- November 2024: \textit{Solo Middleware Masochist} @ Saloodo! (DHL)}
+\cvitem{Task}{\arrow~Sync 10 million records between systems that hate each other}
+\cvitem{Reality}{\arrow~Spent 3 years fighting malformed JSON and database inconsistencies}
+\cvitem{Achievement}{\arrow~100\% uptime (because nobody dared to touch it)}
+\cvitem{Confession}{\arrow~Only took the job to use Golang professionally}
+\subsection{2016 -- 2023: \textit{Failed Entrepreneur} @ Atlassian Marketplace}
+\cvitem{Dream}{\arrow~Build passive income empire with Bamboo plugins}
+\cvitem{Reality}{\arrow~7 years of customer support emails about Checkstyle integration}
+\cvitem{Peak}{\arrow~83 customers globally (still drove a used car)}
+\cvitem{Lesson}{\arrow~Enterprise software add-ons: where dreams go to die slowly}
+\section{\heart~Educational Missteps~\heart}
+\cvitem{2004--2012}{\textbf{Diplom in Computer Science} \arrow~Studied game development, became enterprise drone}
+\cvitem{2000--2003}{\textbf{Self-taught PHP Developer} \arrow~Built forums for friends instead of studying}
+\cvitem{2003--2004}{\textbf{Military Service} \arrow~Learned to march, forgot how to code}
+\section{\heart~Personal Failures~\heart}
+\cvitem{2025}{\textbf{AI Tax Assistant} \arrow~Built AI to do taxes, still filed late}
+\cvitem{2018}{\textbf{Jenkins-GitHub Integration} \arrow~Another abandoned side project}
+\cvitem{Gaming}{\arrow~Studied Computer Visualistics to make games, never shipped one}
+\section{\heart~Overqualifications Nobody Asked For~\heart}
+\cvitem{Testing}{Can write 5-second tests for 2,776 lines of code (nobody cares)}
+\cvitem{DevOps}{Reduced deployment from days to 30 minutes (team still deploys monthly)}
+\cvitem{Quality}{SonarQube integration expert (everyone ignores the warnings)}
+\cvitem{Architecture}{Self-contained Systems evangelist (Google it, nobody else has)}
+\section{\heart~Career Gaps \& Excuses~\heart}
+\cvitem{2020--2021}{\textbf{Parental Leave} \arrow~Blamed COVID, actually just tired of Kubernetes}
+\cvitem{2015}{\textbf{Career Break} \arrow~"Transitioning to freelance" (translation: unemployed)}
+\section{\heart~Certifications of Questionable Value~\heart}
+\cvitem{StackOverflow}{4000+ reputation points \arrow~Professional time waster}
+\cvitem{Java SE 8}{93/100 score \arrow~Still writes bugs daily}
+\vfill
+\begin{center}
+\textit{\small "18+ years of turning simple problems into distributed systems nightmares"}
+\end{center}
 \end{document}
-
-
