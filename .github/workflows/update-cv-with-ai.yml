@@ -50,12 +50,30 @@ jobs:
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: ./scripts/run-cv-update.sh
 
+      # Option 1: Stick with xu-cheng/latex-action (recommended - it's maintained)
       - name: Compile LaTeX to PDF
         if: success() && steps.transform.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v3
         with:
           root_file: ${{ env.CV_FILE }}
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      # Option 2: Alternative action
+      # - name: Compile LaTeX to PDF
+      #   if: success() && steps.transform.outputs.mode != 'skip'
+      #   uses: dante-ev/latex-action@latest
+      #   with:
+      #     root_file: ${{ env.CV_FILE }}
+      #     compiler: pdflatex
+      #     args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      # Option 3: Custom Docker approach (more control)
+      # - name: Compile LaTeX to PDF
+      #   if: success() && steps.transform.outputs.mode != 'skip'
+      #   run: |
+      #     docker run --rm -v "$PWD:/workspace" -w /workspace \
+      #       texlive/texlive:latest \
+      #       pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode "${{ env.CV_FILE }}"
 
       - name: Commit updated LaTeX file
         if: success() && steps.transform.outputs.mode != 'skip'

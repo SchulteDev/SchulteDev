@@ -78,12 +78,9 @@ build_cv_prompt() {
     local prompt=""
 
     local base_instructions="You are an expert LaTeX document designer and professional CV writer."
-    local github_actions_context="
-**Deployment Context:**
-This LaTeX document will be automatically compiled in a GitHub Actions CI/CD environment using xu-cheng/latex-action with TeXLive distribution. The compilation must be robust and reliable for automated processing."
-
     local latex_compatibility_rules="
 **GitHub Actions LaTeX Requirements:**
+- This document will be compiled automatically in GitHub Actions using xu-cheng/latex-action
 - Use modern, widely-supported packages available in standard TeXLive distributions
 - Ensure compatibility with automated compilation environments (no interactive prompts)
 - Use robust package combinations that work reliably in Docker containers
@@ -101,8 +98,7 @@ This LaTeX document will be automatically compiled in a GitHub Actions CI/CD env
 4. Apply modern LaTeX best practices for typography and design
 5. Ensure excellent visual hierarchy and readability
 6. Optimize LaTeX formatting for visual appeal
-7. Generate LaTeX optimized for automated GitHub Action compilation
-$github_actions_context
+7. Generate LaTeX optimized for automated GitHub Actions compilation
 $latex_compatibility_rules
 
 **Requirements:**
@@ -113,3 +109,62 @@ $latex_compatibility_rules
 - Optimize for xu-cheng/latex-action compilation pipeline
 - Make it the best possible anti-CV design
 - Do NOT include any thinking process or explanations in your response"
+
+    case "$mode" in
+        incremental)
+            if [ ! -f "$CV_FILE" ]; then
+                echo "❌ CV file not found: $CV_FILE"
+                return 1
+            fi
+            if [ ! -f "$DIFF_FILE" ]; then
+                echo "❌ Diff file not found: $DIFF_FILE"
+                return 1
+            fi
+
+            prompt="$base_instructions I need you to transform career updates into a high-quality anti-CV format.
+
+**Current LaTeX document:**
+\`\`\`latex
+$(cat "$CV_FILE")
+\`\`\`
+
+**Career changes detected:**
+\`\`\`diff
+$(cat "$DIFF_FILE")
+\`\`\`
+
+$common_instructions
+- Maintain consistency with existing styling
+
+Please think through this carefully and produce the highest quality CV possible."
+            ;;
+
+        full_rebuild)
+            if [ ! -f "$CAREER_FILE" ]; then
+                echo "❌ Career file not found: $CAREER_FILE"
+                return 1
+            fi
+
+            prompt="$base_instructions I need you to create a complete anti-CV from scratch using the provided career information.
+
+**Complete career information:**
+\`\`\`markdown
+$(cat "$CAREER_FILE")
+\`\`\`
+
+**Instructions:**
+1. Create a COMPLETE anti-CV LaTeX document from scratch
+$common_instructions
+- Include \\documentclass and all necessary setup
+
+Please create the highest quality complete anti-CV possible."
+            ;;
+
+        *)
+            echo "❌ Invalid mode: $mode"
+            return 1
+            ;;
+    esac
+
+    echo "$prompt"
+}
