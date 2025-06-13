@@ -43,12 +43,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Transform with Claude
         id: transform
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
-        run: ./scripts/run-cv-update.sh
+        run: node scripts/run-cv-update.js
 
       # Option 1: Stick with xu-cheng/latex-action (recommended - it's maintained)
       - name: Compile LaTeX to PDF
@@ -57,23 +66,6 @@ jobs:
         with:
           root_file: ${{ env.CV_FILE }}
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-
-      # Option 2: Alternative action
-      # - name: Compile LaTeX to PDF
-      #   if: success() && steps.transform.outputs.mode != 'skip'
-      #   uses: dante-ev/latex-action@latest
-      #   with:
-      #     root_file: ${{ env.CV_FILE }}
-      #     compiler: pdflatex
-      #     args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-
-      # Option 3: Custom Docker approach (more control)
-      # - name: Compile LaTeX to PDF
-      #   if: success() && steps.transform.outputs.mode != 'skip'
-      #   run: |
-      #     docker run --rm -v "$PWD:/workspace" -w /workspace \
-      #       texlive/texlive:latest \
-      #       pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode "${{ env.CV_FILE }}"
 
       - name: Commit updated LaTeX file
         if: success() && steps.transform.outputs.mode != 'skip'

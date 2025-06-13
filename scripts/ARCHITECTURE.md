@@ -4,12 +4,13 @@
 
 ```
 scripts/
-├── config.sh                 # Central configuration & helper functions
-├── claude-api.sh             # Shared API logic & prompt builder
-├── run-cv-update.sh          # Main workflow orchestrator (includes validation)
-├── transform-incremental.sh  # Incremental update (includes detection)
-├── transform-full-rebuild.sh # Full rebuild from scratch
-└── test-local.sh             # Local testing utility
+├── config.js                 # Central configuration & environment variables
+├── logger.js                 # Enhanced logging with Winston
+├── claude-api.js             # Shared API logic using Anthropic SDK
+├── run-cv-update.js          # Main workflow orchestrator (includes validation)
+├── transform-incremental.js  # Incremental update (includes detection)
+├── transform-full-rebuild.js # Full rebuild from scratch
+└── test-local.js             # Local testing utility
 ```
 
 ## Data Flow
@@ -37,38 +38,57 @@ incremental   full-rebuild
 
 ### Local Testing
 ```bash
-export ANTHROPIC_API_KEY="your-key-here"
+# Option 1: Create a .env file (recommended)
+# Create a file named .env in the project root with:
+# ANTHROPIC_API_KEY=your-key-here
+# DEBUG=true  # Optional for verbose logging
 
-# Test with real API
-./scripts/test-local.sh incremental
+# Option 2: Set API key in terminal
+export ANTHROPIC_API_KEY="your-key-here"  # Unix/Linux/macOS
+# or
+set ANTHROPIC_API_KEY="your-key-here"     # Windows Command Prompt
+# or
+$env:ANTHROPIC_API_KEY="your-key-here"    # Windows PowerShell
 
-# Test full rebuild
-./scripts/test-local.sh full_rebuild
+# Using npm scripts (recommended)
+npm run cv:test            # Incremental update
+npm run cv:test:full       # Full rebuild
+
+# Direct Node.js execution
+node scripts/test-local.js incremental
+node scripts/test-local.js full_rebuild
 
 # Skip API (use existing claude_response.json)
-SKIP_API=true ./scripts/test-local.sh
+set SKIP_API=true && node scripts/test-local.js
 
 # Dry run
-DRY_RUN=true ./scripts/test-local.sh
+set DRY_RUN=true && node scripts/test-local.js
 ```
 
 ### Custom Configuration
 ```bash
 # Override paths
-CAREER_FILE=my_career.md CV_FILE=output/cv.tex ./scripts/test-local.sh
+set CAREER_FILE=my_career.md
+set CV_FILE=output/cv.tex
+node scripts/test-local.js
 
 # Create backups
-CREATE_BACKUP=true ./scripts/test-local.sh
+set CREATE_BACKUP=true && node scripts/test-local.js
 ```
 
 ### Direct Script Usage
 ```bash
 # Just run the update (GitHub Actions uses this)
-./scripts/run-cv-update.sh
+node scripts/run-cv-update.js
 
 # Run specific transformation
-./scripts/transform-incremental.sh
-./scripts/transform-full-rebuild.sh
+node scripts/transform-incremental.js
+node scripts/transform-full-rebuild.js
+
+# Using npm scripts
+npm run cv:update
+npm run cv:incremental
+npm run cv:full-rebuild
 ```
 
 ## Environment Variables
@@ -90,17 +110,27 @@ CREATE_BACKUP=true ./scripts/test-local.sh
 
 ## Key Improvements
 
-### 1. **Shared Components**
-- `config.sh` - Environment variables and logging functions
-- `claude-api.sh` - API calls, LaTeX extraction, and prompt building
+### 1. **JavaScript-Based Architecture**
+- Modern JavaScript ES modules for better code organization
+- Async/await for cleaner asynchronous code
+- Error handling with try/catch blocks
+- NPM scripts for easier command execution
+- Official Anthropic SDK for reliable API integration
+- Winston logger for enhanced logging capabilities
 
-### 2. **Simplified Architecture**
-- Removed `detect-changes.sh` - logic merged into `transform-incremental.sh`
-- Removed `validate-response.sh` - validation integrated into `run-cv-update.sh`
+### 2. **Shared Components**
+- `config.js` - Environment variables and configuration settings
+- `logger.js` - Centralized logging with Winston
+- `claude-api.js` - API calls using Anthropic SDK, LaTeX extraction, and prompt building
+
+### 3. **Simplified Architecture**
+- Modular code structure with clear imports/exports
+- Consistent error handling across all scripts
+- Improved logging with emoji indicators
 - Fewer files, clearer responsibilities
 
-### 3. **Main Orchestrator**
-`run-cv-update.sh` now handles:
+### 4. **Main Orchestrator**
+`run-cv-update.js` handles:
 - Mode selection
 - Running appropriate transformation
 - LaTeX extraction
