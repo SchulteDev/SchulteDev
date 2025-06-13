@@ -2,7 +2,14 @@
 
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
-import {API_MODEL, CAREER_FILE, CV_FILE, DIFF_FILE, MAX_TOKENS, RESPONSE_FILE} from './config.js';
+import {
+  API_MODEL,
+  CAREER_FILE,
+  CV_FILE,
+  DIFF_FILE,
+  MAX_TOKENS,
+  RESPONSE_FILE
+} from './config.js';
 import logger from './logger.js';
 
 // Function to make Claude API call
@@ -71,12 +78,14 @@ export const callClaudeApi = async (prompt) => {
     }
 
     logger.success('API response received');
-    logger.debug(`Response length: ${response.content[0].text.length} characters`);
+    logger.debug(
+        `Response length: ${response.content[0].text.length} characters`);
     return true;
   } catch (error) {
     logger.error(`API call failed: ${error.message}`);
     if (error.response) {
-      logger.error('Response data:', JSON.stringify(error.response).slice(0, 500));
+      logger.error('Response data:',
+          JSON.stringify(error.response).slice(0, 500));
     }
     return false;
   }
@@ -100,11 +109,14 @@ export const extractLatex = (outputFile) => {
 
     // Remove extended_thinking tags and content
     const originalLength = text.length;
-    text = text.replace(/<extended_thinking>[\s\S]*?<\/extended_thinking>/g, '');
-    logger.debug(`Removed ${originalLength - text.length} characters of extended thinking`);
+    text = text.replace(/<extended_thinking>[\s\S]*?<\/extended_thinking>/g,
+        '');
+    logger.debug(`Removed ${originalLength
+    - text.length} characters of extended thinking`);
 
     // Remove code block markers
-    text = text.replace(/```latex\n/g, '').replace(/```\n/g, '').replace(/```/g, '');
+    text = text.replace(/```latex\n/g, '').replace(/```\n/g, '').replace(/```/g,
+        '');
 
     // Remove empty lines
     text = text.split('\n').filter(line => line.trim() !== '').join('\n');
@@ -130,84 +142,43 @@ export const extractLatex = (outputFile) => {
 export const buildCvPrompt = (mode) => {
   let prompt = '';
 
-  const baseInstructions = 'You are an expert LaTeX document designer and professional CV writer.';
+  const systemContext = `You are an expert LaTeX developer specializing in bulletproof document compilation and creative CV design.
 
-  const latexCompatibilityRules = `
-**Critical LaTeX Compilation Requirements:**
-- This document MUST compile successfully in GitHub Actions using xu-cheng/latex-action
-- Use ONLY packages available in standard TeXLive distributions
-- Ensure ZERO compilation errors or warnings that could halt the build
-- Generate LaTeX that compiles with: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+<thinking>
+Claude 4 Opus has excellent reasoning about LaTeX compilation issues and can better understand structured requirements. Focus on clear constraints and desired outcomes rather than verbose explanations.
+</thinking>`;
 
-**Package Usage Rules:**
-- Load packages in correct order to avoid conflicts
-- Use \\usepackage{lastpage} for page numbering and reference with \\pageref{LastPage} (not \\lastpage)
-- For fonts: stick to standard font families (avoid custom font shapes that may be undefined)
-- Use \\usepackage[T1]{fontenc} for proper font encoding
-- Include \\usepackage{lmodern} for better font rendering if using sans-serif fonts
-- Test all symbol usage (heart, arrows) with proper math mode or symbol packages
+  const compilationRequirements = `## COMPILATION CONSTRAINTS
+- Target: GitHub Actions with xu-cheng/latex-action
+- Command: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+- Zero tolerance for compilation errors or warnings
 
-**Robust Footer Implementation:**
-- For page numbering use: \\rfoot{Page \\thepage\\ of \\pageref{LastPage}}
-- Ensure proper spacing with \\ instead of direct spaces
-- Load fancyhdr package BEFORE setting page styles
+### Package Safety Rules:
+1. Use standard TeXLive packages only
+2. Load order: encoding → fonts → layout → content
+3. Page numbering: \\usepackage{lastpage} + \\pageref{LastPage}
+4. Font safety: \\usepackage[T1]{fontenc} + \\usepackage{lmodern}
+5. Symbols: Use proper LaTeX commands (\\heartsuit, \\textbullet)
 
-**Font and Style Safety:**
-- Use standard font combinations that exist in all TeXLive installations
-- Avoid bold sans-serif combinations that may not exist (like T1/cmss/b/n)
-- Use \\textbf{} for bold text instead of relying on font shape definitions
-- Include font packages like lmodern or latin1 for better compatibility
+### Error Prevention:
+- No undefined font shapes (avoid T1/cmss/b/n combinations)
+- No undefined control sequences
+- All symbols in correct mode (math vs text)
+- Conservative package selection over fancy features`;
 
-**Symbol and Special Character Handling:**
-- Use proper LaTeX commands for symbols (\\heartsuit, \\rightsquigarrow)
-- Ensure all symbols are in appropriate modes (math mode for mathematical symbols)
-- Test unicode compatibility with inputenc package
+  const documentStructure = `## DOCUMENT STRUCTURE
+Required first page layout:
+1. **Prominent Header**: Name, title, contact (visually dominant)
+2. **Comprehensive Summary**: Complete document overview
+3. Visual hierarchy: Header > Summary > Content
+4. Self-contained first page with full context`;
 
-**Error Prevention:**
-- Avoid undefined control sequences by using standard LaTeX commands
-- Include proper package dependencies for all features used
-- Use defensive programming - check that all referenced labels exist
-- Generate LaTeX that has been tested for common compilation pitfalls`;
-
-  const documentStructureGuidelines = `
-**Document Structure Requirements:**
-- START with a prominent header section containing name, title, and contact information
-- IMMEDIATELY follow with a comprehensive summary section that provides an overview of the entire document
-- The summary should be substantial and appear on the first page
-- Use clear visual hierarchy with the header being the most prominent element
-- Structure the summary to give readers a complete picture before diving into details
-- Make the first page self-contained with header + summary providing full context
-- Use professional formatting that makes the header and summary stand out visually
-- Ensure the summary captures the essence and key points of the entire document
-- Create a layout where someone reading just the first page gets the complete picture`;
-
-  const commonInstructions = `
-**Instructions:**
-1. Use extended thinking to analyze and plan the optimal document structure
-2. Maintain the humorous anti-CV tone with proper symbol usage
-3. Ensure professional information is accurately incorporated
-4. Apply modern LaTeX best practices with bulletproof compilation
-5. Prioritize ZERO compilation errors over fancy features
-6. Generate LaTeX that will compile successfully in automated environments
-7. Use conservative, well-tested package combinations
-8. ALWAYS include a prominent header and comprehensive summary on the first page
-
-**Critical Success Criteria:**
-- Document MUST compile without errors in GitHub Actions CI/CD
-- Use only standard, widely-available LaTeX packages
-- Implement robust error-free page numbering with lastpage package
-- Ensure all fonts and symbols render correctly across different systems
-- Generate clean, maintainable LaTeX code
-- Test all package interactions for compatibility
-- Create documents with header + summary structure on first page
-
-**Response Format:**
-- Return ONLY the complete LaTeX document code
-- No explanations, markdown formatting, or commentary
-- Ensure the LaTeX will compile successfully on first attempt
-- Focus on reliability and compatibility over advanced features
-- Make it the best possible anti-CV that actually compiles
-- Structure with prominent header and comprehensive summary on first page`;
+  const taskInstructions = `## OUTPUT REQUIREMENTS
+- Return ONLY complete LaTeX code
+- No markdown formatting or explanations
+- Guaranteed first-attempt compilation success
+- Maintain anti-CV humorous tone with professional accuracy
+- Use <thinking> tags for your reasoning process`;
 
   switch (mode) {
     case 'incremental': {
@@ -220,33 +191,32 @@ export const buildCvPrompt = (mode) => {
         return null;
       }
 
-      prompt = `${baseInstructions} I need you to fix LaTeX compilation issues and transform career updates into a high-quality anti-CV format.
+      prompt = `${systemContext}
 
-**Current LaTeX document (has compilation errors):**
+## TASK: Fix LaTeX Errors & Apply Updates
+
+### Current Document (with compilation errors):
 \`\`\`latex
 ${fs.readFileSync(CV_FILE, 'utf8')}
 \`\`\`
 
-**Career changes detected:**
+### Career Updates to Integrate:
 \`\`\`diff
 ${fs.readFileSync(DIFF_FILE, 'utf8')}
 \`\`\`
 
-**CRITICAL: Fix these specific issues:**
-- Font shape 'T1/cmss/b/n' undefined error
-- Undefined control sequence \\lastpage error
-- Any other compilation issues that would prevent successful PDF generation
+${compilationRequirements}
 
-${latexCompatibilityRules}
+${documentStructure}
 
-${documentStructureGuidelines}
+## SPECIFIC FIXES NEEDED:
+- Font shape 'T1/cmss/b/n' undefined → Use safe font combinations
+- \\lastpage undefined → Use \\pageref{LastPage} with lastpage package
+- Any other compilation blockers
 
-${commonInstructions}
-- Maintain consistency with existing styling while fixing all compilation errors
-- Prioritize successful compilation over preserving exact formatting
-- Ensure the document follows the header + summary structure pattern
+${taskInstructions}
 
-Please fix all LaTeX errors and produce a compilation-ready CV with proper first-page structure.`;
+Fix all errors while preserving style consistency and integrating the career updates seamlessly.`;
       break;
     }
 
@@ -256,24 +226,22 @@ Please fix all LaTeX errors and produce a compilation-ready CV with proper first
         return null;
       }
 
-      prompt = `${baseInstructions} I need you to create a complete, compilation-safe anti-CV from scratch.
+      prompt = `${systemContext}
 
-**Complete career information:**
+## TASK: Create Complete Anti-CV from Scratch
+
+### Career Data:
 \`\`\`markdown
 ${fs.readFileSync(CAREER_FILE, 'utf8')}
 \`\`\`
 
-${latexCompatibilityRules}
+${compilationRequirements}
 
-${documentStructureGuidelines}
+${documentStructure}
 
-${commonInstructions}
-- Include \\documentclass and all necessary setup
-- Build from scratch with compilation safety as top priority
-- Use only proven, standard LaTeX patterns
-- Structure with prominent header and comprehensive summary on first page
+${taskInstructions}
 
-Please create a complete anti-CV that compiles perfectly on first attempt and follows the header + summary first-page structure.`;
+Create a complete, bulletproof anti-CV that compiles perfectly and follows the required document structure.`;
       break;
     }
 
