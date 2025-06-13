@@ -48,7 +48,7 @@ jobs:
 
       - name: Upload PDF to GitHub Releases
         if: success() && steps.transform.outputs.mode != 'skip'
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: cv-latest
           name: "Latest CV - Markus Schulte"
