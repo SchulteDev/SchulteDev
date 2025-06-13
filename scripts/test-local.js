@@ -51,12 +51,12 @@ if (args.includes('-h') || args.includes('--help')) {
 
 // Validate mode
 if (MODE !== 'incremental' && MODE !== 'full_rebuild') {
-  logError(`Invalid mode: ${MODE}`);
+  logger.error(`Invalid mode: ${MODE}`);
   showUsage();
   process.exit(1);
 }
 
-logInfo(`Running in ${MODE} mode`);
+logger.info(`Running in ${MODE} mode`);
 
 // Check prerequisites
 const checkPrerequisites = async () => {
@@ -86,7 +86,7 @@ const checkPrerequisites = async () => {
   }
 
   if (missing.length > 0) {
-    logError('Missing prerequisites:');
+    logger.error('Missing prerequisites:');
     missing.forEach(item => console.log(`  - ${item}`));
     process.exit(1);
   }
@@ -108,17 +108,17 @@ const setupLocalEnv = () => {
 // Main execution
 const main = async () => {
   try {
-    logDebug('Starting test-local.js');
-    logDebug(`Mode: ${MODE}, Skip API: ${SKIP_API}, Dry Run: ${DRY_RUN}`);
+    logger.debug('Starting test-local.js');
+    logger.debug(`Mode: ${MODE}, Skip API: ${SKIP_API}, Dry Run: ${DRY_RUN}`);
 
     await checkPrerequisites();
-    logDebug('Prerequisites checked');
+    logger.debug('Prerequisites checked');
 
     setupLocalEnv();
-    logDebug('Local environment set up');
+    logger.debug('Local environment set up');
 
     if (DRY_RUN) {
-      logInfo('DRY RUN - Would execute:');
+      logger.info('DRY RUN - Would execute:');
       console.log(`  1. Run ${MODE} transformation`);
       console.log('  2. Validate and apply changes');
       console.log(`  3. Update ${CV_FILE}`);
@@ -126,34 +126,39 @@ const main = async () => {
     }
 
     // Run the CV update workflow
-    logInfo(`Running CV update workflow in ${MODE} mode...`);
+    logger.info(`Running CV update workflow in ${MODE} mode...`);
     const {stdout, stderr} = await execAsync('node scripts/run-cv-update.js');
-    logDebug('CV update workflow completed');
-    logDebug(`stdout: ${stdout.slice(0, 200)}${stdout.length > 200 ? '...' : ''}`);
+    logger.debug('CV update workflow completed');
+    logger.debug(`stdout: ${stdout.slice(0, 200)}${stdout.length > 200 ? '...' : ''}`);
 
     if (stderr) {
-      logDebug(`stderr: ${stderr}`);
+      logger.debug(`stderr: ${stderr}`);
     }
 
-    logSuccess('Local test completed successfully!');
+    logger.success('Local test completed successfully!');
 
     // Show what changed
     if (fs.existsSync(CV_FILE)) {
       const stats = fs.statSync(CV_FILE);
-      logInfo(`CV file updated. Size: ${stats.size} bytes`);
-      logDebug(`Last modified: ${stats.mtime}`);
+      logger.info(`CV file updated. Size: ${stats.size} bytes`);
+      logger.debug(`Last modified: ${stats.mtime}`);
     }
 
     // Cleanup
-    logDebug('Cleaning up temporary files');
+    logger.debug('Cleaning up temporary files');
     fs.rmSync('tmp', {recursive: true, force: true});
-    logDebug('Cleanup completed');
+    logger.debug('Cleanup completed');
   } catch (error) {
-    logError(`Error: ${error.message}`);
-    logDebug(`Stack trace: ${error.stack}`);
+    logger.error(`Error: ${error.message}`);
+    logger.debug(`Stack trace: ${error.stack}`);
     process.exit(1);
   }
 };
 
 // Run main
-main();
+main().then(() => {
+  logger.debug('Test local completed successfully');
+}).catch(error => {
+  logger.error(`Unhandled error in test local: ${error.message}`);
+  process.exit(1);
+});

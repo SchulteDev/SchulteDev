@@ -3,22 +3,44 @@
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import {API_MODEL, CAREER_FILE, CV_FILE, DIFF_FILE, MAX_TOKENS, RESPONSE_FILE} from './config.js';
-import {logDebug, logError, logInfo, logSuccess} from './logger.js';
+import logger from './logger.js';
 
 // Function to make Claude API call
 export const callClaudeApi = async (prompt) => {
+  // Check if we should skip the API call
+  if (process.env.SKIP_API === 'true') {
+    logger.info('SKIP_API is set to true, skipping API call');
+
+    // Create a mock response file if it doesn't exist
+    if (!fs.existsSync(RESPONSE_FILE)) {
+      logger.info('Creating mock response file');
+      const mockResponse = {
+        content: [
+          {
+            text: "\\documentclass{article}\n\\begin{document}\nMock response for testing\n\\end{document}"
+          }
+        ]
+      };
+      fs.writeFileSync(RESPONSE_FILE, JSON.stringify(mockResponse, null, 2));
+    } else {
+      logger.info('Using existing response file');
+    }
+
+    return true;
+  }
+
   if (!process.env.ANTHROPIC_API_KEY) {
-    logError('ANTHROPIC_API_KEY not set');
+    logger.error('ANTHROPIC_API_KEY not set');
     return false;
   }
 
   if (!prompt) {
-    logError('No prompt provided');
+    logger.error('No prompt provided');
     return false;
   }
 
-  logInfo('Calling Claude API...');
-  logDebug(`Using model: ${API_MODEL}`);
+  logger.info('Calling Claude API...');
+  logger.debug(`Using model: ${API_MODEL}`);
 
   try {
     // Initialize Anthropic client
@@ -43,18 +65,18 @@ export const callClaudeApi = async (prompt) => {
 
     // Check if response is valid
     if (!response.content?.[0]?.text) {
-      logError('Invalid API response:');
+      logger.error('Invalid API response:');
       console.log(JSON.stringify(response).slice(0, 500));
       return false;
     }
 
-    logSuccess('API response received');
-    logDebug(`Response length: ${response.content[0].text.length} characters`);
+    logger.success('API response received');
+    logger.debug(`Response length: ${response.content[0].text.length} characters`);
     return true;
   } catch (error) {
-    logError(`API call failed: ${error.message}`);
+    logger.error(`API call failed: ${error.message}`);
     if (error.response) {
-      logError('Response data:', JSON.stringify(error.response).slice(0, 500));
+      logger.error('Response data:', JSON.stringify(error.response).slice(0, 500));
     }
     return false;
   }
@@ -63,23 +85,23 @@ export const callClaudeApi = async (prompt) => {
 // Function to extract LaTeX from response
 export const extractLatex = (outputFile) => {
   if (!outputFile) {
-    logError('No output file specified');
+    logger.error('No output file specified');
     return false;
   }
 
   try {
     // Read the response file
-    logDebug(`Reading response from ${RESPONSE_FILE}`);
+    logger.debug(`Reading response from ${RESPONSE_FILE}`);
     const responseData = JSON.parse(fs.readFileSync(RESPONSE_FILE, 'utf8'));
 
     // Extract text
     let text = responseData.content[0].text;
-    logDebug(`Raw response length: ${text.length} characters`);
+    logger.debug(`Raw response length: ${text.length} characters`);
 
     // Remove extended_thinking tags and content
     const originalLength = text.length;
     text = text.replace(/<extended_thinking>[\s\S]*?<\/extended_thinking>/g, '');
-    logDebug(`Removed ${originalLength - text.length} characters of extended thinking`);
+    logger.debug(`Removed ${originalLength - text.length} characters of extended thinking`);
 
     // Remove code block markers
     text = text.replace(/```latex\n/g, '').replace(/```\n/g, '').replace(/```/g, '');
@@ -89,16 +111,16 @@ export const extractLatex = (outputFile) => {
 
     // Write to output file
     fs.writeFileSync(outputFile, text);
-    logDebug(`Wrote ${text.length} characters to ${outputFile}`);
+    logger.debug(`Wrote ${text.length} characters to ${outputFile}`);
 
-    logSuccess('Extracted LaTeX and removed any code block markers');
+    logger.success('Extracted LaTeX and removed any code block markers');
     return true;
   } catch (error) {
-    logError(`Failed to extract LaTeX: ${error.message}`);
+    logger.error(`Failed to extract LaTeX: ${error.message}`);
     if (error.code === 'ENOENT') {
-      logError(`Response file not found: ${RESPONSE_FILE}`);
+      logger.error(`Response file not found: ${RESPONSE_FILE}`);
     } else if (error instanceof SyntaxError) {
-      logError('Invalid JSON in response file');
+      logger.error('Invalid JSON in response file');
     }
     return false;
   }
@@ -145,11 +167,11 @@ ${latexCompatibilityRules}
   switch (mode) {
     case 'incremental': {
       if (!fs.existsSync(CV_FILE)) {
-        logError(`CV file not found: ${CV_FILE}`);
+        logger.error(`CV file not found: ${CV_FILE}`);
         return null;
       }
       if (!fs.existsSync(DIFF_FILE)) {
-        logError(`Diff file not found: ${DIFF_FILE}`);
+        logger.error(`Diff file not found: ${DIFF_FILE}`);
         return null;
       }
 
@@ -174,7 +196,7 @@ Please think through this carefully and produce the highest quality CV possible.
 
     case 'full_rebuild': {
       if (!fs.existsSync(CAREER_FILE)) {
-        logError(`Career file not found: ${CAREER_FILE}`);
+        logger.error(`Career file not found: ${CAREER_FILE}`);
         return null;
       }
 
@@ -195,7 +217,7 @@ Please create the highest quality complete anti-CV possible.`;
     }
 
     default:
-      logError(`Invalid mode: ${mode}`);
+      logger.error(`Invalid mode: ${mode}`);
       return null;
   }
 

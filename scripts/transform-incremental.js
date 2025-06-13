@@ -12,6 +12,16 @@ const execAsync = util.promisify(exec);
 
 // Function to generate diff
 const generateDiff = async () => {
+  // Skip diff generation if SKIP_API is true
+  if (process.env.SKIP_API === 'true') {
+    logger.info('SKIP_API is set to true, skipping diff generation');
+
+    // Create a mock diff file
+    const mockDiff = '+ This is a mock diff for testing purposes';
+    fs.writeFileSync(DIFF_FILE, mockDiff);
+    return true;
+  }
+
   try {
     if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
       // For manual triggers
@@ -79,17 +89,33 @@ export const main = async () => {
     if (success) {
       logger.success('Incremental transformation response received');
       // Cleanup
-      fs.unlinkSync(DIFF_FILE);
+      if (fs.existsSync(DIFF_FILE)) {
+        try {
+          fs.unlinkSync(DIFF_FILE);
+        } catch (unlinkError) {
+          logger.error(`Failed to delete diff file: ${unlinkError.message}`);
+        }
+      }
     } else {
       logger.error('API call failed');
-      fs.unlinkSync(DIFF_FILE);
+      if (fs.existsSync(DIFF_FILE)) {
+        try {
+          fs.unlinkSync(DIFF_FILE);
+        } catch (unlinkError) {
+          logger.error(`Failed to delete diff file: ${unlinkError.message}`);
+        }
+      }
       process.exit(1);
     }
   } catch (error) {
     logger.error(`Error in incremental transformation: ${error.message}`);
     // Cleanup
     if (fs.existsSync(DIFF_FILE)) {
-      fs.unlinkSync(DIFF_FILE);
+      try {
+        fs.unlinkSync(DIFF_FILE);
+      } catch (unlinkError) {
+        logger.error(`Failed to delete diff file: ${unlinkError.message}`);
+      }
     }
     process.exit(1);
   }

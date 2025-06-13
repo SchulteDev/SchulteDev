@@ -1,8 +1,6 @@
 // run-cv-update.js - Main entry point for CV update workflow
 
 import fs from 'fs';
-import {exec} from 'child_process';
-import util from 'util';
 import {
   CREATE_BACKUP,
   CV_FILE,
@@ -13,9 +11,10 @@ import {
 } from './config.js';
 import logger from './logger.js';
 import {extractLatex} from './claude-api.js';
+import {main as transformFullRebuild} from './transform-full-rebuild.js';
+import {main as transformIncremental} from './transform-incremental.js';
 
-// Promisify exec
-const execAsync = util.promisify(exec);
+// No longer needed as we're directly importing the transform functions
 
 // Cleanup function
 const cleanup = (tempFile) => {
@@ -86,12 +85,13 @@ const main = async () => {
     // Run the appropriate transformation
     if (mode === 'full_rebuild') {
       // Run full rebuild transformation
-      const {error} = await execAsync('node scripts/transform-full-rebuild.js');
-      if (error) {
+      try {
+        await transformFullRebuild();
+        mode = 'full_rebuild';
+      } catch (error) {
         logger.error('Full rebuild transformation failed');
         process.exit(1);
       }
-      mode = 'full_rebuild';
     } else {
       // Clean up any existing response file first
       if (fs.existsSync(RESPONSE_FILE)) {
@@ -99,8 +99,9 @@ const main = async () => {
       }
 
       // Run incremental transformation
-      const {error} = await execAsync('node scripts/transform-incremental.js');
-      if (error) {
+      try {
+        await transformIncremental();
+      } catch (error) {
         logger.error('Incremental transformation failed');
         process.exit(1);
       }
@@ -172,4 +173,9 @@ const main = async () => {
 };
 
 // Run the main function
-main();
+main().then(() => {
+  logger.debug('CV update completed successfully');
+}).catch(error => {
+  logger.error(`Unhandled error in CV update: ${error.message}`);
+  process.exit(1);
+});

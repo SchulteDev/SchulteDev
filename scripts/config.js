@@ -54,11 +54,7 @@ export const validateFiles = () => {
     missingFiles.push(CAREER_FILE);
   }
 
-  if (missingFiles.length > 0) {
-    return false;
-  }
-
-  return true;
+  return missingFiles.length <= 0;
 };
 
 // Create backup directory if it doesn't exist
