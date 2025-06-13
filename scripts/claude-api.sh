@@ -62,11 +62,14 @@ extract_latex() {
         return 1
     fi
     
-    # Extract text, remove extended_thinking tags, and clean up
+    # Extract text, remove extended_thinking tags, code block markers, and clean up
     jq -r '.content[0].text' "$RESPONSE_FILE" | \
       sed '/<extended_thinking>/,/<\/extended_thinking>/d' | \
+      sed '/^```latex$/d' | \
+      sed '/^```$/d' | \
       sed '/^$/d' > "$output_file"
-    
+
+    echo "✅ Extracted LaTeX and removed any code block markers"
     return 0
 }
 

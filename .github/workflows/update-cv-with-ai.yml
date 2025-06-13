@@ -91,5 +91,6 @@ jobs:
           name: cv-build-logs
           path: |
             *.log
+            ${{ env.CV_FILE }}
             claude_response.json
           retention-days: 7
