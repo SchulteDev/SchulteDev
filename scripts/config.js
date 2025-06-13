@@ -2,8 +2,8 @@
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { logDebug } from './logger.js';
+import {fileURLToPath} from 'url';
+import {logDebug} from './logger.js';
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -64,7 +64,7 @@ export const validateFiles = () => {
 // Create backup directory if it doesn't exist
 export const ensureBackupDir = () => {
   if (CREATE_BACKUP && !fs.existsSync(BACKUP_DIR)) {
-    fs.mkdirSync(BACKUP_DIR, { recursive: true });
+    fs.mkdirSync(BACKUP_DIR, {recursive: true});
     logDebug(`Created backup directory: ${BACKUP_DIR}`);
   }
 };

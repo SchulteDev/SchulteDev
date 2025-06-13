@@ -2,20 +2,8 @@
 
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
-import {
-  API_MODEL,
-  MAX_TOKENS,
-  RESPONSE_FILE,
-  CV_FILE,
-  DIFF_FILE,
-  CAREER_FILE
-} from './config.js';
-import {
-  logInfo,
-  logSuccess,
-  logError,
-  logDebug
-} from './logger.js';
+import {API_MODEL, CAREER_FILE, CV_FILE, DIFF_FILE, MAX_TOKENS, RESPONSE_FILE} from './config.js';
+import {logDebug, logError, logInfo, logSuccess} from './logger.js';
 
 // Function to make Claude API call
 export const callClaudeApi = async (prompt) => {

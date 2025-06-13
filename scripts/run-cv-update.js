@@ -11,7 +11,7 @@ import {
   setOutput,
   TEMP_FILE
 } from './config.js';
-import {logError, logInfo, logSuccess, logWarning} from './logger.js';
+import logger from './logger.js';
 import {extractLatex} from './claude-api.js';
 
 // Promisify exec
@@ -28,7 +28,7 @@ const cleanup = (tempFile) => {
 const validateLatex = (filePath) => {
   // Check if file exists and is not empty
   if (!fs.existsSync(filePath) || fs.statSync(filePath).size === 0) {
-    logError('Extracted file is empty');
+    logger.error('Extracted file is empty');
     return false;
   }
 
@@ -37,17 +37,17 @@ const validateLatex = (filePath) => {
 
   // Check for required LaTeX elements
   if (!content.includes('\\documentclass')) {
-    logError('Not a valid LaTeX document (missing \\documentclass)');
+    logger.error('Not a valid LaTeX document (missing \\documentclass)');
     return false;
   }
 
   if (!content.includes('\\begin{document}')) {
-    logError('Invalid LaTeX document (missing \\begin{document})');
+    logger.error('Invalid LaTeX document (missing \\begin{document})');
     return false;
   }
 
   if (!content.includes('\\end{document}')) {
-    logError('Invalid LaTeX document (missing \\end{document})');
+    logger.error('Invalid LaTeX document (missing \\end{document})');
     return false;
   }
 
@@ -64,7 +64,7 @@ const main = async () => {
       process.exit(1);
     });
     process.on('uncaughtException', (err) => {
-      logError(`Uncaught exception: ${err.message}`);
+      logger.error(`Uncaught exception: ${err.message}`);
       cleanup(TEMP_FILE);
       process.exit(1);
     });
@@ -75,11 +75,11 @@ const main = async () => {
       mode = process.env.REBUILD_MODE || 'incremental';
     }
 
-    logInfo(`Starting CV update workflow in ${mode} mode...`);
+    logger.info(`Starting CV update workflow in ${mode} mode...`);
 
     // Validate mode
     if (mode !== 'incremental' && mode !== 'full_rebuild') {
-      logError(`Invalid mode: ${mode}. Must be 'incremental' or 'full_rebuild'`);
+      logger.error(`Invalid mode: ${mode}. Must be 'incremental' or 'full_rebuild'`);
       process.exit(1);
     }
 
@@ -88,7 +88,7 @@ const main = async () => {
       // Run full rebuild transformation
       const {error} = await execAsync('node scripts/transform-full-rebuild.js');
       if (error) {
-        logError('Full rebuild transformation failed');
+        logger.error('Full rebuild transformation failed');
         process.exit(1);
       }
       mode = 'full_rebuild';
@@ -101,17 +101,17 @@ const main = async () => {
       // Run incremental transformation
       const {error} = await execAsync('node scripts/transform-incremental.js');
       if (error) {
-        logError('Incremental transformation failed');
+        logger.error('Incremental transformation failed');
         process.exit(1);
       }
 
       // Check if response file was created (indicating changes were processed)
       if (fs.existsSync(RESPONSE_FILE) && fs.statSync(RESPONSE_FILE).size > 0) {
         mode = 'incremental';
-        logInfo('Response file found, proceeding with processing');
+        logger.info('Response file found, proceeding with processing');
       } else {
         // No response file means no changes to process
-        logInfo('No changes to process, skipping validation and compilation');
+        logger.info('No changes to process, skipping validation and compilation');
         if (isGithubActions()) {
           setOutput('mode', 'skip');
         }
@@ -120,11 +120,11 @@ const main = async () => {
     }
 
     // At this point we only have full_rebuild or incremental with actual changes
-    logInfo('Processing response...');
+    logger.info('Processing response...');
 
     // Extract and validate LaTeX response
     if (!extractLatex(TEMP_FILE)) {
-      logError('Failed to extract LaTeX from response');
+      logger.error('Failed to extract LaTeX from response');
       process.exit(1);
     }
 
@@ -139,9 +139,9 @@ const main = async () => {
       const backupFile = `${CV_FILE}.backup.${timestamp}`;
       try {
         fs.copyFileSync(CV_FILE, backupFile);
-        logInfo(`Backup created: ${backupFile}`);
+        logger.info(`Backup created: ${backupFile}`);
       } catch (error) {
-        logWarning('Failed to create backup, continuing without backup');
+        logger.warn('Failed to create backup, continuing without backup');
       }
     }
 
@@ -149,7 +149,7 @@ const main = async () => {
     try {
       fs.renameSync(TEMP_FILE, CV_FILE);
     } catch (error) {
-      logError(`Failed to move temporary file to final location: ${error.message}`);
+      logger.error(`Failed to move temporary file to final location: ${error.message}`);
       process.exit(1);
     }
 
@@ -158,15 +158,15 @@ const main = async () => {
       fs.unlinkSync(RESPONSE_FILE);
     }
 
-    logSuccess('CV update completed successfully!');
-    logInfo(`Mode: ${mode}`);
+    logger.success('CV update completed successfully!');
+    logger.info(`Mode: ${mode}`);
 
     // Set outputs for GitHub Actions
     if (isGithubActions()) {
       setOutput('mode', mode);
     }
   } catch (error) {
-    logError(`Error in CV update: ${error.message}`);
+    logger.error(`Error in CV update: ${error.message}`);
     process.exit(1);
   }
 };

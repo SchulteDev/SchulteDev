@@ -1,25 +1,15 @@
 // test-local.js - Test CV generation locally
 
 import fs from 'fs';
-import path from 'path';
-import { exec } from 'child_process';
+import {exec} from 'child_process';
 import util from 'util';
 import dotenv from 'dotenv';
-import {
-  CAREER_FILE,
-  CV_FILE
-} from './config.js';
-import {
-  logInfo,
-  logError,
-  logSuccess,
-  logWarning,
-  logDebug
-} from './logger.js';
+import {CAREER_FILE, CV_FILE} from './config.js';
+import logger from './logger.js';
 
 // Load environment variables from .env file
 dotenv.config();
-logDebug('Environment variables loaded from .env file');
+logger.debug('Environment variables loaded from .env file');
 
 // Promisify exec
 const execAsync = util.promisify(exec);
@@ -109,7 +99,7 @@ const setupLocalEnv = () => {
 
   // Create temp directory for outputs
   if (!fs.existsSync('tmp')) {
-    fs.mkdirSync('tmp', { recursive: true });
+    fs.mkdirSync('tmp', {recursive: true});
   }
   process.env.GITHUB_OUTPUT = 'tmp/github_output.txt';
   fs.writeFileSync(process.env.GITHUB_OUTPUT, '');
@@ -137,7 +127,7 @@ const main = async () => {
 
     // Run the CV update workflow
     logInfo(`Running CV update workflow in ${MODE} mode...`);
-    const { stdout, stderr } = await execAsync('node scripts/run-cv-update.js');
+    const {stdout, stderr} = await execAsync('node scripts/run-cv-update.js');
     logDebug('CV update workflow completed');
     logDebug(`stdout: ${stdout.slice(0, 200)}${stdout.length > 200 ? '...' : ''}`);
 
@@ -156,7 +146,7 @@ const main = async () => {
 
     // Cleanup
     logDebug('Cleaning up temporary files');
-    fs.rmSync('tmp', { recursive: true, force: true });
+    fs.rmSync('tmp', {recursive: true, force: true});
     logDebug('Cleanup completed');
   } catch (error) {
     logError(`Error: ${error.message}`);

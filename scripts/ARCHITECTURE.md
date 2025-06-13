@@ -5,7 +5,7 @@
 ```
 scripts/
 ├── config.js                 # Central configuration & environment variables
-├── logger.js                 # Enhanced logging with Winston
+├── logger.js                 # Simple logging with Consola
 ├── claude-api.js             # Shared API logic using Anthropic SDK
 ├── run-cv-update.js          # Main workflow orchestrator (includes validation)
 ├── transform-incremental.js  # Incremental update (includes detection)
@@ -37,6 +37,7 @@ incremental   full-rebuild
 ## Usage Examples
 
 ### Local Testing
+
 ```bash
 # Option 1: Create a .env file (recommended)
 # Create a file named .env in the project root with:
@@ -66,6 +67,7 @@ set DRY_RUN=true && node scripts/test-local.js
 ```
 
 ### Custom Configuration
+
 ```bash
 # Override paths
 set CAREER_FILE=my_career.md
@@ -77,6 +79,7 @@ set CREATE_BACKUP=true && node scripts/test-local.js
 ```
 
 ### Direct Script Usage
+
 ```bash
 # Just run the update (GitHub Actions uses this)
 node scripts/run-cv-update.js
@@ -94,15 +97,18 @@ npm run cv:full-rebuild
 ## Environment Variables
 
 ### Required
+
 - `ANTHROPIC_API_KEY` - API key for Claude
 
 ### Optional Paths
+
 - `CAREER_FILE` - Input markdown (default: `_data/career.md`)
 - `CV_FILE` - Output LaTeX (default: `cv/anti-cv.tex`)
 - `RESPONSE_FILE` - API response (default: `claude_response.json`)
 - `DIFF_FILE` - Git diff for incremental (default: `career_changes.diff`)
 
 ### Optional Settings
+
 - `CREATE_BACKUP` - Backup before updating (default: false)
 - `SKIP_API` - Skip API call for testing (default: false)
 - `DRY_RUN` - Show what would be done (default: false)
@@ -111,26 +117,31 @@ npm run cv:full-rebuild
 ## Key Improvements
 
 ### 1. **JavaScript-Based Architecture**
+
 - Modern JavaScript ES modules for better code organization
 - Async/await for cleaner asynchronous code
 - Error handling with try/catch blocks
 - NPM scripts for easier command execution
 - Official Anthropic SDK for reliable API integration
-- Winston logger for enhanced logging capabilities
+- Consola for simple, efficient logging
 
 ### 2. **Shared Components**
+
 - `config.js` - Environment variables and configuration settings
-- `logger.js` - Centralized logging with Winston
+- `logger.js` - Simplified logging with Consola
 - `claude-api.js` - API calls using Anthropic SDK, LaTeX extraction, and prompt building
 
 ### 3. **Simplified Architecture**
+
 - Modular code structure with clear imports/exports
 - Consistent error handling across all scripts
 - Improved logging with emoji indicators
 - Fewer files, clearer responsibilities
 
 ### 4. **Main Orchestrator**
+
 `run-cv-update.js` handles:
+
 - Mode selection
 - Running appropriate transformation
 - LaTeX extraction
