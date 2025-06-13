@@ -46,6 +46,15 @@ jobs:
           root_file: ${{ env.CV_FILE }}
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
+      - name: Commit updated LaTeX file
+        if: success() && steps.transform.outputs.mode != 'skip'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ env.CV_FILE }}"
+          git diff --staged --quiet || git commit -m "Update CV: ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }}"
+          git push
+
       - name: Upload PDF to GitHub Releases
         if: success() && steps.transform.outputs.mode != 'skip'
         uses: softprops/action-gh-release@v2
