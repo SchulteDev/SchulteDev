@@ -1,8 +1,9 @@
 // transform-full-rebuild.js - Handles full rebuild of CV
 
-import {setOutput} from './config.js';
+import {DIFF_FILE, setOutput} from './config.js';
 import logger from './logger.js';
 import {buildCvPrompt, callClaudeApi} from './claude-api.js';
+import fs from "fs";
 
 export const main = async () => {
   try {
@@ -11,15 +12,14 @@ export const main = async () => {
     // Set output mode
     setOutput('mode', 'full_rebuild');
 
-    // Build prompt using shared function
-    const prompt = buildCvPrompt('full_rebuild');
-    if (!prompt) {
-      logger.error('Failed to build prompt');
-      throw new Error('Failed to build prompt');
+    const {systemPrompt, userPrompt} = buildCvPrompt('full_rebuild');
+    if (!systemPrompt || !userPrompt) {
+      logger.error('Failed to build prompts');
+      fs.unlinkSync(DIFF_FILE);
+      throw new Error('Failed to build prompts');
     }
 
-    // Make API call
-    const success = await callClaudeApi(prompt);
+    const success = await callClaudeApi(systemPrompt, userPrompt);
     if (success) {
       logger.success('Full rebuild response received');
     } else {

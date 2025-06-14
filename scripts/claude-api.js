@@ -2,18 +2,10 @@
 
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
-import {
-  API_MODEL,
-  CAREER_FILE,
-  CV_FILE,
-  DIFF_FILE,
-  MAX_TOKENS,
-  RESPONSE_FILE
-} from './config.js';
+import {API_MODEL, CAREER_FILE, CV_FILE, DIFF_FILE, MAX_TOKENS, RESPONSE_FILE} from './config.js';
 import logger from './logger.js';
 
-// Function to make Claude API call
-export const callClaudeApi = async (prompt) => {
+export const callClaudeApi = async (systemPrompt, userPrompt) => {
   // Check if we should skip the API call
   if (process.env.SKIP_API === 'true') {
     logger.info('SKIP_API is set to true, skipping API call');
@@ -41,8 +33,8 @@ export const callClaudeApi = async (prompt) => {
     return false;
   }
 
-  if (!prompt) {
-    logger.error('No prompt provided');
+  if (!userPrompt) {
+    logger.error('No user prompt provided');
     return false;
   }
 
@@ -55,17 +47,25 @@ export const callClaudeApi = async (prompt) => {
       apiKey: process.env.ANTHROPIC_API_KEY,
     });
 
-    // Make API call
-    const response = await anthropic.messages.create({
+    // Prepare the API request with proper structure
+    const requestOptions = {
       model: API_MODEL,
       max_tokens: MAX_TOKENS,
       messages: [
         {
           role: 'user',
-          content: prompt
+          content: userPrompt
         }
       ]
-    });
+    };
+
+    // Add system prompt if provided
+    if (systemPrompt) {
+      requestOptions.system = systemPrompt;
+    }
+
+    // Make API call
+    const response = await anthropic.messages.create(requestOptions);
 
     // Save response to file
     fs.writeFileSync(RESPONSE_FILE, JSON.stringify(response, null, 2));
@@ -78,14 +78,12 @@ export const callClaudeApi = async (prompt) => {
     }
 
     logger.success('API response received');
-    logger.debug(
-        `Response length: ${response.content[0].text.length} characters`);
+    logger.debug(`Response length: ${response.content[0].text.length} characters`);
     return true;
   } catch (error) {
     logger.error(`API call failed: ${error.message}`);
     if (error.response) {
-      logger.error('Response data:',
-          JSON.stringify(error.response).slice(0, 500));
+      logger.error('Response data:', JSON.stringify(error.response).slice(0, 500));
     }
     return false;
   }
@@ -107,25 +105,36 @@ export const extractLatex = (outputFile) => {
     let text = responseData.content[0].text;
     logger.debug(`Raw response length: ${text.length} characters`);
 
-    // Remove extended_thinking tags and content
+    // Clean up the response more thoroughly
     const originalLength = text.length;
-    text = text.replace(/<extended_thinking>[\s\S]*?<\/extended_thinking>/g,
-        '');
-    logger.debug(`Removed ${originalLength
-    - text.length} characters of extended thinking`);
+
+    // Remove thinking tags and content (multiple variations)
+    text = text.replace(/<thinking>[\s\S]*?<\/thinking>/gi, '');
+    text = text.replace(/<extended_thinking>[\s\S]*?<\/extended_thinking>/gi, '');
 
     // Remove code block markers
-    text = text.replace(/```latex\n/g, '').replace(/```\n/g, '').replace(/```/g,
-        '');
+    text = text.replace(/```latex\n?/gi, '');
+    text = text.replace(/```\n?/g, '');
 
-    // Remove empty lines
-    text = text.split('\n').filter(line => line.trim() !== '').join('\n');
+    // Remove any leading/trailing whitespace and normalize line endings
+    text = text.trim();
+
+    // Remove excessive empty lines (more than 2 consecutive)
+    text = text.replace(/\n{3,}/g, '\n\n');
+
+    logger.debug(`Cleaned ${originalLength - text.length} characters from response`);
+
+    // Validate that we still have content
+    if (text.length < 100) {
+      logger.error('Extracted content is too short, possible over-cleaning');
+      return false;
+    }
 
     // Write to output file
     fs.writeFileSync(outputFile, text);
     logger.debug(`Wrote ${text.length} characters to ${outputFile}`);
 
-    logger.success('Extracted LaTeX and removed any code block markers');
+    logger.success('Extracted and cleaned LaTeX content');
     return true;
   } catch (error) {
     logger.error(`Failed to extract LaTeX: ${error.message}`);
@@ -138,17 +147,11 @@ export const extractLatex = (outputFile) => {
   }
 };
 
-// Function to build CV prompt
-export const buildCvPrompt = (mode) => {
-  let prompt = '';
+// Function to build system prompt (separate from user content)
+const buildSystemPrompt = () => {
+  return `You are an expert LaTeX developer specializing in bulletproof document compilation and creative CV design.
 
-  const systemContext = `You are an expert LaTeX developer specializing in bulletproof document compilation and creative CV design.
-
-<thinking>
-Claude 4 Opus has excellent reasoning about LaTeX compilation issues and can better understand structured requirements. Focus on clear constraints and desired outcomes rather than verbose explanations.
-</thinking>`;
-
-  const compilationRequirements = `## COMPILATION CONSTRAINTS
+## COMPILATION CONSTRAINTS
 - Target: GitHub Actions with xu-cheng/latex-action
 - Command: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 - Zero tolerance for compilation errors or warnings
@@ -164,36 +167,40 @@ Claude 4 Opus has excellent reasoning about LaTeX compilation issues and can bet
 - No undefined font shapes (avoid T1/cmss/b/n combinations)
 - No undefined control sequences
 - All symbols in correct mode (math vs text)
-- Conservative package selection over fancy features`;
+- Conservative package selection over fancy features
 
-  const documentStructure = `## DOCUMENT STRUCTURE
+## DOCUMENT STRUCTURE
 Required first page layout:
 1. **Prominent Header**: Name, title, contact (visually dominant)
 2. **Comprehensive Summary**: Complete document overview
 3. Visual hierarchy: Header > Summary > Content
-4. Self-contained first page with full context`;
+4. Self-contained first page with full context
 
-  const taskInstructions = `## OUTPUT REQUIREMENTS
+## OUTPUT REQUIREMENTS
 - Return ONLY complete LaTeX code
 - No markdown formatting or explanations
 - Guaranteed first-attempt compilation success
 - Maintain anti-CV humorous tone with professional accuracy
-- Use <thinking> tags for your reasoning process`;
+- Do NOT include any thinking tags or explanations in your response`;
+};
+
+// Function to build user prompt (content-specific)
+export const buildCvPrompt = (mode) => {
+  const systemPrompt = buildSystemPrompt();
+  let userPrompt = '';
 
   switch (mode) {
     case 'incremental': {
       if (!fs.existsSync(CV_FILE)) {
         logger.error(`CV file not found: ${CV_FILE}`);
-        return null;
+        return {systemPrompt: null, userPrompt: null};
       }
       if (!fs.existsSync(DIFF_FILE)) {
         logger.error(`Diff file not found: ${DIFF_FILE}`);
-        return null;
+        return {systemPrompt: null, userPrompt: null};
       }
 
-      prompt = `${systemContext}
-
-## TASK: Fix LaTeX Errors & Apply Updates
+      userPrompt = `## TASK: Fix LaTeX Errors & Apply Updates
 
 ### Current Document (with compilation errors):
 \`\`\`latex
@@ -205,16 +212,10 @@ ${fs.readFileSync(CV_FILE, 'utf8')}
 ${fs.readFileSync(DIFF_FILE, 'utf8')}
 \`\`\`
 
-${compilationRequirements}
-
-${documentStructure}
-
 ## SPECIFIC FIXES NEEDED:
 - Font shape 'T1/cmss/b/n' undefined → Use safe font combinations
 - \\lastpage undefined → Use \\pageref{LastPage} with lastpage package
 - Any other compilation blockers
-
-${taskInstructions}
 
 Fix all errors while preserving style consistency and integrating the career updates seamlessly.`;
       break;
@@ -223,23 +224,15 @@ Fix all errors while preserving style consistency and integrating the career upd
     case 'full_rebuild': {
       if (!fs.existsSync(CAREER_FILE)) {
         logger.error(`Career file not found: ${CAREER_FILE}`);
-        return null;
+        return {systemPrompt: null, userPrompt: null};
       }
 
-      prompt = `${systemContext}
-
-## TASK: Create Complete Anti-CV from Scratch
+      userPrompt = `## TASK: Create Complete Anti-CV from Scratch
 
 ### Career Data:
 \`\`\`markdown
 ${fs.readFileSync(CAREER_FILE, 'utf8')}
 \`\`\`
-
-${compilationRequirements}
-
-${documentStructure}
-
-${taskInstructions}
 
 Create a complete, bulletproof anti-CV that compiles perfectly and follows the required document structure.`;
       break;
@@ -247,8 +240,8 @@ Create a complete, bulletproof anti-CV that compiles perfectly and follows the r
 
     default:
       logger.error(`Invalid mode: ${mode}`);
-      return null;
+      return {systemPrompt: null, userPrompt: null};
   }
 
-  return prompt;
+  return {systemPrompt, userPrompt};
 };

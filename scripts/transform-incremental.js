@@ -77,16 +77,15 @@ export const main = async () => {
       return; // Return instead of exit
     }
 
-    // Build prompt using shared function
-    const prompt = buildCvPrompt('incremental');
-    if (!prompt) {
-      logger.error('Failed to build prompt');
+    const {systemPrompt, userPrompt} = buildCvPrompt('incremental');
+    if (!systemPrompt || !userPrompt) {
+      logger.error('Failed to build prompts');
       fs.unlinkSync(DIFF_FILE);
-      throw new Error('Failed to build prompt');
+      throw new Error('Failed to build prompts');
     }
 
-    // Make API call
-    const success = await callClaudeApi(prompt);
+    // Make API call with separate system and user prompts
+    const success = await callClaudeApi(systemPrompt, userPrompt);
     if (success) {
       logger.success('Incremental transformation response received');
       // Cleanup
