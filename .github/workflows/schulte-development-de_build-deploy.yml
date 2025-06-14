@@ -6,11 +6,18 @@ on:
       - '*'
     paths:
       - 'schulte-development_de/**'
+      - '!schulte-development_de/docker-compose.yml'
+      - '!schulte-development_de/Dockerfile'
+      - '!schulte-development_de/Makefile'
+
   pull_request:
     branches:
       - '*'
     paths:
       - 'schulte-development_de/**'
+      - '!schulte-development_de/docker-compose.yml'
+      - '!schulte-development_de/Dockerfile'
+      - '!schulte-development_de/Makefile'
   workflow_dispatch:
 
 permissions:
