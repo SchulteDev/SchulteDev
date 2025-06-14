@@ -6,10 +6,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
-COPY --chmod=440 Gemfile Gemfile.lock ./
+COPY --chmod=444 Gemfile Gemfile.lock ./
 RUN bundle config set force_ruby_platform true && \
     bundle install
-COPY --chmod=440 . .
+COPY --chmod=444 . .
 
 USER nobody
 EXPOSE 4000 35729
