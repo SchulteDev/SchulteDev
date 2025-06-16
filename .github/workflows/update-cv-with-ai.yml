@@ -109,17 +109,18 @@ jobs:
           tag_name: cv-latest
           name: "Latest CV - Markus Schulte"
           body: |
-            🤖 Auto-generated CV (Claude 4 Opus Enhanced)
+            🤖 Auto-generated CV
+
             **AI Model:** Claude 4 Opus with Extended Thinking
             **Generation Mode:** ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
             **Trigger:** ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto (career.md change)' }}
             **Generated on:** ${{ steps.timestamp.outputs.generated_date }}
             **Commit:** ${{ github.sha }}
+
             📄 Direct download: [markus-schulte-dev-anti-cv.pdf](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf)
           files: markus-schulte-dev-anti-cv.pdf
           prerelease: false
           make_latest: true
-          generate_release_notes: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
