@@ -64,14 +64,14 @@ jobs:
         env:
           DRY_RUN: true
           SKIP_API: true
-        run: npm run cv:test
+        run: npm test
 
       - name: Transform with Claude
         id: transform
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
-        run: npx ts-node scripts/run-cv-update.ts
+        run: npm run cv:update
 
       - name: Set generation timestamp
         id: timestamp
