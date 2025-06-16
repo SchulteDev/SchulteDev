@@ -108,7 +108,7 @@ organizational and leadership capabilities:
 - **Hiring & Onboarding:** Technical interviews, team assembly, and developer onboarding
 
 ### Specialized Expertise
- 
+
 - **Contract Testing:** Deep expertise with Pact framework for microservices reliability
 - **Developer Tooling:** Custom framework development, build optimization, automation tools
 - **Code Quality Metrics:** SonarQube integration, automated quality gates, technical debt
@@ -182,8 +182,6 @@ Freelance | Remote*
 
 **Impact:**
 
-- **50% of candidate applications** identified as Skywalker-incompatible → initiated platform
-  improvements
 - **Platform evolution:** Gap identification enabled targeted Skywalker platform enhancements
 - **Migration readiness:** Established comprehensive assessment framework for large-scale enterprise
   migration
@@ -655,11 +653,23 @@ https://github.com/SchulteDev/Sse-BelMngr-Hermine
 
 ### 2004-2012: Diploma in Computer Science, University of Koblenz-Landau
 
-- **Degree:** [Diplom](https://en.wikipedia.org/wiki/Diplom) in Computer Science (equivalent to a
-  Master of Science)
-- **Focus:** Computer Visualistics and Software Engineering
+- **Degree:**
+  [Diploma in Computer Science](https://github.com/SchulteDev/SchulteDev/blob/main/_data/assets/Markus%20Schulte%20Diploma%20computer%20science%20certificate%20Diplom%20Informatik.pdf)
+- **Overall Mark:** Distinction (magna cum laude equivalent)
+- **Graduation:** September 27, 2012
+- **University:** University of Koblenz-Landau, Campus Koblenz
+- **Faculty:** Computer Science Department
+- **Focus:** Computational Visualistics and Software Engineering
 - **Key Areas:** Software architecture, web technologies, algorithms, database systems,
   Human-Computer Interaction
+- **Extended Duration:** The degree program took longer than standard duration as I worked part-time
+  and sometimes full-time as a software developer
+  [starting in 2007](#august-2007--june-2014-php-developer-and-head-of-development),
+  which delayed my studies but provided valuable practical experience alongside academic learning.
+
+*The German [Diploma](https://en.wikipedia.org/wiki/Diplom) degree is equivalent to a Master of
+Science and was awarded with distinction, representing academic excellence in the field of
+Computer Science with specialization in Computational Visualistics.*
 
 ### 2003: Abitur (German high school diploma)
 
