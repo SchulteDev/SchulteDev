@@ -571,7 +571,7 @@ Terraform, Docker
 - **Infrastructure:** Docker containers, Apache Tomcat
 - **Quality Tools:** Code quality standards, automated testing frameworks
 
-### August 2007 — June 2014: PHP Developer and Head of Development
+### August 2007 — June 2014: PHP Developer and Head of Development at werkenntwen
 
 *wer-kennt-wen.de (lemonline media ltd. / werkenntwen GmbH) | Permanent Position*
 
