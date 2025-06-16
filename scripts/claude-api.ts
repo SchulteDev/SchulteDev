@@ -231,7 +231,7 @@ ${fs.readFileSync(DIFF_FILE, 'utf8')}
 - \\lastpage undefined → Use \\pageref{LastPage} with lastpage package
 - Any other compilation blockers
 
-Fix all errors while preserving style consistency and integrating the career updates seamlessly.`;
+Fix all errors while preserving style consistency and integrating the career updates seamlessly, but do the update only if it offers significant added value compared to the current version.`;
       break;
     }
 
