@@ -2,22 +2,23 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[english]{babel}
 \usepackage[margin=2cm]{geometry}
-\usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{xcolor}
 \usepackage{titlesec}
-\usepackage{fancyhdr}
 \usepackage{lastpage}
+\usepackage{fancyhdr}
 \usepackage{hyperref}
 
-\definecolor{darkblue}{RGB}{0,0,139}
+\definecolor{darkblue}{RGB}{26,13,171}
 \definecolor{lightgray}{RGB}{128,128,128}
 
 \hypersetup{
     colorlinks=true,
     linkcolor=darkblue,
     urlcolor=darkblue,
+    pdftitle={Markus Schulte - Anti-CV},
+    pdfauthor={Markus Schulte}
 }
 
 \pagestyle{fancy}
@@ -25,159 +26,120 @@
 \fancyfoot[C]{Page \thepage\ of \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0pt}
 
-\titleformat{\section}{\large\bfseries\color{darkblue}}{}{0pt}{}[\titlerule]
-\titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{}
+\titleformat{\section}{\Large\bfseries\color{darkblue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries}{}{0em}{}
 
-\setlist{noitemsep,topsep=0pt}
+\setlist[itemize]{leftmargin=*,itemsep=0pt,parsep=2pt}
 
 \begin{document}
 
 \begin{center}
-{\LARGE\bfseries Markus Schulte} \\[0.3cm]
-{\Large\color{darkblue} Master of Questionable Architectural Decisions} \\[0.2cm]
-{\small mail@schulte-development.de \textbullet\ +49 178 7217768 \textbullet\ Cologne, Germany} \\
-{\small \href{https://linkedin.com/in/markus-schulte/}{LinkedIn} \textbullet\ \href{https://github.com/SchulteMarkus}{GitHub} \textbullet\ \href{https://stackoverflow.com/users/1645517/}{StackOverflow}}
+{\Huge\bfseries Markus Schulte}\\[0.5em]
+{\Large\textit{The Honest Freelancer's Guide to What Really Happened}}\\[0.5em]
+{\color{lightgray}mail@schulte-development.de \textbullet\ +49 178 7217768 \textbullet\ Cologne, Germany}\\
+{\color{lightgray}\href{https://schulte-development.de}{schulte-development.de} \textbullet\ \href{https://github.com/SchulteMarkus}{GitHub} \textbullet\ \href{https://www.linkedin.com/in/markus-schulte/}{LinkedIn}}
 \end{center}
 
-\section*{Executive Summary: 18 Years of Perfectly Executed Overengineering}
+\vspace{1em}
 
-Welcome to my comprehensive catalog of technological adventures where I've successfully transformed simple problems into distributed nightmares. With 11+ years as a freelance architect, I've mastered the art of:
+\section*{Executive Summary: 18 Years of Accidentally Building Things That Work}
 
-\begin{itemize}[leftmargin=*]
-\item \textbf{Microservice Proliferation:} Turning 3-page websites into 47 independently deployable services
-\item \textbf{Cloud Cost Optimization:} Helping companies achieve AWS bills that exceed their revenue
-\item \textbf{Resume-Driven Development:} Adding Kubernetes to projects that could run on a Raspberry Pi
-\item \textbf{Testing Obsession:} Writing 1000+ tests for code that displays ``Hello World''
-\item \textbf{Framework Addiction:} Creating custom frameworks because the existing 500 weren't quite right
+\textbf{Current Status:} Cataloging 30 applications at LBBW that nobody understands, trying to migrate them to a platform that doesn't quite work yet.
+
+\textbf{Greatest Achievement:} Convinced 83 companies to pay for Bamboo add-ons I built in my spare time because Atlassian couldn't be bothered.
+
+\textbf{Core Competency:} Taking 8 years to finish a 5-year degree while somehow becoming Head of Development at Germany's Facebook knockoff.
+
+\textbf{Technical Philosophy:} If it compiles and passes 1000+ tests in under 10 minutes, ship it. If not, add more Golang.
+
+\textbf{Career Trajectory:} PHP developer → Team lead → Back to developer → Freelancer → Still trying to escape legacy systems.
+
+\vspace{1em}
+
+\section*{Professional Failures \& Lessons Learned}
+
+\subsection*{Nov 2024 -- Present: Azure Migration Archaeologist at LBBW}
+\begin{itemize}
+\item \textbf{The Dream:} Help modernize a major German bank's IT infrastructure
+\item \textbf{The Reality:} Discovering the "Phoenix" project involves cataloging hundreds of applications that predate documentation
+\item \textbf{Plot Twist:} The target "Skywalker" platform has more gaps than features
+\item \textbf{Current Status:} Creating Excel sheets to document why things won't work
+\item \textbf{Achievement Unlocked:} Master of diplomatic phrases like "platform enhancement opportunities"
 \end{itemize}
 
-Currently helping LBBW migrate to ``Skywalker'' platform (yes, that's the real name) while discovering that 50\% of applications are incompatible with our futuristic architecture. Previously at Union Investment, I transformed a simple B2B portal into a Self-contained Systems masterpiece that only 3 people understand.
-
-\section*{Core Competencies in Complexity Creation}
-
-\subsection*{Programming Languages (Order of Regret)}
-\begin{itemize}[leftmargin=*]
-\item \textbf{Java (18+ years):} Still waiting for those ``write once, run anywhere'' promises to materialize
-\item \textbf{Golang (4+ years):} Because typing ``if err != nil'' 47 times per function builds character
-\item \textbf{PHP (8+ years):} My dark past that I mention only when absolutely necessary
-\item \textbf{TypeScript:} JavaScript with extra steps and compiler errors
+\subsection*{Oct 2021 -- Dec 2024: Overengineering Specialist at Union Investment}
+\begin{itemize}
+\item \textbf{Mission:} Modernize a B2B platform for 80,000 users (yes, that's all)
+\item \textbf{Solution:} Built an entire microfrontend framework because Web Components weren't complicated enough
+\item \textbf{Scope Creep Champion:} Started as architect, became Product Owner, team coach, and framework developer
+\item \textbf{Pride Point:} Created 1000+ tests that run in 10 minutes (because waiting is for mortals)
+\item \textbf{Reality Check:} Spent 3 years turning one monolith into 8 perfectly isolated systems that still need to talk to each other
 \end{itemize}
 
-\subsection*{Cloud Platforms (Monthly Bill Generators)}
-\begin{itemize}[leftmargin=*]
-\item \textbf{AWS:} Where I learned that ``serverless'' means ``someone else's servers at 10x the cost''
-\item \textbf{Azure:} Microsoft's answer to ``what if AWS but with different names for everything?''
-\item \textbf{GCP:} Used it once, still getting bills for services I can't find
+\subsection*{Dec 2021 -- Nov 2024: Midnight Golang Warrior at Saloodo!/DHL}
+\begin{itemize}
+\item \textbf{Side Hustle:} "Just a simple middleware" they said
+\item \textbf{The Truth:} Sole guardian of 10 million records syncing between systems held together by hope
+\item \textbf{Database Horror:} Discovered JSON stored as strings, wrong data types, and other creative solutions
+\item \textbf{Proudest Moment:} Achieved 100\% uptime by making the system too stubborn to fail
+\item \textbf{Real Achievement:} Finally got to use Golang in production (worth the 3am debugging sessions)
 \end{itemize}
 
-\section*{Professional History of Overcomplication}
+\section*{Technical Confessions}
 
-\subsection*{Cloud Architect at LBBW (Nov 2024 -- Present)}
-\textit{Where Banking Meets Star Wars Naming Conventions}
-
-Currently cataloging hundreds of legacy applications to determine which ones are worthy of ascending to the ``Skywalker'' platform. Spoiler alert: 50\% aren't. My days involve:
-\begin{itemize}[leftmargin=*]
-\item Writing 47-page assessments explaining why a simple web form needs 12 Azure services
-\item Discovering platform gaps that everyone knew about but nobody documented
-\item Creating multi-cloud strategies because one cloud provider isn't complicated enough
-\item Using terms like ``R-methodology'' to make application retirement sound sophisticated
+\subsection*{Languages I Claim to Know}
+\begin{itemize}
+\item \textbf{Java (18+ years):} Still adding getters and setters like it's 2007
+\item \textbf{Golang (4+ years):} Because "if err != nil" is my favorite mantra
+\item \textbf{PHP (8+ years):} We don't talk about the PHP years
+\item \textbf{TypeScript:} JavaScript with extra steps and compile-time disappointment
 \end{itemize}
 
-\subsection*{Cloud Architect at Union Investment (Oct 2021 -- Dec 2024)}
-\textit{3 Years Turning a Simple Portal into a Distributed Masterpiece}
-
-Led the transformation of InvestmentWelt from a boring monolith into 8 Self-contained Systems that require a PhD to deploy. Achievements include:
-\begin{itemize}[leftmargin=*]
-\item Implementing Web Components because regular HTML was too mainstream
-\item Creating a ``microfrontend-toolkit'' that's neither micro nor a toolkit
-\item Building 1000+ tests that take exactly 10 minutes to run (optimized from 11 minutes)
-\item Designing event streams for data that could have been REST calls
-\item Reducing deployment time from days to 30 minutes (still slower than the original FTP upload)
+\subsection*{Buzzword Bingo Championship}
+\begin{itemize}
+\item \textbf{Microservices:} Making 1 problem into N problems since 2016
+\item \textbf{Event-Driven Architecture:} Everything is eventual(ly consistent)
+\item \textbf{Cloud-Native:} Vendor lock-in with extra steps
+\item \textbf{DevOps:} Developers doing ops badly
+\item \textbf{Self-Contained Systems:} Microservices for people who read the DDD book
 \end{itemize}
 
-\subsection*{Middleware Engineer at Saloodo!/DHL (Dec 2021 -- Nov 2024)}
-\textit{Part-Time Golang Adventure in Data Synchronization}
+\section*{Career Lowlights}
 
-Single-handedly maintained a middleware that moved data from Saloodo to Salesforce, because direct database access is for quitters. Highlights:
-\begin{itemize}[leftmargin=*]
-\item Synchronized 10 million records using elaborate multi-threading instead of database replication
-\item Achieved 100\% uptime by implementing endless loops that never stop trying
-\item Wrote 70\% test coverage for code that essentially does ``SELECT * FROM table''
-\item Used Golang professionally for the first time, immediately added it to LinkedIn
+\subsection*{2016 -- 2023: Accidental Entrepreneur}
+Built Bamboo add-ons because Atlassian wouldn't. Peak irony: 83 companies paid for features that should have been free. Sunset them when Atlassian finally deprecated Bamboo Server. Seven years of explaining why CheckStyle matters.
+
+\subsection*{2007 -- 2014: Social Network Archaeologist}
+Helped scale wer-kennt-wen.de to 9 million users who all left for Facebook anyway. Promoted to Head of Development, realized I preferred coding, demoted myself. Company shut down 3 months after I left. Correlation? Definitely. Causation? No comment.
+
+\section*{Educational Achievements}
+
+\subsection*{2004 -- 2012: Professional Student}
+\begin{itemize}
+\item \textbf{Degree:} Diploma in Computer Science (yes, it took 8 years)
+\item \textbf{Excuse:} Was too busy being Head of Development to attend lectures
+\item \textbf{Grade:} Magna cum laude (they were impressed I finished at all)
+\item \textbf{Life Lesson:} You can work full-time AND study full-time if you don't sleep
 \end{itemize}
 
-\subsection*{Creator of Atlassian Bamboo Add-ons (Jun 2016 -- Dec 2023)}
-\textit{7 Years Selling Solutions to Problems I Created}
+\section*{Personal Projects (Things I Do Instead of Having Hobbies)}
 
-Built a successful business around the fact that Bamboo lacked basic features:
-\begin{itemize}[leftmargin=*]
-\item Created add-ons for Checkstyle, PMD, CPD, and FindBugs integration
-\item Convinced 83 companies worldwide to pay for features that should have been free
-\item Maintained compatibility across 7 years of Bamboo updates and breaking changes
-\item Peak achievement: Enterprise customer with 50+ agents running my code
+\subsection*{2025: AI-Powered Tax Procrastination}
+Built a CLI tool to automate tax document entry because clicking buttons is beneath me. Used Azure AI to read receipts so I don't have to. Peak engineering: spending 100 hours to save 10.
+
+\subsection*{2015: Bitcoin Trading Bot}
+Lost money automatically using machine learning. Proved that algorithms can be just as bad at trading as humans, but faster.
+
+\section*{Life Interruptions}
+
+\begin{itemize}
+\item \textbf{2020-2021:} Parental leave during pandemic (perfect timing)
+\item \textbf{2015:} Career break (burnout is just spicy exhaustion)
+\item \textbf{2003-2004:} Military service (learned that civilian IT is less regimented)
 \end{itemize}
 
-\subsection*{Various Consulting Positions (2014 -- 2020)}
-\textit{Brief Encounters with Sanity}
+\section*{References}
 
-\begin{itemize}[leftmargin=*]
-\item \textbf{Sedo GmbH:} Consolidated 3 services into 1 using Quarkus (my most sensible decision)
-\item \textbf{Trusted Shops:} Migrated JavaEE6 to microservices because monoliths are so 2010
-\item \textbf{Allianz:} Built CloudFoundry apps that nobody remembers
-\item \textbf{toom Baumarkt:} Introduced Golang and immediately left
-\end{itemize}
-
-\subsection*{PHP Developer \& Head of Development at wer-kennt-wen.de (2007 -- 2014)}
-\textit{Social Network Before It Was Cool to Fail at Social Networks}
-
-Started as PHP developer, became Head of Development, then went back to PHP developer (a cautionary tale about promotions). Achievements:
-\begin{itemize}[leftmargin=*]
-\item Scaled platform to 500K+ users before Facebook crushed our dreams
-\item Introduced OOP to a team that preferred procedural spaghetti
-\item Managed 8 developers who all thought they could do my job better
-\item Learned that ``Head of Development'' means ``person who gets blamed''
-\end{itemize}
-
-\section*{Educational Background \& Life Choices}
-
-\subsection*{Diplom in Computer Science, University of Koblenz-Landau (2004 -- 2012)}
-Spent 8 years obtaining a degree that's now called ``Master's'' everywhere else. Focused on Computer Visualistics because I thought I'd make video games. Spoiler: I didn't.
-
-\subsection*{Military Service (2003 -- 2004)}
-Mandatory service in the German Air Force where I learned that hierarchical command structures are surprisingly similar to enterprise software architecture.
-
-\section*{Personal Projects (Because 40 Hours/Week Isn't Enough)}
-
-\begin{itemize}[leftmargin=*]
-\item \textbf{AI Tax Software Integration (2025):} Used Azure AI to avoid doing taxes manually like a normal person
-\item \textbf{Jenkins-GitHub Integration (2018):} Built a PoC that nobody asked for
-\item \textbf{Crypto Trading Bot (2015):} Lost money automatically instead of manually
-\end{itemize}
-
-\section*{Certifications \& Achievements}
-
-\begin{itemize}[leftmargin=*]
-\item StackOverflow: 4000+ reputation points from answering questions I googled myself
-\item Java SE 8 Certification: 93/100 (the 7 points were for suggesting simpler solutions)
-\item Atlassian Marketplace: Top vendor in the ``features that should be built-in'' category
-\end{itemize}
-
-\section*{Career Breaks (Strategic Retreats)}
-
-\begin{itemize}[leftmargin=*]
-\item \textbf{Parental Leave (Apr 2020 -- Sep 2021):} Discovered that managing a baby is easier than managing microservices
-\item \textbf{Career Break (Aug -- Dec 2015):} Recovered from enterprise Java trauma
-\end{itemize}
-
-\section*{Technical Confession}
-
-After 18 years in software engineering, I've successfully transformed every simple problem into a distributed systems challenge. I've never met a monolith I couldn't break into 50 microservices, or a direct database query I couldn't replace with an event stream. My greatest achievement? Convincing multiple Fortune 500 companies that they need 12 cloud services to serve static content.
-
-Currently available for projects that require turning your simple CRUD application into a cloud-native, event-driven, microservices-based platform with at least 47 moving parts. References available from the 3 people who understand my architectures.
-
-\vfill
-\begin{center}
-\textit{``The best code is no code, but where's the fun in that?''} -- Markus Schulte, 2024
-\end{center}
+Available upon request, but they'll probably just say "He writes a lot of tests and really likes Golang."
 
 \end{document}
