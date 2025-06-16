@@ -594,40 +594,87 @@ Terraform, Docker
 
 ### August 2007 — June 2014: PHP Developer and Head of Development
 
-*wer-kennt-wen.de / lemonline media ltd | Permanent Position*
+*wer-kennt-wen.de (lemonline media ltd. / werkenntwen GmbH) | Permanent Position*
+
+**Company Context:**
+
+- One of Germany's largest social networks with 9+ million members
+- Platform for connecting users and finding old acquaintances
+- Founded October 2006, acquired by RTL interactive (RTL Deutschland media group) in February 2009
+- Company ceased operations June 30, 2014
 
 **Career Path:**
 
-- PHP Developer (2007-2008, 2010-2014)
-- Head of Development (2008-2010)
+- PHP Developer (August 15, 2007 - October 15, 2008)
+- Head of Development (October 16, 2008 - March 31, 2010)
+- Backend Developer (April 1, 2010 - June 30, 2014)
 
-**Key Contributions:**
+**Key Development Contributions:**
 
-- Led transformation from legacy PHP to modern OOP architecture
-- Implemented scaling solutions for high-traffic social network
-- Established CI/CD practices and quality testing
-- Managed engineering team as Head of Development
+- **Architecture modernization:** Led transformation from procedural to object-oriented architecture
+  using multi-layered MVC patterns
+- **Framework migration:** Migrated complete group system and messaging system from legacy code to
+  Zend Framework
+- **API development:** Created REST-compliant API with WADL description for mobile platform
+- **Mobile platform:** Developed HTML mobile portal and API foundation
+- **Scaling solutions:** Implemented vertical/horizontal table partitioning and extensive Memcache
+  deployment
+- **Security implementation:** Deployed comprehensive security measures (Brute-force protection,
+  XSS, CSRF, SQL-injection prevention, ACL)
+
+**Head of Development Responsibilities (2008-2010):**
+
+- **Change management:** Complete change-request management and roadmap creation
+- **Architecture planning:** Software architecture design using UML modeling
+- **Process development:** Created new workflows, procedures, and interface definitions
+- **Release management:** Managed platform updates and major releases including deployment
+- **Quality assurance:** Implemented code reviews, software metrics (StatSVN, phploc), and testing
+  standards
+- **Team leadership:** Personnel planning, recruitment, onboarding, and performance evaluation
+- **Load testing:** Prepared and executed platform stress testing
+
+**Technical Achievements:**
+
+- **CI/CD implementation:** Introduced Continuous Integration using Jenkins
+  (expanded from PHP to Java projects)
+- **Testing excellence:** Achieved high PHPUnit test coverage with CodeCoverage analysis
+- **Performance optimization:** Utilized Xdebug profiling for performance improvements
+- **Search integration:** Evaluated and implemented Sphinx for scalable search functionality
+- **Parallel processing:** Created parallelized PHP command-line execution environment
+- **High availability:** Implemented measures to increase platform reliability
+- **SEO optimization:** Applied search engine optimization strategies
 
 **Impact:**
 
-- **Platform scalability:** Optimized architecture to handle 500K+ registered users
-- **Team leadership:** Successfully managed 8-person development team
+- **Platform scalability:** Successfully scaled architecture for 9+ million registered users
+- **Team leadership:** Managed development team with full personnel responsibility
 - **Performance improvements:** Reduced page load times by 60% through architecture modernization
-- **Quality implementation:** Introduced automated testing reducing production bugs by 80%
+- **Process improvement:** Introduced automated and manual testing procedures including Selenium
 
 **Technologies & Frameworks:**
 
-- **Backend:** PHP, Zend Framework, OOP architecture
-- **Database:** MySQL, performance optimization
+- **Backend:** PHP, Zend Framework, OOP architecture, MVC patterns
+- **Database:** MySQL with advanced partitioning and optimization
+- **Caching:** Memcache implementation for performance scaling
 - **CI/CD:** Jenkins, automated deployment pipelines
-- **Testing:** PHPUnit, automated quality assurance
-- **APIs:** REST API development, JSON integration
+- **Testing:** PHPUnit, Selenium, automated quality assurance
+- **APIs:** REST API development, WADL documentation
+- **Search:** Sphinx search engine integration
+- **Monitoring:** Xdebug profiling, StatSVN, phploc metrics
+
+**Employment References**
+
+- [Final Employment Reference](assets/wer-kennt-wen/2014_wkw_Zeugnis.pdf) (German) — June 30, 2014
+- Interim Reference(German) — April 1, 2010
+  - [Page 1](assets/wer-kennt-wen/2011_wkw_Zwischenzeugnis_1.jpg) — April 1, 2010
+  - [Page 2](assets/wer-kennt-wen/2011_wkw_Zwischenzeugnis_2.jpg) — April 1, 2010
+  - [Page 3](assets/wer-kennt-wen/2011_wkw_Zwischenzeugnis_3.jpg) — April 1, 2010
 
 ---
 
 ## Personal Projects
 
-### January 2025 - May 2025: AI support for my tax software
+### January 2025 — May 2025: AI support for my tax software
 
 To simplify my tax return, I developed a CLI application that automatically captured
 documents using Azure Document Intelligence and entered them into the document manager of
@@ -651,10 +698,10 @@ https://github.com/SchulteDev/Sse-BelMngr-Hermine
 
 ## Education
 
-### 2004-2012: Diploma in Computer Science, University of Koblenz-Landau
+### 2004 — 2012: Diploma in Computer Science, University of Koblenz-Landau
 
 - **Degree:**
-  [Diploma in Computer Science](https://github.com/SchulteDev/SchulteDev/blob/main/_data/assets/Markus%20Schulte%20Diploma%20computer%20science%20certificate%20Diplom%20Informatik.pdf)
+  [Diploma in Computer Science](assets/Markus%20Schulte%20Diploma%20computer%20science%20certificate%20Diplom%20Informatik.pdf)
 - **Overall Mark:** Distinction (magna cum laude equivalent)
 - **Graduation:** September 27, 2012
 - **University:** University of Koblenz-Landau, Campus Koblenz
@@ -686,12 +733,10 @@ Visualistics in Koblenz.
 
 ### Certifications & Recognition
 
-- **StackOverflow:
-  ** [4000+ reputation points](https://stackoverflow.com/users/1645517/markus-schulte) demonstrating
-  community contributions
+- **[StackOverflow](https://stackoverflow.com/users/1645517/markus-schulte):**
+  4000+ reputation points demonstrating community contributions
 - **Java SE 8 TechCheck:** 93/100 score (2018)
-- **Atlassian Marketplace:** Successful commercial add-on developer with 83 global customers
-- **GitHub:** Active open-source contributor at https://github.com/SchulteMarkus
+- **[GitHub](https://github.com/SchulteMarkus):** Open-source contributor
 
 ## Career Breaks
 
