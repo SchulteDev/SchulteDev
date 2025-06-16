@@ -496,7 +496,7 @@ Terraform, Docker
 
 ### November 2017 — March 2018: Senior JavaEE Developer, Allianz Global Digital Factory
 
-*via SinnerSchrader Deutschland GmbH*
+*via SinnerSchrader Deutschland GmbH | Freelance | Munich*
 
 **Key Contributions:**
 
@@ -519,26 +519,67 @@ Terraform, Docker
 
 ### October 2016 — September 2017: Senior Engineer & DevOp, toom Baumarkt GmbH
 
-*via tarent solutions GmbH*
+*via tarent solutions GmbH | Freelance | Bonn*
+
+**Context:** "Butterkekse" development team (8-member Scrum team) following "you build it, you run
+it" principle for microservices development
+
+**Role:** Lead Developer with cross-team quality leadership responsibilities
 
 **Key Contributions:**
 
-- Developed microservices using Java and Golang
-- Implemented containerization and DevOps practices
-- Built REST APIs with OAuth2 and comprehensive testing
+- **Backend Development:** Implemented business logic and endpoints for user-facing and
+  inter-microservice communication
+- **Microservices Architecture:** Developed production microservices using Java (primary) and
+  Golang, with additional Ruby and Shell scripting
+- **Quality Leadership:** Led weekly cross-team quality initiatives across 4 development teams in
+  agile project framework
+- **Technical Innovation:** Enabled decoupled development of Java microservices, removing external
+  dependencies
+- **Testing Excellence:** Introduced integration tests following Maven lifecycle and test pyramid
+  principles
+- **Performance Optimization:** Accelerated end-to-end test execution by ~70% and reduced Java
+  microservice memory consumption through Garbage Collection tuning
+- **Architecture Enhancement:** Independently improved modularization of existing services and
+  libraries
+- **DevOps Implementation:** Containerized microservices with Docker and established CI/CD with
+  Bamboo
+- **Tool Integration:** Introduced Swagger, HtmlUnit, OWASP, Apache JMeter, and comprehensive
+  metrics in pull request workflows
+
+**Leadership & Process:**
+
+- **Cross-team Responsibility:** Additional quality leadership role spanning entire 4-team project
+- **Team Collaboration:** Mentored junior developers while collaborating with senior colleagues
+- **Agile Excellence:** Demonstrated self-organized team capabilities and strong stakeholder
+  communication
+- **Tool Expertise:** Leveraged Atlassian Stack experience for project benefit
 
 **Impact:**
 
 - **Microservices adoption:** Delivered 5 production microservices replacing monolith components
 - **DevOps transformation:** Reduced deployment time from days to hours through automation
-- **Technical recommendations:** Received formal technical and organizational recommendations
+- **Quality enhancement:** Established comprehensive testing and metrics framework improving
+  software quality
+- **Performance gains:** Achieved 70% improvement in test execution speed and significant memory
+  optimization
+- **Technical recommendations:** Received formal technical and organizational recommendations from
+  tarent leadership
+- **Knowledge transfer:** Successfully shared expertise across teams, contributing to sprint and
+  project success
 
 **Technologies & Frameworks:**
 
-- **Backend:** Java, Golang, REST APIs, OAuth2
-- **Infrastructure:** Docker, Kubernetes, Microservices
+- **Backend:** Java (primary), Golang, Ruby, Shell scripting
+- **Infrastructure:** Docker, Kubernetes, Microservices architecture
+- **Testing:** Selenium/Geb/Spock (end-to-end), Pact (contract testing), Maven lifecycle
+  integration, comprehensive test automation
 - **Messaging:** Kafka (event streaming)
-- **Testing:** Pact (contract testing), comprehensive test automation
+- **APIs:** REST, OAuth2
+- **CI/CD:** Bamboo (continuous integration)
+- **Quality Tools:** Swagger (API documentation), HtmlUnit, OWASP (security), Apache JMeter (
+  performance testing)
+- **Monitoring:** Metrics integration, pull request quality gates
 
 ---
 
