@@ -391,27 +391,6 @@ Kubernetes
 **Product:** Commercial Atlassian Marketplace add-ons integrating code quality metrics
 into [Atlassian Bamboo Server CI/CD](https://www.atlassian.com/de/software/bamboo)
 
-During my time at [Xsite](#jan-2014---aug-2016-early-freelancing-projects),
-[Atlassian Bamboo Server](https://www.atlassian.com/de/software/bamboo) was evaluated.
-Bamboo was not chosen because (unlike Jenkins) it lacked integration with metric analyses such as
-Checkstyle.
-
-Therefore, in my role as a solo entrepreneur, I decided to create, distribute, and support
-add-ons for Atlassian Bamboo Server.
-I started with creating an addon for integrating
-[Checkstyle](https://en.wikipedia.org/wiki/Checkstyle) seamlessly into Bamboo as an MVP.
-When the first sales confirmed my intention, I expanded the portfolio with add-ons for PMD, CPD and
-FindBugs, and later with add-on bundles.
-
-My Bamboo add-ons were ultimately used worldwide and helped companies with quality assurance for
-their source code. At its peak, there were a total of 83 customers, ranging from small businesses to
-large customers with several dozen Bamboo slave servers.
-
-From a technological point of view, it was necessary to understand the output of all tools such as
-Checkstyle and to process this as part of the Bamboo build and integrate it seamlessly into the
-build view to realize the Bamboo add-ons. I also acquired in-depth knowledge of the
-Atlassian Bamboo SDK for this.
-
 **Key Achievements:**
 
 - Developed and maintained Java-based add-ons for Checkstyle, PMD, CPD, FindBugs integration
@@ -420,8 +399,8 @@ Atlassian Bamboo SDK for this.
 
 **Impact:**
 
-- **Global reach:** 83 customers across 15+ countries, from startups to enterprise (50+ Bamboo
-  agents)
+- **Global reach:** 83 customers across 15+ countries, from startups to enterprise
+  (200+ Bamboo agents)
 - **Revenue generation:** Sustainable 7-year business with recurring license revenue
 - **Market validation:** First-mover advantage in Bamboo code quality integration
 - **Technical adoption:** Enabled quality gates for Java projects in Bamboo ecosystem
