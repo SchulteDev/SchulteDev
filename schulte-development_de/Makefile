@@ -4,3 +4,4 @@ serve:
 clean:
 	-rm -r .jekyll-cache
 	-rm -r _site
+	-rm -r .jekyll-metadata
