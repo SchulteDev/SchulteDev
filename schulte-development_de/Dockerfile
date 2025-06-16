@@ -4,12 +4,12 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 COPY --chmod=444 Gemfile Gemfile.lock ./
 RUN bundle config set force_ruby_platform true && \
     bundle install
-COPY --chmod=444 . .
 
 USER nobody
 EXPOSE 4000 35729
