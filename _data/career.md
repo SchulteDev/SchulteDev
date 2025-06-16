@@ -580,6 +580,12 @@ it" principle for microservices development
 - **Quality Tools:** Swagger (API documentation), HtmlUnit, OWASP (security), Apache JMeter (
   performance testing)
 - **Monitoring:** Metrics integration, pull request quality gates
+  
+ 
+**Employment References**
+
+- [Letter Of Recommendation, processual](assets/tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 14, 2017
+- [Letter Of Recommendation, technical](assets/tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 11, 2017
 
 ---
 
