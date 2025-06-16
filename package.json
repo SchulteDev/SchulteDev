@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "test": "npm run cv:test",
-    "cv:update": "node scripts/run-cv-update.js",
-    "cv:full-rebuild": "node scripts/transform-full-rebuild.js",
-    "cv:incremental": "node scripts/transform-incremental.js",
-    "cv:test": "node scripts/test-local.js",
-    "cv:test:full": "node scripts/test-local.js full_rebuild"
+    "build": "npx tsc",
+    "clean": "rm -r dist/ node_modules/",
+    "cv:update": "npm run build && node dist/run-cv-update.js",
+    "cv:full-rebuild": "npm run build && node dist/transform-full-rebuild.js",
+    "cv:incremental": "npm run build && node dist/transform-incremental.js",
+    "cv:test": "npm run build && node dist/test-local.js",
+    "cv:test:full": "npm run build && node dist/test-local.js full_rebuild"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,12 @@
     "consola": "3.4.2",
     "dotenv": "16.5.0",
     "fs-extra": "11.3.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "11.0.4",
+    "@types/node": "22.15.31",
+    "typescript": "5.8.3",
+    "ts-node": "10.9.2"
   },
   "engines": {
     "node": ">=22.0.0",

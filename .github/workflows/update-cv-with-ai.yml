@@ -71,7 +71,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
-        run: node scripts/run-cv-update.js
+        run: npx ts-node scripts/run-cv-update.ts
 
       - name: Set generation timestamp
         id: timestamp

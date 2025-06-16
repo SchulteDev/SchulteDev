@@ -4,14 +4,16 @@
 
 ```
 scripts/
-├── config.js                 # Central configuration & environment variables
-├── logger.js                 # Simple logging with Consola
-├── claude-api.js             # Shared API logic using Anthropic SDK
-├── run-cv-update.js          # Main workflow orchestrator (includes validation)
-├── transform-incremental.js  # Incremental update (includes detection)
-├── transform-full-rebuild.js # Full rebuild from scratch
-└── test-local.js             # Local testing utility
+├── config.ts                 # Central configuration & environment variables
+├── logger.ts                 # Simple logging with Consola
+├── claude-api.ts             # Shared API logic using Anthropic SDK
+├── run-cv-update.ts          # Main workflow orchestrator (includes validation)
+├── transform-incremental.ts  # Incremental update (includes detection)
+├── transform-full-rebuild.ts # Full rebuild from scratch
+└── test-local.ts             # Local testing utility
 ```
+
+The compiled JavaScript files are stored in the `dist/` directory.
 
 ## Data Flow
 
@@ -57,40 +59,56 @@ $env:ANTHROPIC_API_KEY="your-key-here"    # Windows PowerShell
 npm run cv:test            # Incremental update
 npm run cv:test:full       # Full rebuild
 
-# Direct Node.js execution
-node scripts/test-local.js incremental
-node scripts/test-local.js full_rebuild
+# Direct execution (requires build step first)
+npm run build
+node dist/test-local.js incremental
+node dist/test-local.js full_rebuild
 
 # Skip API (use existing claude_response.json)
-set SKIP_API=true && node scripts/test-local.js
+$env:SKIP_API="true"; npm run cv:test     # PowerShell
+# or
+set SKIP_API=true && npm run cv:test      # Command Prompt
+# or
+SKIP_API=true npm run cv:test             # Unix/Linux/macOS
 
 # Dry run
-set DRY_RUN=true && node scripts/test-local.js
+$env:DRY_RUN="true"; npm run cv:test      # PowerShell
+# or
+set DRY_RUN=true && npm run cv:test       # Command Prompt
+# or
+DRY_RUN=true npm run cv:test              # Unix/Linux/macOS
 ```
 
 ### Custom Configuration
 
 ```bash
 # Override paths
-set CAREER_FILE=my_career.md
-set CV_FILE=output/cv.tex
-node scripts/test-local.js
+$env:CAREER_FILE="my_career.md"; $env:CV_FILE="output/cv.tex"; npm run cv:test     # PowerShell
+# or
+set CAREER_FILE=my_career.md && set CV_FILE=output/cv.tex && npm run cv:test       # Command Prompt
+# or
+CAREER_FILE=my_career.md CV_FILE=output/cv.tex npm run cv:test                     # Unix/Linux/macOS
 
 # Create backups
-set CREATE_BACKUP=true && node scripts/test-local.js
+$env:CREATE_BACKUP="true"; npm run cv:test                                         # PowerShell
+# or
+set CREATE_BACKUP=true && npm run cv:test                                          # Command Prompt
+# or
+CREATE_BACKUP=true npm run cv:test                                                 # Unix/Linux/macOS
 ```
 
 ### Direct Script Usage
 
 ```bash
-# Just run the update (GitHub Actions uses this)
-node scripts/run-cv-update.js
+# Build TypeScript files first
+npm run build
 
-# Run specific transformation
-node scripts/transform-incremental.js
-node scripts/transform-full-rebuild.js
+# Run the compiled JavaScript files
+node dist/run-cv-update.js
+node dist/transform-incremental.js
+node dist/transform-full-rebuild.js
 
-# Using npm scripts
+# Using npm scripts (recommended - these handle the build step automatically)
 npm run cv:update
 npm run cv:incremental
 npm run cv:full-rebuild
@@ -123,11 +141,38 @@ npm run cv:full-rebuild
 - `GITHUB_EVENT_NAME` - Determines trigger context
 - `GITHUB_REF` - Branch reference for conditional operations
 
+## TypeScript Configuration
+
+The project uses TypeScript for improved developer experience and code quality:
+
+```
+project/
+├── tsconfig.json           # Main TypeScript configuration
+├── tsconfig.node.json      # Node.js specific TypeScript configuration
+└── dist/                   # Compiled JavaScript output directory
+```
+
+### TypeScript Features
+
+- **Static Type Checking**: Catch errors at compile time rather than runtime
+- **Type Definitions**: Using types from @anthropic-ai/sdk and other dependencies
+- **Code Completion**: Better IDE support with autocompletion and documentation
+- **Improved Refactoring**: Safer code changes with type checking
+- **Build Process**: Compiles TypeScript to JavaScript in the dist/ directory
+
+### Development Workflow
+
+1. Edit TypeScript files in the scripts/ directory
+2. Run `npm run build` to compile to JavaScript
+3. Run scripts using npm commands (e.g., `npm run cv:test`)
+4. For direct execution, use the compiled files in dist/
+
 ## Key Improvements
 
-### 1. **JavaScript-Based Architecture**
+### 1. **TypeScript-Based Architecture**
 
-- Modern JavaScript ES modules for better code organization
+- TypeScript for better type safety and developer experience
+- Modern ES modules for better code organization
 - Async/await for cleaner asynchronous code
 - Error handling with try/catch blocks
 - NPM scripts for easier command execution
@@ -136,9 +181,9 @@ npm run cv:full-rebuild
 
 ### 2. **Shared Components**
 
-- `config.js` - Environment variables and configuration settings
-- `logger.js` - Simplified logging with Consola
-- `claude-api.js` - API calls using Anthropic SDK, LaTeX extraction, and prompt building
+- `config.ts` - Environment variables and configuration settings with type safety
+- `logger.ts` - Simplified logging with Consola
+- `claude-api.ts` - API calls using Anthropic SDK with proper type definitions, LaTeX extraction, and prompt building
 
 ### 3. **Simplified Architecture**
 
@@ -149,7 +194,7 @@ npm run cv:full-rebuild
 
 ### 4. **Main Orchestrator**
 
-`run-cv-update.js` handles:
+`run-cv-update.ts` handles:
 
 - Mode determination (from GitHub inputs or defaults)
 - Running appropriate transformation (incremental/full_rebuild)
@@ -168,3 +213,5 @@ The architecture properly integrates with GitHub Actions by:
 - Providing proper error states and cleanup
 - Supporting artifact collection for debugging
 - Enabling conditional PDF compilation and release creation
+- Using TypeScript for improved code quality and maintainability
+- Compiling TypeScript to JavaScript before execution in the workflow
