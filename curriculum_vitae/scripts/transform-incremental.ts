@@ -20,19 +20,19 @@ const buildIncrementalPrompt = (): PromptResult => {
   }
 
   const systemPrompt = buildSystemPrompt();
-  const userPrompt = `## TASK: Fix LaTeX Errors & Apply Updates
+  const userPrompt = `Fix LaTeX errors and apply updates to this anti-CV. Keep the humorous tone and creative approach.
 
-### Current Document (with compilation errors):
+Current anti-CV:
 \`\`\`latex
 ${fs.readFileSync(CV_FILE, 'utf8')}
 \`\`\`
 
-### Career Updates to Integrate:
+Updates to integrate:
 \`\`\`diff
 ${fs.readFileSync(DIFF_FILE, 'utf8')}
 \`\`\`
 
-Fix compilation errors and integrate career updates seamlessly. Only apply updates if they offer significant added value. Use the template's structure and style as reference.`;
+Fix compilation errors, apply valuable updates while maintaining entertaining anti-CV style.`;
 
   return {systemPrompt, userPrompt};
 };

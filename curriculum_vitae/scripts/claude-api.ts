@@ -3,7 +3,7 @@
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
-import {API_MODEL, MAX_TOKENS, RESPONSE_FILE, TEMPLATE_FILE} from './config.js';
+import {API_MODEL, MAX_TOKENS, RESPONSE_FILE} from './config.js';
 import logger from './logger.js';
 
 export interface PromptResult {
@@ -163,48 +163,9 @@ export const extractLatex = (outputFile: string): boolean => {
 
 // Function to build system prompt (shared between modes)
 export const buildSystemPrompt = (): string => {
-  let templateContent = '';
+  return `Expert LaTeX developer creating entertaining anti-CV documents.
 
-  // Try to read template file
-  try {
-    if (fs.existsSync(TEMPLATE_FILE)) {
-      templateContent = fs.readFileSync(TEMPLATE_FILE, 'utf8');
-    }
-  } catch (error) {
-    logger.warn('Could not read template file, proceeding without it');
-  }
-
-  const basePrompt = `You are an expert LaTeX developer specializing in bulletproof document compilation and creative CV design.
-
-## COMPILATION CONSTRAINTS
-- Target: GitHub Actions with xu-cheng/latex-action
-- Zero tolerance for compilation errors or warnings
-- Use standard TeXLive packages only
-- Conservative package selection over fancy features
-
-## OUTPUT REQUIREMENTS
-- Return ONLY complete LaTeX code
-- No markdown formatting or explanations
-- Guaranteed first-attempt compilation success
-- Maintain anti-CV humorous tone with professional accuracy
-- Do NOT include any thinking tags or explanations in your response`;
-
-  if (templateContent) {
-    return `${basePrompt}
-
-## ANTI-CV TEMPLATE REFERENCE
-Use this template as a structural and stylistic guide:
-
-\`\`\`latex
-${templateContent}
-\`\`\`
-
-Follow the template's:
-- Package usage and import order
-- Custom command definitions (\\heartstab, \\squigarr)
-- Section structure and formatting
-- Anti-CV tone and approach (failures/rejections + lessons learned)`;
-  }
-
-  return basePrompt;
+CONSTRAINTS: GitHub Actions compilation, zero errors, standard packages.
+ANTI-CV CONCEPT: Humorous failures, rejections, mistakes + lessons learned.
+OUTPUT: Complete LaTeX code only, no explanations.`;
 };

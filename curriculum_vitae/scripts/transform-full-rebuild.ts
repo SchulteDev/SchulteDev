@@ -12,14 +12,14 @@ const buildFullRebuildPrompt = (): PromptResult => {
   }
 
   const systemPrompt = buildSystemPrompt();
-  const userPrompt = `## TASK: Create Complete Anti-CV from Scratch
+  const userPrompt = `Create entertaining anti-CV from career data. Focus on failures, rejections, things that went wrong + lessons learned. Be creative and humorous while professional.
 
-### Career Data:
+Career data:
 \`\`\`markdown
 ${fs.readFileSync(CAREER_FILE, 'utf8')}
 \`\`\`
 
-Create a complete anti-CV using the provided template as structural and stylistic guidance. Transform the career data into the anti-CV format (failures/rejections + lessons learned).`;
+Transform achievements into amusing failure stories and learning experiences.`;
 
   return {systemPrompt, userPrompt};
 };
