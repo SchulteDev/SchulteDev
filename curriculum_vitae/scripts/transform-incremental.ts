@@ -3,12 +3,44 @@
 import fs from 'fs';
 import {exec} from 'child_process';
 import util from 'util';
-import {CAREER_FILE, DIFF_FILE, setOutput} from './config.js';
+import {CAREER_FILE, CV_FILE, DIFF_FILE, setOutput} from './config.js';
 import logger from './logger.js';
-import {buildCvPrompt, callClaudeApi} from './claude-api.js';
+import {buildSystemPrompt, callClaudeApi, PromptResult} from './claude-api.js';
 
 // Promisify exec
 const execAsync = util.promisify(exec);
+
+// Build prompt for incremental update
+const buildIncrementalPrompt = (): PromptResult => {
+  if (!fs.existsSync(CV_FILE)) {
+    throw new Error(`CV file not found: ${CV_FILE}`);
+  }
+  if (!fs.existsSync(DIFF_FILE)) {
+    throw new Error(`Diff file not found: ${DIFF_FILE}`);
+  }
+
+  const systemPrompt = buildSystemPrompt();
+  const userPrompt = `## TASK: Fix LaTeX Errors & Apply Updates
+
+### Current Document (with compilation errors):
+\`\`\`latex
+${fs.readFileSync(CV_FILE, 'utf8')}
+\`\`\`
+
+### Career Updates to Integrate:
+\`\`\`diff
+${fs.readFileSync(DIFF_FILE, 'utf8')}
+\`\`\`
+
+## SPECIFIC FIXES NEEDED:
+- Font shape 'T1/cmss/b/n' undefined → Use safe font combinations
+- \\lastpage undefined → Use \\pageref{LastPage} with lastpage package
+- Any other compilation blockers
+
+Fix all errors while preserving style consistency and integrating the career updates seamlessly, but do the update only if it offers significant added value compared to the current version.`;
+
+  return {systemPrompt, userPrompt};
+};
 
 // Function to generate diff
 const generateDiff = async (): Promise<boolean> => {
@@ -77,11 +109,7 @@ export const main = async (): Promise<void> => {
       return; // Return instead of exit
     }
 
-    const {systemPrompt, userPrompt} = buildCvPrompt('incremental');
-    if (!systemPrompt || !userPrompt) {
-      fs.unlinkSync(DIFF_FILE);
-      throw new Error('Failed to build prompts');
-    }
+    const {systemPrompt, userPrompt} = buildIncrementalPrompt();
 
     // Make API call with separate system and user prompts
     const success = await callClaudeApi(systemPrompt, userPrompt);

@@ -21,7 +21,7 @@ export const API_MODEL: string = process.env.API_MODEL ?? 'claude-opus-4-2025051
 // Set a balanced default for CV generation that won't trigger streaming warnings
 // while keeping costs reasonable ($0.75 per full CV output at $75/1M tokens)
 // Actual output tokens used in current CV is ~6-7K tokens based on file size
-export const MAX_TOKENS: number = parseInt(process.env.MAX_TOKENS ?? '10000');
+export const MAX_TOKENS: number = parseInt(process.env.MAX_TOKENS ?? '8000');
 
 // Backup settings
 export const CREATE_BACKUP: boolean = process.env.CREATE_BACKUP === 'true';

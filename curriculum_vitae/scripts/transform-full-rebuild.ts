@@ -1,9 +1,28 @@
 // transform-full-rebuild.ts - Handles full rebuild of CV
 
-import {DIFF_FILE, setOutput} from './config.js';
+import {CAREER_FILE, setOutput} from './config.js';
 import logger from './logger.js';
-import {buildCvPrompt, callClaudeApi} from './claude-api.js';
+import {buildSystemPrompt, callClaudeApi, PromptResult} from './claude-api.js';
 import fs from "fs";
+
+// Build prompt for full rebuild
+const buildFullRebuildPrompt = (): PromptResult => {
+  if (!fs.existsSync(CAREER_FILE)) {
+    throw new Error(`Career file not found: ${CAREER_FILE}`);
+  }
+
+  const systemPrompt = buildSystemPrompt();
+  const userPrompt = `## TASK: Create Complete Anti-CV from Scratch
+
+### Career Data:
+\`\`\`markdown
+${fs.readFileSync(CAREER_FILE, 'utf8')}
+\`\`\`
+
+Create a complete, bulletproof anti-CV that compiles perfectly and follows the required document structure.`;
+
+  return {systemPrompt, userPrompt};
+};
 
 export const main = async (): Promise<void> => {
   try {
@@ -12,11 +31,7 @@ export const main = async (): Promise<void> => {
     // Set output mode
     setOutput('mode', 'full_rebuild');
 
-    const {systemPrompt, userPrompt} = buildCvPrompt('full_rebuild');
-    if (!systemPrompt || !userPrompt) {
-      fs.unlinkSync(DIFF_FILE);
-      throw new Error('Failed to build prompts');
-    }
+    const {systemPrompt, userPrompt} = buildFullRebuildPrompt();
 
     const success = await callClaudeApi(systemPrompt, userPrompt);
     if (success) {

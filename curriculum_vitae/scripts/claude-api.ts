@@ -3,12 +3,12 @@
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
-import {API_MODEL, CAREER_FILE, CV_FILE, DIFF_FILE, MAX_TOKENS, RESPONSE_FILE} from './config.js';
+import {API_MODEL, MAX_TOKENS, RESPONSE_FILE} from './config.js';
 import logger from './logger.js';
 
-interface PromptResult {
-  systemPrompt: string | null;
-  userPrompt: string | null;
+export interface PromptResult {
+  systemPrompt: string;
+  userPrompt: string;
 }
 
 export const callClaudeApi = async (systemPrompt: string, userPrompt: string): Promise<boolean> => {
@@ -161,8 +161,8 @@ export const extractLatex = (outputFile: string): boolean => {
   }
 };
 
-// Function to build system prompt (separate from user content)
-const buildSystemPrompt = (): string => {
+// Function to build system prompt (shared between modes)
+export const buildSystemPrompt = (): string => {
   return `You are an expert LaTeX developer specializing in bulletproof document compilation and creative CV design.
 
 ## COMPILATION CONSTRAINTS
@@ -196,66 +196,4 @@ Required first page layout:
 - Guaranteed first-attempt compilation success
 - Maintain anti-CV humorous tone with professional accuracy
 - Do NOT include any thinking tags or explanations in your response`;
-};
-
-// Function to build user prompt (content-specific)
-export const buildCvPrompt = (mode: string): PromptResult => {
-  const systemPrompt = buildSystemPrompt();
-  let userPrompt: string | null = '';
-
-  switch (mode) {
-    case 'incremental': {
-      if (!fs.existsSync(CV_FILE)) {
-        logger.error(`CV file not found: ${CV_FILE}`);
-        return {systemPrompt: null, userPrompt: null};
-      }
-      if (!fs.existsSync(DIFF_FILE)) {
-        logger.error(`Diff file not found: ${DIFF_FILE}`);
-        return {systemPrompt: null, userPrompt: null};
-      }
-
-      userPrompt = `## TASK: Fix LaTeX Errors & Apply Updates
-
-### Current Document (with compilation errors):
-\`\`\`latex
-${fs.readFileSync(CV_FILE, 'utf8')}
-\`\`\`
-
-### Career Updates to Integrate:
-\`\`\`diff
-${fs.readFileSync(DIFF_FILE, 'utf8')}
-\`\`\`
-
-## SPECIFIC FIXES NEEDED:
-- Font shape 'T1/cmss/b/n' undefined → Use safe font combinations
-- \\lastpage undefined → Use \\pageref{LastPage} with lastpage package
-- Any other compilation blockers
-
-Fix all errors while preserving style consistency and integrating the career updates seamlessly, but do the update only if it offers significant added value compared to the current version.`;
-      break;
-    }
-
-    case 'full_rebuild': {
-      if (!fs.existsSync(CAREER_FILE)) {
-        logger.error(`Career file not found: ${CAREER_FILE}`);
-        return {systemPrompt: null, userPrompt: null};
-      }
-
-      userPrompt = `## TASK: Create Complete Anti-CV from Scratch
-
-### Career Data:
-\`\`\`markdown
-${fs.readFileSync(CAREER_FILE, 'utf8')}
-\`\`\`
-
-Create a complete, bulletproof anti-CV that compiles perfectly and follows the required document structure.`;
-      break;
-    }
-
-    default:
-      logger.error(`Invalid mode: ${mode}`);
-      return {systemPrompt: null, userPrompt: null};
-  }
-
-  return {systemPrompt, userPrompt};
 };
