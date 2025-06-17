@@ -2,7 +2,8 @@
 
 import {CAREER_FILE, setOutput} from './config.js';
 import logger from './logger.js';
-import {buildSystemPrompt, callClaudeApi, PromptResult} from './claude-api.js';
+import {callClaudeApi, PromptResult} from './claude-api.js';
+import {getFullRebuildPrompt, getSystemPrompt} from './prompts.js';
 import fs from "fs";
 
 // Build prompt for full rebuild
@@ -11,15 +12,9 @@ const buildFullRebuildPrompt = (): PromptResult => {
     throw new Error(`Career file not found: ${CAREER_FILE}`);
   }
 
-  const systemPrompt = buildSystemPrompt();
-  const userPrompt = `Create entertaining anti-CV from career data. Focus on failures, rejections, things that went wrong + lessons learned. Be creative and humorous while professional.
-
-Career data:
-\`\`\`markdown
-${fs.readFileSync(CAREER_FILE, 'utf8')}
-\`\`\`
-
-Transform achievements into amusing failure stories and learning experiences.`;
+  const careerData = fs.readFileSync(CAREER_FILE, 'utf8');
+  const systemPrompt = getSystemPrompt();
+  const userPrompt = getFullRebuildPrompt(careerData);
 
   return {systemPrompt, userPrompt};
 };

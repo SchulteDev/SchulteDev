@@ -161,11 +161,4 @@ export const extractLatex = (outputFile: string): boolean => {
   }
 };
 
-// Function to build system prompt (shared between modes)
-export const buildSystemPrompt = (): string => {
-  return `Expert LaTeX developer creating entertaining anti-CV documents.
 
-CONSTRAINTS: GitHub Actions compilation, zero errors, standard packages.
-ANTI-CV CONCEPT: Humorous failures, rejections, mistakes + lessons learned.
-OUTPUT: Complete LaTeX code only, no explanations.`;
-};

@@ -6,6 +6,8 @@
 ─ config.ts                 # Central configuration & environment variables
 ─ logger.ts                 # Simple logging with Consola
 ─ claude-api.ts             # Shared API logic using Anthropic SDK
+─ prompts.json              # External prompt templates 
+─ prompts.ts                # Prompt management utilities
 ─ run-cv-update.ts          # Main workflow orchestrator (includes validation)
 ─ transform-incremental.ts  # Incremental update (includes detection)
 ─ transform-full-rebuild.ts # Full rebuild from scratch
@@ -148,3 +150,13 @@ Based on the current package.json configuration:
 - `npm run cv:incremental` - Incremental update transformation
 - `npm run cv:test` - Local testing with incremental update
 - `npm run cv:test:full` - Local testing with full rebuild
+
+## Prompt Management
+
+Prompts are externalized to `prompts.json` with template variable substitution:
+
+- `{{CAREER_DATA}}` - career.md content (full rebuild)
+- `{{CURRENT_CV}}` - current CV content (incremental)  
+- `{{DIFF_DATA}}` - git diff content (incremental)
+
+Edit `prompts.json` directly to modify prompts. Changes take effect on next execution.

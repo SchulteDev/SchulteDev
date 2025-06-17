@@ -5,7 +5,8 @@ import {exec} from 'child_process';
 import util from 'util';
 import {CAREER_FILE, CV_FILE, DIFF_FILE, setOutput} from './config.js';
 import logger from './logger.js';
-import {buildSystemPrompt, callClaudeApi, PromptResult} from './claude-api.js';
+import {callClaudeApi, PromptResult} from './claude-api.js';
+import {getIncrementalPrompt, getSystemPrompt} from './prompts.js';
 
 // Promisify exec
 const execAsync = util.promisify(exec);
@@ -19,20 +20,10 @@ const buildIncrementalPrompt = (): PromptResult => {
     throw new Error(`Diff file not found: ${DIFF_FILE}`);
   }
 
-  const systemPrompt = buildSystemPrompt();
-  const userPrompt = `Fix LaTeX errors and apply updates to this anti-CV. Keep the humorous tone and creative approach.
-
-Current anti-CV:
-\`\`\`latex
-${fs.readFileSync(CV_FILE, 'utf8')}
-\`\`\`
-
-Updates to integrate:
-\`\`\`diff
-${fs.readFileSync(DIFF_FILE, 'utf8')}
-\`\`\`
-
-Fix compilation errors, apply valuable updates while maintaining entertaining anti-CV style.`;
+  const currentCv = fs.readFileSync(CV_FILE, 'utf8');
+  const diffData = fs.readFileSync(DIFF_FILE, 'utf8');
+  const systemPrompt = getSystemPrompt();
+  const userPrompt = getIncrementalPrompt(currentCv, diffData);
 
   return {systemPrompt, userPrompt};
 };
