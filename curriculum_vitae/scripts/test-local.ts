@@ -23,7 +23,7 @@ const DRY_RUN: boolean = process.env.DRY_RUN === 'true';
 // Usage information
 const showUsage = (): void => {
   console.log(`
-Usage: tsx scripts/test-local.ts [mode] [options]
+Usage: tsx test-local.ts [mode] [options]
 
 Modes:
   incremental  - Update CV based on changes (default)
@@ -36,10 +36,10 @@ Environment variables:
   CREATE_BACKUP=true - Create backup before updating
 
 Examples:
-  tsx scripts/test-local.ts incremental
-  tsx scripts/test-local.ts full_rebuild
-  SKIP_API=true tsx scripts/test-local.ts incremental
-  DRY_RUN=true tsx scripts/test-local.ts full_rebuild
+  tsx test-local.ts incremental
+  tsx test-local.ts full_rebuild
+  SKIP_API=true tsx test-local.ts incremental
+  DRY_RUN=true tsx test-local.ts full_rebuild
 `);
 };
 
@@ -111,7 +111,7 @@ const main = async (): Promise<void> => {
 
     // Run the CV update workflow
     logger.info(`Running CV update workflow in ${MODE} mode...`);
-    const {stdout, stderr} = await execAsync('tsx scripts/run-cv-update.ts');
+    const {stdout, stderr} = await execAsync('tsx run-cv-update.ts');
     logger.debug('CV update workflow completed');
     logger.debug(`stdout: ${stdout.slice(0, 200)}${stdout.length > 200 ? '...' : ''}`);
 

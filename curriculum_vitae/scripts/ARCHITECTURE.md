@@ -3,17 +3,14 @@
 ## Structure
 
 ```
-scripts/
-├── config.ts                 # Central configuration & environment variables
-├── logger.ts                 # Simple logging with Consola
-├── claude-api.ts             # Shared API logic using Anthropic SDK
-├── run-cv-update.ts          # Main workflow orchestrator (includes validation)
-├── transform-incremental.ts  # Incremental update (includes detection)
-├── transform-full-rebuild.ts # Full rebuild from scratch
-└── test-local.ts             # Local testing utility
+─ config.ts                 # Central configuration & environment variables
+─ logger.ts                 # Simple logging with Consola
+─ claude-api.ts             # Shared API logic using Anthropic SDK
+─ run-cv-update.ts          # Main workflow orchestrator (includes validation)
+─ transform-incremental.ts  # Incremental update (includes detection)
+─ transform-full-rebuild.ts # Full rebuild from scratch
+─ test-local.ts             # Local testing utility
 ```
-
-The compiled JavaScript files are stored in the `dist/` directory.
 
 ## Data Flow
 
@@ -80,7 +77,7 @@ npm run clean              # Remove dist/ and node_modules/
 
 ```bash
 # Override paths
-CAREER_FILE=my_career.md CV_FILE=output/cv.tex npm test                     # Unix/Linux/macOS
+CAREER_FILE=my_career.md CV_FILE=output/cv.tex npm test       # Unix/Linux/macOS
 
 # Create backups
 CREATE_BACKUP=true npm test                                                 # Unix/Linux/macOS
@@ -90,10 +87,10 @@ CREATE_BACKUP=true npm test                                                 # Un
 
 ```bash
 # Using tsx for direct TypeScript execution (no build step required)
-npx tsx scripts/test-local.ts
+npx tsx test-local.ts
 
 # With arguments
-npx tsx scripts/test-local.ts full_rebuild
+npx tsx test-local.ts full_rebuild
 ```
 
 ## Environment Variables
@@ -129,14 +126,14 @@ The project uses TypeScript with tsx for direct execution without a build step:
 
 ```
 project/
-├── tsconfig.json           # Main TypeScript configuration
-├── package.json            # Contains tsx-based npm scripts
-└── scripts/                # TypeScript source files (executed directly)
+├── tsconfig.json     # Main TypeScript configuration
+├── package.json      # Contains tsx-based npm scripts
+└── *.ts              # TypeScript source files (executed directly)
 ```
 
 ### Development Workflow
 
-1. Edit TypeScript files in the scripts/ directory
+1. Edit TypeScript files in this directory
 2. Run scripts directly using npm commands (e.g., `npm test`)
 3. tsx handles TypeScript compilation on-the-fly
 

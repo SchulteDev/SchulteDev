@@ -5,8 +5,8 @@ import os from 'os';
 import path from 'path';
 
 // File paths
-export const CAREER_FILE: string = process.env.CAREER_FILE ?? '_data/career.md';
-export const CV_FILE: string = process.env.CV_FILE ?? 'cv/markus-schulte-dev-anti-cv.tex';
+export const CAREER_FILE: string = process.env.CAREER_FILE ?? '../../_data/career.md';
+export const CV_FILE: string = process.env.CV_FILE ?? '../markus-schulte-dev-anti-cv.tex';
 export const DIFF_FILE: string = process.env.DIFF_FILE ?? 'career_changes.diff';
 export const RESPONSE_FILE: string = process.env.RESPONSE_FILE ?? 'claude_response.json';
 export const TEMP_FILE: string = process.env.TEMP_FILE ?? 'temp_cv.tex';
@@ -18,7 +18,7 @@ export const OUTPUT_FILE: string = process.env.GITHUB_OUTPUT ?? (process.env.GIT
 
 // API configuration
 export const API_MODEL: string = process.env.API_MODEL ?? 'claude-opus-4-20250514';
-export const MAX_TOKENS: number = parseInt(process.env.MAX_TOKENS ?? '8000');
+export const MAX_TOKENS: number = parseInt(process.env.MAX_TOKENS ?? '10000');
 
 // Backup settings
 export const CREATE_BACKUP: boolean = process.env.CREATE_BACKUP === 'true';

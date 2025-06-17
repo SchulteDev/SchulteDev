@@ -5,13 +5,13 @@ on:
     branches: [ '*' ]
     paths:
       - '_data/career.md'
-      - 'scripts/**'
+      - 'curriculum_vitae/scripts/**'
       - 'package*.json'
   pull_request:
     branches: [ '*' ]
     paths:
       - '_data/career.md'
-      - 'scripts/**'
+      - 'curriculum_vitae/scripts/**'
       - 'package*.json'
   workflow_dispatch:
     inputs:
@@ -29,12 +29,15 @@ permissions:
 
 env:
   CAREER_FILE: _data/career.md
-  CV_FILE: cv/markus-schulte-dev-anti-cv.tex
+  CV_FILE: curriculum_vitae/markus-schulte-dev-anti-cv.tex
   RESPONSE_FILE: claude_response.json
 
 jobs:
   update-cv-with-ai:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: curriculum_vitae/scripts
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -87,6 +90,7 @@ jobs:
 
       - name: Commit updated LaTeX file
         if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        working-directory: .
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -96,6 +100,7 @@ jobs:
 
       - name: Delete existing release and tag
         if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        working-directory: .
         run: |
           gh release delete cv-latest --yes || true
           git push --delete origin cv-latest || true
@@ -126,6 +131,7 @@ jobs:
 
       - name: Output download link
         if: success() && steps.transform.outputs.mode != 'skip'
+        working-directory: .
         run: |
           echo "✅ CV updated successfully with Claude 4 Opus!"
           echo "🎯 Mode: ${{ steps.transform.outputs.mode }}"
