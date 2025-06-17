@@ -158,6 +158,36 @@ Freelance | Remote*
 
 **Responsibility:** 10 of 30 applications under parallel technical supervision
 
+**Service Offering & Responsibilities:**
+
+**IT Architecture Leadership:**
+- IT-architectural responsibility for "04 – Application Development" area of Phoenix transformation project
+- Operational steering and medium to long-term strategic direction for application development
+- Toolchain modernization analysis, optimization identification, and implementation guidance
+- Ensuring conformity with architecture standards and guidelines across all projects
+
+**Solution Design & Migration:**
+- FirstMover migration support to Azure with Solution Design Template definition
+- Application of templates to FirstMovers with active implementation guidance
+- Technical software evaluation within LBBW IT voting framework
+- Solution architecture delivery including alternative assessment and decision consulting
+
+**Architecture Governance:**
+- Architecture transparency from project start to completion
+- Technical debt identification and remediation pathway definition
+- Solution design coordination with Chief Development for custom applications
+- Technology synergy identification (shared platforms, standards, applications)
+- Risk assessment ensuring solutions meet required specifications
+
+**Project Support & Communication:**
+- Intervention for specific problems with platform-compliant solution design proposals
+- Solution design workshops and brainstorming session leadership
+- Technical design creation and stakeholder presentation
+- Architecture translation into application landscape and infrastructure
+- Clear communication of architecture and solution design to business and IT stakeholders
+- Architecture decision responsibility and communication in project committees
+- Active consultation and guidance for project managers on architecture matters
+
 **Technical Challenges:**
 
 - Cataloging hundreds of legacy applications for Skywalker migration assessment
@@ -289,6 +319,9 @@ coach
   distributed systems
 - **Technology Integration:** Successfully integrated Azure services, Algolia search, and Web
   Components into cohesive platform
+- **Project Delivery:** Maintained detailed monthly activity tracking and delivered all project phases on schedule
+- **Documentation Excellence:** Created comprehensive technical specifications and maintained project documentation standards
+- **Stakeholder Reporting:** Provided regular progress updates and technical guidance to business stakeholders
 
 **Business Impact:**
 
