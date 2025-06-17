@@ -1,3 +1,4 @@
 node_modules/
 .env
 career_changes.diff
+claude_response.json

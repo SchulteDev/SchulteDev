@@ -18,6 +18,9 @@ export const OUTPUT_FILE: string = process.env.GITHUB_OUTPUT ?? (process.env.GIT
 
 // API configuration
 export const API_MODEL: string = process.env.API_MODEL ?? 'claude-opus-4-20250514';
+// Set a balanced default for CV generation that won't trigger streaming warnings
+// while keeping costs reasonable ($0.75 per full CV output at $75/1M tokens)
+// Actual output tokens used in current CV is ~6-7K tokens based on file size
 export const MAX_TOKENS: number = parseInt(process.env.MAX_TOKENS ?? '10000');
 
 // Backup settings
