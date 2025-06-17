@@ -5,31 +5,25 @@
 
 Website for [schulte-development.de](https://schulte-development.de)
 
-# Development notes
+## 🛠️ Tech Stack
 
-- [Jekyll](https://jekyllrb.com) as the static site framework
+- [Jekyll](https://jekyllrb.com) static site generator
   - [Beautiful-Jekyll](https://beautifuljekyll.com) as the Jekyll theme
-- Hosted by [GitHub Pages](https://pages.github.com/)
+- [GitHub Pages](https://pages.github.com/) hosting
+- Docker for development
+- Automated CI/CD workflows
 
 ## Setup
 
 ### Option 1: Native Installation
 
-- Follow [Jekyll installation instructions](https://jekyllrb.com/docs/#instructions)
+1. Follow [Jekyll installation instructions](https://jekyllrb.com/docs/#instructions)
+2. `$ make`
 
-### Option 2: Docker (Recommended for Windows)
+### Option 2: Docker
 
-Requirements:
+Requirements: [Docker](https://www.docker.com/products/docker-desktop/) installed
 
-- [Docker](https://www.docker.com/products/docker-desktop/) installed on your system
-
-## Run locally
-
-### Native Installation
-
-    $ make
-
-## Docker
 
     $ cd schulte-development_de
-    $ docker-compose up
+    $ docker-compose up --build

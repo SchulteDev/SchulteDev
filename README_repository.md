@@ -2,8 +2,16 @@
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SchulteDev_SchulteDev&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=SchulteDev_SchulteDev)
 
-# SchulteDev Portfolio
+# 🚀 SchulteDev Portfolio
 
-Professional portfolio of Markus Schulte / SchulteDev monorepo.
+Professional portfolio of **Markus Schulte** / SchulteDev.
 
+Centralized repository/monorepo to collect and maintain all professional portfolio artifacts like
+CV, homepage, and personal branding materials with automated workflows.
 
+## 📁 Repository Structure
+
+- [_data/](_data/) — "Raw" data and credentials
+- [curriculum_vitae/](curriculum_vitae/) — CV and resume files and related scripting
+- [schulte-development_de/](schulte-development_de/) — Personal
+  website [schulte-development.de](https://schulte-development.de)
