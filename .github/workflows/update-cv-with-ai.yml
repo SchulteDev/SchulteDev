@@ -3,16 +3,13 @@ name: AI-Powered CV Update with GitHub Releases
 on:
   push:
     branches: [ '*' ]
-    paths:
-      - '_data/career.md'
-      - 'curriculum_vitae/scripts/**'
-      - 'package*.json'
+    paths: &relevant_paths
+      - '.github/workflows/update-cv-with-ai.yml'
+      - '_data/**'
+      - 'curriculum_vitae/**'
   pull_request:
     branches: [ '*' ]
-    paths:
-      - '_data/career.md'
-      - 'curriculum_vitae/scripts/**'
-      - 'package*.json'
+    paths: *relevant_paths
   workflow_dispatch:
     inputs:
       rebuild_mode:
