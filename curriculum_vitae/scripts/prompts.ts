@@ -17,6 +17,10 @@ interface PromptsConfig {
 
 let cachedPrompts: PromptsConfig | null = null;
 
+const careerDataPlaceholder = '{{CAREER_DATA}}';
+const currentCvPlaceholder = '{{CURRENT_CV}}';
+const diffDataPlaceholder = '{{DIFF_DATA}}';
+
 // Load prompts from JSON file
 const loadPrompts = (): PromptsConfig => {
   if (cachedPrompts) {
@@ -45,15 +49,15 @@ export const getAntiCvSystemPrompt = (): string => {
 // Get user prompt for anti-CV full rebuild with variable substitution
 export const getAntiCvFullRebuildPrompt = (careerData: string): string => {
   const prompts = loadPrompts();
-  return prompts.antiCv.fullRebuild.replace('{{CAREER_DATA}}', careerData);
+  return prompts.antiCv.fullRebuild.replace(careerDataPlaceholder, careerData);
 };
 
 // Get user prompt for anti-CV incremental update with variable substitution
 export const getAntiCvIncrementalPrompt = (currentCv: string, diffData: string): string => {
   const prompts = loadPrompts();
   return prompts.antiCv.incremental
-  .replace('{{CURRENT_CV}}', currentCv)
-  .replace('{{DIFF_DATA}}', diffData);
+  .replace(currentCvPlaceholder, currentCv)
+  .replace(diffDataPlaceholder, diffData);
 };
 
 // Legacy functions for backward compatibility (currently defaults to anti-CV)
