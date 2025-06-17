@@ -3,7 +3,7 @@
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
-import {API_MODEL, MAX_TOKENS, RESPONSE_FILE} from './config.js';
+import {API_MODEL, MAX_TOKENS, RESPONSE_FILE, TEMPLATE_FILE} from './config.js';
 import logger from './logger.js';
 
 export interface PromptResult {
@@ -163,32 +163,24 @@ export const extractLatex = (outputFile: string): boolean => {
 
 // Function to build system prompt (shared between modes)
 export const buildSystemPrompt = (): string => {
-  return `You are an expert LaTeX developer specializing in bulletproof document compilation and creative CV design.
+  let templateContent = '';
+
+  // Try to read template file
+  try {
+    if (fs.existsSync(TEMPLATE_FILE)) {
+      templateContent = fs.readFileSync(TEMPLATE_FILE, 'utf8');
+    }
+  } catch (error) {
+    logger.warn('Could not read template file, proceeding without it');
+  }
+
+  const basePrompt = `You are an expert LaTeX developer specializing in bulletproof document compilation and creative CV design.
 
 ## COMPILATION CONSTRAINTS
 - Target: GitHub Actions with xu-cheng/latex-action
-- Command: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 - Zero tolerance for compilation errors or warnings
-
-### Package Safety Rules:
-1. Use standard TeXLive packages only
-2. Load order: encoding → fonts → layout → content
-3. Page numbering: \\usepackage{lastpage} + \\pageref{LastPage}
-4. Font safety: \\usepackage[T1]{fontenc} + \\usepackage{lmodern}
-5. Symbols: Use proper LaTeX commands (\\heartsuit, \\textbullet)
-
-### Error Prevention:
-- No undefined font shapes (avoid T1/cmss/b/n combinations)
-- No undefined control sequences
-- All symbols in correct mode (math vs text)
+- Use standard TeXLive packages only
 - Conservative package selection over fancy features
-
-## DOCUMENT STRUCTURE
-Required first page layout:
-1. **Prominent Header**: Name, title, contact (visually dominant)
-2. **Comprehensive Summary**: Complete document overview
-3. Visual hierarchy: Header > Summary > Content
-4. Self-contained first page with full context
 
 ## OUTPUT REQUIREMENTS
 - Return ONLY complete LaTeX code
@@ -196,4 +188,23 @@ Required first page layout:
 - Guaranteed first-attempt compilation success
 - Maintain anti-CV humorous tone with professional accuracy
 - Do NOT include any thinking tags or explanations in your response`;
+
+  if (templateContent) {
+    return `${basePrompt}
+
+## ANTI-CV TEMPLATE REFERENCE
+Use this template as a structural and stylistic guide:
+
+\`\`\`latex
+${templateContent}
+\`\`\`
+
+Follow the template's:
+- Package usage and import order
+- Custom command definitions (\\heartstab, \\squigarr)
+- Section structure and formatting
+- Anti-CV tone and approach (failures/rejections + lessons learned)`;
+  }
+
+  return basePrompt;
 };

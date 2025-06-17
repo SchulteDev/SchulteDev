@@ -19,7 +19,7 @@ const buildFullRebuildPrompt = (): PromptResult => {
 ${fs.readFileSync(CAREER_FILE, 'utf8')}
 \`\`\`
 
-Create a complete, bulletproof anti-CV that compiles perfectly and follows the required document structure.`;
+Create a complete anti-CV using the provided template as structural and stylistic guidance. Transform the career data into the anti-CV format (failures/rejections + lessons learned).`;
 
   return {systemPrompt, userPrompt};
 };

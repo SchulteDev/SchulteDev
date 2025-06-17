@@ -7,14 +7,15 @@ import path from 'path';
 // File paths
 export const CAREER_FILE: string = process.env.CAREER_FILE ?? '../../_data/career.md';
 export const CV_FILE: string = process.env.CV_FILE ?? '../markus-schulte-dev-anti-cv.tex';
+export const TEMPLATE_FILE: string = process.env.TEMPLATE_FILE ?? '../anti-cv-template.tex';
 export const DIFF_FILE: string = process.env.DIFF_FILE ?? 'career_changes.diff';
 export const RESPONSE_FILE: string = process.env.RESPONSE_FILE ?? 'claude_response.json';
 export const TEMP_FILE: string = process.env.TEMP_FILE ?? 'temp_cv.tex';
 
 // Use a secure temporary file path or current directory as fallback
 export const OUTPUT_FILE: string = process.env.GITHUB_OUTPUT ?? (process.env.GITHUB_ACTIONS ?
-  path.join(os.tmpdir(), `github_output_${process.pid}_${Date.now()}.txt`) :
-  './github_output.txt');
+    path.join(os.tmpdir(), `github_output_${process.pid}_${Date.now()}.txt`) :
+    './github_output.txt');
 
 // API configuration
 export const API_MODEL: string = process.env.API_MODEL ?? 'claude-opus-4-20250514';

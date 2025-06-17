@@ -32,12 +32,7 @@ ${fs.readFileSync(CV_FILE, 'utf8')}
 ${fs.readFileSync(DIFF_FILE, 'utf8')}
 \`\`\`
 
-## SPECIFIC FIXES NEEDED:
-- Font shape 'T1/cmss/b/n' undefined → Use safe font combinations
-- \\lastpage undefined → Use \\pageref{LastPage} with lastpage package
-- Any other compilation blockers
-
-Fix all errors while preserving style consistency and integrating the career updates seamlessly, but do the update only if it offers significant added value compared to the current version.`;
+Fix compilation errors and integrate career updates seamlessly. Only apply updates if they offer significant added value. Use the template's structure and style as reference.`;
 
   return {systemPrompt, userPrompt};
 };
