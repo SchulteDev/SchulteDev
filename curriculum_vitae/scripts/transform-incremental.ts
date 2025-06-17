@@ -33,23 +33,24 @@ const generateDiff = async (): Promise<boolean> => {
   // Skip diff generation if SKIP_API is true
   if (process.env.SKIP_API === 'true') {
     logger.info('SKIP_API is set to true, skipping diff generation');
-
-    // Create a mock diff file
     const mockDiff = '+ This is a mock diff for testing purposes';
     fs.writeFileSync(DIFF_FILE, mockDiff);
     return true;
   }
 
   try {
+    // Get relative path for git commands
+    const relativePath = CAREER_FILE.replace(process.cwd() + '/', '');
+
     if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
       // For manual triggers
-      await execAsync(`git diff HEAD~1 HEAD "${CAREER_FILE}" > "${DIFF_FILE}"`);
+      await execAsync(`git diff HEAD~1 HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
       return true;
     } else {
       // For auto-triggers
       const {stdout} = await execAsync(`git diff HEAD~1 HEAD --name-only`);
-      if (stdout.includes(CAREER_FILE)) {
-        await execAsync(`git diff HEAD~1 HEAD "${CAREER_FILE}" > "${DIFF_FILE}"`);
+      if (stdout.includes(relativePath)) {
+        await execAsync(`git diff HEAD~1 HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
         return true;
       } else {
         logger.info(`⏭️ Auto-trigger: No changes in ${CAREER_FILE}`);
