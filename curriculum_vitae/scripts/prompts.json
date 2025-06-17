@@ -1,15 +1,76 @@
 {
   "antiCv": {
-    "system": "Expert LaTeX developer creating entertaining anti-CV documents.\n\nCONSTRAINTS: GitHub Actions compilation, zero errors, standard packages.\nANTI-CV CONCEPT: Humorous failures, rejections, mistakes + lessons learned.\nTARGET LENGTH: Exactly 2 pages - comprehensive but not overwhelming.\nOUTPUT: Complete LaTeX code only, no explanations.",
-    "fullRebuild": "Create entertaining anti-CV from career data. Focus on failures, rejections, things that went wrong + lessons learned. Be creative and humorous while professional.\n\nREQUIREMENTS:\n- Target exactly 2 pages in length\n- Use all major career experiences\n- Include detailed technical failures and lessons learned\n- Add personal projects and career breaks\n- Expand on educational journey and challenges\n\nCareer data:\n```markdown\n{{CAREER_DATA}}\n```\n\nTransform achievements into amusing failure stories and learning experiences. Ensure comprehensive 2-page coverage.",
-    "incremental": "Fix LaTeX errors and apply updates to this anti-CV. Keep the humorous tone and creative approach.\n\nREQUIREMENTS:\n- Maintain exactly 2 pages in length\n- Adjust content density as needed\n- Preserve all essential sections\n\nCurrent anti-CV:\n```latex\n{{CURRENT_CV}}\n```\n\nUpdates to integrate:\n```diff\n{{DIFF_DATA}}\n```\n\nFix compilation errors, apply valuable updates while maintaining entertaining anti-CV style and 2-page target length."
+    "system": [
+      "Expert LaTeX developer creating entertaining anti-CV documents.",
+      "",
+      "CONSTRAINTS: GitHub Actions compilation, zero errors, standard packages.",
+      "ANTI-CV CONCEPT: Humorous failures, rejections, mistakes + lessons learned.",
+      "STRUCTURE: MANDATORY summary section immediately after header, then other sections.",
+      "TARGET LENGTH: Exactly 2 pages - use \\newpage command to control page breaks precisely.",
+      "OUTPUT: Complete LaTeX code only, no explanations."
+    ],
+    "fullRebuild": [
+      "Create entertaining anti-CV from career data. Focus on failures, rejections, things that went wrong + lessons learned. Be creative and humorous while professional.",
+      "",
+      "REQUIREMENTS:",
+      "- MANDATORY: Include a summary section as the very first section after the header",
+      "- Target exactly 2 pages in length - use \\newpage command before the final section to ensure precise 2-page layout",
+      "- Use all major career experiences",
+      "- Include detailed technical failures and lessons learned",
+      "- Add personal projects and career breaks",
+      "- Expand on educational journey and challenges",
+      "",
+      "STRUCTURE ORDER:",
+      "1. Header (name, contact info)",
+      "2. Summary section (brief humorous overview of career disasters)",
+      "3. Other sections (experience, education, projects, etc.)",
+      "4. Use \\newpage strategically to control exactly 2 pages",
+      "",
+      "Career data:",
+      "```markdown",
+      "{{CAREER_DATA}}",
+      "```",
+      "",
+      "Transform achievements into amusing failure stories and learning experiences. Ensure comprehensive 2-page coverage with mandatory summary section first."
+    ],
+    "incremental": [
+      "Fix LaTeX errors and apply updates to this anti-CV. Keep the humorous tone and creative approach.",
+      "",
+      "REQUIREMENTS:",
+      "- MANDATORY: Ensure summary section exists as first section after header",
+      "- Maintain exactly 2 pages in length using \\newpage command for precise control",
+      "- Adjust content density as needed",
+      "- Preserve all essential sections",
+      "",
+      "STRUCTURE CHECK:",
+      "1. Verify summary section is present and positioned correctly",
+      "2. Ensure \\newpage command controls exact 2-page layout",
+      "",
+      "Current anti-CV:",
+      "```latex",
+      "{{CURRENT_CV}}",
+      "```",
+      "",
+      "Updates to integrate:",
+      "```diff",
+      "{{DIFF_DATA}}",
+      "```",
+      "",
+      "Fix compilation errors, apply valuable updates while maintaining entertaining anti-CV style, mandatory summary section, and exact 2-page target length."
+    ]
   },
   "_future_example": {
     "_comment": "Future CV types can be added like this:",
     "professionalCv": {
-      "system": "Expert LaTeX developer creating professional CV documents...",
-      "fullRebuild": "Create professional CV from career data...",
-      "incremental": "Update professional CV..."
+      "system": [
+        "Expert LaTeX developer creating professional CV documents..."
+      ],
+      "fullRebuild": [
+        "Create professional CV from career data..."
+      ],
+      "incremental": [
+        "Update professional CV..."
+      ]
     }
   }
 }
