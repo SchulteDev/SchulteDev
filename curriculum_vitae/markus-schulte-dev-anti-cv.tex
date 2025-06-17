@@ -1,198 +1,195 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[left=2cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
-\usepackage{xcolor}
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.6in]{geometry}
 \usepackage{enumitem}
 \usepackage{titlesec}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{fontawesome5}
 \usepackage{multicol}
-\usepackage{graphicx}
-\usepackage{tikz}
-\usepackage{pgfornament}
+\usepackage{tabularx}
 
-\definecolor{failred}{RGB}{220,38,38}
-\definecolor{darkgray}{RGB}{55,65,81}
-\definecolor{lightgray}{RGB}{243,244,246}
+\definecolor{failred}{RGB}{200,0,0}
+\definecolor{darkgray}{RGB}{80,80,80}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=failred,
-    urlcolor=failred,
-}
+\titleformat{\section}{\large\bfseries\color{failred}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
 
-\titleformat{\section}{\Large\bfseries\color{failred}}{}{0em}{}[\titlerule]
-\titleformat{\subsection}{\large\bfseries\color{darkgray}}{}{0em}{}
-
-\newcommand{\fail}[1]{\textcolor{failred}{\faExclamationTriangle\space#1}}
-\newcommand{\lesson}[1]{\textcolor{darkgray}{\faLightbulb\space\textit{#1}}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist{noitemsep,topsep=0pt,leftmargin=*}
 
 \begin{document}
 
 \begin{center}
-    {\Huge\bfseries The Anti-CV of Markus Schulte}\\[0.5em]
-    {\Large\color{darkgray}A Celebration of Spectacular Failures, Rejections, and Hard-Won Lessons}\\[1em]
-    \pgfornament[width=3cm]{88}\\[1em]
-    {\large\faEnvelope\space mail@schulte-development.de \quad \faPhone\space +49 178 7217768}\\
-    {\large\faGlobe\space schulte-development.de \quad \faLinkedin\space /in/markus-schulte}\\[0.5em]
-    \textit{"18+ years of breaking things professionally"}
+{\LARGE\bfseries Markus Schulte's Anti-CV} \\[4pt]
+{\large\itshape A Comprehensive Catalog of Career Catastrophes} \\[6pt]
+{\small\faIcon{envelope} mail@schulte-development.de \quad
+\faIcon{phone} +49 178 7217768 \quad
+\faIcon{map-marker-alt} Cologne, Germany} \\[2pt]
+{\small\faIcon{linkedin} linkedin.com/in/markus-schulte \quad
+\faIcon{github} github.com/SchulteMarkus}
 \end{center}
 
-\section{Professional Misadventures}
+\section{Professional Failures \& Rejections}
 
 \subsection{Cloud Architect at LBBW (Nov 2024 -- Present)}
-\textbf{Mission:} Transform Germany's major state bank IT to cloud\\
-\textbf{Reality:} Discovered "Skywalker" platform unused in production after year of development
-
-\begin{itemize}[leftmargin=*]
-\item \fail{Platform Gap Champion} -- Identified so many missing features in Skywalker that I became the unofficial "Platform Enhancement Request Generator"
-\item \fail{Multi-Cloud Dreamer} -- Proposed Elastisys Welkin integration; committee still discussing vendor lock-in fears while AWS laughs
-\item \fail{Meeting Marathon Runner} -- Achieved personal record: 8 stakeholder meetings in one day, zero decisions made
-\item \fail{Template Optimist} -- Created "universal" migration templates; each application required complete customization anyway
-\end{itemize}
-
-\lesson{Lesson: Enterprise cloud adoption moves at geological timescales. Pack snacks.}
+\textbf{Achievement:} Started documenting 300+ legacy applications for cloud migration \\
+\textbf{Reality Check:} Discovered the "production-ready" Skywalker platform had never seen production. Currently cataloging applications older than most cloud technologies. \\
+\textbf{Lesson:} "Phoenix" projects often burn architects first.
 
 \subsection{Cloud Architect at Union Investment (Oct 2021 -- Dec 2024)}
-\textbf{Mission:} Modernize B2B platform serving 80,000 users\\
-\textbf{Reality:} 3+ year journey through the valley of distributed systems
-
-\begin{itemize}[leftmargin=*]
-\item \fail{Monolith Slayer} -- Decomposed one monolith into 8 microservices; now have 8 problems instead of 1
-\item \fail{Event Stream Philosopher} -- Designed event-driven architecture; spent months debating what constitutes an "event"
-\item \fail{Microfrontend Evangelist} -- Convinced everyone microfrontends were the future; debugging cross-domain issues became new full-time job
-\item \fail{Test Pyramid Perfectionist} -- Built 1000+ tests achieving 10-minute builds; developers still skip them locally
-\item \fail{Algolia Salesman} -- Pitched Algolia over Elasticsearch to save complexity; spent weeks explaining why search costs more than servers
-\item \fail{Documentation Novelist} -- Wrote comprehensive technical docs; discovered nobody reads past page 2
-\end{itemize}
-
-\lesson{Lesson: Distributed systems distribute your problems efficiently across all teams.}
+\textbf{The Monolith Massacre:} Spent 3 years decomposing one monolith into 8 microservices. Original estimate: 6 months. \\
+\textbf{Over-Engineering Award:} Built a microfrontend framework so complex, needed workshops to explain it to my own team. \\
+\textbf{Testing Obsession:} Wrote 1000+ tests achieving 10-minute builds. Time saved: 20 minutes/day. Time spent optimizing: 3 months. \\
+\textbf{Lesson:} Sometimes "micro" means microscopic progress.
 
 \subsection{Middleware Engineer at Saloodo!/DHL (Dec 2021 -- Nov 2024)}
-\textbf{Mission:} Sync data between Saloodo and Salesforce\\
-\textbf{Reality:} Solo developer synchronizing 10 million records of chaos
+\textbf{Solo Developer Blues:} Maintained critical Salesforce sync alone for 3 years. No code reviews = no one to catch my mistakes. \\
+\textbf{Data Horror:} Discovered 10 million records with "creative" JSON formats. My error handling code became larger than the actual logic. \\
+\textbf{Golang Gamble:} Chose assignment specifically to learn Go professionally. Learning on production systems: not recommended. \\
+\textbf{Lesson:} "It works on my machine" hits different when you're the only developer.
 
-\begin{itemize}[leftmargin=*]
-\item \fail{Golang Rookie} -- First professional Go project; learned error handling the hard way (if err != nil \{panic\})
-\item \fail{Database Archaeologist} -- Discovered malformed JSON, wrong types, and data from 2015 marked as "temporary"
-\item \fail{Infinite Loop Artist} -- Created endless retry loops; Salesforce API rate limits provided natural circuit breaker
-\item \fail{Solo DevOps Hero} -- Being sole developer meant nobody to blame but myself at 3 AM incidents
-\end{itemize}
+\subsection{Atlassian Add-on Business (2016 -- 2023)}
+\textbf{Market Timing Fail:} Built successful Bamboo add-ons just as everyone migrated to cloud-based CI/CD. \\
+\textbf{Support Nightmare:} 83 customers across 15 countries = 3am support calls in languages I don't speak. \\
+\textbf{Lesson:} Building for dying platforms is profitable... until it isn't.
 
-\lesson{Lesson: "Near real-time" is marketing speak for "eventually, hopefully".}
+\section{Technical Disasters \& Learning Moments}
 
-\subsection{Atlassian Add-on Entrepreneur (Jun 2016 -- Dec 2023)}
-\textbf{Mission:} Build thriving marketplace business\\
-\textbf{Reality:} 83 customers in 7 years (that's 11.8 per year!)
+\subsection{The Great Framework Graveyard}
+\textbf{2007:} Mastered Zend Framework $\rightarrow$ Dead \\
+\textbf{2014:} Expert in CloudFoundry $\rightarrow$ Everyone uses Kubernetes now \\
+\textbf{2016:} JavaEE specialist $\rightarrow$ Spring Boot made it obsolete \\
+\textbf{2018:} Micronaut early adopter $\rightarrow$ Still waiting for mainstream adoption \\
+\textbf{Lesson:} My technology choices are excellent contra-indicators for market trends.
 
-\begin{itemize}[leftmargin=*]
-\item \fail{Market Research Genius} -- Built add-ons for Bamboo Server; Atlassian deprecated it for Cloud
-\item \fail{Pricing Strategist} -- Set prices so reasonable that revenue barely covered Marketplace fees
-\item \fail{Support Champion} -- Maintained compatibility with every Bamboo version since 2016; my test environment is a museum
-\end{itemize}
+\subsection{Architecture Astronaut Achievements}
+\textbf{Self-Contained Systems (SCS):} Evangelized pattern nobody had heard of. Spent months explaining it's "like microservices but different." \\
+\textbf{Event-Driven Everything:} Turned simple CRUD into complex event streams. Debugging became archaeological expedition. \\
+\textbf{Multi-Cloud Strategy:} Proposed using AWS, Azure, AND Elastisys Welkin. Triple the complexity, triple the fun! \\
+\textbf{Lesson:} Just because you can distribute everything doesn't mean you should.
 
-\lesson{Lesson: Building for enterprise means supporting software older than your career.}
+\subsection{Testing Tribulations}
+\textbf{Contract Testing Prophet:} Preached Pact testing to teams who just wanted their APIs to work. \\
+\textbf{100\% Coverage Chase:} Achieved 70\% test coverage at Saloodo. The uncovered 30\%? The actually complex parts. \\
+\textbf{E2E Test Suite:} Built Playwright tests that broke whenever someone sneezed near the CSS. \\
+\textbf{Lesson:} Perfect testing is the enemy of shipping code.
 
-\subsection{Senior JavaEE Developer at Allianz (Nov 2017 -- Mar 2018)}
-\textbf{Mission:} Modernize insurance giant's digital platform\\
-\textbf{Reality:} 4 months navigating enterprise bureaucracy
+\section{Educational Journey of Eternal Student}
 
-\begin{itemize}[leftmargin=*]
-\item \fail{CloudFoundry Pioneer} -- Deployed to "cloud" running on-premise; it's not cloud, it's just someone else's data center
-\item \fail{REST/HATEOAS Purist} -- Implemented proper HATEOAS; frontend developers asked "what are all these links for?"
-\item \fail{Contract Negotiator} -- Shortest freelance gig; apparently "4 months" isn't a career
-\end{itemize}
+\subsection{Computer Science Diploma (2004 -- 2012)}
+\textbf{8-Year Bachelor's:} What others finished in 4 years, I stretched to 8 while working. \\
+\textbf{Computational Visualistics:} Studied computer graphics. Career: Backend development. Used 3D knowledge: Zero times. \\
+\textbf{Lesson:} University teaches you everything except what you'll actually use.
 
-\lesson{Lesson: Enterprise "agile" means waterfall with daily standups.}
+\section{Notable Project Failures}
 
-\section{Technical Mistakes I've Mastered}
+\subsection{Crypto Trading Bot (2015)}
+\textbf{The Dream:} Automated Bitcoin arbitrage using machine learning \\
+\textbf{The Reality:} Lost money faster than manual trading. ML model predicted market would go up. It didn't. \\
+\textbf{Lesson:} If arbitrage was easy, everyone would be rich.
+
+\subsection{Jenkins-GitHub Integration (2018)}
+\textbf{Innovation:} Auto-configure Jenkins for any GitHub repo! \\
+\textbf{Problem:} GitHub Actions launched 6 months later, making my project instantly obsolete. \\
+\textbf{Lesson:} Never compete with companies that have infinite resources.
+
+\subsection{werkenntwen Social Network (2007 -- 2014)}
+\textbf{Scale Achievement:} Helped grow platform to 9 million users \\
+\textbf{Plot Twist:} Company shut down. All that optimized code? Digital dust. \\
+\textbf{Career Impact:} "Former Head of Development" at dead social network. LinkedIn recruiters: confused. \\
+\textbf{Lesson:} Even 9 million users can't save a bad business model.
+
+\section{Freelance Misadventures}
+
+\subsection{The Agency Years (2017 -- 2018)}
+\textbf{Pattern Recognition:} Every project through agencies = 30\% less money for same work \\
+\textbf{Client Telephone:} Agency $\rightarrow$ PM $\rightarrow$ Tech Lead $\rightarrow$ Me $\rightarrow$ "Just use WordPress" \\
+\textbf{Lesson:} Cut out middlemen before they cut your rates.
+
+\subsection{Short-Term Contract Collection (2014 -- 2016)}
+\textbf{3-Day Gig Champion:} Set up Bamboo CI at fotocommunity in 72 hours. They needed it for 2 weeks. \\
+\textbf{Jack of All Trades:} Java, PHP, Ruby, Shell scripts. Master of none, debugger of all. \\
+\textbf{Lesson:} "Full-stack" means you'll fix everyone else's stack.
+
+\section{Communication Catastrophes}
+
+\subsection{360° Feedback Greatest Hits}
+\textbf{2021:} "Explains things too technically" -- Translation: Stop using big words \\
+\textbf{2022:} "Could be more open to criticism" -- While implementing their criticized solution \\
+\textbf{2024:} "Makes work enjoyable" -- Because misery loves company? \\
+\textbf{Lesson:} You can't please everyone, but you can confuse them equally.
+
+\subsection{Agile Theater Performances}
+\textbf{Scrum Master by Default:} Nobody else wanted to run retros. My punishment for being organized. \\
+\textbf{Story Point Inflation:} Watched 3-point stories become 13-pointers through "committee estimation" \\
+\textbf{Product Owner Surprise:} Assigned PO role mid-project. Discovered backlog was wish list, not roadmap. \\
+\textbf{Lesson:} Agile is great until humans get involved.
+
+\section{Technology Stack Graveyard}
 
 \begin{multicols}{2}
 \begin{itemize}[leftmargin=*]
-\item \fail{Java Veteran} -- 18 years of NullPointerExceptions
-\item \fail{Golang Convert} -- if err != nil \{ return err \} (x1000)
-\item \fail{PHP Survivor} -- 8 years of type juggling trauma
-\item \fail{Kubernetes Wrangler} -- "It works on my cluster"
-\item \fail{Terraform Destroyer} -- terraform destroy on wrong workspace (once)
-\item \fail{Microservices Multiplier} -- Turned 1 deployment into 20
-\item \fail{AWS Bill Optimizer} -- Forgot to terminate test instances
-\item \fail{Azure Naming Expert} -- Everything is "rg-something-001"
+\item \textbf{PHP (2000-2015):} 15 years expertise. Market verdict: "Legacy developer"
+\item \textbf{Zend Framework:} Certified expert in discontinued framework
+\item \textbf{JavaEE:} Mastered it as world moved to Spring Boot
+\item \textbf{CloudFoundry:} Platform expertise nobody wants anymore
+\item \textbf{Atlassian Server:} Built add-ons as they killed server products
+\item \textbf{Monoliths:} Expert at building what everyone wants to decompose
 \end{itemize}
 \end{multicols}
 
-\section{Career Lowlights}
+\section{Career Breaks: Strategic Unemployment}
 
-\subsection{Head of Development at werkenntwen (2008 -- 2010)}
-\textbf{Achievement:} Led development for 9 million user social network\\
-\textbf{Plot Twist:} Company shut down in 2014; apparently Germans didn't need another Facebook
+\subsection{COVID Parental Leave (Apr 2020 -- Sep 2021)}
+\textbf{Plan:} Bond with family during pandemic \\
+\textbf{Reality:} Discovered toddlers are harder than distributed systems \\
+\textbf{Lesson:} No rollback strategy for parenting decisions.
 
-\begin{itemize}[leftmargin=*]
-\item \fail{Scaling Expert} -- Optimized for 9 million users; platform died before reaching 10 million
-\item \fail{PHP Framework Migrator} -- Migrated everything to Zend Framework; PHP community moved to Laravel
-\item \fail{Team Builder} -- Hired great team; they all found better jobs when company folded
+\subsection{Gap Year Travel (Aug -- Dec 2015)}
+\textbf{Professional Development:} "Finding myself" (Found tourist traps instead) \\
+\textbf{Lesson:} Career gaps look suspicious on CVs but great on Instagram.
+
+\section{Metrics of Mediocrity}
+
+\begin{tabularx}{\textwidth}{X r}
+\textbf{Years turning monoliths into microservices:} & 11+ \\
+\textbf{Microservices that became monoliths again:} & 3 \\
+\textbf{Frameworks mastered then abandoned by industry:} & 7 \\
+\textbf{Hours spent explaining "Self-Contained Systems":} & 200+ \\
+\textbf{Successful production deployments on Friday:} & 0 \\
+\textbf{Times "It works on my machine" was the actual fix:} & 47 \\
+\textbf{LinkedIn recruiters who understand my tech stack:} & 0 \\
+\end{tabularx}
+
+\section{Core Incompetencies}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Predicting technology trends (always 180° wrong)
+\item Estimating project timelines (multiply by $\pi$)
+\item Explaining technical concepts to management
+\item Choosing frameworks with longevity
+\item Saying "no" to feature requests
+\item Work-life balance (what's that?)
+\item Avoiding scope creep (scope tsunami expert)
+\item Simple solutions for simple problems
 \end{itemize}
+\end{multicols}
 
-\lesson{Lesson: You can build perfect infrastructure for a product nobody wants.}
+\section{Philosophical Failures}
 
-\subsection{Military Service (2003 -- 2004)}
-\textbf{Mission:} Serve in German Air Force\\
-\textbf{Reality:} Spent more time debugging Windows 2000 than flying
-
-\begin{itemize}[leftmargin=*]
-\item \fail{Combat Readiness} -- Assigned to IT support; my weapon was a PS/2 keyboard
-\item \fail{International Relations} -- Trained in Netherlands; got lost due to metric/imperial confusion
-\end{itemize}
-
-\lesson{Lesson: Even the military runs on Excel spreadsheets.}
-
-\section{Educational Detours}
-
-\subsection{Diploma in Computer Science (2004 -- 2012)}
-\textbf{Expected Duration:} 5 years\\
-\textbf{Actual Duration:} 8 years
-
-\begin{itemize}[leftmargin=*]
-\item \fail{Time Management Pro} -- Worked full-time while studying; discovered days only have 24 hours
-\item \fail{Computational Visualistics} -- Specialized in graphics; career spent on backend systems
-\item \fail{Academic Speedrunner} -- Took so long that curriculum changed twice during studies
-\end{itemize}
-
-\lesson{Lesson: "Magna cum laude" sounds better than "finally graduated".}
-
-\section{Failed Side Projects}
-
-\begin{itemize}[leftmargin=*]
-\item \fail{Crypto Trading Bot (2015)} -- Built Bitcoin arbitrage bot; made dozens of dollars before transaction fees
-\item \fail{AI Tax Assistant (2025)} -- Automated document processing; German tax law defeated artificial intelligence
-\item \fail{Jenkins-GitHub Integration (2018)} -- Perfect solution for problem nobody had
-\end{itemize}
-
-\section{Rejection Collection}
-
-\begin{itemize}[leftmargin=*]
-\item \fail{Startup Dreams} -- Multiple startup ideas; VCs preferred "proven business models" (copying US startups)
-\item \fail{Conference Speaker} -- CFP rejections outnumber acceptances 10:1
-\item \fail{Open Source Fame} -- 4000+ StackOverflow reputation; still not invited to join core team
-\end{itemize}
-
-\section{Life Lessons from Failure}
-
-\begin{itemize}[leftmargin=*]
-\item \lesson{Legacy systems are job security -- they'll outlive your career}
-\item \lesson{Perfect architecture exists only in conference talks and Medium articles}
-\item \lesson{The cloud is just someone else's computer you'll get locked into}
-\item \lesson{Microservices solve organizational problems by creating technical ones}
-\item \lesson{The only reliable deployment is the one you're afraid to touch}
-\item \lesson{Documentation is like a diary -- you write it for yourself and nobody else reads it}
-\item \lesson{Enterprise transformation timelines should be measured in geological epochs}
-\item \lesson{The best code is the one you didn't write (but you'll write it anyway)}
-\end{itemize}
+\textbf{"Move Fast and Break Things":} Broke production. Didn't move fast enough to fix it. \\
+\textbf{"Fail Fast":} Succeeded at failing. Failed at the "fast" part. \\
+\textbf{"Done is Better Than Perfect":} Made it perfect. Never done. \\
+\textbf{"KISS Principle":} Kept it so simple, had to add complexity to make it work. \\
 
 \vfill
 \begin{center}
-\pgfornament[width=2cm]{88}\\[0.5em]
-\textit{"Failing forward since 2007"}
+\small\textit{"The only consistent thing about my career is that every success eventually becomes a legacy system someone else has to maintain."}
 \end{center}
 
 \end{document}
