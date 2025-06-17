@@ -13,7 +13,8 @@ focusing on technical details and professional growth rather than marketing lang
 
 **Freelance Cloud Architect & Software Engineer**  
 **Location:** Cologne (Köln), Germany  
-**Contact:** <a href="mailto:mail@schulte-development.de">mail@schulte-development.de</a> | <a href="tel:+4917872177768">+49 178 7217768</a>
+**Contact:** <a href="mailto:mail@schulte-development.de">
+mail@schulte-development.de</a> | <a href="tel:+4917872177768">+49 178 7217768</a>
 **Website:** https://schulte-development.de  
 **LinkedIn:** https://www.linkedin.com/in/markus-schulte/  
 **GitHub:** https://github.com/SchulteMarkus  
@@ -161,18 +162,22 @@ Freelance | Remote*
 **Service Offering & Responsibilities:**
 
 **IT Architecture Leadership:**
-- IT-architectural responsibility for "04 – Application Development" area of Phoenix transformation project
+
+- IT-architectural responsibility for "04 – Application Development" area of Phoenix transformation
+  project
 - Operational steering and medium to long-term strategic direction for application development
 - Toolchain modernization analysis, optimization identification, and implementation guidance
 - Ensuring conformity with architecture standards and guidelines across all projects
 
 **Solution Design & Migration:**
+
 - FirstMover migration support to Azure with Solution Design Template definition
 - Application of templates to FirstMovers with active implementation guidance
 - Technical software evaluation within LBBW IT voting framework
 - Solution architecture delivery including alternative assessment and decision consulting
 
 **Architecture Governance:**
+
 - Architecture transparency from project start to completion
 - Technical debt identification and remediation pathway definition
 - Solution design coordination with Chief Development for custom applications
@@ -180,6 +185,7 @@ Freelance | Remote*
 - Risk assessment ensuring solutions meet required specifications
 
 **Project Support & Communication:**
+
 - Intervention for specific problems with platform-compliant solution design proposals
 - Solution design workshops and brainstorming session leadership
 - Technical design creation and stakeholder presentation
@@ -319,9 +325,12 @@ coach
   distributed systems
 - **Technology Integration:** Successfully integrated Azure services, Algolia search, and Web
   Components into cohesive platform
-- **Project Delivery:** Maintained detailed monthly activity tracking and delivered all project phases on schedule
-- **Documentation Excellence:** Created comprehensive technical specifications and maintained project documentation standards
-- **Stakeholder Reporting:** Provided regular progress updates and technical guidance to business stakeholders
+- **Project Delivery:** Maintained detailed monthly activity tracking and delivered all project
+  phases on schedule
+- **Documentation Excellence:** Created comprehensive technical specifications and maintained
+  project documentation standards
+- **Stakeholder Reporting:** Provided regular progress updates and technical guidance to business
+  stakeholders
 
 **Business Impact:**
 
@@ -338,17 +347,32 @@ coach
 
 **Team Performance & 360° Feedback:**
 
-Based on 360-degree feedback surveys (December 2021, June 2022):
-- **Technical Competence:** Consistently rated 5/5 (highest score) by team members and stakeholders
-- **Collaboration:** Rated 5/5 for being pleasant to work with across all feedback
-- **Communication:** Rated 3/5 (optimal balance) for communication frequency and clarity
-- **Progress & Leadership:** Rated 3-4/5 for driving topics forward at appropriate pace
+Based on three comprehensive 360-degree feedback surveys (December 2021, June 2022, November 2024):
+
+- **Technical Competence:** Consistently rated 5/5 in 2021-2022 and 9-10/10 in 2024 by team members
+  and stakeholders
+- **Collaboration:** Consistently high ratings for pleasant working relationship (5/5 in 2021-2022,
+  averaging 8.6/10 in 2024)
+- **Communication:** Consistently rated for appropriate balance in communication frequency (3/5 in
+  2021-2022) with some noting a desire for more accessible explanations for less technical
+  stakeholders
+- **Progress & Leadership:** Strong ratings for driving topics forward at appropriate pace (3-4/5 in
+  2021-2022, 9/10 in 2024)
 - **Key Feedback Themes:**
   - "Brings comprehensive and practical knowledge in software development"
   - "Stands up for the right things and doesn't shy away from conflicts/discussions"
   - "Brings new impulses to the team (Planning 2, mob sessions, calm approach)"
   - "Makes work enjoyable and professional"
   - "Glad to have won you for the project - brings exactly what we need"
+  - "Excellent technical expertise and pronounced communicative talent"
+  - "Work approach consistently characterized by professionalism, reliability, and high quality"
+  - "Ability to analyze complex architectures and inspire the team"
+  - "Structured approach has greatly advanced the entire project"
+  - "Easy to reach through informal channels"
+  - "Strong efforts to advance architectural topics"
+- **Areas for Growth:**
+  - Consider pace of technical explanations for stakeholders with less technical background
+  - Continue developing openness to critical feedback
 
 **Technologies & Frameworks:**
 
@@ -627,12 +651,13 @@ it" principle for microservices development
 - **Quality Tools:** Swagger (API documentation), HtmlUnit, OWASP (security), Apache JMeter (
   performance testing)
 - **Monitoring:** Metrics integration, pull request quality gates
-  
- 
+
 **Employment References**
 
-- [Letter Of Recommendation, technical](credentials/2017_tarent_Schulte_Empfehlungsschreiben_technisch.pdf) (German) — September 11, 2017
-- [Letter Of Recommendation, processual](credentials/2017_tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 14, 2017
+- [Letter Of Recommendation, technical](credentials/2017_tarent_Schulte_Empfehlungsschreiben_technisch.pdf) (
+  German) — September 11, 2017
+- [Letter Of Recommendation, processual](credentials/2017_tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (
+  German) — September 14, 2017
 
 ---
 
@@ -653,7 +678,8 @@ it" principle for microservices development
 - **AffiliCon GmbH (Sep 2014):** Jenkins infrastructure setup
   - [Letter of Recommendation](credentials/2014_Affilicon_Empfehlungsschreiben.pdf) (German)
 - **dailypresent GmbH (Jan-Aug 2014):** PHP backend development, AWS/Facebook integration
-  - [Letter of Recommendation](credentials/2014_dailypresent_Empfehlungsschreiben_Markus-Schulte.pdf) (German)
+  - [Letter of Recommendation](credentials/2014_dailypresent_Empfehlungsschreiben_Markus-Schulte.pdf) (
+    German)
 
 **Impact:**
 
@@ -665,9 +691,11 @@ it" principle for microservices development
 - **Team enablement:** Delivered comprehensive training on Docker and Bamboo technologies
 - **Reliable infrastructure:** Established dependable build environments for automated testing
 - **Software quality improvement:** Automated component tests and provided software quality metrics
-- **CI server expertise:** Successfully recommended and implemented Jenkins CI across multiple organizations
+- **CI server expertise:** Successfully recommended and implemented Jenkins CI across multiple
+  organizations
 - **Application modernization:** Adapted PHP applications to meet CI environment requirements
-- **Agile development:** Integrated into agile processes from requirements analysis to operation and maintenance
+- **Agile development:** Integrated into agile processes from requirements analysis to operation and
+  maintenance
 - **Technical consulting:** Provided expert advice on IT issues and technical management support
 - **API development:** Successfully implemented REST APIs for mobile client integration
 
@@ -677,7 +705,8 @@ it" principle for microservices development
 - **Cloud Platforms:** AWS (EC2, S3, Facebook Graph API integration)
 - **CI/CD:** Jenkins (pipeline-as-code, virtual environments), Atlassian Bamboo
 - **Infrastructure:** Docker containers, Apache Tomcat, virtual environments
-- **Testing:** PHPUnit (expert level, mocking), automated testing frameworks, component test automation
+- **Testing:** PHPUnit (expert level, mocking), automated testing frameworks, component test
+  automation
 - **Quality Tools:** Code quality standards, software quality metrics, CodeCoverage analysis
 - **Databases:** MySQL, Memcache (scaling optimization)
 - **Frontend Integration:** HTML5, CSS, JavaScript/jQuery, Smarty templating
@@ -757,7 +786,8 @@ it" principle for microservices development
 
 **Employment References**
 
-- [Final Employment Reference](credentials/wer-kennt-wen/2014_wkw_Zeugnis.pdf) (German) — June 30, 2014
+- [Final Employment Reference](credentials/wer-kennt-wen/2014_wkw_Zeugnis.pdf) (German) — June 30,
+  2014
 - Interim Reference(German) — April 1, 2010
   - [Page 1](credentials/wer-kennt-wen/2011_wkw_Zwischenzeugnis_1.jpg) — April 1, 2010
   - [Page 2](credentials/wer-kennt-wen/2011_wkw_Zwischenzeugnis_2.jpg) — April 1, 2010
@@ -815,7 +845,7 @@ Computer Science with specialization in Computational Visualistics.*
 
 **School:** Gymnasium Haren (Ems), Germany  
 **Graduation:** May 24, 2003  
-**Advanced Courses:** Mathematics and Physics  
+**Advanced Courses:** Mathematics and Physics
 
 I attended high school at the Gymnasium in Haren (Ems, DE). I was more interested in technical
 subjects and took math and physics as advanced courses in high school.
@@ -832,11 +862,14 @@ Visualistics in Koblenz.
 
 - **[StackOverflow](https://stackoverflow.com/users/1645517/markus-schulte):**
   4000+ reputation points demonstrating community contributions
-- **[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):** 93/100 score, 88th percentile (June 18, 2018)
+- *
+  *[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):
+  ** 93/100 score, 88th percentile (June 18, 2018)
   - Overall assessment: "Strong" (93/100)
   - Subject coverage: 95% proficient or strong knowledge
   - Application ability: Extensive
-  - Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management, Interfaces
+  - Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management,
+    Interfaces
 - **[GitHub](https://github.com/SchulteMarkus):** Open-source contributor
 
 ## Career Breaks
