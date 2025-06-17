@@ -111,11 +111,20 @@ I consistently apply modern software engineering practices:
 As IT architect, Head of Development, and interim Product Owner, I have developed strong
 organizational and leadership capabilities:
 
-- **Team Leadership:** Successfully managed cross-functional teams of 5-9 developers
-- **Technical Mentoring:** Conducted workshops on contract testing, architecture patterns
-- **Stakeholder Management:** Regular communication with business stakeholders and executives
-- **Agile Coaching:** Facilitated sprint planning, retrospectives, and process improvements
-- **Hiring & Onboarding:** Technical interviews, team assembly, and developer onboarding
+- **Team Leadership:** Successfully managed cross-functional teams of 5-9 developers across multiple
+  enterprise transformations
+- **Team Building:** Built development teams from ground up, including comprehensive onboarding
+  processes and agile workflow establishment
+- **Technical Mentoring:** Conducted workshops on contract testing, architecture patterns, and led
+  extensive knowledge transfer sessions
+- **Cross-Domain Coordination:** Managed integration across multiple business domains and
+  stakeholder groups in complex enterprise environments
+- **Stakeholder Management:** Regular communication with business stakeholders and executives across
+  3+ year transformation projects
+- **Agile Coaching:** Facilitated sprint planning, retrospectives, and process improvements while
+  serving as technical Product Owner
+- **Hiring & Onboarding:** Technical interviews, team assembly, and comprehensive developer
+  onboarding across multiple technology stacks
 
 ### Specialized Expertise
 
@@ -273,7 +282,7 @@ users, this platform was business-critical for corporate reputation and revenue 
 
 **Project:** IT Landscape Modernization - Group-wide Architecture Template Development
 
-**Timeline:** 3-year transformation across three overlapping phases
+**Timeline:** 3+ year comprehensive transformation across four overlapping phases
 
 **Team Leadership:** Managed teams of 5-7 developers, serving as technical Product Owner and agile
 coach
@@ -290,22 +299,95 @@ coach
   architecture
 - **Event-driven integration:** Designing event streams across 8 domains with different data
   structures, APIs, and authorization levels
+- **Enterprise integration:** Seamless integration with existing Magnolia CMS and multiple business
+  domains
 
 **Phase 1: Architecture Conception and Design (Oct 2021 - Apr 2022)**
 
-- Conducted Domain-Driven Design analysis identifying 8 functional domains within legacy monolith
-- Evaluated and selected Self-contained Systems (SCS) as overarching architectural pattern
-- Designed JavaScript framework approach using Web Components for microfrontend integration
-- Created technical specifications enabling team independence while maintaining integration
-  consistency
-- Established Azure as target cloud platform with focus on lightweight, scalable solutions
+**Initial Architecture & SSO (Oct-Nov 2021):**
+
+- **Onboarding & Analysis:** Comprehensive analysis of existing legacy system architecture and
+  business requirements
+- **Frontend Integration Architecture:** Designed comprehensive frontend integration strategy
+  enabling distributed development
+- **Single Sign-On Strategy:** Created technical concept for SSO implementation and rights & roles
+  management across distributed systems
+- **Distributed Search Architecture:** Initial architecture planning for search across multiple
+  autonomous domains
+- **Event Broker Design:** Architected event-driven communication patterns enabling loose coupling
+  between domains
+- **Transition Path Planning:** Developed strategic migration path from monolith to distributed
+  architecture
+
+**Microfrontend Framework Development (Dec 2021-Mar 2022):**
+
+- **B2B Portal Container App:** Developed core container application enabling microfrontend
+  composition and runtime integration
+- **Technology Roadmap:** Created comprehensive technology roadmap for 3-year transformation
+  initiative
+- **Framework Evaluation:** Conducted detailed analysis of microfrontend composition options,
+  frameworks, and architectural patterns
+- **DevOps Strategy:** Planned beta deployment strategy and established DevOps foundations for
+  distributed development
+- **E2E Testing Strategy:** Assessed end-to-end testing approaches for distributed frontend
+  architecture
+- **Source Code Migration:** Organized InvestmentWelt source code migration strategy and execution
+  planning
 
 **Phase 2: Framework Development and Platform Implementation (May 2022 - Apr 2023)**
 
-- Led development of "microfrontend-toolkit" framework enabling Web Component-based SCS
-  implementation
-- Created feature stories, estimated development efforts, and assembled development team through
-  technical interviews
+**Beta Phase Management (Apr-Jun 2022):**
+
+- **Beta Planning & Implementation:** Led comprehensive beta phase planning and implementation for
+  microfrontend container initiative
+- **Beta Phase Completion:** Successfully completed beta phase with full functionality validation
+  and stakeholder sign-off
+- **Source Code Migration:** Completed InvestmentWelt source code migration from legacy systems to
+  modern architecture
+
+**Team Building & Leadership (Jul 2022-Jan 2023):**
+
+- **Team Portastruktur Establishment:** Built and organized new cross-functional development team
+  from ground up
+- **Agile Process Implementation:** Established team forum, implemented Kanban workflows, and
+  managed stage transitions
+- **Multiple Team Onboarding:** Led technical onboarding for three new team members
+  ensuring rapid team integration
+- **Stakeholder Interviews:** Conducted various stakeholder interviews for team expansion and
+  capability building
+- **Testing Strategy Development:** Organized and conducted testing workshops establishing
+  comprehensive quality assurance practices
+
+**Technology Integration & Architecture (May 2022-Feb 2023):**
+
+- **WebTrekk Analytics Integration:** Implemented comprehensive analytics tracking and reporting
+  capabilities
+- **Celum Digital Asset Management:** Analyzed requirements and integrated digital asset management
+  workflows
+- **Frontend-Monorepo Strategy:** Designed and implemented monorepo strategy enabling efficient
+  multi-team development
+- **Azure Workload Architecture:** Established "X-Cutting" and "FMVXCUTTING" Azure workloads with
+  comprehensive Terraform infrastructure setup
+- **Toolkit Versioning & Publishing:** Created versioning strategy and automated publishing
+  processes for microfrontend toolkit
+- **Low-Level Architecture Design:** Developed detailed low-level architecture for microfrontend
+  toolkit ensuring scalability and maintainability
+
+**Cross-Domain Coordination & Integration (Sep 2022-Feb 2023):**
+
+- **Business Domain Alignment:** Coordinated integration requirements across IK Online, User,
+  Infotainer, and Fonds & Produkte domains
+- **Subdomain Staging Strategy:** Developed comprehensive staging strategy enabling independent
+  domain development and deployment
+- **Layout & Deployment Planning:** Orchestrated multiple stage planning cycles covering layout
+  standardization, versioning, and deployment strategies
+- **B2B Portal Deployment:** Planned and coordinated B2B portal deployment across multiple business
+  domains
+
+**Development Excellence & Quality Assurance:**
+
+- Led development of "microfrontend-toolkit" framework enabling Web Component-based Self-contained
+  systems implementation
 - Served as technical Product Owner defining tasks and sprint goals for agile development
 - Selected Azure Static Web App as runtime with Application Insights monitoring for lightweight,
   robust architecture
@@ -322,31 +404,88 @@ coach
   migration
 - Successfully launched "investmentwelt-shell" into production after 6 months
 
-**Phase 3: Cross-System Search Implementation (May 2023 - Dec 2024)**
+**Phase 3: Production Deployment and Cross-System Search (Oct 2022 - Dec 2024)**
+
+**Production Infrastructure & Deployment (Oct 2022 - June 2023):**
+
+- **Azure Production Setup:** Led complete B2B portal production deployment on Azure cloud
+  infrastructure
+- **Staging Architecture:** Created and implemented comprehensive staging concept enabling
+  controlled releases across development, integration, and production environments
+- **Security & Compliance:** Coordinated and supported penetration testing, implemented DDoS
+  protection for Azure Static Web Apps, and established security monitoring
+- **Infrastructure as Code:** Integrated Terraform deployment pipelines via Azure DevOps enabling
+  reproducible infrastructure management
+- **Custom Domain Management:** Configured and managed custom domain setup with DNS routing and SSL
+  certificate management
+- **Monitoring & Operations:** Established comprehensive application monitoring, created operational
+  handbooks, and implemented production support procedures
+- **Go-Live Coordination:** Orchestrated December 2023 production go-live including load testing,
+  final preparations, and cross-team coordination
+- **Team Onboarding:** Led technical onboarding of new team members
+
+**Cross-System Search Architecture (July 2023 - Dec 2024):**
 
 - **Challenge:** Modernize monolithic legacy search while preserving team autonomy and ensuring
-  unified user experience
+  unified user experience across distributed domains
 - **Solution:** Designed centralized search architecture consuming event streams from distributed
-  domains
-- **Event-driven Architecture:** Modeled data flow where teams stream domain models as events,
-  search consumes multiple streams
-- Created unified entity specifications for event streams minimizing publishing/subscription
-  overhead
-- Implemented solution using Azure Event Hubs with JavaScript Azure Functions transferring data to
-  Algolia
-- Evaluated ElasticSearch vs. Algolia, selected Algolia for simplified business user experience and
-  reduced operational overhead
-- Developed search microfrontends using Lit framework, introduced pnpm package management
-- Maintained same quality standards as platform development with comprehensive testing and Azure
-  Static Web App deployment
-- Delivered complete search modernization on schedule within 12-month timeline
+  Self-contained Systems
+- **Event-driven Architecture:** Modeled data flow where autonomous teams stream domain models as
+  events, with centralized search consuming multiple streams
+- **Search Engine Evaluation:** Conducted comprehensive evaluation of ElasticSearch vs. Algolia,
+  selected Algolia for simplified business user experience and reduced operational overhead
+- **Technical Implementation:** Built solution using Azure Event Hubs with JavaScript Azure
+  Functions transferring data to Algolia search platform
+- **Unified Entity Design:** Created standardized entity specifications for event streams minimizing
+  publishing/subscription overhead while maintaining team independence
+- **Microfrontend Integration:** Developed search microfrontends using Lit framework with pnpm
+  package management for optimal performance
+- **Cross-Domain Coordination:** Managed integration across VisualVest, IK-Online, and Fonds &
+  Produkte business domains ensuring consistent search experience
+
+**DevOps & Quality Excellence:**
+
+- **Automated Dependency Management:** Introduced Dependabot for fully automated external dependency
+  updates across the entire platform
+- **Build Optimization:** Implemented toolkit build optimizations and created Lerna DevOps pipeline
+  for monorepo management
+- **Testing & Quality:** Enhanced smoketest coverage and improved DevOps pipeline reliability for
+  continuous integration
+- **Maintenance Excellence:** Reduced toolkit dependencies and established sustainable software
+  maintenance practices
+- **Documentation Standards:** Maintained comprehensive technical documentation and created
+  operations manuals for production support
+
+**Business Impact & Cross-Team Leadership:**
+
+- **Requirements Analysis:** Conducted detailed impact assessments for IK-Online integration
+  affecting multiple development teams
+- **Stakeholder Coordination:** Managed coordination between Platform team and business domain
+  teams (VisualVest, IK-Online, Fonds & Produkte)
+- **Production Operations:** Established reliable production operations with comprehensive
+  monitoring, alerting, and incident response procedures
+- **Project Delivery:** Successfully delivered all project phases on schedule including complex
+  production deployment and search modernization
+
+**Project Completion & Handover (July - December 2024):**
+
+- **Magnolia CMS Integration:** Successfully integrated Algolia search with existing Magnolia CMS
+  infrastructure, ensuring seamless content management workflow
+- **F&P Team Consulting:** Provided ramp-up consulting support for Fonds & Produkte team integration
+  into the distributed architecture
+- **IK Shell Operations:** Managed transition analysis and release management for IK Shell
+  operations ensuring business continuity
+- **Final Go-Live Coordination:** Orchestrated final search go-live across all business domains with
+  comprehensive testing and validation
+- **Comprehensive Handover:** Executed systematic handover of all technical components including
+  documentation, operational procedures, and knowledge transfer
+- **Project Closure:** Completed cleanup activities, finalized documentation, and ensured
+  sustainable long-term operations
 
 **Key Technical Contributions:**
 
 - **Architecture Leadership:** Designed and led cloud-native transformation establishing SCS pattern
   as corporate standard
-- **Team Management:** Successfully managed cross-functional teams through technical and
-  organizational challenges
 - **Framework Development:** Created reusable microfrontend toolkit enabling autonomous team
   development
 - **Quality Engineering:** Established comprehensive testing pyramid with 1000+ tests and 10-minute
@@ -357,12 +496,6 @@ coach
   distributed systems
 - **Technology Integration:** Successfully integrated Azure services, Algolia search, and Web
   Components into cohesive platform
-- **Project Delivery:** Maintained detailed monthly activity tracking and delivered all project
-  phases on schedule
-- **Documentation Excellence:** Created comprehensive technical specifications and maintained
-  project documentation standards
-- **Stakeholder Reporting:** Provided regular progress updates and technical guidance to business
-  stakeholders
 
 **Business Impact:**
 
@@ -372,8 +505,6 @@ coach
 - **Team Productivity:** Enabled autonomous team development with 10x faster deployment cycles
 - **Corporate Template:** Established architecture patterns adopted as template for group-wide
   modernization initiatives
-- **Stakeholder Satisfaction:** Maintained continuous stakeholder communication and delivered
-  iterative releases on schedule
 - **Technical Debt Reduction:** Successfully migrated domains incrementally from legacy monolith to
   modern SCS architecture
 
@@ -642,16 +773,20 @@ Contributed to 13+ repositories including:
 - **Infrastructure Efficiency:** Automated deployment processes and infrastructure management
 
 **Technologies:** AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut,
-Pact, Terraform, Docker, Twilio
+Pact, Terraform, Docker, Twilio, Salesforce, Zuora
 
 **Frameworks & Tools:**
 
 - **Java:** Spring Boot, Micronaut (lightweight microservices), JavaEE6 migration
-- **Cloud:** AWS Lambda (serverless), EKS (Kubernetes), API Gateway, CloudFormation
-- **Integration:** Salesforce, Zuora (subscription management), Twilio (SMS)
+- **Cloud:** AWS Lambda (serverless), EKS (Kubernetes), API Gateway, CloudFormation, S3, SQS
+- **Integration:** Salesforce, Zuora (subscription management), Twilio (SMS), MyTS customer portal
 - **Testing:** Pact (contract testing), JUnit, comprehensive test automation
-- **CI/CD:** Terraform (infrastructure as code), Docker, automated deployment pipelines
+- **CI/CD:** Terraform (infrastructure as code), Docker, automated deployment pipelines, continuous
+  deployment
 - **Monitoring:** AWS CloudWatch, Grafana, application metrics and alerting
+- **Architecture:** Microservices, event-driven architecture, serverless functions,
+  Infrastructure-as-Code
+- **Development:** Clean Code principles, technical workshops, code quality standards
 
 ---
 
