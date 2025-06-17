@@ -91,7 +91,7 @@ jobs:
 
       - name: Commit updated LaTeX file
         if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "Update CV: ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }}"
           file_pattern: "${{ env.CV_FILE }}"
