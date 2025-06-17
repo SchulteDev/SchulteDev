@@ -28,8 +28,8 @@ permissions:
   contents: write
 
 env:
-  CAREER_FILE: _data/career.md
-  CV_FILE: curriculum_vitae/markus-schulte-dev-anti-cv.tex
+  CAREER_FILE: ${{ github.workspace }}/_data/career.md
+  CV_FILE: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-anti-cv.tex
   RESPONSE_FILE: claude_response.json
 
 jobs:
