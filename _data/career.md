@@ -21,7 +21,7 @@ target documents for particular audiences or purposes.
 mail@schulte-development.de</a> | <a href="tel:+4917872177768">+49 178 7217768</a>
 **Website:** https://schulte-development.de  
 **LinkedIn:** https://www.linkedin.com/in/markus-schulte/  
-**GitHub:** https://github.com/SchulteMarkus  
+**GitHub:** https://github.com/SchulteDev
 **StackOverflow:** https://stackoverflow.com/users/1645517/markus-schulte
 
 ## Professional Summary
