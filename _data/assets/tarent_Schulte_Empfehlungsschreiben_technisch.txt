@@ -1,49 +1,47 @@
-Reference letter Markus Schulte
+Referenzschreiben Markus Schulte
 
 > tarent solutions
 tarent solutions GmbH
 Rochusstraße 2-4
 
-Letter of recommendation for Mr. Markus Schulte
+Empfehlungsschreiben für Herrn Markus Schulte
 
-Mr. Schulte was a fully integrated member of the “Butterkekse” development team. This eight-
-member Scrum team took on the development of various microservices according to the "you build it, you
-run it" principle. Java was used as the primary programming language, followed by Golang.
-Other programming and scripting languages were also used,
-such as Ruby and Shell. Docker was used to distribute and operate the microservices.
-Bamboo was used as the continuous integration server. Selenium/Geb/Spock was used for end-to-end testing.
-Mr. Schulte was active in all of the above areas. As a backend developer, he implemented business logic,
+Herr Schulte war voll integriertes Mitglied des Entwicklungsteams "Butterkekse". Dieses acht-
+köpfige Scrumteam übernahm die Entwicklung diverser Microservices gemäß „you build it, you
+run it“. Als Programmiersprache kam zum größten Teil Java zum Einsatz, an zweiter Stelle wur-
+de in Golang implementiert. Daneben kamen noch andere Programmier- bzw. Scriptsprachen
+zum Einsatz, beispielsweise Ruby, und Shell. Zum Verteilen sowie Betrieb der Microservices
+wurde Docker verwendet. Als Continuous-Integration Server kam Bamboo zum Einsatz. Beim
+Ende-zu-Ende Testen wurde Selenium/Geb/Spock eingesetzt.
 
-Mr. Schulte was active in all of the above-mentioned areas. As a backend developer, he implemented business logic,
-developing endpoints for users as well as inter-microservices.
-The test pyramid was always taken into account.
+Herr Schulte war hierbei in allen genannten Feldern aktiv. Als Backend-Entwickler wurde Fachlo-
+gik implementiert, wobei Endpunkte für die User, aber auch Inter-Microservice entwickelt wur-
+den. Hierbei fand stets die Testpyramide Beachtung.
 
-Mr. Schulte further advanced the technological environment of the project with his outstanding
-expertise.
+Herr Schulte brachte die technologische Umgebung des Projektes mit seinen hervorragenden
+Fachkenntnissen weiter nach vorne.
 
-To name just a few points:
-- He enabled the decoupled development of Java microservices, which had previously been dependent on external dependencies.
-- He introduced integration tests in accordance with the Maven lifecycle.
-- He was involved in architectural issues and independently improved the modularization of existing services and libraries.
-- He accelerated the execution of existing end-to-end tests by approximately 70%.
-- He reduced the memory consumption of Java microservices, also through adjustments to the Gargabe Collection.
-- He accelerated the execution of existing end-to-end tests by approximately 70%.
-- He reduced the memory consumption of Java microservices, including through adjustments to the Garbage Collection.
-- He introduced the use of metrics as part of the pull request flow to improve software quality.
-- He introduced the use of Apache JMeter.
-- He introduced many previously unused tools to the project, including Swagger, HtmIUnit, OWASP, and Pact
+Um nur einige Punkte zu nennen:
+- ermöglichte er die entkoppelte Entwicklung von Java-Microservices, die bisher auf externe Abhängigkeiten angewiesen waren
+- führte er Integrationstests gemäß des Maven-Lifecycles ein
+- engagierte er sich bei architektonischen Fragen und verbesserte selbstständig die Modularisierung der vorhanden Services und Libraries
+- beschleunigte er die Ausführung der vorhandenen end-to-end Tests um ca. 70%
+- reduzierte er die Memory-Consumption der Java-Microservices, auch durch Anpassungen der Gargabe Collection
+- führte er die Verwendung von Metriken als Teil des Pull-requests Flows zur Verbesserung der Software-Qualitat ein
+- fuhrte er die Verwendung von Apache JMeter ein
+- brachte er viele bisher nicht genutzte Werkzeuge ins Projekt ein, u.a. Swagger, HtmIUnit, OWASP, Pact
 
-Mr. Schulte always embraced current programming paradigms, including continuous refactoring
-and clean code. Thanks to his very quick comprehension, he easily familiarized himself
-with the dimensions of domain, technology, and process and brought added value to the
-to the project at an early stage.
+Herr Schulte lebte stets aktuelle Programmierparadigmen, unter anderem Continuous Refacto-
+ring und Clean Code. Dank seiner sehr schnellen Auffassungsgabe arbeitete er sich problemlos
+in den Dimensionen Domane, Technologie und Prozess ein und brachte schon fruhzeitig dem
+Projekt ein Mehrwert.
 
-We would be delighted to work with Mr. Schulte on further projects.
+Wir würden uns freuen mit Herrn Schulte auch in weiteren Projekten zu arbeiten.
 
-Bonn, September 11, 2017
+Bonn, 11.09.2017
 Sebastian Mancke
 
 tarent solutions GmbH
-Rochusstraße 2-9. 53123 Bonn
-Tel.: +49 (0) 228 / 54 881-0
+Rochusstraße 2-9. 53123 Bonh
+Tel .: +49 (0) 228 / 54 881-0
 www.tarent.de
