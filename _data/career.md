@@ -607,12 +607,15 @@ it" principle for microservices development
 
 *Multiple Short-Term Contracts*
 
-**Key Projects:**
-
 - **YOOCHOOSE GmbH (July-Aug 2016):** Spring applications, Jenkins CI, AWS operations
 - **Xsite GmbH (Jan-May 2016):** REST API development, Jenkins pipeline-as-code implementation
 - **freshcells systems (Feb-Jun 2015):** Jenkins CI with Docker, PHP quality standards
-- **fotocommunity GmbH (May 2015):** Atlassian Bamboo CI implementation
+- **fotocommunity GmbH (May 27-29, 2015):** Atlassian Bamboo CI implementation
+  - Continuous Integration consulting and strategy development
+  - Docker environment setup for PHPUnit test execution
+  - Bamboo CI server configuration and deployment
+  - Automated test builds using Docker containers
+  - Team training on Docker and Bamboo environments
 - **Silver Tours GmbH (Dec 2014-Jul 2015):** Infrastructure modernization for car rental platform
 - **AffiliCon GmbH (Sep 2014):** Jenkins infrastructure setup
   - [Letter of Recommendation](credentials/2014_Affilicon_Empfehlungsschreiben.pdf) (German)
@@ -625,14 +628,29 @@ it" principle for microservices development
 - **AWS migration:** Led cloud transition projects reducing infrastructure costs by 40%
 - **Quality standards:** Established code quality frameworks improving team velocity
 - **Knowledge transfer:** Trained development teams in modern DevOps practices
+- **Docker integration:** Successfully integrated containerized testing environments with CI systems
+- **Team enablement:** Delivered comprehensive training on Docker and Bamboo technologies
+- **Reliable infrastructure:** Established dependable build environments for automated testing
+- **Software quality improvement:** Automated component tests and provided software quality metrics
+- **CI server expertise:** Successfully recommended and implemented Jenkins CI across multiple organizations
+- **Application modernization:** Adapted PHP applications to meet CI environment requirements
+- **Agile development:** Integrated into agile processes from requirements analysis to operation and maintenance
+- **Technical consulting:** Provided expert advice on IT issues and technical management support
+- **API development:** Successfully implemented REST APIs for mobile client integration
 
 **Technologies & Frameworks:**
 
-- **Backend:** Java, Spring Boot, PHP, Groovy
-- **Cloud Platforms:** AWS (EC2, S3, Facebook integration)
-- **CI/CD:** Jenkins (pipeline-as-code), Atlassian Bamboo
-- **Infrastructure:** Docker containers, Apache Tomcat
-- **Quality Tools:** Code quality standards, automated testing frameworks
+- **Backend:** Java, Spring Boot, PHP 5.4+ (object-oriented), Groovy
+- **Cloud Platforms:** AWS (EC2, S3, Facebook Graph API integration)
+- **CI/CD:** Jenkins (pipeline-as-code, virtual environments), Atlassian Bamboo
+- **Infrastructure:** Docker containers, Apache Tomcat, virtual environments
+- **Testing:** PHPUnit (expert level, mocking), automated testing frameworks, component test automation
+- **Quality Tools:** Code quality standards, software quality metrics, CodeCoverage analysis
+- **Databases:** MySQL, Memcache (scaling optimization)
+- **Frontend Integration:** HTML5, CSS, JavaScript/jQuery, Smarty templating
+- **Version Control:** Git
+- **APIs:** REST API development, Facebook Graph API, AWS integration
+- **Architecture:** MVC patterns, continuous refactoring, object-oriented design
 
 ### August 2007 — June 2014: PHP Developer and Head of Development at werkenntwen
 
