@@ -13,7 +13,7 @@ focusing on technical details and professional growth rather than marketing lang
 
 **Freelance Cloud Architect & Software Engineer**  
 **Location:** Cologne (Köln), Germany  
-**Contact:** mail@schulte-development.de | +49 178 7217768  
+**Contact:** <a href="mailto:mail@schulte-development.de">mail@schulte-development.de</a> | <a href="tel:+4917872177768">+49 178 7217768</a>
 **Website:** https://schulte-development.de  
 **LinkedIn:** https://www.linkedin.com/in/markus-schulte/  
 **GitHub:** https://github.com/SchulteMarkus  
@@ -584,8 +584,8 @@ it" principle for microservices development
  
 **Employment References**
 
-- [Letter Of Recommendation, processual](assets/tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 14, 2017
-- [Letter Of Recommendation, technical](assets/tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 11, 2017
+- [Letter Of Recommendation, processual](credentials/2017_tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 14, 2017
+- [Letter Of Recommendation, technical](credentials/2017_tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 11, 2017
 
 ---
 
@@ -690,11 +690,11 @@ it" principle for microservices development
 
 **Employment References**
 
-- [Final Employment Reference](assets/wer-kennt-wen/2014_wkw_Zeugnis.pdf) (German) — June 30, 2014
+- [Final Employment Reference](credentials/wer-kennt-wen/2014_wkw_Zeugnis.pdf) (German) — June 30, 2014
 - Interim Reference(German) — April 1, 2010
-  - [Page 1](assets/wer-kennt-wen/2011_wkw_Zwischenzeugnis_1.jpg) — April 1, 2010
-  - [Page 2](assets/wer-kennt-wen/2011_wkw_Zwischenzeugnis_2.jpg) — April 1, 2010
-  - [Page 3](assets/wer-kennt-wen/2011_wkw_Zwischenzeugnis_3.jpg) — April 1, 2010
+  - [Page 1](credentials/wer-kennt-wen/2011_wkw_Zwischenzeugnis_1.jpg) — April 1, 2010
+  - [Page 2](credentials/wer-kennt-wen/2011_wkw_Zwischenzeugnis_2.jpg) — April 1, 2010
+  - [Page 3](credentials/wer-kennt-wen/2011_wkw_Zwischenzeugnis_3.jpg) — April 1, 2010
 
 ---
 
@@ -727,7 +727,7 @@ https://github.com/SchulteDev/Sse-BelMngr-Hermine
 ### 2004 — 2012: Diploma in Computer Science, University of Koblenz-Landau
 
 - **Degree:**
-  [Diploma in Computer Science](assets/Markus%20Schulte%20Diploma%20computer%20science%20certificate%20Diplom%20Informatik.pdf)
+  [Diploma in Computer Science](credentials/2012_Markus%20Schulte%20Diploma%20computer%20science%20certificate%20Diplom%20Informatik.pdf)
 - **Overall Mark:** Distinction (magna cum laude equivalent)
 - **Graduation:** September 27, 2012
 - **University:** University of Koblenz-Landau, Campus Koblenz
