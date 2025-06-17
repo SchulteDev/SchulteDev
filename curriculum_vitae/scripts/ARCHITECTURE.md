@@ -153,10 +153,12 @@ Based on the current package.json configuration:
 
 ## Prompt Management
 
-Prompts are externalized to `prompts.json` with template variable substitution:
+Prompts are externalized to `prompts.json` with CV-type-specific organization. Currently supports
+`antiCv` with template variable substitution:
 
 - `{{CAREER_DATA}}` - career.md content (full rebuild)
-- `{{CURRENT_CV}}` - current CV content (incremental)  
+- `{{CURRENT_CV}}` - current CV content (incremental)
 - `{{DIFF_DATA}}` - git diff content (incremental)
 
-Edit `prompts.json` directly to modify prompts. Changes take effect on next execution.
+Structure allows future CV types (`professionalCv`, `academicCv`, etc.). Edit `prompts.json`
+directly to modify prompts.

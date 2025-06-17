@@ -1,9 +1,15 @@
 {
-  "system": {
-    "default": "Expert LaTeX developer creating entertaining anti-CV documents.\n\nCONSTRAINTS: GitHub Actions compilation, zero errors, standard packages.\nANTI-CV CONCEPT: Humorous failures, rejections, mistakes + lessons learned.\nOUTPUT: Complete LaTeX code only, no explanations."
-  },
-  "user": {
+  "antiCv": {
+    "system": "Expert LaTeX developer creating entertaining anti-CV documents.\n\nCONSTRAINTS: GitHub Actions compilation, zero errors, standard packages.\nANTI-CV CONCEPT: Humorous failures, rejections, mistakes + lessons learned.\nOUTPUT: Complete LaTeX code only, no explanations.",
     "fullRebuild": "Create entertaining anti-CV from career data. Focus on failures, rejections, things that went wrong + lessons learned. Be creative and humorous while professional.\n\nCareer data:\n```markdown\n{{CAREER_DATA}}\n```\n\nTransform achievements into amusing failure stories and learning experiences.",
     "incremental": "Fix LaTeX errors and apply updates to this anti-CV. Keep the humorous tone and creative approach.\n\nCurrent anti-CV:\n```latex\n{{CURRENT_CV}}\n```\n\nUpdates to integrate:\n```diff\n{{DIFF_DATA}}\n```\n\nFix compilation errors, apply valuable updates while maintaining entertaining anti-CV style."
+  },
+  "_future_example": {
+    "_comment": "Future CV types can be added like this:",
+    "professionalCv": {
+      "system": "Expert LaTeX developer creating professional CV documents...",
+      "fullRebuild": "Create professional CV from career data...",
+      "incremental": "Update professional CV..."
+    }
   }
 }

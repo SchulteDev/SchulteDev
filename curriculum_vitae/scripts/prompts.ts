@@ -5,13 +5,14 @@ import path from 'path';
 import logger from './logger.js';
 
 interface PromptsConfig {
-  system: {
-    default: string;
-  };
-  user: {
+  antiCv: {
+    system: string;
     fullRebuild: string;
     incremental: string;
   };
+  // Future CV types can be added here:
+  // professionalCv: { ... }
+  // academicCv: { ... }
 }
 
 let cachedPrompts: PromptsConfig | null = null;
@@ -35,22 +36,27 @@ const loadPrompts = (): PromptsConfig => {
   }
 };
 
-// Get system prompt
-export const getSystemPrompt = (): string => {
+// Get system prompt for anti-CV
+export const getAntiCvSystemPrompt = (): string => {
   const prompts = loadPrompts();
-  return prompts.system.default;
+  return prompts.antiCv.system;
 };
 
-// Get user prompt for full rebuild with variable substitution
-export const getFullRebuildPrompt = (careerData: string): string => {
+// Get user prompt for anti-CV full rebuild with variable substitution
+export const getAntiCvFullRebuildPrompt = (careerData: string): string => {
   const prompts = loadPrompts();
-  return prompts.user.fullRebuild.replace('{{CAREER_DATA}}', careerData);
+  return prompts.antiCv.fullRebuild.replace('{{CAREER_DATA}}', careerData);
 };
 
-// Get user prompt for incremental update with variable substitution
-export const getIncrementalPrompt = (currentCv: string, diffData: string): string => {
+// Get user prompt for anti-CV incremental update with variable substitution
+export const getAntiCvIncrementalPrompt = (currentCv: string, diffData: string): string => {
   const prompts = loadPrompts();
-  return prompts.user.incremental
+  return prompts.antiCv.incremental
   .replace('{{CURRENT_CV}}', currentCv)
   .replace('{{DIFF_DATA}}', diffData);
 };
+
+// Legacy functions for backward compatibility (currently defaults to anti-CV)
+export const getSystemPrompt = (): string => getAntiCvSystemPrompt();
+export const getFullRebuildPrompt = (careerData: string): string => getAntiCvFullRebuildPrompt(careerData);
+export const getIncrementalPrompt = (currentCv: string, diffData: string): string => getAntiCvIncrementalPrompt(currentCv, diffData);
