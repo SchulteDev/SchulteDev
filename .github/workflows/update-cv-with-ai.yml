@@ -94,6 +94,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "Update CV: ${{ steps.transform.outputs.mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }}"
+          commit_options: '--signoff'
           file_pattern: "${{ env.CV_FILE }}"
 
       - name: Delete existing release and tag
