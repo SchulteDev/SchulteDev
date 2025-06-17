@@ -559,42 +559,99 @@ transformation
 
 **Phase 1: Subscription Team (August 2018 — April 2019)**
 
-- Led migration from JavaEE6 monolith to modern cloud architecture
-- Implemented Salesforce/Zuora integration for subscription management
-- Replaced monolith functionality with AWS cloud services
-- Built microservices using Micronaut and Spring Boot frameworks
+**Core Projects:**
+
+- **Upgrade Center Development:** Built AddShop, AddOption, and AddLocalStore functionality for
+  customer self-service
+- **MyTS Portal Integration:** Implemented comprehensive Salesforce/Zuora integration for
+  subscription management
+- **Payment Processing:** Developed Zuora debit memo handling and invoice creation automation
+- **Service Catalog Integration:** Connected MARS project with existing subscription systems
+- **Infrastructure Modernization:** Complete AWS infrastructure overhaul for zuora-callout,
+  zuora-lambdas, and zuora-create-invoice-lambda
+- **DevOps Implementation:** Established continuous deployment and created dedicated subdomain
+  (subscription.trustedshops.net)
+- **Development Environment:** Built Docker development environment for MyTS platform
+- **Quality Framework:** Designed technical QA phase concepts and testing strategies
 
 **Phase 2: MARS Unit (May 2019 — October 2019)**
 
-- Developed cloud-native solutions leveraging AWS services
-- Designed architecture for new AWS-based services
-- Built and deployed microservices on AWS EKS
-- Led contract testing implementation using Pact across teams
+**Advanced Projects:**
 
-**Key Contributions:**
+- **SMS Integration:** Evaluated SMS providers, selected Twilio, and implemented complete SMS
+  delivery system
+- **Framework Evaluation:** Assessed Micronaut framework for AWS Java Lambda optimization
+- **Clean Code Implementation:** Refactored template-service and message-delivery-service applying
+  Clean Code principles
+- **Lambda Template Creation:** Developed reusable AWS Java Lambda template with Micronaut flavor
+  for team adoption
+- **Invite System:** Designed and implemented comprehensive invite reminder architecture and
+  components
+- **Performance Optimization:** Conducted load testing for invite-scheduler-service and optimized
+  application metrics
+- **Monitoring Enhancement:** Improved application metrics visualization in Grafana and AWS
+  CloudWatch
+- **Architecture Design:** Created detailed technical concepts for message-delivery-service
+  evolution
 
-- Successfully migrated critical business functionality from monolith to cloud
-- Established cloud-native patterns and practices for future development
-- Implemented comprehensive contract testing strategy ensuring service reliability
-- Designed scalable AWS architectures supporting business growth
+**Key Technical Contributions:**
+
+**Infrastructure & DevOps:**
+
+- **AWS Architecture:** Designed serverless solutions using Lambda, API Gateway, S3, SQS
+- **Infrastructure as Code:** Implemented comprehensive Terraform modules for AWS resource
+  management
+- **Continuous Integration:** Established automated deployment pipelines and testing frameworks
+- **Monitoring:** Set up application metrics and alerting using CloudWatch and Grafana
+
+**Development Excellence:**
+
+- **Contract Testing:** Led Pact framework training and implementation across multiple teams
+- **Knowledge Transfer:** Conducted active and passive handover sessions, including technical
+  training workshops
+- **Code Quality:** Applied Clean Code principles across 13+ repositories with measurable
+  improvements
+- **Framework Innovation:** Created reusable templates and architectural patterns adopted team-wide
+
+**Integration & Communication:**
+
+- **Third-party Integration:** Seamless Salesforce, Zuora, and Twilio API integration
+- **Event-driven Architecture:** Designed message delivery systems with complex routing and priority
+  handling
+- **Cross-team Collaboration:** Worked across Subscription and MARS teams ensuring architectural
+  consistency
+
+**Repository Contributions:**
+Contributed to 13+ repositories including:
+
+- zuora-create-invoice-lambda, zuora-lambdas, zuora-microservices
+- myts (customer portal), template-service, message-delivery-service
+- send-sms-function, twilio-message-webhook, mars-invite-reminder
+- terraform-subscription, docker-myts
 
 **Impact:**
 
-- **Reduced technical debt** by modernizing legacy JavaEE6 systems
-- **Improved scalability** through microservices architecture on AWS
-- **Enhanced reliability** with contract testing preventing integration issues
-- **Accelerated development** by establishing cloud-native CI/CD pipelines
+- **Technical Debt Reduction:** Successfully modernized legacy JavaEE6 systems reducing maintenance
+  overhead
+- **Scalability Achievement:** Microservices architecture on AWS supporting business growth
+- **Quality Enhancement:** Contract testing implementation preventing integration issues across
+  teams
+- **Development Acceleration:** Established cloud-native CI/CD pipelines and reusable templates
+- **Knowledge Transfer:** Trained multiple teams in modern testing practices and AWS Lambda
+  development
+- **Infrastructure Efficiency:** Automated deployment processes and infrastructure management
 
-**Technologies:** AWS (EKS, API Gateway, Lambda, S3, SQS), Java, Spring Boot, Micronaut, Pact,
-Terraform, Docker
+**Technologies:** AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut,
+Pact, Terraform, Docker, Twilio
 
 **Frameworks & Tools:**
 
-- **Java:** Spring Boot, Micronaut (lightweight microservices)
-- **Cloud:** AWS Lambda (serverless), EKS (Kubernetes), API Gateway
-- **Integration:** Salesforce, Zuora (subscription management)
-- **Testing:** Pact (contract testing), JUnit
-- **CI/CD:** Terraform (infrastructure as code), Docker
+- **Java:** Spring Boot, Micronaut (lightweight microservices), JavaEE6 migration
+- **Cloud:** AWS Lambda (serverless), EKS (Kubernetes), API Gateway, CloudFormation
+- **Integration:** Salesforce, Zuora (subscription management), Twilio (SMS)
+- **Testing:** Pact (contract testing), JUnit, comprehensive test automation
+- **CI/CD:** Terraform (infrastructure as code), Docker, automated deployment pipelines
+- **Monitoring:** AWS CloudWatch, Grafana, application metrics and alerting
 
 ---
 
