@@ -303,6 +303,20 @@ coach
 - **Technical Debt Reduction:** Successfully migrated domains incrementally from legacy monolith to
   modern SCS architecture
 
+**Team Performance & 360° Feedback:**
+
+Based on 360-degree feedback surveys (December 2021, June 2022):
+- **Technical Competence:** Consistently rated 5/5 (highest score) by team members and stakeholders
+- **Collaboration:** Rated 5/5 for being pleasant to work with across all feedback
+- **Communication:** Rated 3/5 (optimal balance) for communication frequency and clarity
+- **Progress & Leadership:** Rated 3-4/5 for driving topics forward at appropriate pace
+- **Key Feedback Themes:**
+  - "Brings comprehensive and practical knowledge in software development"
+  - "Stands up for the right things and doesn't shy away from conflicts/discussions"
+  - "Brings new impulses to the team (Planning 2, mob sessions, calm approach)"
+  - "Makes work enjoyable and professional"
+  - "Glad to have won you for the project - brings exactly what we need"
+
 **Technologies & Frameworks:**
 
 - **Cloud Platform:** Azure (Static Web App, Functions, Event Hubs, Application Insights, AD B2C)
@@ -584,8 +598,8 @@ it" principle for microservices development
  
 **Employment References**
 
+- [Letter Of Recommendation, technical](credentials/2017_tarent_Schulte_Empfehlungsschreiben_technisch.pdf) (German) — September 11, 2017
 - [Letter Of Recommendation, processual](credentials/2017_tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 14, 2017
-- [Letter Of Recommendation, technical](credentials/2017_tarent_Schulte_Empfehlungsschreiben_prozess.pdf) (German) — September 11, 2017
 
 ---
 
@@ -601,7 +615,9 @@ it" principle for microservices development
 - **fotocommunity GmbH (May 2015):** Atlassian Bamboo CI implementation
 - **Silver Tours GmbH (Dec 2014-Jul 2015):** Infrastructure modernization for car rental platform
 - **AffiliCon GmbH (Sep 2014):** Jenkins infrastructure setup
+  - [Letter of Recommendation](credentials/2014_Affilicon_Empfehlungsschreiben.pdf) (German)
 - **dailypresent GmbH (Jan-Aug 2014):** PHP backend development, AWS/Facebook integration
+  - [Letter of Recommendation](credentials/2014_dailypresent_Empfehlungsschreiben_Markus-Schulte.pdf) (German)
 
 **Impact:**
 
@@ -746,6 +762,10 @@ Computer Science with specialization in Computational Visualistics.*
 
 ### 2003: Abitur (German high school diploma)
 
+**School:** Gymnasium Haren (Ems), Germany  
+**Graduation:** May 24, 2003  
+**Advanced Courses:** Mathematics and Physics  
+
 I attended high school at the Gymnasium in Haren (Ems, DE). I was more interested in technical
 subjects and took math and physics as advanced courses in high school.
 
@@ -761,7 +781,11 @@ Visualistics in Koblenz.
 
 - **[StackOverflow](https://stackoverflow.com/users/1645517/markus-schulte):**
   4000+ reputation points demonstrating community contributions
-- **Java SE 8 TechCheck:** 93/100 score (2018)
+- **[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):** 93/100 score, 88th percentile (June 18, 2018)
+  - Overall assessment: "Strong" (93/100)
+  - Subject coverage: 95% proficient or strong knowledge
+  - Application ability: Extensive
+  - Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management, Interfaces
 - **[GitHub](https://github.com/SchulteMarkus):** Open-source contributor
 
 ## Career Breaks
