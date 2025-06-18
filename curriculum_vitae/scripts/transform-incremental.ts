@@ -19,7 +19,7 @@ import {getIncrementalPrompt, getSystemPrompt} from './prompts.js';
 const execAsync = util.promisify(exec);
 
 // Build prompt for incremental update
-const buildIncrementalPrompt = (cvType: CvType): PromptResult => {
+const buildPromptForType = (cvType: CvType): PromptResult => {
   const cvFile = getCvFile(cvType);
 
   if (!fs.existsSync(cvFile)) {
@@ -31,47 +31,44 @@ const buildIncrementalPrompt = (cvType: CvType): PromptResult => {
 
   const currentCv = fs.readFileSync(cvFile, 'utf8');
   const diffData = fs.readFileSync(DIFF_FILE, 'utf8');
-  const systemPrompt = getSystemPrompt(cvType);
-  const userPrompt = getIncrementalPrompt(cvType, currentCv, diffData);
 
-  return {systemPrompt, userPrompt};
+  return {
+    systemPrompt: getSystemPrompt(cvType),
+    userPrompt: getIncrementalPrompt(cvType, currentCv, diffData)
+  };
 };
 
-// Function to generate diff
+// Generate git diff for incremental updates
 const generateDiff = async (): Promise<boolean> => {
-  // Skip diff generation if SKIP_API is true
+  // Mock diff for testing
   if (process.env.SKIP_API === 'true') {
-    logger.info('SKIP_API is set to true, skipping diff generation');
-    const mockDiff = '+ This is a mock diff for testing purposes';
-    fs.writeFileSync(DIFF_FILE, mockDiff);
+    fs.writeFileSync(DIFF_FILE, '+ This is a mock diff for testing purposes');
     return true;
   }
 
   try {
-    // Get relative path for git commands
     const relativePath = CAREER_FILE.replace(process.cwd() + '/', '');
+    const isManualTrigger = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
 
-    if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
-      // For manual triggers
+    if (isManualTrigger) {
       await execAsync(`git diff HEAD~1 HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
       return true;
-    } else {
-      // For auto-triggers
-      const {stdout} = await execAsync(`git diff HEAD~1 HEAD --name-only`);
-      if (stdout.includes(relativePath)) {
-        await execAsync(`git diff HEAD~1 HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
-        return true;
-      } else {
-        logger.info(`⏭️ Auto-trigger: No changes in ${CAREER_FILE}`);
-        setOutput('mode', 'skip');
-        return false;
-      }
     }
-  } catch (error: any) {
-    // If git diff fails, create an empty diff file with a message
+
+    // Auto-trigger: check if career file changed
+    const {stdout} = await execAsync(`git diff HEAD~1 HEAD --name-only`);
+    if (stdout.includes(relativePath)) {
+      await execAsync(`git diff HEAD~1 HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
+      return true;
+    }
+
+    logger.info(`No changes in ${CAREER_FILE}`);
+    setOutput('mode', 'skip');
+    return false;
+  } catch (error) {
     fs.writeFileSync(DIFF_FILE, 'No changes detected');
     logger.info('No changes detected in git diff');
-    return true; // Continue processing to check if diff is empty
+    return true;
   }
 };
 
@@ -110,7 +107,7 @@ export const main = async (): Promise<void> => {
     for (const cvType of cvTypesToProcess) {
       logger.info(`Processing incremental update for ${cvType} CV...`);
 
-      const {systemPrompt, userPrompt} = buildIncrementalPrompt(cvType);
+      const {systemPrompt, userPrompt} = buildPromptForType(cvType);
 
       // Make API call with separate system and user prompts
       const success = await callClaudeApi(systemPrompt, userPrompt, cvType);

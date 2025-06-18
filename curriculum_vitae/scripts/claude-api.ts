@@ -3,7 +3,7 @@
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
-import {API_MODEL, CvType, getResponseFile, MAX_TOKENS} from './config.js';
+import {API_MODEL, CvType, getResponseFile, MAX_TOKENS, MIN_CONTENT_LENGTH} from './config.js';
 import logger from './logger.js';
 
 export interface PromptResult {
@@ -123,28 +123,21 @@ export const extractLatex = (outputFile: string, cvType: CvType): boolean => {
     let text = (responseData.content[0] as TextBlock).text;
     logger.debug(`Raw response length for ${cvType} CV: ${text.length} characters`);
 
-    // Clean up the response more thoroughly
+    // Clean up the response
     const originalLength = text.length;
 
-    // Remove thinking tags and content (multiple variations)
-    text = text.replace(/<thinking>[\s\S]*?<\/thinking>/gi, '');
-    text = text.replace(/<extended_thinking>[\s\S]*?<\/extended_thinking>/gi, '');
+    // Remove AI thinking blocks and code markers
+    text = text.replace(/<(extended_)?thinking>[\s\S]*?<\/(extended_)?thinking>/gi, '');
+    text = text.replace(/```(latex)?\n?/gi, '');
 
-    // Remove code block markers
-    text = text.replace(/```latex\n?/gi, '');
-    text = text.replace(/```\n?/g, '');
-
-    // Remove any leading/trailing whitespace and normalize line endings
-    text = text.trim();
-
-    // Remove excessive empty lines (more than 2 consecutive)
-    text = text.replace(/\n{3,}/g, '\n\n');
+    // Normalize whitespace
+    text = text.trim().replace(/\n{3,}/g, '\n\n');
 
     logger.debug(`Cleaned ${originalLength - text.length} characters from ${cvType} CV response`);
 
-    // Validate that we still have content
-    if (text.length < 100) {
-      logger.error(`Extracted content for ${cvType} CV is too short, possible over-cleaning`);
+    // Validate content length
+    if (text.length < MIN_CONTENT_LENGTH) {
+      logger.error(`Extracted content for ${cvType} CV is too short (${text.length} < ${MIN_CONTENT_LENGTH} chars)`);
       return false;
     }
 

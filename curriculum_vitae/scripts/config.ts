@@ -16,20 +16,30 @@ export const TEMP_FILE: string = process.env.TEMP_FILE ?? 'temp_cv.tex';
 export type CvType = 'anti' | 'professional';
 export const CV_TYPES: CvType[] = ['anti', 'professional'];
 
+// Validation constants
+export const MIN_CONTENT_LENGTH = 100;
+export const MAX_EMPTY_LINES = 2;
+
+// Helper function to ensure directory exists
+export const ensureDirectoryExists = (dirPath: string): void => {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, {recursive: true});
+  }
+};
+
 // Get CV types to process based on environment variable
 export const getCvTypesToProcess = (): CvType[] => {
   const cvTypesEnv = process.env.CV_TYPES;
 
   if (!cvTypesEnv) {
-    // Default: process all CV types
-    return CV_TYPES;
+    return CV_TYPES; // Default: all types
   }
 
   const requestedTypes = cvTypesEnv.split(',').map(t => t.trim()) as CvType[];
   const validTypes = requestedTypes.filter(type => CV_TYPES.includes(type));
 
   if (validTypes.length === 0) {
-    throw new Error(`Invalid CV_TYPES: ${cvTypesEnv}. Valid options: ${CV_TYPES.join(', ')}`);
+    throw new Error(`Invalid CV_TYPES: "${cvTypesEnv}". Valid: ${CV_TYPES.join(', ')}`);
   }
 
   return validTypes;

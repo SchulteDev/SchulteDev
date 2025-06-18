@@ -62,8 +62,8 @@ if (MODE !== 'incremental' && MODE !== 'full_rebuild') {
 
 logger.info(`Running in ${MODE} mode for CV types: ${getCvTypesToProcess().join(', ')}`);
 
-// Check prerequisites
-const checkPrerequisites = async (): Promise<void> => {
+// Validate prerequisites
+const validatePrerequisites = (): void => {
   if (!fs.existsSync(CAREER_FILE)) {
     logger.error(`Missing prerequisite: ${CAREER_FILE} file`);
     process.exit(1);
@@ -86,15 +86,15 @@ const checkPrerequisites = async (): Promise<void> => {
   }
 };
 
-// Simulate GitHub environment
+// Setup local environment
 const setupLocalEnv = (): void => {
-  process.env.GITHUB_EVENT_NAME = process.env.GITHUB_EVENT_NAME || 'workflow_dispatch';
+  process.env.GITHUB_EVENT_NAME ??= 'workflow_dispatch';
   process.env.REBUILD_MODE = MODE;
 
-  // Create temp directory for outputs
   if (!fs.existsSync('tmp')) {
     fs.mkdirSync('tmp', {recursive: true});
   }
+
   process.env.GITHUB_OUTPUT = 'tmp/github_output.txt';
   fs.writeFileSync(process.env.GITHUB_OUTPUT, '');
 };
@@ -105,7 +105,7 @@ const main = async (): Promise<void> => {
     logger.debug('Starting test-local.ts');
     logger.debug(`Mode: ${MODE}, Skip API: ${SKIP_API}, Dry Run: ${DRY_RUN}`);
 
-    await checkPrerequisites();
+    validatePrerequisites();
     logger.debug('Prerequisites checked');
 
     setupLocalEnv();
