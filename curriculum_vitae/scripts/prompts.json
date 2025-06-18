@@ -3,87 +3,63 @@
     "structure": {
       "pages": 3,
       "pageBreak": "\\newpage after page 1",
-      "contentDistribution": "Fill all pages completely",
-      "format": "Header→summary→sections",
-      "output": "ONLY compilable LaTeX code. NO explanations, comments, or markdown. Start with \\documentclass, end with \\end{document}. ASCII only. xu-cheng/latex-action compatible, standard packages."
+      "output": "LaTeX only. Start \\documentclass, end \\end{document}."
     },
-    "pageRequirements": [
-      "P1: Header+Summary+Competencies+Current role (LBBV)",
-      "P2: Union Investment+Saloodo!+Trusted Shops",
-      "P3: Earlier experience+Education+Skills",
-      "Recent: 4-6 bullets. Older: 2-3 bullets.",
-      "Expand with examples, bullets, subsections to fill pages",
-      "Include dates, numbers, concrete examples"
+    "pageLayout": [
+      "P1: Header+Summary+Core competencies+Current role",
+      "P2: Previous 2 roles (Union Investment, Saloodo!)",
+      "P3: Earlier roles+Education+Technical skills",
+      "Recent: 4-6 bullets. Earlier: 2-3 bullets.",
+      "Use metrics, dates, technologies, achievements"
     ],
-    "incrementalGuidelines": [
-      "Keep exactly {{PAGES}} pages after changes",
-      "If shrinks: expand sections. If grows: condense",
-      "Maintain \\newpage placement",
-      "Fill all pages completely"
-    ],
-    "commonRules": [
-      "Factual only. No inventions.",
-      "RULES: {{CV_SPECIFIC_RULES}}"
-    ],
-    "commonFormat": [
-      "FORMAT: {{SHARED_FORMAT}}. {{PAGES}} pages with {{SHARED_PAGE_BREAK}}. {{SHARED_CONTENT_DISTRIBUTION}}."
-    ],
-    "fullRebuildBase": [
-      "Create {{PAGES}}-page {{CV_TYPE}}. Return ONLY LaTeX code, no explanations:",
-      "```markdown\n{{CAREER_DATA}}\n```",
-      "REQUIREMENTS: {{SHARED_PAGE_REQUIREMENTS}}",
-      "CRITICAL: Return pure LaTeX starting with \\documentclass"
-    ],
-    "incrementalBase": [
-      "Update {{PAGES}}-page {{CV_TYPE}}. Return ONLY LaTeX code, no explanations:",
-      "```latex\n{{CURRENT_CV}}\n```",
-      "Changes:",
-      "```diff\n{{DIFF_DATA}}\n```",
-      "CRITICAL: {{SHARED_INCREMENTAL_GUIDELINES}}",
-      "Return pure LaTeX starting with \\documentclass"
+    "constraints": [
+      "Exactly {{PAGES}} pages",
+      "Fill all space - expand/condense as needed",
+      "Maintain \\newpage placement"
     ]
   },
   "antiCv": {
     "system": [
-      "LaTeX Anti-CV: reverse CV showing failures/mistakes/lessons in humorous, sarcastic style.",
-      "Show: mistakes, lessons, failed projects, rejections.",
-      "{{SHARED_COMMON_RULES}} Protect reputations. Self-deprecating but professional.",
-      "{{SHARED_COMMON_FORMAT}}",
-      "PAGES: {{SHARED_PAGE_REQUIREMENTS}}",
-      "OUTPUT: {{SHARED_OUTPUT}}"
+      "Generate Anti-CV: honest failures/lessons learned.",
+      "Tone: Self-deprecating, professional, mildly humorous.",
+      "Content: Failed projects, rejections, mistakes, irrelevant skills.",
+      "Structure: {{SHARED_PAGE_LAYOUT}}",
+      "{{SHARED_OUTPUT}}"
     ],
     "fullRebuild": [
-      "{{SHARED_FULL_REBUILD_BASE}}",
-      "Add sections like 'Skills I Thought Were Important', 'Expensive Mistakes', 'Professional Rejections' if needed."
+      "Create {{PAGES}}-page Anti-CV from:",
+      "```markdown\n{{CAREER_DATA}}\n```",
+      "Layout: {{SHARED_PAGE_LAYOUT}}",
+      "Add: 'Technologies I Overhyped', 'Projects That Failed', 'Interviews I Bombed'."
     ],
     "incremental": [
-      "{{SHARED_INCREMENTAL_BASE}}"
+      "Update Anti-CV:",
+      "```latex\n{{CURRENT_CV}}\n```",
+      "Changes: ```diff\n{{DIFF_DATA}}\n```",
+      "Constraints: {{SHARED_CONSTRAINTS}}"
     ]
   },
   "professionalCv": {
     "system": [
-      "LaTeX professional CV: achievement-focused, quantified results, professional tone.",
-      "Highlight: accomplishments, technical skills, leadership, business impact, career progression.",
-      "{{SHARED_COMMON_RULES}} Achievement language. Quantify results. Professional tone. Emphasize value.",
-      "STYLE: Clean, modern. Navy blue #1f4e79. Clear headers. Bullet points.",
-      "{{SHARED_COMMON_FORMAT}}",
-      "SECTIONS: Summary (3-4 lines), Competencies, Experience (reverse chronological), Education, Skills.",
-      "EXPERIENCE: Company, Role, Duration, 3-4 achievement bullets with quantified results.",
-      "OUTPUT: {{SHARED_OUTPUT}}"
+      "Generate achievement-focused professional CV.",
+      "Focus: Quantified impact, technical leadership, progression.",
+      "Language: Action verbs, metrics, business value.",
+      "Style: Clean, modern. Navy #1f4e79 headers.",
+      "Structure: {{SHARED_PAGE_LAYOUT}}",
+      "{{SHARED_OUTPUT}}"
     ],
     "fullRebuild": [
-      "{{SHARED_FULL_REBUILD_BASE}}",
-      "Guidelines:",
-      "- Transform technical details → business value",
-      "- Highlight leadership & team management",
-      "- Emphasize measurable outcomes",
-      "- Use professional language",
-      "- Structure chronologically (recent first)",
-      "- Include certifications & technical skills"
+      "Create {{PAGES}}-page professional CV from:",
+      "```markdown\n{{CAREER_DATA}}\n```",
+      "Layout: {{SHARED_PAGE_LAYOUT}}",
+      "Transform technical details to business impact. Quantify everything."
     ],
     "incremental": [
-      "{{SHARED_INCREMENTAL_BASE}}",
-      "Maintain: achievement language, quantified results, {{PAGES}}-page structure, professional formatting"
+      "Update professional CV:",
+      "```latex\n{{CURRENT_CV}}\n```",
+      "Changes: ```diff\n{{DIFF_DATA}}\n```",
+      "Constraints: {{SHARED_CONSTRAINTS}}",
+      "Maintain professional tone and quantified achievements."
     ]
   }
 }
