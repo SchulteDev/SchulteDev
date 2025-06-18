@@ -1,7 +1,6 @@
 // prompts.ts - Prompt management utilities
 
 import fs from 'fs';
-import path from 'path';
 import logger from './logger.js';
 import {CvType} from './config.js';
 
@@ -33,125 +32,75 @@ interface PromptsConfig {
 
 let cachedPrompts: PromptsConfig | null = null;
 
-const careerDataPlaceholder = '{{CAREER_DATA}}';
-const currentCvPlaceholder = '{{CURRENT_CV}}';
-const diffDataPlaceholder = '{{DIFF_DATA}}';
+// Placeholders
+const CAREER_DATA = '{{CAREER_DATA}}';
+const CURRENT_CV = '{{CURRENT_CV}}';
+const DIFF_DATA = '{{DIFF_DATA}}';
+const PAGES = '{{PAGES}}';
+const FORMAT = '{{SHARED_FORMAT}}';
+const PAGE_BREAK = '{{SHARED_PAGE_BREAK}}';
+const CONTENT_DIST = '{{SHARED_CONTENT_DISTRIBUTION}}';
+const OUTPUT = '{{SHARED_OUTPUT}}';
+const PAGE_REQS = '{{SHARED_PAGE_REQUIREMENTS}}';
+const INCR_GUIDE = '{{SHARED_INCREMENTAL_GUIDELINES}}';
 
-// Shared placeholder patterns
-const pagesPlaceholder = '{{PAGES}}';
-const sharedFormatPlaceholder = '{{SHARED_FORMAT}}';
-const sharedPageBreakPlaceholder = '{{SHARED_PAGE_BREAK}}';
-const sharedContentDistributionPlaceholder = '{{SHARED_CONTENT_DISTRIBUTION}}';
-const sharedOutputPlaceholder = '{{SHARED_OUTPUT}}';
-const sharedPageRequirementsPlaceholder = '{{SHARED_PAGE_REQUIREMENTS}}';
-const sharedIncrementalGuidelinesPlaceholder = '{{SHARED_INCREMENTAL_GUIDELINES}}';
+const normalize = (prompt: string | string[]): string =>
+  Array.isArray(prompt) ? prompt.join('\n') : prompt;
 
-// Helper function to normalize prompts (handles both string and array)
-const normalizePrompt = (prompt: string | string[]): string => {
-  return Array.isArray(prompt) ? prompt.join('\n') : prompt;
-};
-
-// Helper function to substitute shared placeholders
-const substituteSharedPlaceholders = (text: string, shared: SharedConfig): string => {
-  const pageRequirementsText = shared.pageRequirements.map(req => `- ${req}`).join('\n');
-  const incrementalGuidelinesText = shared.incrementalGuidelines.join('\n- ');
+const substitute = (text: string, shared: SharedConfig): string => {
+  const reqs = shared.pageRequirements.map(r => `- ${r}`).join('\n');
+  const guide = shared.incrementalGuidelines.join('\n- ');
 
   return text
-  .replace(new RegExp(pagesPlaceholder, 'g'), shared.structure.pages.toString())
-  .replace(new RegExp(sharedFormatPlaceholder, 'g'), shared.structure.format)
-  .replace(new RegExp(sharedPageBreakPlaceholder, 'g'), shared.structure.pageBreak)
-  .replace(new RegExp(sharedContentDistributionPlaceholder, 'g'), shared.structure.contentDistribution)
-  .replace(new RegExp(sharedOutputPlaceholder, 'g'), shared.structure.output)
-  .replace(new RegExp(sharedPageRequirementsPlaceholder, 'g'), pageRequirementsText)
-  .replace(new RegExp(sharedIncrementalGuidelinesPlaceholder, 'g'), incrementalGuidelinesText);
+  .replace(new RegExp(PAGES, 'g'), shared.structure.pages.toString())
+  .replace(new RegExp(FORMAT, 'g'), shared.structure.format)
+  .replace(new RegExp(PAGE_BREAK, 'g'), shared.structure.pageBreak)
+  .replace(new RegExp(CONTENT_DIST, 'g'), shared.structure.contentDistribution)
+  .replace(new RegExp(OUTPUT, 'g'), shared.structure.output)
+  .replace(new RegExp(PAGE_REQS, 'g'), reqs)
+  .replace(new RegExp(INCR_GUIDE, 'g'), guide);
 };
 
-// Load prompts from JSON file
 const loadPrompts = (): PromptsConfig => {
-  if (cachedPrompts) {
-    return cachedPrompts;
-  }
+  if (cachedPrompts) return cachedPrompts;
 
-  const promptsPath = path.join(process.cwd(), 'prompts.json');
-
+  const path = `${process.cwd()}/prompts.json`;
   try {
-    const promptsData = fs.readFileSync(promptsPath, 'utf8');
-    cachedPrompts = JSON.parse(promptsData);
+    cachedPrompts = JSON.parse(fs.readFileSync(path, 'utf8'));
     logger.debug('Loaded prompts from prompts.json');
     return cachedPrompts!;
   } catch (error: any) {
-    logger.error(`Failed to load prompts from ${promptsPath}: ${error.message}`);
-    throw new Error(`Prompts configuration not found: ${error.message}`);
+    logger.error(`Failed to load prompts: ${error.message}`);
+    throw new Error(`Prompts not found: ${error.message}`);
   }
 };
 
-// Get system prompt for specific CV type
 export const getSystemPrompt = (type: CvType): string => {
   const prompts = loadPrompts();
-  let systemPrompt: string;
-
-  switch (type) {
-    case 'anti':
-      systemPrompt = normalizePrompt(prompts.antiCv.system);
-      break;
-    case 'professional':
-      systemPrompt = normalizePrompt(prompts.professionalCv.system);
-      break;
-    default:
-      throw new Error(`Unknown CV type: ${type}`);
-  }
-
-  return substituteSharedPlaceholders(systemPrompt, prompts.shared);
+  const system = type === 'anti' ? prompts.antiCv.system : prompts.professionalCv.system;
+  return substitute(normalize(system), prompts.shared);
 };
 
-// Get user prompt for full rebuild with variable substitution
 export const getFullRebuildPrompt = (type: CvType, careerData: string): string => {
   const prompts = loadPrompts();
-  let prompt: string;
-
-  switch (type) {
-    case 'anti':
-      prompt = normalizePrompt(prompts.antiCv.fullRebuild);
-      break;
-    case 'professional':
-      prompt = normalizePrompt(prompts.professionalCv.fullRebuild);
-      break;
-    default:
-      throw new Error(`Unknown CV type: ${type}`);
-  }
-
-  prompt = substituteSharedPlaceholders(prompt, prompts.shared);
-  return prompt.replace(careerDataPlaceholder, careerData);
+  const prompt = type === 'anti' ? prompts.antiCv.fullRebuild : prompts.professionalCv.fullRebuild;
+  return substitute(normalize(prompt), prompts.shared).replace(CAREER_DATA, careerData);
 };
 
-// Get user prompt for incremental update with variable substitution
 export const getIncrementalPrompt = (type: CvType, currentCv: string, diffData: string): string => {
   const prompts = loadPrompts();
-  let prompt: string;
-
-  switch (type) {
-    case 'anti':
-      prompt = normalizePrompt(prompts.antiCv.incremental);
-      break;
-    case 'professional':
-      prompt = normalizePrompt(prompts.professionalCv.incremental);
-      break;
-    default:
-      throw new Error(`Unknown CV type: ${type}`);
-  }
-
-  prompt = substituteSharedPlaceholders(prompt, prompts.shared);
-  return prompt
-  .replace(currentCvPlaceholder, currentCv)
-  .replace(diffDataPlaceholder, diffData);
+  const prompt = type === 'anti' ? prompts.antiCv.incremental : prompts.professionalCv.incremental;
+  return substitute(normalize(prompt), prompts.shared)
+  .replace(CURRENT_CV, currentCv)
+  .replace(DIFF_DATA, diffData);
 };
 
-// Legacy functions for backward compatibility (defaults to anti-CV)
-export const getAntiCvSystemPrompt = (): string => getSystemPrompt('anti');
-export const getAntiCvFullRebuildPrompt = (careerData: string): string => getFullRebuildPrompt('anti', careerData);
-export const getAntiCvIncrementalPrompt = (currentCv: string, diffData: string): string => getIncrementalPrompt('anti', currentCv, diffData);
+// Legacy compatibility (anti-CV defaults)
+export const getAntiCvSystemPrompt = () => getSystemPrompt('anti');
+export const getAntiCvFullRebuildPrompt = (data: string) => getFullRebuildPrompt('anti', data);
+export const getAntiCvIncrementalPrompt = (cv: string, diff: string) => getIncrementalPrompt('anti', cv, diff);
 
-// Professional CV specific functions
-export const getProfessionalCvSystemPrompt = (): string => getSystemPrompt('professional');
-export const getProfessionalCvFullRebuildPrompt = (careerData: string): string => getFullRebuildPrompt('professional', careerData);
-export const getProfessionalCvIncrementalPrompt = (currentCv: string, diffData: string): string => getIncrementalPrompt('professional', currentCv, diffData);
+// Professional CV functions
+export const getProfessionalCvSystemPrompt = () => getSystemPrompt('professional');
+export const getProfessionalCvFullRebuildPrompt = (data: string) => getFullRebuildPrompt('professional', data);
+export const getProfessionalCvIncrementalPrompt = (cv: string, diff: string) => getIncrementalPrompt('professional', cv, diff);

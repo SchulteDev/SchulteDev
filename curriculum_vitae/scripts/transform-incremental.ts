@@ -1,4 +1,4 @@
-// transform-incremental.ts - Handles incremental updates to CV
+// transform-incremental.ts - Incremental CV updates
 
 import fs from 'fs';
 import {exec} from 'child_process';
@@ -17,139 +17,102 @@ import logger from './logger.js';
 import {callClaudeApi, PromptResult} from './claude-api.js';
 import {getIncrementalPrompt, getSystemPrompt} from './prompts.js';
 
-// Promisify exec
 const execAsync = util.promisify(exec);
 
-// Build prompt for incremental update
-const buildPromptForType = (cvType: CvType): PromptResult => {
+const buildPrompt = (cvType: CvType): PromptResult => {
   const cvFile = getCvFile(cvType);
 
-  if (!fs.existsSync(cvFile)) {
-    throw new Error(`CV file not found: ${cvFile}`);
-  }
-  if (!fs.existsSync(DIFF_FILE)) {
-    throw new Error(`Diff file not found: ${DIFF_FILE}`);
-  }
-
-  const currentCv = fs.readFileSync(cvFile, 'utf8');
-  const diffData = fs.readFileSync(DIFF_FILE, 'utf8');
+  if (!fs.existsSync(cvFile)) throw new Error(`CV file not found: ${cvFile}`);
+  if (!fs.existsSync(DIFF_FILE)) throw new Error(`Diff file not found: ${DIFF_FILE}`);
 
   return {
     systemPrompt: getSystemPrompt(cvType),
-    userPrompt: getIncrementalPrompt(cvType, currentCv, diffData)
+    userPrompt: getIncrementalPrompt(cvType, fs.readFileSync(cvFile, 'utf8'), fs.readFileSync(DIFF_FILE, 'utf8'))
   };
 };
 
-// Generate git diff for incremental updates
 const generateDiff = async (): Promise<boolean> => {
   try {
     const relativePath = CAREER_FILE.replace(process.cwd() + '/', '');
-    const isManualTrigger = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
-    const diffRange = `HEAD~${GIT_DIFF_RANGE}`;
+    const isManual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+    const range = `HEAD~${GIT_DIFF_RANGE}`;
 
-    logger.debug(`Using git diff range: ${diffRange} HEAD`);
+    logger.debug(`Git diff range: ${range} HEAD`);
 
-    if (isManualTrigger) {
-      await execAsync(`git diff ${diffRange} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
+    if (isManual) {
+      await execAsync(`git diff ${range} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
       return true;
     }
 
-    // Auto-trigger: check if career file changed
-    const {stdout} = await execAsync(`git diff ${diffRange} HEAD --name-only`);
+    const {stdout} = await execAsync(`git diff ${range} HEAD --name-only`);
     if (stdout.includes(relativePath)) {
-      await execAsync(`git diff ${diffRange} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
+      await execAsync(`git diff ${range} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
       return true;
     }
 
-    logger.info(`No changes in ${CAREER_FILE} over last ${GIT_DIFF_RANGE} commits`);
+    logger.info(`No changes in ${CAREER_FILE} (last ${GIT_DIFF_RANGE} commits)`);
     setOutput('mode', 'skip');
     return false;
   } catch (error: any) {
-    // For testing, create a mock diff when git operations fail
     fs.writeFileSync(DIFF_FILE, 'No changes detected in git diff');
-    logger.info('No changes detected in git diff, created mock diff file');
+    logger.info('No git changes detected, created mock diff');
     return true;
   }
 };
 
 export const main = async (): Promise<void> => {
   try {
-    // Ensure required directories exist
     ensureDirectories();
+    logger.info('🔄 Starting incremental transformation...');
 
-    logger.info('🔄 Starting incremental transformation for all CV types...');
-
-    // Detect if we need to process
     if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
       if (process.env.REBUILD_MODE === 'full_rebuild') {
         setOutput('mode', 'full_rebuild');
         logger.info('🔄 Manual trigger: Switching to full rebuild');
-        // Don't exit here - let the parent handle it
         throw new Error('SWITCH_TO_FULL_REBUILD');
       }
       setOutput('mode', 'incremental');
       logger.info('📝 Manual trigger: Incremental mode');
     }
 
-    // Generate diff
-    const shouldContinue = await generateDiff();
-    if (!shouldContinue) {
-      return; // Return instead of exit
-    }
+    if (!await generateDiff()) return;
 
-    // Check if diff is empty
     const diffContent = fs.readFileSync(DIFF_FILE, 'utf8');
-    if (!diffContent || diffContent.trim() === '' || diffContent === 'No changes detected in git diff') {
-      // For testing purposes, create a minimal diff when there are no actual changes
+    if (!diffContent?.trim() || diffContent === 'No changes detected in git diff') {
       if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
-        logger.info('No actual changes detected, but manual trigger - creating minimal diff for testing');
+        logger.info('No changes but manual trigger - creating test diff');
         fs.writeFileSync(DIFF_FILE, '+ Minor update for testing incremental workflow');
       } else {
-        logger.info('ℹ️ No actual changes to process');
+        logger.info('ℹ️ No changes to process');
         setOutput('mode', 'skip');
         return;
       }
     }
 
-    // Process each CV type
-    const cvTypesToProcess = getCvTypesToProcess();
-    for (const cvType of cvTypesToProcess) {
-      logger.info(`Processing incremental update for ${cvType} CV...`);
+    const types = getCvTypesToProcess();
+    for (const type of types) {
+      logger.info(`Processing incremental ${type} CV...`);
+      const {systemPrompt, userPrompt} = buildPrompt(type);
 
-      const {systemPrompt, userPrompt} = buildPromptForType(cvType);
-
-      // Make API call with separate system and user prompts
-      const success = await callClaudeApi(systemPrompt, userPrompt, cvType);
-      if (success) {
-        logger.success(`Incremental transformation response received for ${cvType} CV`);
+      if (await callClaudeApi(systemPrompt, userPrompt, type)) {
+        logger.success(`Incremental update complete for ${type} CV`);
       } else {
-        throw new Error(`API call failed for ${cvType} CV`);
+        throw new Error(`API call failed for ${type} CV`);
       }
     }
 
-    logger.success('All CV types processed successfully');
-
-    // Cleanup
-    if (fs.existsSync(DIFF_FILE)) {
-      try {
-        fs.unlinkSync(DIFF_FILE);
-      } catch (unlinkError: any) {
-        logger.error(`Failed to delete diff file: ${unlinkError.message}`);
-      }
-    }
+    logger.success('All CV types processed');
   } catch (error: any) {
-    if (error.message === 'SWITCH_TO_FULL_REBUILD') {
-      throw error; // Re-throw to let parent handle
-    }
-    logger.error(`Error in incremental transformation: ${error.message}`);
-    // Cleanup
+    if (error.message === 'SWITCH_TO_FULL_REBUILD') throw error;
+    logger.error(`Incremental error: ${error.message}`);
+    throw error;
+  } finally {
     if (fs.existsSync(DIFF_FILE)) {
       try {
         fs.unlinkSync(DIFF_FILE);
-      } catch (unlinkError: any) {
-        logger.error(`Failed to delete diff file: ${unlinkError.message}`);
+      } catch (e: any) {
+        logger.error(`Failed to delete diff file: ${e.message}`);
       }
     }
-    throw error;
   }
 };

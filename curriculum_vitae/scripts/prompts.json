@@ -2,94 +2,78 @@
   "shared": {
     "structure": {
       "pages": 2,
-      "pageBreak": "\\newpage after first page",
-      "contentDistribution": "Content must fill all pages completely",
+      "pageBreak": "\\newpage after page 1",
+      "contentDistribution": "Fill all pages completely",
       "format": "Header→summary→sections",
-      "output": "Complete compilable LaTeX. ASCII only. GitHub Action xu-cheng/latex-action compatible, standard packages only."
+      "output": "Complete compilable LaTeX. ASCII only. xu-cheng/latex-action compatible, standard packages."
     },
     "pageRequirements": [
-      "Page 1: Header + Summary + Competencies + Current role (LBBW)",
-      "Page 2: Union Investment + Saloodo! + Trusted Shops",
-      "Page 3: Earlier experience (brief) + Education + Skills",
-      "Recent roles: 4-6 bullets. Older roles: 2-3 bullets.",
-      "Expand sections with detailed examples, bullet points, and subsections",
-      "Add subsections where needed to fill content",
-      "Include specific dates, numbers, and concrete examples to add substance"
+      "P1: Header+Summary+Competencies+Current role (LBBW)",
+      "P2: Union Investment+Saloodo!+Trusted Shops",
+      "P3: Earlier experience+Education+Skills",
+      "Recent: 4-6 bullets. Older: 2-3 bullets.",
+      "Expand with examples, bullets, subsections to fill pages",
+      "Include dates, numbers, concrete examples"
     ],
     "incrementalGuidelines": [
-      "After applying changes, ensure document remains exactly {{PAGES}} pages",
-      "If content shrinks, expand existing sections or add new ones",
-      "If content grows beyond {{PAGES}} pages, condense while maintaining style and detail",
-      "Maintain \\newpage placement to separate pages appropriately",
-      "Adjust section content distribution to fill all pages completely"
+      "Keep exactly {{PAGES}} pages after changes",
+      "If shrinks: expand sections. If grows: condense",
+      "Maintain \\newpage placement",
+      "Fill all pages completely"
     ]
   },
   "antiCv": {
     "system": [
-      "LaTeX Anti-CV creator. Anti-CV = reverse CV showcasing failures/mistakes/lessons in humorous, ironic-sarcastic style.",
-      "Anti-CV shows: mistakes made, lessons learned, failed projects, project pains, rejections received.",
+      "LaTeX Anti-CV: reverse CV showing failures/mistakes/lessons in humorous, sarcastic style.",
+      "Show: mistakes, lessons, failed projects, rejections.",
       "RULES: Factual only. No inventions. Protect reputations. Self-deprecating but professional.",
-      "FORMAT: {{SHARED_FORMAT}}. MANDATORY: Exactly {{PAGES}} pages with {{SHARED_PAGE_BREAK}}. {{SHARED_CONTENT_DISTRIBUTION}}.",
-      "PAGE STRUCTURE: {{SHARED_PAGE_REQUIREMENTS}}",
+      "FORMAT: {{SHARED_FORMAT}}. {{PAGES}} pages with {{SHARED_PAGE_BREAK}}. {{SHARED_CONTENT_DISTRIBUTION}}.",
+      "PAGES: {{SHARED_PAGE_REQUIREMENTS}}",
       "OUTPUT: {{SHARED_OUTPUT}}"
     ],
     "fullRebuild": [
-      "Create Anti-CV from career data. CRITICAL: Must be exactly {{PAGES}} pages long.",
+      "Create {{PAGES}}-page Anti-CV:",
       "```markdown\n{{CAREER_DATA}}\n```",
-      "",
-      "MANDATORY REQUIREMENTS:",
-      "{{SHARED_PAGE_REQUIREMENTS}}",
-      "- If content is insufficient, create additional relevant sections like 'Skills I Thought Were Important', 'Expensive Mistakes', 'Professional Rejections'"
+      "REQUIREMENTS: {{SHARED_PAGE_REQUIREMENTS}}",
+      "Add sections like 'Skills I Thought Were Important', 'Expensive Mistakes', 'Professional Rejections' if needed"
     ],
     "incremental": [
-      "Update Anti-CV maintaining exactly {{PAGES}} pages. Current:",
+      "Update Anti-CV ({{PAGES}} pages):",
       "```latex\n{{CURRENT_CV}}\n```",
-      "Apply changes:",
+      "Changes:",
       "```diff\n{{DIFF_DATA}}\n```",
-      "",
       "CRITICAL: {{SHARED_INCREMENTAL_GUIDELINES}}"
     ]
   },
   "professionalCv": {
     "system": [
-      "LaTeX professional CV creator. Achievement-focused, quantified results, professional tone.",
-      "Professional CV highlights: accomplishments, technical skills, leadership experience, business impact, career progression.",
-      "RULES: Achievement-focused language. Quantify results. Professional tone. No humor or self-deprecation. Emphasize value delivered.",
-      "STYLE: Clean, modern layout. Use professional colors (navy blue #1f4e79). Clear section headers. Bullet points for readability.",
-      "FORMAT: {{SHARED_FORMAT}}. MANDATORY: Exactly {{PAGES}} pages with {{SHARED_PAGE_BREAK}}. {{SHARED_CONTENT_DISTRIBUTION}}.",
-      "SECTIONS: Professional Summary (3-4 lines), Core Competencies (key skills), Professional Experience (reverse chronological), Education, Technical Skills.",
-      "EXPERIENCE FORMAT: Company, Role, Duration, 3-4 achievement bullets with quantified results where possible.",
+      "LaTeX professional CV: achievement-focused, quantified results, professional tone.",
+      "Highlight: accomplishments, technical skills, leadership, business impact, career progression.",
+      "RULES: Achievement language. Quantify results. Professional tone. Emphasize value.",
+      "STYLE: Clean, modern. Navy blue #1f4e79. Clear headers. Bullet points.",
+      "FORMAT: {{SHARED_FORMAT}}. {{PAGES}} pages with {{SHARED_PAGE_BREAK}}. {{SHARED_CONTENT_DISTRIBUTION}}.",
+      "SECTIONS: Summary (3-4 lines), Competencies, Experience (reverse chronological), Education, Skills.",
+      "EXPERIENCE: Company, Role, Duration, 3-4 achievement bullets with quantified results.",
       "OUTPUT: {{SHARED_OUTPUT}}"
     ],
     "fullRebuild": [
-      "Create {{PAGES}}-page professional CV from career data. Focus on achievements, leadership, technical expertise, and business impact:",
+      "Create {{PAGES}}-page professional CV focusing on achievements, leadership, technical expertise:",
       "```markdown\n{{CAREER_DATA}}\n```",
-      "",
-      "MANDATORY REQUIREMENTS:",
-      "{{SHARED_PAGE_REQUIREMENTS}}",
-      "",
-      "Key guidelines:",
-      "- Transform technical details into business value statements",
-      "- Highlight leadership roles and team management experience",
-      "- Emphasize measurable outcomes (user numbers, performance improvements, cost savings)",
-      "- Use professional language and industry terminology",
-      "- Structure chronologically with most recent experience first",
-      "- Include relevant certifications and technical skills"
+      "REQUIREMENTS: {{SHARED_PAGE_REQUIREMENTS}}",
+      "Guidelines:",
+      "- Transform technical details → business value",
+      "- Highlight leadership & team management",
+      "- Emphasize measurable outcomes",
+      "- Use professional language",
+      "- Structure chronologically (recent first)",
+      "- Include certifications & technical skills"
     ],
     "incremental": [
-      "Update {{PAGES}}-page professional CV with changes. Current:",
+      "Update {{PAGES}}-page professional CV:",
       "```latex\n{{CURRENT_CV}}\n```",
-      "",
-      "Apply these changes maintaining professional tone:",
+      "Changes:",
       "```diff\n{{DIFF_DATA}}\n```",
-      "",
-      "Guidelines for updates:",
-      "- Maintain achievement-focused language and quantified results",
-      "- Keep {{PAGES}}-page structure",
-      "- Ensure changes align with professional CV standards",
-      "- Preserve quantified results and business impact focus",
-      "- Keep professional formatting and structure",
-      "",
+      "Maintain: achievement language, quantified results, {{PAGES}}-page structure, professional formatting",
       "CRITICAL: {{SHARED_INCREMENTAL_GUIDELINES}}"
     ]
   }
