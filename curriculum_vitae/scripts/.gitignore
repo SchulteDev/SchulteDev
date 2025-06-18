@@ -1,5 +1,3 @@
 node_modules/
 tmp/
 .env
-career_changes.diff
-claude_response.json

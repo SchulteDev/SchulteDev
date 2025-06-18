@@ -3,7 +3,14 @@
 import fs from 'fs';
 import {exec} from 'child_process';
 import util from 'util';
-import {CAREER_FILE, CV_FILE, DIFF_FILE, setOutput} from './config.js';
+import {
+  CAREER_FILE,
+  CvType,
+  DIFF_FILE,
+  getCvFile,
+  getCvTypesToProcess,
+  setOutput
+} from './config.js';
 import logger from './logger.js';
 import {callClaudeApi, PromptResult} from './claude-api.js';
 import {getIncrementalPrompt, getSystemPrompt} from './prompts.js';
@@ -12,18 +19,20 @@ import {getIncrementalPrompt, getSystemPrompt} from './prompts.js';
 const execAsync = util.promisify(exec);
 
 // Build prompt for incremental update
-const buildIncrementalPrompt = (): PromptResult => {
-  if (!fs.existsSync(CV_FILE)) {
-    throw new Error(`CV file not found: ${CV_FILE}`);
+const buildIncrementalPrompt = (cvType: CvType): PromptResult => {
+  const cvFile = getCvFile(cvType);
+
+  if (!fs.existsSync(cvFile)) {
+    throw new Error(`CV file not found: ${cvFile}`);
   }
   if (!fs.existsSync(DIFF_FILE)) {
     throw new Error(`Diff file not found: ${DIFF_FILE}`);
   }
 
-  const currentCv = fs.readFileSync(CV_FILE, 'utf8');
+  const currentCv = fs.readFileSync(cvFile, 'utf8');
   const diffData = fs.readFileSync(DIFF_FILE, 'utf8');
-  const systemPrompt = getSystemPrompt();
-  const userPrompt = getIncrementalPrompt(currentCv, diffData);
+  const systemPrompt = getSystemPrompt(cvType);
+  const userPrompt = getIncrementalPrompt(cvType, currentCv, diffData);
 
   return {systemPrompt, userPrompt};
 };
@@ -68,7 +77,7 @@ const generateDiff = async (): Promise<boolean> => {
 
 export const main = async (): Promise<void> => {
   try {
-    logger.info('🔄 Starting incremental transformation...');
+    logger.info('🔄 Starting incremental transformation for all CV types...');
 
     // Detect if we need to process
     if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
@@ -96,29 +105,31 @@ export const main = async (): Promise<void> => {
       return; // Return instead of exit
     }
 
-    const {systemPrompt, userPrompt} = buildIncrementalPrompt();
+    // Process each CV type
+    const cvTypesToProcess = getCvTypesToProcess();
+    for (const cvType of cvTypesToProcess) {
+      logger.info(`Processing incremental update for ${cvType} CV...`);
 
-    // Make API call with separate system and user prompts
-    const success = await callClaudeApi(systemPrompt, userPrompt);
-    if (success) {
-      logger.success('Incremental transformation response received');
-      // Cleanup
-      if (fs.existsSync(DIFF_FILE)) {
-        try {
-          fs.unlinkSync(DIFF_FILE);
-        } catch (unlinkError: any) {
-          logger.error(`Failed to delete diff file: ${unlinkError.message}`);
-        }
+      const {systemPrompt, userPrompt} = buildIncrementalPrompt(cvType);
+
+      // Make API call with separate system and user prompts
+      const success = await callClaudeApi(systemPrompt, userPrompt, cvType);
+      if (success) {
+        logger.success(`Incremental transformation response received for ${cvType} CV`);
+      } else {
+        throw new Error(`API call failed for ${cvType} CV`);
       }
-    } else {
-      if (fs.existsSync(DIFF_FILE)) {
-        try {
-          fs.unlinkSync(DIFF_FILE);
-        } catch (unlinkError: any) {
-          logger.error(`Failed to delete diff file: ${unlinkError.message}`);
-        }
+    }
+
+    logger.success('All CV types processed successfully');
+
+    // Cleanup
+    if (fs.existsSync(DIFF_FILE)) {
+      try {
+        fs.unlinkSync(DIFF_FILE);
+      } catch (unlinkError: any) {
+        logger.error(`Failed to delete diff file: ${unlinkError.message}`);
       }
-      throw new Error('API call failed');
     }
   } catch (error: any) {
     if (error.message === 'SWITCH_TO_FULL_REBUILD') {

@@ -3,7 +3,7 @@
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
-import {API_MODEL, MAX_TOKENS, RESPONSE_FILE} from './config.js';
+import {API_MODEL, CvType, getResponseFile, MAX_TOKENS} from './config.js';
 import logger from './logger.js';
 
 export interface PromptResult {
@@ -11,14 +11,16 @@ export interface PromptResult {
   userPrompt: string;
 }
 
-export const callClaudeApi = async (systemPrompt: string, userPrompt: string): Promise<boolean> => {
+export const callClaudeApi = async (systemPrompt: string, userPrompt: string, cvType: CvType): Promise<boolean> => {
+  const responseFile = getResponseFile(cvType);
+
   // Check if we should skip the API call
   if (process.env.SKIP_API === 'true') {
-    logger.info('SKIP_API is set to true, skipping API call');
+    logger.info(`SKIP_API is set to true, skipping API call for ${cvType} CV`);
 
     // Create a mock response file if it doesn't exist
-    if (!fs.existsSync(RESPONSE_FILE)) {
-      logger.info('Creating mock response file');
+    if (!fs.existsSync(responseFile)) {
+      logger.info(`Creating mock response file for ${cvType} CV`);
       const mockResponse = {
         content: [
           {
@@ -27,9 +29,9 @@ export const callClaudeApi = async (systemPrompt: string, userPrompt: string): P
           }
         ]
       };
-      fs.writeFileSync(RESPONSE_FILE, JSON.stringify(mockResponse, null, 2));
+      fs.writeFileSync(responseFile, JSON.stringify(mockResponse, null, 2));
     } else {
-      logger.info('Using existing response file');
+      logger.info(`Using existing response file for ${cvType} CV`);
     }
 
     return true;
@@ -45,7 +47,7 @@ export const callClaudeApi = async (systemPrompt: string, userPrompt: string): P
     return false;
   }
 
-  logger.info('Calling Claude API...');
+  logger.info(`Calling Claude API for ${cvType} CV...`);
   logger.debug(`Using model: ${API_MODEL}`);
 
   try {
@@ -75,22 +77,22 @@ export const callClaudeApi = async (systemPrompt: string, userPrompt: string): P
     const response = await anthropic.messages.create(requestOptions);
 
     // Save response to file
-    fs.writeFileSync(RESPONSE_FILE, JSON.stringify(response, null, 2));
+    fs.writeFileSync(responseFile, JSON.stringify(response, null, 2));
 
     // Check if response is valid
     if (!response.content?.[0] || (response.content[0].type === 'text' && !(response.content[0]).text)) {
-      logger.error('Invalid API response:');
+      logger.error(`Invalid API response for ${cvType} CV:`);
       console.log(JSON.stringify(response).slice(0, 500));
       return false;
     }
 
-    logger.success('API response received');
+    logger.success(`API response received for ${cvType} CV`);
     if (response.content[0].type === 'text') {
       logger.debug(`Response length: ${(response.content[0]).text.length} characters`);
     }
     return true;
   } catch (error: any) {
-    logger.error(`API call failed: ${error.message}`);
+    logger.error(`API call failed for ${cvType} CV: ${error.message}`);
     if (error.response) {
       logger.error('Response data:', JSON.stringify(error.response).slice(0, 500));
     }
@@ -99,7 +101,9 @@ export const callClaudeApi = async (systemPrompt: string, userPrompt: string): P
 };
 
 // Function to extract LaTeX from response
-export const extractLatex = (outputFile: string): boolean => {
+export const extractLatex = (outputFile: string, cvType: CvType): boolean => {
+  const responseFile = getResponseFile(cvType);
+
   if (!outputFile) {
     logger.error('No output file specified');
     return false;
@@ -107,17 +111,17 @@ export const extractLatex = (outputFile: string): boolean => {
 
   try {
     // Read the response file
-    logger.debug(`Reading response from ${RESPONSE_FILE}`);
-    const responseData = JSON.parse(fs.readFileSync(RESPONSE_FILE, 'utf8'));
+    logger.debug(`Reading response from ${responseFile} for ${cvType} CV`);
+    const responseData = JSON.parse(fs.readFileSync(responseFile, 'utf8'));
 
     // Extract text
     if (!responseData.content?.[0] || responseData.content[0].type !== 'text') {
-      logger.error('Invalid response content: not a text block');
+      logger.error(`Invalid response content for ${cvType} CV: not a text block`);
       return false;
     }
 
     let text = (responseData.content[0] as TextBlock).text;
-    logger.debug(`Raw response length: ${text.length} characters`);
+    logger.debug(`Raw response length for ${cvType} CV: ${text.length} characters`);
 
     // Clean up the response more thoroughly
     const originalLength = text.length;
@@ -136,24 +140,24 @@ export const extractLatex = (outputFile: string): boolean => {
     // Remove excessive empty lines (more than 2 consecutive)
     text = text.replace(/\n{3,}/g, '\n\n');
 
-    logger.debug(`Cleaned ${originalLength - text.length} characters from response`);
+    logger.debug(`Cleaned ${originalLength - text.length} characters from ${cvType} CV response`);
 
     // Validate that we still have content
     if (text.length < 100) {
-      logger.error('Extracted content is too short, possible over-cleaning');
+      logger.error(`Extracted content for ${cvType} CV is too short, possible over-cleaning`);
       return false;
     }
 
     // Write to output file
     fs.writeFileSync(outputFile, text);
-    logger.debug(`Wrote ${text.length} characters to ${outputFile}`);
+    logger.debug(`Wrote ${text.length} characters to ${outputFile} for ${cvType} CV`);
 
-    logger.success('Extracted and cleaned LaTeX content');
+    logger.success(`Extracted and cleaned LaTeX content for ${cvType} CV`);
     return true;
   } catch (error: any) {
-    logger.error(`Failed to extract LaTeX: ${error.message}`);
+    logger.error(`Failed to extract LaTeX for ${cvType} CV: ${error.message}`);
     if (error.code === 'ENOENT') {
-      logger.error(`Response file not found: ${RESPONSE_FILE}`);
+      logger.error(`Response file not found: ${responseFile}`);
     } else if (error instanceof SyntaxError) {
       logger.error('Invalid JSON in response file');
     }

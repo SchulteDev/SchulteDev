@@ -3,6 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import logger from './logger.js';
+import {CvType} from './config.js';
 
 interface PromptsConfig {
   antiCv: {
@@ -10,9 +11,11 @@ interface PromptsConfig {
     fullRebuild: string | string[];
     incremental: string | string[];
   };
-  // Future CV types can be added here:
-  // professionalCv: { ... }
-  // academicCv: { ... }
+  professionalCv: {
+    system: string | string[];
+    fullRebuild: string | string[];
+    incremental: string | string[];
+  };
 }
 
 let cachedPrompts: PromptsConfig | null = null;
@@ -45,27 +48,59 @@ const loadPrompts = (): PromptsConfig => {
   }
 };
 
-// Get system prompt for anti-CV
-export const getAntiCvSystemPrompt = (): string => {
+// Get system prompt for specific CV type
+export const getSystemPrompt = (type: CvType): string => {
   const prompts = loadPrompts();
-  return normalizePrompt(prompts.antiCv.system);
+  switch (type) {
+    case 'anti':
+      return normalizePrompt(prompts.antiCv.system);
+    case 'professional':
+      return normalizePrompt(prompts.professionalCv.system);
+    default:
+      throw new Error(`Unknown CV type: ${type}`);
+  }
 };
 
-// Get user prompt for anti-CV full rebuild with variable substitution
-export const getAntiCvFullRebuildPrompt = (careerData: string): string => {
+// Get user prompt for full rebuild with variable substitution
+export const getFullRebuildPrompt = (type: CvType, careerData: string): string => {
   const prompts = loadPrompts();
-  return normalizePrompt(prompts.antiCv.fullRebuild).replace(careerDataPlaceholder, careerData);
+  switch (type) {
+    case 'anti':
+      return normalizePrompt(prompts.antiCv.fullRebuild).replace(careerDataPlaceholder, careerData);
+    case 'professional':
+      return normalizePrompt(prompts.professionalCv.fullRebuild).replace(careerDataPlaceholder, careerData);
+    default:
+      throw new Error(`Unknown CV type: ${type}`);
+  }
 };
 
-// Get user prompt for anti-CV incremental update with variable substitution
-export const getAntiCvIncrementalPrompt = (currentCv: string, diffData: string): string => {
+// Get user prompt for incremental update with variable substitution
+export const getIncrementalPrompt = (type: CvType, currentCv: string, diffData: string): string => {
   const prompts = loadPrompts();
-  return normalizePrompt(prompts.antiCv.incremental)
-    .replace(currentCvPlaceholder, currentCv)
-    .replace(diffDataPlaceholder, diffData);
+  let prompt: string;
+
+  switch (type) {
+    case 'anti':
+      prompt = normalizePrompt(prompts.antiCv.incremental);
+      break;
+    case 'professional':
+      prompt = normalizePrompt(prompts.professionalCv.incremental);
+      break;
+    default:
+      throw new Error(`Unknown CV type: ${type}`);
+  }
+
+  return prompt
+  .replace(currentCvPlaceholder, currentCv)
+  .replace(diffDataPlaceholder, diffData);
 };
 
-// Legacy functions for backward compatibility (currently defaults to anti-CV)
-export const getSystemPrompt = (): string => getAntiCvSystemPrompt();
-export const getFullRebuildPrompt = (careerData: string): string => getAntiCvFullRebuildPrompt(careerData);
-export const getIncrementalPrompt = (currentCv: string, diffData: string): string => getAntiCvIncrementalPrompt(currentCv, diffData);
+// Legacy functions for backward compatibility (defaults to anti-CV)
+export const getAntiCvSystemPrompt = (): string => getSystemPrompt('anti');
+export const getAntiCvFullRebuildPrompt = (careerData: string): string => getFullRebuildPrompt('anti', careerData);
+export const getAntiCvIncrementalPrompt = (currentCv: string, diffData: string): string => getIncrementalPrompt('anti', currentCv, diffData);
+
+// Professional CV specific functions
+export const getProfessionalCvSystemPrompt = (): string => getSystemPrompt('professional');
+export const getProfessionalCvFullRebuildPrompt = (careerData: string): string => getFullRebuildPrompt('professional', careerData);
+export const getProfessionalCvIncrementalPrompt = (currentCv: string, diffData: string): string => getIncrementalPrompt('professional', currentCv, diffData);
