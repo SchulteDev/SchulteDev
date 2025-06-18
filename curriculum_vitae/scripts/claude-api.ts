@@ -3,7 +3,14 @@
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
-import {API_MODEL, CvType, getResponseFile, MAX_TOKENS, MIN_CONTENT_LENGTH} from './config.js';
+import {
+  API_MODEL,
+  CvType,
+  getCvFile,
+  getResponseFile,
+  MAX_TOKENS,
+  MIN_CONTENT_LENGTH
+} from './config.js';
 import logger from './logger.js';
 
 export interface PromptResult {
@@ -15,17 +22,36 @@ export const callClaudeApi = async (systemPrompt: string, userPrompt: string, cv
   const responseFile = getResponseFile(cvType);
 
   // Check if we should skip the API call
-  if (process.env.SKIP_API === 'true') {
-    logger.info(`SKIP_API is set to true, skipping API call for ${cvType} CV`);
+  if (process.env.SKIP_API === 'true' || !process.env.ANTHROPIC_API_KEY) {
+    if (!process.env.ANTHROPIC_API_KEY) {
+      logger.info(`ANTHROPIC_API_KEY not set, using mock response for ${cvType} CV`);
+    } else {
+      logger.info(`SKIP_API is set to true, skipping API call for ${cvType} CV`);
+    }
 
     // Create a mock response file if it doesn't exist
     if (!fs.existsSync(responseFile)) {
       logger.info(`Creating mock response file for ${cvType} CV`);
+
+      // Use actual CV content if available, otherwise use generic mock
+      const cvFile = getCvFile(cvType);
+      let mockContent: string;
+
+      if (fs.existsSync(cvFile)) {
+        // Use existing CV content
+        mockContent = fs.readFileSync(cvFile, 'utf8');
+        logger.info(`Using existing ${cvType} CV content for mock response`);
+      } else {
+        // Fallback to generic mock
+        mockContent = "\\documentclass{article}\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage{lastpage}\n\\begin{document}\n\\title{Mock CV for Testing}\n\\author{Test User}\n\\date{\\today}\n\\maketitle\n\\section{Education}\n\\begin{itemize}\n\\item PhD in Computer Science, Test University, 2020\n\\item MS in Computer Science, Test University, 2018\n\\item BS in Computer Science, Test University, 2016\n\\end{itemize}\n\\section{Experience}\n\\begin{itemize}\n\\item Senior Developer, Test Company, 2020-Present\n\\item Developer, Another Company, 2018-2020\n\\item Intern, Yet Another Company, 2016-2018\n\\end{itemize}\n\\end{document}";
+        logger.info(`Using generic mock content for ${cvType} CV`);
+      }
+
       const mockResponse = {
         content: [
           {
             type: "text",
-            text: "\\documentclass{article}\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage{lastpage}\n\\begin{document}\n\\title{Mock CV for Testing}\n\\author{Test User}\n\\date{\\today}\n\\maketitle\n\\section{Education}\n\\begin{itemize}\n\\item PhD in Computer Science, Test University, 2020\n\\item MS in Computer Science, Test University, 2018\n\\item BS in Computer Science, Test University, 2016\n\\end{itemize}\n\\section{Experience}\n\\begin{itemize}\n\\item Senior Developer, Test Company, 2020-Present\n\\item Developer, Another Company, 2018-2020\n\\item Intern, Yet Another Company, 2016-2018\n\\end{itemize}\n\\end{document}"
+            text: mockContent
           }
         ]
       };
@@ -35,11 +61,6 @@ export const callClaudeApi = async (systemPrompt: string, userPrompt: string, cv
     }
 
     return true;
-  }
-
-  if (!process.env.ANTHROPIC_API_KEY) {
-    logger.error('ANTHROPIC_API_KEY not set');
-    return false;
   }
 
   if (!userPrompt) {

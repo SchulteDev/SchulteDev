@@ -33,6 +33,8 @@ Environment variables:
   ANTHROPIC_API_KEY - Required for API calls
   CV_TYPES         - Comma-separated CV types to process (default: anti,professional)
                      Examples: "anti" or "professional" or "anti,professional"
+  GIT_DIFF_RANGE   - Number of commits to look back for changes (default: 1)
+                     Examples: "1", "20", "30" for testing with more history
   SKIP_API=true    - Skip API call, use existing response
   DRY_RUN=true     - Show what would be done without executing
   CREATE_BACKUP=true - Create backup before updating
@@ -42,6 +44,7 @@ Examples:
   tsx test-local.ts full_rebuild
   CV_TYPES=anti tsx test-local.ts incremental
   CV_TYPES=professional tsx test-local.ts full_rebuild
+  GIT_DIFF_RANGE=20 tsx test-local.ts incremental
   SKIP_API=true tsx test-local.ts incremental
   DRY_RUN=true tsx test-local.ts full_rebuild
 `);
@@ -80,7 +83,7 @@ const validatePrerequisites = (): void => {
     }
   }
 
-  if (SKIP_API !== true && !process.env.ANTHROPIC_API_KEY) {
+  if (!SKIP_API && !process.env.ANTHROPIC_API_KEY) {
     logger.error('Missing prerequisite: ANTHROPIC_API_KEY environment variable');
     process.exit(1);
   }
@@ -90,6 +93,12 @@ const validatePrerequisites = (): void => {
 const setupLocalEnv = (): void => {
   process.env.GITHUB_EVENT_NAME ??= 'workflow_dispatch';
   process.env.REBUILD_MODE = MODE;
+
+  // Set SKIP_API=true by default if no API key is provided
+  if (!process.env.ANTHROPIC_API_KEY && process.env.SKIP_API !== 'false') {
+    process.env.SKIP_API = 'true';
+    logger.info('No ANTHROPIC_API_KEY found, setting SKIP_API=true for testing');
+  }
 
   if (!fs.existsSync('tmp')) {
     fs.mkdirSync('tmp', {recursive: true});
@@ -123,14 +132,46 @@ const main = async (): Promise<void> => {
       process.exit(0);
     }
 
-    // Run the CV update workflow
-    logger.info(`Running CV update workflow in ${MODE} mode for all CV types...`);
-    const {stdout, stderr} = await execAsync('tsx run-cv-update.ts');
-    logger.debug('CV update workflow completed');
-    logger.debug(`stdout: ${stdout.slice(0, 200)}${stdout.length > 200 ? '...' : ''}`);
+    // Run the CV update workflow directly instead of as child process
+    logger.info(`Running CV update workflow in ${MODE} mode for CV types: ${getCvTypesToProcess().join(', ')}...`);
 
-    if (stderr) {
-      logger.debug(`stderr: ${stderr}`);
+    // Run the CV update workflow with proper environment variables
+    logger.info(`Running CV update workflow in ${MODE} mode for CV types: ${getCvTypesToProcess().join(', ')}...`);
+
+    // Create environment with all current variables
+    const envVars = {
+      ...process.env,
+      GITHUB_EVENT_NAME: 'workflow_dispatch',
+      REBUILD_MODE: MODE,
+      CV_TYPES: process.env.CV_TYPES || getCvTypesToProcess().join(','),
+      SKIP_API: process.env.SKIP_API || 'true'
+    };
+
+    // Log environment for debugging
+    logger.debug(`Environment: CV_TYPES=${envVars.CV_TYPES}, SKIP_API=${envVars.SKIP_API}, REBUILD_MODE=${envVars.REBUILD_MODE}`);
+
+    try {
+      const {stdout, stderr} = await execAsync('tsx run-cv-update.ts', {
+        env: envVars,
+        cwd: process.cwd()
+      });
+
+      logger.debug('CV update workflow completed');
+      if (stdout) {
+        logger.debug(`stdout: ${stdout.slice(0, 200)}${stdout.length > 200 ? '...' : ''}`);
+      }
+      if (stderr) {
+        logger.debug(`stderr: ${stderr}`);
+      }
+    } catch (error: any) {
+      logger.error(`CV update workflow failed: ${error.message}`);
+      if (error.stdout) {
+        logger.debug(`stdout: ${error.stdout}`);
+      }
+      if (error.stderr) {
+        logger.debug(`stderr: ${error.stderr}`);
+      }
+      throw error;
     }
 
     logger.success('Local test completed successfully!');

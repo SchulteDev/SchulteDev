@@ -7,8 +7,10 @@ import {
   CAREER_FILE,
   CvType,
   DIFF_FILE,
+  ensureDirectories,
   getCvFile,
   getCvTypesToProcess,
+  GIT_DIFF_RANGE,
   setOutput
 } from './config.js';
 import logger from './logger.js';
@@ -49,23 +51,26 @@ const generateDiff = async (): Promise<boolean> => {
   try {
     const relativePath = CAREER_FILE.replace(process.cwd() + '/', '');
     const isManualTrigger = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+    const diffRange = `HEAD~${GIT_DIFF_RANGE}`;
+
+    logger.debug(`Using git diff range: ${diffRange} HEAD`);
 
     if (isManualTrigger) {
-      await execAsync(`git diff HEAD~1 HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
+      await execAsync(`git diff ${diffRange} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
       return true;
     }
 
     // Auto-trigger: check if career file changed
-    const {stdout} = await execAsync(`git diff HEAD~1 HEAD --name-only`);
+    const {stdout} = await execAsync(`git diff ${diffRange} HEAD --name-only`);
     if (stdout.includes(relativePath)) {
-      await execAsync(`git diff HEAD~1 HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
+      await execAsync(`git diff ${diffRange} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
       return true;
     }
 
-    logger.info(`No changes in ${CAREER_FILE}`);
+    logger.info(`No changes in ${CAREER_FILE} over last ${GIT_DIFF_RANGE} commits`);
     setOutput('mode', 'skip');
     return false;
-  } catch (error) {
+  } catch (error: any) {
     fs.writeFileSync(DIFF_FILE, 'No changes detected');
     logger.info('No changes detected in git diff');
     return true;
@@ -74,6 +79,9 @@ const generateDiff = async (): Promise<boolean> => {
 
 export const main = async (): Promise<void> => {
   try {
+    // Ensure required directories exist
+    ensureDirectories();
+
     logger.info('🔄 Starting incremental transformation for all CV types...');
 
     // Detect if we need to process
@@ -97,9 +105,27 @@ export const main = async (): Promise<void> => {
     // Check if diff is empty
     const diffContent = fs.readFileSync(DIFF_FILE, 'utf8');
     if (!diffContent || diffContent.trim() === '' || diffContent === 'No changes detected') {
-      logger.info('ℹ️ No actual changes to process');
-      setOutput('mode', 'skip');
-      return; // Return instead of exit
+      // In test mode with SKIP_API, still create mock responses
+      if (process.env.SKIP_API === 'true') {
+        logger.info('No changes detected, but SKIP_API=true, creating mock responses for testing');
+        const cvTypesToProcess = getCvTypesToProcess();
+        for (const cvType of cvTypesToProcess) {
+          logger.info(`Creating mock response for ${cvType} CV...`);
+          const {systemPrompt, userPrompt} = buildPromptForType(cvType);
+          const success = await callClaudeApi(systemPrompt, userPrompt, cvType);
+          if (success) {
+            logger.success(`Mock response created for ${cvType} CV`);
+          } else {
+            throw new Error(`Failed to create mock response for ${cvType} CV`);
+          }
+        }
+        logger.success('All mock responses created successfully');
+        return;
+      } else {
+        logger.info('ℹ️ No actual changes to process');
+        setOutput('mode', 'skip');
+        return; // Return instead of exit
+      }
     }
 
     // Process each CV type

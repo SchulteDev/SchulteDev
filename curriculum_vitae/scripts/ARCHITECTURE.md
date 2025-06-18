@@ -1,211 +1,177 @@
-# CV Generation Scripts - Architecture Overview
+# CV Generation Scripts Architecture
 
-## Structure
+This document describes the architecture and workflow of the AI-powered CV generation system.
+
+## Overview
+
+The system consists of TypeScript scripts that automatically update CV files based on changes in career data using Claude AI. It supports both incremental updates and full rebuilds.
+
+## Core Components
+
+### 1. Configuration (`config.ts`)
+Central configuration file containing:
+- File paths for career data and CV outputs
+- API configuration (model, tokens, content validation)
+- CV type definitions and processing functions
+- Environment variable handling
+- Directory management utilities
+
+### 2. API Integration (`claude-api.ts`)
+Handles interaction with Claude AI:
+- API calls with proper error handling
+- Mock response generation for testing
+- LaTeX extraction and cleaning from AI responses
+- Content validation and formatting
+
+### 3. Transformation Scripts
+
+#### Incremental Transform (`transform-incremental.ts`)
+- Detects changes in career data using git diff
+- Processes only changed content for efficiency
+- Supports configurable git diff range
+- Handles both manual and automatic triggers
+
+#### Full Rebuild (`transform-full-rebuild.ts`)
+- Complete regeneration of CV from scratch
+- Used for major changes or initial setup
+- Processes entire career data file
+
+### 4. Main Workflow (`run-cv-update.ts`)
+Orchestrates the entire process:
+- Determines update mode (incremental vs full rebuild)
+- Manages temporary files and cleanup
+- Validates LaTeX output
+- Creates backups when enabled
+- Handles multiple CV types simultaneously
+
+### 5. Testing (`test-local.ts`)
+Local testing framework:
+- Simulates GitHub Actions environment
+- Supports dry-run mode
+- Environment variable management
+- Comprehensive validation and debugging
+
+## Workflow
 
 ```
-─ config.ts                 # Central configuration & environment variables
-─ logger.ts                 # Simple logging with Consola
-─ claude-api.ts             # Shared API logic using Anthropic SDK
-─ prompts.json              # External prompt templates (Anti-CV + Professional CV)
-─ prompts.ts                # Prompt management utilities with CV type support
-─ run-cv-update.ts          # Main workflow orchestrator (dual CV processing)
-─ transform-incremental.ts  # Incremental update (both CV types)
-─ transform-full-rebuild.ts # Full rebuild from scratch (both CV types)
-─ test-local.ts             # Local testing utility (dual CV support)
+1. Career Data Change
+   ↓
+2. Mode Detection (incremental/full)
+   ↓
+3. Content Processing
+   ├── Git diff generation (incremental)
+   └── Full content read (rebuild)
+   ↓
+4. AI Processing
+   ├── Prompt generation
+   ├── Claude API call
+   └── Response validation
+   ↓
+5. LaTeX Generation
+   ├── Content extraction
+   ├── Format cleaning
+   └── Validation
+   ↓
+6. File Updates
+   ├── Backup creation
+   ├── Content replacement
+   └── Cleanup
 ```
 
-## Data Flow
+## File Structure
 
 ```
-GitHub Action / Local Test
-         ↓
-  run-cv-update
-         ↓
-  Determines mode
-    ↙        ↘
-transform-    transform-
-incremental   full-rebuild
-    ↘        ↙
-  claude-api
-  (API + prompts for each CV type)
-         ↓
-  run-cv-update
-(validation + placement for both CVs)
-         ↓
-  Recommit changes  
-         ↓
-  Both CVs updated (Anti-CV + Professional CV)
-```
-
-## CV Types
-
-The system generates two CV formats from the same career data:
-
-- **Anti-CV** (`markus-schulte-dev-anti-cv.tex`): Humorous, self-deprecating format showcasing
-  failures and lessons learned
-- **Professional CV** (`markus-schulte-dev-professional-cv.tex`): Traditional format highlighting
-  achievements and expertise
-
-Both CVs are generated simultaneously from `_data/career.md` using different AI prompts.
-
-## Implementation Notes
-
-### Key Components
-
-- `CvType` enum with utility functions for type-safe file handling
-- CV-specific response files (`claude_response_anti.json`, `claude_response_professional.json`)
-- Iterative processing over `CV_TYPES` array in transformation scripts
-- Enhanced GitHub Action with separate compilation steps
-
-### File Naming Pattern
-
-- Temporary files: `tmp/temp_cv_anti.tex`, `tmp/temp_cv_professional.tex`
-- Response files: `tmp/claude_response_anti.json`, `tmp/claude_response_professional.json`
-- Diff file: `tmp/career_changes.diff`
-- Output files: `markus-schulte-dev-anti-cv.tex`, `markus-schulte-dev-professional-cv.tex`
-
-## Usage Examples
-
-### Local Testing
-
-```bash
-# Option 1: Create a .env file (recommended)
-# Create a file named .env in the project root with:
-# ANTHROPIC_API_KEY=your-key-here
-# DEBUG=true  # Optional for verbose logging
-
-# Option 2: Set API key in terminal
-export ANTHROPIC_API_KEY="your-key-here"  # Unix/Linux/macOS
-
-npm test                   # Test incremental update for both CVs (alias for cv:test)
-npm run cv:test            # Test incremental update for both CVs
-npm run cv:test:full       # Test full rebuild for both CVs
-
-# Select specific CV types
-CV_TYPES=anti npm test                    # Only Anti-CV
-CV_TYPES=professional npm test            # Only Professional CV
-CV_TYPES=anti,professional npm test       # Both CVs (default)
-
-# Skip API (use existing claude_response_*.json files)
-SKIP_API=true npm test                    # Unix/Linux/macOS
-
-# Dry run
-DRY_RUN=true npm test                     # Unix/Linux/macOS
-```
-
-### Production Scripts
-
-```bash
-# Main CV update workflow (used by GitHub Action)
-npm run cv:update          # Generates both Anti-CV and Professional CV
-
-# Direct transformation scripts
-npm run cv:full-rebuild    # Full rebuild from scratch (both CVs)
-npm run cv:incremental     # Incremental update only (both CVs)
-
-# Clean up build artifacts
-npm run clean
-```
-
-### Custom Configuration
-
-```bash
-# Override paths for both CV types
-CAREER_FILE=my_career.md PROFESSIONAL_CV_FILE=output/professional.tex npm test   # Unix/Linux/macOS
-
-# Select specific CV types
-CV_TYPES=anti npm test                                                           # Only Anti-CV
-CV_TYPES=professional npm test                                                   # Only Professional CV
-
-# Create backups for both files
-CREATE_BACKUP=true npm test                                                      # Unix/Linux/macOS
-```
-
-### Direct Script Usage with tsx
-
-```bash
-# Using tsx for direct TypeScript execution (no build step required)
-npx tsx test-local.ts
-
-# With arguments (applies to both CV types)
-npx tsx test-local.ts full_rebuild
+curriculum_vitae/scripts/
+├── config.ts              # Central configuration
+├── claude-api.ts          # AI integration
+├── transform-incremental.ts # Change-based updates
+├── transform-full-rebuild.ts # Complete rebuilds
+├── run-cv-update.ts       # Main orchestrator
+├── test-local.ts          # Testing framework
+├── logger.ts              # Logging utilities
+├── prompts.ts             # AI prompt templates
+└── tmp/                   # Temporary files
+    ├── response_*.json    # AI responses
+    ├── temp_*.tex         # Processed content
+    └── career_changes.diff # Git diff output
 ```
 
 ## Environment Variables
 
 ### Required
+- `ANTHROPIC_API_KEY`: Claude AI API key
 
-- `ANTHROPIC_API_KEY` - API key for Claude
+### Optional
+- `CV_TYPES`: Comma-separated CV types to process (default: "professional,anti")
+- `GIT_DIFF_RANGE`: Number of commits for diff (default: 1)
+- `SKIP_API`: Skip API calls, use mock responses (default: false)
+- `CREATE_BACKUP`: Create backups before updates (default: false)
+- `DRY_RUN`: Show planned actions without execution (default: false)
 
-### Optional Paths
+## CV Types
 
-- `CAREER_FILE` - Input markdown (default: `_data/career.md`)
-- `CV_FILE` - Output LaTeX for Anti-CV (default: `curriculum_vitae/markus-schulte-dev-anti-cv.tex`)
-- `PROFESSIONAL_CV_FILE` - Output LaTeX for Professional CV (default:
-  `curriculum_vitae/markus-schulte-dev-professional-cv.tex`)
-- `DIFF_FILE` - Git diff for incremental (default: `tmp/career_changes.diff`)
-- `TEMP_FILE` - Temporary file for processing (default: `temp_cv.tex`)
+### Professional CV
+- Traditional format
+- Focus on technical skills and achievements
+- Corporate-friendly presentation
 
-### Optional Settings
- 
-- `CREATE_BACKUP` - Backup before updating (default: false)
-- `SKIP_API` - Skip API call for testing (default: false)
-- `DRY_RUN` - Show what would be done (default: false)
-- `REBUILD_MODE` - For GitHub Actions (incremental/full_rebuild)
-- `CV_TYPES` - Comma-separated CV types to process (default: anti,professional)
-  - Examples: `anti`, `professional`, `anti,professional`
+### Anti-CV
+- Unconventional format
+- Highlights failures and lessons learned
+- Emphasizes growth through challenges
 
-### GitHub Actions Specific
+## Error Handling
 
-- `GITHUB_OUTPUT` - Used for setting workflow outputs
-- `GITHUB_EVENT_NAME` - Determines trigger context
-- `GITHUB_REF` - Branch reference for conditional operations
+The system includes comprehensive error handling:
+- API call failures with retry logic
+- File system errors with graceful degradation
+- Content validation with detailed reporting
+- Cleanup on interruption or failure
 
-## TypeScript Configuration
+## Testing Strategy
 
-The project uses TypeScript with tsx for direct execution without a build step:
+### Local Testing
+```bash
+# Basic test
+npm test
 
+# Specific CV type
+CV_TYPES=anti npm test
+
+# With different git range
+GIT_DIFF_RANGE=30 npm test
+
+# Dry run
+DRY_RUN=true npm test
 ```
-project/
-├── tsconfig.json     # Main TypeScript configuration
-├── package.json      # Contains tsx-based npm scripts
-└── *.ts              # TypeScript source files (executed directly)
-```
 
-### Development Workflow
+### Mock Mode
+When `SKIP_API=true` or no API key is provided:
+- Uses existing CV content as mock response
+- Validates full workflow without API costs
+- Useful for development and CI/CD
 
-1. Edit TypeScript files in this directory
-2. Run scripts directly using npm commands (e.g., `npm test`)
-3. tsx handles TypeScript compilation on-the-fly
+## GitHub Actions Integration
 
-## Available NPM Scripts
+The system is designed for GitHub Actions:
+- Automatic triggering on career data changes
+- Manual workflow dispatch with mode selection
+- Proper output setting for downstream jobs
+- Environment variable inheritance
 
-Based on the current package.json configuration:
+## Logging
 
-- `npm test` - Alias for `npm run cv:test` (incremental update test for both CVs)
-- `npm run clean` - Remove tmp/ and node_modules/ directories
-- `npm run cv:update` - Main CV update workflow (used by GitHub Actions, generates both CVs)
-- `npm run cv:full-rebuild` - Full rebuild transformation (both CVs)
-- `npm run cv:incremental` - Incremental update transformation (both CVs)
-- `npm run cv:test` - Local testing with incremental update (both CVs)
-- `npm run cv:test:full` - Local testing with full rebuild (both CVs)
+Structured logging with different levels:
+- `info`: General workflow progress
+- `debug`: Detailed execution information
+- `success`: Completion confirmations
+- `error`: Failure details with context
+- `warn`: Non-fatal issues
 
-## Prompt Management
+## Future Enhancements
 
-Prompts are externalized to `prompts.json` with CV-type-specific organization. Currently supports
-`antiCv` and `professionalCv` with template variable substitution:
-
-- `{{CAREER_DATA}}` - career.md content (full rebuild)
-- `{{CURRENT_CV}}` - current CV content (incremental)
-- `{{DIFF_DATA}}` - git diff content (incremental)
-
-The system automatically processes both CV types using their respective prompts. Each CV type has:
-
-- **System prompts**: Define the AI's role and formatting requirements
-- **Full rebuild prompts**: Create complete CV from career data
-- **Incremental prompts**: Apply specific changes to existing CV
-
-Professional CV prompts focus on achievements, technical expertise, and business impact using
-professional language, while Anti-CV prompts maintain the humorous, self-deprecating approach.
-
-Edit `prompts.json` directly to modify prompts for either CV type.
+- Support for additional CV formats (JSON, XML)
+- Multi-language CV generation
+- Advanced diff algorithms for better change detection
+- Integration with other AI providers
+- Automated testing with content validation
