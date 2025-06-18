@@ -5,17 +5,10 @@ import logger from './logger.js';
 import {CvType} from './config.js';
 
 interface SharedConfig {
-  structure: {
-    pages: number;
-    pageBreak: string;
-    output: string;
-  };
+  structure: { pages: number; pageBreak: string; output: string; };
   pageLayout: string[];
   constraints: string[];
-  templates: {
-    fullRebuild: string | string[];
-    incremental: string | string[];
-  };
+  templates: { fullRebuild: string | string[]; incremental: string | string[]; };
 }
 
 interface CvConfig {
@@ -33,7 +26,6 @@ interface PromptsConfig {
 
 let cachedPrompts: PromptsConfig | null = null;
 
-// Shared placeholder constants
 const PLACEHOLDERS = {
   CAREER_DATA: '{{CAREER_DATA}}',
   CURRENT_CV: '{{CURRENT_CV}}',
@@ -57,17 +49,15 @@ const createSharedSubstitutions = (shared: SharedConfig): Record<string, string>
 });
 
 const substitute = (text: string, substitutions: Record<string, string>): string => {
-  return Object.entries(substitutions).reduce((result, [placeholder, value]) => {
-    return result.replace(new RegExp(placeholder.replace(/[{}]/g, '\\$&'), 'g'), value);
-  }, text);
+  return Object.entries(substitutions).reduce((result, [placeholder, value]) =>
+    result.replace(new RegExp(placeholder.replace(/[{}]/g, '\\$&'), 'g'), value), text);
 };
 
 const loadPrompts = (): PromptsConfig => {
   if (cachedPrompts) return cachedPrompts;
 
-  const path = `${process.cwd()}/prompts.json`;
   try {
-    cachedPrompts = JSON.parse(fs.readFileSync(path, 'utf8'));
+    cachedPrompts = JSON.parse(fs.readFileSync(`${process.cwd()}/prompts.json`, 'utf8'));
     logger.debug('Loaded prompts from prompts.json');
     return cachedPrompts!;
   } catch (error: any) {
@@ -76,16 +66,13 @@ const loadPrompts = (): PromptsConfig => {
   }
 };
 
-const getPromptConfig = (type: CvType, prompts: PromptsConfig): CvConfig => {
-  return type === 'anti' ? prompts.antiCv : prompts.professionalCv;
-};
+const getPromptConfig = (type: CvType, prompts: PromptsConfig): CvConfig =>
+  type === 'anti' ? prompts.antiCv : prompts.professionalCv;
 
 export const getSystemPrompt = (type: CvType): string => {
   const prompts = loadPrompts();
   const config = getPromptConfig(type, prompts);
-  const sharedSubs = createSharedSubstitutions(prompts.shared);
-
-  return substitute(normalize(config.system), sharedSubs);
+  return substitute(normalize(config.system), createSharedSubstitutions(prompts.shared));
 };
 
 export const getFullRebuildPrompt = (type: CvType, careerData: string): string => {
@@ -97,7 +84,6 @@ export const getFullRebuildPrompt = (type: CvType, careerData: string): string =
     [PLACEHOLDERS.CV_TYPE]: config.cvType,
     [PLACEHOLDERS.TYPE_SPECIFIC_INSTRUCTIONS]: config.fullRebuildInstructions
   };
-
   return substitute(normalize(prompts.shared.templates.fullRebuild), substitutions);
 };
 
@@ -111,16 +97,14 @@ export const getIncrementalPrompt = (type: CvType, currentCv: string, diffData: 
     [PLACEHOLDERS.CV_TYPE]: config.cvType,
     [PLACEHOLDERS.TYPE_SPECIFIC_INSTRUCTIONS]: config.incrementalInstructions
   };
-
   return substitute(normalize(prompts.shared.templates.incremental), substitutions);
 };
 
-// Legacy compatibility (anti-CV defaults)
+// Legacy compatibility
 export const getAntiCvSystemPrompt = () => getSystemPrompt('anti');
 export const getAntiCvFullRebuildPrompt = (data: string) => getFullRebuildPrompt('anti', data);
 export const getAntiCvIncrementalPrompt = (cv: string, diff: string) => getIncrementalPrompt('anti', cv, diff);
 
-// Professional CV functions
 export const getProfessionalCvSystemPrompt = () => getSystemPrompt('professional');
 export const getProfessionalCvFullRebuildPrompt = (data: string) => getFullRebuildPrompt('professional', data);
 export const getProfessionalCvIncrementalPrompt = (cv: string, diff: string) => getIncrementalPrompt('professional', cv, diff);

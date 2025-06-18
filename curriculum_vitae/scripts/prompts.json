@@ -10,7 +10,7 @@
       "P2: Previous 2 roles (Union Investment, Saloodo!)",
       "P3: Earlier roles+Education+Technical skills",
       "Recent: 4-6 bullets. Earlier: 2-3 bullets.",
-      "Use metrics, dates, technologies, achievements"
+      "Use metrics, dates, tech, achievements"
     ],
     "constraints": [
       "Exactly {{PAGES}} pages",
@@ -28,7 +28,7 @@
         "Update {{CV_TYPE}}:",
         "```latex\n{{CURRENT_CV}}\n```",
         "Changes: ```diff\n{{DIFF_DATA}}\n```",
-        "Constraints: {{SHARED_CONSTRAINTS}}",
+        "{{SHARED_CONSTRAINTS}}",
         "{{TYPE_SPECIFIC_INSTRUCTIONS}}"
       ]
     }
@@ -36,13 +36,13 @@
   "antiCv": {
     "cvType": "Anti-CV",
     "system": [
-      "Generate Anti-CV: honest failures/lessons learned.",
+      "Generate Anti-CV: honest failures/lessons.",
       "Tone: Self-deprecating, professional, mildly humorous.",
       "Content: Failed projects, rejections, mistakes, irrelevant skills.",
       "Structure: {{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "Add: 'Technologies I Overhyped', 'Projects That Failed', 'Interviews I Bombed'.",
+    "fullRebuildInstructions": "Add: 'Overhyped Tech', 'Failed Projects', 'Bombed Interviews'.",
     "incrementalInstructions": ""
   },
   "professionalCv": {
@@ -55,7 +55,7 @@
       "Structure: {{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "Transform technical details to business impact. Quantify everything.",
+    "fullRebuildInstructions": "Transform tech details to business impact. Quantify all.",
     "incrementalInstructions": "Maintain professional tone and quantified achievements."
   }
 }
