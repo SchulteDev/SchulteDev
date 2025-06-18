@@ -16,9 +16,25 @@
       "Exactly {{PAGES}} pages",
       "Fill all space - expand/condense as needed",
       "Maintain \\newpage placement"
-    ]
+    ],
+    "templates": {
+      "fullRebuild": [
+        "Create {{PAGES}}-page {{CV_TYPE}} from:",
+        "```markdown\n{{CAREER_DATA}}\n```",
+        "Layout: {{SHARED_PAGE_LAYOUT}}",
+        "{{TYPE_SPECIFIC_INSTRUCTIONS}}"
+      ],
+      "incremental": [
+        "Update {{CV_TYPE}}:",
+        "```latex\n{{CURRENT_CV}}\n```",
+        "Changes: ```diff\n{{DIFF_DATA}}\n```",
+        "Constraints: {{SHARED_CONSTRAINTS}}",
+        "{{TYPE_SPECIFIC_INSTRUCTIONS}}"
+      ]
+    }
   },
   "antiCv": {
+    "cvType": "Anti-CV",
     "system": [
       "Generate Anti-CV: honest failures/lessons learned.",
       "Tone: Self-deprecating, professional, mildly humorous.",
@@ -26,20 +42,11 @@
       "Structure: {{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuild": [
-      "Create {{PAGES}}-page Anti-CV from:",
-      "```markdown\n{{CAREER_DATA}}\n```",
-      "Layout: {{SHARED_PAGE_LAYOUT}}",
-      "Add: 'Technologies I Overhyped', 'Projects That Failed', 'Interviews I Bombed'."
-    ],
-    "incremental": [
-      "Update Anti-CV:",
-      "```latex\n{{CURRENT_CV}}\n```",
-      "Changes: ```diff\n{{DIFF_DATA}}\n```",
-      "Constraints: {{SHARED_CONSTRAINTS}}"
-    ]
+    "fullRebuildInstructions": "Add: 'Technologies I Overhyped', 'Projects That Failed', 'Interviews I Bombed'.",
+    "incrementalInstructions": ""
   },
   "professionalCv": {
+    "cvType": "professional CV",
     "system": [
       "Generate achievement-focused professional CV.",
       "Focus: Quantified impact, technical leadership, progression.",
@@ -48,18 +55,7 @@
       "Structure: {{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuild": [
-      "Create {{PAGES}}-page professional CV from:",
-      "```markdown\n{{CAREER_DATA}}\n```",
-      "Layout: {{SHARED_PAGE_LAYOUT}}",
-      "Transform technical details to business impact. Quantify everything."
-    ],
-    "incremental": [
-      "Update professional CV:",
-      "```latex\n{{CURRENT_CV}}\n```",
-      "Changes: ```diff\n{{DIFF_DATA}}\n```",
-      "Constraints: {{SHARED_CONSTRAINTS}}",
-      "Maintain professional tone and quantified achievements."
-    ]
+    "fullRebuildInstructions": "Transform technical details to business impact. Quantify everything.",
+    "incrementalInstructions": "Maintain professional tone and quantified achievements."
   }
 }
