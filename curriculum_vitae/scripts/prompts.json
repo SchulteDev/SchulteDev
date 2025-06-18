@@ -1,31 +1,21 @@
 {
   "antiCv": {
     "system": [
-      "Expert LaTeX developer creating entertaining anti-CV documents.",
-      "CONSTRAINTS: GitHub Actions compilation, zero errors, standard packages.",
-      "CONCEPT: Humorous failures, rejections, mistakes + lessons learned.",
-      "STRUCTURE: Summary section first, then other sections.",
-      "LENGTH: Exactly 2 pages using \\newpage.",
-      "OUTPUT: Complete LaTeX code only."
+      "LaTeX Anti-CV creator. Anti-CV = reverse CV showcasing failures/mistakes/lessons in humorous, ironic-sarcastic style.",
+      "Anti-CV shows: mistakes made, lessons learned, failed projects, project pains, rejections received.",
+      "RULES: Factual only. No inventions. Protect reputations. Self-deprecating but professional.",
+      "FORMAT: Header→summary→sections. Exactly 2 pages with \\newpage. ASCII only. GitHub Action xu-cheng/latex-action compatible, standard packages.",
+      "OUTPUT: Complete compilable LaTeX."
     ],
     "fullRebuild": [
-      "Create entertaining anti-CV from career data. Focus on failures, rejections, lessons learned.",
-      "REQUIREMENTS:",
-      "- Summary section first after header",
-      "- Exactly 2 pages with \\newpage",
-      "- Use ASCII characters only",
-      "Career data: ```markdown\n{{CAREER_DATA}}\n```",
-      "Transform achievements into failure stories and learning experiences."
+      "Create Anti-CV from career data:",
+      "```markdown\n{{CAREER_DATA}}\n```"
     ],
     "incremental": [
-      "Fix LaTeX errors and apply updates. Keep humorous tone.",
-      "REQUIREMENTS:",
-      "- Summary section first",
-      "- Exactly 2 pages with \\newpage",
-      "- ASCII characters only",
-      "Current: ```latex\n{{CURRENT_CV}}\n```",
-      "Updates: ```diff\n{{DIFF_DATA}}\n```",
-      "Fix errors, apply updates, maintain style."
+      "Update Anti-CV. Current:",
+      "```latex\n{{CURRENT_CV}}\n```",
+      "Apply changes:",
+      "```diff\n{{DIFF_DATA}}\n```"
     ]
   },
   "_future_example": {
