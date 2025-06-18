@@ -9,7 +9,7 @@ export const ANTI_CV_FILE: string = '../markus-schulte-dev-anti-cv.tex';
 export const DIFF_FILE: string = 'tmp/career_changes.diff';
 
 // API Configuration
-export const API_MODEL: string = process.env.API_MODEL ?? 'claude-3-5-sonnet-20241022';
+export const API_MODEL: string = process.env.API_MODEL ?? 'claude-sonnet-4-20250514';
 export const MAX_TOKENS: number = parseInt(process.env.MAX_TOKENS ?? '8192', 10);
 export const MIN_CONTENT_LENGTH: number = parseInt(process.env.MIN_CONTENT_LENGTH ?? '500', 10);
 
