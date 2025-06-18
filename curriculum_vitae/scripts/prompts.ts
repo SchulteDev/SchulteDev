@@ -5,7 +5,20 @@ import path from 'path';
 import logger from './logger.js';
 import {CvType} from './config.js';
 
+interface SharedConfig {
+  structure: {
+    pages: number;
+    pageBreak: string;
+    contentDistribution: string;
+    format: string;
+    output: string;
+  };
+  pageRequirements: string[];
+  incrementalGuidelines: string[];
+}
+
 interface PromptsConfig {
+  shared: SharedConfig;
   antiCv: {
     system: string | string[];
     fullRebuild: string | string[];
@@ -24,9 +37,33 @@ const careerDataPlaceholder = '{{CAREER_DATA}}';
 const currentCvPlaceholder = '{{CURRENT_CV}}';
 const diffDataPlaceholder = '{{DIFF_DATA}}';
 
+// Shared placeholder patterns
+const pagesPlaceholder = '{{PAGES}}';
+const sharedFormatPlaceholder = '{{SHARED_FORMAT}}';
+const sharedPageBreakPlaceholder = '{{SHARED_PAGE_BREAK}}';
+const sharedContentDistributionPlaceholder = '{{SHARED_CONTENT_DISTRIBUTION}}';
+const sharedOutputPlaceholder = '{{SHARED_OUTPUT}}';
+const sharedPageRequirementsPlaceholder = '{{SHARED_PAGE_REQUIREMENTS}}';
+const sharedIncrementalGuidelinesPlaceholder = '{{SHARED_INCREMENTAL_GUIDELINES}}';
+
 // Helper function to normalize prompts (handles both string and array)
 const normalizePrompt = (prompt: string | string[]): string => {
   return Array.isArray(prompt) ? prompt.join('\n') : prompt;
+};
+
+// Helper function to substitute shared placeholders
+const substituteSharedPlaceholders = (text: string, shared: SharedConfig): string => {
+  const pageRequirementsText = shared.pageRequirements.map(req => `- ${req}`).join('\n');
+  const incrementalGuidelinesText = shared.incrementalGuidelines.join('\n- ');
+
+  return text
+  .replace(new RegExp(pagesPlaceholder, 'g'), shared.structure.pages.toString())
+  .replace(new RegExp(sharedFormatPlaceholder, 'g'), shared.structure.format)
+  .replace(new RegExp(sharedPageBreakPlaceholder, 'g'), shared.structure.pageBreak)
+  .replace(new RegExp(sharedContentDistributionPlaceholder, 'g'), shared.structure.contentDistribution)
+  .replace(new RegExp(sharedOutputPlaceholder, 'g'), shared.structure.output)
+  .replace(new RegExp(sharedPageRequirementsPlaceholder, 'g'), pageRequirementsText)
+  .replace(new RegExp(sharedIncrementalGuidelinesPlaceholder, 'g'), incrementalGuidelinesText);
 };
 
 // Load prompts from JSON file
@@ -51,27 +88,40 @@ const loadPrompts = (): PromptsConfig => {
 // Get system prompt for specific CV type
 export const getSystemPrompt = (type: CvType): string => {
   const prompts = loadPrompts();
+  let systemPrompt: string;
+
   switch (type) {
     case 'anti':
-      return normalizePrompt(prompts.antiCv.system);
+      systemPrompt = normalizePrompt(prompts.antiCv.system);
+      break;
     case 'professional':
-      return normalizePrompt(prompts.professionalCv.system);
+      systemPrompt = normalizePrompt(prompts.professionalCv.system);
+      break;
     default:
       throw new Error(`Unknown CV type: ${type}`);
   }
+
+  return substituteSharedPlaceholders(systemPrompt, prompts.shared);
 };
 
 // Get user prompt for full rebuild with variable substitution
 export const getFullRebuildPrompt = (type: CvType, careerData: string): string => {
   const prompts = loadPrompts();
+  let prompt: string;
+
   switch (type) {
     case 'anti':
-      return normalizePrompt(prompts.antiCv.fullRebuild).replace(careerDataPlaceholder, careerData);
+      prompt = normalizePrompt(prompts.antiCv.fullRebuild);
+      break;
     case 'professional':
-      return normalizePrompt(prompts.professionalCv.fullRebuild).replace(careerDataPlaceholder, careerData);
+      prompt = normalizePrompt(prompts.professionalCv.fullRebuild);
+      break;
     default:
       throw new Error(`Unknown CV type: ${type}`);
   }
+
+  prompt = substituteSharedPlaceholders(prompt, prompts.shared);
+  return prompt.replace(careerDataPlaceholder, careerData);
 };
 
 // Get user prompt for incremental update with variable substitution
@@ -90,6 +140,7 @@ export const getIncrementalPrompt = (type: CvType, currentCv: string, diffData: 
       throw new Error(`Unknown CV type: ${type}`);
   }
 
+  prompt = substituteSharedPlaceholders(prompt, prompts.shared);
   return prompt
   .replace(currentCvPlaceholder, currentCv)
   .replace(diffDataPlaceholder, diffData);
