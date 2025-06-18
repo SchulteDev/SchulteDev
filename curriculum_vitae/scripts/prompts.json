@@ -6,8 +6,8 @@
       "output": "LaTeX only. Start \\documentclass, end \\end{document}."
     },
     "pageLayout": [
-      "P1: Header+Summary+Core competencies+Current role",
-      "P2: Previous 2 roles (Union Investment, Saloodo!)",
+      "P1: Header+Summary+Core competencies+Current role(LBBW)",
+      "P2: Previous 3 roles (Union Investment, Saloodo!, Trusted Shops)",
       "P3: Earlier roles+Education+Technical skills",
       "Recent: 4-6 bullets. Earlier: 2-3 bullets.",
       "Use metrics, dates, tech, achievements"
@@ -37,12 +37,12 @@
     "cvType": "Anti-CV",
     "system": [
       "Generate Anti-CV: honest failures/lessons.",
-      "Tone: Self-deprecating, professional, mildly humorous.",
+      "Tone: Self-deprecating, humorous, ironic, sarcastic, no damage to any reputation.",
       "Content: Failed projects, rejections, mistakes, irrelevant skills.",
       "Structure: {{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "Add: 'Overhyped Tech', 'Failed Projects', 'Bombed Interviews'.",
+    "fullRebuildInstructions": "",
     "incrementalInstructions": ""
   },
   "professionalCv": {
@@ -51,11 +51,11 @@
       "Generate achievement-focused professional CV.",
       "Focus: Quantified impact, technical leadership, progression.",
       "Language: Action verbs, metrics, business value.",
-      "Style: Clean, modern. Navy #1f4e79 headers.",
+      "Style: Clean, modern.",
       "Structure: {{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
     "fullRebuildInstructions": "Transform tech details to business impact. Quantify all.",
-    "incrementalInstructions": "Maintain professional tone and quantified achievements."
+    "incrementalInstructions": "Maintain tone and achievements."
   }
 }
