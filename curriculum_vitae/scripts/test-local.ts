@@ -10,6 +10,7 @@ import logger from './logger.js';
 // Load environment variables from .env file
 dotenv.config();
 logger.debug('Environment variables loaded from .env file');
+logger.debug(`ANTHROPIC_API_KEY loaded: ${!!process.env.ANTHROPIC_API_KEY} (${process.env.ANTHROPIC_API_KEY ? 'length: ' + process.env.ANTHROPIC_API_KEY.length : 'not set'})`);
 
 // Promisify exec
 const execAsync = util.promisify(exec);
@@ -94,10 +95,12 @@ const setupLocalEnv = (): void => {
   process.env.GITHUB_EVENT_NAME ??= 'workflow_dispatch';
   process.env.REBUILD_MODE = MODE;
 
-  // Set SKIP_API=true by default if no API key is provided
-  if (!process.env.ANTHROPIC_API_KEY && process.env.SKIP_API !== 'false') {
+  // Only set SKIP_API=true if explicitly no API key and SKIP_API not already set
+  if (!process.env.ANTHROPIC_API_KEY && !process.env.SKIP_API) {
     process.env.SKIP_API = 'true';
     logger.info('No ANTHROPIC_API_KEY found, setting SKIP_API=true for testing');
+  } else if (process.env.ANTHROPIC_API_KEY && !process.env.SKIP_API) {
+    logger.info(`ANTHROPIC_API_KEY found, will use real API calls`);
   }
 
   if (!fs.existsSync('tmp')) {
@@ -132,23 +135,20 @@ const main = async (): Promise<void> => {
       process.exit(0);
     }
 
-    // Run the CV update workflow directly instead of as child process
-    logger.info(`Running CV update workflow in ${MODE} mode for CV types: ${getCvTypesToProcess().join(', ')}...`);
-
     // Run the CV update workflow with proper environment variables
     logger.info(`Running CV update workflow in ${MODE} mode for CV types: ${getCvTypesToProcess().join(', ')}...`);
 
     // Create environment with all current variables
-    const envVars = {
+    const envVars: Record<string, string | undefined> = {
       ...process.env,
       GITHUB_EVENT_NAME: 'workflow_dispatch',
       REBUILD_MODE: MODE,
-      CV_TYPES: process.env.CV_TYPES || getCvTypesToProcess().join(','),
-      SKIP_API: process.env.SKIP_API || 'true'
+      CV_TYPES: process.env.CV_TYPES ?? getCvTypesToProcess().join(',')
+      // Don't override SKIP_API here - let it use the value set in setupLocalEnv
     };
 
     // Log environment for debugging
-    logger.debug(`Environment: CV_TYPES=${envVars.CV_TYPES}, SKIP_API=${envVars.SKIP_API}, REBUILD_MODE=${envVars.REBUILD_MODE}`);
+    logger.debug(`Environment: CV_TYPES=${envVars.CV_TYPES}, SKIP_API=${envVars.SKIP_API ?? 'undefined'}, REBUILD_MODE=${envVars.REBUILD_MODE}, HAS_API_KEY=${!!envVars.ANTHROPIC_API_KEY}`);
 
     try {
       const {stdout, stderr} = await execAsync('tsx run-cv-update.ts', {

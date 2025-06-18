@@ -42,12 +42,6 @@ const buildPromptForType = (cvType: CvType): PromptResult => {
 
 // Generate git diff for incremental updates
 const generateDiff = async (): Promise<boolean> => {
-  // Mock diff for testing
-  if (process.env.SKIP_API === 'true') {
-    fs.writeFileSync(DIFF_FILE, '+ This is a mock diff for testing purposes');
-    return true;
-  }
-
   try {
     const relativePath = CAREER_FILE.replace(process.cwd() + '/', '');
     const isManualTrigger = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
@@ -71,8 +65,9 @@ const generateDiff = async (): Promise<boolean> => {
     setOutput('mode', 'skip');
     return false;
   } catch (error: any) {
-    fs.writeFileSync(DIFF_FILE, 'No changes detected');
-    logger.info('No changes detected in git diff');
+    // For testing, create a mock diff when git operations fail
+    fs.writeFileSync(DIFF_FILE, 'No changes detected in git diff');
+    logger.info('No changes detected in git diff, created mock diff file');
     return true;
   }
 };
@@ -104,27 +99,15 @@ export const main = async (): Promise<void> => {
 
     // Check if diff is empty
     const diffContent = fs.readFileSync(DIFF_FILE, 'utf8');
-    if (!diffContent || diffContent.trim() === '' || diffContent === 'No changes detected') {
-      // In test mode with SKIP_API, still create mock responses
-      if (process.env.SKIP_API === 'true') {
-        logger.info('No changes detected, but SKIP_API=true, creating mock responses for testing');
-        const cvTypesToProcess = getCvTypesToProcess();
-        for (const cvType of cvTypesToProcess) {
-          logger.info(`Creating mock response for ${cvType} CV...`);
-          const {systemPrompt, userPrompt} = buildPromptForType(cvType);
-          const success = await callClaudeApi(systemPrompt, userPrompt, cvType);
-          if (success) {
-            logger.success(`Mock response created for ${cvType} CV`);
-          } else {
-            throw new Error(`Failed to create mock response for ${cvType} CV`);
-          }
-        }
-        logger.success('All mock responses created successfully');
-        return;
+    if (!diffContent || diffContent.trim() === '' || diffContent === 'No changes detected in git diff') {
+      // For testing purposes, create a minimal diff when there are no actual changes
+      if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
+        logger.info('No actual changes detected, but manual trigger - creating minimal diff for testing');
+        fs.writeFileSync(DIFF_FILE, '+ Minor update for testing incremental workflow');
       } else {
         logger.info('ℹ️ No actual changes to process');
         setOutput('mode', 'skip');
-        return; // Return instead of exit
+        return;
       }
     }
 
