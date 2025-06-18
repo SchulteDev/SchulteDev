@@ -1,140 +1,115 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\documentclass[a4paper,10pt]{article}
+\usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{enumitem}
+\usepackage{parskip}
 \usepackage{titlesec}
-\usepackage{hyperref}
 \usepackage{xcolor}
 
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5em}
-\titlespacing*{\section}{0pt}{0.5em}{0.3em}
-\titlespacing*{\subsection}{0pt}{0.3em}{0.2em}
+\definecolor{failcolor}{RGB}{139,0,0}
+\titleformat{\section}{\large\bfseries\color{failcolor}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
 
 \begin{document}
 
 \begin{center}
-{\LARGE \textbf{The Anti-CV of Markus Schulte}}\\[0.3em]
-{\large A Celebration of Failures, Rejections \& Hard-Won Lessons}\\[0.2em]
-\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768 | Cologne, Germany
+{\Large \textbf{\color{failcolor}MARKUS SCHULTE}} \\
+{\large \textit{Professional Disappointment Specialist}} \\
+\vspace{0.1cm}
+Cologne, Germany | \texttt{mail@schulte-development.de} | +49 178 7217768 \\
+LinkedIn: \textit{probably-overstating-my-achievements} | GitHub: \textit{commits-that-broke-prod}
 \end{center}
 
-\section*{Professional Disaster Summary}
+\section{PROFESSIONAL SUMMARY}
 
-Experienced in turning simple problems into complex distributed systems since 2007. Specialist in over-engineering solutions, creating technical debt, and building frameworks nobody asked for. Expert at missing deadlines while perfecting code nobody will maintain. Fluent in explaining why things can't be done before eventually doing them anyway.
+\textbf{Freelance Cloud Architect \& Software Engineer} with 18+ years of spectacular failures and learning opportunities. Currently pretending to modernize LBBW's IT while secretly wondering if anyone notices I'm making it up as I go along.
 
-\section*{Notable Failures \& Rejections}
-
-\subsection*{2024-Present: Navigating Enterprise Bureaucracy at LBBW}
-\textbf{Achievement:} Discovered that "Phoenix" platform wasn't actually in production after joining\\
-\textbf{Lesson:} Always verify production status before accepting architecture roles\\
-\textbf{Current Status:} Creating templates for migrating apps to a platform that might work someday
-
-\subsection*{2021-2024: Over-Engineering Excellence at Union Investment}
-\textbf{Failure:} Built microfrontend framework for 80,000 users when a simple webapp would suffice\\
-\textbf{Impact:} Turned 6-month project into 3-year transformation journey\\
-\textbf{Lesson:} Sometimes the monolith wasn't that bad after all
-
-\subsection*{2016-2023: Failed Entrepreneur with Atlassian Add-ons}
-\textbf{Mistake:} Created add-ons for dying product (Bamboo Server)\\
-\textbf{Result:} 7 years maintaining legacy code for 83 customers\\
-\textbf{Learning:} Market research matters more than technical excellence
-
-\section*{Technical Disasters}
-
-\subsection*{Architecture Anti-Patterns Mastered}
-\begin{itemize}[leftmargin=*,topsep=0pt]
-\item Distributed Monolith Expert - Split monoliths into 8 services that still need synchronized deployments
-\item Resume-Driven Development - Introduced Golang at Saloodo just to add it to CV
-\item NIH Syndrome Specialist - Built custom frameworks when open-source alternatives existed
-\item Premature Optimization Champion - Spent weeks optimizing code that runs once per month
+\textbf{Core Incompetencies:}
+\begin{itemize}[leftmargin=0.3in]
+\item \textbf{Enterprise Architecture:} Consistently over-engineered simple problems into distributed nightmares
+\item \textbf{Technical Leadership:} Managed to confuse 50+ developers across multiple projects with overly complex explanations
+\item \textbf{Cloud-Native Design:} Turned perfectly good monoliths into 47 microservices that nobody understands
+\item \textbf{DevOps Excellence:} Achieved 100\% uptime by pure luck and excessive monitoring paranoia
 \end{itemize}
 
-\subsection*{Failed Technology Predictions}
-\begin{itemize}[leftmargin=*,topsep=0pt]
-\item 2015: "Docker is just a fad" - Now containerizing everything
-\item 2018: "Serverless will replace everything" - Still managing Kubernetes clusters
-\item 2020: "Nobody needs another JavaScript framework" - Currently using Web Components
+\textbf{Questionable Achievements:} Built platforms that somehow serve 9M+ users despite my architectural choices, reduced deployment times by accidentally automating everything, and established patterns that teams now follow (may god help them all).
+
+\section{CURRENT ROLE}
+
+\textbf{November 2024 — Present: Cloud Architect at LBBW} \\
+\textit{Major German State Bank | Freelance | Remote}
+
+\begin{itemize}[leftmargin=0.3in]
+\item Pretending to architect "Phoenix" IT modernization for 80+ people while frantically googling Azure services I've never used
+\item Successfully cataloging hundreds of legacy applications using R-methodology, though mostly just categorizing them as "it's complicated"
+\item Leading workshops where I confidently explain cloud patterns I learned from YouTube the night before
+\item Somehow convinced stakeholders that my multi-cloud strategy isn't just "let's try everything and see what works"
+\item Developed solution templates that miraculously work despite being based on incomplete understanding of banking regulations
+\item Currently maintaining professional facade while internally screaming about Kubernetes complexity
 \end{itemize}
 
-\section*{Career Lowlights}
+\section{PREVIOUS KEY DISASTERS}
 
-\subsection*{2007-2014: Social Network That Nobody Remembers}
-\textbf{Position:} Head of Development at wer-kennt-wen.de\\
-\textbf{Achievement:} Helped build platform to 9M users, then watched Facebook destroy it\\
-\textbf{Lesson:} Being first doesn't matter if you're not best
+\textbf{October 2021 — December 2024: Cloud Architect at Union Investment} \\
+\textit{German Asset Management | Freelance | Remote}
 
-\subsection*{2003-2012: The 8-Year Bachelor's Degree}
-\textbf{Institution:} University of Koblenz-Landau\\
-\textbf{Excuse:} "I was gaining practical experience" (translation: needed money)\\
-\textbf{Reality:} Took twice as long as peers to complete Computer Science degree
-
-\newpage
-
-\section*{Spectacular Project Failures}
-
-\subsection*{The Kafka Incident of 2017}
-\textbf{Context:} Convinced team at toom Baumarkt that event streaming would solve everything\\
-\textbf{Result:} Created distributed system more complex than original monolith\\
-\textbf{Aftermath:} Spent months debugging race conditions and eventual consistency issues
-
-\subsection*{The Great Test Automation Delusion}
-\textbf{Promise:} "1000+ tests will prevent all bugs"\\
-\textbf{Reality:} Tests became more fragile than the code they tested\\
-\textbf{Time Wasted:} 40\% of sprint fixing broken tests instead of features
-
-\subsection*{The Microservices Multiplication Mishap}
-\textbf{Vision:} "Each service does one thing well"\\
-\textbf{Outcome:} 30 services doing 5 things poorly\\
-\textbf{DevOps Hell:} Deployment complexity increased 10x, solved problems we didn't have
-
-\section*{Professional Rejections}
-
-\begin{itemize}[leftmargin=*,topsep=0pt]
-\item \textbf{2019:} Rejected by FAANG companies for "lacking algorithmic thinking" despite 12 years experience
-\item \textbf{2016:} Freelance rate negotiations failed - asked for market rate, told I was "too expensive"
-\item \textbf{2014:} Job applications ignored after wer-kennt-wen closure - "social network experience not relevant"
-\item \textbf{2012:} Graduate job hunt - 47 applications, 3 interviews, 0 offers initially
+\begin{itemize}[leftmargin=0.3in]
+\item Led 3+ year transformation of perfectly functional monolith into 8 "Self-contained Systems" because microservices were trendy
+\item Built microfrontend toolkit that only I truly understand, ensuring job security through architectural stockholm syndrome
+\item Achieved 99.9\% uptime mostly through obsessive monitoring and 3 AM emergency deployments nobody talks about
+\item Received glowing 360° feedback (9-10/10) from colleagues who were either very kind or completely delusional
+\item Successfully integrated Algolia search after rejecting ElasticSearch for reasons I can't remember but defended passionately
+\item Managed teams of 5-7 developers who somehow tolerated my tendency to refactor working code "for fun"
 \end{itemize}
 
-\section*{Skills I Thought Were Important But Weren't}
+\textbf{December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL)} \\
+\textit{Digital Freight Platform | Freelance | Part-Time | Remote}
 
-\begin{itemize}[leftmargin=*,topsep=0pt]
-\item \textbf{UML Diagrams:} Drew hundreds, nobody ever looked at them
-\item \textbf{Design Patterns:} Memorized all 23 GoF patterns, used maybe 5
-\item \textbf{WADL Descriptions:} Created for APIs in 2010, everyone used Swagger instead
-\item \textbf{100\% Code Coverage:} Achieved it once, maintenance nightmare forever
+\begin{itemize}[leftmargin=0.3in]
+\item Sole developer responsible for syncing 10M+ records between systems that actively hate each other
+\item Achieved 100\% uptime through paranoid error handling and refusing to trust any data from Saloodo's database
+\item Implemented "robust" Golang solution that's basically one giant try-catch block with delusions of grandeur
+\item Learned Golang on the job while pretending I knew what I was doing (fake it 'til you make it worked!)
 \end{itemize}
 
-\section*{Expensive Mistakes}
+\textbf{August 2018 — October 2019: Cloud Consultant at Trusted Shops} \\
+\textit{E-commerce Trust Provider | Freelance | Cologne}
 
-\subsection*{The Cloud Migration That Wasn't (2018)}
-\textbf{Budget:} 500k EUR\\
-\textbf{Result:} Lifted-and-shifted VMs to AWS, called it "cloud-native"\\
-\textbf{Monthly AWS Bill:} 3x on-premise costs for same performance
+\begin{itemize}[leftmargin=0.3in]
+\item Modernized JavaEE6 monolith by breaking it into smaller, more confusing pieces on AWS
+\item Introduced Pact contract testing to team who initially thought I was making up the framework name
+\item Successfully integrated Salesforce, Zuora, and Twilio despite documentation that clearly hated developers
+\item Led workshops on "Clean Code" while my own repositories contained variables named \texttt{stuffDoer} and \texttt{thingManager}
+\end{itemize}
 
-\subsection*{The Crypto Trading Bot Catastrophe (2015)}
-\textbf{Investment:} 6 months of evenings and weekends\\
-\textbf{Algorithm:} "Sophisticated" arbitrage with machine learning\\
-\textbf{Profit:} -2,000 EUR (lost money faster than manual trading)
+\section{EARLIER CAREER HIGHLIGHTS \& EDUCATION}
 
-\section*{Lessons Learned The Hard Way}
+\textbf{October 2016 — September 2017: Senior Engineer at toom Baumarkt} \\
+Introduced contract testing to team who looked at me like I was speaking ancient Latin (which, technically, I was).
 
-\begin{enumerate}[leftmargin=*,topsep=0pt]
-\item \textbf{Simple beats clever:} Every "clever" solution created two new problems
-\item \textbf{Legacy code exists for a reason:} Usually because it actually works
-\item \textbf{Perfect is the enemy of shipped:} My perfectly architected systems often never launched
-\item \textbf{Documentation lies:} Especially when I wrote it 6 months ago
-\item \textbf{Estimates are fiction:} Whatever I estimate, multiply by 3, add 2 weeks
-\item \textbf{The user doesn't care:} About your beautiful architecture or clean code
-\item \textbf{Meetings multiply:} The more senior you get, the less code you write
-\item \textbf{Technology doesn't matter:} Business problems do, tech is just a tool
-\end{enumerate}
+\textbf{August 2007 — June 2014: PHP Developer \& Head of Development at werkenntwen} \\
+Scaled social network to 9M+ users using PHP and prayers. Became Head of Development by being least likely to break production.
 
-\section*{Current Status}
+\textbf{2016-2023: Atlassian Marketplace Add-on Creator} \\
+Built Java add-ons for Bamboo that 83 customers somehow found useful. Revenue model: hope people don't read the source code.
 
-Still making new and innovative mistakes while convincing clients I've learned from the old ones. Available for your next over-engineered, behind-schedule, over-budget transformation project.
+\section{EDUCATION \& TECHNICAL DELUSIONS}
 
-\textit{References available upon request (but they might mention the incidents above).}
+\textbf{2004-2012: Diploma in Computer Science, University of Koblenz-Landau} \\
+Degree awarded magna cum laude, though professors clearly graded on a curve. Took 8 years because working full-time while studying seemed like a good idea.
+
+\textbf{Programming Languages I Pretend to Master:} \\
+Java (18y of increasingly complex hello worlds), Golang (4y of stack overflow solutions), PHP (8y of "it works on my machine"), TypeScript (when JavaScript isn't confusing enough)
+
+\textbf{Cloud Platforms I've Broken:} \\
+AWS (7y of expensive experiments), Azure (4y of "this should work"), GCP (brief, traumatic encounter)
+
+\textbf{Certifications I Actually Earned:} \\
+Java SE 8 TechCheck: 93/100 (88th percentile) - proof that multiple choice tests don't reflect real-world debugging skills
+
+\textbf{Irrelevant Skills:} \\
+Can explain microservices architecture to executives using food analogies, survived 18 months of German military service, fluent in making simple problems sound incredibly complex, expert at nodding thoughtfully during requirements meetings while internally panicking
+
+\textbf{Technologies That Haunt My Dreams:} \\
+Kubernetes (why 47 YAML files for "hello world"?), Event-driven architecture (events I can't trace), Terraform (infrastructure as confusion), Docker (works on my machine, nowhere else)
 
 \end{document}

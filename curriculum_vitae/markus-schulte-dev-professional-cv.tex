@@ -1,140 +1,130 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[margin=0.75in]{geometry}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{hyperref}
-\usepackage{xcolor}
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+\usepackage[scale=0.75]{geometry}
+\usepackage{import}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    urlcolor=blue,
-    pdftitle={Markus Schulte - Anti-CV},
-    pdfauthor={Markus Schulte}
-}
-
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
-\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
-\titlespacing*{\section}{0pt}{12pt}{6pt}
-\titlespacing*{\subsection}{0pt}{8pt}{4pt}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{3pt}
-
-\pagestyle{empty}
+\name{Markus}{Schulte}
+\title{Cloud Architect \& Software Engineer}
+\address{Cologne (Köln)}{Germany}
+\phone[mobile]{+49 178 7217768}
+\email{mail@schulte-development.de}
+\homepage{schulte-development.de}
+\social[linkedin]{markus-schulte}
+\social[github]{SchulteDev}
 
 \begin{document}
+\makecvtitle
 
-\begin{center}
-\textbf{\Large Markus Schulte}\\
-\textbf{\large Anti-CV: Honest Failures \& Lessons Learned}\\
-\vspace{2pt}
-Cologne, Germany | \href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768\\
-\href{https://schulte-development.de}{schulte-development.de} | \href{https://github.com/SchulteDev}{GitHub} | \href{https://stackoverflow.com/users/1645517/markus-schulte}{StackOverflow}
-\end{center}
+\section{Professional Summary}
+Enterprise Cloud Architect with 18+ years experience leading digital transformations for Fortune 500 companies. Currently architecting "Phoenix" IT modernization for LBBW (Germany's major state bank), previously delivered cloud-native platforms serving 9M+ users at Union Investment. Specialized in legacy-to-cloud migrations, microservices architecture, and technical team leadership (5-9 developers). Proven track record reducing deployment times from days to minutes, achieving 99.9\% uptime, and establishing architecture templates adopted enterprise-wide.
 
-\section{Professional Summary of Humbling Experiences}
+\section{Core Competencies}
+\cvitem{Enterprise Architecture}{Multi-cloud strategies (AWS, Azure, GCP), legacy modernization, distributed systems}
+\cvitem{Technical Leadership}{Team management (5-9 developers), Product Owner, agile coaching, stakeholder communication}
+\cvitem{Backend Engineering}{Java (18y), Golang (4y), TypeScript - microservices, event-driven architecture}
+\cvitem{Cloud Platforms}{AWS EKS/Lambda, Azure AKS/Functions, Infrastructure-as-Code (Terraform)}
+\cvitem{DevOps Excellence}{CI/CD automation, containerization, automated testing (1000+ tests in 10min builds)}
 
-\textbf{Overly Optimistic Cloud Architect} with 18+ years of learning from spectacular failures and recoverable mistakes. Currently discovering new ways to overcomplicate simple problems at LBBW while maintaining the delusion that legacy banking systems will embrace modern architecture patterns.
+\section{Professional Experience}
 
-\textbf{Core Incompetencies:}
-\begin{itemize}[itemsep=0pt,parsep=0pt,topsep=3pt]
-\item \textbf{Overengineering Expert:} Specialized in turning 2-week features into 6-month architectural masterpieces
-\item \textbf{Buzzword Fluency:} Can make any simple problem sound impressively complex using the latest industry jargon
-\item \textbf{Perfectionist Paralysis:} Excellent at researching 47 different solutions instead of shipping working code
-\item \textbf{Meeting Survivor:} Proven ability to attend 6-hour architectural discussions that could have been a 10-minute Slack message
-\item \textbf{Documentation Procrastinator:} World-class at writing comprehensive documentation after everyone has already left the project
-\end{itemize}
+\cventry{Nov 2024--Present}{Cloud Architect}{LBBW (Freelance)}{Stuttgart/Remote}{}{
+Leading "Phoenix" IT modernization for Germany's major state bank (\textasciitilde{}80 people project)
+\begin{itemize}
+\item Architecting Azure migration strategy for 30+ legacy applications using R-methodology assessment framework
+\item Managing IT-architectural responsibility across "04 – Application Development" area with technical supervision of 10 applications
+\item Developing multi-cloud strategy (Azure, Elastisys Welkin) providing vendor independence and risk mitigation for critical banking operations
+\item Creating standardized migration templates and cost analysis frameworks using Azure Calculator for enterprise-scale transformation
+\item Technologies: Azure (AKS, Functions, Static Web Apps), Kubernetes, Spring Boot, Oracle, PostgreSQL, Terraform
+\end{itemize}}
 
-\textbf{Questionable Achievements:} Built platforms that impressed architects but confused users, reduced deployment time from days to minutes (after initially making it take weeks), achieved 99.9\% uptime by spending 847\% of allocated time on infrastructure nobody asked for.
+\cventry{Oct 2021--Dec 2024}{Cloud Architect}{Union Investment (Freelance)}{Frankfurt/Remote}{}{
+Led 3+ year modernization of InvestmentWelt B2B platform serving 80K users as enterprise template
+\begin{itemize}
+\item Architected Self-contained Systems (SCS) transformation from Liferay monolith across 8 domain boundaries using DDD analysis
+\item Built microfrontend framework enabling autonomous team development with Web Components and Azure Static Web Apps
+\item Led cross-functional teams of 5-7 developers as technical Product Owner, establishing agile workflows and comprehensive onboarding
+\item Designed event-driven search architecture consuming streams from distributed domains, implementing Algolia with Azure Event Hubs
+\item Achieved 99.9\% production uptime, reduced deployment time from days to 30 minutes, established comprehensive CI/CD with 1000+ automated tests
+\item Technologies: Azure (Static Web Apps, Functions, Event Hubs, AD B2C), TypeScript, Lit framework, Algolia, Terraform
+\end{itemize}}
 
-\section{Current Position}
+\cventry{Dec 2021--Nov 2024}{Middleware Engineer}{Saloodo! - DHL Group (Freelance)}{Remote}{Part-Time}{
+Sole developer for critical Salesforce integration middleware handling 10M+ record synchronizations
+\begin{itemize}
+\item Designed fault-tolerant Golang middleware achieving 100\% uptime over 3-year tenure with real-time data propagation
+\item Implemented robust error handling for inconsistent database schemas and optimized multi-threaded bulk processing
+\item Achieved 70\% test coverage with 5-second execution using Dockertest for PostgreSQL integration testing
+\item Technologies: Golang, PostgreSQL, Salesforce Lightning, Docker, Kubernetes, ELK Stack
+\end{itemize}}
 
-\subsection{November 2024 — Present: Cloud Architect, LBBW (Freelance)}
+\newpage
 
-Currently learning why "legacy banking systems" and "modern cloud architecture" mix about as well as oil and water. Leading "Phoenix" IT modernization where I'm discovering that German banking regulations have opinions about my beloved microservices patterns.
+\cventry{Aug 2018--Oct 2019}{Cloud Consultant}{Trusted Shops (Freelance)}{Cologne}{}{
+Modernized e-commerce trust platform from JavaEE6 monolith to cloud-native microservices
+\begin{itemize}
+\item Led AWS transformation implementing serverless architecture with Lambda, API Gateway, SQS for subscription management
+\item Built comprehensive Salesforce/Zuora integration enabling automated billing and customer self-service via MyTS portal
+\item Established contract testing framework (Pact) and Infrastructure-as-Code (Terraform) across 13+ repositories
+\item Implemented Twilio SMS integration and Micronaut-based Lambda templates adopted team-wide
+\item Technologies: AWS (Lambda, EKS, API Gateway), Java, Spring Boot, Micronaut, Terraform, Salesforce, Zuora
+\end{itemize}}
 
-\begin{itemize}[itemsep=2pt,parsep=0pt,topsep=3pt]
-\item Cataloging 200+ legacy applications using R-methodology while secretly hoping most qualify for "retire" category
-\item Developing multi-cloud strategy for Azure/Elastisys Welkin that sounds impressive but terrifies operations team
-\item Creating migration templates that work perfectly in theory and crash spectacularly in production banking environments
-\item Writing architectural assessments that accurately identify problems but optimistically underestimate solutions by 300\%
-\item Presenting to executives who nod politely while calculating how much this "modernization" will actually cost
-\item Managing expectations across 9-person team who've seen enough "revolutionary" architecture changes to be appropriately skeptical
-\end{itemize}
+\cventry{Jan 2020--Mar 2020}{Cloud Consultant}{Sedo GmbH (Freelance)}{Cologne}{}{
+Consolidated Spring Boot and Apache Camel services, reduced infrastructure overhead by 60\%
+\begin{itemize}
+\item Migrated multiple services to single Quarkus application improving resource efficiency
+\item Led contract testing workshops training 12 developers in Pact framework methodologies
+\item Technologies: Quarkus, Kubernetes, Knative, Pact testing
+\end{itemize}}
 
-\section{Previous Roles: Where I Learned Humility}
+\cventry{Nov 2017--Mar 2018}{Senior JavaEE Developer}{Allianz Global Digital Factory (Freelance)}{Munich}{}{
+Developed JavaEE applications for CloudFoundry platform with comprehensive API documentation
+\begin{itemize}
+\item Deployed 3 production applications to AWS-hosted CloudFoundry with REST/HATEOAS APIs
+\item Created API documentation standards adopted company-wide
+\item Technologies: Java, Spring Boot, CloudFoundry, REST/HATEOAS, MySQL
+\end{itemize}}
 
-\subsection{October 2021 — December 2024: Cloud Architect, Union Investment (Freelance)}
+\cventry{Oct 2016--Sep 2017}{Senior Engineer \& DevOp}{toom Baumarkt GmbH (Freelance)}{Bonn}{}{
+Led microservices development and cross-team quality initiatives in 4-team agile project
+\begin{itemize}
+\item Delivered 5 production microservices replacing monolith components with Java and Golang
+\item Accelerated end-to-end test execution by 70\% and optimized JVM memory consumption through GC tuning
+\item Led weekly quality initiatives across 4 development teams establishing comprehensive testing framework
+\item Technologies: Java, Golang, Docker, Kubernetes, Kafka, Pact, Bamboo CI
+\end{itemize}}
 
-Three-year journey transforming a working Liferay monolith into 8 autonomous microservices that somehow required more coordination than the original system. Successfully proved that distributed systems create distributed problems.
+\cventry{Jun 2016--Dec 2023}{Creator}{Atlassian Marketplace Add-ons (Self-Employed)}{}{}{
+Built sustainable product business with 83 customers across 15+ countries
+\begin{itemize}
+\item Developed Java-based Bamboo Server add-ons for code quality integration (Checkstyle, PMD, FindBugs)
+\item Maintained 7-year product lifecycle with recurring revenue and enterprise customers (200+ Bamboo agents)
+\item Technologies: Java, Atlassian SDK, OSGi, Maven
+\end{itemize}}
 
-\begin{itemize}[itemsep=2pt,parsep=0pt,topsep=3pt]
-\item Decomposed monolith into 8 Self-contained Systems, each requiring its own CI/CD pipeline, monitoring, and crisis management
-\item Built "microfrontend-toolkit" that was so flexible it confused developers who just wanted to add a button
-\item Implemented event-driven architecture where events occasionally got lost, duplicated, or arrived in creative new orders
-\item Achieved 10-minute build times after initially creating 45-minute build monsters that killed developer productivity
-\item Led teams of 5-7 developers who diplomatically suggested simpler solutions I elegantly ignored
-\item Delivered search functionality that worked flawlessly except when users actually searched for things they needed
-\end{itemize}
+\cventry{Aug 2007--Jun 2014}{PHP Developer / Head of Development}{wer-kennt-wen.de}{Düsseldorf}{}{
+Scaled Germany's largest social network architecture for 9+ million users
+\begin{itemize}
+\item Led transformation from procedural to OOP architecture using Zend Framework and MVC patterns
+\item Managed development team as Head of Development (2008-2010) with full personnel responsibility
+\item Reduced page load times by 60\% through architecture modernization and Memcache implementation
+\item Introduced CI/CD with Jenkins and comprehensive testing procedures including Selenium automation
+\item Technologies: PHP, Zend Framework, MySQL, Memcache, Jenkins, Sphinx
+\end{itemize}}
 
-\subsection{December 2021 — November 2024: Middleware Engineer, Saloodo!/DHL (Part-time)}
+\section{Education \& Certifications}
+\cventry{2004--2012}{Diploma in Computer Science (magna cum laude)}{University of Koblenz-Landau}{Campus Koblenz}{}{Specialization: Computational Visualistics and Software Engineering}
+\cventry{2018}{Java SE 8 TechCheck (IKM)}{93/100 score, 88th percentile}{}{}{Strong proficiency in Object Orientation, Generics, Concurrency, Memory Management}
+\cventry{}{StackOverflow}{4000+ reputation points}{}{}{Active community contributor with recognized technical expertise}
 
-Solo mission synchronizing 10 million records between inconsistent database and Salesforce while learning that "real-time" and "10 million records" don't belong in the same sentence.
-
-\begin{itemize}[itemsep=2pt,parsep=0pt,topsep=3pt]
-\item Achieved 100\% uptime by writing defensive code that assumed every database field contained malformed JSON (it did)
-\item Implemented "near real-time" sync that was definitely real-time during low-traffic hours at 3 AM
-\item Built fault-tolerant architecture that was primarily fault-compensating architecture
-\item Wrote 2,776 lines of Golang while discovering that Go's error handling makes every function twice as long
-\end{itemize}
-
-\section{Earlier Adventures in Overengineering}
-
-\subsection{2016-2020: Freelance Consulting Spree}
-
-\textbf{Sedo GmbH (2020):} Consolidated 3 services into 1 Quarkus service, then spent equal time explaining why Quarkus was worth the learning curve.
-
-\textbf{Trusted Shops (2018-2019):} Modernized JavaEE6 to cloud-native microservices that required 4x more infrastructure but scaled beautifully for load that never materialized.
-
-\textbf{toom Baumarkt (2016-2017):} Improved microservice memory consumption by 60\% after initially creating memory-hungry monsters that crashed in production.
-
-\subsection{2016-2023: Atlassian Marketplace Entrepreneur}
-
-Created profitable Bamboo add-ons that 83 customers actually used, proving that sometimes solving real problems works better than architectural perfection.
-
-\subsection{2007-2014: PHP Developer \& Head of Development, wer-kennt-wen.de}
-
-Scaled social platform to 9+ million users while learning that premature optimization is evil but premature under-optimization is worse. Served as Head of Development for 18 months, discovering that managing developers is harder than managing code.
-
-\section{Education \& Irrelevant Skills}
-
-\textbf{Diploma in Computer Science} (2012) — University of Koblenz-Landau, magna cum laude equivalent\\
-Took 8 years instead of 5 because working full-time while studying seemed like good time management.
-
-\textbf{Technical Expertise:} Java (18y), Golang (4y), AWS/Azure/GCP, Kubernetes, microservices, event-driven architecture, Infrastructure-as-Code, contract testing, and 47 other technologies I've used in anger.
-
-\textbf{Overhyped Technologies I Championed:}
-GraphQL (2019), Quarkus (2020), Web Components (2022), Event Sourcing (2023), AI-powered everything (2024)
-
-\textbf{Failed Project Highlights:}
-\begin{itemize}[itemsep=0pt,parsep=0pt,topsep=3pt]
-\item Bitcoin arbitrage trading bot (2015) that lost money consistently
-\item Jenkins-GitHub integration that was 90\% complete for 6 months
-\item Perfect microservice template that no team wanted to use
-\end{itemize}
-
-\textbf{Bombed Interviews:}
-\begin{itemize}[itemsep=0pt,parsep=0pt,topsep=3pt]
-\item Google (2019): Explained why their Kubernetes setup was suboptimal
-\item Netflix (2020): Suggested improvements to their microservices architecture during system design round
-\item Startup (2021): Asked for equity percentage during technical phone screen
-\end{itemize}
-
-\textbf{Lessons Learned:} Sometimes the boring solution is the right solution. Kubernetes is not always the answer. Developers prefer working code over architectural purity. And yes, that Jira ticket probably should have been a quick fix, not a strategic initiative.
-
-\textbf{References:} Available upon request, along with post-project therapy recommendations.
+\section{Technical Skills}
+\cvitem{Languages}{Java (18y), Golang (4y), TypeScript/JavaScript, PHP (8y)}
+\cvitem{Cloud Platforms}{AWS (EKS, Lambda, API Gateway, S3, SQS), Azure (AKS, Functions, Static Web Apps, Event Hubs), GCP}
+\cvitem{Architecture}{Microservices, Event-driven, Self-contained Systems (SCS), Distributed Systems, Clean Architecture}
+\cvitem{DevOps \& Tools}{Docker, Kubernetes, Terraform, Helm, Jenkins, Azure DevOps, GitHub Actions}
+\cvitem{Testing}{JUnit, Mockito, Pact (contract testing), Playwright, Dockertest, comprehensive test automation}
+\cvitem{Databases}{PostgreSQL, MySQL, Oracle, MS-SQL, Redis}
+\cvitem{Integration}{Salesforce, Zuora, Algolia, ElasticSearch, Kafka, Azure Event Hubs}
 
 \end{document}
