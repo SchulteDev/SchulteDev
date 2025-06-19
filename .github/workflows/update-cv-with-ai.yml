@@ -39,8 +39,7 @@ jobs:
       matrix:
         cv_type: [anti, professional]
     outputs:
-      anti_mode: ${{ steps.transform-anti.outputs.mode }}
-      professional_mode: ${{ steps.transform-professional.outputs.mode }}
+      mode: ${{ steps.transform.outputs.mode }}
     defaults:
       run:
         working-directory: curriculum_vitae/scripts
@@ -78,28 +77,28 @@ jobs:
         run: npm test
 
       - name: Transform CV with Claude
-        id: transform-${{ matrix.cv_type }}
+        id: transform
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: npm run cv:update:${{ matrix.cv_type }}
 
       - name: Compile CV LaTeX to PDF
-        if: success() && steps['transform-${{ matrix.cv_type }}'].outputs.mode != 'skip'
+        if: success() && steps.transform.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v3
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Upload CV PDF
-        if: success() && steps['transform-${{ matrix.cv_type }}'].outputs.mode != 'skip'
+        if: success() && steps.transform.outputs.mode != 'skip'
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.cv_type }}-cv-pdf
           path: markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
 
       - name: Commit updated LaTeX files
-        if: success() && steps['transform-${{ matrix.cv_type }}'].outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && matrix.cv_type == 'anti'
+        if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && matrix.cv_type == 'anti'
         uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "Update CVs: ${{ github.event.inputs.rebuild_mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }} (Anti-CV + Professional CV)"
@@ -107,7 +106,7 @@ jobs:
 
   release:
     needs: update-cvs
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: needs.update-cvs.result == 'success' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
