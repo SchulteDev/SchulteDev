@@ -106,7 +106,7 @@ jobs:
 
   release:
     needs: update-cvs
-    if: needs.update-cvs.result == 'success' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: contains(needs.update-cvs.result, 'success') && !contains(needs.update-cvs.outputs.mode, 'skip') && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -116,11 +116,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: anti-cv-pdf
+        continue-on-error: true
 
       - name: Download Professional CV PDF
         uses: actions/download-artifact@v4
         with:
           name: professional-cv-pdf
+        continue-on-error: true
 
       - name: Set generation timestamp
         id: timestamp
