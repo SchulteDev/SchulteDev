@@ -15,7 +15,10 @@
     "constraints": [
       "Exactly {{PAGES}} pages",
       "Fill all space - expand/condense as needed",
-      "Maintain \\newpage placement"
+      "ASCII only",
+      "Standard LaTeX packages only",
+      "Maintain \\newpage placement",
+      "At the end, at a comment that this CV was created automatically using AI (Claude) based on https://github.com/SchulteDev/SchulteDev/blob/main/_data/career.md"
     ],
     "templates": {
       "fullRebuild": [
