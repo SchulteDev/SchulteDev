@@ -6,30 +6,26 @@
       "output": "LaTeX only. Start \\documentclass, end \\end{document}."
     },
     "pageLayout": [
-      "P1: Header+Summary+Core competencies+Current role(LBBW)",
-      "P2: Previous 3 roles (Union Investment, Saloodo!, Trusted Shops)",
-      "P3: Earlier roles+Education+Technical skills",
-      "Recent: 4-6 bullets. Earlier: 2-3 bullets.",
-      "Use metrics, dates, tech, achievements"
+      "P1: Header+Contact+Summary+Core competencies+Current role (LBBW)",
+      "P2: Union Investment+Saloodo!+Trusted Shops (4-6 bullets, metrics)",
+      "P3: Earlier roles+Education+Skills+AI note",
+      "Prioritize: Cloud architecture, leadership, business impact, tech"
     ],
     "constraints": [
-      "Exactly {{PAGES}} pages",
-      "Fill all space - expand/condense as needed",
-      "ASCII only",
-      "Standard LaTeX packages only",
-      "Maintain \\newpage placement",
-      "At the end, at a comment that this CV was created automatically using AI (Claude) based on https://github.com/SchulteDev/SchulteDev/blob/main/_data/career.md"
+      "Exactly {{PAGES}} pages, fill space",
+      "ASCII, standard LaTeX, maintain \\newpage",
+      "End: \"AI-generated note\" with link to source https://github.com/SchulteDev/SchulteDev/blob/main/_data/career.md"
     ],
     "templates": {
       "fullRebuild": [
-        "Create {{PAGES}}-page {{CV_TYPE}} from:",
+        "{{PAGES}}-page {{CV_TYPE}} from:",
         "```markdown\n{{CAREER_DATA}}\n```",
         "Layout: {{SHARED_PAGE_LAYOUT}}",
         "{{TYPE_SPECIFIC_INSTRUCTIONS}}"
       ],
       "incremental": [
         "Update {{CV_TYPE}}:",
-        "```latex\n{{CURRENT_CV}}\n```",
+        "Current: ```latex\n{{CURRENT_CV}}\n```",
         "Changes: ```diff\n{{DIFF_DATA}}\n```",
         "{{SHARED_CONSTRAINTS}}",
         "{{TYPE_SPECIFIC_INSTRUCTIONS}}"
@@ -39,26 +35,23 @@
   "antiCv": {
     "cvType": "Anti-CV",
     "system": [
-      "Generate Anti-CV: honest failures/lessons.",
-      "Tone: Self-deprecating, humorous, ironic, sarcastic, no damage to any reputation.",
-      "Content: Failed projects, rejections, mistakes, irrelevant skills.",
-      "Structure: {{SHARED_PAGE_LAYOUT}}",
+      "Humorous Anti-CV: failures/lessons, self-deprecating but professional.",
+      "Content: Failed projects, rejections, mistakes, quirky skills.",
+      "{{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "",
-    "incrementalInstructions": ""
+    "fullRebuildInstructions": "Transform achievements → humorous failures. Career timeline but focus setbacks/learning.",
+    "incrementalInstructions": "Add failures/lessons in Anti-CV humor style."
   },
   "professionalCv": {
     "cvType": "professional CV",
     "system": [
-      "Generate achievement-focused professional CV.",
-      "Focus: Quantified impact, technical leadership, progression.",
-      "Language: Action verbs, metrics, business value.",
-      "Style: Clean, modern.",
-      "Structure: {{SHARED_PAGE_LAYOUT}}",
+      "Achievement-focused CV: quantified impact, leadership, business value.",
+      "Action verbs, metrics, results-driven language.",
+      "Layout: {{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "Transform tech details to business impact. Quantify all.",
-    "incrementalInstructions": "Maintain tone and achievements."
+    "fullRebuildInstructions": "Tech details → business impact. Quantify: team sizes, performance, users.",
+    "incrementalInstructions": "Integrate maintaining professional tone + achievement focus."
   }
 }

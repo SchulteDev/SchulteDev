@@ -129,8 +129,8 @@ jobs:
             **Processed:** ${{ steps.transform.outputs.processed_count || '2' }}/2 CV types
 
             📄 **Download Links:**
-            - [Anti-CV (Humorous)](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf) - Showcasing failures and lessons learned
             - [Professional CV](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-professional-cv.pdf) - Traditional format highlighting achievements
+            - [Anti-CV (Humorous)](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-anti-cv.pdf) - Showcasing failures and lessons learned
           files: |
             markus-schulte-dev-anti-cv.pdf
             markus-schulte-dev-professional-cv.pdf
