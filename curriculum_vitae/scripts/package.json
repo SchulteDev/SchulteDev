@@ -7,6 +7,8 @@
     "test": "npm run cv:test",
     "clean": "rm -rf node_modules/ tmp/",
     "cv:update": "tsx run-cv-update.ts",
+    "cv:update:professional": "CV_TYPES=professional tsx run-cv-update.ts",
+    "cv:update:anti": "CV_TYPES=anti tsx run-cv-update.ts",
     "cv:full-rebuild": "tsx transform-full-rebuild.ts",
     "cv:incremental": "tsx transform-incremental.ts",
     "cv:test": "tsx test-local.ts",
