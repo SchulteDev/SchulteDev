@@ -19,60 +19,43 @@ export const GIT_DIFF_RANGE: number = parseInt(process.env.GIT_DIFF_RANGE ?? '1'
 // CV Types
 export type CvType = 'professional' | 'anti';
 
-// Backup settings
+// Settings
 export const CREATE_BACKUP: boolean = process.env.CREATE_BACKUP === 'true';
-export const BACKUP_DIR: string = process.env.BACKUP_DIR ?? 'backups';
 
-// Get CV file path based on type
-export const getCvFile = (cvType: CvType): string => {
-  switch (cvType) {
-    case 'professional':
-      return PROFESSIONAL_CV_FILE;
-    case 'anti':
-      return ANTI_CV_FILE;
-    default:
-      throw new Error(`Unknown CV type: ${cvType}`);
-  }
-};
+// Simple getters
+export const getCvFile = (cvType: CvType): string =>
+  cvType === 'professional' ? PROFESSIONAL_CV_FILE : ANTI_CV_FILE;
 
-// Get response file path for API responses
-export const getResponseFile = (cvType: CvType): string => {
-  return `tmp/response_${cvType}.json`;
-};
+export const getResponseFile = (cvType: CvType): string =>
+  `tmp/response_${cvType}.json`;
 
-// Get temporary file path for processing
-export const getTempFile = (cvType: CvType): string => {
-  return `tmp/temp_${cvType}.tex`;
-};
+export const getTempFile = (cvType: CvType): string =>
+  `tmp/temp_${cvType}.tex`;
 
-// Check if running in GitHub Actions
-export const isGithubActions = (): boolean => {
-  return process.env.GITHUB_ACTIONS === 'true';
-};
+export const getCvTypesToProcess = (): CvType[] =>
+  (process.env.CV_TYPES?.split(',') as CvType[]) ?? ['professional', 'anti'];
 
-// Get CV types to process
-export const getCvTypesToProcess = (): CvType[] => {
-  const types = process.env.CV_TYPES?.split(',') as CvType[] | undefined;
-  return types ?? ['professional', 'anti'];
-};
+// Environment checks
+export const isGithubActions = (): boolean =>
+  process.env.GITHUB_ACTIONS === 'true';
 
 // GitHub Actions output function
 export const setOutput = (name: string, value: string): void => {
   if (process.env.GITHUB_ACTIONS === 'true') {
-    console.log(`::set-output name=${name}::${value}`);
+    const outputFile = process.env.GITHUB_OUTPUT;
+    if (outputFile) {
+      fs.appendFileSync(outputFile, `${name}=${value}\n`);
+    } else {
+      console.log(`::set-output name=${name}::${value}`);
+    }
   } else {
     console.log(`Output: ${name}=${value}`);
   }
 };
 
-// Ensure required directories exist
+// Directory management
 export const ensureDirectories = (): void => {
-  const tmpDir = 'tmp';
-  if (!fs.existsSync(tmpDir)) {
-    fs.mkdirSync(tmpDir, {recursive: true});
-  }
-
-  if (CREATE_BACKUP && !fs.existsSync(BACKUP_DIR)) {
-    fs.mkdirSync(BACKUP_DIR, {recursive: true});
+  if (!fs.existsSync('tmp')) {
+    fs.mkdirSync('tmp', {recursive: true});
   }
 };
