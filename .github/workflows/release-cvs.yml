@@ -1,53 +1,25 @@
-name: AI-Powered CV Update with GitHub Releases
+name: Release CVs
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ 'main' ]
     paths:
-      - '.github/workflows/update-cv-with-ai.yml'
-      - '_data/**'
-      - 'curriculum_vitae/**'
-  pull_request:
-    branches: [ '*' ]
-    paths:
-      - '.github/workflows/update-cv-with-ai.yml'
-      - '_data/**'
-      - 'curriculum_vitae/**'
+      - '.github/workflows/release-cvs.yml'
+      - 'curriculum_vitae/markus-schulte-dev-*.tex'
   workflow_dispatch:
-    inputs:
-      rebuild_mode:
-        description: 'CV Generation Mode'
-        required: true
-        default: 'incremental'
-        type: choice
-        options:
-          - incremental
-          - full_rebuild
 
 permissions:
   contents: write
 
-env:
-  CAREER_FILE: ${{ github.workspace }}/_data/career.md
-  ANTI_CV_FILE: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-anti-cv.tex
-  PROFESSIONAL_CV_FILE: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-professional-cv.tex
-
 jobs:
-  update-cvs:
+  compile-cvs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         cv_type: [ anti, professional ]
-    outputs:
-      mode: ${{ steps.transform.outputs.mode }}
-    defaults:
-      run:
-        working-directory: curriculum_vitae/scripts
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -60,49 +32,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          cache: 'npm'
-          cache-dependency-path: 'curriculum_vitae/scripts/package-lock.json'
-          node-version-file: 'curriculum_vitae/scripts/.nvmrc'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Test CV update with dry run
-        env:
-          DRY_RUN: true
-          SKIP_API: true
-        run: npm test
-
-      - name: Transform CV with Claude
-        id: transform
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
-        run: npm run cv:update:${{ matrix.cv_type }}
-
       - name: Compile CV LaTeX to PDF
-        if: success() && steps.transform.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v3
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Upload CV PDF
-        if: success() && steps.transform.outputs.mode != 'skip'
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.cv_type }}-cv-pdf
           path: markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
-
-      - name: Commit updated LaTeX files
-        if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && matrix.cv_type == 'anti'
-        uses: stefanzweifel/git-auto-commit-action@v6
-        with:
-          commit_message: "Update CVs: ${{ github.event.inputs.rebuild_mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }} (Anti-CV + Professional CV)"
-          file_pattern: "curriculum_vitae/markus-schulte-dev-*.tex"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -112,12 +52,11 @@ jobs:
           path: |
             *.log
             markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
-            curriculum_vitae/scripts/tmp/
           retention-days: 7
 
-  release:
-    needs: update-cvs
-    if: contains(needs.update-cvs.result, 'success') && !contains(needs.update-cvs.outputs.mode, 'skip') && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+  create-release:
+    needs: compile-cvs
+    if: contains(needs.compile-cvs.result, 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -140,7 +79,6 @@ jobs:
         run: echo "generated_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_OUTPUT
 
       - name: Delete existing release and tag
-        if: success() && steps.transform.outputs.mode != 'skip' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
           gh release delete cv-latest --yes || true
           git push --delete origin cv-latest || true
@@ -156,8 +94,6 @@ jobs:
             🤖 Auto-generated CVs (Dual Format)
 
             **AI Model:** Claude 4
-            **Generation Mode:** ${{ github.event.inputs.rebuild_mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
-            **Trigger:** ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto (career.md change)' }}
             **Generated on:** ${{ steps.timestamp.outputs.generated_date }}
             **Commit:** ${{ github.sha }}
 
