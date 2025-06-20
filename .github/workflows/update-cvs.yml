@@ -12,7 +12,7 @@ on:
     paths:
       - '.github/workflows/update-cvs.yml'
       - '_data/**'
-      - 'curriculum_vitae/**'
+      - 'curriculum_vitae/scripts/**'
   workflow_dispatch:
     inputs:
       rebuild_mode:
