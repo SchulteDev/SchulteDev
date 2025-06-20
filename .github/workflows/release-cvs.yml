@@ -4,8 +4,8 @@ on:
   push:
     branches: [ 'main' ]
     paths:
-      - '.github/workflows/release-cvs.yml'
-      - 'curriculum_vitae/markus-schulte-dev-*.tex'
+    - '.github/workflows/release-cvs.yml'
+    - 'curriculum_vitae/*.tex'
   workflow_dispatch:
 
 permissions:
