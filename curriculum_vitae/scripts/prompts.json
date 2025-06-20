@@ -6,16 +6,16 @@
       "output": "LaTeX only. Start \\documentclass, end \\end{document}."
     },
     "pageLayout": [
-      "P1: Header+Contact+Summary+Core competencies+Current role (LBBW)",
-      "P2: Union Investment+Saloodo!+Trusted Shops (4-6 bullets, metrics)",
-      "P3: Earlier roles+Education+Skills+AI note",
+      "Page1: Header+Contact+Summary+Core competencies+Current role (LBBW)",
+      "Page2: Union Investment+Saloodo!+Trusted Shops (4-6 bullets, metrics)",
+      "Page3: Earlier roles+Education+Skills+AI note",
       "Prioritize: Cloud architecture, leadership, business impact, tech"
     ],
     "constraints": [
-      "ASCII only (no Unicode), maintain \\newpage",
+      "ASCII only (no Unicode)",
       "Generate valid pdfLaTeX code with standard packages only.",
       "Exactly {{PAGES}} pages, fill space",
-      "End: \"AI-generated note\" with link to source https://github.com/SchulteDev/SchulteDev/blob/main/_data/career.md"
+      "End of CV: \"AI-generated note\""
     ],
     "templates": {
       "fullRebuild": [
