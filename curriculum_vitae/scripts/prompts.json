@@ -13,7 +13,7 @@
     ],
     "constraints": [
       "ASCII only (no Unicode)",
-      "Generate valid pdfLaTeX code with standard packages only.",
+      "Valid compilable pdfLaTeX (no XeTeX, no LuaTeX) code with standard LaTeX packages only.",
       "Exactly {{PAGES}} pages, fill space",
       "End of CV: \"AI-generated note\""
     ],
