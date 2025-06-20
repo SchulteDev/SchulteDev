@@ -155,8 +155,8 @@ jobs:
           body: |
             🤖 Auto-generated CVs (Dual Format)
 
-            **AI Model:** Claude 4 Opus with Extended Thinking
-            **Generation Mode:** Full Rebuild 🔄 or Incremental Update 📝
+            **AI Model:** Claude 4
+            **Generation Mode:** ${{ github.event.inputs.rebuild_mode == 'full_rebuild' && 'Full Rebuild 🔄' || 'Incremental Update 📝' }}
             **Trigger:** ${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Auto (career.md change)' }}
             **Generated on:** ${{ steps.timestamp.outputs.generated_date }}
             **Commit:** ${{ github.sha }}
