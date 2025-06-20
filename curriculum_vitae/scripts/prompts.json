@@ -12,7 +12,7 @@
       "Prioritize: Cloud architecture, leadership, business impact, tech"
     ],
     "constraints": [
-      "ASCII, maintain \\newpage",
+      "ASCII only (no Unicode), maintain \\newpage",
       "Generate valid pdfLaTeX code with standard packages only.",
       "Exactly {{PAGES}} pages, fill space",
       "End: \"AI-generated note\" with link to source https://github.com/SchulteDev/SchulteDev/blob/main/_data/career.md"
