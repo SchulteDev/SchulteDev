@@ -16,8 +16,11 @@
     ],
     "constraints": [
       "Generate compilable pdfLaTeX code only. Use only standard pdfLaTeX packages (e.g., inputenc, fontenc, geometry).",
-      "ASCII only, no Unicode - use LaTeX commands for all non-ASCII characters. No XeLaTeX/LuaLaTeX packages like fontspec.",
-      "Always: \\usepackage[utf8]{inputenc}, \\usepackage[T1]{fontenc}."
+      "ASCII only, no Unicode - use LaTeX commands for all non-ASCII characters.",
+      "No custom formatting packages (titlesec, fancyhdr, etc.).",
+      "No XeLaTeX/LuaLaTeX packages like fontspec.",
+      "Always: \\usepackage[utf8]{inputenc}, \\usepackage[T1]{fontenc}.",
+      "Test all formatting commands for syntax errors before using."
     ],
     "templates": {
       "fullRebuild": [
