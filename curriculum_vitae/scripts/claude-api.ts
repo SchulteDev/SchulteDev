@@ -93,6 +93,21 @@ const shouldUseMock = (): { useMock: boolean; reason: string } => {
   return {useMock: false, reason: ''};
 };
 
+const handleStreamingResponse = async (stream: any): Promise<{ content: string; usage: any }> => {
+  let completeResponse = '';
+  let usage = null;
+
+  for await (const chunk of stream) {
+    if (chunk.type === 'content_block_delta' && chunk.delta?.type === 'text_delta') {
+      completeResponse += chunk.delta.text;
+    } else if (chunk.type === 'message_delta' && chunk.usage) {
+      usage = chunk.usage;
+    }
+  }
+
+  return { content: completeResponse, usage };
+};
+
 const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType): Promise<boolean> => {
   logger.info(`Calling Claude API for ${cvType} CV with extended thinking...`);
   logger.debug(`Model: ${API_MODEL}`);
@@ -104,6 +119,7 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
       model: API_MODEL,
       max_tokens: MAX_TOKENS,
       messages: [{role: 'user', content: userPrompt}],
+      stream: true,  // Enable streaming for extended thinking
       thinking: {
         type: "enabled",
         budget_tokens: Math.min(20000, Math.floor(MAX_TOKENS * 0.6))  // Use up to 60% for thinking, rest for output
@@ -112,22 +128,28 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
 
     if (systemPrompt) request.system = systemPrompt;
 
-    const response = await anthropic.messages.create(request);
+    logger.debug('Starting streaming response...');
+    const stream = await anthropic.messages.create(request);
+
+    const { content: completeResponse, usage } = await handleStreamingResponse(stream);
+
+    const response = {
+      content: [{ type: 'text', text: completeResponse }],
+      usage: usage
+    };
+
     const responseFile = getResponseFile(cvType);
     fs.writeJsonSync(responseFile, response, {spaces: 2});
 
     logClaudeResponse(response, cvType, systemPrompt, userPrompt);
 
-    if (!response.content?.[0] || (response.content[0].type === 'text' && !response.content[0].text)) {
-      logger.error(`Invalid API response for ${cvType} CV:`);
-      console.log(JSON.stringify(response).slice(0, 500));
+    if (!completeResponse?.trim()) {
+      logger.error(`Invalid API response for ${cvType} CV: empty response`);
       return false;
     }
 
     logger.success(`API response received for ${cvType} CV`);
-    if (response.content[0].type === 'text') {
-      logger.debug(`Response length: ${response.content[0].text.length} chars`);
-    }
+    logger.debug(`Response length: ${completeResponse.length} chars`);
     return true;
   } catch (error: any) {
     logger.error(`API call failed for ${cvType} CV: ${error.message}`);
