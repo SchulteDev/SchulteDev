@@ -3,7 +3,6 @@
 import fs from 'fs';
 import {exec} from 'child_process';
 import util from 'util';
-import path from 'path';
 import {
   CAREER_FILE,
   CvType,
@@ -52,28 +51,20 @@ export const buildIncrementalPrompt = (cvType: CvType): PromptResult => {
 // Git operations
 export const generateGitDiff = async (): Promise<boolean> => {
   try {
-    // Convert CAREER_FILE to repo-relative path
-    const relativePath = path.relative(process.cwd(), CAREER_FILE)
-      .replace(/\.\.\//g, '') // Remove ../ prefixes
-      .replace(/\\/g, '/'); // Normalize to forward slashes
-
     const range = `HEAD~${GIT_DIFF_RANGE}`;
 
-    logger.debug(`Working directory: ${process.cwd()}`);
-    logger.debug(`CAREER_FILE: ${CAREER_FILE}`);
-    logger.debug(`Calculated relative path: ${relativePath}`);
     logger.debug(`Git diff range: ${range} HEAD`);
 
     const {stdout} = await execAsync(`git diff ${range} HEAD --name-only`);
     logger.debug(`Files changed: "${stdout.trim()}"`);
 
-    if (stdout.includes(relativePath) || stdout.includes('_data/career.md')) {
-      await execAsync(`git diff ${range} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
-      logger.debug(`Created diff file for: ${relativePath}`);
+    if (stdout.includes('_data/career.md')) {
+      await execAsync(`git diff ${range} HEAD -- _data/career.md > "${DIFF_FILE}"`);
+      logger.debug(`Created diff file for _data/career.md`);
       return true;
     }
 
-    logger.info(`No changes in ${relativePath} (last ${GIT_DIFF_RANGE} commits)`);
+    logger.info(`No changes in _data/career.md (last ${GIT_DIFF_RANGE} commits)`);
     setOutput('mode', 'skip');
     return false;
   } catch (error: any) {
