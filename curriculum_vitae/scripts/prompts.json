@@ -6,10 +6,10 @@
       "output": "LaTeX only. Start \\documentclass, end \\end{document}."
     },
     "pageLayout": [
-      "Page1: Header+Contact+Summary+Core competencies+Current role (LBBW)",
-      "Page2: Union Investment+Saloodo!+Trusted Shops (4-6 bullets, metrics)",
-      "Page3: Earlier roles+Education+Skills+AI note",
-      "Page3 footer: \"AI-generated note\"",
+      "Page1: Header, CV Summary, Core competencies (organized as table), Current role (LBBW)",
+      "Page2: Union Investment, Saloodo!, Trusted Shops",
+      "Page3: Earlier roles, Education, Skills",
+      "Page3 footer: \"AI-generated disclaimer\"",
       "Exactly {{PAGES}} pages, fill space",
       "Prioritize: Cloud architecture, leadership, business impact, tech"
     ],
