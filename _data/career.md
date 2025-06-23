@@ -182,8 +182,9 @@ parallel technical supervision across "04 – Application Development" area
 
 **Service Offering & Core Responsibilities:**
 
-**IT Architecture Leadership:**
+**IT Architecture:**
 
+- Working in a team of project organizers and computer scientists as a technical cloud architect
 - IT-architectural responsibility for "04 – Application Development" area of Phoenix transformation
   project
 - Operational steering and medium to long-term strategic direction for application development
