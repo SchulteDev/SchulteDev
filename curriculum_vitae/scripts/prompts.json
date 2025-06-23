@@ -3,7 +3,7 @@
     "structure": {
       "pages": 4,
       "pageBreak": "\\newpage after page 1.",
-      "output": "LaTeX only. Start \\documentclass, end \\end{document}. No thinking blocks."
+      "output": "Output only pdfLaTeX only. Must compile with pdflatex. Start \\documentclass, end \\end{document}. Do not include thinking blocks."
     },
     "pageLayout": [
       "Page1: Header (name, contact), CV summary, business impacts summary, core competencies summary (organized as table without borders), current role (LBBW) teaser.",
@@ -16,12 +16,11 @@
     ],
     "constraints": [
       "Generate compilable pdfLaTeX code only. Use only standard pdfLaTeX packages (e.g., inputenc, fontenc, geometry).",
-      "ASCII only, no Unicode — use LaTeX commands for all non-ASCII characters.",
+      "Strict ASCII only - no Unicode characters (→, ↔, ←, •, etc.). Use LaTeX commands: \\rightarrow, \\leftrightarrow, \\leftarrow, \\textbullet etc.",
       "No custom formatting packages (titlesec, fancyhdr, etc.).",
       "No XeLaTeX/LuaLaTeX packages like fontspec.",
       "Always: \\usepackage[utf8]{inputenc}, \\usepackage[T1]{fontenc}.",
-      "Test all formatting commands for syntax errors before using.",
-      "Output only pdfLaTeX code. No thinking blocks."
+      "Test all formatting commands for syntax errors before using."
     ],
     "templates": {
       "fullRebuild": [
