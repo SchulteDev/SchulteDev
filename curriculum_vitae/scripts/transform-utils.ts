@@ -3,6 +3,7 @@
 import fs from 'fs';
 import {exec} from 'child_process';
 import util from 'util';
+import path from 'path';
 import {
   CAREER_FILE,
   CvType,
@@ -51,30 +52,30 @@ export const buildIncrementalPrompt = (cvType: CvType): PromptResult => {
 // Git operations
 export const generateGitDiff = async (): Promise<boolean> => {
   try {
-    const relativePath = CAREER_FILE.replace(process.cwd() + '/', '');
-    const isManual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+    // Convert CAREER_FILE to repo-relative path
+    const relativePath = path.relative(process.cwd(), CAREER_FILE)
+    .replace(/\.\.\//g, '') // Remove ../ prefixes
+    .replace(/\\/g, '/'); // Normalize to forward slashes
+
     const range = `HEAD~${GIT_DIFF_RANGE}`;
 
     logger.debug(`Git diff range: ${range} HEAD`);
-
-    if (isManual) {
-      await execAsync(`git diff ${range} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
-      return true;
-    }
+    logger.debug(`Checking changes for: ${relativePath}`);
 
     const {stdout} = await execAsync(`git diff ${range} HEAD --name-only`);
+    logger.debug(`Files changed: ${stdout.trim()}`);
+
     if (stdout.includes(relativePath)) {
       await execAsync(`git diff ${range} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
       return true;
     }
 
-    logger.info(`No changes in ${CAREER_FILE} (last ${GIT_DIFF_RANGE} commits)`);
+    logger.info(`No changes in ${relativePath} (last ${GIT_DIFF_RANGE} commits)`);
     setOutput('mode', 'skip');
     return false;
   } catch (error: any) {
-    fs.writeFileSync(DIFF_FILE, 'No changes detected in git diff');
-    logger.info('No git changes detected, created mock diff');
-    return true;
+    logger.error(`Git diff error: ${error.message}`);
+    throw new Error(`Failed to generate git diff: ${error.message}`);
   }
 };
 
