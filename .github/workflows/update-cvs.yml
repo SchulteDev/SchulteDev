@@ -107,7 +107,6 @@ jobs:
             curriculum_vitae/scripts/tmp/
             curriculum_vitae/scripts/*.log
             curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
-            curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
           retention-days: 7
 
   commit-changes:

@@ -66,12 +66,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: anti-cv-pdf
+          path: .
         continue-on-error: true
 
       - name: Download Professional CV PDF
         uses: actions/download-artifact@v4
         with:
           name: professional-cv-pdf
+          path: .
         continue-on-error: true
 
       - name: Set generation timestamp
