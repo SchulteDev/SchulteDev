@@ -1,8 +1,7 @@
 // transform-utils.ts - Shared utilities for CV transformations
 
 import fs from 'fs-extra';
-import {exec} from 'child_process';
-import util from 'util';
+import {simpleGit} from 'simple-git';
 import {
   CAREER_FILE,
   CvType,
@@ -17,7 +16,7 @@ import logger from './logger.js';
 import {callClaudeApi, PromptResult} from './claude-api.js';
 import {getFullRebuildPrompt, getIncrementalPrompt, getSystemPrompt} from './prompts.js';
 
-const execAsync = util.promisify(exec);
+const git = simpleGit();
 
 // Common prompt building
 export const buildFullRebuildPrompt = (cvType: CvType): PromptResult => {
@@ -62,7 +61,8 @@ export const generateGitDiff = async (): Promise<boolean> => {
     logger.debug(`CAREER_FILE: ${CAREER_FILE}`);
 
     // GitHub Actions already determined changes exist, just create the diff
-    await execAsync(`git diff ${range} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
+    const diffResult = await git.diff([range, 'HEAD', '--', relativePath]);
+    fs.writeFileSync(DIFF_FILE, diffResult);
 
     logger.debug(`Created diff file for ${relativePath}`);
     return true;

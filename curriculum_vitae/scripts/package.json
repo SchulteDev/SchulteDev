@@ -42,7 +42,8 @@
     "axios": "1.10.0",
     "consola": "3.4.2",
     "dotenv": "16.5.0",
-    "fs-extra": "11.3.0"
+    "fs-extra": "11.3.0",
+    "simple-git": "3.28.0"
   },
   "devDependencies": {
     "@types/fs-extra": "11.0.4",
