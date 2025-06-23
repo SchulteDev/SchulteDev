@@ -1,6 +1,7 @@
 // config.ts - Central configuration for CV generation scripts
 
 import fs from 'fs';
+import * as core from '@actions/core';
 
 // File paths
 export const CAREER_FILE: string = process.env.CAREER_FILE ?? '../../_data/career.md';
@@ -39,15 +40,10 @@ export const getCvTypesToProcess = (): CvType[] =>
 export const isGithubActions = (): boolean =>
   process.env.GITHUB_ACTIONS === 'true';
 
-// GitHub Actions output function
+// GitHub Actions output function using @actions/core
 export const setOutput = (name: string, value: string): void => {
-  if (process.env.GITHUB_ACTIONS === 'true') {
-    const outputFile = process.env.GITHUB_OUTPUT;
-    if (outputFile) {
-      fs.appendFileSync(outputFile, `${name}=${value}\n`);
-    } else {
-      console.log(`::set-output name=${name}::${value}`);
-    }
+  if (isGithubActions()) {
+    core.setOutput(name, value);
   } else {
     console.log(`Output: ${name}=${value}`);
   }
