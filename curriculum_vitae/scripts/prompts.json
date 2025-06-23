@@ -15,9 +15,9 @@
       "Prioritize: Cloud architecture, leadership, business impact, tech."
     ],
     "constraints": [
-      "Output is valid compilable pdfLaTeX code.",
-      "Only standard pdfLaTeX packages like inputenc, fontenc, geometry. Do not use xelatex or lualatex packages like fontspec.",
-      "ASCII only, do not use any Unicode."
+      "Generate compilable pdfLaTeX code only. Use only standard pdfLaTeX packages (e.g., inputenc, fontenc, geometry).",
+      "ASCII only, no Unicode - use LaTeX commands for all non-ASCII characters. No XeLaTeX/LuaLaTeX packages like fontspec.",
+      "Always: \\usepackage[utf8]{inputenc}, \\usepackage[T1]{fontenc}."
     ],
     "templates": {
       "fullRebuild": [
