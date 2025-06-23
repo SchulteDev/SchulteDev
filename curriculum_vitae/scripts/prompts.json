@@ -16,8 +16,8 @@
     ],
     "constraints": [
       "Valid compilable pdfLaTeX code.",
-      "Only standard pdfLaTeX packages like fontenc, geometry. Do not use xelatex or lualatex like fontspec.",
-      "\\usepackage[utf8]{inputenc} for enhanced Unicode support",
+      "Only standard pdfLaTeX packages like fontenc, geometry. Do not use xelatex or lualatex packages like fontspec.",
+      "Use ASCII character only. \\usepackage[utf8]{inputenc} if Unicode has to be, but that Unicode characters have to be compilable pdflatex.",
       "Escape characters if required for having compilable latex code as output."
     ],
     "templates": {
