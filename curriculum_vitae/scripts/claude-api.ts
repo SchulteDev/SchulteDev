@@ -38,7 +38,7 @@ const createMockResponse = (cvType: CvType): void => {
 
   fs.writeJsonSync(responseFile, {
     content: [{type: "text", text: content}]
-  }, { spaces: 2 });
+  }, {spaces: 2});
 };
 
 const generateDefaultMockContent = (): string => `
@@ -68,12 +68,12 @@ const generateDefaultMockContent = (): string => `
 // API call logic
 const shouldUseMock = (): { useMock: boolean; reason: string } => {
   if (process.env.SKIP_API === 'true') {
-    return { useMock: true, reason: 'SKIP_API=true' };
+    return {useMock: true, reason: 'SKIP_API=true'};
   }
   if (!process.env.ANTHROPIC_API_KEY) {
-    return { useMock: true, reason: 'No API key' };
+    return {useMock: true, reason: 'No API key'};
   }
-  return { useMock: false, reason: '' };
+  return {useMock: false, reason: ''};
 };
 
 const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType): Promise<boolean> => {
@@ -93,7 +93,7 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
 
     const response = await anthropic.messages.create(request);
     const responseFile = getResponseFile(cvType);
-    fs.writeJsonSync(responseFile, response, { spaces: 2 });
+    fs.writeJsonSync(responseFile, response, {spaces: 2});
 
     if (!response.content?.[0] || (response.content[0].type === 'text' && !response.content[0].text)) {
       logger.error(`Invalid API response for ${cvType} CV:`);
@@ -116,7 +116,7 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
 };
 
 export const callClaudeApi = async (systemPrompt: string, userPrompt: string, cvType: CvType): Promise<boolean> => {
-  const { useMock, reason } = shouldUseMock();
+  const {useMock, reason} = shouldUseMock();
 
   if (useMock) {
     logger.info(`${reason}, using mock for ${cvType} CV`);
