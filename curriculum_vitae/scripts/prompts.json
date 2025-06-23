@@ -3,16 +3,18 @@
     "structure": {
       "pages": 4,
       "pageBreak": "\\newpage after page 1.",
-      "output": "LuaLaTeX only. No thinking blocks."
+      "output": "LuaLaTeX code only."
     },
     "pageLayout": [
       "Page1: Header, CV summary, impacts, competencies table without borders, LBBW teaser.",
       "Page2: Recent roles (LBBW, Union Investment, Saloodo!, Trusted Shops).",
       "Page3: Earlier experiences.",
       "Page4: Education, skills, projects, breaks. Footer: AI disclaimer.",
-      "Exactly {{PAGES}} pages. Prioritize: Cloud, leadership, business impact, programming, technology."
+      "Prioritize: Cloud, leadership, business impact, programming, tech."
     ],
     "constraints": [
+      "Exactly {{PAGES}} pages, fill space.",
+      "No thinking blocks."
     ],
     "templates": {
       "fullRebuild": [
