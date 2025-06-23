@@ -48,25 +48,24 @@ export const buildIncrementalPrompt = (cvType: CvType): PromptResult => {
   };
 };
 
-// Git operations
+// Git operations - GitHub Actions handles change detection
 export const generateGitDiff = async (): Promise<boolean> => {
   try {
+    // Extract relative path from CAREER_FILE (handles both absolute and relative paths)
+    const relativePath = CAREER_FILE.includes('_data/career.md')
+      ? '_data/career.md'
+      : CAREER_FILE.replace(/^\.\.\//, '');
+
     const range = `HEAD~${GIT_DIFF_RANGE}`;
 
-    logger.debug(`Checking for changes: ${range} HEAD -- _data/career.md`);
+    logger.debug(`Generating git diff: ${range} HEAD -- ${relativePath}`);
+    logger.debug(`CAREER_FILE: ${CAREER_FILE}`);
 
-    const {stdout} = await execAsync(`git diff ${range} HEAD --name-only`);
-    logger.debug(`Files changed: "${stdout.trim()}"`);
+    // GitHub Actions already determined changes exist, just create the diff
+    await execAsync(`git diff ${range} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
 
-    if (stdout.includes('_data/career.md')) {
-      await execAsync(`git diff ${range} HEAD -- _data/career.md > "${DIFF_FILE}"`);
-      logger.debug(`Created diff file for _data/career.md`);
-      return true;
-    }
-
-    logger.info(`No changes in _data/career.md (last ${GIT_DIFF_RANGE} commits)`);
-    setOutput('mode', 'skip');
-    return false;
+    logger.debug(`Created diff file for ${relativePath}`);
+    return true;
   } catch (error: any) {
     logger.error(`Git diff error: ${error.message}`);
     throw new Error(`Failed to generate git diff: ${error.message}`);
