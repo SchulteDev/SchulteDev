@@ -1,6 +1,6 @@
 // config.ts - Central configuration for CV generation scripts
 
-import * as fs from 'fs-extra';
+import fs from 'fs-extra';
 import * as core from '@actions/core';
 
 // File paths

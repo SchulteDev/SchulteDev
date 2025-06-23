@@ -1,6 +1,6 @@
 // run-cv-update.ts - Main entry point for CV update workflow
 
-import * as fs from 'fs-extra';
+import fs from 'fs-extra';
 import {
   CREATE_BACKUP,
   CvType,
@@ -23,14 +23,14 @@ const cleanup = (): void => {
     const tempFile = getTempFile(cvType);
     const responseFile = getResponseFile(cvType);
 
-    fs.removeSync(tempFile);
-    fs.removeSync(responseFile);
+    if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
+    if (fs.existsSync(responseFile)) fs.unlinkSync(responseFile);
   }
 };
 
 // Validate LaTeX content
 const validateLatex = (filePath: string, cvType: CvType): boolean => {
-  if (!fs.pathExistsSync(filePath) || fs.statSync(filePath).size === 0) {
+    if (!fs.existsSync(filePath) || fs.statSync(filePath).size === 0) {
     logger.error(`${cvType} CV file is empty`);
     return false;
   }
@@ -72,7 +72,7 @@ const processCvType = (cvType: CvType): boolean => {
   logger.info(`Processing ${cvType} CV...`);
 
   // Check if response file exists
-  if (!fs.pathExistsSync(responseFile) || fs.statSync(responseFile).size === 0) {
+  if (!fs.existsSync(responseFile) || fs.statSync(responseFile).size === 0) {
     logger.warn(`No response file found for ${cvType} CV, skipping`);
     return false;
   }
@@ -86,8 +86,8 @@ const processCvType = (cvType: CvType): boolean => {
   createBackup(cvFile, cvType);
 
   try {
-    fs.moveSync(tempFile, cvFile);
-    fs.removeSync(responseFile); // Cleanup
+    fs.renameSync(tempFile, cvFile);
+    if (fs.existsSync(responseFile)) fs.unlinkSync(responseFile); // Cleanup
     logger.success(`${cvType} CV updated successfully!`);
     return true;
   } catch (error: any) {
@@ -145,7 +145,7 @@ const main = async (): Promise<void> => {
       // Clean up any existing response files first
       for (const cvType of cvTypesToProcess) {
         const responseFile = getResponseFile(cvType);
-        fs.removeSync(responseFile);
+        if (fs.existsSync(responseFile)) fs.unlinkSync(responseFile);
       }
 
       try {
@@ -159,7 +159,7 @@ const main = async (): Promise<void> => {
       let hasAnyResponse = false;
       for (const cvType of cvTypesToProcess) {
         const responseFile = getResponseFile(cvType);
-        if (fs.pathExistsSync(responseFile) && fs.statSync(responseFile).size > 0) {
+        if (fs.existsSync(responseFile) && fs.statSync(responseFile).size > 0) {
           hasAnyResponse = true;
           break;
         }

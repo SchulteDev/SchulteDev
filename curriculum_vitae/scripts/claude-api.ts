@@ -1,6 +1,6 @@
 // claude-api.ts - Claude API integration
 
-import * as fs from 'fs-extra';
+import fs from 'fs-extra';
 import Anthropic from '@anthropic-ai/sdk';
 import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
 import {
@@ -21,7 +21,7 @@ export interface PromptResult {
 // Mock response generation
 const createMockResponse = (cvType: CvType): void => {
   const responseFile = getResponseFile(cvType);
-  if (fs.pathExistsSync(responseFile)) return;
+  if (fs.existsSync(responseFile)) return;
 
   logger.info(`Creating mock response for ${cvType} CV`);
 
@@ -137,7 +137,7 @@ const readResponseContent = (responseFile: string, cvType: CvType): string | nul
   try {
     logger.debug(`Reading response from ${responseFile} for ${cvType} CV`);
 
-    if (!fs.pathExistsSync(responseFile)) {
+    if (!fs.existsSync(responseFile)) {
       logger.error(`Response file not found: ${responseFile}`);
       return null;
     }
