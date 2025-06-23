@@ -2,23 +2,23 @@
   "shared": {
     "structure": {
       "pages": 4,
-      "pageBreak": "\\newpage after page 1",
+      "pageBreak": "\\newpage after page 1.",
       "output": "LaTeX only. Start \\documentclass, end \\end{document}."
     },
     "pageLayout": [
-      "Page1: Header (name, contact), CV summary, business impacts summary, core competencies summary (organized as table without borders), current role (LBBW) teaser",
-      "Page2: Recent professional experiences current role (LBBW), Union Investment, Saloodo!, Trusted Shops",
-      "Page3: Earlier professional experiences",
-      "Page4: Education, skills, personal projects, career breaks",
-      "Page4 footer: \"AI-generated disclaimer\"",
-      "Exactly {{PAGES}} pages, fill space",
-      "Prioritize: Cloud architecture, leadership, business impact, tech"
+      "Page1: Header (name, contact), CV summary, business impacts summary, core competencies summary (organized as table without borders), current role (LBBW) teaser.",
+      "Page2: Recent professional experiences current role (LBBW), Union Investment, Saloodo!, Trusted Shops.",
+      "Page3: Earlier professional experiences.",
+      "Page4: Education, skills, personal projects, career breaks.",
+      "Page4 footer: \"AI-generated disclaimer\".",
+      "Exactly {{PAGES}} pages, fill space.",
+      "Prioritize: Cloud architecture, leadership, business impact, tech."
     ],
     "constraints": [
-      "Valid compilable pdfLaTeX code",
-      "Only standard pdfLaTeX packages like fontenc, geometry",
-      "ASCII only, do not use any Unicode",
-      "Escape characters if required"
+      "Valid compilable pdfLaTeX code.",
+      "Only standard pdfLaTeX packages like fontenc, geometry. Do not use xelatex or lualatex like fontspec.",
+      "\\usepackage[utf8]{inputenc} for enhanced Unicode support",
+      "Escape characters if required for having compilable latex code as output."
     ],
     "templates": {
       "fullRebuild": [
