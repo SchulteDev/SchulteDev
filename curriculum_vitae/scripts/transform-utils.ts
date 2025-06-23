@@ -53,7 +53,7 @@ export const generateGitDiff = async (): Promise<boolean> => {
   try {
     const range = `HEAD~${GIT_DIFF_RANGE}`;
 
-    logger.debug(`Git diff range: ${range} HEAD`);
+    logger.debug(`Checking for changes: ${range} HEAD -- _data/career.md`);
 
     const {stdout} = await execAsync(`git diff ${range} HEAD --name-only`);
     logger.debug(`Files changed: "${stdout.trim()}"`);
