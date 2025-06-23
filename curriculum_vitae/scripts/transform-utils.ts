@@ -54,19 +54,22 @@ export const generateGitDiff = async (): Promise<boolean> => {
   try {
     // Convert CAREER_FILE to repo-relative path
     const relativePath = path.relative(process.cwd(), CAREER_FILE)
-    .replace(/\.\.\//g, '') // Remove ../ prefixes
-    .replace(/\\/g, '/'); // Normalize to forward slashes
+      .replace(/\.\.\//g, '') // Remove ../ prefixes
+      .replace(/\\/g, '/'); // Normalize to forward slashes
 
     const range = `HEAD~${GIT_DIFF_RANGE}`;
 
+    logger.debug(`Working directory: ${process.cwd()}`);
+    logger.debug(`CAREER_FILE: ${CAREER_FILE}`);
+    logger.debug(`Calculated relative path: ${relativePath}`);
     logger.debug(`Git diff range: ${range} HEAD`);
-    logger.debug(`Checking changes for: ${relativePath}`);
 
     const {stdout} = await execAsync(`git diff ${range} HEAD --name-only`);
-    logger.debug(`Files changed: ${stdout.trim()}`);
+    logger.debug(`Files changed: "${stdout.trim()}"`);
 
-    if (stdout.includes(relativePath)) {
+    if (stdout.includes(relativePath) || stdout.includes('_data/career.md')) {
       await execAsync(`git diff ${range} HEAD -- "${relativePath}" > "${DIFF_FILE}"`);
+      logger.debug(`Created diff file for: ${relativePath}`);
       return true;
     }
 
