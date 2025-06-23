@@ -13,6 +13,8 @@
       "Prioritize: Cloud, leadership, business impact, programming, tech."
     ],
     "constraints": [
+      "Generate valid compilable LuaLaTeX code.",
+      "Use built-in LaTeX commands.",
       "Exactly {{PAGES}} pages, fill space.",
       "No thinking blocks."
     ],
