@@ -80,15 +80,15 @@ jobs:
 
       - name: Delete existing release and tag
         run: |
-          gh release delete cv-latest --yes || true
-          git push --delete origin cv-latest || true
+          gh release delete cvs-latest --yes || true
+          git push --delete origin cvs-latest || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload PDFs to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: cv-latest
+          tag_name: cvs-latest
           name: "Latest CVs - Markus Schulte"
           body: |
             🤖 Auto-generated CVs (AI Model: Claude 4)
