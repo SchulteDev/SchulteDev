@@ -9,13 +9,13 @@
       "Page1: Header+Contact+Summary+Core competencies+Current role (LBBW)",
       "Page2: Union Investment+Saloodo!+Trusted Shops (4-6 bullets, metrics)",
       "Page3: Earlier roles+Education+Skills+AI note",
+      "Page3 footer: \"AI-generated note\"",
       "Prioritize: Cloud architecture, leadership, business impact, tech"
     ],
     "constraints": [
-      "ASCII only (no Unicode)",
-      "Valid compilable pdfLaTeX (no XeTeX, no LuaTeX) code with standard pdfLaTeX packages (no fontspec, for example) only.",
-      "Exactly {{PAGES}} pages, fill space",
-      "End of CV: \"AI-generated note\""
+      "ASCII only, no Unicode",
+      "Valid compilable pdfLaTeX (no XeTeX, no LuaTeX) code with only standard pdfLaTeX packages (no fontspec, for example)",
+      "Exactly {{PAGES}} pages, fill space"
     ],
     "templates": {
       "fullRebuild": [
