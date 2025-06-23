@@ -10,12 +10,13 @@
       "Page2: Union Investment+Saloodo!+Trusted Shops (4-6 bullets, metrics)",
       "Page3: Earlier roles+Education+Skills+AI note",
       "Page3 footer: \"AI-generated note\"",
+      "Exactly {{PAGES}} pages, fill space",
       "Prioritize: Cloud architecture, leadership, business impact, tech"
     ],
     "constraints": [
       "ASCII only, no Unicode",
-      "Valid compilable pdfLaTeX (no XeTeX, no LuaTeX) code with only standard pdfLaTeX packages (no fontspec, for example)",
-      "Exactly {{PAGES}} pages, fill space"
+      "Valid compilable pdfLaTeX code",
+      "Only standard pdfLaTeX packages like fontenc, geometry"
     ],
     "templates": {
       "fullRebuild": [
@@ -38,6 +39,7 @@
     "system": [
       "Humorous Anti-CV: failures/lessons, self-deprecating but professional.",
       "Content: Failed projects, rejections, mistakes, quirky skills.",
+      "Be factually accurate. Avoid exaggerations in time or content.",
       "{{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
