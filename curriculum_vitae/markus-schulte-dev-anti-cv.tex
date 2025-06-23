@@ -1,167 +1,222 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[margin=0.7in]{geometry}
-\usepackage{titlesec}
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=0.6in]{geometry}
 \usepackage{enumitem}
+\usepackage{titlesec}
 \usepackage{tabularx}
 \usepackage{array}
-\usepackage[dvipsnames]{xcolor}
+\usepackage{xcolor}
+\usepackage{fontawesome}
 \usepackage{hyperref}
 
 \hypersetup{
     colorlinks=true,
-    linkcolor=blue,
+    linkcolor=black,
     urlcolor=blue,
-    citecolor=blue
+    pdftitle={Anti-CV - Markus Schulte},
+    pdfauthor={Markus Schulte}
 }
 
 \pagestyle{plain}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{4pt}
 
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
-\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
-\titlespacing{\section}{0pt}{8pt}{4pt}
-\titlespacing{\subsection}{0pt}{6pt}{2pt}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
 
 \begin{document}
 
 \begin{center}
-{\huge \textbf{Markus Schulte}}\\[2pt]
-{\large Anti-CV: A Chronicle of Professional Missteps \& Lessons Learned}\\[6pt]
-\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768 | Cologne, Germany\\
-\href{https://schulte-development.de}{schulte-development.de} | \href{https://github.com/SchulteDev}{GitHub: SchulteDev}
+{\huge \textbf{Markus Schulte}} \\
+\vspace{0.1in}
+{\Large \textit{Anti-CV: A Humorous Guide to Professional Mishaps}} \\
+\vspace{0.1in}
+\faEnvelope\ mail@schulte-development.de \quad \faPhone\ +49 178 7217768 \\
+\faGlobe\ https://schulte-development.de \quad \faLinkedin\ /in/markus-schulte \\
+\faGithub\ /SchulteDev \quad \faStackOverflow\ /users/1645517/markus-schulte
 \end{center}
 
-\vspace{8pt}
+\section*{Professional Summary}
 
-\section{Professional Summary}
+After 18+ years of breaking things professionally (11+ as a freelancer who occasionally fixes them), I've mastered the art of over-engineering solutions to simple problems. Currently serving as Cloud Architect at LBBW, where I'm helping transform "Phoenix" into what will hopefully not become a digital Icarus.
 
-18+ years of making things work despite myself. Currently helping LBBW navigate their "Phoenix" transformation while secretly wondering if I'm qualified to name IT projects after mythical birds. My career reads like a guide on how to accidentally become a cloud architect through a series of fortunate mistakes and strategic procrastination.
+My career has been a masterclass in learning from spectacular failures: turning 30-minute deployments into 3-day debugging sessions, creating microservices so micro they require a microscope to find, and architecting solutions that work perfectly... in my local environment.
 
-\textbf{Core Incompetencies:} Overthinking simple problems, explaining complex architectures to people who just want their apps to work, and maintaining a straight face when someone asks if our "event-driven architecture" can handle their Excel file uploads.
+\textbf{Core Incompetencies:} Explaining complex architecture to non-technical stakeholders without inducing sleep, estimating project timelines with any accuracy, and remembering that not everyone shares my enthusiasm for 2-hour technical deep-dives during 15-minute stand-ups.
 
-\vspace{6pt}
+\section*{Core Competencies}
 
-\section{Core Competencies}
+\begin{tabularx}{\textwidth}{X X X}
+\textbf{Technical Skills} & \textbf{Leadership Skills} & \textbf{Business Skills} \\
+Java (18y of Stack Overflow) & Team Building (from scratch) & Requirements Translation \\
+Golang (4y of fighting generics) & Technical Mentoring & Stakeholder Management \\
+AWS/Azure/GCP (multi-cloud chaos) & Agile Coaching & Architecture Evangelism \\
+Microservices (macro problems) & Cross-team Coordination & Cost Optimization \\
+Event-driven Architecture & Product Ownership & Business Impact Analysis \\
+Infrastructure-as-Code & Process Improvement & Technical Debt Advocacy \\
+\end{tabularx}
 
-\begin{tabular}{p{0.32\textwidth} p{0.32\textwidth} p{0.32\textwidth}}
-\textbf{Technical Mishaps} & \textbf{Leadership Blunders} & \textbf{Business Impact Failures} \\
-• Over-engineered microservices & • Explained REST APIs to executives & • Reduced deployment time to 30 min \\
-• Convinced teams to use Golang & • Led teams through "agile" confusion & • Platform served 9M+ users somehow \\
-• Built event-driven architectures & • Served as accidental Product Owner & • Achieved 99.9\% uptime by luck \\
-• Migrated monoliths successfully & • Managed stakeholder expectations & • Created reusable templates \\
-\\
-\textbf{Cloud Native Confusion} & \textbf{DevOps Disasters} & \textbf{Quality Obsessions} \\
-• AWS/Azure/GCP multi-cloud mess & • Infrastructure-as-Code evangelist & • 1000+ tests running in 10 minutes \\
-• Kubernetes without knowing why & • Automated everything possible & • SonarQube metric perfectionist \\
-• Serverless functions everywhere & • Pipeline-as-Code fanatic & • Contract testing workshop leader \\
-• Container orchestration expert & • Docker containerization addict & • Code review nitpicker \\
-\end{tabular}
+\section*{Current Role}
 
-\vspace{8pt}
+\subsection*{November 2024 — Present: Cloud Architect at LBBW}
+\textit{Phoenix IT Modernization Project | Remote | Freelance}
 
-\section{Current Role}
+Finally working on a project named after a mythical bird that burns itself to death and hopes to rise from the ashes—what could possibly go wrong? Leading the charge to modernize Germany's state bank infrastructure, where "legacy" systems are often younger than my career.
 
-\subsection{November 2024 — Present: Cloud Architect at LBBW}
-\textit{Freelance | Remote | Major German State Bank}
+\textbf{Notable Achievements in Confusion:}
+\begin{itemize}[leftmargin=*]
+\item Cataloging hundreds of legacy applications using R-methodology, discovering that "Retire" is surprisingly popular among aging Spring Boot apps
+\item Designing multi-cloud strategies that make vendor lock-in look like a feature, not a bug
+\item Creating technical templates so comprehensive that reading them requires a dedicated sprint
+\item Conducting architecture workshops where "it depends" became my most frequently used phrase
+\item Mastering the art of explaining why a 2-week migration estimate became a 6-month transformation journey
+\end{itemize}
 
-\textbf{The "Phoenix" Project:} Named after a mythical bird, which should have been our first warning sign. Currently helping Germany's state bank migrate ~80 people and hundreds of legacy applications to Azure's "Skywalker" platform. Yes, they named their cloud platform after a fictional character who famously turned to the dark side.
-
-\textbf{My Architectural Responsibilities:} IT-architectural oversight for 10 of 30 applications, which sounds impressive until you realize I'm essentially playing digital Jenga with banking systems. Lead "FirstMover" migrations where I'm the first to potentially break everything in production.
-
-\textbf{Reality Check:} Spent months cataloging legacy applications using R-methodology (Retire, Retain, Rehost, Refactor, Rearchitect, Replace) only to discover most stakeholders think "the cloud" is just someone else's computer. Created comprehensive Azure cost analyses that made executives question whether on-premise isn't so bad after all.
-
-\textbf{Multi-Cloud Strategy:} Developed strategies for Azure and Elastisys Welkin integration. Essentially planning for the apocalypse scenario where Azure decides banking isn't profitable anymore. Built templates for Spring Boot, Tomcat, and IIS applications while secretly hoping they all just work.
-
-\textbf{Key Learning:} Banking regulations make microservices compliance documentation more complex than the actual microservices. Also learned that "cloud-native" means different things to different people, usually involving more meetings than actual clouds.
+\textbf{Current Challenges:} Convincing stakeholders that "production-unused" doesn't mean "production-ready" and that Azure calculators are suggestions, not contracts.
 
 \newpage
 
-\section{Previous Roles}
+\section*{Professional Experience}
 
-\subsection{October 2021 — December 2024: Cloud Architect at Union Investment}
-\textit{Freelance | Remote | Asset Management Company}
+\subsection*{October 2021 — December 2024: Cloud Architect at Union Investment}
+\textit{3+ Year Transformation | Remote | Freelance}
 
-\textbf{The Monolith Monster:} Tasked with modernizing InvestmentWelt's legacy Liferay/FirstSpirit monolith serving 80,000 users. Discovered 8 domain boundaries hiding inside what everyone called "the portal." Applied Domain-Driven Design principles to convince stakeholders that their "simple website" was actually 8 different applications in a trench coat.
+Spent 3+ years convincing a major German asset management company that their perfectly functional Liferay monolith needed to be deconstructed into 8 Self-contained Systems. What could go wrong with breaking apart something that already worked?
 
-\textbf{Microfrontend Adventure:} Built Web Components-based Self-contained Systems using Lit framework. Spent 6 months explaining why our "microfrontend-toolkit" wasn't just a fancy way to write HTML. Created Azure Static Web Apps deployment that worked so well, other teams started copying our approach (the sincerest form of flattery).
+\textbf{Phase 1: The Great Over-Engineering (Oct 2021 - Apr 2022)}
+\begin{itemize}[leftmargin=*]
+\item Created a microfrontend framework so sophisticated that explaining it required a dedicated workshop series
+\item Designed SSO architecture that made simple login feel like a NASA mission control operation
+\item Developed 47 different architectural diagrams before anyone asked what problem we were solving
+\end{itemize}
 
-\textbf{Event-Driven Architecture Experiment:} Designed event streaming solution using Azure Event Hubs where 8 autonomous teams would publish domain events. Reality: spent more time in alignment meetings than writing code. Successfully implemented search across distributed systems using Algolia, though explaining the monthly search budget to finance was... challenging.
+\textbf{Phase 2: Team Building Through Trial by Fire (May 2022 - Apr 2023)}
+\begin{itemize}[leftmargin=*]
+\item Built development teams from scratch, discovering that "hiring senior developers" and "finding senior developers" are entirely different challenges
+\item Implemented Kanban workflows that made our work visible to everyone, including our inability to estimate complexity
+\item Conducted testing workshops that revealed our collective ignorance about what we were actually testing
+\end{itemize}
 
-\textbf{Team Leadership Reality:} Managed 5-7 developers while serving as Product Owner and agile coach. 360-degree feedback consistently rated me 9-10/10 technically, with gentle suggestions to "explain things more simply to non-technical stakeholders." Apparently, not everyone finds event-driven architecture patterns as fascinating as I do.
+\textbf{Phase 3: The Search for Search (July 2023 - Dec 2024)}
+\begin{itemize}[leftmargin=*]
+\item Architected unified search across 8 distributed systems, because apparently finding things shouldn't be simple
+\item Selected Algolia after extensive ElasticSearch evaluation, proving that sometimes the expensive option is the right option
+\item Created event-driven architecture so complex that debugging required a philosophy degree
+\end{itemize}
 
-\textbf{DevOps Overengineering:} Achieved 1000+ tests running in 10 minutes through parallelization. Introduced Renovate Bot for automated dependency updates, which worked perfectly until it started updating dependencies faster than we could review them. Build optimization reduced deployment time from days to 30 minutes, making everyone question why it took days before.
+\textbf{360° Feedback Highlights:} "Brings exactly what we need" (validation!) and "Consider pace of technical explanations" (oops, did it again).
 
-\vspace{4pt}
+\subsection*{December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL)}
+\textit{Part-time | Remote | Freelance}
 
-\subsection{December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL)}
-\textit{Freelance | Part-Time | Remote}
+The perfect side project: synchronizing 10 million records between systems that hate each other. Solo developer responsible for keeping DHL's freight platform talking to Salesforce without screaming.
 
-\textbf{The Solo Mission:} Became the sole developer for critical middleware synchronizing ~10 million records between Saloodo and Salesforce. Learned Golang professionally while building fault-tolerant architecture with endless loops and retry mechanisms. Achieved 100\% uptime through paranoid error handling and comprehensive monitoring.
+\textbf{Technical Disasters Narrowly Avoided:}
+\begin{itemize}[leftmargin=*]
+\item Achieving 100\% uptime through sheer paranoia and excessive error handling
+\item Building fault-tolerant systems that assumed everything would break (accurate assumption)
+\item Implementing 70\% test coverage because the other 30\% was too scary to test
+\item Creating endless-loop architecture that actually worked, defying all software engineering principles
+\end{itemize}
 
-\textbf{Database Reality Check:} Saloodo's database contained malformed JSON, incorrect data types, and schema inconsistencies that would make a database administrator weep. Built robust error handling that gracefully dealt with data that technically shouldn't exist. Implemented multi-threading and query optimization for massive data synchronization.
-
-\textbf{Success Metrics:} Near real-time data propagation despite database bottlenecks, 70\% test coverage on 2,776 lines of code with 5-second execution time using Dockertest. Maintained business-critical CRM functionality while working part-time alongside Union Investment project.
-
-\vspace{4pt}
-
-\subsection{June 2016 — December 2023: Atlassian Marketplace Entrepreneur}
+\subsection*{June 2016 — December 2023: Atlassian Marketplace Entrepreneur}
 \textit{Self-Employed Product Business}
 
-\textbf{The Accidental Business:} Created Bamboo Server add-ons for code quality integration (Checkstyle, PMD, FindBugs) because existing solutions didn't work properly. Accidentally built sustainable business with 83 customers across 15+ countries over 7 years. Learned that enterprise customers from around the world will pay for solutions that simply work.
+Discovered that having 83 customers across 15 countries doesn't make you the next Steve Jobs. Created Bamboo Server add-ons that integrated code quality metrics, proving that developers will pay for tools that make them feel bad about their code.
 
-\textbf{Market Reality:} First-mover advantage in Bamboo ecosystem until Atlassian decided to sunset Bamboo Server. Maintained global customer base ranging from startups to enterprises with 200+ Bamboo agents. Generated recurring revenue while secretly wondering if anyone actually reads code quality reports.
+\textbf{Entrepreneurial Lessons:}
+\begin{itemize}[leftmargin=*]
+\item Maintained products for 7+ years, learning that "legacy" is just "successful" with gray hair
+\item Discovered that enterprise customers want reliability more than features (who knew?)
+\item Mastered the art of supporting software across 15 time zones while maintaining sanity
+\end{itemize}
+
+\subsection*{August 2018 — October 2019: Cloud Consultant at Trusted Shops}
+\textit{Freelance | Cologne}
+
+Helped modernize e-commerce trust platform by transforming their perfectly functional JavaEE6 monolith into a beautiful collection of microservices that definitely didn't make things more complex.
+
+\textbf{Notable Accomplishments in Complexity:}
+\begin{itemize}[leftmargin=*]
+\item Migrated legacy systems to AWS, discovering that "lift and shift" is neither
+\item Implemented contract testing, teaching teams to distrust their own APIs
+\item Created Lambda templates so reusable that no one dared modify them
+\item Achieved seamless Salesforce integration after only 47 API version conflicts
+\end{itemize}
 
 \newpage
 
-\section{Earlier Career Missteps}
+\subsection*{October 2016 — September 2017: Senior Engineer at toom Baumarkt}
+\textit{via tarent solutions | Freelance | Bonn}
 
-\subsection{2020 — 2018: Trusted Shops, Sedo, toom Baumarkt, Allianz}
-\textit{Various Freelance Contracts}
+Led quality initiatives across 4 development teams, discovering that "quality" means different things to different people. Implemented microservices architecture that made communication between services feel like international diplomacy.
 
-\textbf{Contract Testing Evangelist:} Led Pact framework workshops across multiple companies, convincing developers that microservices integration testing was worth the complexity. Built AWS Lambda templates with Micronaut optimization while questioning whether serverless was just expensive hosting with extra steps.
+\textbf{Quality Leadership Lessons:}
+\begin{itemize}[leftmargin=*]
+\item Reduced test execution time by 70\%, proving that slow tests are just impatient tests
+\item Introduced contract testing, teaching services to write formal agreements before talking
+\item Achieved microservices architecture that required a PhD in distributed systems to debug
+\end{itemize}
 
-\textbf{Legacy Modernization Specialist:} Migrated JavaEE6 monoliths to cloud-native architecture, consolidated Spring Boot services into single Quarkus applications, and implemented Infrastructure-as-Code everywhere. Achieved 70% improvement in test execution speed while discovering that performance optimization often involves more meetings than coding.
+\subsection*{January 2014 — August 2016: Early Freelancing Adventures}
+\textit{Multiple Short-Term Contracts}
 
-\vspace{4pt}
+The learning years: discovering that "it works on my machine" isn't a deployment strategy and that Docker containers are just fancy zip files that occasionally explode.
 
-\subsection{2007 — 2014: PHP Developer \& Head of Development at wer-kennt-wen}
-\textit{Permanent Position | German Social Network}
+\textbf{Memorable Moments:}
+\begin{itemize}[leftmargin=*]
+\item Implemented CI/CD pipelines that made deployments feel like Russian roulette
+\item Migrated applications to AWS, learning that "serverless" still requires servers
+\item Established Docker environments that worked perfectly until they didn't
+\end{itemize}
 
-\textbf{The Social Network Era:} Joined Germany's social networking boom with 9+ million members. Survived the transition from "move fast and break things" startup to RTL corporate acquisition. Led architecture modernization from procedural PHP to object-oriented Zend Framework while the platform grew beyond our wildest scalability nightmares.
+\subsection*{August 2007 — June 2014: PHP Developer \& Head of Development at wer-kennt-wen}
+\textit{Permanent Position | Social Network with 9M+ Users}
 
-\textbf{Accidental Management:} Promoted to Head of Development at age 23 because someone had to make architectural decisions. Managed complete technical transformation, team recruitment, and release management while secretly learning leadership skills through trial and error. Implemented CI/CD with Jenkins when continuous integration was still a novel concept.
+My first real job: scaling a social network to 9 million users while learning that "PHP is web scale" and other lies we tell ourselves. Rose to Head of Development, proving that someone always has to be responsible when things break.
 
-\textbf{Platform Scaling Reality:} Successfully scaled architecture for 9+ million users through vertical/horizontal database partitioning, extensive Memcache deployment, and security implementations. Reduced page load times by 60% while discovering that social network growth is equal parts technical challenge and existential crisis.
+\textbf{Early Career Lessons:}
+\begin{itemize}[leftmargin=*]
+\item Transformed procedural spaghetti code into object-oriented lasagna
+\item Implemented security measures after discovering that SQL injection is not a feature
+\item Led development teams through the revolutionary concept of "testing before deploying"
+\item Achieved platform scalability through liberal application of Memcache and prayer
+\end{itemize}
 
-\section{Education \& Skills}
+\section*{Education}
 
-\subsection{Academic Credentials}
-\textbf{2004 — 2012:} Diploma in Computer Science, University of Koblenz-Landau \\
-\textit{Overall Mark: Distinction (magna cum laude equivalent)}
+\subsection*{2004 — 2012: Diploma in Computer Science}
+\textit{University of Koblenz-Landau | Distinction (magna cum laude equivalent)}
 
-Extended duration due to working as software developer starting 2007. Learned more about real-world software development from concurrent employment than from academic coursework, though university provided valuable theoretical foundation for understanding why things break in production.
+Spent 8 years learning theoretical computer science while working full-time as a developer, proving that academic theory and practical reality exist in parallel universes that occasionally collide.
 
-\subsection{Technical Expertise}
-\textbf{Programming Languages:} Java (18y mother tongue), Golang (4y preferred), PHP (8y foundation), TypeScript/JavaScript (frontend integration necessity)
+\textbf{Extended Duration Explanation:} The degree took longer than expected because I was busy breaking things professionally while learning how to break them academically.
 
-\textbf{Cloud Platforms:} AWS (7y), Azure (4y), GCP (evaluation experience) — Multi-cloud strategies for when vendor lock-in anxiety kicks in
+\subsection*{2003: Abitur (German High School)}
+\textit{Gymnasium Haren (Ems) | Advanced Courses: Mathematics and Physics}
 
-\textbf{Architecture Patterns:} Microservices, Event-driven Architecture, Self-contained Systems, Legacy Modernization — Also known as "making old things work with new things"
+Discovered programming through PHP reference manuals and teenage determination to create the perfect forum for my graduating class. First lesson in over-engineering: sometimes a simple webpage is just a simple webpage.
 
-\textbf{Specialized Skills:} Contract Testing with Pact (workshop leader), Infrastructure-as-Code (Terraform evangelist), Test Automation (1000+ tests in 10 minutes), DevOps Culture (Pipeline-as-Code fanatic)
+\section*{Career Breaks \& Life Lessons}
 
-\subsection{Certifications \& Recognition}
-• StackOverflow: 4000+ reputation points (community contributor) \\
-• Java SE 8 TechCheck (IKM): 93/100 score, 88th percentile \\
-• GitHub: Open-source contributor and portfolio maintainer
+\textbf{April 2020 — September 2021:} Parental leave during COVID-19, learning that managing toddlers is surprisingly similar to managing distributed systems—both involve unpredictable failures and require constant monitoring.
 
-\vspace{\fill}
+\textbf{August 2015 — December 2015:} Extended travel break, discovering that debugging code remotely from a beach in Thailand is romantic in theory but impractical in reality.
 
+\textbf{August 2003 — March 2004:} Mandatory military service, learning that following orders without questioning them is the opposite of good software engineering.
+
+\section*{Technical Skills \& Quirks}
+
+\textbf{Programming Languages:} Java (18y of Stack Overflow dependency), Golang (4y of fighting the compiler), PHP (8y of denying I ever used it), TypeScript (when forced)
+
+\textbf{Favorite Debugging Techniques:} Rubber duck debugging, strategic print statements, and the ancient art of "turning it off and on again"
+
+\textbf{Architecture Philosophy:} "Make it work, make it right, make it fast"—usually stops after step one
+
+\textbf{Testing Strategy:} "If it compiles, it probably works" (proven wrong 847 times and counting)
+
+\vfill
 \begin{center}
-\small \textit{This Anti-CV was generated using AI assistance to transform professional achievements into humorous self-reflection while maintaining factual accuracy. The failures and lessons learned represent genuine professional growth experiences.}
+\small \textit{This Anti-CV was generated with AI assistance to highlight the humorous side of professional growth through learning from mistakes. All experiences are factually accurate, just viewed through a lens of self-deprecating humor.}
 \end{center}
 
 \end{document}
