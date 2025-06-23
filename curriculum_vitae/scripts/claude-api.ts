@@ -65,6 +65,23 @@ const generateDefaultMockContent = (): string => `
 \\end{itemize}
 \\end{document}`.trim();
 
+const logClaudeResponse = (response: any, cvType: CvType, systemPrompt: string, userPrompt: string): void => {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const logFile = `tmp/claude-response-${cvType}-${timestamp}.json`;
+  fs.writeJsonSync(logFile, {
+    timestamp: new Date().toISOString(),
+    cvType,
+    model: API_MODEL,
+    request: {
+      systemPrompt,
+      userPrompt: userPrompt.slice(0, 200) + (userPrompt.length > 200 ? '...' : ''),
+      maxTokens: MAX_TOKENS
+    },
+    response
+  }, {spaces: 2});
+  logger.debug(`Claude response logged to ${logFile}`);
+};
+
 // API call logic
 const shouldUseMock = (): { useMock: boolean; reason: string } => {
   if (process.env.SKIP_API === 'true') {
@@ -94,6 +111,8 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
     const response = await anthropic.messages.create(request);
     const responseFile = getResponseFile(cvType);
     fs.writeJsonSync(responseFile, response, {spaces: 2});
+
+    logClaudeResponse(response, cvType, systemPrompt, userPrompt);
 
     if (!response.content?.[0] || (response.content[0].type === 'text' && !response.content[0].text)) {
       logger.error(`Invalid API response for ${cvType} CV:`);
