@@ -1037,7 +1037,7 @@ personal website, and branding materials.
 - **GitHub Actions Automation:** Sophisticated CI/CD pipeline with validation, compilation, and
   release workflows
 - **LaTeX Document Generation:** Professional PDF generation with automated GitHub releases
-- **Repository Structure:** Organized monorepo containing professional data, CV scripts and website 
+- **Repository Structure:** Organized monorepo containing professional data, website and CV scripts 
 
 **Technologies:** Node.js, Jekyll, LaTeX/pdflatex, GitHub Actions, Anthropic Claude 4 API  
 **Repository:** https://github.com/SchulteDev/SchulteDev
