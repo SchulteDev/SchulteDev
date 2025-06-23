@@ -94,7 +94,7 @@ const shouldUseMock = (): { useMock: boolean; reason: string } => {
 };
 
 const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType): Promise<boolean> => {
-  logger.info(`Calling Claude API for ${cvType} CV...`);
+  logger.info(`Calling Claude API for ${cvType} CV with extended thinking...`);
   logger.debug(`Model: ${API_MODEL}`);
 
   try {
@@ -103,7 +103,11 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
     const request: MessageCreateParams = {
       model: API_MODEL,
       max_tokens: MAX_TOKENS,
-      messages: [{role: 'user', content: userPrompt}]
+      messages: [{role: 'user', content: userPrompt}],
+      thinking: {
+        type: "enabled",
+        budget_tokens: Math.min(20000, Math.floor(MAX_TOKENS * 0.6))  // Use up to 60% for thinking, rest for output
+      }
     };
 
     if (systemPrompt) request.system = systemPrompt;

@@ -8,7 +8,7 @@ import * as core from '@actions/core';
 const EnvSchema = z.object({
   CAREER_FILE: z.string().default('../../_data/career.md'),
   API_MODEL: z.string().default('claude-sonnet-4-20250514'),
-  MAX_TOKENS: z.coerce.number().positive().default(8192),
+  MAX_TOKENS: z.coerce.number().positive().default(24000),
   MIN_CONTENT_LENGTH: z.coerce.number().positive().default(500),
   GIT_DIFF_RANGE: z.coerce.number().positive().default(1),
   CREATE_BACKUP: z.coerce.boolean().default(false),
