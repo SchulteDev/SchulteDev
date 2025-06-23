@@ -82,10 +82,6 @@ jobs:
           path: .
         continue-on-error: true
 
-      - name: Set generation timestamp
-        id: timestamp
-        run: echo "generated_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_OUTPUT
-
       - name: Delete existing release and tag
         run: |
           gh release delete cv-latest --yes || true
@@ -99,11 +95,7 @@ jobs:
           tag_name: cv-latest
           name: "Latest CVs - Markus Schulte"
           body: |
-            🤖 Auto-generated CVs (Dual Format)
-
-            **AI Model:** Claude 4
-            **Generated on:** ${{ steps.timestamp.outputs.generated_date }}
-            **Commit:** ${{ github.sha }}
+            🤖 Auto-generated CVs (AI Model: Claude 4)
 
             📄 **Download Links:**
             - [Professional CV](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-professional-cv.pdf) - Traditional format highlighting achievements
