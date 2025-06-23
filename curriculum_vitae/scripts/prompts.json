@@ -14,9 +14,10 @@
       "Prioritize: Cloud architecture, leadership, business impact, tech"
     ],
     "constraints": [
-      "ASCII only, no Unicode",
       "Valid compilable pdfLaTeX code",
-      "Only standard pdfLaTeX packages like fontenc, geometry"
+      "Only standard pdfLaTeX packages like fontenc, geometry",
+      "ASCII only, no Unicode",
+      "Escape characters if required"
     ],
     "templates": {
       "fullRebuild": [
