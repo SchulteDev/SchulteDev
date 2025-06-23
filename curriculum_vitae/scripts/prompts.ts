@@ -1,28 +1,42 @@
-// prompts.ts - Prompt management utilities
+// prompts.ts - Prompt management utilities with Zod validation
 
 import fs from 'fs-extra';
+import { z } from 'zod';
 import logger from './logger.js';
 import {CvType} from './config.js';
 
-interface SharedConfig {
-  structure: { pages: number; pageBreak: string; output: string; };
-  pageLayout: string[];
-  constraints: string[];
-  templates: { fullRebuild: string | string[]; incremental: string | string[]; };
-}
+// Zod schemas for prompts.json structure
+const SharedConfigSchema = z.object({
+  structure: z.object({
+    pages: z.number().positive(),
+    pageBreak: z.string(),
+    output: z.string(),
+  }),
+  pageLayout: z.array(z.string()),
+  constraints: z.array(z.string()),
+  templates: z.object({
+    fullRebuild: z.union([z.string(), z.array(z.string())]),
+    incremental: z.union([z.string(), z.array(z.string())]),
+  }),
+});
 
-interface CvConfig {
-  cvType: string;
-  system: string | string[];
-  fullRebuildInstructions: string;
-  incrementalInstructions: string;
-}
+const CvConfigSchema = z.object({
+  cvType: z.string(),
+  system: z.union([z.string(), z.array(z.string())]),
+  fullRebuildInstructions: z.string(),
+  incrementalInstructions: z.string(),
+});
 
-interface PromptsConfig {
-  shared: SharedConfig;
-  antiCv: CvConfig;
-  professionalCv: CvConfig;
-}
+const PromptsConfigSchema = z.object({
+  shared: SharedConfigSchema,
+  antiCv: CvConfigSchema,
+  professionalCv: CvConfigSchema,
+});
+
+// Type inference from Zod schemas
+type SharedConfig = z.infer<typeof SharedConfigSchema>;
+type CvConfig = z.infer<typeof CvConfigSchema>;
+type PromptsConfig = z.infer<typeof PromptsConfigSchema>;
 
 let cachedPrompts: PromptsConfig | null = null;
 
@@ -57,10 +71,18 @@ const loadPrompts = (): PromptsConfig => {
   if (cachedPrompts) return cachedPrompts;
 
   try {
-    cachedPrompts = JSON.parse(fs.readFileSync(`${process.cwd()}/prompts.json`, 'utf8'));
-    logger.debug('Loaded prompts from prompts.json');
+    const rawData = JSON.parse(fs.readFileSync(`${process.cwd()}/prompts.json`, 'utf8'));
+
+    // Validate JSON structure with Zod
+    cachedPrompts = PromptsConfigSchema.parse(rawData);
+
+    logger.debug('Loaded and validated prompts from prompts.json');
     return cachedPrompts!;
   } catch (error: any) {
+    if (error instanceof z.ZodError) {
+      logger.error(`Prompts validation failed: ${error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')}`);
+      throw new Error(`Invalid prompts.json structure: ${error.errors[0]?.message}`);
+    }
     logger.error(`Failed to load prompts: ${error.message}`);
     throw new Error(`Prompts not found: ${error.message}`);
   }
