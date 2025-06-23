@@ -1,6 +1,6 @@
 // config.ts - Central configuration for CV generation scripts
 
-import fs from 'fs';
+import * as fs from 'fs-extra';
 import * as core from '@actions/core';
 
 // File paths
@@ -51,7 +51,5 @@ export const setOutput = (name: string, value: string): void => {
 
 // Directory management
 export const ensureDirectories = (): void => {
-  if (!fs.existsSync('tmp')) {
-    fs.mkdirSync('tmp', {recursive: true});
-  }
+  fs.ensureDirSync('tmp');
 };

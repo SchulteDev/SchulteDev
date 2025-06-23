@@ -1,6 +1,6 @@
 // test-local.ts - Test CV generation locally
 
-import fs from 'fs';
+import * as fs from 'fs-extra';
 import {exec} from 'child_process';
 import util from 'util';
 import dotenv from 'dotenv';
@@ -68,7 +68,7 @@ logger.info(`Running in ${MODE} mode for CV types: ${getCvTypesToProcess().join(
 
 // Validate prerequisites
 const validatePrerequisites = (): void => {
-  if (!fs.existsSync(CAREER_FILE)) {
+  if (!fs.pathExistsSync(CAREER_FILE)) {
     logger.error(`Missing prerequisite: ${CAREER_FILE} file`);
     process.exit(1);
   }
@@ -77,7 +77,7 @@ const validatePrerequisites = (): void => {
     const cvTypesToProcess = getCvTypesToProcess();
     for (const cvType of cvTypesToProcess) {
       const cvFile = getCvFile(cvType);
-      if (!fs.existsSync(cvFile)) {
+      if (!fs.pathExistsSync(cvFile)) {
         logger.error(`Missing prerequisite: ${cvFile} file for ${cvType} CV`);
         process.exit(1);
       }
@@ -103,8 +103,8 @@ const setupLocalEnv = (): void => {
     logger.info(`ANTHROPIC_API_KEY found, will use real API calls`);
   }
 
-  if (!fs.existsSync('tmp')) {
-    fs.mkdirSync('tmp', {recursive: true});
+  if (!fs.pathExistsSync('tmp')) {
+    fs.ensureDirSync('tmp');
   }
 
   process.env.GITHUB_OUTPUT = 'tmp/github_output.txt';
@@ -180,7 +180,7 @@ const main = async (): Promise<void> => {
     const cvTypesToProcess = getCvTypesToProcess();
     for (const cvType of cvTypesToProcess) {
       const cvFile = getCvFile(cvType);
-      if (fs.existsSync(cvFile)) {
+      if (fs.pathExistsSync(cvFile)) {
         const stats = fs.statSync(cvFile);
         logger.info(`${cvType} CV file updated. Size: ${stats.size} bytes`);
         logger.debug(`${cvType} CV last modified: ${stats.mtime}`);
@@ -191,7 +191,7 @@ const main = async (): Promise<void> => {
 
     // Cleanup
     logger.debug('Cleaning up temporary files');
-    fs.rmSync('tmp', {recursive: true, force: true});
+    fs.removeSync('tmp');
     logger.debug('Cleanup completed');
   } catch (error: any) {
     logger.error(`Error: ${error.message}`);

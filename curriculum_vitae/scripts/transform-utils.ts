@@ -1,6 +1,6 @@
 // transform-utils.ts - Shared utilities for CV transformations
 
-import fs from 'fs';
+import * as fs from 'fs-extra';
 import {exec} from 'child_process';
 import util from 'util';
 import {
@@ -21,7 +21,7 @@ const execAsync = util.promisify(exec);
 
 // Common prompt building
 export const buildFullRebuildPrompt = (cvType: CvType): PromptResult => {
-  if (!fs.existsSync(CAREER_FILE)) {
+  if (!fs.pathExistsSync(CAREER_FILE)) {
     throw new Error(`Career file not found: ${CAREER_FILE}`);
   }
 
@@ -35,8 +35,8 @@ export const buildFullRebuildPrompt = (cvType: CvType): PromptResult => {
 export const buildIncrementalPrompt = (cvType: CvType): PromptResult => {
   const cvFile = getCvFile(cvType);
 
-  if (!fs.existsSync(cvFile)) throw new Error(`CV file not found: ${cvFile}`);
-  if (!fs.existsSync(DIFF_FILE)) throw new Error(`Diff file not found: ${DIFF_FILE}`);
+  if (!fs.pathExistsSync(cvFile)) throw new Error(`CV file not found: ${cvFile}`);
+  if (!fs.pathExistsSync(DIFF_FILE)) throw new Error(`Diff file not found: ${DIFF_FILE}`);
 
   return {
     systemPrompt: getSystemPrompt(cvType),
@@ -73,6 +73,12 @@ export const generateGitDiff = async (): Promise<boolean> => {
 };
 
 export const validateDiffContent = (): boolean => {
+  if (!fs.pathExistsSync(DIFF_FILE)) {
+    logger.info('ℹ️ No diff file found');
+    setOutput('mode', 'skip');
+    return false;
+  }
+
   const diffContent = fs.readFileSync(DIFF_FILE, 'utf8');
 
   if (!diffContent?.trim() || diffContent === 'No changes detected in git diff') {
@@ -110,9 +116,9 @@ export const processAllCvTypes = async (promptBuilder: (cvType: CvType) => Promp
 
 // Cleanup utilities
 export const cleanupDiffFile = (): void => {
-  if (fs.existsSync(DIFF_FILE)) {
+  if (fs.pathExistsSync(DIFF_FILE)) {
     try {
-      fs.unlinkSync(DIFF_FILE);
+      fs.removeSync(DIFF_FILE);
     } catch (e: any) {
       logger.error(`Failed to delete diff file: ${e.message}`);
     }

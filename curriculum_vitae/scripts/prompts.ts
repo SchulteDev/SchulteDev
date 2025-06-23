@@ -1,6 +1,6 @@
 // prompts.ts - Prompt management utilities
 
-import fs from 'fs';
+import * as fs from 'fs-extra';
 import logger from './logger.js';
 import {CvType} from './config.js';
 
@@ -57,7 +57,7 @@ const loadPrompts = (): PromptsConfig => {
   if (cachedPrompts) return cachedPrompts;
 
   try {
-    cachedPrompts = JSON.parse(fs.readFileSync(`${process.cwd()}/prompts.json`, 'utf8'));
+    cachedPrompts = fs.readJsonSync(`${process.cwd()}/prompts.json`);
     logger.debug('Loaded prompts from prompts.json');
     return cachedPrompts!;
   } catch (error: any) {

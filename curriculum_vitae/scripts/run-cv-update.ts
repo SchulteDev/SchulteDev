@@ -1,6 +1,6 @@
 // run-cv-update.ts - Main entry point for CV update workflow
 
-import fs from 'fs';
+import * as fs from 'fs-extra';
 import {
   CREATE_BACKUP,
   CvType,
@@ -23,18 +23,14 @@ const cleanup = (): void => {
     const tempFile = getTempFile(cvType);
     const responseFile = getResponseFile(cvType);
 
-    if (fs.existsSync(tempFile)) {
-      fs.unlinkSync(tempFile);
-    }
-    if (fs.existsSync(responseFile)) {
-      fs.unlinkSync(responseFile);
-    }
+    fs.removeSync(tempFile);
+    fs.removeSync(responseFile);
   }
 };
 
 // Validate LaTeX content
 const validateLatex = (filePath: string, cvType: CvType): boolean => {
-  if (!fs.existsSync(filePath) || fs.statSync(filePath).size === 0) {
+  if (!fs.pathExistsSync(filePath) || fs.statSync(filePath).size === 0) {
     logger.error(`${cvType} CV file is empty`);
     return false;
   }
@@ -54,13 +50,13 @@ const validateLatex = (filePath: string, cvType: CvType): boolean => {
 
 // Create backup if enabled
 const createBackup = (cvFile: string, cvType: CvType): void => {
-  if (!CREATE_BACKUP || !fs.existsSync(cvFile)) return;
+  if (!CREATE_BACKUP || !fs.pathExistsSync(cvFile)) return;
 
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const backupFile = `${cvFile}.backup.${timestamp}`;
 
   try {
-    fs.copyFileSync(cvFile, backupFile);
+    fs.copySync(cvFile, backupFile);
     logger.info(`Backup created for ${cvType} CV: ${backupFile}`);
   } catch (error: any) {
     logger.warn(`Failed to create backup for ${cvType} CV, continuing without backup`);
@@ -76,7 +72,7 @@ const processCvType = (cvType: CvType): boolean => {
   logger.info(`Processing ${cvType} CV...`);
 
   // Check if response file exists
-  if (!fs.existsSync(responseFile) || fs.statSync(responseFile).size === 0) {
+  if (!fs.pathExistsSync(responseFile) || fs.statSync(responseFile).size === 0) {
     logger.warn(`No response file found for ${cvType} CV, skipping`);
     return false;
   }
@@ -90,8 +86,8 @@ const processCvType = (cvType: CvType): boolean => {
   createBackup(cvFile, cvType);
 
   try {
-    fs.renameSync(tempFile, cvFile);
-    fs.unlinkSync(responseFile); // Cleanup
+    fs.moveSync(tempFile, cvFile);
+    fs.removeSync(responseFile); // Cleanup
     logger.success(`${cvType} CV updated successfully!`);
     return true;
   } catch (error: any) {
@@ -108,9 +104,7 @@ const main = async (): Promise<void> => {
     logger.info(`Selected CV types: ${cvTypesToProcess.join(', ')}`);
 
     // Ensure tmp directory exists
-    if (!fs.existsSync('tmp')) {
-      fs.mkdirSync('tmp', {recursive: true});
-    }
+    fs.ensureDirSync('tmp');
 
     // Set up cleanup on exit
     process.on('exit', () => cleanup());
@@ -151,9 +145,7 @@ const main = async (): Promise<void> => {
       // Clean up any existing response files first
       for (const cvType of cvTypesToProcess) {
         const responseFile = getResponseFile(cvType);
-        if (fs.existsSync(responseFile)) {
-          fs.unlinkSync(responseFile);
-        }
+        fs.removeSync(responseFile);
       }
 
       try {
@@ -167,7 +159,7 @@ const main = async (): Promise<void> => {
       let hasAnyResponse = false;
       for (const cvType of cvTypesToProcess) {
         const responseFile = getResponseFile(cvType);
-        if (fs.existsSync(responseFile) && fs.statSync(responseFile).size > 0) {
+        if (fs.pathExistsSync(responseFile) && fs.statSync(responseFile).size > 0) {
           hasAnyResponse = true;
           break;
         }

@@ -1,6 +1,6 @@
 // claude-api.ts - Claude API integration
 
-import fs from 'fs';
+import * as fs from 'fs-extra';
 import Anthropic from '@anthropic-ai/sdk';
 import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
 import {
@@ -21,14 +21,14 @@ export interface PromptResult {
 // Mock response generation
 const createMockResponse = (cvType: CvType): void => {
   const responseFile = getResponseFile(cvType);
-  if (fs.existsSync(responseFile)) return;
+  if (fs.pathExistsSync(responseFile)) return;
 
   logger.info(`Creating mock response for ${cvType} CV`);
 
   const cvFile = getCvFile(cvType);
   let content: string;
 
-  if (fs.existsSync(cvFile)) {
+  if (fs.pathExistsSync(cvFile)) {
     content = fs.readFileSync(cvFile, 'utf8');
     logger.info(`Using existing ${cvType} CV content`);
   } else {
@@ -36,9 +36,9 @@ const createMockResponse = (cvType: CvType): void => {
     logger.info(`Using generic mock for ${cvType} CV`);
   }
 
-  fs.writeFileSync(responseFile, JSON.stringify({
+  fs.writeJsonSync(responseFile, {
     content: [{type: "text", text: content}]
-  }, null, 2));
+  }, { spaces: 2 });
 };
 
 const generateDefaultMockContent = (): string => `
@@ -93,7 +93,7 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
 
     const response = await anthropic.messages.create(request);
     const responseFile = getResponseFile(cvType);
-    fs.writeFileSync(responseFile, JSON.stringify(response, null, 2));
+    fs.writeJsonSync(responseFile, response, { spaces: 2 });
 
     if (!response.content?.[0] || (response.content[0].type === 'text' && !response.content[0].text)) {
       logger.error(`Invalid API response for ${cvType} CV:`);
@@ -136,7 +136,13 @@ export const callClaudeApi = async (systemPrompt: string, userPrompt: string, cv
 const readResponseContent = (responseFile: string, cvType: CvType): string | null => {
   try {
     logger.debug(`Reading response from ${responseFile} for ${cvType} CV`);
-    const data = JSON.parse(fs.readFileSync(responseFile, 'utf8'));
+
+    if (!fs.pathExistsSync(responseFile)) {
+      logger.error(`Response file not found: ${responseFile}`);
+      return null;
+    }
+
+    const data = fs.readJsonSync(responseFile);
 
     if (!data.content?.[0] || data.content[0].type !== 'text') {
       logger.error(`Invalid response content for ${cvType} CV`);
@@ -146,9 +152,7 @@ const readResponseContent = (responseFile: string, cvType: CvType): string | nul
     return (data.content[0] as TextBlock).text;
   } catch (error: any) {
     logger.error(`Failed to read response for ${cvType} CV: ${error.message}`);
-    if (error.code === 'ENOENT') {
-      logger.error(`Response file not found: ${responseFile}`);
-    } else if (error instanceof SyntaxError) {
+    if (error instanceof SyntaxError) {
       logger.error('Invalid JSON in response file');
     }
     return null;
