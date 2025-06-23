@@ -3,24 +3,16 @@
     "structure": {
       "pages": 4,
       "pageBreak": "\\newpage after page 1.",
-      "output": "Output only pdfLaTeX only. Must compile with pdflatex. Start \\documentclass, end \\end{document}. Do not include thinking blocks."
+      "output": "LuaLaTeX only. No thinking blocks."
     },
     "pageLayout": [
-      "Page1: Header (name, contact), CV summary, business impacts summary, core competencies summary (organized as table without borders), current role (LBBW) teaser.",
-      "Page2: Recent professional experiences current role (LBBW), Union Investment, Saloodo!, Trusted Shops.",
-      "Page3: Earlier professional experiences.",
-      "Page4: Education, skills, personal projects, career breaks.",
-      "Page4 footer: \"AI-generated disclaimer\".",
-      "Exactly {{PAGES}} pages, fill space.",
-      "Prioritize: Cloud architecture, leadership, business impact, tech."
+      "Page1: Header, CV summary, impacts, competencies table without borders, LBBW teaser.",
+      "Page2: Recent roles (LBBW, Union Investment, Saloodo!, Trusted Shops).",
+      "Page3: Earlier experiences.",
+      "Page4: Education, skills, projects, breaks. Footer: AI disclaimer.",
+      "Exactly {{PAGES}} pages. Prioritize: Cloud, leadership, business impact, programming, technology."
     ],
     "constraints": [
-      "Generate compilable pdfLaTeX code only. Use only standard pdfLaTeX packages (e.g., inputenc, fontenc, geometry).",
-      "Strict ASCII only - no Unicode characters (→, ↔, ←, •, etc.). Use LaTeX commands: \\rightarrow, \\leftrightarrow, \\leftarrow, \\textbullet etc.",
-      "No custom formatting packages (titlesec, fancyhdr, etc.).",
-      "No XeLaTeX/LuaLaTeX packages like fontspec.",
-      "Always: \\usepackage[utf8]{inputenc}, \\usepackage[T1]{fontenc}.",
-      "Test all formatting commands for syntax errors before using."
     ],
     "templates": {
       "fullRebuild": [
@@ -42,23 +34,21 @@
     "cvType": "Anti-CV",
     "system": [
       "Humorous Anti-CV: failures/lessons, self-deprecating but professional.",
-      "Content: Failed projects, rejections, mistakes, quirky skills.",
       "Be factually accurate. Avoid exaggerations in time or content.",
       "{{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "Transform achievements → humorous failures. Career timeline but focus setbacks/learning.",
+    "fullRebuildInstructions": "Transform achievements → humorous failures. Focus setbacks/learning.",
     "incrementalInstructions": "Add failures/lessons in Anti-CV humor style."
   },
   "professionalCv": {
     "cvType": "professional CV",
     "system": [
-      "Achievement-focused CV: quantified impact, leadership, business value.",
-      "Action verbs, metrics, results-driven language.",
+      "Achievement-focused: quantified impact, leadership, business value.",
       "Layout: {{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "Tech details → business impact. Quantify: team sizes, performance, users.",
-    "incrementalInstructions": "Integrate maintaining professional tone + achievement focus."
+    "fullRebuildInstructions": "Tech → business impact. Quantify: teams, performance, users.",
+    "incrementalInstructions": "Integrate maintaining professional tone."
   }
 }

@@ -246,7 +246,7 @@ export const extractLatex = (outputFile: string, cvType: CvType): boolean => {
   try {
     fs.writeFileSync(outputFile, cleanedText);
     logger.debug(`Wrote ${cleanedText.length} chars to ${outputFile} for ${cvType} CV`);
-    logger.success(`Extracted LaTeX for ${cvType} CV`);
+    logger.success(`Extracted LuaLaTeX for ${cvType} CV`);
     return true;
   } catch (error: any) {
     logger.error(`Failed to write output file for ${cvType} CV: ${error.message}`);

@@ -1,6 +1,6 @@
 # CV Generation Architecture
 
-AI-powered CV generation using Claude to transform career data into LaTeX documents.
+AI-powered CV generation using Claude to transform career data into LuaLaTeX documents.
 
 ## Core Files
 
@@ -8,7 +8,7 @@ AI-powered CV generation using Claude to transform career data into LaTeX docume
 - **transform-incremental.ts** - Processes git diff changes  
 - **transform-full-rebuild.ts** - Complete regeneration
 - **transform-utils.ts** - Shared processing logic
-- **claude-api.ts** - API calls and LaTeX extraction
+- **claude-api.ts** - API calls and LuaLaTeX extraction
 - **config.ts** - Paths, types, environment variables
 
 ## Workflow Architecture
@@ -30,7 +30,7 @@ flowchart LR
     style F fill:#fff8e1
 ```
 
-**Workflow 1: `update-cvs.yml`** - AI transformation and LaTeX commits
+**Workflow 1: `update-cvs.yml`** - AI transformation and LuaLaTeX commits
 - Parallel processing (matrix: anti + professional)
 - Git commits to trigger release workflow
 
@@ -155,7 +155,7 @@ curriculum_vitae/
 ├── scripts/
 │   ├── tmp/
 │   │   ├── response_*.json    # API responses
-│   │   ├── temp_*.tex         # Processed LaTeX
+│   │   ├── temp_*.tex         # Processed LuaLaTeX
 │   │   └── career_changes.diff # Git diff
 │   └── *.ts                   # Node.js scripts
 ├── markus-schulte-dev-anti-cv.tex
