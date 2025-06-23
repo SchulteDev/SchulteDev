@@ -1,15 +1,16 @@
 {
   "shared": {
     "structure": {
-      "pages": 3,
+      "pages": 4,
       "pageBreak": "\\newpage after page 1",
       "output": "LaTeX only. Start \\documentclass, end \\end{document}."
     },
     "pageLayout": [
-      "Page1: Header, CV Summary, Core competencies (organized as table without borders), Current role (LBBW)",
-      "Page2: Union Investment, Saloodo!, Trusted Shops",
-      "Page3: Earlier roles, Education, Skills",
-      "Page3 footer: \"AI-generated disclaimer\"",
+      "Page1: Header (name, contact), CV summary, business impacts summary, core competencies summary (organized as table without borders), current role (LBBW) teaser",
+      "Page2: Recent professional experiences current role (LBBW), Union Investment, Saloodo!, Trusted Shops",
+      "Page3: Earlier professional experiences",
+      "Page4: Education, skills, personal projects, career breaks",
+      "Page4 footer: \"AI-generated disclaimer\"",
       "Exactly {{PAGES}} pages, fill space",
       "Prioritize: Cloud architecture, leadership, business impact, tech"
     ],
