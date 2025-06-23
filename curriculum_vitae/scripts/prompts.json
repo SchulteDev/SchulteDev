@@ -17,7 +17,7 @@
     "constraints": [
       "Valid compilable pdfLaTeX code",
       "Only standard pdfLaTeX packages like fontenc, geometry",
-      "ASCII only, no Unicode",
+      "ASCII only, do not use any Unicode",
       "Escape characters if required"
     ],
     "templates": {
