@@ -1026,6 +1026,22 @@ it" principle for microservices development
 
 ## Personal Projects
 
+### 2025: SchulteDev Portfolio Repository
+
+Centralized monorepo for professional portfolio management including automated CV generation,
+personal website, and branding materials.
+
+**Key Features:**
+
+- **AI-Powered CV Generation:** Automated CV creation using Claude 4
+- **GitHub Actions Automation:** Sophisticated CI/CD pipeline with validation, compilation, and
+  release workflows
+- **LaTeX Document Generation:** Professional PDF generation with automated GitHub releases
+- **Repository Structure:** Organized monorepo containing CV scripts, website, and professional data
+
+**Technologies:** Node.js, Jekyll, LaTeX/pdflatex, GitHub Actions, Anthropic Claude 4 API  
+**Repository:** https://github.com/SchulteDev/SchulteDev
+
 ### January 2025 — May 2025: AI Document Processing for Tax Software
 
 Developed CLI application automating document capture using Azure Document Intelligence and
@@ -1092,7 +1108,9 @@ Visualistics in Koblenz.
 
 - **[StackOverflow](https://stackoverflow.com/users/1645517/markus-schulte):** 4000+ reputation
   points demonstrating community contributions
-- **[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):**
+- *
+  *[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):
+  **
   93/100 score, 88th percentile (June 18, 2018)
   - Overall assessment: "Strong" (93/100)
   - Subject coverage: 95% proficient or strong knowledge
