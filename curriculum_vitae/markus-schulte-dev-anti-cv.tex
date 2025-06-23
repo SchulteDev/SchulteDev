@@ -1,159 +1,159 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[margin=0.7in]{geometry}
-\usepackage{titlesec}
-\usepackage{enumitem}
-\usepackage{hyperref}
-\usepackage{xcolor}
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+\usepackage[scale=0.75]{geometry}
+\usepackage{multicol}
 
-\definecolor{darkgray}{RGB}{64,64,64}
-\hypersetup{colorlinks=true, linkcolor=darkgray, urlcolor=darkgray}
-
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
-\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
-\titlespacing*{\section}{0pt}{12pt}{6pt}
-\titlespacing*{\subsection}{0pt}{8pt}{4pt}
-
-\setlist{leftmargin=*, nosep, itemsep=2pt}
-\pagestyle{empty}
+\name{Markus}{Schulte}
+\title{Cloud Architect \& Software Engineer (Anti-CV)}
+\address{Cologne, Germany}{}{}
+\phone[mobile]{+49 178 7217768}
+\email{mail@schulte-development.de}
+\homepage{schulte-development.de}
+\social[linkedin]{markus-schulte}
+\social[github]{SchulteDev}
 
 \begin{document}
+\makecvtitle
 
-\begin{center}
-{\LARGE \textbf{Markus Schulte}} \\[4pt]
-{\large Anti-CV: A Humorous Chronicle of Professional ``Learning Opportunities''} \\[8pt]
-\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768 | Cologne, Germany \\
-\href{https://schulte-development.de}{schulte-development.de} | \href{https://linkedin.com/in/markus-schulte}{LinkedIn} | \href{https://github.com/SchulteDev}{GitHub}
-\end{center}
+\section{Professional Anti-Summary}
+Seasoned Cloud Architect with 18+ years of making gloriously imperfect software that somehow works. Specialized in turning enterprise chaos into slightly more organized chaos through cloud migrations. Currently at LBBW helping modernize a bank's IT - because what could go wrong with financial systems and new technology?
 
-\section{Professional Summary}
+Master of over-engineering simple solutions, champion of meetings that could have been emails, and proud creator of documentation that's outdated before it's published. Fluent in translating "it should be simple" into 6-month architectural discussions.
 
-\textbf{Cloud Architect \& Software Engineer} with 18+ years of making gloriously expensive mistakes in enterprise environments. Currently serving as ``Architecture Evangelist'' at LBBW, where I'm learning that migrating a major German bank's IT infrastructure is slightly more complex than my initial 6-month estimate suggested.
-
-\textbf{Specialty:} Confidently proposing cloud-native solutions before fully understanding legacy system dependencies, then spending months discovering why ``it worked in the demo'' doesn't translate to production banking environments.
-
-\section{Core Competencies (and Associated Disasters)}
-
+\section{Core Incompetencies}
+\begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Enterprise Architecture:} Expert at creating beautiful diagrams that survive exactly 3 weeks of reality
-\item \textbf{Technical Leadership:} Successfully convinced 47 different teams that microservices would solve all their problems
-\item \textbf{Cloud Migration:} Achieved 147\% budget overrun on ``simple lift-and-shift'' project at major asset management firm
-\item \textbf{Event-Driven Architecture:} Designed elegant event streams that occasionally deliver messages in the correct order
-\item \textbf{Team Management:} Mastered the art of explaining to executives why the ``2-week migration'' is now in month 18
+\item Estimating project timelines (always 3x longer)
+\item Saying "no" to feature creep
+\item Writing code that works on first try
+\item Keeping technical debt under control
+\item Explaining microservices to non-technical stakeholders
+\item Predicting which technology will be obsolete next year
+\item Remembering passwords (even with password managers)
+\item Debugging issues that only happen in production
 \end{itemize}
+\end{multicols}
 
-\section{Current Professional Learning Experience}
-
-\subsection{Nov 2024 -- Present: Cloud Architect, LBBW (Landesbank Baden-Württemberg)}
-\textit{Remote | Freelance | Currently Discovering Banking is Complicated}
-
-Leading the ``Phoenix'' IT modernization project, where I'm learning valuable lessons about enterprise transformation:
-
+\section{Current Professional Misadventure}
+\cventry{Nov 2024--Present}{Cloud Architect}{LBBW}{Cologne}{Freelance}{
+Leading "Phoenix" IT modernization for Germany's major state bank - because migrating hundreds of legacy banking applications to Azure seemed like a good idea at the time.
 \begin{itemize}
-\item \textbf{Cataloging Adventure:} Currently mapping ``a few hundred'' legacy applications that turned into 800+ systems, each more creatively architected than the last
-\item \textbf{Multi-Cloud Optimism:} Proposed Azure + Elastisys Welkin strategy before fully understanding that banks have opinions about where their data lives
-\item \textbf{Migration Reality Check:} Discovered that R-methodology assessment frameworks work great until you encounter a COBOL system that ``just handles some payments''
-\item \textbf{Skywalker Platform Enthusiasm:} Championing a production-unused platform while simultaneously identifying why it's production-unused
-\item \textbf{Template Ambitions:} Creating standardized migration templates that work perfectly for the 3\% of applications that aren't ``special cases''
+\item Cataloging 300+ legacy applications and discovering that "it just works" isn't proper documentation
+\item Explaining why microservices aren't magic to stakeholders who read one blog post about Netflix
+\item Creating migration strategies while the Skywalker platform is still being built (parallel construction, what could go wrong?)
+\item Translating between business requirements and technical reality - mostly unsuccessful
+\item Discovering that "it's just a simple database migration" is the famous last words of architects
+\item Writing architectural decisions that will be questioned in 6 months when everything breaks
 \end{itemize}
-
-\textbf{Technologies:} Azure (learning daily), Kubernetes (still debugging), Spring Boot (thankfully familiar), Terraform (infrastructure as hope), Jira (project as despair)
+}
 
 \newpage
 
-\section{Previous Learning Experiences}
+\section{Previous Professional Disasters}
 
-\subsection{Oct 2021 -- Dec 2024: Cloud Architect, Union Investment}
-\textit{Remote | Freelance | 3-Year Architectural Journey}
-
-Led modernization of InvestmentWelt B2B platform, creating a distributed architecture template for 80,000 users:
-
+\cventry{Oct 2021--Dec 2024}{Cloud Architect}{Union Investment}{Remote}{Freelance}{
+Led 3-year transformation of B2B platform serving 80,000 users - somehow survived despite microservices complexity.
 \begin{itemize}
-\item \textbf{Monolith Optimism:} Confidently identified ``8 clean domain boundaries'' in legacy system, spent 6 months discovering 17 additional hidden domains
-\item \textbf{Microfrontend Ambition:} Built Web Components framework that works beautifully when developers remember to follow the 47-page integration guide
-\item \textbf{Search Architecture Hubris:} Designed ``simple'' unified search across distributed systems, only to discover each domain defines ``product'' differently
-\item \textbf{Team Building Success:} Assembled high-performing development team, then spent equal time explaining why ``just make it work like the old system'' isn't architecturally sound
-\item \textbf{Event-Driven Reality:} Created elegant event streaming architecture that occasionally processes events in unexpected creative orders
-\item \textbf{Production Achievement:} Successfully deployed to production with 99.9\% uptime, only took 18 months longer than initially estimated
+\item Convinced stakeholders that 8 separate services were better than 1 working monolith
+\item Built microfrontend framework that required 40-page documentation to use "simply"
+\item Achieved 1000+ tests with 10-minute build times (still slower than my coffee machine)
+\item Implemented event-driven architecture - events now drive us crazy instead of data
+\item Created deployment pipeline that works 99\% of the time (that 1\% is always Friday afternoon)
+\item Received feedback that my technical explanations need to be "more accessible" - apparently not everyone loves 30-minute deep-dives into event sourcing
 \end{itemize}
+}
 
-\textbf{360° Feedback Highlights:} ``Brings exactly what we need'' (after initial 12-month calibration period), ``Makes work enjoyable'' (eventually), ``Consider pace of explanations for less technical stakeholders'' (ongoing area of growth)
-
-\subsection{Dec 2021 -- Nov 2024: Middleware Engineer, Saloodo! (DHL Group)}
-\textit{Remote | Part-time | Solo Mission Critical}
-
-Sole developer for Salesforce integration middleware, learning valuable lessons about data consistency:
-
+\cventry{Dec 2021--Nov 2024}{Middleware Engineer}{Saloodo! (DHL)}{Remote}{Part-time}{
+Solo developer maintaining data sync between 10 million records - learned that "it works on my machine" scales poorly.
 \begin{itemize}
-\item \textbf{Data Optimism:} Assumed 10 million records would have consistent schemas, discovered creative JSON interpretations instead
-\item \textbf{Solo Ownership Pride:} Achieved 100\% uptime through comprehensive testing, mild paranoia, and extensive logging of everything
-\item \textbf{Golang Production Debut:} First professional Golang project, learned that ``it compiles so it works'' is not always accurate
-\item \textbf{Database Reality:} Implemented sophisticated query optimizations after discovering malformed JSON in production data
+\item Synchronized 10M records while pretending database inconsistencies were "features"
+\item Achieved 100\% uptime through pure luck and excessive error handling
+\item Maintained fault-tolerant architecture that tolerates everything except my debugging skills
+\item Golang expertise gained through trial, error, and Stack Overflow
 \end{itemize}
+}
 
-\subsection{Aug 2018 -- Oct 2019: Cloud Consultant, Trusted Shops}
-\textit{Cologne | Freelance | AWS Learning Laboratory}
-
-Modernized e-commerce trust platform, discovering the joys of legacy system integration:
-
+\cventry{Aug 2018--Oct 2019}{Cloud Consultant}{Trusted Shops}{Cologne}{Freelance}{
+Modernized e-commerce trust platform by replacing working systems with "cloud-native" complexity.
 \begin{itemize}
-\item \textbf{Serverless Enthusiasm:} Migrated JavaEE6 monolith to AWS Lambda, learned about cold start realities in production
-\item \textbf{Microservices Confidence:} Decomposed subscription system into elegant services, spent months debugging inter-service communication timing
-\item \textbf{Contract Testing Evangelism:} Introduced Pact framework, discovered that comprehensive contracts require comprehensive developer patience
-\item \textbf{Integration Optimism:} Seamlessly integrated Salesforce, Zuora, and Twilio - after resolving 23 API versioning conflicts
+\item Migrated JavaEE6 monolith to microservices - traded 1 problem for 12 smaller problems
+\item Introduced contract testing after integration issues taught us why it matters
+\item Built AWS Lambda functions that occasionally lambda (sometimes they just sleep)
+\item Created infrastructure-as-code that requires a PhD to modify
+\item Established CI/CD pipelines that deploy automatically (whether we want them to or not)
 \end{itemize}
+}
 
 \newpage
 
-\section{Earlier Professional Education}
+\section{Earlier Professional Learning Experiences}
+\cventry{2016--2017}{Various Consulting Roles}{toom Baumarkt, Allianz}{}{}{Led microservices transformations and learned that "you build it, you run it" means "you debug it at 3 AM"}
 
-\subsection{2016-2017: Quality Leadership Adventures}
-\textbf{toom Baumarkt:} Led cross-team quality initiatives, learned that ``everyone loves code reviews'' is not universally true \\
-\textbf{Allianz:} Deployed CloudFoundry applications, discovered enterprise compliance requirements mid-deployment
+\cventry{2016--2023}{Atlassian Add-on Creator}{Self-Employed}{}{}{Built 7-year sustainable business despite never reading the complete Atlassian SDK documentation}
 
-\subsection{2014-2016: Early Freelancing Experiments}
-Multiple short-term contracts teaching me that ``it works on my machine'' is not sufficient for client satisfaction. Highlights include convincing 6 companies they needed Jenkins CI/CD before fully understanding their deployment requirements.
+\cventry{2007--2014}{PHP Developer \& Head of Development}{wer-kennt-wen.de}{}{}{Scaled social network to 9M users before learning that PHP and scale don't naturally go together}
 
-\subsection{2007-2014: werkenntwen (German Social Network)}
-\textbf{PHP Developer → Head of Development → Backend Developer} \\
-Career arc from enthusiastic junior to management responsibilities back to hands-on development, learning that people management and technical architecture require different skill sets.
+\section{Educational Misadventures}
+\cventry{2004--2012}{Diploma in Computer Science (Magna Cum Laude)}{University of Koblenz-Landau}{}{}{
+Took 8 years to complete 5-year degree while working full-time - proved that multitasking is possible but inadvisable}
 
+\cventry{2003}{Abitur}{Gymnasium Haren}{Advanced: Math \& Physics}{}{
+Chose technical subjects, avoided humanities - explains current communication challenges}
+
+\section{Technical Skills (Overconfidence Level)}
+\begin{multicols}{2}
+\textbf{Cloud Platforms:}
 \begin{itemize}
-\item Successfully scaled platform to 9+ million users (company closed 2014 due to market forces, not technical issues)
-\item Implemented comprehensive security measures after discovering creative user input interpretations
-\item Led team of developers while learning management skills in real-time
+\item AWS (Expert in breaking things)
+\item Azure (Fluent in confusion)
+\item GCP (Occasionally successful)
 \end{itemize}
 
-\section{Education \& Continuous Learning}
-
-\textbf{Diploma in Computer Science} (2012) - University of Koblenz-Landau \\
-Distinction (magna cum laude) - Extended timeline due to concurrent full-time development work
-
-\textbf{Abitur} (2003) - Gymnasium Haren, Advanced Courses: Mathematics, Physics
-
-\section{Technical Skills \& Tools}
-
-\textbf{Languages:} Java (18y of debugging), Golang (4y of ``why doesn't this work like Java?''), TypeScript (enough to be dangerous) \\
-\textbf{Cloud Platforms:} AWS (7y of billing surprises), Azure (4y of learning Microsoft's way), GCP (evaluation phase) \\
-\textbf{Architecture:} Microservices (expert at creating new problems), Event-driven (events eventually arrive), Serverless (when it works) \\
-\textbf{Leadership:} Team building, stakeholder communication, architectural evangelism, diplomatic technical debt discussions
-
-\section{Professional Achievements}
-
+\textbf{Programming Languages:}
 \begin{itemize}
-\item \textbf{StackOverflow:} 4000+ reputation helping others avoid my mistakes
-\item \textbf{Atlassian Marketplace:} 7-year product business serving 83 customers globally (discontinued due to Atlassian Server EOL)
-\item \textbf{Production Systems:} Multiple 99.9\% uptime achievements (after initial calibration periods)
-\item \textbf{Team Leadership:} Successfully managed teams of 5-9 developers across multiple enterprise transformations
+\item Java (18 years of Stockholm syndrome)
+\item Golang (4 years of "why isn't this Java?")
+\item TypeScript (Reluctant proficiency)
+\item PHP (Suppressed memories)
 \end{itemize}
 
-\vspace{6pt}
-\hrule
-\vspace{4pt}
-\footnotesize
-\textit{Note: This Anti-CV presents a humorous perspective on professional challenges and learning experiences. All technical achievements and business impacts are factual, presented through the lens of honest self-reflection rather than traditional resume marketing. References available upon request for verification of actual competencies and professional conduct.}
+\textbf{Architecture Patterns:}
+\begin{itemize}
+\item Microservices (Distributed monoliths)
+\item Event-driven (Event-chaotic)
+\item Self-contained Systems (Self-contained disasters)
+\end{itemize}
 
-\textit{AI Transparency: This document was collaboratively created with AI assistance for formatting and structure, while all content, experiences, and professional insights are authentically human and personally experienced.}
+\textbf{Soft Skills:}
+\begin{itemize}
+\item Over-explaining simple concepts
+\item Under-explaining complex concepts
+\item Infinite optimism about deadlines
+\item Converting "quick fixes" into architectural reviews
+\end{itemize}
+\end{multicols}
+
+\section{Notable Failures \& Learning Opportunities}
+\begin{itemize}
+\item Estimated 2-week microservices migration that took 8 months (still discovering edge cases)
+\item Built "scalable" architecture that required manual scaling every Tuesday
+\item Created comprehensive documentation that became outdated during the writing process
+\item Convinced team that "technical debt is just delayed refactoring" (it's actually just debt)
+\item Implemented event sourcing for a CRUD application (because why use the right tool?)
+\item Deployed to production on Friday afternoons exactly 3 times (learned this lesson slowly)
+\end{itemize}
+
+\section{Quirky Professional Skills}
+\begin{itemize}
+\item Expert at explaining why the outage wasn't caused by my recent deployment
+\item Fluent in translating business requirements into technical impossibilities
+\item Master of the phrase "that's an interesting edge case we didn't consider"
+\item Capable of writing 10 lines of code to replace 2 lines of working code
+\item Professional at scheduling meetings to discuss why we need fewer meetings
+\end{itemize}
+
+\vfill
+\textit{\footnotesize This anti-CV was generated with AI assistance to highlight professional growth through failure, learning, and the humbling reality of software development. All disasters mentioned are based on real experiences and the valuable lessons they provided.}
 
 \end{document}
