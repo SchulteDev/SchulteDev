@@ -16,7 +16,7 @@ target documents for particular audiences or purposes.
 # Professional Career of Markus Schulte
 
 **Freelance Cloud Architect & Software Engineer**  
-**Location:** Cologne (Köln), Germany  
+**Location:** Cologne, Germany  
 **Contact:** <a href="mailto:mail@schulte-development.de">
 mail@schulte-development.de</a> | <a href="tel:+4917872177768">+49 178 7217768</a>
 **Website:** https://schulte-development.de  
