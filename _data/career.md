@@ -28,7 +28,7 @@ mail@schulte-development.de</a> | <a href="tel:+4917872177768">+49 178 7217768</
 
 **Cloud Architect & Software Engineer** with 18+ years experience (11+ freelance) specializing in
 enterprise modernization and cloud-native transformations. Currently serving as Cloud Architect at
-LBBW, leading "Phoenix" IT modernization for Germany's major state bank.
+LBBW, contributing to "Phoenix" IT modernization for Germany's major state bank.
 
 **Core Expertise:**
 
