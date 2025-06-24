@@ -15,7 +15,7 @@
     "constraints": [
       "Generate valid compilable LuaLaTeX code.",
       "Use built-in LaTeX commands.",
-      "Exactly {{PAGES}} pages, fill space.",
+      "CRITICAL: Exactly {{PAGES}} full pages. Fill completely.",
       "No thinking blocks."
     ],
     "templates": {
