@@ -1,211 +1,236 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[margin=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage[margin=1.5cm]{geometry}
 \usepackage{fontspec}
-\setmainfont{TeX Gyre Heros}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{tabularx}
-\usepackage{tikz}
 \usepackage{hyperref}
-\definecolor{headercolor}{RGB}{40,40,40}
-\definecolor{accentcolor}{RGB}{100,100,100}
-\hypersetup{colorlinks=true,linkcolor=accentcolor,urlcolor=accentcolor}
-\titleformat{\section}{\large\bfseries\color{headercolor}}{}{0em}{}[\titlerule]
-\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
-\titlespacing*{\section}{0pt}{8pt}{4pt}
-\titlespacing*{\subsection}{0pt}{6pt}{2pt}
-\setlist[itemize]{topsep=2pt,itemsep=1pt,parsep=0pt,leftmargin=15pt}
+\usepackage{microtype}
+\usepackage{parskip}
+
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+
+\definecolor{darkblue}{RGB}{0,50,100}
+\definecolor{lightgray}{RGB}{200,200,200}
+
+\titleformat{\section}{\Large\bfseries\sffamily\color{darkblue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\sffamily}{}{0em}{}
+\titlespacing{\section}{0pt}{10pt}{5pt}
+\titlespacing{\subsection}{0pt}{8pt}{3pt}
+
 \pagestyle{empty}
+\setlength{\parindent}{0pt}
+\hypersetup{colorlinks=true,linkcolor=darkblue,urlcolor=darkblue}
+
 \begin{document}
 
-% Header
+% Page 1
 \begin{center}
-{\LARGE\bfseries The Anti-CV of Markus Schulte}\\[4pt]
-{\large Cloud Architect Who Learned Everything the Hard Way}\\[4pt]
-{\small\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768 | Cologne, Germany}\\
-{\small\href{https://linkedin.com/in/markus-schulte/}{LinkedIn} | \href{https://github.com/SchulteDev}{GitHub} | \href{https://schulte-development.de}{Website}}
+{\LARGE\bfseries\sffamily Markus Schulte's Anti-CV}\\[5pt]
+{\large\itshape ``The Honest Guide to My Professional Misadventures''}\\[10pt]
+{\normalsize\sffamily Cologne, Germany | \href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768}
 \end{center}
 
-\section{Professional Summary}
-18+ years of discovering what doesn't work in enterprise IT. Started with PHP (because who needs type safety?), graduated to Java (because who needs simplicity?), and now pretending to understand cloud architecture. Currently at LBBW trying to convince a bank that moving to the cloud is a good idea while their Skywalker platform sits production-unused—a perfect metaphor for my career.
+\section{Professional Summary of Spectacular Learning Opportunities}
 
-\subsection{Key Learning Experiences (What Others Call "Impacts")}
-\begin{itemize}[topsep=0pt]
-\item \textbf{LBBW Phoenix:} Discovered that naming projects after mythical creatures doesn't make legacy systems magically transform
-\item \textbf{Union Investment:} Spent 3 years building microfrontends for 80,000 users when a WordPress site might have sufficed
-\item \textbf{9M+ Users at wer-kennt-wen:} Helped scale a social network that eventually shut down—turns out Germans prefer Facebook
-\item \textbf{99.9\% Uptime:} The 0.1\% taught me more than the other 99.9\% combined
-\item \textbf{Deployment Speed:} Reduced deployment from days to 30 minutes—still 29 minutes too long for urgent fixes
-\item \textbf{1000+ Tests:} Built comprehensive test suites that catch bugs after they reach production
+**Cloud Architect \& Software Engineer** with 18+ years of discovering what doesn't work in enterprise IT. Currently helping LBBW navigate the treacherous waters of ``Phoenix'' modernization, where I'm learning that banking IT moves at the speed of geological formations.
+
+**Core Expertise in Making Things Harder Than Necessary:**
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item **Enterprise Architecture:** Master of creating diagrams that look impressive but need constant revision
+\item **Technical Leadership:** Successfully convinced 5-9 developers that my ideas weren't completely insane
+\item **Backend Engineering:** Fluent in Java (18y of verbose typing), Golang (4y of ``less is more'' propaganda)
+\item **Cloud-Native Design:** Expert at making simple things distributed and complex
+\item **DevOps Excellence:** Automated everything, now spend time fixing the automation
 \end{itemize}
 
-\subsection{Technical Skills (Things I've Broken At Least Once)}
-\begin{tabularx}{\textwidth}{@{}X X X X@{}}
-\textbf{Languages I Overthink In:} & \textbf{Clouds I've Misconfigured:} & \textbf{Tools I've Overcomplicated:} & \textbf{Architectures I've Overengineered:}\\
-Java (18y of verbosity) & AWS (7y of surprise bills) & Docker (everything's a container!) & Microservices (300 services for 10 users)\\
-Golang (4y of "where's my class?") & Azure (4y of identity crises) & Kubernetes (YAML hell) & Event-driven (eventual consistency = never)\\
-TypeScript (JavaScript with more steps) & GCP (Firebase is not enterprise!) & Terraform (destroyed prod twice) & Serverless (servers everywhere)\\
-PHP (8y of regret) & On-premise (the good old days) & Jenkins (pipeline spaghetti) & Monoliths (they weren't that bad)
+\section{Key Business Impacts (Translation: Things That Somehow Worked)}
+
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Delivered platforms serving 9M+ users (who had no choice but to use them)
+\item Reduced deployment times from days to minutes (eliminating valuable coffee break excuses)
+\item Achieved 99.9\% uptime (disappointing drama enthusiasts with only 0.1\% excitement)
+\item Created architecture templates that others were forced to adopt
+\item Built microservices that actually increased complexity instead of reducing it
+\end{itemize}
+
+\section{Technical Skills (Or: Technologies I've Battled With)}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\textbf{Languages} & Java (18y of NullPointerExceptions), Golang (4y of ``nil is not null''), TypeScript (``any'' everywhere), PHP (8y of regret)\\
+\textbf{Cloud Platforms} & AWS (7y of surprise bills), Azure (4y of portal confusion), GCP (occasional tourist)\\
+\textbf{Architecture} & Microservices (turning 1 problem into N problems), Event-driven (eventual consistency = eventual headaches)\\
+\textbf{Databases} & PostgreSQL, MySQL, Oracle (the expensive one), Redis (when in doubt, add cache)\\
+\textbf{DevOps Tools} & Docker (``works on my container''), Kubernetes (YAML hell), Terraform (infrastructure as bugs)\\
+\textbf{Testing} & JUnit (mocking everything), Pact (contracts nobody reads), Selenium (flaky test champion)\\
+\textbf{Soft Skills} & Explaining why it takes 2 weeks to change a button color, Translating tech speak to human
 \end{tabularx}
 
-\section{Current Mission}
-\subsection{Nov 2024—Present: Cloud Architect at LBBW | Teaching Banks to Fly}
-Leading the "Phoenix" project where we're trying to rise from the ashes of legacy systems. Currently responsible for 10 applications that don't want to be migrated to a platform that wasn't ready for production. Key achievements include:
-\begin{itemize}[topsep=0pt]
-\item Discovered our production-unused Skywalker platform has more gaps than Swiss cheese
-\item Created migration templates that work perfectly for applications that don't exist
-\item Mastered the art of explaining cloud benefits to people who still trust mainframes more than me
-\item Developed multi-cloud strategy because one cloud disappointment isn't enough
-\item Leading architecture decisions that will be questioned for the next decade
+% Page 2
+\newpage
+\section{Recent Professional Misadventures}
+
+\subsection{Cloud Architect at LBBW (Nov 2024 -- Present)}
+\textit{Navigating the ``Phoenix'' that refuses to rise from legacy ashes}
+
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Discovered that ``cloud-ready'' means different things to different people (usually nothing good)
+\item Created migration templates that exposed just how un-migratable legacy apps can be
+\item Learned that a production-unused platform can still somehow have production issues
+\item Mastered the art of explaining why moving to the cloud won't magically fix 20-year-old code
+\item Successfully identified gaps in platform nobody knew existed (or wanted to know about)
 \end{itemize}
 
-\section{Recent Cloud Adventures (Or: How I Learned to Stop Worrying and Love Complexity)}
+\subsection{Cloud Architect at Union Investment (Oct 2021 -- Dec 2024)}
+\textit{3+ years of making simple things beautifully complex}
 
-\subsection{Oct 2021—Dec 2024: Cloud Architect at Union Investment | Over-Engineering for 80,000 Users}
-Spent 3 years building a Self-contained Systems architecture that's more complex than the business it serves:
-\begin{itemize}[topsep=0pt]
-\item Built microfrontend framework when iframes would have worked
-\item Implemented event streaming for data that updates quarterly
-\item Created 8 autonomous domains for what's essentially a content website
-\item Achieved 10-minute builds by spending 3 months optimizing what runs once daily
-\item Designed centralized search that searches decentralized data—because irony
-\item Served as Product Owner, discovering I'm better at breaking things than planning them
-\item Led teams of 5-7 developers who politely ignored my architecture astronaut tendencies
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Convinced team that splitting a monolith into 8 microservices would simplify things (narrator: it didn't)
+\item Created a microfrontend framework that required a PhD to understand
+\item Achieved 10-minute builds with 1000+ tests (now maintaining 1000+ tests)
+\item Introduced event-driven architecture, now everything happens... eventually
+\item Spent months designing unified search across systems that barely talk to each other
+\item Led teams while learning that ``self-organizing'' doesn't mean ``self-motivating''
 \end{itemize}
 
-\subsection{Dec 2021—Nov 2024: Middleware Engineer at Saloodo! | The Golang Guinea Pig}
-Maintained critical Salesforce integration as sole developer—what could go wrong?
-\begin{itemize}[topsep=0pt]
-\item Chose part-time role to learn Golang; learned mostly about Salesforce API limits
-\item Synced 10 million records periodically because real-time is overrated
-\item Achieved 100\% uptime by making the service so simple it couldn't fail
-\item Handled "eventual consistency" where eventual meant "hopefully before the sales call"
-\item Built fault-tolerant system after learning what happens when it's not
+\subsection{Middleware Engineer at Saloodo! (Dec 2021 -- Nov 2024)}
+\textit{Part-time wrestling with data inconsistencies}
+
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Sole developer = nobody to blame but myself
+\item Discovered Saloodo's database had more inconsistencies than a politician's promises
+\item Built fault-tolerant sync for fault-intolerant data (10M records of creative schemas)
+\item Learned Golang on the job (``how hard can it be?'' -- famous last words)
+\item Achieved 100\% uptime by making the service too simple to fail
 \end{itemize}
 
-\subsection{Jun 2016—Dec 2023: Atlassian Add-on Creator | Seven Years of Supporting Legacy}
-Created code quality add-ons for Bamboo just as everyone moved to cloud:
-\begin{itemize}[topsep=0pt]
-\item First-mover advantage in a market that stopped moving
-\item 83 customers globally who didn't get the "shift-left" memo
-\item Maintained compatibility with every Bamboo version because customers never upgrade
-\item Peak timing: launched just as Atlassian deprecated server products
+\subsection{Cloud Consultant at Trusted Shops (Aug 2018 -- Oct 2019)}
+\textit{Making e-commerce trust even more complicated}
+
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Modernized JavaEE6 monolith (translation: added more complexity with microservices)
+\item Integrated Salesforce, Zuora, and sanity (only two succeeded)
+\item Introduced contract testing that nobody wanted to maintain
+\item Created AWS Lambda templates that worked perfectly until AWS changed something
+\item Taught Pact testing to teams who promptly ignored it after I left
 \end{itemize}
 
-\subsection{Aug 2018—Oct 2019: Cloud Consultant at Trusted Shops | Lambda All The Things}
-Convinced e-commerce company that serverless was the answer (spoiler: it wasn't always):
-\begin{itemize}[topsep=0pt]
-\item Migrated JavaEE6 to Lambda—startup time went from 30s to 30s (cold starts!)
-\item Implemented SMS delivery with Twilio after evaluating 10 providers for 100 messages/day
-\item Created "Clean Code" that was so clean it was incomprehensible
-\item Introduced contract testing—contracts broke anyway
-\item Built serverless architecture that required more servers than the original
+% Page 3
+\newpage
+\section{Earlier Adventures in Overengineering}
+
+\subsection{Senior Developer at Allianz (Nov 2017 -- Mar 2018)}
+\textit{Enterprise Java at its finest}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Built REST/HATEOAS APIs that nobody understood how to use properly
+\item Deployed to CloudFoundry (because Kubernetes wasn't complicated enough yet)
+\item Created comprehensive documentation that nobody read
 \end{itemize}
 
-\section{Earlier Adventures in Complexity}
-
-\subsection{Nov 2017—Mar 2018: Senior Developer at Allianz | Enterprise JavaEE Archaeology}
-\begin{itemize}[topsep=0pt]
-\item Deployed to CloudFoundry—cloud washing at its finest
-\item Wrote REST/HATEOAS APIs that no client fully understood
-\item Mentored juniors in technologies that would be deprecated within months
+\subsection{Senior Engineer at toom Baumarkt (Oct 2016 -- Sep 2017)}
+\textit{``You build it, you run it'' (translation: you break it, you fix it at 3 AM)}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Led quality initiatives across teams (herding cats with metrics)
+\item Accelerated tests by 70\% (from very slow to just slow)
+\item Introduced Golang to a Java team (cultural shock therapy)
+\item Optimized garbage collection (literally and figuratively)
 \end{itemize}
 
-\subsection{Oct 2016—Sep 2017: Senior Engineer at toom Baumarkt | Microservices Mayhem}
-\begin{itemize}[topsep=0pt]
-\item Built microservices in 4 languages because consistency is boring
-\item "You build it, you run it" quickly became "you built it, you fix it at 3am"
-\item Reduced memory usage by 70\% after increasing it by 200\% first
-\item Led quality initiatives—quality still actively resisted
+\subsection{Head of Development at werkenntwen (2007 -- 2014)}
+\textit{Social network for 9M+ Germans who've now forgotten it existed}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Scaled platform until company shut down (correlation or causation?)
+\item Migrated from procedural PHP to OOP (from spaghetti to lasagna)
+\item Managed team with ``full personnel responsibility'' (hired people, they left eventually)
+\item Implemented CI/CD before it was cool (or properly understood)
 \end{itemize}
 
-\subsection{Jan 2014—Aug 2016: Early Freelancing | Learning What Not to Do}
-\begin{itemize}[topsep=0pt]
-\item Implemented CI/CD at 6 companies; 5 still deploy manually
-\item Set up Jenkins pipelines that became sentient spaghetti
-\item Dockerized everything before understanding what containers were
-\item Saved 40\% on AWS costs after accidentally spending 400\% more first
+\section{Side Projects \& Entrepreneurial Failures}
+
+\subsection{Atlassian Bamboo Add-ons (2016 -- 2023)}
+\textit{7 years of maintaining plugins for a dying platform}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Built successful business with 83 customers (all 83 probably regret it now)
+\item First-mover advantage in a market that never really moved
+\item Learned that ``sustainable business'' is relative when platform gets deprecated
 \end{itemize}
 
-\subsection{Aug 2007—Jun 2014: Head of Development at wer-kennt-wen | Peak Social Network Timing}
-\begin{itemize}[topsep=0pt]
-\item Scaled platform to 9M users just in time for Facebook to eat our lunch
-\item Head of Development at 23—peak Dunning-Kruger effect
-\item Migrated from procedural to OOP PHP—doubled the code, same bugs
-\item Implemented comprehensive security after comprehensive breaches
-\item Led team with "full personnel responsibility"—nobody quit (visibly)
+\subsection{Crypto Trading Bot (2015)}
+\textit{Machine learning meets financial ignorance}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Created Bitcoin arbitrage bot during the ``easy money'' phase
+\item Applied ML to predict the unpredictable (spoiler: it's unpredictable)
+\item Learned that backtesting profits != real profits
 \end{itemize}
 
-\section{Personal Projects (Because Professional Ones Weren't Complex Enough)}
-
-\begin{itemize}[topsep=0pt]
-\item \textbf{2025 AI CV Generator:} Automated CV creation because writing about myself wasn't awkward enough
-\item \textbf{2025 Tax Document AI:} Combined German tax software with AI—what could be less fun?
-\item \textbf{2018 Jenkins-GitHub Integration:} Built integration nobody asked for
-\item \textbf{2015 Crypto Trading Bot:} Lost money automatically instead of manually
+\subsection{Early Freelancing (2014 -- 2016)}
+\textit{The ``yes to everything'' phase}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Jumped between projects like a caffeinated squirrel
+\item Implemented CI/CD for companies who didn't know they needed it
+\item Learned that 3-day projects always take 3 weeks
 \end{itemize}
 
-\section{Education (Where It All Went Wrong)}
+% Page 4
+\newpage
+\section{Educational Background (Or: Where It All Went Wrong)}
 
-\subsection{2004—2012: Diploma in Computer Science, University of Koblenz}
-\begin{itemize}[topsep=0pt]
-\item Took 8 years because I thought working full-time while studying was "efficient"
-\item Specialized in Computational Visualistics—still can't center a div
-\item Graduated magna cum laude—Latin for "still googles basic syntax"
-\item Focus on software architecture—explains the over-engineering tendency
+\subsection{Diploma in Computer Science (2004 -- 2012)}
+\textit{University of Koblenz-Landau}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Took 8 years to complete a 5-year program (work-life balance champion)
+\item Studied Computational Visualistics (fancy graphics I never use professionally)
+\item Graduated magna cum laude (Latin for ``spent too much time studying'')
+\item Learned theory that practice immediately proved wrong
 \end{itemize}
 
-\subsection{2003: Abitur (German High School)}
-\begin{itemize}[topsep=0pt]
-\item Advanced courses in Math and Physics—preparation for calculating AWS bills
-\item Self-taught PHP in 2000—ruined my programming taste for decades
-\item Created class forum that nobody used—foreshadowing my career
+\subsection{Abitur (2003)}
+\textit{Gymnasium Haren}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Advanced courses in Math and Physics (prepared me for debugging, not for meetings)
+\item Self-taught PHP in 2000 (started bad habits early)
+\item Created forums for friends (early social network that actually worked)
 \end{itemize}
 
-\section{Certifications (Proof I Can Pass Tests)}
-\begin{itemize}[topsep=0pt]
-\item Java SE 8 (93/100)—the 7 points haunt me
-\item StackOverflow 4000+ rep—professional question asker
-\item GitHub contributor—mostly fixing my own bugs
+\section{Certifications \& Acknowledgments of Mediocrity}
+
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Java SE 8 Certification: 93/100 (the 7 points haunt me)
+\item StackOverflow: 4000+ reputation (professional question asker)
+\item GitHub: Maintaining repos nobody stars
 \end{itemize}
 
-\section{Career Breaks (Strategic Retreats)}
+\section{Career Breaks (Strategic Retreats from Technology)}
 
-\begin{itemize}[topsep=0pt]
-\item \textbf{2020—2021 Parental Leave:} 18 months of changing diapers instead of deployments
-\item \textbf{2015 Travel Break:} 4 months discovering the world has bigger problems than microservices
-\item \textbf{2003—2004 Military Service:} Learned that command-and-control doesn't work (still tried it later)
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item \textbf{2020-2021:} Parental leave during pandemic (escaped to a different kind of chaos)
+\item \textbf{2015:} Travel break (running away from PHP memories)
+\item \textbf{2003-2004:} Military service (learned that IT deadlines aren't actually life-or-death)
 \end{itemize}
 
-\section{Core Competencies in Failure Recognition}
+\section{Core Learnings from Two Decades of Tech}
 
-\begin{itemize}[topsep=0pt]
-\item Expert at explaining why simple things need complex solutions
-\item Proven ability to introduce technologies right before they become obsolete
-\item Extensive experience in building platforms for companies that cease to exist
-\item Deep knowledge of making 10-person problems require 100-person solutions
-\item Certified in turning "it works on my machine" into "it works in production (mostly)"
-\item Specialist in architecture astronomy—designing for users on Mars while serving users in Munich
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item Every solution creates new problems (job security!)
+\item Microservices multiply complexity, not reduce it
+\item The cloud is just someone else's computer you pay more for
+\item Legacy code is any code written more than 6 months ago
+\item ``It works on my machine'' is not a valid deployment strategy
+\item Documentation is like exercise: everyone agrees it's important, nobody does it
+\item The temporary solution becomes the permanent architecture
+\item There's no problem that can't be made worse with enough abstraction
 \end{itemize}
-
-\section{What I've Actually Learned}
-
-Despite this catalog of over-engineering and mistimed technology choices, I've learned that:
-\begin{itemize}[topsep=0pt]
-\item Perfect architecture doesn't exist, but good enough architecture ships
-\item The best code is the code you don't write
-\item Legacy systems exist because they work
-\item Complexity is easy; simplicity is hard
-\item The cloud isn't magic—it's just someone else's computer you can break remotely
-\end{itemize}
-
-Currently available to over-architect your next project. References available from systems I've complicated.
 
 \vfill
 \begin{center}
-\rule{0.8\textwidth}{0.5pt}\\[4pt]
-{\footnotesize\textit{This Anti-CV was generated by AI and reviewed by a human who has made all these mistakes and more.\\Remember: Every expert was once a disaster with documentation.}}
+\rule{0.8\textwidth}{0.4pt}\\[5pt]
+{\footnotesize\itshape This Anti-CV was generated with AI assistance, which explains why it's actually honest.\\
+Created with Claude 4 -- because even AI can appreciate a good failure story.\\[5pt]
+\textbf{Disclaimer:} All failures are real. Success stories may have been exaggerated for comedic effect.}
 \end{center}
 
 \end{document}
