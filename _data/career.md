@@ -32,7 +32,8 @@ LBBW, contributing to "Phoenix" IT modernization for Germany's major state bank.
 
 **Core Expertise:**
 
-- **Enterprise Architecture:** Legacy-to-cloud migrations, multi-cloud strategies (AWS, Azure, GCP)
+- **Enterprise Architecture:** Legacy-to-cloud migrations, experience with AWS, Azure and GCP,
+  cloud strategies, cloud (native) system design
 - **Technical Leadership:** Led teams of 5-9 developers, served as Product Owner and technical
   mentor
 - **Backend Engineering:** Java (18y), Golang (4y), TypeScript - from monoliths to microservices
@@ -222,9 +223,9 @@ parallel technical supervision across "04 – Application Development" area
 
 - **Legacy Application Portfolio:** Cataloging hundreds of legacy applications for Skywalker
   migration assessment with diverse technical stacks requiring individualized migration approaches
-- **Multi-Cloud Strategy Development:** Strategic multi-cloud scenario
-  development ([Azure](https://azure.microsoft.com), [Elastisys Welkin](https://elastisys.io/welkin/))
-  for enterprise flexibility
+- **Azure Platform Development:** Working on the Skywalker platform running on Azure infrastructure
+- **Cloud Platform Evaluation:** Conducted evaluation of
+  [Elastisys Welkin](https://elastisys.io/welkin/)
 - **Platform Gap Analysis:** Platform gap identification in production-unused Skywalker environment
   requiring enhancement initiatives
 - **Enterprise Compliance:** Complex application portfolio assessment ensuring compliance with
@@ -235,9 +236,10 @@ parallel technical supervision across "04 – Application Development" area
 - **Migration Methodology:** Application cataloging and assessment
   using [R-methodology (cloud migration)](https://aws.amazon.com/de/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/)
   with custom evaluation frameworks
-- **Multi-Cloud Architecture:** Multi-cloud strategy development for Azure and
-  potential [Elastisys Welkin](https://elastisys.io/welkin/) integration providing strategic vendor
-  independence
+- **Azure Architecture Design:** Azure migration strategy development and Skywalker platform
+  enhancement
+- **Platform Assessment:** Elastisys Welkin evaluation for strategic platform alternatives providing 
+  vendor flexibility
 - **Template Development:** Creation of technical templates and standardized analysis processes for
   systematic application assessment
 - **Technical Assessment:** Conducting in-depth technical assessments to determine Skywalker
@@ -257,8 +259,8 @@ parallel technical supervision across "04 – Application Development" area
   evaluation of hundreds of legacy applications for large-scale enterprise migration
 - **Platform Evolution:** Gap identification enabled targeted Skywalker platform enhancements
   improving overall enterprise cloud readiness
-- **Strategic Planning:** Multi-cloud strategy provides enterprise flexibility, vendor independence,
-  and risk mitigation for critical banking operations
+- **Strategic Planning:** Azure migration strategy provides platform modernization and operational
+  efficiency for critical banking operations
 - **Technical Expertise Application:** Leveraged extensive experience with Spring Boot, Tomcat, IIS,
   Oracle, MS-SQL, PostgreSQL for rapid application understanding and assessment
 
@@ -1040,7 +1042,7 @@ personal website, and branding materials.
 - **GitHub Actions Automation:** Sophisticated CI/CD pipeline with validation, compilation, and
   release workflows
 - **LaTeX Document Generation:** Professional PDF generation with automated GitHub releases
-- **Repository Structure:** Organized monorepo containing professional data, website and CV scripts 
+- **Repository Structure:** Organized monorepo containing professional data, website and CV scripts
 
 **Technologies:** Node.js, Jekyll, LaTeX/pdflatex, GitHub Actions, Anthropic Claude 4 API  
 **Repository:** https://github.com/SchulteDev/SchulteDev
@@ -1111,15 +1113,18 @@ Visualistics in Koblenz.
 
 - **[StackOverflow](https://stackoverflow.com/users/1645517/markus-schulte):** 4000+ reputation
   points demonstrating community contributions
-- *
-  *[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):
-  **
-  93/100 score, 88th percentile (June 18, 2018)
-  - Overall assessment: "Strong" (93/100)
-  - Subject coverage: 95% proficient or strong knowledge
-  - Application ability: Extensive
-  - Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management,
-    Interfaces
+-
+  *
+
+*[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):
+**
+93/100 score, 88th percentile (June 18, 2018)
+
+- Overall assessment: "Strong" (93/100)
+- Subject coverage: 95% proficient or strong knowledge
+- Application ability: Extensive
+- Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management,
+  Interfaces
 - **[GitHub](https://github.com/SchulteMarkus):** Open-source contributor
 
 ---
