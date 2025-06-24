@@ -6,24 +6,22 @@
       "output": "LuaLaTeX code only."
     },
     "pageLayout": [
-      "Page1: Header, CV summary, impacts, competencies table without borders, LBBW teaser.",
-      "Page2: Recent roles (LBBW, Union Investment, Saloodo!, Trusted Shops).",
-      "Page3: Earlier experiences.",
-      "Page4: Education, skills, projects, breaks; footer: AI disclaimer.",
-      "Prioritize: Cloud, leadership, business impact, programming, tech."
+      "P1: Header, CV summary, key impacts, skills table without borders, LBBW teaser.",
+      "P2: Recent roles (LBBW, Union Investment, Saloodo!, Trusted Shops).",
+      "P3: Earlier experiences, projects.",
+      "P4: Education, skills, career breaks; footer: AI disclaimer.",
+      "Focus: Cloud, leadership, business impact, technical skills."
     ],
     "constraints": [
-      "Generate valid compilable LuaLaTeX code.",
-      "Use built-in LaTeX commands and standard fonts only (no fontspec, no system fonts).",
-      "CRITICAL: Exactly {{PAGES}} full pages, fill pages completely.",
-      "No thinking blocks."
+      "Create valid LuaLaTeX with standard packages and fonts only.",
+      "Exactly {{PAGES}} full pages, fill pages completely."
     ],
     "templates": {
       "fullRebuild": [
-        "{{PAGES}}-page {{CV_TYPE}} from:",
+        "Create {{PAGES}}-page {{CV_TYPE}} from career data:",
         "```markdown\n{{CAREER_DATA}}\n```",
         "{{SHARED_CONSTRAINTS}}",
-        "Layout: {{SHARED_PAGE_LAYOUT}}",
+        "{{SHARED_PAGE_LAYOUT}}",
         "{{TYPE_SPECIFIC_INSTRUCTIONS}}"
       ],
       "incremental": [
@@ -38,8 +36,8 @@
   "antiCv": {
     "cvType": "Anti-CV",
     "system": [
-      "Humorous Anti-CV: failures/lessons, self-deprecating but professional.",
-      "Be factually accurate. Avoid exaggerations in time or content.",
+      "Anti-CV: humorous failures/lessons, self-deprecating but professional. ",
+      "Stay factual. Avoid exaggerations in time or content.",
       "{{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
@@ -49,8 +47,8 @@
   "professionalCv": {
     "cvType": "professional CV",
     "system": [
-      "Achievement-focused: quantified impact, leadership, business value.",
-      "Layout: {{SHARED_PAGE_LAYOUT}}",
+      "Professional CV: quantified impact, leadership, business value.",
+      "{{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
     "fullRebuildInstructions": "Tech → business impact. Quantify: teams, performance, users.",
