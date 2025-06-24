@@ -15,7 +15,7 @@
     "constraints": [
       "Generate valid compilable LuaLaTeX code.",
       "Use built-in LaTeX commands and standard fonts only (no fontspec, no system fonts).",
-      "CRITICAL: Exactly {{PAGES}} full pages. Fill completely.",
+      "CRITICAL: Exactly {{PAGES}} full pages, fill pages completely.",
       "No thinking blocks."
     ],
     "templates": {
