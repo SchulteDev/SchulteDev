@@ -6,7 +6,7 @@
       "output": "LuaLaTeX code only."
     },
     "pageLayout": [
-      "P1: Header, CV summary, key impacts, skills table without borders, LBBW teaser.",
+      "P1: Header, CV summary, key impacts, skills table without borders.",
       "P2: Recent roles (LBBW, Union Investment, Saloodo!, Trusted Shops).",
       "P3: Earlier experiences, projects.",
       "P4: Education, skills, career breaks; footer: AI disclaimer.",
