@@ -13,7 +13,8 @@
       "Focus: Cloud, leadership, business impact, technical skills."
     ],
     "constraints": [
-      "Create valid LuaLaTeX with standard packages and fonts only.",
+      "Create valid LuaLaTeX with standard packages only.",
+      "Use bundled fonts only (no system fonts like Calibri).",
       "Exactly {{PAGES}} full pages, fill pages completely."
     ],
     "templates": {
