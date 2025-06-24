@@ -15,7 +15,8 @@
     "constraints": [
       "Create valid LuaLaTeX with standard packages only.",
       "Use bundled fonts only (no system fonts like Calibri).",
-      "Exactly {{PAGES}} full pages, fill pages completely."
+      "Exactly {{PAGES}} full pages, fill pages completely.",
+      "Stay factual, never invent figures or project costs not in career data."
     ],
     "templates": {
       "fullRebuild": [
@@ -38,7 +39,7 @@
     "cvType": "Anti-CV",
     "system": [
       "Anti-CV: humorous failures/lessons, self-deprecating but professional. ",
-      "Stay factual. Avoid exaggerations in time or content.",
+      "Avoid exaggerations in time or content.",
       "{{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
