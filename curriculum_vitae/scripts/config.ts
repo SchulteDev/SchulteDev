@@ -7,7 +7,7 @@ import * as core from '@actions/core';
 // Zod schema for environment variables
 const EnvSchema = z.object({
   CAREER_FILE: z.string().default('../../_data/career.md'),
-  API_MODEL: z.string().default('claude-sonnet-4-20250514'),
+  API_MODEL: z.string().default('claude-opus-4-20250514'),
   MAX_TOKENS: z.coerce.number().positive().default(24000),
   MIN_CONTENT_LENGTH: z.coerce.number().positive().default(500),
   GIT_DIFF_RANGE: z.coerce.number().positive().default(1),

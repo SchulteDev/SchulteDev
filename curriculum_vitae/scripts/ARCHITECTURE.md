@@ -88,8 +88,8 @@ flowchart TD
 # Basic test with mocks
 npm test
 
-# Test specific CV type
-CV_TYPES=anti npm test
+# Test specific CV type with Sonnet
+API_MODEL="claude-sonnet-4-20250514" CV_TYPES=anti npm test
 
 # Test with git history
 GIT_DIFF_RANGE=5 npm test
