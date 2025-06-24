@@ -23,6 +23,14 @@ on:
         options:
           - incremental
           - full_rebuild
+      environment:
+        description: 'Claude Sonnet or Opus?'
+        required: true
+        default: 'claude-sonnet'
+        type: choice
+        options:
+          - claude-opus
+          - claude-sonnet
 
 permissions:
   contents: write
