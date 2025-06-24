@@ -15,7 +15,7 @@
     "constraints": [
       "Create valid LuaLaTeX with standard packages only.",
       "Use bundled fonts only (no system fonts like Calibri).",
-      "Exactly {{PAGES}} full pages, fill pages completely.",
+      "Critical: Exactly {{PAGES}} full pages, fill pages completely.",
       "Stay factual, never invent figures or project costs not in career data."
     ],
     "templates": {
