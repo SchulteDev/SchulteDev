@@ -44,6 +44,8 @@ LBBW, leading "Phoenix" IT modernization for Germany's major state bank.
 minutes, achieved 99.9% uptime in production systems, and established architecture templates adopted
 across enterprise organizations.
 
+**My Slogan:** "Crafting solutions that thrive today and tomorrow"
+
 ## Technical Expertise
 
 ### Core Programming Languages
