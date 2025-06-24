@@ -1,268 +1,239 @@
-\documentclass[11pt,a4paper,sans]{moderncv}
-
-\moderncvstyle{banking}
-\moderncvcolor{blue}
-
-\usepackage[utf8]{inputenc}
-\usepackage[scale=0.8]{geometry}
-\usepackage{import}
-\usepackage{multicol}
-\usepackage{enumitem}
-\usepackage{amssymb}
-\usepackage{fontawesome5}
-\usepackage{tabularx}
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.6in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{array}
+\usepackage{enumitem}
 \usepackage{xcolor}
-\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{multicol}
 
-\renewcommand*{\namefont}{\fontsize{28}{30}\mdseries\upshape}
-\renewcommand*{\titlefont}{\fontsize{16}{18}\mdseries\upshape}
-
-\name{Markus}{Schulte}
-\title{Cloud Architect \& Software Engineer}
-\address{Cologne, Germany}{}{}
-\phone[mobile]{+49 178 7217768}
-\email{mail@schulte-development.de}
-\homepage{schulte-development.de}
-\social[linkedin]{markus-schulte}
-\social[github]{SchulteDev}
-
-\newcommand{\impact}[2]{\textbf{#1} #2}
-\newcommand{\tech}[1]{\textcolor{blue}{\textbf{#1}}}
+\definecolor{darkblue}{RGB}{0,50,100}
+\definecolor{lightgray}{RGB}{128,128,128}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+\titleformat{\section}{\large\bfseries\color{darkblue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titlespacing{\section}{0pt}{6pt}{4pt}
+\titlespacing{\subsection}{0pt}{4pt}{2pt}
+\setlist[itemize]{noitemsep,topsep=0pt,leftmargin=*}
 
 \begin{document}
+\pagestyle{empty}
 
-\makecvtitle
+% Header
+\begin{center}
+{\LARGE \textbf{Markus Schulte}}\\[4pt]
+{\large Cloud Architect \& Software Engineer}\\[2pt]
+Cologne, Germany $\bullet$ +49 178 7217768 $\bullet$ mail@schulte-development.de\\
+\href{https://schulte-development.de}{schulte-development.de} $\bullet$ 
+\href{https://linkedin.com/in/markus-schulte/}{LinkedIn} $\bullet$
+\href{https://github.com/SchulteDev}{GitHub}
+\end{center}
 
-\section{Professional Summary}
+\section{Executive Summary}
+\textbf{Cloud Architect \& Software Engineer} with 18+ years experience (11+ freelance) driving enterprise cloud transformations. Currently leading ``Phoenix'' IT modernization at LBBW. Proven track record scaling platforms to \textbf{9M+ users}, reducing deployment times from \textbf{days to minutes}, and achieving \textbf{99.9\% uptime}. Expert in AWS, Azure, GCP with strong Java (18y) and Golang (4y) expertise.
 
-\textbf{Cloud Architect \& Software Engineer} with \textbf{18+ years experience} (11+ freelance) specializing in enterprise modernization and cloud-native transformations. Currently serving as Cloud Architect at LBBW, leading "Phoenix" IT modernization for Germany's major state bank.
-
-\vspace{0.3cm}
-
-\subsection{Key Business Impacts}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \impact{Platform Scale:} Delivered platforms serving \textbf{9M+ users} with \textbf{99.9\% uptime}
-\item \impact{Deployment Acceleration:} Reduced deployment times from \textbf{days to 30 minutes}
-\item \impact{Team Leadership:} Led cross-functional teams of \textbf{5-9 developers} across 3+ year transformations
-\item \impact{Enterprise Architecture:} Established cloud-native templates adopted across \textbf{group-wide} initiatives
-\item \impact{Technical Excellence:} Achieved \textbf{10-minute build cycles} despite 1000+ comprehensive tests
+\section{Key Business Impacts}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Enterprise Transformation:} Led cloud migrations for major financial institutions (LBBW, Union Investment, Allianz)
+\item \textbf{Team Leadership:} Managed teams of 5-9 developers, served as Product Owner and technical mentor
+\item \textbf{Performance Excellence:} Achieved 70\% test execution speedup, 10-minute builds with 1000+ tests
+\item \textbf{Operational Excellence:} 100\% uptime for 3 years (Saloodo), 99.9\% availability in production systems
+\item \textbf{Scale Achievement:} Built platforms serving millions (9M+ at werkenntwen, 10M records at Saloodo)
+\item \textbf{Business Value:} Established architecture templates adopted across enterprise organizations
 \end{itemize}
 
-\vspace{0.4cm}
+\section{Core Competencies}
+\begin{center}
+\begin{tabular}{p{0.31\textwidth}p{0.31\textwidth}p{0.31\textwidth}}
+\textbf{Cloud Architecture} & \textbf{Technical Leadership} & \textbf{Engineering Excellence} \\
+$\bullet$ AWS, Azure, GCP (7+ years) & $\bullet$ Teams of 5-9 developers & $\bullet$ Java (18y), Golang (4y) \\
+$\bullet$ Kubernetes, Docker, Serverless & $\bullet$ Product Owner experience & $\bullet$ Spring Boot, Microservices \\
+$\bullet$ Infrastructure-as-Code & $\bullet$ Technical mentoring & $\bullet$ Event-driven architecture \\
+$\bullet$ Multi-cloud strategies & $\bullet$ Agile transformation & $\bullet$ CI/CD, DevOps culture \\
+\end{tabular}
+\end{center}
 
-\subsection{Core Technical Competencies}
-\begin{tabularx}{\textwidth}{@{}X@{\hspace{0.8cm}}X@{}}
-\textbf{Cloud Platforms} & \textbf{Programming Languages} \\
-AWS, Azure, GCP (7+ years) & Java (18y), Golang (4y), TypeScript \\[0.2cm]
-\textbf{Architecture \& Leadership} & \textbf{DevOps \& Infrastructure} \\
-Microservices, Event-driven, SCS & Kubernetes, Terraform, CI/CD \\[0.2cm]
-\textbf{Enterprise Integration} & \textbf{Quality \& Testing} \\
-Salesforce, Legacy Modernization & Contract Testing, Test Automation \\
-\end{tabularx}
+\section{Professional Experience}
 
-\vspace{0.4cm}
-
-\subsection{Current Engagement}
-\textbf{LBBW - Cloud Architect} (Nov 2024 - Present) \\
-Leading "Phoenix" IT modernization for Germany's major state bank (\textasciitilde{}80 people project). Providing IT-architectural responsibility for 10 of 30 applications with Azure migration strategy and enterprise cloud transformation.
+\subsection{Cloud Architect | LBBW | Nov 2024 -- Present}
+Leading ``Phoenix'' IT modernization for Germany's major state bank (\textasciitilde80 people project). IT-architectural responsibility for 10 of 30 applications, managing Azure migration strategy and multi-cloud architecture development.
+\begin{itemize}
+\item Architecting migration of hundreds of legacy applications to Azure-based ``Skywalker'' platform
+\item Developing multi-cloud strategy (Azure, Elastisys Welkin) for enterprise flexibility
+\item Creating standardized migration templates and assessment frameworks
+\item Leading solution design workshops and stakeholder communication
+\end{itemize}
 
 \newpage
+\pagestyle{fancy}
 
-\section{Recent Professional Experience}
-
-\subsection{November 2024 — Present: Cloud Architect at LBBW}
-\textit{Landesbank Baden-Württemberg | Freelance | Remote}
-
-\textbf{Project:} "Phoenix" IT Modernization (\textasciitilde{}80 people) - Azure-based "Skywalker" platform migration
-
-\textbf{Key Responsibilities:}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \textbf{Enterprise Architecture:} IT-architectural responsibility for 10 of 30 applications across Phoenix transformation
-\item \textbf{Migration Strategy:} FirstMover Azure migration with Solution Design Template development
-\item \textbf{Multi-Cloud Planning:} Strategic multi-cloud architecture (Azure, Elastisys Welkin) for enterprise flexibility
-\item \textbf{Legacy Assessment:} Systematic evaluation of hundreds of legacy applications using R-methodology
-\item \textbf{Stakeholder Leadership:} Architecture presentations to business and IT committees, risk assessment communication
+\subsection{Cloud Architect | Union Investment | Oct 2021 -- Dec 2024}
+Led 3+ year transformation of business-critical B2B platform serving 80,000 users. Managed teams of 5-7 developers as technical Product Owner.
+\begin{itemize}
+\item Decomposed monolith into 8 Self-contained Systems using event-driven architecture
+\item Reduced deployment time from days to 30 minutes, achieved 99.9\% uptime
+\item Built microfrontend framework adopted as corporate template for group-wide modernization
+\item Implemented unified search across distributed systems processing millions of events
+\item Established comprehensive DevOps culture with 1000+ tests executing in 10 minutes
 \end{itemize}
 
-\textbf{Technologies:} Azure (AKS, Functions, Static Web Apps), Kubernetes, Oracle, MS-SQL, PostgreSQL, Spring Boot, Terraform
-
-\subsection{October 2021 — December 2024: Cloud Architect at Union Investment}
-\textit{Union Investment | German Asset Management | Freelance | Remote}
-
-\textbf{Project:} IT Landscape Modernization - Group-wide Architecture Template Development (3+ years)
-
-\textbf{Team Leadership:} Managed teams of 5-7 developers, technical Product Owner, agile coach
-
-\textbf{Key Achievements:}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \textbf{Architecture Transformation:} Led legacy monolith to Self-contained Systems (SCS) migration across 8 domain boundaries
-\item \textbf{Platform Reliability:} Achieved \textbf{99.9\% uptime} with deployment time reduction from days to \textbf{30 minutes}
-\item \textbf{Framework Development:} Created microfrontend toolkit enabling autonomous team development
-\item \textbf{Search Modernization:} Architected event-driven search across distributed systems using Azure Event Hubs and Algolia
-\item \textbf{Quality Excellence:} Established comprehensive testing pyramid with \textbf{1000+ tests, 10-minute build cycles}
-\item \textbf{DevOps Implementation:} Full CI/CD with Infrastructure-as-Code, automated dependency management
+\subsection{Middleware Engineer | Saloodo! (DHL Group) | Dec 2021 -- Nov 2024}
+Sole developer for business-critical Salesforce integration handling 10M+ records synchronization.
+\begin{itemize}
+\item Achieved 100\% production uptime over 3 years through fault-tolerant Golang architecture
+\item Optimized database queries and implemented multi-threading for 10M record processing
+\item Built comprehensive test suite (70\% coverage) with 5-second execution using Dockertest
+\item Established proactive monitoring with ELK Stack and Dynatrace
 \end{itemize}
 
-\textbf{360° Feedback Results:} Consistently rated 9-10/10 for technical competence and collaboration by team members
-
-\textbf{Technologies:} Azure (Static Web Apps, Functions, Event Hubs, AD B2C), Web Components, Lit Framework, Algolia, Terraform
-
-\subsection{December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL)}
-\textit{Saloodo! (DHL Group) | Freelance | Part-Time | Remote}
-
-\textbf{Project:} Critical middleware for Salesforce integration serving digital freight platform
-
-\textbf{Key Achievements:}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \textbf{Production Excellence:} \textbf{100\% uptime} over 3 years through fault-tolerant design
-\item \textbf{Scale Optimization:} \textbf{10M+ record} synchronization with database query optimization and multi-threading
-\item \textbf{Solo Ownership:} Complete lifecycle responsibility - architecture, development, monitoring, operations
-\item \textbf{Quality Assurance:} 70\% test coverage, 5-second test execution using Dockertest
+\subsection{Cloud Consultant | Trusted Shops | Aug 2018 -- Oct 2019}
+Modernized e-commerce trust provider's legacy systems to cloud-native AWS architecture.
+\begin{itemize}
+\item Migrated JavaEE6 monolith to microservices on AWS Lambda and EKS
+\item Implemented Salesforce/Zuora integration for subscription management
+\item Led contract testing workshops training 12 developers in Pact framework
+\item Designed serverless solutions reducing infrastructure overhead by 60\%
 \end{itemize}
 
-\textbf{Technologies:} Golang, PostgreSQL, Salesforce Lightning Cloud, Docker, Kubernetes, ELK Stack, Dynatrace
-
-\subsection{August 2018 — October 2019: Cloud Consultant at Trusted Shops}
-\textit{Trusted Shops | Freelance | Cologne}
-
-\textbf{Project:} E-commerce trust provider cloud-native transformation
-
-\textbf{Key Contributions:}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \textbf{Modernization Leadership:} JavaEE6 monolith to AWS cloud-native microservices architecture
-\item \textbf{Integration Excellence:} Seamless Salesforce, Zuora, Twilio API integration for subscription management
-\item \textbf{Infrastructure Overhaul:} Complete AWS infrastructure redesign with serverless solutions
-\item \textbf{Quality Framework:} Contract testing (Pact) implementation and Clean Code principles across 13+ repositories
-\item \textbf{Knowledge Transfer:} Technical workshops and training for multiple development teams
+\subsection{Senior Engineer \& DevOp | toom Baumarkt | Oct 2016 -- Sep 2017}
+Lead developer in 8-member Scrum team with cross-team quality leadership responsibilities.
+\begin{itemize}
+\item Delivered 5 production microservices (Java/Golang) replacing monolith components
+\item Accelerated E2E test execution by 70\% and optimized memory consumption
+\item Led quality initiatives across 4 development teams
+\item Reduced deployment time from days to hours through Docker/Kubernetes automation
 \end{itemize}
 
-\textbf{Technologies:} AWS (Lambda, EKS, API Gateway, S3, SQS), Java, Spring Boot, Micronaut, Pact, Terraform, Twilio
+\subsection{Cloud Consultant | Sedo GmbH | Jan 2020 -- Mar 2020}
+Consolidated Spring Boot and Apache Camel services into single Quarkus service, reducing infrastructure overhead by 60\%. Standardized REST APIs and evaluated Knative for serverless architecture.
+
+\subsection{Senior JavaEE Developer | Allianz Global Digital Factory | Nov 2017 -- Mar 2018}
+Developed JavaEE applications for CloudFoundry platform. Built REST/HATEOAS APIs with comprehensive documentation adopted as company standard.
 
 \newpage
 
 \section{Earlier Professional Experience}
 
-\subsection{October 2016 — September 2017: Senior Engineer at toom Baumarkt}
-\textit{via tarent solutions GmbH | Freelance | Bonn}
-
-\textbf{Role:} Lead Developer with cross-team quality leadership (4 development teams)
-
-\textbf{Key Achievements:}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \textbf{Microservices Delivery:} 5 production microservices replacing monolith components
-\item \textbf{Performance Optimization:} 70\% improvement in test execution speed, significant memory optimization
-\item \textbf{DevOps Transformation:} Deployment time reduction from days to hours through automation
-\item \textbf{Quality Leadership:} Cross-team quality initiatives, comprehensive testing framework
+\subsection{Creator of Atlassian Bamboo Add-ons | Self-Employed | Jun 2016 -- Dec 2023}
+Built sustainable 7-year business with commercial Atlassian Marketplace add-ons.
+\begin{itemize}
+\item Developed Java-based add-ons integrating code quality metrics (Checkstyle, PMD, FindBugs)
+\item Achieved global reach: 83 customers across 15+ countries
+\item Maintained product reliability and customer satisfaction for 7+ years
 \end{itemize}
 
-\textbf{Technologies:} Java, Golang, Docker, Kubernetes, Kafka, Pact, Bamboo, Swagger
-
-\subsection{January 2014 — August 2016: Early Freelancing Projects}
-\textit{Multiple Companies | Various Locations}
-
-\textbf{Notable Projects:}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \textbf{fotocommunity GmbH:} Atlassian Bamboo CI implementation with Docker integration
-\item \textbf{Silver Tours GmbH:} Infrastructure modernization for car rental platform
-\item \textbf{freshcells systems:} Jenkins CI with Docker, PHP quality standards
-\item \textbf{dailypresent GmbH:} PHP backend development, AWS/Facebook integration
+\subsection{Freelance Projects | Various Companies | Jan 2014 -- Aug 2016}
+\textbf{Key Engagements:}
+\begin{itemize}
+\item \textbf{YOOCHOOSE:} Spring applications, Jenkins CI, AWS operations
+\item \textbf{Xsite:} REST API development, Jenkins pipeline-as-code
+\item \textbf{freshcells systems:} Docker-based CI/CD implementation
+\item \textbf{Silver Tours:} Infrastructure modernization for car rental platform
+\item Implemented CI/CD pipelines for 6+ companies, reducing deployment times by 40\%
 \end{itemize}
 
-\textbf{Impact:} CI/CD adoption for 6+ companies, 40\% infrastructure cost reduction, Docker training delivery
-
-\subsection{2016 — 2023: Creator of Atlassian Bamboo Add-ons}
-\textit{Self-Employed Product Business}
-
-\textbf{Commercial Success:} Java-based add-ons for code quality integration (Checkstyle, PMD, FindBugs)
-
-\textbf{Business Impact:}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \textbf{Global Reach:} 83 customers across 15+ countries
-\item \textbf{Sustainable Revenue:} 7-year business with recurring licenses
-\item \textbf{Market Leadership:} First-mover advantage in Bamboo code quality integration
+\subsection{Head of Development \& Senior Developer | werkenntwen | Aug 2007 -- Jun 2014}
+Led development for one of Germany's largest social networks with 9+ million members.
+\begin{itemize}
+\item Progressed from PHP Developer to Head of Development managing full team
+\item Architected transformation from procedural to object-oriented MVC architecture
+\item Implemented scaling solutions including vertical/horizontal partitioning and Memcache
+\item Reduced page load times by 60\% through architecture modernization
+\item Managed complete software lifecycle: architecture, roadmap, release management
 \end{itemize}
 
-\subsection{August 2007 — June 2014: PHP Developer \& Head of Development}
-\textit{wer-kennt-wen.de | Permanent Position | Cologne}
+\section{Technical Leadership Highlights}
 
-\textbf{Platform Scale:} One of Germany's largest social networks with \textbf{9+ million members}
-
-\textbf{Career Progression:} PHP Developer → Head of Development → Backend Developer
-
-\textbf{Key Achievements:}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item \textbf{Architecture Modernization:} Procedural to object-oriented MVC architecture transformation
-\item \textbf{Scalability Solutions:} Vertical/horizontal database partitioning, extensive Memcache deployment
-\item \textbf{Team Leadership:} Full personnel responsibility including recruitment, onboarding, performance evaluation
-\item \textbf{CI/CD Pioneer:} Introduced Jenkins CI, achieved high PHPUnit test coverage
-\item \textbf{Performance Excellence:} 60\% page load time reduction through architecture modernization
+\subsection{Team Management \& Mentoring}
+\begin{itemize}
+\item Successfully led cross-functional teams of 5-9 developers across multiple enterprises
+\item Served as interim Product Owner defining sprint goals and managing backlogs
+\item Conducted technical workshops on contract testing, architecture patterns, and best practices
+\item Built development teams from ground up including hiring, onboarding, and process establishment
 \end{itemize}
 
-\textbf{Technologies:} PHP, Zend Framework, MySQL, Memcache, Jenkins, Selenium, Sphinx Search
+\subsection{Architecture \& Innovation}
+\begin{itemize}
+\item Pioneered Self-contained Systems (SCS) pattern adoption in enterprise environments
+\item Designed event-driven architectures processing millions of events across domain boundaries
+\item Created reusable frameworks and templates adopted organization-wide
+\item Established comprehensive DevOps practices reducing deployment times from days to minutes
+\end{itemize}
+
+\subsection{Business Impact Focus}
+\begin{itemize}
+\item Consistently delivered platforms with 99.9\%+ uptime in production
+\item Reduced technical debt while maintaining business continuity during migrations
+\item Enabled autonomous team development through architectural patterns
+\item Achieved measurable improvements: 70\% faster tests, 60\% less infrastructure, 10x deployment speed
+\end{itemize}
 
 \newpage
 
-\section{Education \& Qualifications}
+\section{Education}
+\subsection{Diploma in Computer Science | University of Koblenz-Landau | 2004 -- 2012}
+\begin{itemize}
+\item Degree equivalent to Master of Science, graduated magna cum laude
+\item Focus: Computational Visualistics and Software Engineering
+\item Extended duration due to concurrent professional work providing practical experience
+\end{itemize}
 
-\subsection{Academic Background}
-\textbf{Diploma in Computer Science} (2012) \\
-University of Koblenz-Landau, Germany \\
-\textit{Overall Mark: Distinction (magna cum laude equivalent)} \\
-\textit{Specialization: Computational Visualistics and Software Engineering}
+\subsection{Abitur | Gymnasium Haren | 2003}
+Advanced courses in Mathematics and Physics
 
-\textbf{Abitur} (2003) \\
-Gymnasium Haren (Ems), Germany \\
-\textit{Advanced Courses: Mathematics and Physics}
+\section{Technical Skills}
+\begin{multicols}{2}
+\textbf{Languages:} Java (18y), Golang (4y), TypeScript, PHP\\
+\textbf{Cloud:} AWS (EKS, Lambda, S3), Azure (AKS, Functions), GCP\\
+\textbf{Frameworks:} Spring Boot, Quarkus, Micronaut, Node.js\\
+\textbf{Architecture:} Microservices, Event-driven, SCS patterns\\
+\textbf{DevOps:} Docker, Kubernetes, Terraform, Helm, CI/CD\\
+\textbf{Databases:} PostgreSQL, MySQL, Oracle, Redis\\
+\textbf{Messaging:} Kafka, Azure Event Hubs, SQS\\
+\textbf{Testing:} JUnit, Mockito, Pact, Selenium, Jest
+\end{multicols}
+
+\section{Notable Projects \& Achievements}
+
+\subsection{Open Source Contributions}
+\begin{itemize}
+\item Active GitHub contributor with multiple repositories
+\item StackOverflow: 4000+ reputation points demonstrating community expertise
+\item Created automated CV generation using AI (Claude 4) with GitHub Actions
+\end{itemize}
 
 \subsection{Technical Certifications}
-\textbf{Java SE 8 TechCheck (IKM):} 93/100 score, 88th percentile (2018) \\
-\textbf{StackOverflow:} 4000+ reputation points demonstrating community contributions
-
-\section{Personal Projects \& Innovation}
-
-\subsection{2025: SchulteDev Portfolio Repository}
-\textbf{AI-Powered Professional Portfolio Management}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item Automated CV generation using Claude 4 AI
-\item Sophisticated CI/CD pipeline with GitHub Actions
-\item Professional LaTeX document generation with automated releases
+\begin{itemize}
+\item Java SE 8 TechCheck: 93/100 score, 88th percentile
+\item Extensive experience with Atlassian tools and enterprise platforms
 \end{itemize}
-\textbf{Technologies:} Node.js, Jekyll, LaTeX, GitHub Actions, Anthropic Claude 4 API
 
-\subsection{2025: AI Document Processing for Tax Software}
-\textbf{CLI Application for Document Automation}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item Automated document capture using Azure Document Intelligence
-\item Integration with SteuerSparErklärung tax software
+\subsection{Recent Innovation Projects}
+\begin{itemize}
+\item \textbf{AI Document Processing (2025):} Golang CLI for Azure Document Intelligence integration
+\item \textbf{Crypto Trading Bot (2015):} Machine learning algorithms for Bitcoin arbitrage
+\item \textbf{Jenkins-GitHub Integration (2018):} Multi-tenant architecture with automatic setup
 \end{itemize}
-\textbf{Technologies:} Golang, Azure Document Intelligence, SQLite
 
-\subsection{2018: Jenkins ↔ GitHub Integration PoC}
-\textbf{Automated Jenkins Setup for GitHub Repositories}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item Multi-tenant architecture with webhook automation
-\item Google Cloud and Firebase integration
+\section{Career Timeline}
+\begin{itemize}
+\item \textbf{2024-Present:} Cloud Architect at LBBW
+\item \textbf{2021-2024:} Cloud Architect at Union Investment \& Middleware Engineer at Saloodo!
+\item \textbf{2014-2021:} Freelance Cloud Consultant (Trusted Shops, toom, Allianz, others)
+\item \textbf{2007-2014:} Head of Development at werkenntwen (9M+ user social network)
+\item \textbf{Career Breaks:} Parental leave (2020-2021), Travel (2015), Military service (2003-2004)
 \end{itemize}
-\textbf{Technologies:} Google Cloud, Firebase, Jenkins, Java, TypeScript, Golang
 
-\subsection{2015: Crypto-Arbitrage Trading Bot}
-\textbf{Automated Trading Algorithms with Machine Learning}
-\begin{itemize}[leftmargin=0.5cm, itemsep=0.1cm]
-\item Bitcoin arbitrage with ML implementation
-\item Financial markets automation
-\end{itemize}
-\textbf{Technologies:} Java, xChange API, Weka, LibSVM, MySQL
-
-\section{Career Breaks}
-\textbf{April 2020 — September 2021:} Parental Leave (COVID-19 pandemic period) \\
-\textbf{August 2015 — December 2015:} Personal Travel Break \\
-\textbf{August 2003 — March 2004:} Mandatory Military Service (German Air Force)
-
-\vspace{0.5cm}
-
+\vfill
 \begin{center}
-\textcolor{gray}{\footnotesize This CV was generated with AI assistance to optimize content presentation and formatting.}
+\footnotesize\textit{This CV was generated using AI (Claude 4) from comprehensive professional data. Content verified for accuracy.}
 \end{center}
 
 \end{document}
