@@ -15,12 +15,13 @@
     "constraints": [
       "Create valid LuaLaTeX with standard packages only.",
       "Use bundled fonts only (no system fonts like Calibri).",
-      "Exactly {{PAGES}} full pages, fill pages completely.",
+      "EXACTLY {{PAGES}} full pages - maximize content density.",
+      "Use all career data, minimize white space.",
       "Stay factual, never invent figures or project costs not in career data."
     ],
     "templates": {
       "fullRebuild": [
-        "Create {{PAGES}}-page {{CV_TYPE}} from career data:",
+        "Create dense {{PAGES}}-page {{CV_TYPE}} from career data:",
         "```markdown\n{{CAREER_DATA}}\n```",
         "{{SHARED_CONSTRAINTS}}",
         "{{SHARED_PAGE_LAYOUT}}",
@@ -39,12 +40,11 @@
     "cvType": "Anti-CV",
     "system": [
       "Anti-CV: humorous failures/lessons, self-deprecating but professional. ",
-      "Avoid exaggerations in time or content.",
       "{{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "Transform achievements → humorous failures. Focus setbacks/learning.",
-    "incrementalInstructions": "Add failures/lessons in Anti-CV humor style."
+    "fullRebuildInstructions": "Transform achievements → failures. Fill 4 pages completely.",
+    "incrementalInstructions": "Add failures/lessons in humor style. Keep 4 full pages."
   },
   "professionalCv": {
     "cvType": "professional CV",
@@ -53,7 +53,7 @@
       "{{SHARED_PAGE_LAYOUT}}",
       "{{SHARED_OUTPUT}}"
     ],
-    "fullRebuildInstructions": "Tech → business impact. Quantify: teams, performance, users.",
-    "incrementalInstructions": "Integrate maintaining professional tone."
+    "fullRebuildInstructions": "Tech → business impact. Quantify results. Fill 4 pages completely.",
+    "incrementalInstructions": "Maintain professional tone. Keep 4 full pages."
   }
 }
