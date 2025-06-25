@@ -7,12 +7,14 @@ on:
       - '.github/workflows/update-cvs.yml'
       - '_data/**'
       - 'curriculum_vitae/**'
+      - '!curriculum_vitae/*-cv.tex'
   pull_request:
     branches: [ '*' ]
     paths:
       - '.github/workflows/update-cvs.yml'
       - '_data/**'
       - 'curriculum_vitae/scripts/**'
+      - '!curriculum_vitae/*-cv.tex'
   workflow_dispatch:
     inputs:
       rebuild_mode:
