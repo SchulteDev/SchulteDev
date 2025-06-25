@@ -28,8 +28,8 @@ flowchart LR
   style F fill: #fff8e1
 ```
 
-[update-cvs.yml](../.github/workflows/update-cvs.yml): AI transformation → .tex commits
-[release-cvs.yml](../.github/workflows/release-cvs.yml): PDF compilation → GitHub release
+- [update-cvs.yml](../.github/workflows/update-cvs.yml): AI transformation → .tex commits
+- [release-cvs.yml](../.github/workflows/release-cvs.yml): PDF compilation → GitHub release
 
 ### Processing Modes
 
