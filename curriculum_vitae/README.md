@@ -1,4 +1,7 @@
-# CV Generation
+[![Update CVs](https://github.com/SchulteDev/SchulteDev/actions/workflows/update-cvs.yml/badge.svg)](https://github.com/SchulteDev/SchulteDev/actions/workflows/update-cvs.yml)
+[![Release CVs](https://github.com/SchulteDev/SchulteDev/actions/workflows/release-cvs.yml/badge.svg)](https://github.com/SchulteDev/SchulteDev/actions/workflows/release-cvs.yml)
+
+# Markus Schulte (Schulte development) CV Generation
 
 AI-powered CV generation using Claude to transform career data into LuaLaTeX documents.
 
