@@ -6,7 +6,7 @@ permalink: /companies/saloodo
 
 ### December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL Group)
 
-*Freelance | Part-Time | Remote*
+*Freelance \| Part-Time \| Remote*
 
 **Role & Contributions:**
 

@@ -6,7 +6,7 @@ permalink: /companies/toom-baumarkt
 
 ### October 2016 — September 2017: Senior Engineer & DevOp at toom Baumarkt GmbH
 
-*Freelance | Bonn*
+*Freelance \| Bonn*
 
 **Role & Contributions:**
 

@@ -6,7 +6,7 @@ permalink: /companies/allianz-global-digital-factory
 
 ### November 2017 — March 2018: Senior JavaEE Developer at Allianz Global Digital Factory
 
-*Freelance | Munich*
+*Freelance \| Munich*
 
 **Role & Contributions:**
 

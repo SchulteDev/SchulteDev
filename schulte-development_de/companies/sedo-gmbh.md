@@ -6,7 +6,7 @@ permalink: /companies/sedo-gmbh
 
 ### January 2020 — March 2020: Cloud Consultant at Sedo GmbH
 
-*Freelance | Cologne*
+*Freelance \| Cologne*
 
 **Role & Contributions:**
 

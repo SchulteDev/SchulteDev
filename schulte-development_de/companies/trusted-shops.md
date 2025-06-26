@@ -6,7 +6,7 @@ permalink: /companies/trusted-shops
 
 ### August 2018 — October 2019: Cloud Consultant at Trusted Shops
 
-*Freelance | Cologne*
+*Freelance \| Cologne*
 
 **Role & Contributions:**
 

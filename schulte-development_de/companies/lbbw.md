@@ -6,7 +6,7 @@ permalink: /companies/lbbw
 
 ### November 2024 — Present: Cloud Architect at LBBW
 
-*Freelance | Remote*
+*Freelance \| Remote*
 
 **Role & Contributions:**
 
