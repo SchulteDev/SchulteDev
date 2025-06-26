@@ -1,470 +1,382 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[utf8]{luainputenc}
-\usepackage[T1]{fontenc}
-\usepackage[margin=1.2cm,top=1cm,bottom=1cm]{geometry}
-\usepackage{array}
-\usepackage{tabularx}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{fontspec}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{multicol}
-\usepackage{fancyhdr}
+\usepackage{tabularx}
 
-% Configure hyperlinks
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+
+\definecolor{darkred}{RGB}{139,0,0}
+\definecolor{gray}{RGB}{128,128,128}
+
 \hypersetup{
     colorlinks=true,
-    linkcolor=black,
-    urlcolor=blue,
-    citecolor=blue
+    linkcolor=darkred,
+    filecolor=darkred,
+    urlcolor=darkred,
 }
 
-% Configure sections
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
-\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\section}{\large\sffamily\bfseries\color{darkred}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\sffamily\bfseries}{}{0em}{}
 \titlespacing*{\section}{0pt}{8pt}{4pt}
 \titlespacing*{\subsection}{0pt}{6pt}{2pt}
 
-% Configure lists
-\setlist[itemize]{leftmargin=*,noitemsep,topsep=2pt,parsep=0pt}
-\setlist[enumerate]{leftmargin=*,noitemsep,topsep=2pt,parsep=0pt}
-
-% Configure page style
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\fancyfoot[C]{\thepage}
-
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=1pt,parsep=0pt}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2pt}
 
 \begin{document}
 
 % Header
-{\centering
-\textbf{\LARGE Markus Schulte}\\[2pt]
-\textbf{\large Anti-CV: A Chronicle of Professional Learning Experiences}\\[2pt]
-\small Freelance Cloud Architect \& Software Engineer | Cologne, Germany\\
-\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768 | \href{https://schulte-development.de}{schulte-development.de}\\
-\href{https://www.linkedin.com/in/markus-schulte/}{LinkedIn} | \href{https://github.com/SchulteDev}{GitHub} | \href{https://stackoverflow.com/users/1645517/markus-schulte}{StackOverflow}\\[4pt]
-}
+\begin{center}
+{\Huge\sffamily\bfseries\color{darkred} MARKUS SCHULTE}\\[2pt]
+{\Large\sffamily The Anti-CV: A Chronicle of Professional Mishaps}\\[4pt]
+{\color{gray} Freelance Cloud Architect \& Software Engineer | Cologne, Germany}\\[2pt]
+\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768 | \href{https://schulte-development.de}{schulte-development.de}
+\end{center}
 
-\section{Professional Summary}
+\section{Professional Humility Summary}
 
-\textbf{18+ Years of Creative Problem Discovery} - Cloud Architect \& Software Engineer specializing in finding innovative ways to overcomplicate simple solutions and turning straightforward projects into architectural odysseys. Currently contributing to LBBW's "Phoenix" IT modernization, where I've mastered the art of cataloging hundreds of legacy applications that nobody wants to migrate.
+\textbf{18+ years of learning what NOT to do in software engineering.} Currently serving as Cloud Architect at LBBW, where I'm discovering new and creative ways to overthink simple problems while contributing to Germany's most ambitious IT modernization project.
 
-\textbf{My Expertise in Learning the Hard Way:}
+\textbf{My Realistic Slogan:} \textit{"Crafting solutions that barely work today and definitely won't tomorrow"}
+
+\textbf{Core Incompetencies:}
 \begin{itemize}
-\item \textbf{Enterprise Architecture:} Discovered that "lift-and-shift" actually means "lift-and-pray" across AWS, Azure, and GCP
-\item \textbf{Technical Leadership:} Successfully confused 5-9 developers with over-engineered solutions while serving as Product Owner
-\item \textbf{Backend Engineering:} 18 years of Java, 4 years of Golang - still learning why "it works on my machine"
-\item \textbf{Cloud-Native Design:} Expert at creating distributed systems so complex they require distributed debugging
-\item \textbf{DevOps Excellence:} Achieved deployment automation that works perfectly 99.9\% of the time
+\item \textbf{Over-Engineering:} Consistently turned 2-week projects into 6-month architectural masterpieces
+\item \textbf{Technology Addiction:} Managed to use 47 different frameworks when 3 would have sufficed
+\item \textbf{Meeting Enthusiast:} Converted simple decisions into multi-stakeholder alignment ceremonies
+\item \textbf{Documentation Perfectionist:} Spent more time documenting code than writing it
+\item \textbf{"Just One More Microservice" Syndrome:} Single-handedly proved Conway's Law by creating systems that mirror my scattered attention span
 \end{itemize}
 
-\textbf{Business Impact Through Trial and Error:} Inconvenienced 9M+ users while learning platform optimization, increased deployment times to weeks before discovering minutes were possible, achieved impressive 0.1\% downtime through creative system failures, and established architecture templates that teams pretend to follow.
+\textbf{Epic Failure Highlights:}
+\begin{itemize}
+\item Built platforms for 9M+ users who mostly complained about load times
+\item Reduced deployment times from days to minutes, increasing daily stress by 1000\%
+\item Achieved 99.9\% uptime, spent 99.9\% of my time worrying about the 0.1\%
+\item Created architecture templates so complex that even I need documentation to understand them
+\end{itemize}
 
-\textbf{Personal Slogan:} \textit{"Making tomorrow's problems today's architecture decisions"}
+\section{Skills Assessment: What I Think I Know vs. Reality}
 
-\section{Technical Expertise}
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\textbf{What I Claim} & \textbf{Harsh Reality} \\
+\hline
+Java Expert (18 years) & Still googling "how to properly use Optional" \\
+\hline
+Cloud Native Architect & Spend 60\% of time fighting YAML indentation \\
+\hline
+Microservices Guru & Created distributed monoliths with extra steps \\
+\hline
+DevOps Excellence & Infrastructure-as-Code that works on my machine \\
+\hline
+Event-Driven Design & Event-driven debugging sessions at 3 AM \\
+\hline
+Team Leadership & Successfully confused 47 developers across 11 projects \\
+\hline
+\end{tabularx}
 
-\begin{multicols}{2}
-\subsection{Core Languages \& Frameworks}
-\textbf{Java (18y):} My programming comfort zone where I've discovered every possible way to create memory leaks and race conditions\\
-\textbf{Golang (4y):} Learned that "simple" doesn't mean "easy" the hard way\\
-\textbf{TypeScript/JavaScript:} Node.js adventures in callback hell and promise rejections\\
-\textbf{PHP (8y):} Foundation years of creative debugging techniques
-
-\subsection{Architecture \& Design Failures}
-\textbf{Microservices:} Created distributed monoliths disguised as microservices\\
-\textbf{Event-driven Architecture:} Built systems where events drive themselves off cliffs\\
-\textbf{Cloud-native Design:} Discovered that "cloud-native" often means "cloud-expensive"\\
-\textbf{Legacy Modernization:} Turned monoliths into micro-monoliths
-
-\subsection{Cloud Platform Adventures}
-\textbf{AWS (7y):} EKS, Lambda, API Gateway - learned that "serverless" still has servers\\
-\textbf{Azure (4y):} Functions, AKS, AD B2C - discovered new ways to configure authentication\\
-\textbf{GCP:} Kubernetes Engine experiments and Firebase integration surprises
-
-\subsection{DevOps Learning Experiences}
-\textbf{Infrastructure-as-Code:} Terraform plans that work in development\\
-\textbf{CI/CD Pipelines:} Jenkins builds that pass on the third try\\
-\textbf{Containerization:} Docker images that are "only" 2GB\\
-\textbf{Monitoring:} ELK Stack implementations that log everything except errors
-\end{multicols}
-
-\subsection{Skills Proficiency Matrix}
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{p{3.5cm}p{2cm}p{3.5cm}p{2cm}p{3.5cm}p{2cm}}
-Java/Spring Boot & Expert* & Microservices & Learning** & Kubernetes & Competent*** \\
-Golang & Intermediate & Event Streams & Ambitious & Terraform & Functional \\
-AWS/Azure/GCP & Multi-cloud & PostgreSQL/MySQL & Reliable & Docker & Container-ized \\
-Testing (Unit/E2E) & Comprehensive & REST/GraphQL APIs & Standards & Git/CI/CD & Automated \\
-\end{tabular}
-
-\small *Expert = Has made most possible mistakes\\
-**Learning = Still making new mistakes\\
-***Competent = Mistakes are now reproducible
-
-\newpage
-
-\section{Recent Professional Learning Experiences}
+\section{Recent Professional Disasters}
 
 \subsection{November 2024 — Present: Cloud Architect at LBBW}
-\textit{Landesbank Baden-Württemberg | Freelance | Remote}
+\textit{Landesbank Baden-Württemberg | Where I Learned Banking is Complicated}
 
-\textbf{Project Scope:} "Phoenix" IT Modernization - Teaching legacy applications about Azure through the "Skywalker" platform
+\textbf{The Challenge:} Modernize IT for Germany's major state bank. Simple, right?
 
-\textbf{My Contribution to Architectural Complexity:}
+\textbf{My Brilliant Contributions:}
 \begin{itemize}
-\item \textbf{Application Cataloging:} Discovered that "hundreds of legacy applications" means "nobody knows how many we actually have"
-\item \textbf{R-methodology Implementation:} Applied cloud migration strategies to applications that weren't designed for clouds
-\item \textbf{Platform Gap Analysis:} Found gaps in production-unused platforms that nobody had tested yet
-\item \textbf{Elastisys Welkin Evaluation:} Evaluated platforms that evaluate other platforms
-\item \textbf{Azure Architecture Design:} Created migration strategies for applications that don't want to migrate
-\item \textbf{Template Development:} Built standardized templates for non-standard applications
-\item \textbf{Stakeholder Communication:} Translated technical complexity into business confusion
+\item Cataloged hundreds of legacy applications, discovering that "legacy" is a relative term when some systems predate my career
+\item Evaluated Elastisys Welkin platform, learned that "evaluation" in enterprise means 6 months of meetings
+\item Applied R-methodology for cloud migration, realized the "R" stands for "Really Complex"
+\item Created solution templates so comprehensive that implementations require their own architecture teams
+\item Mastered the art of explaining why migrating a simple web app requires 47 Azure services
+\item Discovered that "platform-ready" applications are like unicorns—beautiful in theory, extinct in practice
 \end{itemize}
 
-\textbf{Key Learning Outcomes:}
-\begin{itemize}
-\item Banking regulations make everything more interesting
-\item "Production-unused" is a real deployment status
-\item Platform gaps are features, not bugs
-\item Azure Calculator provides estimates, not guarantees
-\item Legacy applications have trust issues with clouds
-\end{itemize}
-
-\textbf{Technologies:} Azure (AKS, Functions, Static Web Apps), Spring Boot, Tomcat, IIS, Oracle, MS-SQL, PostgreSQL
+\textbf{Key Learning:} Enterprise banking systems don't migrate to the cloud; they evolve slowly while accumulating technical debt.
 
 \subsection{October 2021 — December 2024: Cloud Architect at Union Investment}
-\textit{German Asset Management Company | Freelance | Remote}
+\textit{Where I Reinvented the Wheel, But in the Cloud}
 
-\textbf{Project:} InvestmentWelt Modernization - Converting a Liferay monolith into 8 self-contained systems
+\textbf{The Mission:} Modernize B2B sales platform serving 80,000 users. Sounds manageable.
 
-\textbf{3+ Year Journey of Discovery:}
+\textbf{My Three-Year Odyssey:}
 
 \textbf{Phase 1: Architecture Conception (Oct 2021 - Apr 2022)}
 \begin{itemize}
-\item \textbf{Monolith Analysis:} Discovered that one application was actually eight applications pretending to be friends
-\item \textbf{Microfrontend Framework:} Built a framework for frameworks to manage other frameworks
-\item \textbf{SSO Strategy:} Created single sign-on that occasionally signs users out for variety
-\item \textbf{DDD Analysis:} Applied Domain-Driven Design to reveal domain boundaries nobody wanted to cross
+\item Spent 6 months designing the perfect microfrontend architecture for what could have been a simple website
+\item Created SSO strategy so complex it required its own team to understand
+\item Designed event-driven architecture where events drove me to therapy
 \end{itemize}
 
 \textbf{Phase 2: Framework Development (May 2022 - Apr 2023)}
 \begin{itemize}
-\item \textbf{Team Building:} Assembled cross-functional teams who functioned across each other
-\item \textbf{Microfrontend Toolkit Creation:} Developed toolkit enabling Web Component-based chaos
-\item \textbf{Azure Static Web Apps:} Selected lightweight platform that became heavyweight with features
-\item \textbf{Terraform Infrastructure:} Infrastructure-as-Code that worked as advertised (surprisingly)
-\item \textbf{Automated Dependencies:} Renovate Bot updates that broke things automatically
-\item \textbf{Test Pyramid Achievement:} Built 1000+ tests with 10-minute build times (actually proud of this one)
+\item Built "microfrontend-toolkit" framework—because clearly the world needed another JavaScript framework
+\item Served as Product Owner, learned that "owner" doesn't mean I actually own anything
+\item Implemented 1000+ tests that run in 10 minutes, spent 10 months writing them
+\item Introduced automated dependency management via Renovate Bot, now get 47 pull requests daily
 \end{itemize}
 
 \textbf{Phase 3: Production Deployment (Oct 2022 - Dec 2024)}
 \begin{itemize}
-\item \textbf{Staging Architecture:} Created staging environments that staged different things
-\item \textbf{DDoS Protection:} Protected against attacks that never came
-\item \textbf{Cross-System Search:} Built unified search for systems that preferred to stay separate
-\item \textbf{Event-driven Architecture:} Events that drove themselves in circles
-\item \textbf{Algolia Integration:} Chose search solution that searches better than our code deserved
-\item \textbf{Magnolia CMS Integration:} Connected CMS to systems that didn't want content management
+\item Designed centralized search across distributed systems—because simple solutions are for simple people
+\item Evaluated ElasticSearch vs. Algolia for 3 months, chose Algolia because it had fewer knobs to configure
+\item Built event streaming architecture consuming multiple data streams, produced multiple debugging streams
+\item Successfully launched in production, immediately became responsible for every bug users discover
 \end{itemize}
 
 \textbf{360° Feedback Highlights:}
 \begin{itemize}
-\item "Brings comprehensive knowledge" (sometimes too comprehensive)
-\item "Doesn't shy away from conflicts" (enjoys them, actually)
-\item "Makes work enjoyable and professional" (professional enjoyment of complexity)
-\item "Structured approach" (some call it over-engineering)
+\item "Brings comprehensive knowledge" (translation: over-explains everything)
+\item "Doesn't shy away from conflicts" (translation: argues about semicolon placement)
+\item "Makes work enjoyable" (translation: makes meetings longer with technical tangents)
 \end{itemize}
 
-\textbf{Technologies:} Azure (Static Web Apps, Functions, Event Hubs, AD B2C), JavaScript/TypeScript, Lit, Nx, Terraform, SonarQube
-
 \subsection{December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL)}
-\textit{Digital freight platform | Freelance | Part-Time | Remote}
+\textit{Part-Time Side Quest in Data Synchronization Hell}
 
-\textbf{Challenge:} Synchronize 10 million records between Saloodo and Salesforce - solo
+\textbf{The Setup:} Simple data sync between platform and Salesforce. What could go wrong?
 
 \textbf{My Solo Adventures:}
 \begin{itemize}
-\item \textbf{Database Schema Reality:} Discovered creative interpretations of data consistency
-\item \textbf{Malformed JSON Handling:} Became expert at parsing unparseable data
-\item \textbf{Multi-threading Magic:} Made single-threaded problems into multi-threaded problems
-\item \textbf{Stateless Architecture:} Built stateless systems that remembered everything
-\item \textbf{Fault-tolerant Design:} Systems that tolerated faults by creating new ones
-\item \textbf{100\% Uptime:} Achieved by redefining what "up" means
+\item Synchronized 10 million records, learned that "big data" starts sooner than expected
+\item Achieved 100\% uptime for 3 years, developed chronic anxiety about the one day it might break
+\item Built fault-tolerant architecture so robust it survived my attempts to improve it
+\item Implemented sophisticated error handling for Saloodo's "creative" database schema
+\item Maintained 70\% test coverage, spent 30\% of time writing tests for edge cases that definitely exist
 \end{itemize}
 
-\textbf{Golang Production Debut:} First professional Golang experience - learned why gophers hide underground
-
-\textbf{Technologies:} Golang, PostgreSQL, Salesforce Lightning Cloud, Docker, Kubernetes, ELK Stack, Dynatrace
-
-\subsection{June 2016 — December 2023: Atlassian Marketplace Entrepreneur}
-\textit{Self-Employed Product Business}
-
-\textbf{Achievement:} Built sustainable 7-year business selling Bamboo Server add-ons to 83 customers across 15+ countries
-
-\textbf{Entrepreneurial Learning:}
-\begin{itemize}
-\item \textbf{Global Customer Base:} Discovered time zones exist when customers email at 3 AM
-\item \textbf{First-mover Advantage:} Being first means nobody knows if it's a good idea
-\item \textbf{Enterprise Customers:} 200+ Bamboo agents means 200+ ways things can break
-\item \textbf{Sustainable Revenue:} Recurring licenses that occasionally stop recurring
-\item \textbf{Java OSGi Framework:} Learned that plugins can plugin to other plugins
-\end{itemize}
-
-\textbf{Technologies:} Java, Atlassian SDK, OSGi, Maven, Bamboo API
-
-\newpage
-
-\section{Earlier Professional Adventures}
+\textbf{Reality Check:} Being the sole developer means every 3 AM alert has your name on it.
 
 \subsection{January 2020 — March 2020: Cloud Consultant at Sedo GmbH}
-\textit{Domain Trading Platform | Freelance | Cologne}
+\textit{Three Months of Service Consolidation}
 
-\textbf{Brief but Educational:}
+\textbf{The Mission:} Consolidate Spring Boot and Apache Camel services into single Quarkus service.
+
+\textbf{My Achievements:}
 \begin{itemize}
-\item \textbf{Service Consolidation:} Combined Spring Boot and Apache Camel into single Quarkus service (60\% infrastructure reduction)
-\item \textbf{Knative Evaluation:} Evaluated serverless that serves servers serverlessly
-\item \textbf{Contract Testing Workshops:} Taught 12 developers how contracts don't guarantee behavior
-\item \textbf{API Standardization:} Created REST standards that rested differently
+\item Reduced infrastructure overhead by 60\%, increased architectural complexity by 200\%
+\item Led Pact contract testing workshops, taught 12 developers to write tests for services that change daily
+\item Evaluated Knative for serverless, learned that "serverless" doesn't mean "serverless problems"
 \end{itemize}
-
-\textbf{Technologies:} Kubernetes, Knative, Quarkus, Apache Camel, Pact
 
 \subsection{August 2018 — October 2019: Cloud Consultant at Trusted Shops}
-\textit{E-commerce trust provider | Freelance | Cologne}
+\textit{14 Months of AWS Lambda Learning Experiences}
 
-\textbf{AWS Native Journey:}
+\textbf{The Journey:} Legacy JavaEE6 modernization and cloud-native transformation.
 
-\textbf{Subscription Team (Aug 2018 - Apr 2019):}
+\textbf{Phase 1: Subscription Team Chaos (Aug 2018 - Apr 2019)}
 \begin{itemize}
-\item \textbf{JavaEE6 Migration:} Moved from monolith to microservice chaos
-\item \textbf{AWS Infrastructure Overhaul:} Rebuilt zuora-callout, zuora-lambdas, zuora-create-invoice-lambda
-\item \textbf{Salesforce/Zuora Integration:} Connected systems that spoke different languages
-\item \textbf{MyTS Portal Development:} Customer self-service that required customer service
-\item \textbf{Docker Development Environment:} Containerized development that developed containers
+\item Built AddShop, AddOption, AddLocalStore functionality—three names for one confused feature
+\item Integrated Salesforce/Zuora for subscription management, discovered integration is 90\% error handling
+\item Implemented Zuora debit memo handling, learned that financial systems hate creativity
+\item Established CI/CD pipelines, now deployments fail faster and more consistently
 \end{itemize}
 
-\textbf{MARS Unit (May 2019 - Oct 2019):}
+\textbf{Phase 2: MARS Unit Adventures (May - Oct 2019)}
 \begin{itemize}
-\item \textbf{SMS Integration:} Selected Twilio for messages that sometimes arrived
-\item \textbf{Micronaut Framework:} Evaluated lightweight frameworks that weren't lighter
-\item \textbf{Clean Code Refactoring:} Applied Clean Code to template-service and message-delivery-service
-\item \textbf{Lambda Template Creation:} Created reusable AWS Lambda templates for unique use cases
-\item \textbf{Load Testing:} Tested limits and found them
+\item Evaluated SMS providers, selected Twilio, spent 2 months configuring "Hello World" messages
+\item Created reusable AWS Lambda template with Micronaut, template now requires template to use
+\item Applied Clean Code principles across 13+ repositories, made code so clean it's sterile
+\item Conducted load testing, discovered system breaks in creative new ways under pressure
 \end{itemize}
 
-\textbf{Repository Chaos:} Contributed to 13+ repositories with creative naming conventions
+\section{Earlier Career Catastrophes}
 
-\textbf{Technologies:} AWS (Lambda, API Gateway, EKS, S3, SQS), Java, Spring Boot, Micronaut, Pact, Terraform, Twilio, Salesforce, Zuora
+\subsection{November 2017 — March 2018: Senior JavaEE Developer at Allianz}
+\textit{Via SinnerSchrader | Munich Cloud Adventures}
 
-\subsection{November 2017 — March 2018: Senior JavaEE Developer at Allianz Global Digital Factory}
-\textit{via SinnerSchrader Deutschland GmbH | Freelance | Munich}
+Successfully deployed 3 applications to CloudFoundry production, learned that "successfully deployed" and "actually working" are different concepts. Created comprehensive API documentation that nobody reads but everyone approves.
 
-\textbf{CloudFoundry Adventures:}
+\subsection{October 2016 — September 2017: Senior Engineer at toom Baumarkt}
+\textit{Via tarent solutions | "You Build It, You Run It" Learning Experience}
+
+\textbf{Team Leadership Highlights:}
 \begin{itemize}
-\item \textbf{JavaEE Applications:} Built applications for platforms that platformed applications
-\item \textbf{REST/HATEOAS APIs:} Created hypermedia APIs that linked to more confusion
-\item \textbf{Comprehensive Documentation:} Documented everything except the things that mattered
+\item Led weekly cross-team quality initiatives across 4 teams, standardized confusion company-wide
+\item Accelerated end-to-end test execution by 70\%, discovered 70\% more ways tests can fail
+\item Introduced Swagger, HtmlUnit, OWASP, Apache JMeter—because one tool is never enough
+\item Received formal recommendations from tarent leadership for "comprehensive technical expertise and process improvement capabilities"
 \end{itemize}
 
-\textbf{Technologies:} Java, Spring Boot, JavaEE, CloudFoundry, REST/HATEOAS, MySQL, Redis
-
-\subsection{October 2016 — September 2017: Senior Engineer at toom Baumarkt GmbH}
-\textit{via tarent solutions GmbH | Freelance | Bonn}
-
-\textbf{"Butterkekse" Team Leadership:}
+\textbf{Microservices Adventures:}
 \begin{itemize}
-\item \textbf{Microservices Development:} Built microservices that micro-managed each other
-\item \textbf{Cross-team Quality Leadership:} Led quality initiatives across 4 teams (quality results varied)
-\item \textbf{Performance Optimization:} Achieved 70\% test execution improvement (accidentally)
-\item \textbf{Memory Consumption:} Tuned Garbage Collection to collect less garbage
-\item \textbf{Docker Containerization:} Put microservices in containers that escaped occasionally
+\item Developed 5 production microservices, created distributed debugging experiences
+\item Implemented Java GC tuning, learned that memory optimization is an art form nobody masters
+\item Containerized services with Docker, proved that containers don't contain complexity
 \end{itemize}
 
-\textbf{Learning Outcomes:}
+\subsection{January 2014 — August 2016: Early Freelancing Adventures}
+\textit{Multiple Short-Term Reality Checks}
+
+\textbf{Notable Mishaps:}
 \begin{itemize}
-\item "You build it, you run it" means "you break it, you fix it"
-\item Maven lifecycle integration requires lifecycle management
-\item Bamboo CI builds bamboo slowly but surely
-\item OWASP security tools find security in unexpected places
+\item \textbf{fotocommunity GmbH (May 27-29, 2015):} Three-day Docker/Bamboo consulting, learned that some problems require longer than three days
+\item \textbf{freshcells systems:} Implemented Jenkins CI with Docker, discovered Docker learning curve is vertical
+\item \textbf{Silver Tours GmbH:} Infrastructure modernization for car rental platform, modernized infrastructure while preserving legacy complexity
+\item \textbf{YOOCHOOSE GmbH:} Spring applications on AWS, learned AWS has more services than I have problems
 \end{itemize}
 
-\textbf{Technologies:} Java, Golang, Ruby, Docker, Kubernetes, Kafka, Selenium/Geb/Spock, Pact, Bamboo
-
-\subsection{January 2014 — August 2016: Freelancing Learning Curve}
-\textit{Multiple Short-Term Contracts}
-
-\textbf{Client Adventures:}
+\textbf{Common Themes:}
 \begin{itemize}
-\item \textbf{YOOCHOOSE GmbH:} Spring applications that sprang unexpectedly
-\item \textbf{Xsite GmbH:} Pipeline-as-code that coded its own pipelines
-\item \textbf{freshcells systems:} Docker PHP quality standards (oxymoron achieved)
-\item \textbf{fotocommunity GmbH:} 3-day Bamboo implementation (record time for confusion)
-\item \textbf{Silver Tours GmbH:} Car rental platform modernization (cars still needed drivers)
-\item \textbf{AffiliCon GmbH:} Jenkins infrastructure (built infrastructure for building infrastructure)
-\item \textbf{dailypresent GmbH:} AWS/Facebook integration (social cloud networking)
+\item Consistently over-engineered solutions for simple problems
+\item Introduced CI/CD to teams not ready for continuous anything
+\item Established code quality frameworks that measured everything except actual quality
 \end{itemize}
-
-\textbf{Technologies:} Java, Spring Boot, PHP, AWS, Jenkins, Docker, Facebook Graph API
 
 \subsection{August 2007 — June 2014: PHP Developer at werkenntwen}
-\textit{German Social Network | Permanent Position}
+\textit{Social Network for 9+ Million Users | My Formative Failures}
 
-\textbf{Career Evolution:} PHP Developer → Head of Development → Backend Developer (full circle achieved)
-
-\textbf{Platform Achievements:}
+\textbf{Career Evolution:}
 \begin{itemize}
-\item \textbf{9+ Million Members:} Scaled platform for millions of users who occasionally logged in
-\item \textbf{Architecture Modernization:} Transformed procedural spaghetti into object-oriented lasagna
-\item \textbf{Zend Framework Migration:} Migrated group system and messaging from legacy to framework
-\item \textbf{REST API Development:} Created mobile API that mobilized developers
-\item \textbf{Security Implementation:} Protected against brute-force, XSS, CSRF, SQL-injection (after experiencing them)
+\item \textbf{PHP Developer (2007-2008):} Learned object-oriented programming by breaking procedural code
+\item \textbf{Head of Development (2008-2010):} Managed team while learning what management actually means
+\item \textbf{Backend Developer (2010-2014):} Returned to development with management scars
 \end{itemize}
 
-\textbf{Head of Development Responsibilities:}
+\textbf{Key Accomplishments That Taught Me Humility:}
 \begin{itemize}
-\item \textbf{Change Management:} Managed changes that changed everything except what needed changing
-\item \textbf{Team Leadership:} Led teams through personnel planning, recruitment, and performance evaluation
-\item \textbf{Load Testing:} Discovered platform limits through creative stress testing
-\item \textbf{Quality Assurance:} Implemented metrics that measured everything except quality
+\item Scaled architecture for 9+ million users, learned that users scale problems exponentially
+\item Migrated from procedural to OOP using Zend Framework, created object-oriented spaghetti code
+\item Implemented comprehensive security measures after discovering every possible vulnerability the hard way
+\item Introduced CI with Jenkins, automated the discovery of integration problems
+\item Led team through platform stress testing, stressed team and platform equally
 \end{itemize}
 
-\textbf{Technologies:} PHP, Zend Framework, MySQL, Memcache, Jenkins, PHPUnit, Selenium, Sphinx
+\textbf{Management Lessons:}
+\begin{itemize}
+\item Personnel planning taught me that people are unpredictable variables
+\item Code reviews revealed that everyone writes "readable" code differently
+\item Release management: learned that "works on my machine" isn't a deployment strategy
+\end{itemize}
 
-\newpage
+\section{Personal Project Hall of Fame}
 
-\section{Personal Projects \& Experiments}
+\subsection{June 2016 — December 2023: Atlassian Bamboo Add-ons}
+\textit{Seven Years of Supporting Other People's CI Problems}
+
+Built commercial add-ons for code quality integration in Bamboo Server. Served 83 customers across 15+ countries, learned that enterprise customers expect features to work reliably. Maintained 7+ years of backward compatibility, discovered that "deprecated" doesn't mean "unused."
 
 \subsection{2025: SchulteDev Portfolio Repository}
-\textbf{Challenge:} Automate professional portfolio management with AI
+\textit{AI-Powered CV Generation | Because Manual Work is for Humans}
 
-\textbf{Creative Solutions:}
-\begin{itemize}
-\item \textbf{AI-Powered CV Generation:} Used Claude 4 to write about myself (meta-automation achieved)
-\item \textbf{GitHub Actions Automation:} Automated automation with automated workflows
-\item \textbf{LaTeX Document Generation:} Professional PDFs generated unprofessionally
-\item \textbf{Monorepo Management:} Organized chaos in a single repository
-\end{itemize}
+Created centralized monorepo with AI-powered CV generation using Claude 4 API. Automated professional document creation because apparently writing about myself manually wasn't meta enough. Features sophisticated GitHub Actions workflows that work perfectly until I need to change something.
 
-\textbf{Technologies:} Node.js, Jekyll, LaTeX/pdflatex, GitHub Actions, Anthropic Claude 4 API
+\subsection{January 2025: AI Document Processing for Tax Software}
+\textit{Golang CLI for Azure Document Intelligence Integration}
 
-\subsection{January 2025 — May 2025: AI Document Processing}
-\textbf{Project:} Tax software document automation using Azure Document Intelligence
+Built CLI application for automated document capture using Azure Document Intelligence. Integrated with SteuerSparErklärung tax software because apparently tax season wasn't complicated enough without AI involvement.
 
-\textbf{Learning Experience:}
-\begin{itemize}
-\item \textbf{CLI Application:} Built command-line tools that commanded themselves
-\item \textbf{Azure Document Intelligence:} AI that intelligently processed documents unintelligently
-\item \textbf{SQLite Integration:} Local database for global document problems
-\end{itemize}
+\subsection{April 2018: Jenkins ↔ GitHub Integration PoC}
+\textit{Automatic CI Setup | Because Manual Setup Builds Character}
 
-\textbf{Technologies:} Golang, Azure Document Intelligence, SQLite
+Created integration for automatic Jenkins setup with GitHub repositories. Implemented multi-tenant architecture on Google Cloud, learned that "automatic" and "simple" are mutually exclusive concepts.
 
-\subsection{April 2018 — July 2018: Jenkins ↔ GitHub Integration PoC}
-\textbf{Concept:} Automatic Jenkins setup for GitHub repositories
+\subsection{January 2015: Crypto-Arbitrage Trading Bot}
+\textit{Machine Learning Meets Financial Markets}
 
-\textbf{Over-engineering Achievement:}
-\begin{itemize}
-\item \textbf{Multi-tenant Architecture:} Built for multiple tenants who didn't exist
-\item \textbf{Webhook Integration:} Automated webhooks that hooked automatically
-\item \textbf{Cloud Infrastructure:} Google Cloud + Firebase + Jenkins integration maze
-\end{itemize}
+Developed automated Bitcoin arbitrage algorithms with machine learning. Built using Java, xChange API, Weka, and LibSVM. Discovered that crypto markets are more unpredictable than my code, which is saying something.
 
-\textbf{Technologies:} Google Cloud, Firebase, Jenkins, Java, TypeScript, Golang
-
-\subsection{January 2015 — July 2015: Crypto-Arbitrage Trading Bot}
-\textbf{Ambitious Goal:} Automated Bitcoin arbitrage trading with machine learning
-
-\textbf{Educational Outcomes:}
-\begin{itemize}
-\item \textbf{Arbitrage Algorithms:} Discovered that arbitrage opportunities arbitrage themselves
-\item \textbf{Machine Learning:} Applied Weka and LibSVM to predict unpredictable markets
-\item \textbf{Trading APIs:} Integrated xChange API for exchanges that changed constantly
-\item \textbf{Financial Reality:} Learned that trading bots trade education for experience
-\end{itemize}
-
-\textbf{Technologies:} Java, xChange API, Weka, LibSVM, MySQL, JUnit
-
-\section{Education \& Certifications}
+\section{Educational Misadventures}
 
 \subsection{2004 — 2012: Diploma in Computer Science, University of Koblenz-Landau}
-\textbf{Achievement:} Completed Computer Science degree with distinction (magna cum laude equivalent)
+\textit{Eight Years of Theoretical Learning vs. Practical Reality}
 
-\textbf{Extended Learning Journey:}
+\textbf{Official Achievement:} Graduated with distinction (magna cum laude equivalent) in Computer Science.
+
+\textbf{Unofficial Reality:}
 \begin{itemize}
-\item \textbf{Duration Management:} Extended standard program duration through simultaneous full-time employment
-\item \textbf{Practical Integration:} Combined academic theory with real-world software development chaos
-\item \textbf{Computational Visualistics Focus:} Specialized in making computers visualize data incorrectly
-\item \textbf{Work-Study Balance:} Mastered the art of studying while working and working while studying
+\item Extended duration because I worked full-time while studying—learned multitasking is a myth
+\item Specialized in Computational Visualistics, spent career mostly avoiding graphics programming
+\item Focused on software architecture and web technologies, still debugging CSS in 2024
+\item Studied algorithms and database systems, real world taught me optimization is an art
 \end{itemize}
 
-\textbf{Key Areas:} Software architecture, web technologies, algorithms, database systems, Human-Computer Interaction
-
-\subsection{2003: Abitur (German High School Diploma)}
-\textbf{School:} Gymnasium Haren (Ems), Germany
-
-\textbf{Early Technical Discoveries:}
+\textbf{Academic vs. Professional Disconnect:}
 \begin{itemize}
-\item \textbf{Typing Course:} Sixth-grade typing course (last formal IT education in school)
-\item \textbf{Self-taught PHP:} Learned PHP from reference books (2000-2003)
-\item \textbf{Homepage Creation:} Built forums for friend groups and graduating class
-\item \textbf{Computer Games:} Discovered alternative career motivation through gaming
+\item University taught clean theoretical solutions, industry provided messy practical problems
+\item Learned UML modeling extensively, career spent translating UML back to working code
+\item Database theory was elegant, production databases are horror shows with constraints
 \end{itemize}
 
-\textbf{Advanced Courses:} Mathematics and Physics (preparation for technical overthinking)
+\subsection{2003: Abitur | Mathematics and Physics}
+\textit{Gymnasium Haren | Early Signs of Over-Analytical Tendencies}
 
-\subsection{Certifications \& Recognition}
-\begin{itemize}
-\item \textbf{StackOverflow:} 4000+ reputation points (professional procrastination achievement)
-\item \textbf{Java SE 8 TechCheck (IKM):} 93/100 score, 88th percentile (June 2018)
-\item \textbf{GitHub:} Open-source contributor (contributing complexity to open projects)
-\end{itemize}
+Graduated with advanced courses in Mathematics and Physics. Self-taught PHP using reference materials, created forums for friend group and graduating class. Early indication of tendency to solve social problems with technical solutions.
 
-\section{Career Breaks \& Life Learning}
+\textbf{First IT Contact:} Sixth-grade typing course was my last formal IT education at school. Everything after that was trial, error, and Stack Overflow.
+
+\section{Career Breaks: When Life Forced Better Decisions}
 
 \subsection{April 2020 — September 2021: Parental Leave}
-\textbf{Learning Experience:} Combined family time with COVID-19 lockdowns
+\textit{18 Months of Perspective}
 
-\textbf{Skills Developed:}
+Combined COVID-19 pandemic with new parent responsibilities. Learned that managing toddler tantrums is excellent preparation for stakeholder management. Discovered that 2 AM debugging sessions are less frustrating than 2 AM diaper changes.
+
+\textbf{Key Insights:}
 \begin{itemize}
-\item \textbf{Crisis Management:} Managed toddlers and global pandemic simultaneously
-\item \textbf{Remote Work Mastery:} Perfected video calls with background child chaos
-\item \textbf{Market Timing:} Chose career break during industry-wide project slowdown
-\item \textbf{Multitasking:} Changed diapers while monitoring production systems
+\item Work-life balance isn't a technical architecture problem
+\item Some systems (family) can't be refactored, only adapted to
+\item Real emergencies put software emergencies in perspective
 \end{itemize}
 
 \subsection{August 2015 — December 2015: Personal Travel Break}
-\textbf{Cultural Education:} Extended travel exploring different countries and debugging cultures
+\textit{Four Months of Non-Digital Problem Solving}
 
-\textbf{International Learning:}
-\begin{itemize}
-\item \textbf{Cross-cultural Communication:} Discovered that WiFi passwords are universal language
-\item \textbf{Time Zone Management:} Mastered async communication across continents
-\item \textbf{Mobile Development:} Optimized travel apps through extensive field testing
-\item \textbf{Global Perspective:} Confirmed that software bugs exist worldwide
-\end{itemize}
+Extended travel period exploring different countries and cultures. Learned that most world problems aren't solved with more microservices. Discovered that human communication protocols are more complex than REST APIs.
 
 \subsection{August 2003 — March 2004: Military Service}
-\textbf{Mandatory Service:} German air force basic training and operational assignment
+\textit{Mandatory Reality Check}
 
-\textbf{Military IT Learning:}
+Completed mandatory military service at Nassau-Dietz-Barracks (Netherlands) and Hopsten airbase (Germany). Learned that hierarchical systems work differently when you can't refactor the chain of command. Discovered that "following orders" and "following best practices" require different skill sets.
+
+\section{Certifications and Recognition}
+
+\textbf{StackOverflow:} 4000+ reputation points—proof that I've asked enough questions to help others avoid my mistakes.
+
+\textbf{Java SE 8 TechCheck (IKM):} 93/100 score, 88th percentile. Still googling basic Java concepts, but apparently I'm in the 88th percentile of people who admit it.
+
+\textbf{GitHub:} Open-source contributor—my commits are public evidence of my learning process.
+
+\section{Technical Skills: A Realistic Assessment}
+
+\textbf{Programming Languages:}
 \begin{itemize}
-\item \textbf{Systems Administration:} Managed systems that couldn't be rebooted
-\item \textbf{Network Security:} Learned physical security for logical systems
-\item \textbf{Team Coordination:} Coordinated with teams across language barriers
-\item \textbf{Equipment Reliability:} Maintained hardware that predated software
+\item \textbf{Java (18 years):} Mother tongue, still learning dialects
+\item \textbf{Golang (4 years):} Preferred for microservices, preferred by microservices for revenge
+\item \textbf{PHP (8 years):} Foundation language, foundation built on shifting sand
+\item \textbf{TypeScript/JavaScript:} As needed, need therapy as result
 \end{itemize}
 
-\textbf{Locations:} Nassau-Dietz-Barracks (Budel, NL), Hopsten Airbase (Rheine, DE)
+\textbf{Cloud Platforms:}
+\begin{itemize}
+\item \textbf{AWS:} 7+ years of creative problem-solving with 200+ services
+\item \textbf{Azure:} 4+ years of learning Microsoft's interpretation of cloud computing
+\item \textbf{GCP:} Enough experience to know it exists and competes with AWS/Azure
+\end{itemize}
 
----
+\textbf{Architecture Patterns:}
+\begin{itemize}
+\item \textbf{Microservices:} Expert at creating distributed monoliths
+\item \textbf{Event-driven:} Events drive architecture, architecture drives debugging sessions
+\item \textbf{Self-contained Systems:} Systems contain themselves, I contain panic
+\end{itemize}
 
 \vfill
 
-\small\textit{This Anti-CV was generated with assistance from Claude 4 (Anthropic) for humorous self-reflection on professional growth through challenges and learning experiences. All technical achievements and career progression are factually accurate, presented with self-deprecating humor to highlight the learning journey inherent in software engineering and cloud architecture. The failures mentioned are creative reinterpretations of actual successes, designed to demonstrate growth mindset and authentic professional development.}
+\begin{center}
+\small\color{gray}
+\textit{This Anti-CV was generated with assistance from AI (Claude 4) based on comprehensive professional data.}\\
+\textit{All failures are authentic, all lessons learned the hard way.}\\
+\textit{Compiled using LaTeX because even document generation should be unnecessarily complex.}
+\end{center}
 
 \end{document}
