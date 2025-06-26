@@ -29,3 +29,5 @@ permalink: /companies/trusted-shops
 **Key Technologies:**
 AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut, Pact, Terraform,
 Docker, Twilio, Salesforce, Zuora.
+
+[Back]({{ site.url }}/)

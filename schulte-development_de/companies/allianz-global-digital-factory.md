@@ -26,3 +26,5 @@ permalink: /companies/allianz-global-digital-factory
 
 **Key Technologies:**
 Java, Spring Boot, JavaEE, CloudFoundry (AWS-hosted), REST/HATEOAS, MySQL, Redis.
+
+[Back]({{ site.url }}/)

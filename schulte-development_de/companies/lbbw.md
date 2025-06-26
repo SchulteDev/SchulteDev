@@ -34,3 +34,5 @@ permalink: /companies/lbbw
 **Key Technologies:**
 Azure (AKS, Functions, Static Web Apps), Kubernetes, Spring Boot, Apache Tomcat, Microsoft IIS,
 Oracle, MS-SQL, PostgreSQL.
+
+[Back]({{ site.url }}/)

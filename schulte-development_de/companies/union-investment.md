@@ -31,3 +31,5 @@ permalink: /companies/union-investment
 Azure (Static Web App, Functions, Event Hubs, AD B2C), JavaScript/TypeScript, Node.js, Java, Lit
 framework, Self-contained Systems (SCS), Microfrontends, Microservices, Event-driven Architecture,
 Algolia, Nx, Lerna, Terraform, Docker, SonarQube, Jest, Playwright.
+
+[Back]({{ site.url }}/)

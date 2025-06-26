@@ -22,3 +22,5 @@ permalink: /companies/atlassian-bamboo-add-ons
 
 **Key Technologies:**
 Java, Atlassian SDK, Maven, JUnit.
+
+[Back]({{ site.url }}/)

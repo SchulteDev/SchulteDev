@@ -28,3 +28,5 @@ permalink: /companies/saloodo
 
 **Key Technologies:**
 Golang, PostgreSQL, Salesforce Lightning Cloud, Docker, Kubernetes, ELK Stack, Dynatrace.
+
+[Back]({{ site.url }}/)
