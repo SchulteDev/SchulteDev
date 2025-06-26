@@ -4,6 +4,10 @@
 
 Source of [schulte-development.de](https://schulte-development.de).
 
+The homepage https://schulte-development.de is used for marketing by Markus Schulte / Schulte
+development. Markus is a freelancer and presents his knowledge and experience on his professional
+website.
+
 ## 🛠️ Tech Stack
 
 - [Jekyll](https://jekyllrb.com) static site generator
