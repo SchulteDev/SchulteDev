@@ -9,7 +9,6 @@ import {CvType} from './config.js';
 const SharedConfigSchema = z.object({
   structure: z.object({
     pages: z.number().positive(),
-    pageBreak: z.string(),
     output: z.string(),
   }),
   pageLayout: z.array(z.string()),

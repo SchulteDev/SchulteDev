@@ -2,7 +2,6 @@
   "shared": {
     "structure": {
       "pages": 4,
-      "pageBreak": "\\newpage after page 1.",
       "output": "LuaLaTeX code only."
     },
     "pageLayout": [
@@ -14,7 +13,7 @@
     "constraints": [
       "Valid LuaLaTeX with standard packages only.",
       "Bundled fonts only.",
-      "HARD LIMIT: Exactly {{PAGES}} filled pages.",
+      "Exactly {{PAGES}} filled pages.",
       "Prioritize most recent and impactful experiences.",
       "Omit older/less relevant content if needed to fit {{PAGES}} pages.",
       "Stay factual."
