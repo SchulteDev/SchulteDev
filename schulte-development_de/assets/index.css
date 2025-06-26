@@ -59,6 +59,11 @@
   flex: 1;
 }
 
+/* Special handling for sections with odd number of boxes */
+.page-section:has(.box:nth-child(odd):last-child:not(:first-child)) {
+  justify-content: flex-start;
+}
+
 @media only screen and (max-width: 1899px) {
   .box {
     width: 20rem;
