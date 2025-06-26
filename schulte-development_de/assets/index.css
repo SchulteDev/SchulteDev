@@ -17,11 +17,11 @@ body {
   padding: 3rem 1.5rem; /* Adjusted padding to ensure space on sides */
   background: #ffffff;
   border-bottom: 1px solid #eee;
-  display: flex; 
-  flex-wrap: wrap; 
-  justify-content: center; 
-  align-items: stretch; /* Ensure boxes stretch to same height */
-  gap: 1.5rem; /* Add gap for spacing between boxes */
+  display: flex !important; /* Force flex display */
+  flex-wrap: wrap !important; /* Force wrapping */
+  justify-content: center !important; /* Force centering */
+  align-items: stretch !important; /* Ensure boxes stretch to same height */
+  gap: 1.5rem !important; /* Force gap for spacing between boxes */
 }
 
 .page-section:nth-of-type(odd) {
@@ -29,8 +29,8 @@ body {
 }
 
 .box {
-  display: flex;
-  flex-direction: column;
+  display: flex !important; /* Force flex display for inner box content */
+  flex-direction: column !important;
   vertical-align: top;
   color: #3d3852;
   background: #fff;
@@ -40,12 +40,14 @@ body {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   overflow: hidden;
+  margin: 0 !important; /* Ensure no external margins interfere */
   /* Adjusted flex properties for better wrapping */
-  flex-grow: 1; 
-  flex-shrink: 1; 
-  flex-basis: 20rem; /* Base width for each box */
-  max-width: 22rem; /* Max width to prevent them from becoming too wide on large screens */
-  min-width: 18rem; /* Minimum width to prevent squishing */
+  flex-grow: 1 !important; /* Allow boxes to grow */
+  flex-shrink: 1 !important; /* Allow boxes to shrink */
+  flex-basis: 20rem !important; /* Base width for each box */
+  max-width: 22rem !important; /* Max width to prevent them from becoming too wide on large screens */
+  min-width: 18rem !important; /* Minimum width to prevent squishing */
+  min-height: 150px !important; /* Ensure a minimum height */
 }
 
 .box img {
@@ -62,7 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  text-decoration: none !important;
+  text-decoration: none !important; /* Force no text decoration */
 }
 
 .box:hover {
@@ -90,30 +92,46 @@ body {
 
 /* Special handling for sections with odd number of boxes */
 .page-section:has(.box:nth-child(odd):last-child:not(:first-child)) {
-  justify-content: center; 
+  justify-content: center !important; /* Changed to center for consistency */
 }
 
 @media only screen and (max-width: 999px) {
   .box {
-    flex-basis: calc(50% - 1.5rem); 
-    max-width: calc(50% - 1.5rem); 
+    flex-basis: calc(50% - 1.5rem) !important; /* 2 items per row on medium screens, accounting for gap */
+    max-width: calc(50% - 1.5rem) !important; /* Ensure 2 items per row */
   }
 }
 
 @media only screen and (max-width: 750px) {
   .page-section {
-    flex-direction: column;
-    align-items: center;
-    padding-left: 1rem; 
-    padding-right: 1rem; 
-    gap: 1.75rem; 
+    flex-direction: column !important;
+    align-items: center !important;
+    padding-left: 1rem !important; /* Adjust padding for mobile */
+    padding-right: 1rem !important; /* Adjust padding for mobile */
+    gap: 1.75rem !important; /* Adjust gap for mobile stacking */
   }
 
   .box {
-    width: 90%; 
-    flex-basis: auto; 
-    min-width: unset; 
-    max-width: 90%; 
+    width: 90% !important; /* Full width on mobile, with some padding */
+    flex-basis: auto !important; /* Reset flex-basis for mobile to allow width to take over */
+    min-width: unset !important; /* Remove min-width on mobile to allow max-width 90% to take precedence */
+    max-width: 90% !important; /* Ensure it doesn't get too wide on mobile */
+  }
+
+  .hero-section {
+    padding: 3rem 1rem !important; /* Smaller padding for mobile hero section */
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem !important; /* Smaller font size for mobile heading */
+  }
+
+  .hero-section p {
+    font-size: 1rem !important; /* Smaller font size for mobile paragraph */
+  }
+
+  .hero-section .slogan {
+    font-size: 1.2rem !important; /* Smaller font size for mobile slogan */
   }
 }
 

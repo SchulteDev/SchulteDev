@@ -7,7 +7,7 @@ css: /assets/index.css
   <h1>Markus Schulte: Cloud Architect & Software Engineer</h1>
   <p>
     With 18+ years of experience (11+ freelance), I specialize in enterprise modernization and cloud-native transformations.
-    Currently, I serve as a Cloud Architect at LBBW, contributing to the "Phoenix" IT modernization for Germany's major state bank.
+    Currently, I serve as a Cloud Architect at LBBW, contributing to the IT modernization for Germany's major state bank.
   </p>
   <p class="slogan">"Crafting solutions that thrive today and tomorrow"</p>
 </div>
