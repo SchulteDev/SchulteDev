@@ -1,24 +1,24 @@
 - title: Technical cloud architect
   img: technical-cloud-architect.jpeg
   description: >
-    As a technical cloud architect, I design IT systems and support the implementing team in 
+    As a technical cloud architect, I design IT systems and support the implementing team in
     realizing them
   skills: Cloud, design
+- title: Leadership
+  img: leadership.jpeg
+  description: >
+    I can lead a team of specialists to the goal and, in addition to mentoring, also set the
+    direction internally and carry out stakeholder management externally
+  skills: Strategic thinking, Communication, Decision-making, Mentorship, Stakeholder management
 - title: Programming
   img: programming.jpeg
   description: >
-    I have a lot of experience as an engineer, usually working with Java or Golang and some 
+    I have a lot of experience as an engineer, usually working with Java or Golang and some
     TypeScript in the last years.
   skills: Clean code, Java, Golang, Git, Build tools
 - title: DevOp
   img: devop.jpeg
   description: >
-    In addition to designing and implementing software, I am also proficient in continuous 
+    In addition to designing and implementing software, I am also proficient in continuous
     integration and operation
   skills: DevOps, CI/CD, Monitoring
-- title: Leadership
-  img: leadership.jpeg
-  description: >
-    I can lead a team of specialists to the goal and, in addition to mentoring, also set the 
-    direction internally and carry out stakeholder management externally
-  skills: Strategic thinking, Communication, Decision-making, Mentorship, Stakeholder management
