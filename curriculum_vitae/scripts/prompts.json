@@ -6,7 +6,7 @@
       "output": "LuaLaTeX code only."
     },
     "pageLayout": [
-      "P1: Header, CV summary, key impacts, most important skills table (no borders).",
+      "P1: Header, CV summary, key impacts, skills overview table (no borders).",
       "P2: Recent roles (LBBW, Union Investment, Saloodo!, Trusted Shops).",
       "P3: Earlier experiences, personal projects.",
       "P4: Education, skills, career breaks; footer: AI disclaimer."
@@ -14,13 +14,14 @@
     "constraints": [
       "Valid LuaLaTeX with standard packages only.",
       "Bundled fonts only.",
-      "Exactly {{PAGES}} filled pages.",
-      "Use all career data, minimize empty space on pages.",
+      "HARD LIMIT: Exactly {{PAGES}} filled pages.",
+      "Prioritize most recent and impactful experiences.",
+      "Omit older/less relevant content if needed to fit {{PAGES}} pages.",
       "Stay factual."
     ],
     "templates": {
       "fullRebuild": [
-        "Create dense {{PAGES}}-page {{CV_TYPE}}",
+        "Create dense {{PAGES}}-page {{CV_TYPE}}.",
         "from career data:```markdown\n{{CAREER_DATA}}\n```.",
         "Page layout: {{SHARED_PAGE_LAYOUT}}",
         "Constraints: {{SHARED_CONSTRAINTS}}",
