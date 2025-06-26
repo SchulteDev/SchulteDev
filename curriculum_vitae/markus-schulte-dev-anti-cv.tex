@@ -1,173 +1,212 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[margin=0.75in]{geometry}
-\usepackage{fontspec}
-\usepackage{titlesec}
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.5cm]{geometry}
 \usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multicol}
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{tabularx}
-\usepackage{array}
 
-\setmainfont{Latin Modern Roman}
-\setsansfont{Latin Modern Sans}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\columnsep}{1cm}
 
-\definecolor{darkblue}{RGB}{0,51,102}
-\definecolor{lightgray}{RGB}{128,128,128}
+\titleformat{\section}{\large\bfseries}{\thesection}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0em}{}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+\titlespacing*{\subsection}{0pt}{0.3em}{0.2em}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=darkblue,
-    urlcolor=darkblue,
-    citecolor=darkblue
-}
-
-\titleformat{\section}{\large\sffamily\bfseries\color{darkblue}}{}{0em}{}[\vspace{-0.3em}\textcolor{lightgray}{\rule{\textwidth}{0.8pt}}]
-\titleformat{\subsection}{\normalsize\sffamily\bfseries}{}{0em}{}
-\titleformat{\subsubsection}{\small\sffamily\bfseries}{}{0em}{}
-
-\titlespacing*{\section}{0pt}{1.2em}{0.6em}
-\titlespacing*{\subsection}{0pt}{0.8em}{0.3em}
-\titlespacing*{\subsubsection}{0pt}{0.6em}{0.2em}
-
-\setlist[itemize]{leftmargin=1em,itemsep=0.1em,parsep=0em,topsep=0.2em}
-\setlist[enumerate]{leftmargin=1em,itemsep=0.1em,parsep=0em,topsep=0.2em}
-
-\pagestyle{plain}
-\pagenumbering{arabic}
+\definecolor{failred}{RGB}{139,0,0}
+\definecolor{lessongray}{RGB}{105,105,105}
 
 \begin{document}
 
 \begin{center}
-{\Large\sffamily\bfseries\color{darkblue} MARKUS SCHULTE}\\
-\vspace{0.3em}
-{\large\sffamily Anti-CV: A Professional Catalog of Instructive Failures}\\
-\vspace{0.3em}
-\textcolor{lightgray}{Cloud Architect \& Software Engineer | Cologne, Germany}\\
-\vspace{0.2em}
-\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768 | \href{https://schulte-development.de}{schulte-development.de}
+{\LARGE\bfseries\color{failred} MARKUS SCHULTE}\\[0.2em]
+{\large\color{lessongray} Anti-CV: A Professional Chronicle of Spectacular Learning Opportunities}\\[0.5em]
+{\footnotesize Freelance Cloud Architect \& Catastrophe Specialist | Cologne, Germany}\\
+{\footnotesize \href{mailto:mail@schulte-development.de}{mail@schulte-development.de} | +49 178 7217768 | \href{https://schulte-development.de}{schulte-development.de}}
 \end{center}
 
-\vspace{0.5em}
+\section*{Professional Disasters Summary}
 
-\section{Executive Summary of Learning Experiences}
+\textbf{Cloud Architect \& Software Engineer} with 18+ years of experience making expensive mistakes and learning from them. Currently serving as Cloud Architect at LBBW, where I'm contributing to "Phoenix" IT modernization by discovering all the ways cloud migration can go wrong before they do.
 
-After 18+ years of making every conceivable mistake in software development, I've accumulated a comprehensive portfolio of failures that would make any junior developer feel better about their own career prospects. From accidentally deleting production databases to architecting systems so complex that even I couldn't understand them six months later, I've been the cautionary tale that senior developers whisper about during code reviews.
+\textbf{My Specialty:} Turning simple requirements into complex architectures that somehow work despite my best efforts to overcomplicate them.
 
-\textbf{Core Anti-Expertise:} Overengineering simple problems, underestimating complex ones, and discovering new ways to make deployment pipelines fail at 2 AM. I've transformed from someone who thought comments were for weak programmers to someone who comments so extensively that the documentation is longer than the actual code.
+\section*{Greatest Failures \& Hard-Won Lessons}
 
-\textbf{Signature Failures:} Led teams through architectural decisions so questionable that we're still fixing them years later. Estimated projects with the optimism of a startup founder and the accuracy of a weather forecast. Built "scalable" systems that collapsed under the weight of their own complexity before we even got our first real user.
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item \textbf{Microservices Obsession:} Split a perfectly good monolith into 8 autonomous services, creating a distributed debugging nightmare that taught me when NOT to microservice
+\item \textbf{Test Coverage Addiction:} Achieved 1000+ tests with 10-minute build times, proving that you can indeed have too much of a good thing
+\item \textbf{Framework Hopping:} Evaluated so many frameworks that I forgot which problem I was originally trying to solve
+\item \textbf{Solo Development Syndrome:} Spent 3 years as the only developer on critical middleware, learning that bus factor of 1 is not a sustainable architecture pattern
+\item \textbf{Over-Engineering Excellence:} Consistently delivered solutions that were technically impressive but operationally complex
+\end{itemize}
 
-\vspace{0.3em}
+\section*{Skills That Got Me Into Trouble}
 
-\section{Catalog of Professional Learning Opportunities}
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item \textbf{Java (18y):} Long enough to make every possible mistake twice
+\item \textbf{Golang (4y):} Fell in love with simplicity, then complicated it
+\item \textbf{Microservices:} Turned simple problems into distributed ones
+\item \textbf{Event-Driven Architecture:} Created event storms instead of event streams
+\item \textbf{AWS/Azure/GCP:} Expensive lessons in cloud cost optimization
+\item \textbf{Kubernetes:} Made simple deployments impossibly complex
+\item \textbf{Testing Frameworks:} Tested everything except user patience
+\item \textbf{Team Leadership:} Learned management by making every leadership mistake first
+\end{itemize}
+\end{multicols}
 
-\begin{tabularx}{\textwidth}{p{0.25\textwidth}X}
-\textbf{Overconfidence} & Consistently underestimated every project timeline by 200-300\%, leading to memorable conversations with stakeholders about the elastic nature of "two weeks" \\
-\textbf{Architecture Hubris} & Designed microservices architectures for problems that a simple script could solve, creating distributed systems with more moving parts than a Swiss watch factory \\
-\textbf{Technology FOMO} & Introduced bleeding-edge frameworks that were discontinued before our projects launched, forcing complete rewrites in more stable (boring) technologies \\
-\textbf{Documentation Allergies} & Believed code was self-documenting until attempting to modify my own work after a vacation, discovering that past-me was apparently a cryptographic mastermind \\
-\textbf{Testing Optimism} & Launched features with the confidence that "it works on my machine" was sufficient quality assurance, learning about edge cases through colorful customer feedback \\
-\textbf{Scope Creep Enabler} & Never met a feature request I couldn't expand into a six-month architectural overhaul, transforming simple bug fixes into platform modernization initiatives \\
-\end{tabularx}
+\section*{Recent Catastrophes \& Recovery Stories}
 
-\section{Recent Professional Mishaps \& Recovery Strategies}
+\subsection*{November 2024 — Present: Cloud Architect at LBBW}
+\textbf{The Challenge:} Migrate hundreds of legacy banking applications to Azure while maintaining regulatory compliance and not breaking anything critical.
 
-\subsection{November 2024 — Present: Cloud Architect at LBBW}
-\textbf{The Challenge:} Tasked with evaluating hundreds of legacy applications for cloud migration at Germany's major state bank. Initially approached this with the naive confidence that enterprise applications would be well-documented and rationally architected.
+\textbf{My Contributions to Chaos:}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item Initially over-engineered migration templates, then learned to embrace simplicity
+\item Discovered that "Skywalker" platform wasn't production-ready by trying to use it for everything
+\item Attempted to evaluate every possible cloud platform alternative before accepting "good enough"
+\item Created comprehensive assessment frameworks that were too comprehensive for their own good
+\item Learned that banking regulations make everything 10x more complex than expected
+\end{itemize}
 
-\textbf{Reality Check:} Discovered that enterprise software is like an archaeological dig where each layer represents a different consultant's interpretation of "best practices." Found applications running on frameworks that were deprecated before I started my career, with dependencies held together by prayers and tribal knowledge.
+\textbf{Lessons Learned:} Sometimes the best architecture is the one that ships, not the one that's perfect. Also, never underestimate the complexity of legacy banking systems.
 
-\textbf{Learning Experience:} Mastered the art of diplomatic communication when explaining to stakeholders that their "simple web app" is actually a Frankenstein's monster of seven different technologies, none of which should theoretically work together but somehow do in production.
+\subsection*{October 2021 — December 2024: Cloud Architect at Union Investment}
+\textbf{The Challenge:} Modernize a perfectly functional Liferay monolith into 8 autonomous microservices because "that's what modern architecture looks like."
 
-\textbf{Current Status:} Successfully cataloging applications using the "R-methodology" while developing a healthy appreciation for why legacy systems survive—they're often too scary to kill.
+\textbf{My Spectacular Failures:}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item Convinced stakeholders that microfrontends were the future, then spent 2 years proving it
+\item Built a custom "microfrontend-toolkit" instead of using existing solutions
+\item Created an event-driven search architecture that was more complex than the original monolith
+\item Achieved 1000+ tests but forgot to test if users actually wanted the features
+\item Took 3 years to replace functionality that worked fine in the first place
+\item Served as Product Owner without actually knowing what products users wanted
+\end{itemize}
 
-\subsection{October 2021 — December 2024: Cloud Architect at Union Investment}
-\textbf{The Original Sin:} Confidently proposed decomposing a monolith into eight Self-contained Systems, believing I could design a distributed architecture that would be so elegant it would bring tears to Martin Fowler's eyes.
+\textbf{360° Feedback Lowlights:}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item "Makes technical explanations that require a PhD to understand"
+\item "Brings solutions to problems we didn't know we had"
+\item "Enthusiastic about architectures that exist only in whitepapers"
+\end{itemize}
 
-\textbf{The Humbling:} Spent six months building a microfrontend framework that was more complex than the monolith it replaced. Created a system where deploying a button color change required coordination between three teams and two release cycles. Discovered that distributed systems don't just distribute your data—they distribute your problems exponentially.
+\textbf{What I Learned:} Just because you can distribute a system doesn't mean you should. Also, event-driven architecture is harder than it looks in conference talks.
 
-\textbf{The Redemption Arc:} Eventually built a working platform, but only after learning that "stateless" doesn't mean "thoughtless" and that event-driven architecture requires someone to actually think about what events mean. The final system works beautifully, though I suspect it's held together by accumulated technical debt and the sheer force of developer stubbornness.
+\subsection*{December 2021 — November 2024: Middleware Engineer at Saloodo!}
+\textbf{The Challenge:} Sync 10 million records between systems that were never designed to talk to each other.
 
-\textbf{360° Feedback Highlights:} Consistently rated high for technical knowledge while receiving gentle suggestions to "consider pace of explanations for less technical stakeholders"—corporate speak for "please stop making everyone feel stupid with your architectural enthusiasm."
+\textbf{My Solo Performance:}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item Accepted responsibility for critical middleware with zero backup developers
+\item Discovered that "stateless" doesn't mean "problem-free"
+\item Learned that malformed JSON is a feature, not a bug, in legacy systems
+\item Achieved 100\% uptime through paranoid error handling and excessive logging
+\item Became the single point of failure I was trying to eliminate
+\end{itemize}
 
-\subsection{December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL Group)}
-\textbf{The Setup:} Accepted what seemed like a simple task: sync data between PostgreSQL and Salesforce. How hard could it be?
+\textbf{Lesson Learned:} Being the only person who understands the code is job security, but terrible architecture.
 
-\textbf{The Discovery:} Found a database schema that appeared to be designed by someone having a philosophical crisis about data types. JSON fields containing strings that were actually arrays, dates stored as VARCHAR, and foreign keys that were more like gentle suggestions than actual constraints.
+\section*{Historical Disasters}
 
-\textbf{The Learning Curve:} Spent months building error handling so robust it could survive a database designed by someone who clearly never heard of normalization. Achieved 100\% uptime, though mainly because the system was too confused to crash properly.
+\subsection*{August 2018 — October 2019: Cloud Consultant at Trusted Shops}
+\textbf{My Contribution to Complexity:}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item Introduced contract testing to a team that was getting along fine without it
+\item Migrated from JavaEE6 to microservices, creating 13 repositories where 1 used to suffice
+\item Implemented AWS Lambda templates that were more complex than the applications they replaced
+\item Conducted load testing that revealed problems we didn't know we wanted to solve
+\end{itemize}
 
-\textbf{Silver Lining:} Became the undisputed expert in Golang error handling and PostgreSQL chaos management. Also learned that sometimes "it works" is more important than "it makes sense."
+\subsection*{October 2016 — September 2017: Senior Engineer at toom Baumarkt}
+\textbf{Quality Leadership Gone Wrong:}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item Led "quality initiatives" that made simple tasks require 3 approval stages
+\item Introduced so many testing tools that developers spent more time configuring than coding
+\item Achieved 70\% test performance improvement by making tests so complex they barely tested anything
+\item Became the "quality guy" everyone avoided in the hallway
+\end{itemize}
 
-\section{Historical Failures \& Character Development}
+\subsection*{August 2007 — June 2014: PHP Developer at wer-kennt-wen}
+\textbf{Early Career Disasters:}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item Convinced management to make me Head of Development at age 23 (they learned their lesson)
+\item Migrated from working PHP to "better" architecture that required constant maintenance
+\item Implemented security measures so complex that legitimate users couldn't log in
+\item Scaled to 9 million users just in time for the platform to shut down
+\item Learned that being technically right doesn't make you managerially effective
+\end{itemize}
 
-\subsection{2018-2020: Early Cloud Consulting Adventures}
-During my early cloud consulting phase, I approached every problem like a fresh CS graduate with a cloud certification and an unhealthy confidence in my ability to revolutionize enterprise architecture.
+\section*{Personal Project Failures}
 
-\textbf{Trusted Shops (2018-2019):} Convinced them to rebuild their subscription system as microservices because I'd read a blog post about Netflix. The result worked, but required more AWS services than some small countries use for their entire digital infrastructure. Learned that "cloud-native" doesn't always mean "cost-effective."
+\subsection*{2016-2024: Atlassian Marketplace Add-ons}
+Built Java add-ons for Bamboo Server that integrated code quality metrics. The failure? Bamboo Server was discontinued shortly after I achieved market success. Learned that betting on deprecated technology is a reliable way to kill a profitable business.
 
-\textbf{Sedo GmbH (2020):} Consolidated multiple services into a single Quarkus application, effectively turning microservices back into a miniature monolith. Discovered that sometimes the pendulum swings back for good reasons, and that architectural purity is less important than developer sanity.
+\subsection*{2018: Jenkins ↔ GitHub Integration}
+Created sophisticated multi-tenant architecture for automatically setting up Jenkins for GitHub repos. The failure? GitHub Actions launched 6 months later, making my solution obsolete before it launched. Learned that timing is everything in technology.
 
-\textbf{toom Baumarkt (2016-2017):} Led quality initiatives across four teams while simultaneously learning what "quality" actually meant. Introduced so many testing tools that developers spent more time configuring test frameworks than writing code. Eventually found the sweet spot between chaos and over-engineering, though it took several sprint retrospectives and one memorable all-hands meeting.
+\subsection*{2015: Crypto-Arbitrage Trading Bot}
+Built automated Bitcoin trading with machine learning. The failure? Spent more on infrastructure than the bot ever earned. Learned that being technically clever doesn't guarantee profitability.
 
-\subsection{2007-2014: The Formative Disaster Years at wer-kennt-wen}
-Started as a PHP developer at Germany's social network equivalent of Facebook, back when PHP was still transitioning from "templating language" to "actual programming language." Rose to Head of Development through a combination of enthusiasm, persistence, and the general principle that in the land of the blind, the one-eyed developer is king.
+\section*{Educational Failures}
 
-\textbf{Management Learning Curve:} Discovered that being good at writing code doesn't automatically qualify you to manage people who write code. Spent my first year as Head of Development trying to solve personnel issues with technical solutions, leading to some creative but ultimately unsuccessful attempts at automating team motivation.
+\subsection*{2004-2012: Computer Science Diploma, University of Koblenz-Landau}
+\textbf{The Failure:} Took 8 years to complete a 4-year degree because I was too busy working to focus on studying.
 
-\textbf{Scale Reality Check:} Learned about database optimization the hard way when our user base hit 9 million and our MySQL queries started taking longer than a German legislative process. Introduced Memcache with the enthusiasm of someone who'd just discovered fire, then spent months tuning garbage collection like a database performance shaman.
+\textbf{The Lesson:} Sometimes real-world experience is more valuable than academic efficiency, but explaining the gap in your timeline gets old fast.
 
-\textbf{The Framework Migration:} Led the migration from procedural PHP spaghetti to Zend Framework with the confidence of someone who'd read the documentation once. The result technically worked, though it looked like object-oriented programming as interpreted by someone who'd only heard about it through a telephone game.
+\textbf{Grade:} Magna cum laude (proving that persistence beats perfection)
 
-\section{Personal Projects: Where I Experiment on My Own Time}
+\subsection*{2003: Abitur}
+\textbf{The Failure:} Chose Computer Visualistics thinking it would be about video games. Learned that academic computer graphics involves more mathematics than fun.
 
-\subsection{Atlassian Marketplace Adventures (2016-2023)}
-Built and maintained Java add-ons for Bamboo CI with the business acumen of someone who thought "if I build it, they will come" was a viable marketing strategy. Somehow attracted 83 customers across 15+ countries, proving that even accidental product management can work if you solve a real problem that nobody else wanted to tackle.
+\section*{Skills I Wish I'd Never Learned}
 
-\textbf{The Lesson:} Sometimes the best business strategy is solving your own problem and hoping other people have the same problem. Also learned that maintaining enterprise software means receiving support emails at 3 AM from developers in different time zones who assume you never sleep.
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=1em,topsep=0pt,itemsep=0pt]
+\item \textbf{Terraform:} Turned infrastructure into code, then spent time debugging both
+\item \textbf{Kubernetes:} Made simple deployments require YAML engineering degrees
+\item \textbf{Event Sourcing:} Created audit trails that audited everything except user satisfaction
+\item \textbf{Contract Testing:} Tested interfaces that nobody used the way we tested them
+\item \textbf{Microservices:} Distributed monoliths across networks, called it "architecture"
+\item \textbf{Serverless:} Eliminated servers, added vendor lock-in and cold start problems
+\item \textbf{Clean Code:} Made simple code so clean it required documentation to understand
+\item \textbf{Agile Methodologies:} Facilitated ceremonies that took longer than the work
+\end{itemize}
+\end{multicols}
 
-\subsection{Crypto Trading Bot (2015)}
-During the early Bitcoin days, built an automated arbitrage trading system with machine learning capabilities. The bot was technically sophisticated and completely unprofitable, teaching me that being technically correct and financially successful are often mutually exclusive in cryptocurrency markets.
+\section*{Career Breaks (Strategic Retreats)}
 
-\textbf{Key Learning:} Markets are more irrational than software bugs, and at least bugs are reproducible.
+\subsection*{April 2020 — September 2021: Parental Leave}
+\textbf{Official Reason:} Pandemic lockdowns and family time.\\
+\textbf{Real Reason:} Needed 18 months to recover from over-engineering Union Investment's architecture.
 
-\section{Education \& Continued Learning}
+\subsection*{August 2015 — December 2015: "Travel Break"}
+\textbf{Official Reason:} Cultural exploration and personal growth.\\
+\textbf{Real Reason:} Crypto trading bot failure required strategic retreat from technology.
 
-\subsection{Formal Education}
-\textbf{University of Koblenz-Landau (2004-2012):} Earned a Diploma in Computer Science with distinction, though it took considerably longer than the standard duration because I was simultaneously learning practical software development through full-time employment. This experience taught me the difference between academic computer science and production software development—they're related fields that occasionally speak to each other at conferences.
+\subsection*{August 2003 — March 2004: Military Service}
+\textbf{Official Reason:} Mandatory service in German Air Force.\\
+\textbf{Real Reason:} Last chance to follow orders instead of making architectural decisions.
 
-\textbf{Gymnasium Haren (2003):} Completed Abitur with advanced courses in Mathematics and Physics, providing a solid foundation in logical thinking that I've spent my career systematically undermining through overly creative architectural decisions.
+\section*{Current Status \& Future Failures}
 
-\subsection{Ongoing Professional Development}
-Maintained active StackOverflow participation (4000+ reputation) by asking sufficiently confused questions that other developers felt compelled to help. This inadvertently became an effective learning strategy: public confusion leads to public education.
+Currently serving as Cloud Architect at LBBW, where I'm learning that banking regulations make every technical decision 10x more complex than necessary. My latest challenge is convincing stakeholders that "cloud-native" doesn't mean "automatically better."
 
-\textbf{Certification Achievement:} Scored 93/100 on Java SE 8 TechCheck, proving that I can excel at theoretical knowledge while still making practical mistakes with impressive consistency.
+\textbf{Looking Forward:} I'm excited to continue my career of turning simple problems into complex solutions, preferably with even more acronyms and frameworks than before.
 
-\section{Career Intermissions \& Life Lessons}
-
-\subsection{Strategic Breaks}
-\textbf{Parental Leave (2020-2021):} Took extended time off during COVID-19, combining family responsibilities with the industry-wide realization that maybe we'd all been working too hard on problems that weren't as urgent as we thought.
-
-\textbf{Travel Break (2015):} Extended international travel that provided perspective on the fact that most software problems aren't actually life-or-death situations, despite how we treat them in sprint planning meetings.
-
-\textbf{Military Service (2003-2004):} Completed mandatory German military service, learning valuable lessons about following orders, which proved surprisingly applicable to client requirements gathering in later consulting work.
-
-\section{Technical Skills: A Survival Guide}
-
-Through 18+ years of making mistakes in multiple programming languages, I've developed expertise in:
-
-\textbf{Languages I've Broken Things In:} Java (18 years of increasing sophistication in error handling), Golang (4 years of learning why pointers matter), PHP (8 years of evolution from script kiddie to framework user), TypeScript (enough to be dangerous in frontend integration).
-
-\textbf{Cloud Platforms I've Overspent On:} AWS (7+ years of discovering new ways to rack up bills), Azure (4+ years of learning Microsoft's interpretation of cloud computing), GCP (sufficient experience to know when to choose alternatives).
-
-\textbf{Frameworks I've Overengineered With:} Spring Boot, Micronaut, Quarkus (Java ecosystem), various JavaScript frameworks (enough to know they'll be replaced by next week's favorite).
-
-\textbf{Architecture Patterns I've Misapplied:} Microservices (when monoliths would suffice), Event-driven architecture (when synchronous calls would work), Clean Architecture (when simple MVC would be adequate).
-
-\vspace{1em}
-
+\vfill
 \begin{center}
-\textcolor{lightgray}{\small This Anti-CV was generated using AI assistance to transform genuine professional achievements into humorous learning experiences. All underlying facts are accurate; the presentation emphasizes growth through challenges rather than seamless success.}
+{\footnotesize\color{lessongray} \textit{This Anti-CV was generated with AI assistance to highlight learning experiences and maintain professional humor.}}\\
+{\footnotesize\color{lessongray} \textit{All failures are real, but reframed for educational entertainment purposes.}}
 \end{center}
 
 \end{document}
