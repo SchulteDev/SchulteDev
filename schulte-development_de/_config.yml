@@ -3,14 +3,14 @@ author: Markus Schulte
 email: mail@schulte-development.de
 avatar: assets/img/markus-schulte.jpg
 url: https://schulte-development.de
-keywords: "Azure,AWS,technical architect,Java,Golang"
+keywords: "Azure,AWS,technical architect,leader,Java,Golang"
 plugins:
   - jekyll-remote-theme
 remote_theme: daattali/beautiful-jekyll
 navbar-links:
   About Me: "/#about-me"
+  Career: "/#my-career"
   Services: "/#my-services"
-  Portfolio: "/#my-portfolio"
   Contact: "/#contact"
   Imprint: imprint
 social-network-links:
