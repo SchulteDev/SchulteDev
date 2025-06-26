@@ -20,7 +20,7 @@ on:
       rebuild_mode:
         description: 'CV Generation Mode'
         required: true
-        default: 'incremental'
+        default: 'full_rebuild'
         type: choice
         options:
           - incremental
