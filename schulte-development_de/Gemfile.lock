@@ -104,6 +104,7 @@ DEPENDENCIES
   jekyll (~> 4.4.1)
   jekyll-remote-theme (~> 0.4.3)
   jekyll-seo-tag
+  jekyll-sitemap (~> 1.4)
 
 BUNDLED WITH
    2.4.19
