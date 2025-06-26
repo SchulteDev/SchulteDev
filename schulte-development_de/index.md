@@ -3,13 +3,18 @@ layout: page
 css: /assets/index.css
 ---
 
+<div class="hero-section">
+  <h1>Markus Schulte: Cloud Architect & Software Engineer</h1>
+  <p>
+    With 18+ years of experience (11+ freelance), I specialize in enterprise modernization and cloud-native transformations.
+    Currently, I serve as a Cloud Architect at LBBW, contributing to the "Phoenix" IT modernization for Germany's major state bank.
+  </p>
+  <p class="slogan">"Crafting solutions that thrive today and tomorrow"</p>
+</div>
+
 # About me
 
-**Cloud Architect & Software Engineer** with 18+ years experience (11+ freelance) specializing in
-enterprise modernization and cloud-native transformations. Currently serving as Cloud Architect at
-LBBW, contributing to "Phoenix" IT modernization for Germany's major state bank.
-
-**Core Expertise:**
+## Core Expertise
 
 - **Enterprise Architecture:** Legacy-to-cloud migrations, experience with AWS, Azure and GCP,
   cloud strategies, cloud (native) system design
@@ -20,18 +25,44 @@ LBBW, contributing to "Phoenix" IT modernization for Germany's major state bank.
   systems
 - **DevOps Excellence:** Infrastructure-as-Code, automated CI/CD, comprehensive testing strategies
 
-**My slogan:** "Crafting solutions that thrive today and tomorrow"
-
 ## My values
 
-I have come to the conclusion that only consistent **clean IT architecture and development** leads
-to success.
-Hereby I am guided by the values of
-[Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
+The principles of good software development and architecture are well known, with Clean Code
+and Clean Architecture outlining the essentials.
+In my experience, applying these **proven IT principles** leads to and ensures a healthy
+IT system landscape in the long term.
 
 I think the collaboration and the human components are just as important as the technical ones.
-The sooner the right people have the right responsibilities, the better a product will succeed.
+The sooner the right people have the right responsibilities,
+the sooner a development will be successful.
 It is impressive how much a **good team** can achieve.
+
+# My Skillset
+
+<div class="skillset-tags">
+  <span class="tag">#CloudArchitecture</span>
+  <span class="tag">#SoftwareEngineering</span>
+  <span class="tag">#Java</span>
+  <span class="tag">#Golang</span>
+  <span class="tag">#TypeScript</span>
+  <span class="tag">#Microservices</span>
+  <span class="tag">#EventDriven</span>
+  <span class="tag">#AWS</span>
+  <span class="tag">#Azure</span>
+  <span class="tag">#GCP</span>
+  <span class="tag">#Kubernetes</span>
+  <span class="tag">#Docker</span>
+  <span class="tag">#Terraform</span>
+  <span class="tag">#CI/CD</span>
+  <span class="tag">#DevOps</span>
+  <span class="tag">#CleanCode</span>
+  <span class="tag">#Architecture</span>
+  <span class="tag">#Agile</span>
+  <span class="tag">#Leadership</span>
+  <span class="tag">#ContractTesting</span>
+  <span class="tag">#API_Design</span>
+  <span class="tag">#Monorepo</span>
+</div>
 
 # My career
 
