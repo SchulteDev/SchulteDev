@@ -22,6 +22,8 @@
   border-bottom: 1px solid #eee;
   padding: 0.5rem;
   width: 100%;
+  height: 8rem;
+  object-fit: contain;
 }
 
 .box a {
