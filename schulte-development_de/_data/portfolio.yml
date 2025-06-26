@@ -1,24 +1,40 @@
+- title: LBBW
+  description: Cloud Architect
+  img: lbbw.svg
+  url: /companies/lbbw
 - title: Union Investment
-  description: Technical architect
+  description: Cloud Architect
   img: ui.svg
-  url: https://www.union-investment.de
+  url: /companies/union-investment
 - title: Saloodo!
-  description: Senior Golang engineer
+  description: Middleware Engineer
   img: saloodo.svg
-  url: https://www.saloodo.com
+  url: /companies/saloodo
+- title: Atlassian Bamboo Add-ons
+  description: Creator of Atlassian Bamboo Server Add-ons
+  img: bamboo.png
+  url: /companies/atlassian-bamboo-add-ons
+- title: Sedo GmbH
+  description: Cloud Consultant
+  img: sedo.png
+  url: /companies/sedo-gmbh
 - title: Trusted Shops
-  description: Senior JavaEE engineer
+  description: Cloud Consultant
   img: trusted-shops.svg
-  url: https://www.trustedshops.de
-- title: Allianz
-  description: Senior JavaEE engineer
+  url: /companies/trusted-shops
+- title: Allianz Global Digital Factory
+  description: Senior JavaEE Developer
   img: allianz.svg
-  url: https://www.allianz.de
-- title: Toom
-  description: Senior JavaEE engineer
+  url: /companies/allianz-global-digital-factory
+- title: toom Baumarkt GmbH
+  description: Senior Engineer & DevOp
   img: toom.svg
-  url: https://toom.de
-- title: Billiger Mietwagen
-  description: PHP engineer
-  img: billiger-mietwagen.png
-  url: https://www.billiger-mietwagen.de/
+  url: /companies/toom-baumarkt
+- title: Early Freelancing Projects
+  description: Multiple Short-Term Contracts
+  img: null
+  url: /companies/early-freelancing-projects
+- title: werkenntwen
+  description: PHP Developer and Head of Development
+  img: wkw.png
+  url: /companies/werkenntwen
