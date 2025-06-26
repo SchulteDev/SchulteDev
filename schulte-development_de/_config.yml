@@ -6,6 +6,7 @@ url: https://schulte-development.de
 keywords: "Azure,AWS,technical architect,leader,Java,Golang"
 plugins:
   - jekyll-remote-theme
+  - jekyll-seo-tag
 remote_theme: daattali/beautiful-jekyll
 navbar-links:
   About Me: "/#about-me"
