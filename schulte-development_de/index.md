@@ -12,6 +12,10 @@ css: /assets/index.css
   <p class="slogan">"Crafting solutions that thrive today and tomorrow"</p>
 </div>
 
+<div class="cta-section">
+  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
+</div>
+
 # About me
 
 ## Core Expertise
@@ -44,6 +48,10 @@ css: /assets/index.css
       Empowering the right people with the right responsibilities fosters successful development and highlights the immense potential of a cohesive team.
     </p>
   </div>
+</div>
+
+<div class="cta-section">
+  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
 </div>
 
 # My Skillset
@@ -93,6 +101,10 @@ css: /assets/index.css
   </div>
 </div>
 
+<div class="cta-section">
+  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
+</div>
+
 # My career
 
 <div class="page-section">
@@ -105,6 +117,10 @@ css: /assets/index.css
     </a>
   </div>
 {% endfor %}
+</div>
+
+<div class="cta-section">
+  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
 </div>
 
 # My services
@@ -120,25 +136,25 @@ css: /assets/index.css
 {% endfor %}
 </div>
 
-# Contact
+# Let's connect
 
-<div class="page-section">
-  <div class="box">
+<div class="contact-section">
+  <div class="contact-box">
     <a href="https://outlook.office365.com/owa/calendar/Schultedevelopment1@schulte-development.de/bookings/">
       <img src="/assets/img/logos/microsoft_bookings_logo.png" alt="Outlook logo"/>
-      <div class="box-desc">Book appointment online</div>
+      <div class="contact-box-desc">Book appointment online</div>
     </a>
   </div>
-  <div class="box">
+  <div class="contact-box">
     <a href="mailto:mail@schulte-development.de">
       <img src="/assets/img/logos/mail.png" alt="Logo of email"/>
-      <div class="box-desc">mail@schulte-development.de</div>
+      <div class="contact-box-desc">mail@schulte-development.de</div>
     </a>
   </div>
-  <div class="box">
+  <div class="contact-box">
     <a href="https://www.linkedin.com/in/markus-schulte">
       <img src="/assets/img/logos/linkedin.png"  alt="LinkedIn logo"/>
-      <div class="box-desc">markus-schulte@LinkedIn</div>
+      <div class="contact-box-desc">markus-schulte@LinkedIn</div>
     </a>
   </div>
 </div>

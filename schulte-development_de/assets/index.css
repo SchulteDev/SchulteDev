@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
 * {
   box-sizing: border-box; /* Ensure consistent box model for all elements */
 }
@@ -8,12 +10,14 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   color: #2c3e50;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 3rem; /* Increased top margin for more breathing room */
+  margin-bottom: 1.2rem; /* Slightly increased bottom margin */
+  font-weight: 700; /* Make all headings bolder */
+  line-height: 1.2; /* Tighter line height for headings */
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.6;
   color: #333;
   background-color: #f8f8f8;
@@ -62,11 +66,13 @@ body {
 
 .box img {
   border-bottom: 1px solid #eee;
-  padding: 0.5rem;
-  width: 100%;
-  max-height: 150px;
+  padding: 1rem; /* Increased padding for better spacing */
+  width: 120px; /* Fixed width for consistency */
+  height: 120px; /* Fixed height for consistency */
   object-fit: contain;
   background-color: #fdfdfd;
+  display: block; /* Ensures margin auto works */
+  margin: 0 auto; /* Centers the image */
 }
 
 .box a {
@@ -78,10 +84,10 @@ body {
 }
 
 .box:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   background: #fdfdfd;
-  border-color: #ccc;
-  transform: translateY(-5px);
+  border-color: #a0a0a0;
+  transform: translateY(-7px);
 }
 
 .box .box-title {
@@ -147,12 +153,12 @@ body {
 
 /* Hero Section Styles */
 .hero-section {
-  background: #2c3e50;
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%); /* Darker, more modern gradient */
   color: white;
-  padding: 5rem 2rem;
+  padding: 6rem 2rem; /* Slightly more vertical padding */
   text-align: center;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
   margin-top: 0;
 }
 
@@ -181,6 +187,18 @@ body {
   font-size: 1.6rem;
   color: #f0f0f0;
   margin-top: 2rem;
+  opacity: 0; /* Start invisible for animation */
+  transform: translateY(20px); /* Start slightly below */
+  animation: fade-in-slide-up 1s ease-out forwards; /* Apply animation */
+  animation-delay: 0.5s; /* Delay to appear after other content */
+}
+
+/* Keyframe animation for slogan */
+@keyframes fade-in-slide-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Skillset Tags Styles */
@@ -340,4 +358,110 @@ body {
     flex-basis: 90%; /* One category per row on smaller screens */
     max-width: 90%;
   }
+}
+
+/* Contact Section Styles */
+.contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 1.5rem;
+  background-color: #e9ecef; /* Light grey background for contrast */
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 2rem;
+}
+
+.contact-box {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); /* Slightly stronger shadow */
+  text-align: center;
+  flex-basis: calc(33% - 2rem); /* Three items per row */
+  max-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-box:hover {
+  transform: translateY(-8px); /* More pronounced lift on hover */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.contact-box a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Ensure the link takes full height of the box */
+}
+
+.contact-box img {
+  width: 70px; /* Slightly smaller icons */
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 0; /* No border-radius for contact icons */
+  border: none; /* No border for contact icons */
+  padding: 0; /* No padding for contact icons */
+}
+
+.contact-box .contact-box-desc {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 992px) {
+  .contact-box {
+    flex-basis: calc(50% - 2rem); /* Two items per row on medium screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-box {
+    flex-basis: 90%; /* One item per row on small screens */
+    max-width: 90%;
+  }
+}
+
+/* Call to Action (CTA) Section Styles */
+.cta-section {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background-color: #f8f8f8;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #28a745; /* A vibrant green */
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px; /* Pill-shaped button */
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.cta-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(40, 167, 69, 0.2);
 }
