@@ -212,3 +212,132 @@ body {
   transform: translateY(-2px);
   cursor: default;
 }
+
+/* My Values Section Styles */
+.values-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2.5rem 1.5rem;
+  background-color: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 2rem;
+}
+
+.value-item {
+  flex-basis: calc(50% - 2rem); /* Two items per row with gap */
+  max-width: 400px; /* Limit width for larger screens */
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.value-item .value-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #2c3e50;
+  padding: 5px;
+}
+
+.value-item h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.value-item p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .value-item {
+    flex-basis: 90%; /* One item per row on smaller screens */
+    max-width: 90%;
+  }
+}
+
+/* Skillset Categories Styles */
+.skillset-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2.5rem 1.5rem;
+  background-color: #f0f0f0;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 2rem;
+}
+
+.skill-category {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  flex-basis: calc(50% - 2rem); /* Two categories per row */
+  max-width: 450px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.skill-category h3 {
+  color: #2c3e50;
+  font-size: 1.6rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.8rem;
+}
+
+.skill-category .tags-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.skill-category .tag {
+  display: inline-block;
+  background-color: #dcdcdc;
+  color: #444;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.skill-category .tag:hover {
+  background-color: #c0c0c0;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .skill-category {
+    flex-basis: 90%; /* One category per row on smaller screens */
+    max-width: 90%;
+  }
+}

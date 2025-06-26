@@ -27,41 +27,70 @@ css: /assets/index.css
 
 ## My values
 
-The principles of good software development and architecture are well known, with Clean Code
-and Clean Architecture outlining the essentials.
-In my experience, applying these **proven IT principles** leads to and ensures a healthy
-IT system landscape in the long term.
-
-I think the collaboration and the human components are just as important as the technical ones.
-The sooner the right people have the right responsibilities,
-the sooner a development will be successful.
-It is impressive how much a **good team** can achieve.
+<div class="values-section">
+  <div class="value-item">
+    <img src="/assets/img/service-icons/programming.jpeg" alt="Proven IT Principles Icon" class="value-icon"/>
+    <h3>Proven IT Principles</h3>
+    <p>
+      I believe in applying well-known principles like Clean Code and Clean Architecture.
+      These foundational practices ensure a healthy and sustainable IT system landscape in the long term.
+    </p>
+  </div>
+  <div class="value-item">
+    <img src="/assets/img/service-icons/leadership.jpeg" alt="Team Collaboration Icon" class="value-icon"/>
+    <h3>Effective Collaboration</h3>
+    <p>
+      Beyond technical excellence, I emphasize the human element in software development.
+      Empowering the right people with the right responsibilities fosters successful development and highlights the immense potential of a cohesive team.
+    </p>
+  </div>
+</div>
 
 # My Skillset
 
-<div class="skillset-tags">
-  <span class="tag">#CloudArchitecture</span>
-  <span class="tag">#SoftwareEngineering</span>
-  <span class="tag">#Java</span>
-  <span class="tag">#Golang</span>
-  <span class="tag">#TypeScript</span>
-  <span class="tag">#Microservices</span>
-  <span class="tag">#EventDriven</span>
-  <span class="tag">#AWS</span>
-  <span class="tag">#Azure</span>
-  <span class="tag">#GCP</span>
-  <span class="tag">#Kubernetes</span>
-  <span class="tag">#Docker</span>
-  <span class="tag">#Terraform</span>
-  <span class="tag">#CI/CD</span>
-  <span class="tag">#DevOps</span>
-  <span class="tag">#CleanCode</span>
-  <span class="tag">#Architecture</span>
-  <span class="tag">#Agile</span>
-  <span class="tag">#Leadership</span>
-  <span class="tag">#ContractTesting</span>
-  <span class="tag">#API_Design</span>
-  <span class="tag">#Monorepo</span>
+<div class="skillset-categories">
+  <div class="skill-category">
+    <h3>Cloud & DevOps</h3>
+    <div class="tags-group">
+      <span class="tag">#CloudArchitecture</span>
+      <span class="tag">#AWS</span>
+      <span class="tag">#Azure</span>
+      <span class="tag">#GCP</span>
+      <span class="tag">#Kubernetes</span>
+      <span class="tag">#Docker</span>
+      <span class="tag">#Terraform</span>
+      <span class="tag">#CI/CD</span>
+      <span class="tag">#DevOps</span>
+    </div>
+  </div>
+  <div class="skill-category">
+    <h3>Languages & Engineering</h3>
+    <div class="tags-group">
+      <span class="tag">#SoftwareEngineering</span>
+      <span class="tag">#Java</span>
+      <span class="tag">#Golang</span>
+      <span class="tag">#TypeScript</span>
+    </div>
+  </div>
+  <div class="skill-category">
+    <h3>Architecture & Design</h3>
+    <div class="tags-group">
+      <span class="tag">#Microservices</span>
+      <span class="tag">#EventDriven</span>
+      <span class="tag">#CleanCode</span>
+      <span class="tag">#Architecture</span>
+      <span class="tag">#API_Design</span>
+      <span class="tag">#Monorepo</span>
+    </div>
+  </div>
+  <div class="skill-category">
+    <h3>Methodologies & Practices</h3>
+    <div class="tags-group">
+      <span class="tag">#Agile</span>
+      <span class="tag">#Leadership</span>
+      <span class="tag">#ContractTesting</span>
+    </div>
+  </div>
 </div>
 
 # My career
