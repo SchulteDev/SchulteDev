@@ -6,7 +6,7 @@
       "output": "LuaLaTeX code only."
     },
     "pageLayout": [
-      "P1: Header, CV summary, key impacts, most important skills table.",
+      "P1: Header, CV summary, key impacts, most important skills table (no borders).",
       "P2: Recent roles (LBBW, Union Investment, Saloodo!, Trusted Shops).",
       "P3: Earlier experiences, personal projects.",
       "P4: Education, skills, career breaks; footer: AI disclaimer."
