@@ -358,7 +358,63 @@ body {
   }
 }
 
-/* Contact Section Styles */
+/* Testimonials Section Styles */
+.testimonials-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.5rem 1.5rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 2rem;
+}
+
+.testimonial {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #2c3e50;
+  max-width: 800px;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial blockquote {
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0 0 1rem 0;
+  color: #444;
+  font-weight: 400;
+}
+
+.testimonial cite {
+  font-style: normal;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: 2rem 1rem;
+  }
+
+  .testimonial {
+    padding: 1.5rem;
+  }
+
+  .testimonial blockquote {
+    font-size: 1rem;
+  }
+}
 .contact-section {
   display: flex;
   flex-wrap: wrap;

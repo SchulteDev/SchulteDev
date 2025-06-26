@@ -50,6 +50,29 @@ css: /assets/index.css
   </div>
 </div>
 
+## What clients say
+
+<div class="testimonials-section">
+  <div class="testimonial">
+    <blockquote>
+      "Markus Schulte has in his multi-year engagement in the web portals domain successfully deployed his outstanding technical expertise and pronounced communicative talent across multiple teams as an architect. His work approach was consistently characterized by professionalism, reliability, and high quality."
+    </blockquote>
+    <cite>— Senior Colleague, Union Investment (2024)</cite>
+  </div>
+  <div class="testimonial">
+    <blockquote>
+      "His structured approach and ability to analyze complex architectures, share knowledge with the team, and develop them to the 'next level' have greatly advanced the entire project."
+    </blockquote>
+    <cite>— Team Member, Union Investment (2024)</cite>
+  </div>
+  <div class="testimonial">
+    <blockquote>
+      "Mr. Schulte further advanced the technological environment with his outstanding expertise. Thanks to his very quick comprehension, he brought added value to the project at an early stage."
+    </blockquote>
+    <cite>— Sebastian Mancke, tarent solutions GmbH (2017)</cite>
+  </div>
+</div>
+
 <div class="cta-section">
   <a href="/#lets-connect" class="cta-button">Let's Connect</a>
 </div>
