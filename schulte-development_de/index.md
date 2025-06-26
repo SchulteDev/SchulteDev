@@ -128,7 +128,7 @@ css: /assets/index.css
   <a href="/#lets-connect" class="cta-button">Let's Connect</a>
 </div>
 
-# My career
+# My Career
 
 <div class="page-section">
 {% for company in site.data.portfolio %}
@@ -146,7 +146,7 @@ css: /assets/index.css
   <a href="/#lets-connect" class="cta-button">Let's Connect</a>
 </div>
 
-# My services
+# My Services
 
 <div class="page-section">
 {% for app in site.data.services %}
