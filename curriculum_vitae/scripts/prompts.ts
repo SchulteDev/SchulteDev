@@ -93,11 +93,12 @@ const getPromptConfig = (type: CvType, prompts: PromptsConfig): CvConfig =>
 export const getFullRebuildPrompt = (type: CvType, careerData: string): string => {
   const prompts = loadPrompts();
   const config = getPromptConfig(type, prompts);
+  const sharedSubs = createSharedSubstitutions(prompts.shared);
   const substitutions = {
-    ...createSharedSubstitutions(prompts.shared),
+    ...sharedSubs,
     [PLACEHOLDERS.CAREER_DATA]: careerData,
     [PLACEHOLDERS.CV_TYPE]: config.cvType,
-    [PLACEHOLDERS.TYPE_SPECIFIC_INSTRUCTIONS]: config.fullRebuildInstructions
+    [PLACEHOLDERS.TYPE_SPECIFIC_INSTRUCTIONS]: substitute(config.fullRebuildInstructions, sharedSubs)
   };
   return substitute(normalize(prompts.shared.templates.fullRebuild), substitutions);
 };
@@ -105,12 +106,13 @@ export const getFullRebuildPrompt = (type: CvType, careerData: string): string =
 export const getIncrementalPrompt = (type: CvType, currentCv: string, diffData: string): string => {
   const prompts = loadPrompts();
   const config = getPromptConfig(type, prompts);
+  const sharedSubs = createSharedSubstitutions(prompts.shared);
   const substitutions = {
-    ...createSharedSubstitutions(prompts.shared),
+    ...sharedSubs,
     [PLACEHOLDERS.CURRENT_CV]: currentCv,
     [PLACEHOLDERS.DIFF_DATA]: diffData,
     [PLACEHOLDERS.CV_TYPE]: config.cvType,
-    [PLACEHOLDERS.TYPE_SPECIFIC_INSTRUCTIONS]: config.incrementalInstructions
+    [PLACEHOLDERS.TYPE_SPECIFIC_INSTRUCTIONS]: substitute(config.incrementalInstructions, sharedSubs)
   };
   return substitute(normalize(prompts.shared.templates.incremental), substitutions);
 };
