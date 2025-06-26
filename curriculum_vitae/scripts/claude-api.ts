@@ -13,11 +13,6 @@ import {
 } from './config.js';
 import logger from './logger.js';
 
-export interface PromptResult {
-  systemPrompt: string;
-  userPrompt: string;
-}
-
 // Mock response generation
 const createMockResponse = (cvType: CvType): void => {
   const responseFile = getResponseFile(cvType);
@@ -65,7 +60,7 @@ const generateDefaultMockContent = (): string => `
 \\end{itemize}
 \\end{document}`.trim();
 
-const logClaudeResponse = (response: any, cvType: CvType, systemPrompt: string, userPrompt: string): void => {
+const logClaudeResponse = (response: any, cvType: CvType, userPrompt: string): void => {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const logFile = `tmp/claude-response-${cvType}-${timestamp}.json`;
   fs.writeJsonSync(logFile, {
@@ -73,7 +68,6 @@ const logClaudeResponse = (response: any, cvType: CvType, systemPrompt: string, 
     cvType,
     model: API_MODEL,
     request: {
-      systemPrompt,
       userPrompt: userPrompt.slice(0, 200) + (userPrompt.length > 200 ? '...' : ''),
       maxTokens: MAX_TOKENS
     },
@@ -105,11 +99,11 @@ const handleStreamingResponse = async (stream: any): Promise<{ content: string; 
     }
   }
 
-  return { content: completeResponse, usage };
+  return {content: completeResponse, usage};
 };
 
-const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType): Promise<boolean> => {
-  logger.info(`Calling Claude API for ${cvType} CV with extended thinking...`);
+const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => {
+  logger.info(`Calling Claude API for ${cvType} CV with user prompt only...`);
   logger.debug(`Model: ${API_MODEL}`);
 
   try {
@@ -122,26 +116,24 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
       stream: true,  // Enable streaming for extended thinking
       thinking: {
         type: "enabled",
-        budget_tokens: Math.min(20000, Math.floor(MAX_TOKENS * 0.6))  // Use up to 60% for thinking, rest for output
+        budget_tokens: Math.min(20000, Math.floor(MAX_TOKENS * 0.4))  // Reduced thinking budget to 40%, more for content
       }
     };
-
-    if (systemPrompt) request.system = systemPrompt;
 
     logger.debug('Starting streaming response...');
     const stream = await anthropic.messages.create(request);
 
-    const { content: completeResponse, usage } = await handleStreamingResponse(stream);
+    const {content: completeResponse, usage} = await handleStreamingResponse(stream);
 
     const response = {
-      content: [{ type: 'text', text: completeResponse }],
+      content: [{type: 'text', text: completeResponse}],
       usage: usage
     };
 
     const responseFile = getResponseFile(cvType);
     fs.writeJsonSync(responseFile, response, {spaces: 2});
 
-    logClaudeResponse(response, cvType, systemPrompt, userPrompt);
+    logClaudeResponse(response, cvType, userPrompt);
 
     if (!completeResponse?.trim()) {
       logger.error(`Invalid API response for ${cvType} CV: empty response`);
@@ -160,7 +152,7 @@ const callApi = async (systemPrompt: string, userPrompt: string, cvType: CvType)
   }
 };
 
-export const callClaudeApi = async (systemPrompt: string, userPrompt: string, cvType: CvType): Promise<boolean> => {
+export const callClaudeApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => {
   const {useMock, reason} = shouldUseMock();
 
   if (useMock) {
@@ -174,7 +166,7 @@ export const callClaudeApi = async (systemPrompt: string, userPrompt: string, cv
     return false;
   }
 
-  return callApi(systemPrompt, userPrompt, cvType);
+  return callApi(userPrompt, cvType);
 };
 
 // Content processing

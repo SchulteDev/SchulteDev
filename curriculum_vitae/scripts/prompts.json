@@ -6,54 +6,46 @@
       "output": "LuaLaTeX code only."
     },
     "pageLayout": [
-      "P1: Header, CV summary, key impacts, skills table without borders.",
+      "P1: Header, CV summary, key impacts, most important skills table.",
       "P2: Recent roles (LBBW, Union Investment, Saloodo!, Trusted Shops).",
-      "P3: Earlier experiences, projects.",
-      "P4: Education, skills, career breaks; footer: AI disclaimer.",
-      "Focus: Cloud, leadership, business impact, technical skills."
+      "P3: Earlier experiences, personal projects.",
+      "P4: Education, skills, career breaks; footer: AI disclaimer."
     ],
     "constraints": [
-      "Create valid LuaLaTeX with standard packages only.",
-      "Use bundled fonts only (no system fonts like Calibri).",
-      "EXACTLY {{PAGES}} full pages - maximize content density.",
-      "Use all career data, minimize white space.",
-      "Stay factual, never invent figures or project costs not in career data."
+      "Valid LuaLaTeX with standard packages only.",
+      "Bundled fonts only.",
+      "Exactly {{PAGES}} filled pages.",
+      "Use all career data, minimize empty space on pages.",
+      "Stay factual."
     ],
     "templates": {
       "fullRebuild": [
-        "Create dense {{PAGES}}-page {{CV_TYPE}} from career data:",
-        "```markdown\n{{CAREER_DATA}}\n```",
-        "{{SHARED_CONSTRAINTS}}",
-        "{{SHARED_PAGE_LAYOUT}}",
-        "{{TYPE_SPECIFIC_INSTRUCTIONS}}"
+        "Create dense {{PAGES}}-page {{CV_TYPE}}",
+        "from career data:```markdown\n{{CAREER_DATA}}\n```.",
+        "Page layout: {{SHARED_PAGE_LAYOUT}}",
+        "Constraints: {{SHARED_CONSTRAINTS}}",
+        "{{TYPE_SPECIFIC_INSTRUCTIONS}}.",
+        "Output: {{SHARED_OUTPUT}}"
       ],
       "incremental": [
-        "Update {{CV_TYPE}}:",
-        "Current: ```latex\n{{CURRENT_CV}}\n```",
-        "Changes: ```diff\n{{DIFF_DATA}}\n```",
-        "{{SHARED_CONSTRAINTS}}",
-        "{{TYPE_SPECIFIC_INSTRUCTIONS}}"
+        "Update {{CV_TYPE}}.",
+        "Current: ```latex\n{{CURRENT_CV}}\n```.",
+        "Changes: ```diff\n{{DIFF_DATA}}\n```.",
+        "Page layout: {{SHARED_PAGE_LAYOUT}}",
+        "Constraints: {{SHARED_CONSTRAINTS}}",
+        "{{TYPE_SPECIFIC_INSTRUCTIONS}}.",
+        "Output: {{SHARED_OUTPUT}}"
       ]
     }
   },
   "antiCv": {
-    "cvType": "Anti-CV",
-    "system": [
-      "Anti-CV: humorous failures/lessons, self-deprecating but professional. ",
-      "{{SHARED_PAGE_LAYOUT}}",
-      "{{SHARED_OUTPUT}}"
-    ],
-    "fullRebuildInstructions": "Transform achievements → failures. Fill 4 pages completely.",
-    "incrementalInstructions": "Add failures/lessons in humor style. Keep 4 full pages."
+    "cvType": "Anti-CV: Humorous failures/lessons, self-deprecating but professional.",
+    "fullRebuildInstructions": "Transform achievements → failures.",
+    "incrementalInstructions": "Add failures in humor style. Keep {{PAGES}} pages."
   },
   "professionalCv": {
-    "cvType": "professional CV",
-    "system": [
-      "Professional CV: quantified impact, leadership, business value.",
-      "{{SHARED_PAGE_LAYOUT}}",
-      "{{SHARED_OUTPUT}}"
-    ],
-    "fullRebuildInstructions": "Tech → business impact. Quantify results. Fill 4 pages completely.",
-    "incrementalInstructions": "Maintain professional tone. Keep 4 full pages."
+    "cvType": "Professional CV: quantified impact, leadership, business value.",
+    "fullRebuildInstructions": "Tech → business impact. Quantify results.",
+    "incrementalInstructions": "Maintain professional tone. Keep {{PAGES}} pages."
   }
 }

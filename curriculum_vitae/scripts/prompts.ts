@@ -1,7 +1,7 @@
 // prompts.ts - Prompt management utilities with Zod validation
 
 import fs from 'fs-extra';
-import { z } from 'zod';
+import {z} from 'zod';
 import logger from './logger.js';
 import {CvType} from './config.js';
 
@@ -22,7 +22,6 @@ const SharedConfigSchema = z.object({
 
 const CvConfigSchema = z.object({
   cvType: z.string(),
-  system: z.union([z.string(), z.array(z.string())]),
   fullRebuildInstructions: z.string(),
   incrementalInstructions: z.string(),
 });
@@ -91,12 +90,6 @@ const loadPrompts = (): PromptsConfig => {
 const getPromptConfig = (type: CvType, prompts: PromptsConfig): CvConfig =>
   type === 'anti' ? prompts.antiCv : prompts.professionalCv;
 
-export const getSystemPrompt = (type: CvType): string => {
-  const prompts = loadPrompts();
-  const config = getPromptConfig(type, prompts);
-  return substitute(normalize(config.system), createSharedSubstitutions(prompts.shared));
-};
-
 export const getFullRebuildPrompt = (type: CvType, careerData: string): string => {
   const prompts = loadPrompts();
   const config = getPromptConfig(type, prompts);
@@ -121,12 +114,3 @@ export const getIncrementalPrompt = (type: CvType, currentCv: string, diffData: 
   };
   return substitute(normalize(prompts.shared.templates.incremental), substitutions);
 };
-
-// Legacy compatibility
-export const getAntiCvSystemPrompt = () => getSystemPrompt('anti');
-export const getAntiCvFullRebuildPrompt = (data: string) => getFullRebuildPrompt('anti', data);
-export const getAntiCvIncrementalPrompt = (cv: string, diff: string) => getIncrementalPrompt('anti', cv, diff);
-
-export const getProfessionalCvSystemPrompt = () => getSystemPrompt('professional');
-export const getProfessionalCvFullRebuildPrompt = (data: string) => getFullRebuildPrompt('professional', data);
-export const getProfessionalCvIncrementalPrompt = (cv: string, diff: string) => getIncrementalPrompt('professional', cv, diff);

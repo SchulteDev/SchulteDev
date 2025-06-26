@@ -13,38 +13,32 @@ import {
   setOutput
 } from './config.js';
 import logger from './logger.js';
-import {callClaudeApi, PromptResult} from './claude-api.js';
-import {getFullRebuildPrompt, getIncrementalPrompt, getSystemPrompt} from './prompts.js';
+import {callClaudeApi} from './claude-api.js';
+import {getFullRebuildPrompt, getIncrementalPrompt} from './prompts.js';
 
 const git = simpleGit();
 
-// Common prompt building
-export const buildFullRebuildPrompt = (cvType: CvType): PromptResult => {
+// Common prompt building - now returns only user prompt
+export const buildFullRebuildPrompt = (cvType: CvType): string => {
   if (!fs.existsSync(CAREER_FILE)) {
     throw new Error(`Career file not found: ${CAREER_FILE}`);
   }
 
   const careerData = fs.readFileSync(CAREER_FILE, 'utf8');
-  return {
-    systemPrompt: getSystemPrompt(cvType),
-    userPrompt: getFullRebuildPrompt(cvType, careerData)
-  };
+  return getFullRebuildPrompt(cvType, careerData);
 };
 
-export const buildIncrementalPrompt = (cvType: CvType): PromptResult => {
+export const buildIncrementalPrompt = (cvType: CvType): string => {
   const cvFile = getCvFile(cvType);
 
   if (!fs.existsSync(cvFile)) throw new Error(`CV file not found: ${cvFile}`);
   if (!fs.existsSync(DIFF_FILE)) throw new Error(`Diff file not found: ${DIFF_FILE}`);
 
-  return {
-    systemPrompt: getSystemPrompt(cvType),
-    userPrompt: getIncrementalPrompt(
-      cvType,
-      fs.readFileSync(cvFile, 'utf8'),
-      fs.readFileSync(DIFF_FILE, 'utf8')
-    )
-  };
+  return getIncrementalPrompt(
+    cvType,
+    fs.readFileSync(cvFile, 'utf8'),
+    fs.readFileSync(DIFF_FILE, 'utf8')
+  );
 };
 
 // Git operations - GitHub Actions handles change detection
@@ -97,14 +91,14 @@ export const validateDiffContent = (): boolean => {
 };
 
 // CV processing
-export const processAllCvTypes = async (promptBuilder: (cvType: CvType) => PromptResult): Promise<void> => {
+export const processAllCvTypes = async (promptBuilder: (cvType: CvType) => string): Promise<void> => {
   const types = getCvTypesToProcess();
 
   for (const type of types) {
     logger.info(`Processing ${type} CV...`);
-    const {systemPrompt, userPrompt} = promptBuilder(type);
+    const userPrompt = promptBuilder(type);
 
-    if (await callClaudeApi(systemPrompt, userPrompt, type)) {
+    if (await callClaudeApi(userPrompt, type)) {
       logger.success(`Processing complete for ${type} CV`);
     } else {
       throw new Error(`API call failed for ${type} CV`);
