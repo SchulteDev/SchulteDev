@@ -25,8 +25,11 @@ I help enterprises transform legacy systems into modern, scalable architectures.
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
 
+![Jakarta EE](https://img.shields.io/badge/Jakarta_EE-007396?style=flat-square&logo=eclipse&logoColor=white)
+![MicroProfile](https://img.shields.io/badge/MicroProfile-FF6600?style=flat-square&logo=eclipse&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=spring&logoColor=white)
 ![Quarkus](https://img.shields.io/badge/Quarkus-4695EB?style=flat-square&logo=quarkus&logoColor=white)
+![Micronaut](https://img.shields.io/badge/Micronaut-1ABC9C?style=flat-square&logo=micronaut&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat-square&logo=node.js&logoColor=white)
 
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
