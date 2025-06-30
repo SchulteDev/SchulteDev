@@ -1,0 +1,70 @@
+name: schulte-development.de | Build, deploy to GitHubPage on main
+
+on:
+  push:
+    branches: [ '*' ]
+    paths:
+      - '.github/workflows/schulte-development-de_build-deploy.yml'
+      - 'schulte-development_de/**'
+      - '!schulte-development_de/docker-compose.yml'
+      - '!schulte-development_de/Dockerfile'
+      - '!schulte-development_de/Makefile'
+  pull_request:
+    branches: [ '*' ]
+    paths:
+      - '.github/workflows/schulte-development-de_build-deploy.yml'
+      - 'schulte-development_de/**'
+      - '!schulte-development_de/docker-compose.yml'
+      - '!schulte-development_de/Dockerfile'
+      - '!schulte-development_de/Makefile'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./schulte-development_de
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+          working-directory: ./schulte-development_de
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Validate Jekyll configuration
+        run: bundle exec jekyll doctor
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./schulte-development_de/_site
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref_name == 'main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
