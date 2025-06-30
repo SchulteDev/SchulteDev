@@ -238,7 +238,7 @@ parallel technical supervision across "04 – Application Development" area
   with custom evaluation frameworks
 - **Azure Architecture Design:** Azure migration strategy development and Skywalker platform
   enhancement
-- **Platform Assessment:** Elastisys Welkin evaluation for strategic platform alternatives providing 
+- **Platform Assessment:** Elastisys Welkin evaluation for strategic platform alternatives providing
   vendor flexibility
 - **Template Development:** Creation of technical templates and standardized analysis processes for
   systematic application assessment
@@ -988,6 +988,22 @@ it" principle for microservices development
   standards
 - **Team leadership:** Personnel planning, recruitment, onboarding, and performance evaluation
 - **Load testing:** Prepared and executed platform stress testing
+
+**Key Failures and Lessons Learned:**
+
+- **Leadership Experience Gap:** Accepted the Head of Development role without sufficient management
+  experience. Both company leadership and I incorrectly assumed technical competence would translate
+  to effective leadership. Initially underestimated the human factor in management, focusing
+  primarily on technical aspects. Through training and reflection, developed understanding of team
+  dynamics and evolved toward a laissez-faire leadership style that better suited both my
+  personality and team needs.
+
+- **Technology Decision: Sphinx vs. ElasticSearch:** Selected Sphinx search engine over
+  ElasticSearch due to familiarity, despite ElasticSearch offering more advanced features that
+  seemed exotic at the time. This conservative choice proved suboptimal as ElasticSearch's feature
+  set became industry standard. The platform later migrated from Sphinx to ElasticSearch during my
+  return as Backend Developer, validating that the more innovative choice would have been better
+  long-term.
 
 **Technical Achievements:**
 
