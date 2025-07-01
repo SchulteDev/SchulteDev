@@ -37,11 +37,9 @@ permalink: /companies/early-freelancing-projects
 
 > "His technical knowledge of PHP, Java and code metrics is outstanding. Mr. Schulte has worked very
 > sustainably thanks to his numerous constructive suggestions for test development. We were able to
-> benefit from his extensive experience and excellent training."
->
-> *— Dieter Granitzki, CTO AffiliCon GmbH (2015)*
-
-> "Mr Schulte completed all the tasks we requested to our complete satisfaction. In addition to his
+> benefit from his extensive experience and excellent training.
+> 
+> Mr Schulte completed all the tasks we requested to our complete satisfaction. In addition to his
 > impeccable professional qualifications, Mr Schulte is characterised by his friendliness and his
 > ability to work in a team. I consider him to be an excellent software developer who can be
 > integrated very quickly into existing teams."
