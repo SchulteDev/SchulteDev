@@ -101,12 +101,11 @@ p {
 .box {
   display: flex;
   flex-direction: column;
-  color: #333;
-  background: white;
-  transition: all 0.3s ease;
+  color: var(--text-color);
+  background: var(--white);
   text-align: left;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #eee;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
   margin: 0;
@@ -119,7 +118,7 @@ p {
 }
 
 .box img {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   padding: 1rem;
   width: 120px;
   height: 120px;
@@ -137,7 +136,13 @@ p {
   text-decoration: none;
 }
 
-.box:hover {
+/* Only boxes with links (career section) have hover effects */
+.box:has(a) {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.box:has(a):hover {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   background: #fdfdfd;
   border-color: #a0a0a0;
@@ -181,12 +186,6 @@ p {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.value-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .value-item .value-icon {
@@ -229,15 +228,9 @@ p {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid #2c3e50;
+  border-left: 4px solid var(--primary-color);
   max-width: 800px;
   margin: 0 auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .testimonial blockquote {
@@ -277,12 +270,6 @@ p {
   text-align: center;
   flex-basis: calc(50% - 2rem);
   max-width: 450px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skill-category:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .skill-category h3 {
