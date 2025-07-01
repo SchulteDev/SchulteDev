@@ -551,9 +551,9 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
 - **Search & Data:** Algolia, Azure Event Hubs, event streaming architecture
 - **Build & Bundle:** Nx (monorepo tooling), Lerna (monorepo management), esbuild, Gradle
 - **DevOps:** Azure DevOps, Pipeline-as-Code, Terraform (Infrastructure-as-Code), Docker
-- **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Playwright (e2e testing),
+- **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Cypress & Playwright (e2e testing),
   Prettier, comprehensive test pyramid
-- **Package Management:** NPM, pnpm, Dependabot, Renovate Bot (automated dependency updates)
+- **Package Management:** NPM, pnpm, Dependabot & Renovate Bot (automated dependency updates)
 - **Standards:** Conventional Commits, comprehensive code formatting and linting standards
 - **Monitoring:** Azure Application Insights, comprehensive logging and metrics
 
