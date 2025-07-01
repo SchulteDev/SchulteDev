@@ -452,6 +452,12 @@ p {
     max-width: 90%;
   }
 
+  .skill-category .tag {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    margin: 0.15rem;
+  }
+
   .testimonials-section {
     padding: 2rem 1rem;
   }
