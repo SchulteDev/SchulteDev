@@ -551,7 +551,8 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
 - **Search & Data:** Algolia, Azure Event Hubs, event streaming architecture
 - **Build & Bundle:** Nx (monorepo tooling), Lerna (monorepo management), esbuild, Gradle
 - **DevOps:** Azure DevOps, Pipeline-as-Code, Terraform (Infrastructure-as-Code), Docker
-- **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Cypress & Playwright (e2e testing),
+- **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Cypress & Playwright (e2e
+  testing),
   Prettier, comprehensive test pyramid
 - **Package Management:** NPM, pnpm, Dependabot & Renovate Bot (automated dependency updates)
 - **Standards:** Conventional Commits, comprehensive code formatting and linting standards
@@ -777,6 +778,16 @@ Contributed to 13+ repositories including:
   development
 - **Infrastructure Efficiency:** Automated deployment processes and infrastructure management
 
+**Lessons Learned:**
+
+- **Microservices Architecture Reality:** First encounter with a real microservices architecture,
+  surprised by the lived disadvantages. Simple changes often required modifications across many
+  microservices, and lack of testing and automation made maintaining the microservices difficult.
+  Unfortunately, the IT architecture was not open to change. Since this project, I have been
+  skeptical of microservices as an overarching IT architecture and prefer Self-contained Systems
+  (as later implemented at 
+  [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment)).
+
 **Technologies:** AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut,
 Pact, Terraform, Docker, Twilio, Salesforce, Zuora
 
@@ -824,8 +835,8 @@ Pact, Terraform, Docker, Twilio, Salesforce, Zuora
 
 *via tarent solutions GmbH | Freelance | Bonn*
 
-**Context:** "Butterkekse" development team (8-member Scrum team) following "you build it, you run
-it" principle for microservices development
+**Context:** "Butterkekse" (butter biscuit) development team (8-member Scrum team) following
+"you build it, you run it" principle for microservices development
 
 **Role:** Lead Developer with cross-team quality leadership responsibilities
 
@@ -871,6 +882,15 @@ it" principle for microservices development
 - **Knowledge transfer:** Successfully shared expertise across teams, contributing to sprint and
   project success
 
+**Lessons Learned:**
+
+- **Docker and Kubernetes Experience:** First encounter with docker-compose and later Kubernetes.
+  Kubernetes was and still seems overly complex — too complex for both the operations team and
+  application development team to run individual applications. I became and remain fundamentally
+  skeptical of Kubernetes; in my opinion, this is a tool for IT operations solution providers,
+  simple applications should choose more appropriate services especially in hyperscaler
+  environments.
+
 **Technologies & Frameworks:**
 
 - **Backend:** Java (primary), Golang, Ruby, Shell scripting
@@ -880,8 +900,8 @@ it" principle for microservices development
 - **Messaging:** Kafka (event streaming)
 - **APIs:** REST, OAuth2
 - **CI/CD:** Bamboo (continuous integration)
-- **Quality Tools:** Swagger (API documentation), HtmlUnit, OWASP (security), Apache JMeter (
-  performance testing)
+- **Quality Tools:** Swagger (API documentation), HtmlUnit, OWASP (security), 
+  Apache JMeter (performance testing)
 - **Monitoring:** Metrics integration, pull request quality gates
 
 **Employment References:**
@@ -900,7 +920,7 @@ it" principle for microservices development
 - **YOOCHOOSE GmbH (July—Aug 2016):** Spring applications, Jenkins CI, AWS operations
 - **Xsite GmbH (Jan—May 2016):** REST API development, Jenkins pipeline-as-code implementation
 - **freshcells systems (Feb—Jun 2015):** Jenkins CI with Docker, PHP quality standards
-- **fotocommunity GmbH (May 27—29, 2015):** Atlassian Bamboo CI implementation
+- **fotocommunity GmbH (May 2015):** Atlassian Bamboo CI implementation
   - Continuous Integration consulting and strategy development
   - Docker environment setup for PHPUnit test execution
   - Bamboo CI server configuration and deployment
@@ -961,9 +981,9 @@ it" principle for microservices development
 
 **Career Path:**
 
-- PHP Developer (August 15, 2007 - October 15, 2008)
-- Head of Development (October 16, 2008 - March 31, 2010)
-- Backend Developer (April 1, 2010 - June 30, 2014)
+- PHP Developer (Aug 2007 — Oct 2008)
+- Head of Development (Oct 2008 — Mar 2010)
+- Backend Developer (Apr 2010 — Jun 30 2014)
 
 **Key Development Contributions:**
 
@@ -978,7 +998,7 @@ it" principle for microservices development
 - **Security implementation:** Deployed comprehensive security measures (Brute-force protection,
   XSS, CSRF, SQL-injection prevention, ACL)
 
-**Head of Development Responsibilities (2008-2010):**
+**Head of Development Responsibilities (2008 — 2010):**
 
 - **Change management:** Complete change-request management and roadmap creation
 - **Architecture planning:** Software architecture design using UML modeling
@@ -1036,8 +1056,8 @@ it" principle for microservices development
 
 **Employment References:**
 
-- [Final Employment Reference](credentials/wer-kennt-wen/2014_wkw_Zeugnis.pdf) (German) — June 30,
-  2014
+- [Final Employment Reference](credentials/wer-kennt-wen/2014_wkw_Zeugnis.pdf) (German)
+  — June 30, 2014
 - Interim Reference (German) — April 1, 2010
   - [Page 1](credentials/wer-kennt-wen/2011_wkw_Zwischenzeugnis_1.jpg) — April 1, 2010
   - [Page 2](credentials/wer-kennt-wen/2011_wkw_Zwischenzeugnis_2.jpg) — April 1, 2010
