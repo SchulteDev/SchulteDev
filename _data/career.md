@@ -897,21 +897,21 @@ it" principle for microservices development
 
 *Multiple Short-Term Contracts*
 
-- **YOOCHOOSE GmbH (July-Aug 2016):** Spring applications, Jenkins CI, AWS operations
-- **Xsite GmbH (Jan-May 2016):** REST API development, Jenkins pipeline-as-code implementation
-- **freshcells systems (Feb-Jun 2015):** Jenkins CI with Docker, PHP quality standards
-- **fotocommunity GmbH (May 27-29, 2015):** Atlassian Bamboo CI implementation
+- **YOOCHOOSE GmbH (July—Aug 2016):** Spring applications, Jenkins CI, AWS operations
+- **Xsite GmbH (Jan—May 2016):** REST API development, Jenkins pipeline-as-code implementation
+- **freshcells systems (Feb—Jun 2015):** Jenkins CI with Docker, PHP quality standards
+- **fotocommunity GmbH (May 27—29, 2015):** Atlassian Bamboo CI implementation
   - Continuous Integration consulting and strategy development
   - Docker environment setup for PHPUnit test execution
   - Bamboo CI server configuration and deployment
   - Automated test builds using Docker containers
   - Team training on Docker and Bamboo environments
-- **Silver Tours GmbH (Dec 2014-Jul 2015):** Infrastructure modernization for car rental platform
+- **Silver Tours GmbH (Dec 2014 — Jul 2015):** Infrastructure modernization for car rental platform
 - **AffiliCon GmbH (Sep 2014):** Jenkins infrastructure setup
   - [Letter of Recommendation](credentials/2014_Affilicon_Empfehlungsschreiben.pdf) (German)
-- **dailypresent GmbH (Jan-Aug 2014):** PHP backend development, AWS/Facebook integration
-  - [Letter of Recommendation](credentials/2014_dailypresent_Empfehlungsschreiben_Markus-Schulte.pdf) (
-    German)
+- **dailypresent GmbH (Jan—Aug 2014):** PHP backend development, AWS/Facebook integration
+  - [Letter of Recommendation](credentials/2014_dailypresent_Empfehlungsschreiben_Markus-Schulte.pdf)
+    (German)
 
 **Impact:**
 
