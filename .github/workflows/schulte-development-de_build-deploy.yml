@@ -68,7 +68,7 @@ jobs:
 
   deploy_professional_homepage:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build_professional_homepage
     if: github.ref_name == 'main'
     environment:
       name: github-pages
