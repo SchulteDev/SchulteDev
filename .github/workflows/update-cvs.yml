@@ -114,28 +114,41 @@ jobs:
 
   commit-changes:
     needs: update-cvs
-    if: success() && !contains(needs.update-cvs.outputs.mode, 'skip') && github.ref == 'refs/heads/main'
+    #if: success() && !contains(needs.update-cvs.outputs.mode, 'skip') && github.ref == 'refs/heads/main'
+    if: success() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
+      - name: Debug outputs and conditions
+        run: |
+          echo "=== DEBUG INFO ==="
+          echo "Branch ref: ${{ github.ref }}"
+          echo "Mode output: '${{ needs.update-cvs.outputs.mode }}'"
+          echo "Mode output type: $(echo '${{ needs.update-cvs.outputs.mode }}' | wc -c) characters"
+          echo "Success condition: ${{ success() }}"
+          echo "Contains skip: ${{ contains(needs.update-cvs.outputs.mode, 'skip') }}"
+          echo "Not contains skip: ${{ !contains(needs.update-cvs.outputs.mode, 'skip') }}"
+          echo "Full condition result: ${{ success() && !contains(needs.update-cvs.outputs.mode, 'skip') && github.ref == 'refs/heads/main' }}"
+          echo "=== END DEBUG ==="
 
-      - name: Download updated anti CV .tex file
-        uses: actions/download-artifact@v4
-        with:
-          name: anti-tex-file
-          path: curriculum_vitae/
-
-      - name: Download updated professional CV .tex file
-        uses: actions/download-artifact@v4
-        with:
-          name: professional-tex-file
-          path: curriculum_vitae/
-
-      - name: Commit updated LaTeX files
-        uses: stefanzweifel/git-auto-commit-action@v6
-        with:
-          commit_message: "fix(cv): Update CVs (Mode: ${{ github.event.inputs.rebuild_mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }})"
-          file_pattern: "curriculum_vitae/markus-schulte-dev-*.tex"
+      #- name: Checkout repository
+      #  uses: actions/checkout@v4
+      #  with:
+      #    token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
+#
+      #- name: Download updated anti CV .tex file
+      #  uses: actions/download-artifact@v4
+      #  with:
+      #    name: anti-tex-file
+      #    path: curriculum_vitae/
+#
+      #- name: Download updated professional CV .tex file
+      #  uses: actions/download-artifact@v4
+      #  with:
+      #    name: professional-tex-file
+      #    path: curriculum_vitae/
+#
+      #- name: Commit updated LaTeX files
+      #  uses: stefanzweifel/git-auto-commit-action@v6
+      #  with:
+      #    commit_message: "fix(cv): Update CVs (Mode: ${{ github.event.inputs.rebuild_mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }})"
+      #    file_pattern: "curriculum_vitae/markus-schulte-dev-*.tex"
