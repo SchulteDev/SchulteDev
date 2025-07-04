@@ -103,7 +103,7 @@ const handleStreamingResponse = async (stream: any): Promise<{ content: string; 
 };
 
 const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => {
-  logger.info(`Calling Claude API for ${cvType} CV with user prompt only...`);
+  logger.info(`Calling Claude API for ${cvType} CV...`);
   logger.debug(`Model: ${API_MODEL}`);
 
   try {
