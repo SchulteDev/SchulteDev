@@ -33,13 +33,13 @@ jobs:
   # having "changes" job instead of GitHub action paths filtering for being used as pull request check
   changes:
     runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_dispatch'
     outputs:
-      cv: ${{ steps.filter.outputs.cv || github.event_name == 'workflow_dispatch' }}
+      cv: ${{ steps.filter.outputs.cv }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
         id: filter
-        if: github.event_name != 'workflow_dispatch'
         with:
           filters: |
             cv:
@@ -51,7 +51,7 @@ jobs:
   update-cvs:
     runs-on: ubuntu-latest
     needs: changes
-    if: always() && needs.changes.outputs.cv == 'true'
+    if: github.event_name == 'workflow_dispatch' || needs.changes.outputs.cv == 'true'
     strategy:
       matrix:
         cv_type: [ anti, professional ]
