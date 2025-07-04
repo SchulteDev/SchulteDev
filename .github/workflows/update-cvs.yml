@@ -51,7 +51,7 @@ jobs:
   update-cvs:
     runs-on: ubuntu-latest
     needs: changes
-    if: github.event_name == 'workflow_dispatch' || needs.changes.outputs.cv == 'true'
+    if: always() && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.cv == 'true')
     strategy:
       matrix:
         cv_type: [ anti, professional ]
