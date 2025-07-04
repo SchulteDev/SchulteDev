@@ -1,7 +1,7 @@
 // config.ts - Central configuration for CV generation scripts
 
 import fs from 'fs-extra';
-import { z } from 'zod';
+import {z} from 'zod';
 import * as core from '@actions/core';
 
 // Zod schema for environment variables
@@ -13,10 +13,9 @@ const EnvSchema = z.object({
   GIT_DIFF_RANGE: z.coerce.number().positive().default(1),
   CREATE_BACKUP: z.coerce.boolean().default(false),
   CV_TYPES: z.string().default('professional,anti'),
-  GITHUB_ACTIONS: z.coerce.boolean().default(false),
+  CI: z.coerce.boolean().default(false),
 });
 
-// Parse and validate environment variables
 const env = EnvSchema.parse(process.env);
 
 // File paths
@@ -33,13 +32,10 @@ export const MIN_CONTENT_LENGTH: number = env.MIN_CONTENT_LENGTH;
 // Git diff range for incremental updates
 export const GIT_DIFF_RANGE: number = env.GIT_DIFF_RANGE;
 
-// CV Types
 export type CvType = 'professional' | 'anti';
 
-// Settings
 export const CREATE_BACKUP: boolean = env.CREATE_BACKUP;
 
-// Simple getters
 export const getCvFile = (cvType: CvType): string =>
   cvType === 'professional' ? PROFESSIONAL_CV_FILE : ANTI_CV_FILE;
 
@@ -53,10 +49,8 @@ export const getCvTypesToProcess = (): CvType[] => {
   return env.CV_TYPES.split(',').map(type => type.trim()) as CvType[];
 };
 
-// Environment checks
-export const isGithubActions = (): boolean => env.GITHUB_ACTIONS;
+export const isGithubActions = (): boolean => env.CI;
 
-// GitHub Actions output function using @actions/core
 export const setOutput = (name: string, value: string): void => {
   if (isGithubActions()) {
     core.setOutput(name, value);
@@ -65,7 +59,6 @@ export const setOutput = (name: string, value: string): void => {
   }
 };
 
-// Directory management
 export const ensureDirectories = (): void => {
   fs.ensureDirSync('tmp');
 };

@@ -102,17 +102,14 @@ jobs:
         with:
           name: ${{ matrix.cv_type }}-tex-file
           path: curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
-          retention-days: 1
+          retention-days: 7
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cv-update-logs-${{ matrix.cv_type }}-${{ github.run_id }}
-          path: |
-            curriculum_vitae/scripts/tmp/
-            curriculum_vitae/scripts/*.log
-            curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
+          path: curriculum_vitae/scripts/tmp/
           retention-days: 7
 
   commit-changes:
@@ -138,7 +135,6 @@ jobs:
           path: curriculum_vitae/
 
       - name: Commit updated LaTeX files
-        id: commit
         uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "fix(cv): Update CVs (Mode: ${{ github.event.inputs.rebuild_mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }})"
