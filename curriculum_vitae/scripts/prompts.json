@@ -12,7 +12,7 @@
     ],
     "constraints": [
       "Valid, compilable LuaLaTeX with standard packages only.",
-      "LuaLaTeX bundled fonts only. Only characters available in the LuaLaTeX font(s).",
+      "LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.",
       "Exactly {{PAGES}} filled, dense pages.",
       "Prioritize most recent and impactful experiences, teaser the other experiences",
       "Absolutely truthful and factual regarding career data."
