@@ -114,7 +114,7 @@ jobs:
 
   commit-changes:
     needs: update-cvs
-    if: success() && !contains(toJSON(needs.update-cvs.outputs), '"mode":"skip"') && github.ref == 'refs/heads/main'
+    if: success() && needs.update-cvs.outputs.mode != 'skip' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
