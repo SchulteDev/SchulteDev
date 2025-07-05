@@ -89,12 +89,12 @@ jobs:
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: npm run cv:update:${{ matrix.cv_type }}
 
-      - name: Validate LaTeX (compilation test)
-        if: success() && steps.transform.outputs.mode != 'skip'
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
-          args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
+      # - name: Validate LaTeX (compilation test)
+      #   if: success() && steps.transform.outputs.mode != 'skip'
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
+      #     args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Upload updated .tex file
         if: success() && steps.transform.outputs.mode != 'skip'
@@ -114,11 +114,14 @@ jobs:
 
   commit-changes:
     needs: update-cvs
-    if: success() && github.ref == 'refs/heads/main'
+    if: success()
     runs-on: ubuntu-latest
     steps:
-      - name: Debug outputs
+      - name: Debug context
         run: |
+          echo "github.ref: ${{ github.ref }}"
+          echo "github.ref_name: ${{ github.ref_name }}"
+          echo "github.event_name: ${{ github.event_name }}"
           echo "Raw outputs: ${{ toJSON(needs.update-cvs.outputs) }}"
           echo "Mode value: '${{ needs.update-cvs.outputs.mode }}'"
           echo "Mode type: $(echo '${{ needs.update-cvs.outputs.mode }}' | wc -c)"
@@ -126,12 +129,6 @@ jobs:
       - name: Check skip condition
         if: needs.update-cvs.outputs.mode != 'skip'
         run: echo "Mode is not skip, proceeding with commit"
-
-      - name: Checkout repository
-        if: needs.update-cvs.outputs.mode != 'skip'
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
 
       - name: Download updated anti CV .tex file
         uses: actions/download-artifact@v4
