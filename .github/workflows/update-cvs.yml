@@ -114,10 +114,21 @@ jobs:
 
   commit-changes:
     needs: update-cvs
-    if: success() && needs.update-cvs.outputs.mode != 'skip' && github.ref == 'refs/heads/main'
+    if: success() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
+      - name: Debug outputs
+        run: |
+          echo "Raw outputs: ${{ toJSON(needs.update-cvs.outputs) }}"
+          echo "Mode value: '${{ needs.update-cvs.outputs.mode }}'"
+          echo "Mode type: $(echo '${{ needs.update-cvs.outputs.mode }}' | wc -c)"
+
+      - name: Check skip condition
+        if: needs.update-cvs.outputs.mode != 'skip'
+        run: echo "Mode is not skip, proceeding with commit"
+
       - name: Checkout repository
+        if: needs.update-cvs.outputs.mode != 'skip'
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
