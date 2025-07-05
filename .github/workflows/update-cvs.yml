@@ -35,18 +35,18 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name != 'workflow_dispatch'
     outputs:
-      cv: ${{ steps.filter.outputs.cv }}
+      cv: ${{ steps.changed-files.outputs.any_changed }}
     steps:
       - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
-        id: filter
+      - uses: tj-actions/changed-files@v46
+        id: changed-files
         with:
-          filters: |
-            cv:
-              - '.github/workflows/update-cvs.yml'
-              - '_data/**'
-              - 'curriculum_vitae/scripts/**'
-              - '!curriculum_vitae/*-cv.tex'
+          files: |
+            .github/workflows/update-cvs.yml
+            _data/**
+            curriculum_vitae/scripts/**
+          files_ignore: |
+            curriculum_vitae/*-cv.tex
 
   update-cvs:
     runs-on: ubuntu-latest

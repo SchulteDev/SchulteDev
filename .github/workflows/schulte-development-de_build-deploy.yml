@@ -22,19 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name != 'workflow_dispatch'
     outputs:
-      website: ${{ steps.filter.outputs.website }}
+      website: ${{ steps.changed-files.outputs.any_changed }}
     steps:
       - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
-        id: filter
+      - uses: tj-actions/changed-files@v46
+        id: changed-files
         with:
-          filters: |
-            website:
-              - '.github/workflows/schulte-development-de_build-deploy.yml'
-              - 'schulte-development_de/**'
-              - '!schulte-development_de/docker-compose.yml'
-              - '!schulte-development_de/Dockerfile'
-              - '!schulte-development_de/Makefile'
+          files: |
+            .github/workflows/schulte-development-de_build-deploy.yml
+            schulte-development_de/**
+          files_ignore: |
+            schulte-development_de/docker-compose.yml
+            schulte-development_de/Dockerfile
+            schulte-development_de/Makefile
 
   build_professional_homepage:
     runs-on: ubuntu-latest
