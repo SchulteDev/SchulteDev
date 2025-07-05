@@ -170,36 +170,36 @@ const main = async (): Promise<void> => {
         logger.info('Response files found, proceeding with processing');
       } else {
         logger.info('No changes to process, skipping validation and compilation');
-        if (isGithubActions()) {
-          setOutput('mode', 'skip');
-        }
-        process.exit(0);
+        mode = 'skip';
       }
     }
 
     // Process each CV type
-    logger.info(`Processing responses for CV types: ${cvTypesToProcess.join(', ')}...`);
-    let successCount = 0;
-    for (const cvType of cvTypesToProcess) {
-      if (processCvType(cvType)) {
-        successCount++;
+    if (mode !== 'skip') {
+      logger.info(`Processing responses for CV types: ${cvTypesToProcess.join(', ')}...`);
+      let successCount = 0;
+      for (const cvType of cvTypesToProcess) {
+        if (processCvType(cvType)) {
+          successCount++;
+        }
       }
+
+      if (successCount === 0) {
+        logger.error('No CV files were successfully processed');
+        process.exit(1);
+      } else if (successCount < cvTypesToProcess.length) {
+        logger.warn(`Only ${successCount}/${cvTypesToProcess.length} CV files were successfully processed`);
+      }
+
+      setOutput('processed_count', successCount.toString());
+      logger.success(`CV update completed successfully! Processed ${successCount}/${cvTypesToProcess.length} CV types`);
     }
 
-    if (successCount === 0) {
-      logger.error('No CV files were successfully processed');
-      process.exit(1);
-    } else if (successCount < cvTypesToProcess.length) {
-      logger.warn(`Only ${successCount}/${cvTypesToProcess.length} CV files were successfully processed`);
-    }
-
-    logger.success(`CV update completed successfully! Processed ${successCount}/${cvTypesToProcess.length} CV types`);
     logger.info(`Mode: ${mode}`);
 
     // Set outputs for GitHub Actions
     if (isGithubActions()) {
       setOutput('mode', mode);
-      setOutput('processed_count', successCount.toString());
       setOutput('cv_types', cvTypesToProcess.join(','));
     }
   } catch (error: any) {
