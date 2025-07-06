@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     # This job is skipped for workflow_dispatch.
     #   In GitHub actions, follow up jobs have do use "always()" plus other conditions because of this.
-    #   See https://github.com/actions/runner/issues/2205 for details.
+    #   See actions/runner#2205 for details.
     if: github.event_name != 'workflow_dispatch'
     outputs:
       website: ${{ steps.changed-files.outputs.any_changed }}
