@@ -72,7 +72,7 @@ jobs:
   deploy_professional_homepage:
     runs-on: ubuntu-latest
     needs: build_professional_homepage
-    if:  always() && needs.build_professional_homepage.result == success && github.ref_name == 'main'
+    if:  always() && needs.build_professional_homepage.result == 'success' && github.ref_name == 'main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
