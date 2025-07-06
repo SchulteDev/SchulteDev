@@ -30,9 +30,12 @@ env:
   PROFESSIONAL_CV_FILE: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-professional-cv.tex
 
 jobs:
-  # having "changes" job instead of GitHub action paths filtering for being used as pull request check
+  # having "changes" job instead of GitHub action paths filtering for being usable as pull request check
   changes:
     runs-on: ubuntu-latest
+    # This job is skipped for workflow_dispatch.
+    #   In GitHub actions, follow up jobs have do use "always()" plus other conditions because of this.
+    #   See https://github.com/actions/runner/issues/2205 for details.
     if: github.event_name != 'workflow_dispatch'
     outputs:
       cv: ${{ steps.changed-files.outputs.any_changed }}
@@ -89,12 +92,12 @@ jobs:
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: npm run cv:update:${{ matrix.cv_type }}
 
-      # - name: Validate LaTeX (compilation test)
-      #   if: success() && steps.transform.outputs.mode != 'skip'
-      #   uses: xu-cheng/latex-action@v3
-      #   with:
-      #     root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
-      #     args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Validate LaTeX (compilation test)
+        if: success() && steps.transform.outputs.mode != 'skip'
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
+          args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Upload updated .tex file
         if: success() && steps.transform.outputs.mode != 'skip'
@@ -114,22 +117,13 @@ jobs:
 
   commit-changes:
     needs: update-cvs
-    if: always()
+    if: always() && needs.update-cvs.result == success && needs.update-cvs.outputs.mode != 'skip' && github.ref_name == 'main'
     runs-on: ubuntu-latest
     steps:
-      - name: Debug context
-        run: |
-          echo "github.ref: ${{ github.ref }}"
-          echo "github.ref_name: ${{ github.ref_name }}"
-          echo "github.event_name: ${{ github.event_name }}"
-          echo "needs.update-cvs.result: ${{ needs.update-cvs.result }}"
-          echo "Raw outputs: ${{ toJSON(needs.update-cvs.outputs) }}"
-          echo "Mode value: '${{ needs.update-cvs.outputs.mode }}'"
-          echo "Mode type: $(echo '${{ needs.update-cvs.outputs.mode }}' | wc -c)"
-
-      - name: Check skip condition
-        if: needs.update-cvs.outputs.mode != 'skip'
-        run: echo "Mode is not skip, proceeding with commit"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
 
       - name: Download updated anti CV .tex file
         uses: actions/download-artifact@v4
