@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Early Freelancing Projects
-permalink: /companies/early-freelancing-projects
+permalink: /companies/early-freelancing-projects/
 ---
 
 ### January 2014 — August 2016: Early Freelancing Projects

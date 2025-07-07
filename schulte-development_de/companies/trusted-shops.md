@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Cloud Consultant at Trusted Shops
-permalink: /companies/trusted-shops
+permalink: /companies/trusted-shops/
 ---
 
 ### August 2018 — October 2019: Cloud Consultant at Trusted Shops

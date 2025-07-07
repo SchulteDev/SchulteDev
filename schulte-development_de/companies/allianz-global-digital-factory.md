@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Senior JavaEE Developer at Allianz Global Digital Factory
-permalink: /companies/allianz-global-digital-factory
+permalink: /companies/allianz-global-digital-factory/
 ---
 
 ### November 2017 — March 2018: Senior JavaEE Developer at Allianz Global Digital Factory

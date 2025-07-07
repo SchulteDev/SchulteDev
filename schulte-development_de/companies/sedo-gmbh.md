@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Cloud Consultant at Sedo GmbH
-permalink: /companies/sedo-gmbh
+permalink: /companies/sedo-gmbh/
 ---
 
 ### January 2020 — March 2020: Cloud Consultant at Sedo GmbH

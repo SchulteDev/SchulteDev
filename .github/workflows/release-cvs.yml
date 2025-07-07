@@ -20,19 +20,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Compile CV LaTeX to PDF
         uses: xu-cheng/latex-action@v4
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
-
       - name: Upload CV PDF
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.cv_type }}-cv-pdf
           path: markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         if: always()
@@ -50,28 +47,24 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Download Anti-CV PDF
         uses: actions/download-artifact@v4
         with:
           name: anti-cv-pdf
           path: .
         continue-on-error: true
-
       - name: Download Professional CV PDF
         uses: actions/download-artifact@v4
         with:
           name: professional-cv-pdf
           path: .
         continue-on-error: true
-
       - name: Delete existing release and tag
         run: |
           gh release delete cvs-latest --yes || true
           git push --delete origin cvs-latest || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Upload PDFs to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
@@ -90,7 +83,6 @@ jobs:
           make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Upload release artifacts
         uses: actions/upload-artifact@v4
         if: always()

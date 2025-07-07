@@ -1,4 +1,4 @@
-[![schulte-development.de | Build, deploy to GitHubPage on main](https://github.com/SchulteDev/SchulteDev/actions/workflows/schulte-development-de_build-deploy.yml/badge.svg)](https://github.com/SchulteDev/SchulteDev/actions/workflows/schulte-development-de_build-deploy.yml)
+[![schulte-development.de | Build; deploy if main](https://github.com/SchulteDev/SchulteDev/actions/workflows/schulte-development-de_build-deploy.yml/badge.svg)](https://github.com/SchulteDev/SchulteDev/actions/workflows/schulte-development-de_build-deploy.yml)
 
 # schulte-development.de homepage
 
@@ -16,13 +16,17 @@ website.
 - Docker for development
 - Automated CI/CD workflows
 
-## Setup
+## Local Development
 
-### Option 1: Native Installation
+You can build, serve, and test the site locally using `make` commands or Docker.
 
-1. Follow [Jekyll installation instructions](https://jekyllrb.com/docs/#instructions)
-2. `$ make`
+### Using Make (requires Ruby and Jekyll installed locally)
 
-### Option 2: Docker
+- **Build:** `make build`
+- **Serve:** `make serve`
+- **Test:** `make test`
 
-    $ docker-compose up --build
+### Using Docker
+
+- **Build & Serve:** `docker-compose up --build`
+- **Test:** `docker-compose run --rm jekyll bundle exec rake test`

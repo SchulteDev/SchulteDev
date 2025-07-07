@@ -13,7 +13,7 @@ css: /assets/index.css
 </div>
 
 <div class="cta-section">
-  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
+  <a href="{{ '/#lets-connect' | absolute_url }}" class="cta-button">Let's Connect</a>
 </div>
 
 # About me
@@ -33,7 +33,7 @@ css: /assets/index.css
 
 <div class="values-section">
   <div class="value-item">
-    <img src="/assets/img/service-icons/programming.jpeg" alt="Proven IT Principles Icon" class="value-icon"/>
+    <img src="{{ '/assets/img/service-icons/programming.jpeg' | absolute_url }}" alt="Proven IT Principles Icon" class="value-icon"/>
     <h3>Proven IT Principles</h3>
     <p>
       I believe in applying well-known principles like Clean Code and Clean Architecture.
@@ -41,7 +41,7 @@ css: /assets/index.css
     </p>
   </div>
   <div class="value-item">
-    <img src="/assets/img/service-icons/leadership.jpeg" alt="Team Collaboration Icon" class="value-icon"/>
+    <img src="{{ '/assets/img/service-icons/leadership.jpeg' | absolute_url }}" alt="Team Collaboration Icon" class="value-icon"/>
     <h3>Effective Collaboration</h3>
     <p>
       Beyond technical excellence, I emphasize the human element in software development.
@@ -74,7 +74,7 @@ css: /assets/index.css
 </div>
 
 <div class="cta-section">
-  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
+  <a href="{{ '/#lets-connect' | absolute_url }}" class="cta-button">Let's Connect</a>
 </div>
 
 # My Skillset
@@ -125,7 +125,7 @@ css: /assets/index.css
 </div>
 
 <div class="cta-section">
-  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
+  <a href="{{ '/#lets-connect' | absolute_url }}" class="cta-button">Let's Connect</a>
 </div>
 
 # My Career
@@ -133,8 +133,8 @@ css: /assets/index.css
 <div class="page-section">
 {% for company in site.data.portfolio %}
   <div class="box">
-    <a href="{{ company.url }}">
-      <img src="/assets/img/logos/{{ company.img }}" alt="{{ company.title }} logo"/>
+    <a href="{{ company.url | absolute_url }}">
+      <img src="{{ '/assets/img/logos/' | append: company.img | absolute_url }}" alt="{{ company.title }} logo"/>
       <div class="box-title">{{ company.title }}</div>
       <div class="box-desc">{{ company.description }}</div>
     </a>
@@ -143,7 +143,7 @@ css: /assets/index.css
 </div>
 
 <div class="cta-section">
-  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
+  <a href="{{ '/#lets-connect' | absolute_url }}" class="cta-button">Let's Connect</a>
 </div>
 
 # My Services
@@ -151,7 +151,7 @@ css: /assets/index.css
 <div class="page-section">
 {% for app in site.data.services %}
   <div class="box">
-    <img src="/assets/img/service-icons/{{ app.img }}"  alt="{{ app.title }} icon"/>
+    <img src="{{ '/assets/img/service-icons/' | append: app.img | absolute_url }}"  alt="{{ app.title }} icon"/>
     <div class="box-title">{{ app.title }}</div>
     <div class="box-desc">{{ app.description }}</div>
     <div class="box-desc">{{ app.skills }}</div>
@@ -160,22 +160,22 @@ css: /assets/index.css
 </div>
 
 <div class="cta-section">
-  <a href="/#lets-connect" class="cta-button">Let's Connect</a>
+  <a href="{{ '/#lets-connect' | absolute_url }}" class="cta-button">Let's Connect</a>
 </div>
 
 # My Contributions
 
 <div class="page-section">
   <div class="box">
-    <a href="/github-contributions">
-      <img src="/assets/img/logos/github.svg" alt="GitHub logo"/>
+    <a href="{{ '/github-contributions' | absolute_url }}">
+      <img src="{{ '/assets/img/logos/github.svg' | absolute_url }}" alt="GitHub logo"/>
       <div class="box-title">GitHub</div>
       <div class="box-desc">Open source projects and code contributions</div>
     </a>
   </div>
   <div class="box">
-    <a href="/stackoverflow-contributions">
-      <img src="/assets/img/logos/stackoverflow.svg" alt="StackOverflow logo"/>
+    <a href="{{ '/stackoverflow-contributions/' | absolute_url }}">
+      <img src="{{ '/assets/img/logos/stackoverflow.svg' | absolute_url }}" alt="StackOverflow logo"/>
       <div class="box-title">StackOverflow</div>
       <div class="box-desc">Community answers and technical discussions</div>
     </a>
@@ -187,19 +187,19 @@ css: /assets/index.css
 <div class="contact-section">
   <div class="contact-box">
     <a href="https://outlook.office365.com/owa/calendar/Schultedevelopment1@schulte-development.de/bookings/">
-      <img src="/assets/img/logos/microsoft_bookings_logo.png" alt="Outlook logo"/>
+      <img src="{{ '/assets/img/logos/microsoft_bookings_logo.png' | absolute_url }}" alt="Outlook logo"/>
       <div class="contact-box-desc">Book appointment online</div>
     </a>
   </div>
   <div class="contact-box">
     <a href="mailto:mail@schulte-development.de">
-      <img src="/assets/img/logos/mail.png" alt="Logo of email"/>
+      <img src="{{ '/assets/img/logos/mail.png' | absolute_url }}" alt="Logo of email"/>
       <div class="contact-box-desc">mail@schulte-development.de</div>
     </a>
   </div>
   <div class="contact-box">
     <a href="https://www.linkedin.com/in/markus-schulte">
-      <img src="/assets/img/logos/linkedin.png"  alt="LinkedIn logo"/>
+      <img src="{{ '/assets/img/logos/linkedin.png' | absolute_url }}"  alt="LinkedIn logo"/>
       <div class="contact-box-desc">markus-schulte@LinkedIn</div>
     </a>
   </div>

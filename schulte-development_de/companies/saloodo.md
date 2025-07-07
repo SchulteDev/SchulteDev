@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Middleware Engineer at Saloodo! (DHL Group)
-permalink: /companies/saloodo
+permalink: /companies/saloodo/
 ---
 
 ### December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL Group)

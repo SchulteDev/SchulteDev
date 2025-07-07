@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Senior Engineer & DevOp at toom Baumarkt GmbH
-permalink: /companies/toom-baumarkt
+permalink: /companies/toom-baumarkt/
 ---
 
 ### October 2016 — September 2017: Senior Engineer & DevOp at toom Baumarkt GmbH

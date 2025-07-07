@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Creator of Atlassian Bamboo Server Add-ons
-permalink: /companies/atlassian-bamboo-add-ons
+permalink: /companies/atlassian-bamboo-add-ons/
 ---
 
 ### June 2016 — December 2023: Creator of Atlassian Bamboo Server Add-ons
