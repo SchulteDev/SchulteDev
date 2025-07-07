@@ -6,7 +6,7 @@
   "scripts": {
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "clean": "rm -rf coverage/ node_modules/ tmp/",
+    "clean": "rm -rf coverage/ node_modules/ tmp/ test-results.xml",
     "cv:update": "tsx run-cv-update.ts",
     "cv:update:professional": "CV_TYPES=professional tsx run-cv-update.ts",
     "cv:update:anti": "CV_TYPES=anti tsx run-cv-update.ts",
