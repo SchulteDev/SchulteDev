@@ -59,7 +59,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - name: Validate Jekyll configuration
-        run: bundle exec jekyll doctor
+        run: bundle exec jekyll doctor --baseurl "${{ steps.pages.outputs.base_path }}"
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:

@@ -29,4 +29,4 @@ You can build, serve, and test the site locally using `make` commands or Docker.
 ### Using Docker
 
 - **Build & Serve:** `docker-compose up --build`
-- **Test:** `docker-compose run --rm jekyll bundle exec rake test`
+- **Test:** `docker-compose run --rm test`
