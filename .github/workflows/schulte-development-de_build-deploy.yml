@@ -83,30 +83,16 @@ jobs:
       - name: Smoketest
         run: |
           url="${{ steps.deployment.outputs.page_url }}"
-          echo "Testing URL: $url"
-          sleep 15
+          sleep 10
           set -x
-          for i in {1..12}; do
-            echo "=== Attempt $i/12 ==="
-            response=$(curl -f "$url" 2>&1)
-            curl_exit_code=$?
-
-            if [ $curl_exit_code -eq 0 ]; then
-              echo "✅ curl succeeded"
-              if echo "$response" | grep -q "Markus Schulte: Cloud Architect & Software Engineer"; then
-                echo "✅ Smoketest passed - content found"
-                exit 0
-              else
-                echo "❌ Content not found, showing first 500 chars of response:"
-                echo "$response" | head -c 500
-              fi
-            else
-              echo "❌ curl failed with exit code: $curl_exit_code"
-              echo "curl output: $response"
+          for i in {1..10}; do
+            if curl -f "$url" | grep -q "Markus Schulte: Cloud Architect &amp; Software Engineer" && \
+               curl -f "${url}imprint"; then
+              echo "✅ Smoketest passed"
+              exit 0
             fi
-
-            echo "Retrying in 5s..."
+            echo "Attempt $i/12 failed, retrying in 5s..."
             sleep 5
           done
-          echo "❌ Smoketest failed after all attempts"
+          echo "❌ Smoketest failed after 60s"
           exit 1
