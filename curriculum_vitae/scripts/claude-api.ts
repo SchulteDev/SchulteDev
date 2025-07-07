@@ -76,7 +76,6 @@ const logClaudeResponse = (response: any, cvType: CvType, userPrompt: string): v
   logger.debug(`Claude response logged to ${logFile}`);
 };
 
-// API call logic
 const shouldUseMock = (): { useMock: boolean; reason: string } => {
   if (process.env.SKIP_API === 'true') {
     return {useMock: true, reason: 'SKIP_API=true'};
@@ -87,7 +86,7 @@ const shouldUseMock = (): { useMock: boolean; reason: string } => {
   return {useMock: false, reason: ''};
 };
 
-const handleStreamingResponse = async (stream: any): Promise<{ content: string; usage: any }> => {
+const processApiStream = async (stream: any): Promise<{ content: string; usage: any }> => {
   let completeResponse = '';
   let usage = null;
 
@@ -99,7 +98,32 @@ const handleStreamingResponse = async (stream: any): Promise<{ content: string; 
     }
   }
 
-  return {content: completeResponse, usage};
+  return { content: completeResponse, usage };
+};
+
+const createApiRequest = (userPrompt: string): MessageCreateParams => ({
+  model: API_MODEL,
+  max_tokens: MAX_TOKENS,
+  messages: [{ role: 'user', content: userPrompt }],
+  stream: true,
+  thinking: {
+    type: "enabled",
+    budget_tokens: Math.min(20000, Math.floor(MAX_TOKENS * 0.4))
+  }
+});
+
+const saveApiResponse = (response: any, cvType: CvType, userPrompt: string): void => {
+  const responseFile = getResponseFile(cvType);
+  fs.writeJsonSync(responseFile, response, { spaces: 2 });
+  logClaudeResponse(response, cvType, userPrompt);
+};
+
+const validateApiResponse = (content: string, cvType: CvType): boolean => {
+  if (!content?.trim()) {
+    logger.error(`Invalid API response for ${cvType} CV: empty response`);
+    return false;
+  }
+  return true;
 };
 
 const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => {
@@ -107,38 +131,23 @@ const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => 
   logger.debug(`Model: ${API_MODEL}`);
 
   try {
-    const anthropic = new Anthropic({apiKey: process.env.ANTHROPIC_API_KEY});
-
-    const request: MessageCreateParams = {
-      model: API_MODEL,
-      max_tokens: MAX_TOKENS,
-      messages: [{role: 'user', content: userPrompt}],
-      stream: true,  // Enable streaming for extended thinking
-      thinking: {
-        type: "enabled",
-        budget_tokens: Math.min(20000, Math.floor(MAX_TOKENS * 0.4))  // Reduced thinking budget to 40%, more for content
-      }
-    };
+    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+    const request = createApiRequest(userPrompt);
 
     logger.debug('Starting streaming response...');
     const stream = await anthropic.messages.create(request);
+    const { content: completeResponse, usage } = await processApiStream(stream);
 
-    const {content: completeResponse, usage} = await handleStreamingResponse(stream);
+    if (!validateApiResponse(completeResponse, cvType)) {
+      return false;
+    }
 
     const response = {
-      content: [{type: 'text', text: completeResponse}],
+      content: [{ type: 'text', text: completeResponse }],
       usage: usage
     };
 
-    const responseFile = getResponseFile(cvType);
-    fs.writeJsonSync(responseFile, response, {spaces: 2});
-
-    logClaudeResponse(response, cvType, userPrompt);
-
-    if (!completeResponse?.trim()) {
-      logger.error(`Invalid API response for ${cvType} CV: empty response`);
-      return false;
-    }
+    saveApiResponse(response, cvType, userPrompt);
 
     logger.success(`API response received for ${cvType} CV`);
     logger.debug(`Response length: ${completeResponse.length} chars`);
@@ -169,7 +178,6 @@ export const callClaudeApi = async (userPrompt: string, cvType: CvType): Promise
   return callApi(userPrompt, cvType);
 };
 
-// Content processing
 const readResponseContent = (responseFile: string, cvType: CvType): string | null => {
   try {
     logger.debug(`Reading response from ${responseFile} for ${cvType} CV`);

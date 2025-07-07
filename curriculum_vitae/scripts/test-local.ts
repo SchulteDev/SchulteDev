@@ -6,6 +6,7 @@ import util from 'util';
 import dotenv from 'dotenv';
 import {CAREER_FILE, getCvFile, getCvTypesToProcess} from './config.js';
 import logger from './logger.js';
+import { ensureDir } from './file-utils.js';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -66,14 +67,13 @@ if (MODE !== 'incremental' && MODE !== 'full_rebuild') {
 
 logger.info(`Running in ${MODE} mode for CV types: ${getCvTypesToProcess().join(', ')}`);
 
-// Validate prerequisites
-const validatePrerequisites = (): void => {
+const validateTestPrerequisites = (mode: string): void => {
   if (!fs.existsSync(CAREER_FILE)) {
     logger.error(`Missing prerequisite: ${CAREER_FILE} file`);
     process.exit(1);
   }
 
-  if (MODE === 'incremental') {
+  if (mode === 'incremental') {
     const cvTypesToProcess = getCvTypesToProcess();
     for (const cvType of cvTypesToProcess) {
       const cvFile = getCvFile(cvType);
@@ -90,12 +90,11 @@ const validatePrerequisites = (): void => {
   }
 };
 
-// Setup local environment
-const setupLocalEnv = (): void => {
+const setupTestEnvironment = (): void => {
   process.env.GITHUB_EVENT_NAME ??= 'workflow_dispatch';
   process.env.REBUILD_MODE = MODE;
 
-  // Only set SKIP_API=true if explicitly no API key and SKIP_API not already set
+  // Handle API key logic
   if (!process.env.ANTHROPIC_API_KEY && !process.env.SKIP_API) {
     process.env.SKIP_API = 'true';
     logger.info('No ANTHROPIC_API_KEY found, setting SKIP_API=true for testing');
@@ -104,90 +103,98 @@ const setupLocalEnv = (): void => {
   }
 
   if (!fs.existsSync('tmp')) {
-    fs.ensureDirSync('tmp');
+    ensureDir('tmp');
   }
 
   process.env.GITHUB_OUTPUT = 'tmp/github_output.txt';
   fs.writeFileSync(process.env.GITHUB_OUTPUT, '');
 };
 
-// Main execution
+const createSubprocessEnvironment = (): Record<string, string | undefined> => ({
+  ...process.env,
+  GITHUB_EVENT_NAME: 'workflow_dispatch',
+  REBUILD_MODE: MODE,
+  CV_TYPES: process.env.CV_TYPES ?? getCvTypesToProcess().join(',')
+});
+
+const executeCvUpdateWorkflow = async (): Promise<void> => {
+  const envVars = createSubprocessEnvironment();
+
+  logger.debug(`Environment: CV_TYPES=${envVars.CV_TYPES}, SKIP_API=${envVars.SKIP_API ?? 'undefined'}, REBUILD_MODE=${envVars.REBUILD_MODE}, HAS_API_KEY=${!!envVars.ANTHROPIC_API_KEY}`);
+
+  try {
+    const { stdout, stderr } = await execAsync('tsx run-cv-update.ts', {
+      env: envVars,
+      cwd: process.cwd()
+    });
+
+    logger.debug('CV update workflow completed');
+    if (stdout) {
+      logger.debug(`stdout: ${stdout.slice(0, 200)}${stdout.length > 200 ? '...' : ''}`);
+    }
+    if (stderr) {
+      logger.debug(`stderr: ${stderr}`);
+    }
+  } catch (error: any) {
+    logger.error(`CV update workflow failed: ${error.message}`);
+    if (error.stdout) {
+      logger.debug(`stdout: ${error.stdout}`);
+    }
+    if (error.stderr) {
+      logger.debug(`stderr: ${error.stderr}`);
+    }
+    throw error;
+  }
+};
+
+const showTestResults = (): void => {
+  const cvTypesToProcess = getCvTypesToProcess();
+  for (const cvType of cvTypesToProcess) {
+    const cvFile = getCvFile(cvType);
+    if (fs.existsSync(cvFile)) {
+      const stats = fs.statSync(cvFile);
+      logger.info(`${cvType} CV file updated. Size: ${stats.size} bytes`);
+      logger.debug(`${cvType} CV last modified: ${stats.mtime}`);
+    } else {
+      logger.warn(`${cvType} CV file not found: ${cvFile}`);
+    }
+  }
+};
+
+const performDryRun = (): void => {
+  const cvTypesToProcess = getCvTypesToProcess();
+  logger.info('DRY RUN - Would execute:');
+  console.log(`  1. Run ${MODE} transformation for CV types: ${cvTypesToProcess.join(', ')}`);
+  console.log('  2. Validate and apply changes');
+  for (const cvType of cvTypesToProcess) {
+    const cvFile = getCvFile(cvType);
+    console.log(`  3. Update ${cvFile} (${cvType} CV)`);
+  }
+  process.exit(0);
+};
+
 const main = async (): Promise<void> => {
   try {
     logger.debug('Starting test-local.ts');
     logger.debug(`Mode: ${MODE}, Skip API: ${SKIP_API}, Dry Run: ${DRY_RUN}`);
 
-    validatePrerequisites();
+    validateTestPrerequisites(MODE);
     logger.debug('Prerequisites checked');
 
-    setupLocalEnv();
+    setupTestEnvironment();
     logger.debug('Local environment set up');
 
     if (DRY_RUN) {
-      const cvTypesToProcess = getCvTypesToProcess();
-      logger.info('DRY RUN - Would execute:');
-      console.log(`  1. Run ${MODE} transformation for CV types: ${cvTypesToProcess.join(', ')}`);
-      console.log('  2. Validate and apply changes');
-      for (const cvType of cvTypesToProcess) {
-        const cvFile = getCvFile(cvType);
-        console.log(`  3. Update ${cvFile} (${cvType} CV)`);
-      }
-      process.exit(0);
+      performDryRun();
+      return;
     }
 
-    // Run the CV update workflow with proper environment variables
     logger.info(`Running CV update workflow in ${MODE} mode for CV types: ${getCvTypesToProcess().join(', ')}...`);
 
-    // Create environment with all current variables
-    const envVars: Record<string, string | undefined> = {
-      ...process.env,
-      GITHUB_EVENT_NAME: 'workflow_dispatch',
-      REBUILD_MODE: MODE,
-      CV_TYPES: process.env.CV_TYPES ?? getCvTypesToProcess().join(',')
-      // Don't override SKIP_API here - let it use the value set in setupLocalEnv
-    };
-
-    // Log environment for debugging
-    logger.debug(`Environment: CV_TYPES=${envVars.CV_TYPES}, SKIP_API=${envVars.SKIP_API ?? 'undefined'}, REBUILD_MODE=${envVars.REBUILD_MODE}, HAS_API_KEY=${!!envVars.ANTHROPIC_API_KEY}`);
-
-    try {
-      const {stdout, stderr} = await execAsync('tsx run-cv-update.ts', {
-        env: envVars,
-        cwd: process.cwd()
-      });
-
-      logger.debug('CV update workflow completed');
-      if (stdout) {
-        logger.debug(`stdout: ${stdout.slice(0, 200)}${stdout.length > 200 ? '...' : ''}`);
-      }
-      if (stderr) {
-        logger.debug(`stderr: ${stderr}`);
-      }
-    } catch (error: any) {
-      logger.error(`CV update workflow failed: ${error.message}`);
-      if (error.stdout) {
-        logger.debug(`stdout: ${error.stdout}`);
-      }
-      if (error.stderr) {
-        logger.debug(`stderr: ${error.stderr}`);
-      }
-      throw error;
-    }
+    await executeCvUpdateWorkflow();
 
     logger.success('Local test completed successfully!');
-
-    // Show what changed for each CV type
-    const cvTypesToProcess = getCvTypesToProcess();
-    for (const cvType of cvTypesToProcess) {
-      const cvFile = getCvFile(cvType);
-      if (fs.existsSync(cvFile)) {
-        const stats = fs.statSync(cvFile);
-        logger.info(`${cvType} CV file updated. Size: ${stats.size} bytes`);
-        logger.debug(`${cvType} CV last modified: ${stats.mtime}`);
-      } else {
-        logger.warn(`${cvType} CV file not found: ${cvFile}`);
-      }
-    }
+    showTestResults();
 
     // Cleanup
     logger.debug('Cleaning up temporary files');

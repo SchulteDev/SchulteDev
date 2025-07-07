@@ -15,6 +15,7 @@ import logger from './logger.js';
 import {extractLatex} from './claude-api.js';
 import {main as transformFullRebuild} from './transform-full-rebuild.js';
 import {main as transformIncremental} from './transform-incremental.js';
+import { hasValidFile, hasResponseFiles as checkResponseFiles, cleanupResponseFiles, safeFileCopy, safeFileMove, safeDelete, ensureDir } from './file-utils.js';
 
 // Cleanup function
 const cleanup = (): void => {
@@ -23,8 +24,8 @@ const cleanup = (): void => {
     const tempFile = getTempFile(cvType);
     const responseFile = getResponseFile(cvType);
 
-    if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
-    if (fs.existsSync(responseFile)) fs.unlinkSync(responseFile);
+    safeDelete(tempFile);
+    safeDelete(responseFile);
   }
 };
 
@@ -48,22 +49,15 @@ const validateLatex = (filePath: string, cvType: CvType): boolean => {
   return true;
 };
 
-// Create backup if enabled
 const createBackup = (cvFile: string, cvType: CvType): void => {
   if (!CREATE_BACKUP || !fs.pathExistsSync(cvFile)) return;
 
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const backupFile = `${cvFile}.backup.${timestamp}`;
 
-  try {
-    fs.copySync(cvFile, backupFile);
-    logger.info(`Backup created for ${cvType} CV: ${backupFile}`);
-  } catch (error: any) {
-    logger.warn(`Failed to create backup for ${cvType} CV, continuing without backup`);
-  }
+  safeFileCopy(cvFile, backupFile, `Backup created for ${cvType} CV`);
 };
 
-// Process a single CV type
 const processCvType = (cvType: CvType): boolean => {
   const tempFile = getTempFile(cvType);
   const cvFile = getCvFile(cvType);
@@ -72,7 +66,7 @@ const processCvType = (cvType: CvType): boolean => {
   logger.info(`Processing ${cvType} CV...`);
 
   // Check if response file exists
-  if (!fs.existsSync(responseFile) || fs.statSync(responseFile).size === 0) {
+  if (!hasValidFile(responseFile)) {
     logger.warn(`No response file found for ${cvType} CV, skipping`);
     return false;
   }
@@ -85,122 +79,135 @@ const processCvType = (cvType: CvType): boolean => {
   // Create backup and move to final location
   createBackup(cvFile, cvType);
 
-  try {
-    fs.renameSync(tempFile, cvFile);
-    if (fs.existsSync(responseFile)) fs.unlinkSync(responseFile); // Cleanup
+  if (safeFileMove(tempFile, cvFile)) {
+    safeDelete(responseFile); // Cleanup
     logger.success(`${cvType} CV updated successfully!`);
     return true;
-  } catch (error: any) {
-    logger.error(`Failed to finalize ${cvType} CV: ${error.message}`);
+  } else {
+    logger.error(`Failed to finalize ${cvType} CV`);
     return false;
   }
 };
 
-// Main function
+const setupCleanupHandlers = (): void => {
+  process.on('exit', () => cleanup());
+  process.on('SIGINT', () => {
+    cleanup();
+    process.exit(1);
+  });
+  process.on('uncaughtException', (err: Error) => {
+    logger.error(`Uncaught exception: ${err.message}`);
+    cleanup();
+    process.exit(1);
+  });
+};
+
+const determineMode = (): 'incremental' | 'full_rebuild' => {
+  let mode: 'incremental' | 'full_rebuild' = 'incremental';
+
+  if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
+    mode = (process.env.REBUILD_MODE as 'incremental' | 'full_rebuild') || 'incremental';
+  }
+
+  if (mode !== 'incremental' && mode !== 'full_rebuild') {
+    logger.error(`Invalid mode: ${mode}. Must be 'incremental' or 'full_rebuild'`);
+    process.exit(1);
+  }
+
+  return mode;
+};
+
+const cleanupExistingResponses = (): void => {
+  const cvTypesToProcess = getCvTypesToProcess();
+  cleanupResponseFiles(cvTypesToProcess);
+};
+
+const hasResponseFiles = (): boolean => {
+  const cvTypesToProcess = getCvTypesToProcess();
+  return checkResponseFiles(cvTypesToProcess);
+};
+
+const executeTransformation = async (mode: 'incremental' | 'full_rebuild'): Promise<'incremental' | 'full_rebuild' | 'skip'> => {
+  if (mode === 'full_rebuild') {
+    try {
+      await transformFullRebuild();
+      return 'full_rebuild';
+    } catch (error: any) {
+      logger.error('Full rebuild transformation failed');
+      process.exit(1);
+    }
+  }
+
+  // Incremental mode
+  cleanupExistingResponses();
+
+  try {
+    await transformIncremental();
+  } catch (error: any) {
+    logger.error('Incremental transformation failed');
+    process.exit(1);
+  }
+
+  if (hasResponseFiles()) {
+    logger.info('Response files found, proceeding with processing');
+    return 'incremental';
+  } else {
+    logger.info('No changes to process, skipping validation and compilation');
+    return 'skip';
+  }
+};
+
+const processAllCvTypes = (): number => {
+  const cvTypesToProcess = getCvTypesToProcess();
+  logger.info(`Processing responses for CV types: ${cvTypesToProcess.join(', ')}...`);
+
+  let successCount = 0;
+  for (const cvType of cvTypesToProcess) {
+    if (processCvType(cvType)) {
+      successCount++;
+    }
+  }
+
+  if (successCount === 0) {
+    logger.error('No CV files were successfully processed');
+    process.exit(1);
+  } else if (successCount < cvTypesToProcess.length) {
+    logger.warn(`Only ${successCount}/${cvTypesToProcess.length} CV files were successfully processed`);
+  }
+
+  return successCount;
+};
+
+const setGitHubOutputs = (mode: string, successCount?: number): void => {
+  if (isGithubActions()) {
+    setOutput('mode', mode);
+    setOutput('cv_types', getCvTypesToProcess().join(','));
+    if (successCount !== undefined) {
+      setOutput('processed_count', successCount.toString());
+    }
+  }
+};
+
 const main = async (): Promise<void> => {
   try {
-    // Validate CV types selection early
     const cvTypesToProcess = getCvTypesToProcess();
     logger.info(`Selected CV types: ${cvTypesToProcess.join(', ')}`);
 
-    // Ensure tmp directory exists
-    fs.ensureDirSync('tmp');
+    ensureDir('tmp');
+    setupCleanupHandlers();
 
-    // Set up cleanup on exit
-    process.on('exit', () => cleanup());
-    process.on('SIGINT', () => {
-      cleanup();
-      process.exit(1);
-    });
-    process.on('uncaughtException', (err: Error) => {
-      logger.error(`Uncaught exception: ${err.message}`);
-      cleanup();
-      process.exit(1);
-    });
+    const requestedMode = determineMode();
+    logger.info(`Starting CV update workflow in ${requestedMode} mode for CV types: ${cvTypesToProcess.join(', ')}...`);
 
-    // Determine mode from GitHub inputs or default
-    let mode: 'incremental' | 'full_rebuild' | 'skip' = 'incremental';
-    if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
-      mode = (process.env.REBUILD_MODE as 'incremental' | 'full_rebuild') || 'incremental';
-    }
+    const actualMode = await executeTransformation(requestedMode);
+    logger.info(`Mode: ${actualMode}`);
 
-    logger.info(`Starting CV update workflow in ${mode} mode for CV types: ${cvTypesToProcess.join(', ')}...`);
-
-    // Validate mode
-    if (mode !== 'incremental' && mode !== 'full_rebuild') {
-      logger.error(`Invalid mode: ${mode}. Must be 'incremental' or 'full_rebuild'`);
-      process.exit(1);
-    }
-
-    // Run the appropriate transformation
-    if (mode === 'full_rebuild') {
-      try {
-        await transformFullRebuild();
-        mode = 'full_rebuild';
-      } catch (error: any) {
-        logger.error('Full rebuild transformation failed');
-        process.exit(1);
-      }
-    } else {
-      // Clean up any existing response files first
-      for (const cvType of cvTypesToProcess) {
-        const responseFile = getResponseFile(cvType);
-        if (fs.existsSync(responseFile)) fs.unlinkSync(responseFile);
-      }
-
-      try {
-        await transformIncremental();
-      } catch (error: any) {
-        logger.error('Incremental transformation failed');
-        process.exit(1);
-      }
-
-      // Check if any response files were created
-      let hasAnyResponse = false;
-      for (const cvType of cvTypesToProcess) {
-        const responseFile = getResponseFile(cvType);
-        if (fs.existsSync(responseFile) && fs.statSync(responseFile).size > 0) {
-          hasAnyResponse = true;
-          break;
-        }
-      }
-
-      if (hasAnyResponse) {
-        mode = 'incremental';
-        logger.info('Response files found, proceeding with processing');
-      } else {
-        logger.info('No changes to process, skipping validation and compilation');
-        mode = 'skip';
-      }
-    }
-
-    // Process each CV type
-    if (mode !== 'skip') {
-      logger.info(`Processing responses for CV types: ${cvTypesToProcess.join(', ')}...`);
-      let successCount = 0;
-      for (const cvType of cvTypesToProcess) {
-        if (processCvType(cvType)) {
-          successCount++;
-        }
-      }
-
-      if (successCount === 0) {
-        logger.error('No CV files were successfully processed');
-        process.exit(1);
-      } else if (successCount < cvTypesToProcess.length) {
-        logger.warn(`Only ${successCount}/${cvTypesToProcess.length} CV files were successfully processed`);
-      }
-
-      setOutput('processed_count', successCount.toString());
+    if (actualMode !== 'skip') {
+      const successCount = processAllCvTypes();
       logger.success(`CV update completed successfully! Processed ${successCount}/${cvTypesToProcess.length} CV types`);
-    }
-
-    logger.info(`Mode: ${mode}`);
-
-    // Set outputs for GitHub Actions
-    if (isGithubActions()) {
-      setOutput('mode', mode);
-      setOutput('cv_types', cvTypesToProcess.join(','));
+      setGitHubOutputs(actualMode, successCount);
+    } else {
+      setGitHubOutputs(actualMode);
     }
   } catch (error: any) {
     logger.error(`Error in CV update: ${error.message}`);

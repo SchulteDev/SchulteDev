@@ -15,6 +15,7 @@ import {
 import logger from './logger.js';
 import {callClaudeApi} from './claude-api.js';
 import {getFullRebuildPrompt, getIncrementalPrompt} from './prompts.js';
+import { safeDelete } from './file-utils.js';
 
 const git = simpleGit();
 
@@ -41,20 +42,14 @@ export const buildIncrementalPrompt = (cvType: CvType): string => {
   );
 };
 
-// Git operations - GitHub Actions handles change detection
+// Git operations
 export const generateGitDiff = async (): Promise<boolean> => {
   try {
-    // Extract relative path from CAREER_FILE (handles both absolute and relative paths)
-    const relativePath = CAREER_FILE.includes('_data/career.md')
-      ? '_data/career.md'
-      : CAREER_FILE.replace(/^\.\.\//, '');
-
+    const relativePath = extractRelativePath(CAREER_FILE);
     const range = `HEAD~${GIT_DIFF_RANGE}`;
 
     logger.debug(`Generating git diff: ${range} HEAD -- ${relativePath}`);
-    logger.debug(`CAREER_FILE: ${CAREER_FILE}`);
 
-    // GitHub Actions already determined changes exist, just create the diff
     const diffResult = await git.diff([range, 'HEAD', '--', relativePath]);
     fs.writeFileSync(DIFF_FILE, diffResult);
 
@@ -75,10 +70,9 @@ export const validateDiffContent = (): boolean => {
 
   const diffContent = fs.readFileSync(DIFF_FILE, 'utf8');
 
-  if (!diffContent?.trim() || diffContent === 'No changes detected in git diff') {
-    if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
-      logger.info('No changes but manual trigger - creating test diff');
-      fs.writeFileSync(DIFF_FILE, '+ Minor update for testing incremental workflow');
+  if (shouldSkipDiff(diffContent)) {
+    if (isManualTrigger()) {
+      createTestDiff();
       return true;
     } else {
       logger.info('ℹ️ No changes to process');
@@ -90,7 +84,25 @@ export const validateDiffContent = (): boolean => {
   return true;
 };
 
-// CV processing
+const extractRelativePath = (filePath: string): string => {
+  return filePath.includes('_data/career.md')
+    ? '_data/career.md'
+    : filePath.replace(/^\.\.\//, '');
+};
+
+const shouldSkipDiff = (diffContent: string): boolean => {
+  return !diffContent?.trim() || diffContent === 'No changes detected in git diff';
+};
+
+const isManualTrigger = (): boolean => {
+  return process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+};
+
+const createTestDiff = (): void => {
+  logger.info('No changes but manual trigger - creating test diff');
+  fs.writeFileSync(DIFF_FILE, '+ Minor update for testing incremental workflow');
+};
+
 export const processAllCvTypes = async (promptBuilder: (cvType: CvType) => string): Promise<void> => {
   const types = getCvTypesToProcess();
 
@@ -108,15 +120,8 @@ export const processAllCvTypes = async (promptBuilder: (cvType: CvType) => strin
   logger.success('All CV types processed');
 };
 
-// Cleanup utilities
 export const cleanupDiffFile = (): void => {
-  if (fs.existsSync(DIFF_FILE)) {
-    try {
-      fs.removeSync(DIFF_FILE);
-    } catch (e: any) {
-      logger.error(`Failed to delete diff file: ${e.message}`);
-    }
-  }
+  safeDelete(DIFF_FILE);
 };
 
 export const setupEnvironment = (): void => {
