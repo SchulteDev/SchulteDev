@@ -14,7 +14,7 @@ describe('prompts', () => {
 
   it('should identify placeholders', () => {
     const template = "Update {{CV_TYPE}} with {{DIFF_DATA}}"
-    const placeholders = template.match(/\{\{[^}]+\}\}/g)
+    const placeholders = template.match(/\{\{[^{}]*}}/g)
 
     expect(placeholders).toEqual(['{{CV_TYPE}}', '{{DIFF_DATA}}'])
   })
