@@ -7,10 +7,12 @@ RUN apt-get update && \
 
 WORKDIR /app
 
+COPY --chmod=444 Gemfile Gemfile.lock ./
+RUN bundle config set force_ruby_platform true && \
+    bundle install
+
 COPY . .
 
+USER nobody
 EXPOSE 4000 35729
-
-RUN bundle install
-
 CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--force_polling", "--livereload", "--incremental", "--config", "_config.yml,_config_local.yml"]

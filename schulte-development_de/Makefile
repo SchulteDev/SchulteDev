@@ -1,5 +1,5 @@
 serve:
-	bundle exec jekyll serve --force_polling --livereload --incremental
+	bundle exec jekyll serve --force_polling --livereload --incremental --config _config.yml,_config_local.yml
 
 clean:
 	-rm -r .jekyll-cache
@@ -9,10 +9,10 @@ clean:
 	-rm .jekyll-metadata
 
 build: clean
+	bundle install
 	bundle exec jekyll build
 
 test: build
-	bundle install
 	bundle exec rake test
 
 all: test

@@ -1,87 +1,15 @@
 require 'html-proofer'
-require 'builder'
-require 'fileutils'
 
 task :test do
   options = {
     :url_ignore => [
-        "https://schulte-development.de",
         /https:\/\/schulte-development\.de\/.*/,
-        "https://www.union-investment.de/startseite/",
-        "https://www.sedo.com/search/details.php4?domain=markus-schulte.dev&language=d",
-        "https://www.trustedshops.de/bewertung/info_XF89991F42665764044A4A93840437C8C.html",
-        "https://www.lbbw.de/",
-        "https://www.toom.de/",
-        "https://www.saloodo.com/de/",
-        "https://www.allianz.com/de/",
-        "https://www.sedo.com/us/search/details.php4?domain=markus-schulte.dev&language=us",
-        "https://www.trustedshops.com/buyerrating/info_XF89991F42665764044A4A93840437C8C.html",
-        "https://www.saloodo.com/en/",
-        "https://github.com/SchulteToPlay/markus-schulte.dev/issues/new",
-        "https://www.xing.com/profile/Markus_Schulte10/cv",
-        "https://www.linkedin.com/in/markus-schulte-43497683/",
-        "https://stackoverflow.com/users/3905635/markus-schulte",
-        "https://github.com/SchulteToPlay",
-        "https://www.markus-schulte.dev/companies/werkenntwen.html",
-        "https://www.markus-schulte.dev/companies/sedo-gmbh.html",
-        "https://www.markus-schulte.dev/companies/early-freelancing-projects.html",
-        "https://www.markus-schulte.dev/companies/atlassian-bamboo-add-ons.html",
-        "https://www.markus-schulte.dev/companies/trusted-shops.html",
-        "https://www.markus-schulte.dev/companies/toom-baumarkt.html",
-        "https://://www.markus-schulte.dev/companies/lbbw.html",
-        "https://www.markus-schulte.dev/companies/allianz-global-digital-factory.html",
-        "https://www.markus-schulte.dev/companies/saloodo.html",
-        "https://www.markus-schulte.dev/companies/union-investment.html",
-        "https://www.markus-schulte.dev/imprint.html",
-        "https://www.markus-schulte.dev/github-contributions.html",
-        "https://www.markus-schulte.dev/stackoverflow-contributions.html",
-        "https://sought-after.dev",
-        "https://schulte-development.de",
-        "https://www.markus-schulte.dev",
-        "/imprint/",
-        "https://outlook.office365.com/owa/calendar/Schultedevelopment1@schulte-development.de/bookings/",
-        "https://www.linkedin.com/in/markus-schulte",
-        "https://schulte-development.de/.*",
-        "https://www.linkedin.com/in/markus-schulte-43497683/",
-        "https://stackoverflow.com/users/1645517/markus",
-        "https://github.com/SchulteDev",
-        "https://outlook.office365.com/owa/calendar/Schultedevelopment1@schulte-development.de/bookings/",
-        "https://www.linkedin.com/in/markus-schulte",
-        "https://stackoverflow.com/questions/13063552/run-junit4-tests-parallel-in-eclipse",
-        "https://stackoverflow.com/questions/13316629/remove-objects-from-an-arraylist-based-on-a-given-criteria/47833790#47833790",
-        "https://stackoverflow.com/questions/14456592/how-to-stop-an-unstoppable-zombie-job-on-jenkins-without-restarting-the-server/48279524#48279524",
-        "https://stackoverflow.com/questions/24386771/javax-validation-validationexception-hv000183-unable-to-load-javax-el-express/54750045#54750045",
-        "https://stackoverflow.com/questions/54426135/terraform-what-is-the-uri-parameter-for-an-aws-api-gateway-integration-if-targe",
-        "https://stackoverflow.com/questions/57971003/build-aws-java-lambda-with-gradle-use-shadowjar-or-buildzip-for-archive-to-uplo",
-        "https://stackoverflow.com/users/markus-schulte",
-        "https://linkedin.com/in/markus-schulte"
-    ]
+        /https:\/\/outlook\.office365\.com\/.*/,
+        /https:\/\/.*linkedin\.com\/.*/,
+        /https:\/\/stackoverflow\.com\/.*/
+    ],
+    :disable_external => false
   }
 
-  report_dir = 'build/reports'
-  FileUtils.mkdir_p(report_dir)
-  report_file = File.join(report_dir, 'html-proofer.xml')
-
-  begin
-    HTMLProofer.check_directory("./_site", options).run
-    failure = false
-  rescue => e
-    failure = true
-    error_message = e.message
-  end
-
-  xml = Builder::XmlMarkup.new(indent: 2)
-  xml.instruct! :xml, version: "1.0", encoding: "UTF-8"
-  xml.testsuite(name: 'html-proofer', tests: 1, failures: failure ? 1 : 0, timestamp: Time.now.utc.iso8601) do
-    xml.testcase(name: 'check_links', classname: 'HTMLProofer') do
-      if failure
-        xml.failure(message: 'HTMLProofer found issues', type: 'AssertionFailed') do
-          xml.cdata!(error_message)
-        end
-      end
-    end
-  end
-
-  File.write(report_file, xml.target!)
-  exit(1) if failure
+  HTMLProofer.check_directory("./_site", options).run
 end
