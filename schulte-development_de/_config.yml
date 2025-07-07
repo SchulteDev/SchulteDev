@@ -3,7 +3,7 @@ author: Markus Schulte
 email: mail@schulte-development.de
 avatar: assets/img/markus-schulte.jpg
 baseurl: ""
-url: ""
+url: "https://schulte-development.de"
 keywords: "Azure,AWS,technical architect,leader,Java,Golang"
 plugins:
   - jekyll-remote-theme

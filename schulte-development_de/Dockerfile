@@ -10,4 +10,7 @@ WORKDIR /app
 COPY . .
 
 EXPOSE 4000 35729
-CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--force_polling", "--livereload", "--incremental"]
+
+RUN bundle install
+
+CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--force_polling", "--livereload", "--incremental", "--config", "_config.yml,_config_local.yml"]

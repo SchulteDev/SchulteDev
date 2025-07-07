@@ -12,15 +12,19 @@ services:
       - JEKYLL_ENV=development
     stdin_open: true
     tty: true
+    command: >
+      sh -c "bundle install &&
+             bundle exec jekyll serve --host 0.0.0.0 --force_polling --livereload --incremental --config _config.yml,_config_local.yml"
   test:
     build: .
     volumes:
       - .:/app
-      - /app/vendor/bundle  # exclude vendor directory from sync
+      - /app/vendor/bundle
       - gem_cache:/usr/local/bundle
     environment:
       - JEKYLL_ENV=development
     command: >
-      sh -c "bundle install && make test"
+      sh -c "bundle install &&
+             make test"
 volumes:
   gem_cache:

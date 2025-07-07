@@ -5,6 +5,8 @@ require 'fileutils'
 task :test do
   options = {
     :url_ignore => [
+        "https://schulte-development.de",
+        /https:\/\/schulte-development\.de\/.*/,
         "https://www.union-investment.de/startseite/",
         "https://www.sedo.com/search/details.php4?domain=markus-schulte.dev&language=d",
         "https://www.trustedshops.de/bewertung/info_XF89991F42665764044A4A93840437C8C.html",
