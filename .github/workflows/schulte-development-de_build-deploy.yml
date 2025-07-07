@@ -84,7 +84,7 @@ jobs:
         run: |
           url="${{ steps.deployment.outputs.page_url }}"
           sleep 10
-          set +x
+          set -x
           for i in {1..10}; do
             if curl -f "$url" | grep -q "Markus Schulte: Cloud Architect & Software Engineer"; then
               echo "✅ Smoketest passed"
