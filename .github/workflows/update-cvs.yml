@@ -94,7 +94,7 @@ jobs:
 
       - name: Validate LaTeX (compilation test)
         if: success() && steps.transform.outputs.mode != 'skip'
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
