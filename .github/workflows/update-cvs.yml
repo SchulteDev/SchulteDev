@@ -79,11 +79,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run unit tests
+        run: npm test
+
       - name: Test CV update with dry run
         env:
           DRY_RUN: true
           SKIP_API: true
-        run: npm test
+        run: npm run cv:test
 
       - name: Transform CV with Claude
         id: transform

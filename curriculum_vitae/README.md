@@ -44,9 +44,11 @@ flowchart LR
 ## Local Testing
 
 ```bash
-npm test                    # Basic test with mocks
-CV_TYPES=anti npm test     # Test specific type
-DRY_RUN=true npm test      # No file changes
+npm test              
+npm run test:coverage 
+npm run cv:test               # Integration test with mocks
+CV_TYPES=anti npm run cv:test # Integration test specific type
+DRY_RUN=true npm run cv:test  # Integration test, no file changes
 ```
 
 ## Environment

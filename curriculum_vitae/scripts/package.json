@@ -4,7 +4,8 @@
   "description": "AI-powered Markus Schulte Dev CV generation and transformation scripts",
   "type": "module",
   "scripts": {
-    "test": "npm run cv:test",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "clean": "rm -rf node_modules/ tmp/",
     "cv:update": "tsx run-cv-update.ts",
     "cv:update:professional": "CV_TYPES=professional tsx run-cv-update.ts",
@@ -49,7 +50,9 @@
   "devDependencies": {
     "@types/fs-extra": "11.0.4",
     "@types/node": "22.16.0",
-    "tsx": "4.20.3"
+    "@vitest/coverage-v8": "3.2.4",
+    "tsx": "4.20.3",
+    "vitest": "3.2.4"
   },
   "engines": {
     "node": ">=22.0.0",
