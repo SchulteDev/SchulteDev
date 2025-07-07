@@ -73,7 +73,40 @@ jobs:
         run: npm ci
 
       - name: Run unit tests
-        run: npm test
+        run: npm run test:coverage
+
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Unit Tests
+          path: curriculum_vitae/scripts/test-results.xml
+          reporter: java-junit
+          fail-on-error: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: curriculum_vitae/scripts/test-results.xml
+          retention-days: 7
+
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: curriculum_vitae/scripts/coverage/
+          retention-days: 7
+
+      - name: Comment coverage on PR
+        uses: romeovs/lcov-reporter-action@v0.3.1
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: curriculum_vitae/scripts/coverage/lcov.info
+          delete-old-comments: true
 
       - name: Test CV update with dry run
         env:
