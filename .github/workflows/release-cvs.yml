@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Compile CV LaTeX to PDF
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
