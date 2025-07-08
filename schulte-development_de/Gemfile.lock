@@ -160,6 +160,7 @@ DEPENDENCIES
   jekyll-remote-theme (~> 0.4.3)
   jekyll-seo-tag
   jekyll-sitemap (~> 1.4)
+  nokogiri
 
 BUNDLED WITH
    2.4.19

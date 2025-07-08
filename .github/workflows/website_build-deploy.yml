@@ -62,14 +62,6 @@ jobs:
         run: bundle exec jekyll doctor
       - name: Unit test
         run: bundle exec rake test
-      - name: Publish test results
-        uses: dorny/test-reporter@v2
-        if: ${{ !cancelled() }}
-        with:
-          name: HTMLProofer Tests
-          path: schulte-development_de/html-proofer.xml
-          reporter: java-junit
-          fail-on-error: true
       - name: Build with Jekyll
         run: bundle exec jekyll build
         env:
