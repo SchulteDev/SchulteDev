@@ -1,6 +1,9 @@
 serve:
 	bundle exec jekyll serve --force_polling --livereload --incremental
 
+doctor:
+	bundle exec jekyll doctor
+
 docker-serve:
 	docker-compose up --build
 
@@ -14,12 +17,15 @@ build: clean
 	bundle install
 	bundle exec jekyll build
 
-test: build
+validate: build
+	bundle exec jekyll doctor
 	bundle exec rake test
+
+test: validate
 
 docker-test:
 	docker-compose run --rm test
 
 all: test
 
-.PHONY: serve clean build test all
+.PHONY: serve doctor clean build test all

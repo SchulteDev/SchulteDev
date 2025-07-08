@@ -1,39 +1,18 @@
 require 'html-proofer'
-require 'fileutils'
 
 task :test do
   options = {
-    :url_ignore => [
+    :ignore_urls => [
         /http:\/\/localhost:4000\/.*/,
         /https:\/\/outlook\.office365\.com\/.*/,
         /https:\/\/.*linkedin\.com\/.*/,
         /https:\/\/stackoverflow\.com\/.*/
     ],
-    :disable_external => false
+    :disable_external => false,
+    :log_level => :info,
+    :output_format => :junit,
+    :output_file => 'build/reports/html-proofer.xml'
   }
 
-  FileUtils.mkdir_p('build/reports')
-
-  begin
-    HTMLProofer.check_directory("./_site", options).run
-
-    xml_content = %{<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="HTMLProofer" tests="1" failures="0" errors="0" time="0.0">
-  <testcase name="HTML validation" classname="HTMLProofer" time="0.0"/>
-</testsuite>}
-
-    File.write('build/reports/html-proofer.xml', xml_content)
-    puts "✅ Tests passed"
-
-  rescue => e
-    xml_content = %{<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="HTMLProofer" tests="1" failures="1" errors="0" time="0.0">
-  <testcase name="HTML validation" classname="HTMLProofer" time="0.0">
-    <failure message="HTML validation failed">#{e.message.gsub(/[<>&"']/, {'<' => '&lt;', '>' => '&gt;', '&' => '&amp;', '"' => '&quot;', "'" => '&apos;'})}</failure>
-  </testcase>
-</testsuite>}
-
-    File.write('build/reports/html-proofer.xml', xml_content)
-    raise e
-  end
+  HTMLProofer.check_directory("./_site", options).run
 end
