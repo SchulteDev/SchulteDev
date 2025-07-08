@@ -24,9 +24,10 @@ You can build, serve, and test the site locally using `make` commands or Docker.
 
 - **Build:** `make build`
 - **Serve:** `make serve`
+- **Validate:** `make validate` (runs Jekyll doctor + html-proofer + custom tests)
 - **Test:** `make test`
 
 ### Using Docker
 
-- **Build & Serve:** `docker-compose up --build`
-- **Test:** `docker-compose run --build --rm test`
+- **Build & Serve:** `make docker-serve`
+- **Test:** `make docker-test` (includes validation and testing)
