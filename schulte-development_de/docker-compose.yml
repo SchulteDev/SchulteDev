@@ -7,9 +7,6 @@ services:
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle
-    environment:
-      - JEKYLL_ENV=development
-      - JEKYLL_URL=http://localhost:4000
     stdin_open: true
     tty: true
   test:
@@ -17,8 +14,6 @@ services:
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle
-    environment:
-      - JEKYLL_ENV=development
     command: make test
 volumes:
   gem_cache:
