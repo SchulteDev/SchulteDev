@@ -1,5 +1,3 @@
-# Docker image only used locally while developing
-# sonar.ignore.rule=docker:S6471
 FROM ruby:3.4-slim
 
 RUN apt-get update && \
