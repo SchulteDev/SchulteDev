@@ -1,4 +1,5 @@
 require 'html-proofer'
+require 'fileutils'
 
 task :test do
   options = {
@@ -11,5 +12,28 @@ task :test do
     :disable_external => false
   }
 
-  HTMLProofer.check_directory("./_site", options).run
+  FileUtils.mkdir_p('build/reports')
+
+  begin
+    HTMLProofer.check_directory("./_site", options).run
+
+    xml_content = %{<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="HTMLProofer" tests="1" failures="0" errors="0" time="0.0">
+  <testcase name="HTML validation" classname="HTMLProofer" time="0.0"/>
+</testsuite>}
+
+    File.write('build/reports/html-proofer.xml', xml_content)
+    puts "✅ Tests passed"
+
+  rescue => e
+    xml_content = %{<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="HTMLProofer" tests="1" failures="1" errors="0" time="0.0">
+  <testcase name="HTML validation" classname="HTMLProofer" time="0.0">
+    <failure message="HTML validation failed">#{e.message.gsub(/[<>&"']/, {'<' => '&lt;', '>' => '&gt;', '&' => '&amp;', '"' => '&quot;', "'" => '&apos;'})}</failure>
+  </testcase>
+</testsuite>}
+
+    File.write('build/reports/html-proofer.xml', xml_content)
+    raise e
+  end
 end
