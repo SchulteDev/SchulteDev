@@ -46,8 +46,7 @@ docker-serve:
 	docker-compose up --build
 
 docker-test:
-	docker-compose build test
-	docker-compose run --rm test
+	docker-compose run --build --rm test
 
 # Complete pipeline
 all: test
