@@ -1,31 +1,58 @@
+# Variables
+BUNDLE = bundle exec
+JEKYLL = $(BUNDLE) jekyll
+DOCKER_COMPOSE = docker-compose
+
+# Phony targets
+.PHONY: help serve doctor clean build test validate docker-serve docker-test all
+
+# Default target
+help:
+	@echo "Available targets:"
+	@echo "  serve        - Start Jekyll development server"
+	@echo "  doctor       - Run Jekyll doctor for diagnostics"
+	@echo "  clean        - Clean build artifacts"
+	@echo "  build        - Clean and build the site"
+	@echo "  validate     - Build and validate the site"
+	@echo "  test         - Run validation tests"
+	@echo "  docker-serve - Start development server in Docker"
+	@echo "  docker-test  - Run tests in Docker"
+	@echo "  all          - Run complete test suite"
+
+# Development targets
 serve:
-	bundle exec jekyll serve --force_polling --livereload --incremental
+	$(JEKYLL) serve --force_polling --livereload --incremental
 
 doctor:
-	bundle exec jekyll doctor
+	$(JEKYLL) doctor
 
-docker-serve:
-	docker-compose up --build
-
+# Build targets
 clean:
+	@echo "Cleaning build artifacts..."
 	-rm -rf .jekyll-cache
 	-rm -rf _site
 	-rm -rf build
 	-rm -f .jekyll-metadata
 
 build: clean
-	bundle install
-	bundle exec jekyll build
+	@echo "Installing dependencies and building site..."
+	$(BUNDLE) install
+	$(JEKYLL) build
 
+# Testing targets
 validate: build
-	bundle exec jekyll doctor
-	bundle exec rake test
+	@echo "Validating site..."
+	$(JEKYLL) doctor
+	$(BUNDLE) rake test
 
 test: validate
 
+# Docker targets
+docker-serve:
+	$(DOCKER_COMPOSE) up --build
+
 docker-test:
-	docker-compose run --build --rm test
+	$(DOCKER_COMPOSE) run --build --rm test
 
+# Complete pipeline
 all: test
-
-.PHONY: serve doctor clean build test all
