@@ -1,7 +1,3 @@
-BUNDLE = bundle exec
-JEKYLL = $(BUNDLE) jekyll
-DOCKER_COMPOSE = docker-compose
-
 .PHONY: help serve doctor clean build test validate docker-serve docker-test all
 
 # Default target
@@ -19,10 +15,10 @@ help:
 
 # Development targets
 serve:
-	$(JEKYLL) serve --force_polling --livereload --incremental
+	bundle exec jekyll serve --force_polling --livereload --incremental
 
 doctor:
-	$(JEKYLL) doctor
+	bundle exec jekyll doctor
 
 # Build targets
 clean:
@@ -34,23 +30,24 @@ clean:
 
 build: clean
 	@echo "Installing dependencies and building site..."
-	$(BUNDLE) install
-	$(JEKYLL) build
+	bundle install
+	bundle exec jekyll build
 
 # Testing targets
 validate: build
 	@echo "Validating site..."
-	$(JEKYLL) doctor
-	$(BUNDLE) rake test
+	bundle exec jekyll doctor
+	bundle exec rake test
 
 test: validate
 
 # Docker targets
 docker-serve:
-	$(DOCKER_COMPOSE) up --build
+	docker-compose up --build
 
 docker-test:
-	$(DOCKER_COMPOSE) run --build --rm test
+	docker-compose build test
+	docker-compose run --rm test
 
 # Complete pipeline
 all: test
