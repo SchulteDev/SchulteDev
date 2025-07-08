@@ -1,9 +1,7 @@
-# Variables
 BUNDLE = bundle exec
 JEKYLL = $(BUNDLE) jekyll
 DOCKER_COMPOSE = docker-compose
 
-# Phony targets
 .PHONY: help serve doctor clean build test validate docker-serve docker-test all
 
 # Default target
