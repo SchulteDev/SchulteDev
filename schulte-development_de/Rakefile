@@ -1,4 +1,6 @@
 require 'html-proofer'
+require 'html-proofer-junit'
+require 'fileutils'
 
 task :test do
   options = {
@@ -8,11 +10,8 @@ task :test do
         /https:\/\/.*linkedin\.com\/.*/,
         /https:\/\/stackoverflow\.com\/.*/
     ],
-    :disable_external => false,
-    :log_level => :info,
-    :output_format => :junit,
-    :output_file => 'build/reports/html-proofer.xml'
+    :disable_external => false
   }
 
-  HTMLProofer.check_directory("./_site", options).run
+  HtmlProoferJunit.run(["./_site"], options, "html-proofer.xml")
 end

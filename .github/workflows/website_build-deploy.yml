@@ -67,7 +67,7 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: HTMLProofer Tests
-          path: schulte-development_de/build/reports/html-proofer.xml
+          path: schulte-development_de/html-proofer.xml
           reporter: java-junit
           fail-on-error: true
       - name: Build with Jekyll
@@ -78,7 +78,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./schulte-development_de/_site
+          path: schulte-development_de/_site
 
   deploy_professional_homepage:
     runs-on: ubuntu-latest
