@@ -3,7 +3,7 @@ require 'html-proofer'
 task :test do
   options = {
     :url_ignore => [
-        /https:\/\/schulte-development\.de\/.*/,
+        /http:\/\/localhost:4000\/.*/,
         /https:\/\/outlook\.office365\.com\/.*/,
         /https:\/\/.*linkedin\.com\/.*/,
         /https:\/\/stackoverflow\.com\/.*/

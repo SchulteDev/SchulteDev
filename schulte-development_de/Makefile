@@ -1,12 +1,14 @@
 serve:
-	bundle exec jekyll serve --force_polling --livereload --incremental --config _config.yml,_config_local.yml
+	bundle exec jekyll serve --force_polling --livereload --incremental
+
+docker-serve:
+	docker-compose up --build
 
 clean:
-	-rm -r .jekyll-cache
-	-rm -r _site
-	-rm -r build
-	-rm -r vendor
-	-rm .jekyll-metadata
+	-rm -rf .jekyll-cache
+	-rm -rf _site
+	-rm -rf build
+	-rm -f .jekyll-metadata
 
 build: clean
 	bundle install
@@ -14,6 +16,9 @@ build: clean
 
 test: build
 	bundle exec rake test
+
+docker-test:
+	docker-compose run --rm test
 
 all: test
 

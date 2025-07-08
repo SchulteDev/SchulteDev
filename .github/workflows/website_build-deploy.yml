@@ -64,6 +64,7 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+          JEKYLL_URL: ${{ steps.pages.outputs.base_url }}
       - name: Unit test
         run: bundle exec rake test
       - name: Publish test results

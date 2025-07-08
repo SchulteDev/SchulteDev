@@ -13,6 +13,5 @@ RUN bundle config set force_ruby_platform true && \
 
 COPY . .
 
-USER nobody
 EXPOSE 4000 35729
-CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--force_polling", "--livereload", "--incremental", "--config", "_config.yml,_config_local.yml"]
+CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--force_polling", "--livereload", "--incremental"]
