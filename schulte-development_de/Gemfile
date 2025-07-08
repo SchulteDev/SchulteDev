@@ -7,6 +7,5 @@ gem 'jekyll-sitemap', '~> 1.4'
 
 group :development do
   gem 'html-proofer', '~> 5.0'
-  gem 'builder'
   gem 'nokogiri'
 end
