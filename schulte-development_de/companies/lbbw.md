@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Cloud Architect at LBBW
-permalink: /companies/lbbw/
 ---
 
 ### November 2024 — Present: Cloud Architect at LBBW

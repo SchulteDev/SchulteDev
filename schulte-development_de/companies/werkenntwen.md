@@ -1,7 +1,6 @@
 ---
 layout: page
 title: PHP Developer and Head of Development at werkenntwen
-permalink: /companies/werkenntwen/
 ---
 
 ### August 2007 — June 2014: PHP Developer and Head of Development at werkenntwen

@@ -1,7 +1,6 @@
 ---
 layout: page
 title: GitHub Contributions
-permalink: /github-contributions/
 ---
 
 # GitHub Contributions

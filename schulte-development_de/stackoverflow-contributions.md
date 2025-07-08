@@ -1,7 +1,6 @@
 ---
 layout: page
 title: StackOverflow Contributions
-permalink: /stackoverflow-contributions/
 ---
 
 # StackOverflow Contributions

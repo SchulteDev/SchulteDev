@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Cloud Architect at Union Investment
-permalink: /companies/union-investment/
 ---
 
 ### October 2021 — December 2024: Cloud Architect at Union Investment
