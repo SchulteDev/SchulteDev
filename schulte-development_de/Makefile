@@ -24,7 +24,7 @@ validate: build
 test: validate
 
 docker-test:
-	docker-compose run --rm test
+	docker-compose run --build --rm test
 
 all: test
 
