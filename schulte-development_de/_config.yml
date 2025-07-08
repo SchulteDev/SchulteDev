@@ -16,7 +16,7 @@ navbar-links:
   Services: "#my-services"
   Contributions: "#my-contributions"
   Connect: "#lets-connect"
-  Imprint: "/imprint"
+  Imprint: "imprint"
 social-network-links:
   email: mail@schulte-development.de
   linkedin: markus-schulte
