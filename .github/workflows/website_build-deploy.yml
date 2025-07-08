@@ -60,13 +60,13 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Validate Jekyll configuration
         run: bundle exec jekyll doctor
-      - name: Unit test
-        run: bundle exec rake test
       - name: Build with Jekyll
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
           JEKYLL_URL: ${{ steps.pages.outputs.base_url }}
+      - name: Integration test
+        run: bundle exec rake test
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
