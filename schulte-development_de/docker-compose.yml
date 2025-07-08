@@ -6,7 +6,6 @@ services:
       - "35729:35729" # live reload port
     volumes:
       - .:/app
-      - vendor_bundle:/app/vendor/bundle  # exclude vendor directory from sync
       - gem_cache:/usr/local/bundle
     environment:
       - JEKYLL_ENV=development
@@ -17,11 +16,9 @@ services:
     build: .
     volumes:
       - .:/app
-      - vendor_bundle:/app/vendor/bundle
       - gem_cache:/usr/local/bundle
     environment:
       - JEKYLL_ENV=development
     command: make test
 volumes:
   gem_cache:
-  vendor_bundle:
