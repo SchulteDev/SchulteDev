@@ -48,4 +48,4 @@ title: Early Freelancing Projects
 **Key Technologies:**
 Java, Spring Boot, PHP, AWS (EC2, S3), Jenkins, Atlassian Bamboo, Docker, PHPUnit, MySQL.
 
-<span style="float: right;">[Back]({{ site.url }}/#my-career)</span>
+<span style="float: right;">[Back](/#my-career)</span>

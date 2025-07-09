@@ -47,4 +47,4 @@ Received formal technical and organizational recommendations from tarent solutio
 Java, Golang, Docker, Kubernetes, Kafka, REST, OAuth2, Bamboo, Selenium, Pact, Swagger, Apache
 JMeter.
 
-<span style="float: right;">[Back]({{ site.url }}/#my-career)</span>
+<span style="float: right;">[Back](/#my-career)</span>

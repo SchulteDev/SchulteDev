@@ -59,4 +59,4 @@ Azure (Static Web App, Functions, Event Hubs, AD B2C), JavaScript/TypeScript, No
 framework, Self-contained Systems (SCS), Microfrontends, Microservices, Event-driven Architecture,
 Algolia, Nx, Lerna, Terraform, Docker, SonarQube, Jest, Playwright.
 
-<span style="float: right;">[Back]({{ site.url }}/#my-career)</span>
+<span style="float: right;">[Back](/#my-career)</span>

@@ -22,4 +22,4 @@ title: Creator of Atlassian Bamboo Server Add-ons
 **Key Technologies:**
 Java, Atlassian SDK, Maven, JUnit.
 
-<span style="float: right;">[Back]({{ site.url }}/#my-career)</span>
+<span style="float: right;">[Back](/#my-career)</span>
