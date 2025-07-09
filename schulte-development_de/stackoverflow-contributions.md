@@ -25,15 +25,9 @@ profile</a> to see all my contributions.
 
 ## Highest Scored Answers
 
-1. *
-   *[Jenkins Zombie Job Fix](https://stackoverflow.com/questions/14456592/how-to-stop-an-unstoppable-zombie-job-on-jenkins-without-restarting-the-server/48279524#48279524)
-   ** - Score: 65
-2. *
-   *[Validation Exception Solution](https://stackoverflow.com/questions/24386771/javax-validation-validationexception-hv000183-unable-to-load-javax-el-express/54750045#54750045)
-   ** - Score: 48
-3. *
-   *[ArrayList Object Removal](https://stackoverflow.com/questions/13316629/remove-objects-from-an-arraylist-based-on-a-given-criteria/47833790#47833790)
-   ** - Score: 28
+1. **[Jenkins Zombie Job Fix](https://stackoverflow.com/questions/14456592/how-to-stop-an-unstoppable-zombie-job-on-jenkins-without-restarting-the-server/48279524#48279524)** - Score: 65
+2. **[Validation Exception Solution](https://stackoverflow.com/questions/24386771/javax-validation-validationexception-hv000183-unable-to-load-javax-el-express/54750045#54750045)** - Score: 48
+3. **[ArrayList Object Removal](https://stackoverflow.com/questions/13316629/remove-objects-from-an-arraylist-based-on-a-given-criteria/47833790#47833790)** - Score: 28
 
 ## Activity Stats
 
@@ -43,14 +37,8 @@ profile</a> to see all my contributions.
 
 ## Notable Questions
 
-- *
-  *[JUnit4 Parallel Tests in Eclipse](https://stackoverflow.com/questions/13063552/run-junit4-tests-parallel-in-eclipse)
-  ** - 10 score
-- *
-  *[AWS Lambda Gradle Build](https://stackoverflow.com/questions/57971003/build-aws-java-lambda-with-gradle-use-shadowjar-or-buildzip-for-archive-to-uplo)
-  ** - 6 score
-- *
-  *[Terraform AWS Step Functions](https://stackoverflow.com/questions/54426135/terraform-what-is-the-uri-parameter-for-an-aws-api-gateway-integration-if-targe)
-  ** - 5 score
+- **[JUnit4 Parallel Tests in Eclipse](https://stackoverflow.com/questions/13063552/run-junit4-tests-parallel-in-eclipse)** - 10 score
+- **[AWS Lambda Gradle Build](https://stackoverflow.com/questions/57971003/build-aws-java-lambda-with-gradle-use-shadowjar-or-buildzip-for-archive-to-uplo)** - 6 score
+- **[Terraform AWS Step Functions](https://stackoverflow.com/questions/54426135/terraform-what-is-the-uri-parameter-for-an-aws-api-gateway-integration-if-targe)** - 5 score
 
 <span style="float: right;">[Back](/#my-contributions)</span>
