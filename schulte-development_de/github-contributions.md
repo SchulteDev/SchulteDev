@@ -5,13 +5,15 @@ title: GitHub Contributions
 
 # GitHub Contributions
 
-Visit my [GitHub profile](https://github.com/SchulteDev) to see all my contributions.
+Visit my <a href="https://github.com/SchulteDev" target="_blank">GitHub profile</a>
+to see all my contributions.
 
 ## Notable Open Source Contributions
 
 ### External Projects
 
-- **[github/github-mcp-server](https://github.com/github/github-mcp-server)** - Go runtime execution improvements
+- **[github/github-mcp-server](https://github.com/github/github-mcp-server)** - Go runtime execution
+  improvements
 - **@Azure** - Cloud platform contributions
 - **@MicrosoftDocs** - Azure and Azure DevOps documentation
 - **@renovatebot** - Dependency management automation
@@ -21,4 +23,4 @@ Visit my [GitHub profile](https://github.com/SchulteDev) to see all my contribut
 
 Go, Java, TypeScript, Spring Boot, Docker, Kubernetes, Cloud Architecture
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-contributions)</span>
