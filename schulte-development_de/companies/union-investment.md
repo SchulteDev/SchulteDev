@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Cloud Architect at Union Investment
-permalink: /companies/union-investment
 ---
 
 ### October 2021 — December 2024: Cloud Architect at Union Investment
@@ -60,4 +59,4 @@ Azure (Static Web App, Functions, Event Hubs, AD B2C), JavaScript/TypeScript, No
 framework, Self-contained Systems (SCS), Microfrontends, Microservices, Event-driven Architecture,
 Algolia, Nx, Lerna, Terraform, Docker, SonarQube, Jest, Playwright.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>

@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Cloud Consultant at Sedo GmbH
-permalink: /companies/sedo-gmbh
 ---
 
 ### January 2020 — March 2020: Cloud Consultant at Sedo GmbH
@@ -24,4 +23,4 @@ permalink: /companies/sedo-gmbh
 **Key Technologies:**
 Quarkus, Java 11, Apache Camel, Kubernetes, Knative, Pact, Docker.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>

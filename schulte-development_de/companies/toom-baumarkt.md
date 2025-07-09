@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Senior Engineer & DevOp at toom Baumarkt GmbH
-permalink: /companies/toom-baumarkt
 ---
 
 ### October 2016 — September 2017: Senior Engineer & DevOp at toom Baumarkt GmbH
@@ -48,4 +47,4 @@ Received formal technical and organizational recommendations from tarent solutio
 Java, Golang, Docker, Kubernetes, Kafka, REST, OAuth2, Bamboo, Selenium, Pact, Swagger, Apache
 JMeter.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>

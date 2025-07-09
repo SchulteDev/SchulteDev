@@ -68,13 +68,10 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'curriculum_vitae/scripts/package-lock.json'
           node-version-file: 'curriculum_vitae/scripts/.nvmrc'
-
       - name: Install dependencies
         run: npm ci
-
       - name: Run unit tests
         run: npm run test:coverage
-
       - name: Publish test results
         uses: dorny/test-reporter@v2
         if: ${{ !cancelled() }}
@@ -83,7 +80,6 @@ jobs:
           path: curriculum_vitae/scripts/test-results.xml
           reporter: java-junit
           fail-on-error: true
-
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
@@ -91,7 +87,6 @@ jobs:
           name: test-results
           path: curriculum_vitae/scripts/test-results.xml
           retention-days: 7
-
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
@@ -99,7 +94,6 @@ jobs:
           name: coverage-report
           path: curriculum_vitae/scripts/coverage/
           retention-days: 7
-
       - name: Test CV update with dry run
         env:
           DRY_RUN: true
@@ -123,31 +117,26 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           cache: 'npm'
           cache-dependency-path: 'curriculum_vitae/scripts/package-lock.json'
           node-version-file: 'curriculum_vitae/scripts/.nvmrc'
-
       - name: Install dependencies
         run: npm ci
-
       - name: Transform CV with Claude
         id: transform
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: npm run cv:update:${{ matrix.cv_type }}
-
       - name: Validate LaTeX (compilation test)
         if: success() && steps.transform.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v4
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
-
       - name: Upload updated .tex file
         if: success() && steps.transform.outputs.mode != 'skip'
         uses: actions/upload-artifact@v4
@@ -155,7 +144,6 @@ jobs:
           name: ${{ matrix.cv_type }}-tex-file
           path: curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           retention-days: 7
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         if: always()
@@ -173,19 +161,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
-
       - name: Download updated anti CV .tex file
         uses: actions/download-artifact@v4
         with:
           name: anti-tex-file
           path: curriculum_vitae/
-
       - name: Download updated professional CV .tex file
         uses: actions/download-artifact@v4
         with:
           name: professional-tex-file
           path: curriculum_vitae/
-
       - name: Commit updated LaTeX files
         uses: stefanzweifel/git-auto-commit-action@v6
         with:

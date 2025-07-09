@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Middleware Engineer at Saloodo! (DHL Group)
-permalink: /companies/saloodo
 ---
 
 ### December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL Group)
@@ -29,4 +28,4 @@ permalink: /companies/saloodo
 **Key Technologies:**
 Golang, PostgreSQL, Salesforce Lightning Cloud, Docker, Kubernetes, ELK Stack, Dynatrace.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>

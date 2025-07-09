@@ -2,7 +2,7 @@ title: Schulte development
 author: Markus Schulte
 email: mail@schulte-development.de
 avatar: assets/img/markus-schulte.jpg
-url: https://schulte-development.de
+url: "http://localhost:4000"
 keywords: "Azure,AWS,technical architect,leader,Java,Golang"
 plugins:
   - jekyll-remote-theme
@@ -16,10 +16,9 @@ navbar-links:
   Services: "/#my-services"
   Contributions: "/#my-contributions"
   Connect: "/#lets-connect"
-  Imprint: imprint
+  Imprint: "/imprint"
 social-network-links:
   email: mail@schulte-development.de
   linkedin: markus-schulte
   github: SchulteDev
   stackoverflow: markus-schulte
-

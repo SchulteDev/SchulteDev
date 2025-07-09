@@ -1,4 +1,4 @@
-name: schulte-development.de | Build, deploy to GitHubPage on main
+name: schulte-development.de | Build; deploy if main
 
 on:
   push:
@@ -58,16 +58,17 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Validate Jekyll configuration
-        run: bundle exec jekyll doctor
       - name: Build with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+          JEKYLL_URL: ${{ steps.pages.outputs.base_url }}
+      - name: Validate
+        run: make validate
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./schulte-development_de/_site
+          path: schulte-development_de/_site/
 
   deploy_professional_homepage:
     runs-on: ubuntu-latest
@@ -91,7 +92,7 @@ jobs:
               echo "✅ Smoketest passed"
               exit 0
             fi
-            echo "Attempt $i/12 failed, retrying in 5s..."
+            echo "Attempt $i/10 failed, retrying in 5s..."
             sleep 5
           done
           echo "❌ Smoketest failed after 60s"

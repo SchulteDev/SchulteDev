@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Cloud Consultant at Trusted Shops
-permalink: /companies/trusted-shops
 ---
 
 ### August 2018 — October 2019: Cloud Consultant at Trusted Shops
@@ -30,4 +29,4 @@ permalink: /companies/trusted-shops
 AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut, Pact, Terraform,
 Docker, Twilio, Salesforce, Zuora.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>

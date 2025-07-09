@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Senior JavaEE Developer at Allianz Global Digital Factory
-permalink: /companies/allianz-global-digital-factory
 ---
 
 ### November 2017 — March 2018: Senior JavaEE Developer at Allianz Global Digital Factory
@@ -27,4 +26,4 @@ permalink: /companies/allianz-global-digital-factory
 **Key Technologies:**
 Java, Spring Boot, JavaEE, CloudFoundry (AWS-hosted), REST/HATEOAS, MySQL, Redis.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>

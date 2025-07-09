@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Cloud Architect at LBBW
-permalink: /companies/lbbw
 ---
 
 ### November 2024 — Present: Cloud Architect at LBBW
@@ -35,4 +34,4 @@ permalink: /companies/lbbw
 Azure (AKS, Functions, Static Web Apps), Kubernetes, Spring Boot, Apache Tomcat, Microsoft IIS,
 Oracle, MS-SQL, PostgreSQL.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>

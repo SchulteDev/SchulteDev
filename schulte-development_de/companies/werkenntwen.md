@@ -1,7 +1,6 @@
 ---
 layout: page
 title: PHP Developer and Head of Development at werkenntwen
-permalink: /companies/werkenntwen
 ---
 
 ### August 2007 — June 2014: PHP Developer and Head of Development at werkenntwen
@@ -30,4 +29,4 @@ permalink: /companies/werkenntwen
 **Key Technologies:**
 PHP, Zend Framework, MySQL, Memcache, Jenkins, PHPUnit, Selenium, REST API, Sphinx.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>

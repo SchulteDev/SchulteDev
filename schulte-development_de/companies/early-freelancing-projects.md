@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Early Freelancing Projects
-permalink: /companies/early-freelancing-projects
 ---
 
 ### January 2014 — August 2016: Early Freelancing Projects
@@ -49,4 +48,4 @@ permalink: /companies/early-freelancing-projects
 **Key Technologies:**
 Java, Spring Boot, PHP, AWS (EC2, S3), Jenkins, Atlassian Bamboo, Docker, PHPUnit, MySQL.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back](/#my-career)</span>
