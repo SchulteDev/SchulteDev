@@ -133,7 +133,7 @@ css: /assets/index.css
 <div class="page-section">
 {% for company in site.data.portfolio %}
   <div class="box">
-    <a href="{{ company.url | absolute_url }}">
+    <a href="{{ company.url | absolute_url }}" title="{{ company.title }}">
       <img src="{{ '/assets/img/logos/' | append: company.img | absolute_url }}" alt="{{ company.title }} logo"/>
       <div class="box-title">{{ company.title }}</div>
       <div class="box-desc">{{ company.description }}</div>
@@ -167,14 +167,14 @@ css: /assets/index.css
 
 <div class="page-section">
   <div class="box">
-    <a href="{{ '/github-contributions' | absolute_url }}">
+    <a href="{{ '/github-contributions' | absolute_url }}" title="GitHub Contributions">
       <img src="{{ '/assets/img/logos/github.svg' | absolute_url }}" alt="GitHub logo"/>
       <div class="box-title">GitHub</div>
       <div class="box-desc">Open source projects and code contributions</div>
     </a>
   </div>
   <div class="box">
-    <a href="{{ '/stackoverflow-contributions/' | absolute_url }}">
+    <a href="{{ '/stackoverflow-contributions' | absolute_url }}" title="StackOverflow Contributions">
       <img src="{{ '/assets/img/logos/stackoverflow.svg' | absolute_url }}" alt="StackOverflow logo"/>
       <div class="box-title">StackOverflow</div>
       <div class="box-desc">Community answers and technical discussions</div>

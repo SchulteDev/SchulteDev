@@ -34,4 +34,4 @@ title: Cloud Architect at LBBW
 Azure (AKS, Functions, Static Web Apps), Kubernetes, Spring Boot, Apache Tomcat, Microsoft IIS,
 Oracle, MS-SQL, PostgreSQL.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back]({{ site.url }}/#my-career)</span>

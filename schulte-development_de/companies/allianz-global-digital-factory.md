@@ -26,4 +26,4 @@ title: Senior JavaEE Developer at Allianz Global Digital Factory
 **Key Technologies:**
 Java, Spring Boot, JavaEE, CloudFoundry (AWS-hosted), REST/HATEOAS, MySQL, Redis.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back]({{ site.url }}/#my-career)</span>

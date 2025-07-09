@@ -23,4 +23,4 @@ title: Cloud Consultant at Sedo GmbH
 **Key Technologies:**
 Quarkus, Java 11, Apache Camel, Kubernetes, Knative, Pact, Docker.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back]({{ site.url }}/#my-career)</span>

@@ -29,4 +29,4 @@ title: Cloud Consultant at Trusted Shops
 AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut, Pact, Terraform,
 Docker, Twilio, Salesforce, Zuora.
 
-[Back]({{ site.url }}/)
+<span style="float: right;">[Back]({{ site.url }}/#my-career)</span>
