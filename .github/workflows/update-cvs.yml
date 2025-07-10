@@ -154,12 +154,11 @@ jobs:
           retention-days: 7
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.transform.outputs.mode != 'skip'
         with:
           name: cv-update-logs-${{ matrix.cv_type }}-${{ github.run_id }}
           path: curriculum_vitae/scripts/tmp/
           retention-days: 7
-
 
   commit-changes:
     needs: update-cvs
