@@ -50,6 +50,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          projectBaseDir: schulte-development_de/
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -66,12 +74,6 @@ jobs:
           JEKYLL_URL: ${{ steps.pages.outputs.base_url }}
       - name: Validate
         run: make validate
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectBaseDir: schulte-development_de/
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
