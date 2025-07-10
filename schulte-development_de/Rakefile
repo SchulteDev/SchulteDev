@@ -1,0 +1,37 @@
+require 'html-proofer'
+require 'nokogiri'
+
+task :test do
+  custom_checks
+
+  options = {
+    :ignore_urls => [
+        /http:\/\/localhost:4000\/.*/,
+        /https:\/\/outlook\.office365\.com\/.*/,
+        /https:\/\/.*linkedin\.com\/.*/,
+        /https:\/\/stackoverflow\.com\/.*/
+    ],
+    :disable_external => false
+  }
+
+  HTMLProofer.check_directory("./_site", options).run
+  puts "✅ All tests passed"
+end
+
+def custom_checks
+  raise "index.html missing" unless File.exist?("./_site/index.html")
+
+  doc = Nokogiri::HTML(File.read("./_site/index.html"))
+  h1 = doc.at_css('h1')
+
+  raise "No h1 found" unless h1
+  raise "h1 doesn't start with 'Markus Schulte'" unless h1.text.strip.start_with?("Markus Schulte")
+
+  # Check imprint page
+  raise "imprint.html missing" unless File.exist?("./_site/imprint.html")
+
+  imprint_doc = Nokogiri::HTML(File.read("./_site/imprint.html"))
+  raise "Imprint missing 'Schulte development' text" unless imprint_doc.text.include?("Schulte development")
+
+  puts "✅ Custom checks passed"
+end

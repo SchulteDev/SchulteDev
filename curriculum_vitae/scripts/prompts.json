@@ -1,0 +1,50 @@
+{
+  "shared": {
+    "structure": {
+      "pages": 4,
+      "output": "LuaLaTeX code only."
+    },
+    "pageLayout": [
+      "P1: CV Header, CV summary, key impacts, skills overview table without borders.",
+      "P2: Recent roles LBBW, Union Investment, Saloodo, Trusted Shops.",
+      "P3: Earlier experiences, personal projects.",
+      "P4: Education, skills, career breaks; footer: AI disclaimer."
+    ],
+    "constraints": [
+      "Critical: Exactly {{PAGES}} filled, dense pages.",
+      "Valid, compilable LuaLaTeX with standard LuaLaTeX packages only.",
+      "LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.",
+      "Prioritize most recent and impactful experiences, teaser the leftover experiences.",
+      "Absolutely truthful and factual regarding career data."
+    ],
+    "templates": {
+      "fullRebuild": [
+        "Create exactly {{PAGES}}-page {{CV_TYPE}}",
+        "Full career data:```markdown\n{{CAREER_DATA}}\n```.",
+        "Page layout: {{SHARED_PAGE_LAYOUT}}",
+        "Constraints: {{SHARED_CONSTRAINTS}}",
+        "{{TYPE_SPECIFIC_INSTRUCTIONS}}",
+        "Output: {{SHARED_OUTPUT}}"
+      ],
+      "incremental": [
+        "Update {{CV_TYPE}}.",
+        "Current CV: ```latex\n{{CURRENT_CV}}\n```.",
+        "Changes to career data: ```diff\n{{DIFF_DATA}}\n```.",
+        "Page layout: {{SHARED_PAGE_LAYOUT}}",
+        "Constraints: {{SHARED_CONSTRAINTS}}",
+        "{{TYPE_SPECIFIC_INSTRUCTIONS}}",
+        "Output: {{SHARED_OUTPUT}}"
+      ]
+    }
+  },
+  "antiCv": {
+    "cvType": "Anti-CV: Humorous lessons and failures, self-deprecating, still professional.",
+    "fullRebuildInstructions": "",
+    "incrementalInstructions": ""
+  },
+  "professionalCv": {
+    "cvType": "Professional CV: Quantified impact, leadership, business value.",
+    "fullRebuildInstructions": "",
+    "incrementalInstructions": ""
+  }
+}

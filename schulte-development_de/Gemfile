@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+gem 'jekyll', '~> 4.4.1'
+gem 'jekyll-remote-theme', '~> 0.4.3'
+gem 'beautiful-jekyll-theme', '~> 6.0', '>= 6.0.1'
+gem 'jekyll-seo-tag'
+gem 'jekyll-sitemap', '~> 1.4'
+
+group :development do
+  gem 'html-proofer', '~> 5.0'
+  gem 'nokogiri'
+end

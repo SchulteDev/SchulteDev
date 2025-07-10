@@ -1,0 +1,19 @@
+services:
+  jekyll:
+    build: .
+    ports:
+      - "4000:4000"
+      - "35729:35729" # live reload port
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle
+    stdin_open: true
+    tty: true
+  test:
+    build: .
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle
+    command: make test
+volumes:
+  gem_cache:
