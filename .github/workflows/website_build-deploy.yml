@@ -65,6 +65,12 @@ jobs:
           JEKYLL_URL: ${{ steps.pages.outputs.base_url }}
       - name: Validate
         run: make validate
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          projectBaseDir: ${{ github.workspace }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -15,14 +15,14 @@ target documents for particular audiences or purposes.
 
 # Professional Career of Markus Schulte
 
-**Freelance Cloud Architect & Software Engineer**  
-**Location:** Cologne, Germany  
-**Contact:** <a href="mailto:mail@schulte-development.de">
-mail@schulte-development.de</a> | <a href="tel:+4917872177768">+49 178 7217768</a>
-**Website:** https://schulte-development.de  
-**LinkedIn:** https://www.linkedin.com/in/markus-schulte/  
-**GitHub:** https://github.com/SchulteDev
-**StackOverflow:** https://stackoverflow.com/users/1645517/markus-schulte
+- **Freelance Cloud Architect & Software Engineer**
+- **Location:** Cologne, Germany
+- **Contact:** <a href="mailto:mail@schulte-development.de">mail@schulte-development.de</a> |
+  <a href="tel:+4917872177768">+49 178 7217768</a>
+- **Website:** https://schulte-development.de
+- **LinkedIn:** https://www.linkedin.com/in/markus-schulte/
+- **GitHub:** https://github.com/SchulteDev
+- **StackOverflow:** https://stackoverflow.com/users/1645517/markus-schulte
 
 ## Professional Summary
 
@@ -55,17 +55,21 @@ across enterprise organizations.
 enterprise environments. **Golang** has become my preferred language for cloud-native development
 with 4+ years of professional experience, particularly in microservices and middleware systems. *
 *PHP** was my foundation (8+ years) during early career and social platform development. I also work
-with **TypeScript/JavaScript** for Node.js/(P)NPM applications frontend integration when required.
+with **TypeScript/JavaScript** for Node.js/NPM/pnpm applications and frontend integration when
+required.
 
 ### Architecture & Design
 
-I have extensive experience creating both low-level and high-level IT architectures, specializing
-in:
+I have extensive experience creating both low-level and high-level IT architectures,
+specializing in:
 
 - **Microservices and distributed systems** with Self-contained Systems (SCS) patterns
 - **Event-driven architecture** using event streams, message queues, and domain boundaries
 - **Cloud-native design** leveraging serverless, containerization, and managed services
 - **Legacy modernization** including monolith decomposition and incremental migration strategies
+- **Enterprise migration strategies** using R-methodology for systematic cloud migration assessment
+- **Platform assessment frameworks** for evaluating cloud platforms and migration readiness
+- **Web Components integration** patterns for microfrontend architectures
 - **Multi-cloud strategies** across AWS, Azure, and GCP platforms
 
 ### Cloud Platforms & DevOps
@@ -131,12 +135,19 @@ organizational and leadership capabilities:
 
 ### Specialized Expertise
 
+- **Enterprise Application Portfolio Assessment:** Systematic evaluation of legacy applications for
+  cloud migration readiness
+- **Azure Migration Planning:** R-methodology application for enterprise cloud transformation
+  strategies
+- **Microfrontend Toolkit Development:** Custom framework creation enabling autonomous team
+  development
 - **Contract Testing:** Deep expertise with Pact framework for microservices reliability
 - **Developer Tooling:** Custom framework development, build optimization, automation tools
 - **Code Quality Metrics:** SonarQube integration, automated quality gates, technical debt
   management
 - **Event Stream Processing:** Real-time data pipelines, event sourcing patterns
 - **Enterprise Integration:** Salesforce, Zuora, legacy system modernization
+- **AI Document Processing:** Azure Document Intelligence integration for automated workflows
 
 ### Key Technologies Timeline
 
@@ -159,9 +170,10 @@ organizational and leadership capabilities:
 
 - **2019:** AWS EKS, serverless (Lambda)
 - **2021:** Azure platform, Golang production use
-- **2022:** Event-driven architecture, SCS patterns
-- **2023:** Web Components, microfrontends
-- **2024:** Multi-cloud strategies, AI integration
+- **2022-2023:** Azure enterprise migration, SCS patterns, Web Components, Microfrontends
+- **2024:** Event-driven architecture, Algolia search
+- **2025:** R-methodology assessment, Cloud Center of Excellence,
+  AI integration (Azure Document Intelligence), automated document processing
 
 ## Professional Experience
 
@@ -264,7 +276,7 @@ parallel technical supervision across "04 – Application Development" area
 - **Technical Expertise Application:** Leveraged extensive experience with Spring Boot, Tomcat, IIS,
   Oracle, MS-SQL, PostgreSQL for rapid application understanding and assessment
 
-**Technologies & Technical Stack:**
+**Technologies & Frameworks:**
 
 - **Cloud Platforms:** Azure (AKS, Azure Functions, Static Web Apps), Kubernetes
 - **Application Platforms:** Spring Boot, Apache Tomcat, Microsoft IIS
@@ -507,7 +519,9 @@ coach
 - **Deployment Speed:** Reduced deployment time from several days to 30 minutes for urgent changes
 - **Platform Reliability:** Achieved 99.9% uptime throughout production operation
 - **Search Performance:** Implemented sub-second search response times across all domain boundaries
-- **Team Productivity:** Enabled autonomous team development with 10x faster deployment cycles
+- **Team Productivity:**
+  - Enabled autonomous team development with 10x faster deployment cycles
+  - A single well-founded decision saved 60 person-days
 - **Corporate Template:** Established architecture patterns adopted as template for group-wide
   modernization initiatives
 - **Technical Debt Reduction:** Successfully migrated domains incrementally from legacy monolith to
@@ -530,7 +544,7 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
   - "Stands up for the right things and doesn't shy away from conflicts/discussions"
   - "Brings new impulses to the team (Planning 2, mob sessions, calm approach)"
   - "Makes work enjoyable and professional"
-  - "Glad to have won you for the project - brings exactly what we need"
+  - "Glad to have won you for the project — brings exactly what we need"
   - "Excellent technical expertise and pronounced communicative talent"
   - "Work approach consistently characterized by professionalism, reliability, and high quality"
   - "Ability to analyze complex architectures and inspire the team"
@@ -540,6 +554,26 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
 - **Areas for Growth:**
   - Consider pace of technical explanations for stakeholders with less technical background
   - Continue developing openness to critical feedback
+
+**Lessons Learned:**
+
+- **IT Best Practices Value:** Consistent application of Self-contained Systems (SCS) proved highly
+  effective. The high team autonomy enabled by SCS, combined with automation, allowed maintaining
+  both high throughput and quality. This experience reinforced that applying IT best practices
+  brings significant business value, despite requiring additional efforts like well-executed
+  Communities of Practice.
+- **Bias for Action:** Direct implementation of Web Components integration after initial PoC,
+  without exploring other integration paths, saved approximately 60 person-days. Sometimes decisive
+  action based on validated concepts is more efficient than comprehensive option analysis.
+- **Technology Selection Strategy:** Thorough evaluation of Algolia vs ElasticSearch led to choosing
+  Algolia based on intended usage patterns and extended feature set. Deep technical analysis drives
+  better architectural decisions than popularity-based choices.
+- **Architecture Solutions:** Complex search architecture initially seemed impossible, but the
+  simple, proven solution using Pub/Sub Azure Event Hub proved exactly right. Sometimes
+  the straightforward approach is superior to complex alternatives.
+- **Team Composition Management:** Building and developing the team was crucial, including difficult
+  decisions to remove members who didn't fit despite integration attempts. Team composition directly
+  impacts project success and requires decisive leadership.
 
 **Technologies & Frameworks:**
 
@@ -552,8 +586,7 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
 - **Build & Bundle:** Nx (monorepo tooling), Lerna (monorepo management), esbuild, Gradle
 - **DevOps:** Azure DevOps, Pipeline-as-Code, Terraform (Infrastructure-as-Code), Docker
 - **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Cypress & Playwright (e2e
-  testing),
-  Prettier, comprehensive test pyramid
+  testing), Prettier, comprehensive test pyramid
 - **Package Management:** NPM, pnpm, Dependabot & Renovate Bot (automated dependency updates)
 - **Standards:** Conventional Commits, comprehensive code formatting and linting standards
 - **Monitoring:** Azure Application Insights, comprehensive logging and metrics
@@ -588,15 +621,14 @@ Salesforce CRM
   Lightning Cloud
 - Designed and implemented fault-tolerant, stateless architecture with continuous loop execution and
   automatic retry mechanisms
-- No tests were implemented when the project was taken over. Achieved 70% test coverage on 2,776
-  lines of code with a test execution time of 5 seconds. Among other things, I used stretchr/testify
-  and Dockertest for PostgreSQL integration.
+- Achieved 70% test coverage on 2,776 lines of code with 5-second test execution time using
+  Dockertest for PostgreSQL integration
 - Implemented sophisticated database query optimizations and multi-threading for handling ~10
   million record synchronizations
-- Built robust error handling for Saloodo's inconsistent 
-  database schema (malformed JSON, incorrect types)
-- Owned complete software lifecycle: 
-  requirements engineering, design, development, monitoring, and operations
+- Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect
+  types)
+- Owned complete software lifecycle: requirements engineering, design, development, monitoring, and
+  operations
 - Established comprehensive monitoring with ELK Stack and Dynatrace for proactive issue detection
 
 **Impact:**
@@ -612,13 +644,25 @@ Salesforce CRM
 - Demonstrated production-grade Golang expertise in mission-critical environment
 - Proved reliability by providing partial operational readiness support
 
-**Technologies:** Golang, PostgreSQL, Salesforce Lightning Cloud, Salesforce Bulk API, Docker,
-Kubernetes, GitHub, GitHub actions, Travis CI, ELK, Dynatrace
+**Lessons Learned:**
 
-**Frameworks & Tools:**
+- **Quality Standards Impact:** As the sole developer, implementing high quality standards with
+  comprehensive testing and automation delivered significant speed improvements that quickly paid
+  for themselves. Quality investment accelerates development velocity.
+- **External Dependencies:** Well-designed middleware suffered from lower quality standards in
+  Saloodo!'s core technology. Inconsistent database schemas and malformed JSON in database entries
+  forced unnecessary error tolerance implementation throughout the system.
+- **Architectural Simplicity:** The middleware was architecturally unnecessary. Since Saloodo!'s
+  core ran on AWS, an integrated solution using eventing/AWS Lambda could have been cheaper, less
+  complex, more robust, and faster than the separate middleware component.
 
-- **Golang:** cobra/viper (CLI), sqlx (database), testify/dockertest (testing), logrus (logging)
+**Technologies & Frameworks:**
+
+- **Golang:** cobra/viper (CLI), logrus (logging), sqlx (database),
+  stretchr/testify & testify/dockertest (testing)
+- **Data storage:** PostgreSQL, Salesforce Lightning Cloud, Salesforce Bulk API
 - **CI/CD:** GitHub Actions, Travis CI, ArgoCD, Release Please Bot, Dependabot
+- **Runtime**: Docker, ArgoCD, Kubernetes
 - **Monitoring:** ELK Stack (Kibana), Dynatrace
 - **Architecture:** Event-driven middleware, bulk data processing, continuous synchronization
 
@@ -785,14 +829,11 @@ Contributed to 13+ repositories including:
   surprised by the lived disadvantages. Simple changes often required modifications across many
   microservices, and lack of testing and automation made maintaining the microservices difficult.
   Unfortunately, the IT architecture was not open to change. Since this project, I have been
-  skeptical of microservices as an overarching IT architecture and prefer Self-contained Systems
-  (as later implemented at
+  skeptical of microservices as an overarching IT architecture and prefer 
+  Self-contained Systems (as later implemented at
   [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment)).
 
-**Technologies:** AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut,
-Pact, Terraform, Docker, Twilio, Salesforce, Zuora
-
-**Frameworks & Tools:**
+**Technologies & Frameworks:**
 
 - **Java:** Spring Boot, Micronaut (lightweight microservices), JavaEE6 migration
 - **Cloud:** AWS Lambda (serverless), EKS (Kubernetes), API Gateway, CloudFormation, S3, SQS
@@ -1018,7 +1059,6 @@ Pact, Terraform, Docker, Twilio, Salesforce, Zuora
   primarily on technical aspects. Through training and reflection, developed understanding of team
   dynamics and evolved toward a laissez-faire leadership style that better suited both my
   personality and team needs.
-
 - **Technology Decision: Sphinx vs. ElasticSearch:** Selected Sphinx search engine over
   ElasticSearch due to familiarity, despite ElasticSearch offering more advanced features that
   seemed exotic at the time. This conservative choice proved suboptimal as ElasticSearch's feature
@@ -1150,18 +1190,12 @@ Visualistics in Koblenz.
 
 - **[StackOverflow](https://stackoverflow.com/users/1645517/markus-schulte):** 4000+ reputation
   points demonstrating community contributions
--
-  *
-
-*[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):
-**
-93/100 score, 88th percentile (June 18, 2018)
-
-- Overall assessment: "Strong" (93/100)
-- Subject coverage: 95% proficient or strong knowledge
-- Application ability: Extensive
-- Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management,
-  Interfaces
+- **[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):**: 93/100 score, 88th percentile (June 18, 2018)
+  - Overall assessment: "Strong" (93/100)
+  - Subject coverage: 95% proficient or strong knowledge
+  - Application ability: Extensive
+  - Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management,
+    Interfaces
 - **[GitHub](https://github.com/SchulteMarkus):** Open-source contributor
 
 ---
