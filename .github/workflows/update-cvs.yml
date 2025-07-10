@@ -94,6 +94,12 @@ jobs:
           name: coverage-report
           path: curriculum_vitae/scripts/coverage/
           retention-days: 7
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          projectBaseDir: ${{ github.workspace }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Test CV update with dry run
         env:
           DRY_RUN: true
@@ -137,12 +143,6 @@ jobs:
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectBaseDir: ${{ github.workspace }}
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Upload updated .tex file
         if: success() && steps.transform.outputs.mode != 'skip'
         uses: actions/upload-artifact@v4
