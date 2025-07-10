@@ -1,10 +1,11 @@
 [![schulte-development.de | Build; deploy if main](https://github.com/SchulteDev/SchulteDev/actions/workflows/schulte-development-de_build-deploy.yml/badge.svg)](https://github.com/SchulteDev/SchulteDev/actions/workflows/schulte-development-de_build-deploy.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SchulteDev_SchulteDev%3Aschulte-development_de&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=SchulteDev_SchulteDev%3Aschulte-development_de)
 
-# schulte-development.de homepage
+# schulte-development.de website
 
 Source of [schulte-development.de](https://schulte-development.de).
 
-The homepage https://schulte-development.de is used for marketing by Markus Schulte / Schulte
+The website https://schulte-development.de is used for marketing by Markus Schulte / Schulte
 development. Markus is a freelancer and presents his knowledge and experience on his professional
 website.
 
