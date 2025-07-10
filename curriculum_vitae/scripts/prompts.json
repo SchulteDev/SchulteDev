@@ -11,15 +11,15 @@
       "P4: Education, skills, career breaks; footer: AI disclaimer."
     ],
     "constraints": [
-      "Valid, compilable LuaLaTeX with standard packages only.",
+      "Critical: Exactly {{PAGES}} filled, dense pages.",
+      "Valid, compilable LuaLaTeX with standard LuaLaTeX packages only.",
       "LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.",
-      "Exactly {{PAGES}} filled, dense pages.",
-      "Prioritize most recent and impactful experiences, teaser the other experiences",
+      "Prioritize most recent and impactful experiences, teaser the leftover experiences.",
       "Absolutely truthful and factual regarding career data."
     ],
     "templates": {
       "fullRebuild": [
-        "Create {{PAGES}}-page {{CV_TYPE}}",
+        "Create exactly {{PAGES}}-page {{CV_TYPE}}",
         "Full career data:```markdown\n{{CAREER_DATA}}\n```.",
         "Page layout: {{SHARED_PAGE_LAYOUT}}",
         "Constraints: {{SHARED_CONSTRAINTS}}",
