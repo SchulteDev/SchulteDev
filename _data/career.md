@@ -562,19 +562,15 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
   both high throughput and quality. This experience reinforced that applying IT best practices
   brings significant business value, despite requiring additional efforts like well-executed
   Communities of Practice.
-
 - **Bias for Action:** Direct implementation of Web Components integration after initial PoC,
   without exploring other integration paths, saved approximately 60 person-days. Sometimes decisive
   action based on validated concepts is more efficient than comprehensive option analysis.
-
 - **Technology Selection Strategy:** Thorough evaluation of Algolia vs ElasticSearch led to choosing
   Algolia based on intended usage patterns and extended feature set. Deep technical analysis drives
   better architectural decisions than popularity-based choices.
-
 - **Architecture Solutions:** Complex search architecture initially seemed impossible, but the
   simple, proven solution using Pub/Sub Azure Event Hub proved exactly right. Sometimes
   the straightforward approach is superior to complex alternatives.
-
 - **Team Composition Management:** Building and developing the team was crucial, including difficult
   decisions to remove members who didn't fit despite integration attempts. Team composition directly
   impacts project success and requires decisive leadership.
@@ -833,8 +829,8 @@ Contributed to 13+ repositories including:
   surprised by the lived disadvantages. Simple changes often required modifications across many
   microservices, and lack of testing and automation made maintaining the microservices difficult.
   Unfortunately, the IT architecture was not open to change. Since this project, I have been
-  skeptical of microservices as an overarching IT architecture and prefer Self-contained Systems
-  (as later implemented at
+  skeptical of microservices as an overarching IT architecture and prefer 
+  Self-contained Systems (as later implemented at
   [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment)).
 
 **Technologies & Frameworks:**
@@ -1063,7 +1059,6 @@ Contributed to 13+ repositories including:
   primarily on technical aspects. Through training and reflection, developed understanding of team
   dynamics and evolved toward a laissez-faire leadership style that better suited both my
   personality and team needs.
-
 - **Technology Decision: Sphinx vs. ElasticSearch:** Selected Sphinx search engine over
   ElasticSearch due to familiarity, despite ElasticSearch offering more advanced features that
   seemed exotic at the time. This conservative choice proved suboptimal as ElasticSearch's feature
