@@ -172,8 +172,8 @@ organizational and leadership capabilities:
 - **2021:** Azure platform, Golang production use
 - **2022-2023:** Azure enterprise migration, SCS patterns, Web Components, Microfrontends
 - **2024:** Event-driven architecture, Algolia search
-- **2025:** R-methodology assessment, Cloud Center of Excellence, AI integration
-  (Azure Document Intelligence), automated document processing
+- **2025:** R-methodology assessment, Cloud Center of Excellence,
+  AI integration (Azure Document Intelligence), automated document processing
 
 ## Professional Experience
 
