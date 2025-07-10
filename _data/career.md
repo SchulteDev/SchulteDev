@@ -588,14 +588,15 @@ Salesforce CRM
   Lightning Cloud
 - Designed and implemented fault-tolerant, stateless architecture with continuous loop execution and
   automatic retry mechanisms
-- Achieved 70% test coverage on 2,776 lines of code with 5-second test execution time using
-  Dockertest for PostgreSQL integration
+- No tests were implemented when the project was taken over. Achieved 70% test coverage on 2,776
+  lines of code with a test execution time of 5 seconds. Among other things, I used stretchr/testify
+  and Dockertest for PostgreSQL integration.
 - Implemented sophisticated database query optimizations and multi-threading for handling ~10
   million record synchronizations
-- Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect
-  types)
-- Owned complete software lifecycle: requirements engineering, design, development, monitoring, and
-  operations
+- Built robust error handling for Saloodo's inconsistent 
+  database schema (malformed JSON, incorrect types)
+- Owned complete software lifecycle: 
+  requirements engineering, design, development, monitoring, and operations
 - Established comprehensive monitoring with ELK Stack and Dynatrace for proactive issue detection
 
 **Impact:**
@@ -612,7 +613,7 @@ Salesforce CRM
 - Proved reliability by providing partial operational readiness support
 
 **Technologies:** Golang, PostgreSQL, Salesforce Lightning Cloud, Salesforce Bulk API, Docker,
-Kubernetes
+Kubernetes, GitHub, GitHub actions, Travis CI, ELK, Dynatrace
 
 **Frameworks & Tools:**
 
@@ -785,7 +786,7 @@ Contributed to 13+ repositories including:
   microservices, and lack of testing and automation made maintaining the microservices difficult.
   Unfortunately, the IT architecture was not open to change. Since this project, I have been
   skeptical of microservices as an overarching IT architecture and prefer Self-contained Systems
-  (as later implemented at 
+  (as later implemented at
   [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment)).
 
 **Technologies:** AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut,
@@ -900,7 +901,7 @@ Pact, Terraform, Docker, Twilio, Salesforce, Zuora
 - **Messaging:** Kafka (event streaming)
 - **APIs:** REST, OAuth2
 - **CI/CD:** Bamboo (continuous integration)
-- **Quality Tools:** Swagger (API documentation), HtmlUnit, OWASP (security), 
+- **Quality Tools:** Swagger (API documentation), HtmlUnit, OWASP (security),
   Apache JMeter (performance testing)
 - **Monitoring:** Metrics integration, pull request quality gates
 
