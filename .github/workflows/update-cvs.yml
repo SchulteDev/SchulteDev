@@ -53,6 +53,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    environment: Sonar_SchulteDev_SchulteDev:curriculum_vitae_scripts
     needs: changes
     if: always() && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.cv == 'true')
     defaults:
@@ -61,7 +62,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -97,7 +97,7 @@ jobs:
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         with:
-          projectBaseDir: ${{ github.workspace }}
+          projectBaseDir: curriculum_vitae/scripts/
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Test CV update with dry run

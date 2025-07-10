@@ -41,6 +41,7 @@ jobs:
 
   build_professional_homepage:
     runs-on: ubuntu-latest
+    environment: Sonar_SchulteDev_SchulteDev:schulte-development_de
     needs: changes
     if: always() && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.website == 'true')
     defaults:
@@ -68,7 +69,7 @@ jobs:
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         with:
-          projectBaseDir: ${{ github.workspace }}
+          projectBaseDir: schulte-development_de/
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Upload artifact
