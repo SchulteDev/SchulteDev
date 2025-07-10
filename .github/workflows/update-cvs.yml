@@ -139,6 +139,8 @@ jobs:
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          projectBaseDir: ${{ github.workspace }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Upload updated .tex file
