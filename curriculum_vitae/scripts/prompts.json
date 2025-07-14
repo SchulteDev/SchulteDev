@@ -5,13 +5,19 @@
       "output": "LuaLaTeX code only."
     },
     "pageLayout": [
-      "P1: CV Header, CV summary, key impacts, skills overview table without borders.",
-      "P2: Recent roles LBBW, Union Investment, Saloodo, Trusted Shops.",
-      "P3: Earlier experiences, personal projects.",
-      "P4: Education, skills, career breaks; footer: AI disclaimer."
+      "Page 1: CV Header, CV summary, key impacts, skills overview table without borders.",
+      "Page 2: Recent roles LBBW, Union Investment, Saloodo, Trusted Shops with three or four bullet points each.",
+      "Page 3: Two or three relevant previous work experiences, mention remaining work experiences; relevant personal projects.",
+      "Page 4: Education, additional skills, career breaks; footer: AI disclaimer."
     ],
     "constraints": [
       "Critical: Exactly {{PAGES}} filled, dense pages.",
+      "Use \\newpage after each page.",
+      "Monitor content density for exactly {{PAGES}}.",
+      "Fill pages densely - aim for minimal whitespace.",
+      "Use \\vfill for remaining white space distribution.",
+      "Use \\vspace{} for vertical spacing fine-tuning.",
+      "Include flexible content sections for page tuning.",
       "Valid, compilable LuaLaTeX with standard LuaLaTeX packages only.",
       "LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.",
       "Prioritize most recent and impactful experiences, teaser the leftover experiences.",
@@ -31,6 +37,7 @@
         "Current CV: ```latex\n{{CURRENT_CV}}\n```.",
         "Changes to career data: ```diff\n{{DIFF_DATA}}\n```.",
         "Page layout: {{SHARED_PAGE_LAYOUT}}",
+        "Maintain page count.",
         "Constraints: {{SHARED_CONSTRAINTS}}",
         "{{TYPE_SPECIFIC_INSTRUCTIONS}}",
         "Output: {{SHARED_OUTPUT}}"
@@ -39,12 +46,12 @@
   },
   "antiCv": {
     "cvType": "Anti-CV: Humorous lessons and failures, self-deprecating, still professional.",
-    "fullRebuildInstructions": "",
-    "incrementalInstructions": ""
+    "fullRebuildInstructions": "Focus on failures, missed opportunities, growth moments. Professional tone with self-deprecating humor that pokes fun at technology, too.",
+    "incrementalInstructions": "Update failure stories while maintaining humorous yet professional format."
   },
   "professionalCv": {
     "cvType": "Professional CV: Quantified impact, leadership, business value.",
-    "fullRebuildInstructions": "",
-    "incrementalInstructions": ""
+    "fullRebuildInstructions": "Emphasize quantified achievements, business value. Use metrics, percentages, concrete numbers.",
+    "incrementalInstructions": "Update with latest metrics while maintaining focus on quantified impact."
   }
 }

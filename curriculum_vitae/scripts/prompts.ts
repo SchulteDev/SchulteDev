@@ -78,8 +78,9 @@ const loadPrompts = (): PromptsConfig => {
     return cachedPrompts!;
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      logger.error(`Prompts validation failed: ${error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')}`);
-      throw new Error(`Invalid prompts.json structure: ${error.errors[0]?.message}`);
+      const errorMessage = error.issues.map(e => `${e.path.join('.')}: ${e.message}`).join(', ');
+      logger.error(`Prompts validation failed: ${errorMessage}`);
+      throw new Error(`Invalid prompts.json structure: ${error.issues[0]?.message}`);
     }
     logger.error(`Failed to load prompts: ${error.message}`);
     throw new Error(`Prompts not found: ${error.message}`);
