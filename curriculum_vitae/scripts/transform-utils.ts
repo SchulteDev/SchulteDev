@@ -15,7 +15,7 @@ import {
 import logger from './logger.js';
 import {callClaudeApi} from './claude-api.js';
 import {getFullRebuildPrompt, getIncrementalPrompt} from './prompts.js';
-import { safeDelete } from './file-utils.js';
+import {safeDelete} from './file-utils.js';
 
 const git = simpleGit();
 
@@ -84,13 +84,24 @@ export const validateDiffContent = (): boolean => {
   return true;
 };
 
-const extractRelativePath = (filePath: string): string => {
-  return filePath.includes('_data/career.md')
-    ? '_data/career.md'
-    : filePath.replace(/^\.\.\//, '');
+export const extractRelativePath = (filePath: string): string => {
+  // Normalize path for consistent processing
+  const normalizedPath = filePath.replace(/\\/g, '/');
+
+  // Special case: if the path is exactly _data/career.md or ends with /_data/career.md
+  // but not if it's a relative path like ../path/_data/career.md
+  if (normalizedPath === '_data/career.md' ||
+    normalizedPath.endsWith('/_data/career.md') && !normalizedPath.includes('../')) {
+    return '_data/career.md';
+  }
+
+  // Handle both Unix and Windows relative paths and normalize to forward slashes
+  return normalizedPath
+  .replace(/^\.\.\//, '') // Remove leading ../
+  .replace(/^\.\.\\/, ''); // Remove leading ..\ (already normalized but just in case)
 };
 
-const shouldSkipDiff = (diffContent: string): boolean => {
+export const shouldSkipDiff = (diffContent: string): boolean => {
   return !diffContent?.trim() || diffContent === 'No changes detected in git diff';
 };
 
