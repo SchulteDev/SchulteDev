@@ -1,0 +1,2 @@
+# Workaround, so jekyll-seo-tag uses production url, too
+url: "https://schulte-development.de"
