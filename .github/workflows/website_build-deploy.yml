@@ -70,6 +70,9 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
           working-directory: ./schulte-development_de
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
       - name: Update Jekyll base URL
         # Workaround, so jekyll-seo-tag uses production url, too
         run: |
