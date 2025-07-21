@@ -73,8 +73,11 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Update Jekyll base URL
+        run: |
+          sed -i 's|^url:.*|url: "${{ steps.pages.outputs.base_url }}"|' _config.yml
       - name: Build with Jekyll
-        run: bundle exec jekyll build --config _config.yml,_config_production.yml
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
       - name: Validate
