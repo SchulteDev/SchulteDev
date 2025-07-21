@@ -51,7 +51,7 @@ jobs:
           files_ignore: |
             curriculum_vitae/*-cv.tex
 
-  test:
+  test_cv_scripts:
     runs-on: ubuntu-latest
     environment: Sonar_SchulteDev_SchulteDev:curriculum_vitae_scripts
     needs: changes
@@ -116,8 +116,8 @@ jobs:
 
   update-cvs:
     runs-on: ubuntu-latest
-    needs: [changes, test]
-    if: always() && needs.test.result == 'success' && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.cv == 'true')
+    needs: [changes, test_cv_scripts]
+    if: always() && needs.test_cv_scripts.result == 'success' && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.cv == 'true')
     strategy:
       matrix:
         cv_type: [ anti, professional ]
