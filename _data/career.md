@@ -829,7 +829,7 @@ Contributed to 13+ repositories including:
   surprised by the lived disadvantages. Simple changes often required modifications across many
   microservices, and lack of testing and automation made maintaining the microservices difficult.
   Unfortunately, the IT architecture was not open to change. Since this project, I have been
-  skeptical of microservices as an overarching IT architecture and prefer 
+  skeptical of microservices as an overarching IT architecture and prefer
   Self-contained Systems (as later implemented at
   [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment)).
 
@@ -968,7 +968,8 @@ Contributed to 13+ repositories including:
   - Bamboo CI server configuration and deployment
   - Automated test builds using Docker containers
   - Team training on Docker and Bamboo environments
-- **Silver Tours GmbH (Dec 2014 — Jul 2015):** Infrastructure modernization for car rental platform
+- **billiger-mietwagen.de / Silver Tours GmbH (Dec 2014 — Jul 2015):** Infrastructure modernization
+  for car rental platform https://www.billiger-mietwagen.de/
 - **AffiliCon GmbH (Sep 2014):** Jenkins infrastructure setup
   - [Letter of Recommendation](credentials/2014_Affilicon_Empfehlungsschreiben.pdf) (German)
 - **dailypresent GmbH (Jan—Aug 2014):** PHP backend development, AWS/Facebook integration
@@ -1149,10 +1150,10 @@ Created automated trading algorithms for Bitcoin arbitrage with machine learning
 
 ## Education & Certifications
 
-### 2004 — 2012: Diploma in Computer Science, University of Koblenz-Landau
+### 2004 — 2012: Diplom in Computer Science, University of Koblenz-Landau
 
 - **Degree:**
-  [Diploma in Computer Science](credentials/2012_Markus%20Schulte%20Diploma%20computer%20science%20certificate%20Diplom%20Informatik.pdf)
+  [Diplom in Computer Science](credentials/2012_Markus%20Schulte%20Diploma%20computer%20science%20certificate%20Diplom%20Informatik.pdf)
 - **Overall Mark:** Distinction (magna cum laude equivalent)
 - **Graduation:** September 27, 2012
 - **University:** University of Koblenz-Landau, Campus Koblenz
@@ -1165,7 +1166,7 @@ Created automated trading algorithms for Bitcoin arbitrage with machine learning
   [starting in 2007](#august-2007--june-2014-php-developer-and-head-of-development-at-werkenntwen),
   which delayed my studies but provided valuable practical experience alongside academic learning.
 
-*The German [Diploma](https://en.wikipedia.org/wiki/Diplom) degree is equivalent to a Master of
+*The German [Diplom](https://en.wikipedia.org/wiki/Diplom) degree is equivalent to a Master of
 Science and was awarded with distinction, representing academic excellence in the field of Computer
 Science with specialization in Computational Visualistics.*
 
@@ -1188,15 +1189,21 @@ Visualistics in Koblenz.
 
 ### Certifications & Recognition
 
-- **[StackOverflow](https://stackoverflow.com/users/1645517/markus-schulte):** 4000+ reputation
-  points demonstrating community contributions
-- **[Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf):**: 93/100 score, 88th percentile (June 18, 2018)
+- **StackOverflow:**
+  - Personal userpage on StackOverflow: https://stackoverflow.com/users/1645517/markus-schulte
+  - 4000+ reputation points demonstrating community contributions
+- **Java SE 8 TechCheck (IKM):**
+  - Test result:
+    [Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf)
+  - 93/100 score, 88th percentile (June 18, 2018)
   - Overall assessment: "Strong" (93/100)
   - Subject coverage: 95% proficient or strong knowledge
   - Application ability: Extensive
   - Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management,
     Interfaces
-- **[GitHub](https://github.com/SchulteMarkus):** Open-source contributor
+- **GitHub:**
+  - Personal userpage on GitHub: https://github.com/SchulteMarkus
+  - Open-source contributor
 
 ---
 
