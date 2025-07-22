@@ -22,10 +22,4 @@ social-network-links:
   email: mail@schulte-development.de
   linkedin: markus-schulte
   github: SchulteDev
-  stackoverflow: markus-schulte
-social:
-  name: Schulte development / Markus Schulte
-  links:
-    - https://www.linkedin.com/in/markus-schulte
-    - https://github.com/SchulteDev
-    - https://stackoverflow.com/users/1645517/markus
+  stackoverflow: 1645517

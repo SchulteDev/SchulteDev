@@ -1,5 +1,6 @@
 ---
 layout: page
+css: /assets/main.css
 title: PHP Developer and Head of Development at werkenntwen
 ---
 

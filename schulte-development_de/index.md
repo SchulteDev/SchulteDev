@@ -1,6 +1,6 @@
 ---
 layout: page
-css: /assets/index.css
+css: /assets/main.css
 ---
 
 <div class="hero-section">
@@ -28,6 +28,19 @@ css: /assets/index.css
 - **Cloud-Native Design:** Event-driven architecture, Self-contained Systems (SCS), distributed
   systems
 - **DevOps Excellence:** Infrastructure-as-Code, automated CI/CD, comprehensive testing strategies
+
+## Educational Foundation
+
+- **University Degree:** Diplom Computer Science
+- **Academic Achievement:** Completed with Distinction (magna cum laude equivalent)
+- **Program Focus:** Interdisciplinary combination of computer science theory, software engineering
+  and IT architecture
+- **Foundation:** Provides analytical thinking and problem-solving skills that underpin enterprise
+  architecture approach
+
+<div class="cta-section">
+  <a href="{{ '/education' }}" class="cta-button secondary">View Education Details</a>
+</div>
 
 ## My values
 

@@ -1,5 +1,6 @@
 ---
 layout: page
+css: /assets/main.css
 title: Early Freelancing Projects
 ---
 
@@ -13,7 +14,7 @@ title: Early Freelancing Projects
 - Xsite GmbH
 - freshcells systems
 - fotocommunity GmbH
-- Silver Tours GmbH
+- billiger-mietwagen.de (Silver Tours GmbH)
 - AffiliCon GmbH
 - dailypresent GmbH
 
@@ -32,18 +33,20 @@ title: Early Freelancing Projects
 - Improved team velocity and software quality by establishing robust development standards.
 - Enabled efficient testing and build processes through Docker integration.
 
-**Client Testimonials:**
+**Client Testimonials**
 
-> "His technical knowledge of PHP, Java and code metrics is outstanding. Mr. Schulte has worked very
-> sustainably thanks to his numerous constructive suggestions for test development. We were able to
-> benefit from his extensive experience and excellent training.
-> 
-> Mr Schulte completed all the tasks we requested to our complete satisfaction. In addition to his
-> impeccable professional qualifications, Mr Schulte is characterised by his friendliness and his
-> ability to work in a team. I consider him to be an excellent software developer who can be
-> integrated very quickly into existing teams."
->
-> *— Dieter Granitzki, CTO AffiliCon GmbH (2015)*
+<div class="testimonial">
+  <blockquote>
+    His technical knowledge of PHP, Java and code metrics is outstanding. Mr. Schulte has worked very
+    sustainably thanks to his numerous constructive suggestions for test development. We were able to
+    benefit from his extensive experience and excellent training.<br/>
+    Mr Schulte completed all the tasks we requested to our complete satisfaction. In addition to his
+    impeccable professional qualifications, Mr Schulte is characterised by his friendliness and his
+    ability to work in a team. I consider him to be an excellent software developer who can be
+    integrated very quickly into existing teams.
+  </blockquote>
+  <cite>— Dieter Granitzki, CTO AffiliCon GmbH (2015)</cite>
+</div>
 
 **Key Technologies:**
 Java, Spring Boot, PHP, AWS (EC2, S3), Jenkins, Atlassian Bamboo, Docker, PHPUnit, MySQL.

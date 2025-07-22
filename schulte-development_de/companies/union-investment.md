@@ -1,5 +1,6 @@
 ---
 layout: page
+css: /assets/main.css
 title: Cloud Architect at Union Investment
 ---
 
@@ -34,25 +35,36 @@ Based on comprehensive 360-degree feedback surveys (December 2021, June 2022, No
 - **Collaboration:** High ratings for pleasant working relationship, averaging 8.6/10 in 2024
 - **Leadership:** Strong ratings for driving topics forward (9/10 in 2024)
 
-**Client Testimonials:**
+**Client Testimonials**
 
-> "Markus Schulte has in his multi-year engagement in the web portals domain successfully deployed
-> his outstanding technical expertise and pronounced communicative talent across multiple teams as an
-> architect. His work approach was consistently characterized by professionalism, reliability, and
-> high quality."
->
-> *— Senior Colleague, Union Investment (2024)*
+<div class="testimonials-section">
+<div class="testimonial">
+  <blockquote>
+    Markus Schulte has in his multi-year engagement in the web portals domain successfully deployed
+    his outstanding technical expertise and pronounced communicative talent across multiple teams as an
+    architect. His work approach was consistently characterized by professionalism, reliability, and
+    high quality.
+  </blockquote>
+  <cite>— Senior Colleague, Union Investment (2024)</cite>
+</div>
 
-> "His structured approach and ability to analyze complex architectures, share knowledge with the
-> team, and develop them to the 'next level' have greatly advanced the entire project. His ability to
-> convince and inspire colleagues about the opportunities and advantages of technical solutions was
-> decisive in setting common goals and achieving them as planned."
->
-> *— Team Member, Union Investment (2024)*
+<div class="testimonial">
+  <blockquote>
+    His structured approach and ability to analyze complex architectures, share knowledge with the
+    team, and develop them to the 'next level' have greatly advanced the entire project. His ability to
+    convince and inspire colleagues about the opportunities and advantages of technical solutions was
+    decisive in setting common goals and achieving them as planned.
+  </blockquote>
+  <cite>— Team Member, Union Investment (2024)</cite>
+</div>
 
-> "Great that you were also easy to reach through informal channels. Thank you for your support."
->
-> *— Project Stakeholder, Union Investment (2024)*
+<div class="testimonial">
+  <blockquote>
+    Great that you were also easy to reach through informal channels. Thank you for your support.
+  </blockquote>
+  <cite>— Project Stakeholder, Union Investment (2024)</cite>
+</div>
+</div>
 
 **Key Technologies:**
 Azure (Static Web App, Functions, Event Hubs, AD B2C), JavaScript/TypeScript, Node.js, Java, Lit

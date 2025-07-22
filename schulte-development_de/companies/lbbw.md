@@ -1,5 +1,6 @@
 ---
 layout: page
+css: /assets/main.css
 title: Cloud Architect at LBBW
 ---
 

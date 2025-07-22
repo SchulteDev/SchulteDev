@@ -1,5 +1,6 @@
 ---
 layout: page
+css: /assets/main.css
 title: Senior JavaEE Developer at Allianz Global Digital Factory
 ---
 

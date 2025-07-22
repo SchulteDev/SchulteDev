@@ -400,6 +400,16 @@ p {
   box-shadow: 0 2px 5px rgba(40, 167, 69, 0.2);
 }
 
+.cta-button.secondary {
+  background-color: #6c757d;
+  box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+}
+
+.cta-button.secondary:hover {
+  background-color: #5a6268;
+  box-shadow: 0 6px 15px rgba(108, 117, 125, 0.4);
+}
+
 /* ===== RESPONSIVE ===== */
 @media only screen and (max-width: 999px) {
   .box {

@@ -1,5 +1,6 @@
 ---
 layout: page
+css: /assets/main.css
 title: Senior Engineer & DevOp at toom Baumarkt GmbH
 ---
 
@@ -24,16 +25,19 @@ title: Senior Engineer & DevOp at toom Baumarkt GmbH
 - Improved software quality by establishing comprehensive testing and metrics frameworks.
 - Achieved significant performance gains, including a 70% improvement in test execution speed.
 
-**Professional Recognition:**
+**Client Testimonials**
 
 Received formal technical and organizational recommendations from tarent solutions GmbH leadership:
 
-> "Mr. Schulte further advanced the technological environment of the project with his outstanding
-> expertise. Thanks to his very quick comprehension, he easily familiarized himself with the
-> dimensions of domain, technology, and process and brought added value to the project at an early
-> stage."
->
-> *— Sebastian Mancke, tarent solutions GmbH (September 2017)*
+<div class="testimonial">
+  <blockquote>
+    Mr. Schulte further advanced the technological environment of the project with his outstanding
+    expertise. Thanks to his very quick comprehension, he easily familiarized himself with the
+    dimensions of domain, technology, and process and brought added value to the project at an early
+    stage.
+  </blockquote>
+  <cite>— Sebastian Mancke, tarent solutions GmbH (September 2017</cite>
+</div>
 
 **Key Technical Achievements:**
 

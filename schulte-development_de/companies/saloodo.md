@@ -1,5 +1,6 @@
 ---
 layout: page
+css: /assets/main.css
 title: Middleware Engineer at Saloodo! (DHL Group)
 ---
 
