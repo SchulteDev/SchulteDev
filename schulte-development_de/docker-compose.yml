@@ -12,4 +12,4 @@ services:
     build: .
     volumes:
       - .:/app
-    command: make test
+    command: make validate
