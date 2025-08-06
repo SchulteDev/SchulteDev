@@ -48,13 +48,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Download Anti-CV PDF
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: anti-cv-pdf
           path: .
         continue-on-error: true
       - name: Download Professional CV PDF
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: professional-cv-pdf
           path: .

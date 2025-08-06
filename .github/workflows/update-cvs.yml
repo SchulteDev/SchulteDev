@@ -176,12 +176,12 @@ jobs:
         with:
           token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
       - name: Download updated anti CV .tex file
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: anti-tex-file
           path: curriculum_vitae/
       - name: Download updated professional CV .tex file
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: professional-tex-file
           path: curriculum_vitae/
