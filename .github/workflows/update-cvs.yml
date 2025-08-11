@@ -40,7 +40,7 @@ jobs:
     outputs:
       cv: ${{ steps.changed-files.outputs.any_changed }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: tj-actions/changed-files@v46
         id: changed-files
         with:
@@ -61,7 +61,7 @@ jobs:
         working-directory: curriculum_vitae/scripts
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Set up Node.js
@@ -128,7 +128,7 @@ jobs:
         working-directory: curriculum_vitae/scripts
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 2
       - name: Set up Node.js
@@ -172,7 +172,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
       - name: Download updated anti CV .tex file
