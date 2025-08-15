@@ -15,14 +15,15 @@ on:
         options:
           - incremental
           - full_rebuild
-      environment:
-        description: 'Claude Sonnet or Opus?'
+      api_model:
+        description: 'Claude Model'
         required: true
-        default: 'claude-sonnet'
+        default: 'claude-4-sonnet-20250514'
         type: choice
         options:
-          - claude-opus
-          - claude-sonnet
+          - claude-4-sonnet-20250514
+          - claude-opus-4-20250514
+          - claude-opus-4-1-20250805
 
 env:
   CAREER_FILE: ${{ github.workspace }}/_data/career.md
@@ -137,6 +138,7 @@ jobs:
         id: update-cv
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          API_MODEL: ${{ github.event.inputs.api_model }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: npm run cv:update:${{ matrix.cv_type }}
       - name: Validate LaTeX (compilation test)
