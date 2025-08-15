@@ -11,7 +11,7 @@
       "Page 4: Education, additional skills, career breaks; footer: AI disclaimer."
     ],
     "constraints": [
-      "Critical: Exactly {{PAGES}} filled, dense pages.",
+      "Exactly {{PAGES}} vertical, filled, dense pages.",
       "Use \\newpage after each page.",
       "Monitor content density for exactly {{PAGES}}.",
       "Fill pages densely - aim for minimal whitespace.",
