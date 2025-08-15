@@ -139,20 +139,20 @@ jobs:
           node-version-file: 'curriculum_vitae/scripts/.nvmrc'
       - name: Install dependencies
         run: npm ci
-      - name: Transform CV with Claude
-        id: transform
+      - name: Update CV
+        id: update-cv
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: npm run cv:update:${{ matrix.cv_type }}
       - name: Validate LaTeX (compilation test)
-        if: success() && steps.transform.outputs.mode != 'skip'
+        if: success() && steps.update-cv.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v4
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Upload updated .tex file
-        if: success() && steps.transform.outputs.mode != 'skip'
+        if: success() && steps.update-cv.outputs.mode != 'skip'
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.cv_type }}-tex-file
@@ -160,7 +160,7 @@ jobs:
           retention-days: 7
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
-        if: always() && steps.transform.outputs.mode != 'skip'
+        if: always() && steps.update-cv.outputs.mode != 'skip'
         with:
           name: cv-update-logs-${{ matrix.cv_type }}-${{ github.run_id }}
           path: curriculum_vitae/scripts/tmp/
