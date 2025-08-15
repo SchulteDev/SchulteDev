@@ -1109,6 +1109,22 @@ Contributed to 13+ repositories including:
 
 ## Personal Projects
 
+### 2025: ConversationalAI4J
+
+Java library for voice-enabled conversational AI using local models. Enables spoken conversations
+with LLMs through browser interface with complete speech-to-text and text-to-speech pipeline.
+
+**Key Features:**
+
+- **Voice-First Design:** Complete speech pipeline with Whisper.cpp (STT) and Piper (TTS)
+- **Local AI Integration:** Native integration with Ollama for local LLM inference using langchain4j
+- **Native Performance:** Using native Java bindings for speech processing
+- **Real-time Communication:** WebSocket-based voice streaming for responsive conversations
+
+**Technologies:** Java 21, Spring Boot, Gradle, Ollama/LLaMA, Whisper.cpp, Piper TTS, Docker,
+JavaScript
+**Repository:** https://github.com/SchulteDev/ConversationalAI4J
+
 ### 2025: SchulteDev Portfolio Repository
 
 Centralized monorepo for professional portfolio management including automated CV generation,
