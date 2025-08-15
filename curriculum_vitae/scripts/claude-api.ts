@@ -127,8 +127,7 @@ const validateApiResponse = (content: string, cvType: CvType): boolean => {
 };
 
 const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => {
-  logger.info(`Calling Claude API for ${cvType} CV...`);
-  logger.debug(`Model: ${API_MODEL}`);
+  logger.info(`Calling Claude ${API_MODEL} API for ${cvType} CV...`);
 
   try {
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
