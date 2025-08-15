@@ -18,10 +18,10 @@ on:
       api_model:
         description: 'Claude Model'
         required: true
-        default: 'claude-4-sonnet-20250514'
+        default: 'claude-sonnet-4-20250514'
         type: choice
         options:
-          - claude-4-sonnet-20250514
+          - claude-sonnet-4-20250514
           - claude-opus-4-20250514
           - claude-opus-4-1-20250805
 
