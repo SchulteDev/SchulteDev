@@ -15,7 +15,15 @@ import logger from './logger.js';
 import {extractLatex} from './claude-api.js';
 import {main as transformFullRebuild} from './transform-full-rebuild.js';
 import {main as transformIncremental} from './transform-incremental.js';
-import { hasValidFile, hasResponseFiles as checkResponseFiles, cleanupResponseFiles, safeFileCopy, safeFileMove, safeDelete, ensureDir } from './file-utils.js';
+import {
+  cleanupResponseFiles,
+  ensureDir,
+  hasResponseFiles as checkResponseFiles,
+  hasValidFile,
+  safeDelete,
+  safeFileCopy,
+  safeFileMove
+} from './file-utils.js';
 
 // Cleanup function
 const cleanup = (): void => {
@@ -31,7 +39,7 @@ const cleanup = (): void => {
 
 // Validate LaTeX content
 const validateLatex = (filePath: string, cvType: CvType): boolean => {
-    if (!fs.existsSync(filePath) || fs.statSync(filePath).size === 0) {
+  if (!fs.existsSync(filePath) || fs.statSync(filePath).size === 0) {
     logger.error(`${cvType} CV file is empty`);
     return false;
   }
@@ -105,7 +113,11 @@ const setupCleanupHandlers = (): void => {
 const determineMode = (): 'incremental' | 'full_rebuild' => {
   let mode: 'incremental' | 'full_rebuild' = 'incremental';
 
+  // Check for GitHub Actions workflow dispatch
   if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
+    mode = (process.env.REBUILD_MODE as 'incremental' | 'full_rebuild') || 'incremental';
+  } else {
+    // For local development, read REBUILD_MODE from .env file
     mode = (process.env.REBUILD_MODE as 'incremental' | 'full_rebuild') || 'incremental';
   }
 
@@ -115,7 +127,7 @@ const determineMode = (): 'incremental' | 'full_rebuild' => {
   }
 
   return mode;
-};
+}
 
 const cleanupExistingResponses = (): void => {
   const cvTypesToProcess = getCvTypesToProcess();

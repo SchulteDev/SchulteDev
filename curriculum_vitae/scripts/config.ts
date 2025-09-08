@@ -3,6 +3,7 @@
 import fs from 'fs-extra';
 import {z} from 'zod';
 import * as core from '@actions/core';
+import 'dotenv/config'; // Automatically load .env file
 
 // Zod schema for environment variables
 const EnvSchema = z.object({
