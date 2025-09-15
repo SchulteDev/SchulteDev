@@ -147,6 +147,13 @@ jobs:
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Upload compiled PDF
+        if: success() && steps.update-cv.outputs.mode != 'skip'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.cv_type }}-cv-pdf
+          path: markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
+          retention-days: 7
       - name: Upload updated .tex file
         if: success() && steps.update-cv.outputs.mode != 'skip'
         uses: actions/upload-artifact@v4
