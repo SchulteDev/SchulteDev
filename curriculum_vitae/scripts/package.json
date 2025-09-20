@@ -43,7 +43,7 @@
     "dotenv": "17.2.2",
     "fs-extra": "11.3.2",
     "simple-git": "3.28.0",
-    "zod": "4.1.9"
+    "zod": "4.1.11"
   },
   "devDependencies": {
     "@types/fs-extra": "11.0.4",
