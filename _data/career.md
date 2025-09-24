@@ -623,8 +623,9 @@ Salesforce CRM
   automatic retry mechanisms
 - Achieved 70% test coverage on 2,776 lines of code with 5-second test execution time using
   Dockertest for PostgreSQL integration
-- Implemented sophisticated database query optimizations and multi-threading for handling ~10
-  million record synchronizations
+- Implemented multi-threading for handling ~10 million record synchronizations
+- Optimization of database queries using SQL EXPLAIN and subsequent adjustments to table schemas 
+  and queries; this reduced SELECT times by up to 80%
 - Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect
   types)
 - Owned complete software lifecycle: requirements engineering, design, development, monitoring, and
@@ -683,18 +684,24 @@ into [Atlassian Bamboo Server CI/CD](https://www.atlassian.com/de/software/bambo
 
 **Impact:**
 
-- **Global reach:** 83 customers across 15+ countries, from startups to enterprise
+- Global reach: 83 customers across 15+ countries, from startups to enterprise
   (200+ Bamboo agents)
-- **Revenue generation:** Sustainable 7-year business with recurring license revenue
-- **Market validation:** First-mover advantage in Bamboo code quality integration
-- **Technical adoption:** Enabled quality gates for Java projects in Bamboo ecosystem
+- Revenue generation: Sustainable 7-year business with recurring license revenue
+- Market validation: First-mover advantage in Bamboo code quality integration
+- Technical adoption: Enabled quality gates for Java projects in Bamboo ecosystem
+
+**Implementation highlights:**
+
+- Implementation of Sharding for processing large numbers of results
+- Using DataTables for displaying endless number of metrics results  
 
 **Technologies & Frameworks:**
 
-- **Backend:** Java, Atlassian SDK, OSGi framework
-- **Build Systems:** Maven, Bamboo API integration
-- **Testing:** JUnit, quality metrics parsing
-- **Distribution:** Atlassian Marketplace, UPM packaging
+- Backend: Java, Atlassian SDK, OSGi framework
+- Frontend: Atlassian SDK, jQuery, [DataTables](https://datatables.net)
+- Build Systems: Maven, Bamboo API integration
+- Testing: JUnit, quality metrics parsing
+- Distribution: Atlassian Marketplace, UPM packaging
 
 **Link:** https://marketplace.atlassian.com/vendors/1213259
 
@@ -889,7 +896,7 @@ Contributed to 13+ repositories including:
 - **Microservices Architecture:** Developed production microservices using Java (primary) and
   Golang, with additional Ruby and Shell scripting
 - **Quality Leadership:** Led weekly cross-team quality initiatives across 4 development teams in
-  agile project framework
+  agile project framework to ensure consistent quality standards were maintained
 - **Technical Innovation:** Enabled decoupled development of Java microservices, removing external
   dependencies
 - **Testing Excellence:** Introduced integration tests following Maven lifecycle and test pyramid
@@ -1038,6 +1045,7 @@ Contributed to 13+ repositories including:
 - **Mobile platform:** Developed HTML mobile portal and API foundation
 - **Scaling solutions:** Implemented vertical/horizontal table partitioning and extensive Memcache
   deployment
+- **Database query optimizations:** Regular use of SQL-EXPLAIN and subsequent query improvement
 - **Security implementation:** Deployed comprehensive security measures (Brute-force protection,
   XSS, CSRF, SQL-injection prevention, ACL)
 
