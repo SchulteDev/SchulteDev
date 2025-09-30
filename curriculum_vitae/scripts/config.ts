@@ -8,7 +8,7 @@ import 'dotenv/config'; // Automatically load .env file
 // Zod schema for environment variables
 const EnvSchema = z.object({
   CAREER_FILE: z.string().default('../../_data/career.md'),
-  API_MODEL: z.string().default('claude-sonnet-4-20250514'),
+  API_MODEL: z.string().default('claude-sonnet-4-5'),
   MAX_TOKENS: z.coerce.number().positive().default(12000),
   MIN_CONTENT_LENGTH: z.coerce.number().positive().default(500),
   GIT_DIFF_RANGE: z.coerce.number().positive().default(1),
