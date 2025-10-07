@@ -1226,7 +1226,7 @@ Visualistics in Koblenz.
   - Strong areas: Object Orientation, Generics & Collections, Concurrency, Memory Management,
     Interfaces
 - **GitHub:**
-  - Personal userpage on GitHub: https://github.com/SchulteMarkus
+  - Personal userpage on GitHub: https://github.com/SchulteDev
   - Open-source contributor
 
 ---
