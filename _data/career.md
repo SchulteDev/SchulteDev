@@ -101,7 +101,7 @@ Comprehensive test automation is fundamental to my development approach:
 **Frontend Integration:** Web Components, Lit framework, microfrontend architectures  
 **Databases:** PostgreSQL, MySQL, Oracle, MS-SQL, Redis  
 **Message Systems:** Kafka, Azure Event Hubs, SQS  
-**Search & Analytics:** Algolia, ElasticSearch, Azure Application Insights  
+**Search & Analytics:** Algolia, ElasticSearch, Azure Application Insights, OpenTelemetry
 **Monitoring:** ELK Stack, Grafana, Dynatrace, SonarQube
 
 ### Development Practices
@@ -589,7 +589,7 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
   testing), Prettier, comprehensive test pyramid
 - **Package Management:** NPM, pnpm, Dependabot & Renovate Bot (automated dependency updates)
 - **Standards:** Conventional Commits, comprehensive code formatting and linting standards
-- **Monitoring:** Azure Application Insights, comprehensive logging and metrics
+- **Monitoring:** Azure Application Insights / OpenTelemtry, comprehensive logging and metrics
 
 ---
 
@@ -778,8 +778,8 @@ transformation
   components
 - **Performance Optimization:** Conducted load testing for invite-scheduler-service and optimized
   application metrics
-- **Monitoring Enhancement:** Improved application metrics visualization in Grafana and AWS
-  CloudWatch
+- **Monitoring Enhancement:** Improved application metrics visualization in Grafana with Prometheus
+  as database and AWS CloudWatch
 - **Architecture Design:** Created detailed technical concepts for message-delivery-service
   evolution
 
