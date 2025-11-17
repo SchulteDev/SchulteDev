@@ -48,9 +48,9 @@
   "devDependencies": {
     "@types/fs-extra": "11.0.4",
     "@types/node": "24.10.1",
-    "@vitest/coverage-v8": "4.0.9",
+    "@vitest/coverage-v8": "4.0.10",
     "tsx": "4.20.6",
-    "vitest": "4.0.9"
+    "vitest": "4.0.10"
   },
   "engines": {
     "node": ">=22.0.0",
