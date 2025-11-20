@@ -19,7 +19,7 @@ jobs:
         cv_type: [ anti, professional ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Compile CV LaTeX to PDF
         uses: xu-cheng/latex-action@v4
         with:
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Download Anti-CV PDF
         uses: actions/download-artifact@v6
         with:
