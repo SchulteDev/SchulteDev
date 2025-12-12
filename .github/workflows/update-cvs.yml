@@ -83,14 +83,14 @@ jobs:
           reporter: java-junit
           fail-on-error: true
       - name: Upload test results
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
         with:
           name: test-results
           path: curriculum_vitae/scripts/test-results.xml
           retention-days: 7
       - name: Upload coverage reports
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
         with:
           name: coverage-report
@@ -148,20 +148,20 @@ jobs:
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Upload compiled PDF
         if: success() && steps.update-cv.outputs.mode != 'skip'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.cv_type }}-cv-pdf
           path: markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
           retention-days: 7
       - name: Upload updated .tex file
         if: success() && steps.update-cv.outputs.mode != 'skip'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.cv_type }}-tex-file
           path: curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           retention-days: 7
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: always() && steps.update-cv.outputs.mode != 'skip'
         with:
           name: cv-update-logs-${{ matrix.cv_type }}-${{ github.run_id }}
@@ -178,12 +178,12 @@ jobs:
         with:
           token: ${{ secrets.SCHULTEDEV_UPDATE_CVS_PAT }}
       - name: Download updated anti CV .tex file
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: anti-tex-file
           path: curriculum_vitae/
       - name: Download updated professional CV .tex file
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: professional-tex-file
           path: curriculum_vitae/
