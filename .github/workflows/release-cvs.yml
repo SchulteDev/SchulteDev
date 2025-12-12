@@ -26,12 +26,12 @@ jobs:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Upload CV PDF
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.cv_type }}-cv-pdf
           path: markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: cv-build-logs-${{ matrix.cv_type }}-${{ github.run_id }}
@@ -48,13 +48,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Download Anti-CV PDF
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: anti-cv-pdf
           path: .
         continue-on-error: true
       - name: Download Professional CV PDF
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: professional-cv-pdf
           path: .
@@ -84,7 +84,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: cv-release-artifacts-${{ github.run_id }}
