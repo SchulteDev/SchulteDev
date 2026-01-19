@@ -26,20 +26,20 @@ target documents for particular audiences or purposes.
 
 ## Professional Summary
 
-**Cloud Architect & Software Engineer** with 18+ years experience (11+ freelance) specializing in
+**Cloud Architect & Software Engineer** with 19+ years experience (12+ freelance) specializing in
 enterprise modernization and cloud-native transformations. Currently serving as Cloud Architect at
 LBBW, contributing to "Phoenix" IT modernization for Germany's major state bank.
 
 **Core Expertise:**
 
-- **Enterprise Architecture:** Legacy-to-cloud migrations, experience with AWS, Azure and GCP,
-  cloud strategies, cloud (native) system design
+- **Enterprise Architecture:** Legacy-to-cloud migrations, Azure/AWS/GCP platforms, cloud-native
+  system design, platform engineering
 - **Technical Leadership:** Led teams of 5-9 developers, served as Product Owner and technical
   mentor
-- **Backend Engineering:** Java (18y), Golang (4y), TypeScript - from monoliths to microservices
+- **Backend Engineering:** Java (19y), Golang (5y), TypeScript – from monoliths to microservices
 - **Cloud-Native Design:** Event-driven architecture, Self-contained Systems (SCS), distributed
   systems
-- **DevOps Excellence:** Infrastructure-as-Code, automated CI/CD, comprehensive testing strategies
+- **DevOps & AI Integration:** Infrastructure-as-Code, automated CI/CD, AI document processing
 
 **Business Impact:** Delivered platforms serving 9M+ users, reduced deployment times from days to
 minutes, achieved 99.9% uptime in production systems, and established architecture templates adopted
@@ -51,9 +51,9 @@ across enterprise organizations.
 
 ### Core Programming Languages
 
-**Java** can be described as my programming mother tongue with 18+ years of experience across
+**Java** can be described as my programming mother tongue with 19+ years of experience across
 enterprise environments. **Golang** has become my preferred language for cloud-native development
-with 4+ years of professional experience, particularly in microservices and middleware systems. *
+with 5+ years of professional experience, particularly in microservices and middleware systems. *
 *PHP** was my foundation (8+ years) during early career and social platform development. I also work
 with **TypeScript/JavaScript** for Node.js/NPM/pnpm applications and frontend integration when
 required.
@@ -74,8 +74,8 @@ specializing in:
 
 ### Cloud Platforms & DevOps
 
-**AWS:** EKS, Lambda, API Gateway, S3, SQS, CloudFormation with 7+ years experience  
-**Azure:** Static Web Apps, Functions, Event Hubs, AKS, AD B2C with 4+ years experience  
+**Azure:** Static Web Apps, Functions, Event Hubs, AKS, AD B2C, Document Intelligence with 5+ years experience
+**AWS:** EKS, Lambda, API Gateway, S3, SQS, CloudFormation with 7+ years experience
 **GCP:** Kubernetes Engine, Cloud Functions, Firebase integration
 
 **Infrastructure & Automation:**
@@ -139,15 +139,16 @@ organizational and leadership capabilities:
   cloud migration readiness
 - **Azure Migration Planning:** R-methodology application for enterprise cloud transformation
   strategies
+- **AI Integration:** Azure Document Intelligence for automated document processing and workflow
+  optimization
 - **Microfrontend Toolkit Development:** Custom framework creation enabling autonomous team
   development
 - **Contract Testing:** Deep expertise with Pact framework for microservices reliability
-- **Developer Tooling:** Custom framework development, build optimization, automation tools
+- **Platform Engineering:** Custom framework development, build optimization, developer tooling
 - **Code Quality Metrics:** SonarQube integration, automated quality gates, technical debt
   management
 - **Event Stream Processing:** Real-time data pipelines, event sourcing patterns
 - **Enterprise Integration:** Salesforce, Zuora, legacy system modernization
-- **AI Document Processing:** Azure Document Intelligence integration for automated workflows
 
 ### Key Technologies Timeline
 
@@ -177,7 +178,7 @@ organizational and leadership capabilities:
 
 ## Professional Experience
 
-### November 2024 — Present: Cloud Architect at LBBW
+### November 2024 — October 2025: Cloud Architect at LBBW
 
 *[Landesbank Baden-Württemberg](https://en.wikipedia.org/wiki/Landesbank_Baden-W%C3%BCrttemberg) |
 Freelance | Remote*
