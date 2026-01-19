@@ -290,8 +290,8 @@ parallel technical supervision across "04 – Application Development" area
 
 ### October 2021 — December 2024: Cloud Architect at Union Investment
 
-*[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) | German Asset Management
-Company | Freelance | Remote*
+*[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) | 
+German Asset Management Company | Freelance | Remote*
 
 **Company Context:** Leading German asset management company requiring modernization of their
 central B2B sales platform [InvestmentWelt](https://investmentwelt.de/). Despite serving only 80,000
@@ -301,34 +301,34 @@ users, this platform was business-critical for corporate reputation and revenue 
 
 **Timeline:** 3+ year comprehensive transformation across four overlapping phases
 
-**Team Leadership:** Managed teams of 5-7 developers, serving as technical Product Owner and agile
+**Team Leadership:** Managed teams of 5–7 developers, serving as technical Product Owner and agile
 coach
 
 **Technical Challenges:**
 
-- **Legacy complexity:** Overloaded monolith based on Liferay and FirstSpirit with 8 distinct domain
-  boundaries identified through DDD analysis
-- **Scalability requirements:** Platform needed to serve as modernization template for entire
-  corporate group
+- **Legacy complexity:** Overloaded monolith based on Liferay and FirstSpirit with eight 
+  distinct domain boundaries identified through DDD analysis
+- **Scalability requirements:** Platform needed to serve as a modernization template for 
+  the entire corporate group
 - **Team autonomy:** Architecture must enable independent development by functionally autonomous
   teams
 - **Cross-cutting concerns:** Implementing unified search across distributed Self-contained Systems
   architecture
-- **Event-driven integration:** Designing event streams across 8 domains with different data
+- **Event-driven integration:** Designing event streams across eight domains with different data
   structures, APIs, and authorization levels
 - **Enterprise integration:** Seamless integration with existing Magnolia CMS and multiple business
   domains
 
-**Phase 1: Architecture Conception and Design (Oct 2021 - Apr 2022)**
+**Phase 1: Architecture Conception and Design (Oct 2021 – Apr 2022)**
 
-**Initial Architecture & SSO (Oct-Nov 2021):**
+**Initial Architecture & SSO (Oct – Nov 2021):**
 
 - **Onboarding & Analysis:** Comprehensive analysis of existing legacy system architecture and
   business requirements
 - **Frontend Integration Architecture:** Designed comprehensive frontend integration strategy
   enabling distributed development
-- **Single Sign-On Strategy:** Created technical concept for SSO implementation and rights & roles
-  management across distributed systems
+- **Single Sign-On Strategy:** Created technical concept for SSO implementation and rights and
+  roles management across distributed systems
 - **Distributed Search Architecture:** Initial architecture planning for search across multiple
   autonomous domains
 - **Event Broker Design:** Architected event-driven communication patterns enabling loose coupling
@@ -336,7 +336,7 @@ coach
 - **Transition Path Planning:** Developed strategic migration path from monolith to distributed
   architecture
 
-**Microfrontend Framework Development (Dec 2021-Mar 2022):**
+**Microfrontend Framework Development (Dec 2021 – Mar 2022):**
 
 - **B2B Portal Container App:** Developed core container application enabling microfrontend
   composition and runtime integration
@@ -351,7 +351,7 @@ coach
 - **Source Code Migration:** Organized InvestmentWelt source code migration strategy and execution
   planning
 
-**Phase 2: Framework Development and Platform Implementation (May 2022 - Apr 2023)**
+**Phase 2: Framework Development and Platform Implementation (May 2022 – Apr 2023)**
 
 **Beta Phase Management (Apr-Jun 2022):**
 
@@ -364,8 +364,8 @@ coach
 
 **Team Building & Leadership (Jul 2022-Jan 2023):**
 
-- **Team Portastruktur Establishment:** Built and organized new cross-functional development team
-  from ground up
+- **Team Portastruktur Establishment:** Built and organized a new cross-functional
+  development team from the ground up
 - **Agile Process Implementation:** Established team forum, implemented Kanban workflows, and
   managed stage transitions
 - **Multiple Team Onboarding:** Led technical onboarding for three new team members
@@ -390,7 +390,7 @@ coach
 - **Low-Level Architecture Design:** Developed detailed low-level architecture for microfrontend
   toolkit ensuring scalability and maintainability
 
-**Cross-Domain Coordination & Integration (Sep 2022-Feb 2023):**
+**Cross-Domain Coordination & Integration (Sep 2022 – Feb 2023):**
 
 - **Business Domain Alignment:** Coordinated integration requirements across IK Online, User,
   Infotainer, and Fonds & Produkte domains
@@ -403,7 +403,7 @@ coach
 
 **Development Excellence & Quality Assurance:**
 
-- Led development of "microfrontend-toolkit" framework enabling Web Component-based Self-contained
+- Led development of the "microfrontend-toolkit" framework enabling Web Component-based Self-contained
   systems implementation
 - Served as technical Product Owner defining tasks and sprint goals for agile development
 - Selected Azure Static Web App as runtime with Application Insights monitoring for lightweight,
@@ -417,11 +417,11 @@ coach
   optimization
 - Introduced automated dependency management via Renovate Bot enabling fully automated external
   dependency updates
-- Implemented parallel operation concept with Azure AD B2C authentication enabling gradual domain
-  migration
+- Implemented a parallel operation concept with Azure AD B2C authentication
+  enabling gradual domain migration
 - Successfully launched "investmentwelt-shell" into production after 6 months
 
-**Phase 3: Production Deployment and Cross-System Search (Oct 2022 - Dec 2024)**
+**Phase 3: Production Deployment and Cross-System Search (Oct 2022 – Dec 2024)**
 
 **Production Infrastructure & Deployment (Oct 2022 - June 2023):**
 
@@ -441,7 +441,7 @@ coach
   final preparations, and cross-team coordination
 - **Team Onboarding:** Led technical onboarding of new team members
 
-**Cross-System Search Architecture (July 2023 - Dec 2024):**
+**Cross-System Search Architecture (July 2023 – Dec 2024):**
 
 - **Challenge:** Modernize monolithic legacy search while preserving team autonomy and ensuring
   unified user experience across distributed domains
@@ -451,19 +451,23 @@ coach
   events, with centralized search consuming multiple streams
 - **Search Engine Evaluation:** Conducted comprehensive evaluation of ElasticSearch vs. Algolia,
   selected Algolia for simplified business user experience and reduced operational overhead
-- **Technical Implementation:** Built solution using Azure Event Hubs with JavaScript Azure
-  Functions transferring data to Algolia search platform
-- **Unified Entity Design:** Created standardized entity specifications for event streams minimizing
-  publishing/subscription overhead while maintaining team independence
-- **Microfrontend Integration:** Developed search microfrontends using Lit framework with pnpm
-  package management for optimal performance
 - **Cross-Domain Coordination:** Managed integration across VisualVest, IK-Online, and Fonds &
   Produkte business domains ensuring consistent search experience
+- **Unified Entity Design:** Created standardized entity specifications for event streams minimizing
+  publishing/subscription overhead while maintaining team independence
+- **Technical Implementation:** Built solution using Azure Event Hubs with JavaScript Azure
+  Functions consuming data from Azure Event Hubs and pushing the data to Algolia
+- **Java SDK Implementation:** Designed and implemented custom Java SDK enabling simplified
+  Azure Event Hubs integration for consuming teams; streamlined event publishing workflow with
+  CDI-based dependency injection, comprehensive test coverage using JUnit and TestContainers,
+  and Avro schema integration for type-safe event serialization
+- **Microfrontend Integration:** Developed search microfrontends using Lit framework with pnpm
+  package management for optimal performance
 
 **DevOps & Quality Excellence:**
 
 - **Automated Dependency Management:** Introduced Dependabot for fully automated external dependency
-  updates across the entire platform
+  updates across the entire platform; switched to Renovate bot later
 - **Build Optimization:** Implemented toolkit build optimizations and created Lerna DevOps pipeline
   for monorepo management
 - **Testing & Quality:** Enhanced smoketest coverage and improved DevOps pipeline reliability for
@@ -484,14 +488,14 @@ coach
 - **Project Delivery:** Successfully delivered all project phases on schedule including complex
   production deployment and search modernization
 
-**Project Completion & Handover (July - December 2024):**
+**Project Completion & Handover (July – December 2024):**
 
 - **Magnolia CMS Integration:** Successfully integrated Algolia search with existing Magnolia CMS
-  infrastructure, ensuring seamless content management workflow
+  infrastructure, ensuring a seamless content management workflow
 - **F&P Team Consulting:** Provided ramp-up consulting support for Fonds & Produkte team integration
   into the distributed architecture
 - **IK Shell Operations:** Managed transition analysis and release management for IK Shell
-  operations ensuring business continuity
+  operations, ensuring business continuity
 - **Final Go-Live Coordination:** Orchestrated final search go-live across all business domains with
   comprehensive testing and validation
 - **Comprehensive Handover:** Executed systematic handover of all technical components including
@@ -501,18 +505,18 @@ coach
 
 **Key Technical Contributions:**
 
-- **Architecture Leadership:** Designed and led cloud-native transformation establishing SCS pattern
-  as corporate standard
+- **Architecture Leadership:** Designed and led cloud-native transformation establishing 
+  the SCS pattern as the corporate standard
 - **Framework Development:** Created reusable microfrontend toolkit enabling autonomous team
   development
-- **Quality Engineering:** Established comprehensive testing pyramid with 1000+ tests and 10-minute
-  build cycles
+- **Quality Engineering:** Established a comprehensive testing pyramid
+  with 1000+ tests and 10-minute build cycles
 - **DevOps Implementation:** Built complete CI/CD pipeline with Infrastructure-as-Code and automated
   dependency management
 - **Event-driven Design:** Architected event streaming solution enabling unified search across
   distributed systems
 - **Technology Integration:** Successfully integrated Azure services, Algolia search, and Web
-  Components into cohesive platform
+  Components into a cohesive platform
 
 **Business Impact:**
 
@@ -578,7 +582,7 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
 **Technologies & Frameworks:**
 
 - **Cloud Platform:** Azure (Static Web App, Functions, Event Hubs, Application Insights, AD B2C)
-- **Programming:** JavaScript/TypeScript, Node.js, Java, Lit framework
+- **Programming:** JavaScript/TypeScript, Node.js, Java (CDI, JUnit, TestContainers), Lit framework
 - **Architecture:** Self-contained Systems (SCS), Microfrontends, Microservices, Event-driven
   Architecture
 - **Frontend Integration:** Web Components (WICG standard), custom microfrontend toolkit
@@ -587,7 +591,7 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
 - **DevOps:** Azure DevOps, Pipeline-as-Code, Terraform (Infrastructure-as-Code), Docker
 - **Quality Assurance:** SonarQube, Jest (unit testing), JUnit, Mockito, Cypress & Playwright (e2e
   testing), Prettier, comprehensive test pyramid
-- **Package Management:** NPM, pnpm, Dependabot & Renovate Bot (automated dependency updates)
+- **Package Management:** NPM, pnpm, Dependabot & Renovate bot
 - **Standards:** Conventional Commits, comprehensive code formatting and linting standards
 - **Monitoring:** Azure Application Insights / OpenTelemtry, comprehensive logging and metrics
 
