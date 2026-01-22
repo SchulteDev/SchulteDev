@@ -26,12 +26,15 @@ target documents for particular audiences or purposes.
 
 ## Professional Summary
 
-**Cloud Architect & Software Engineer** with 19+ years experience (12+ freelance) specializing in
+**Software Engineer & Cloud Architect** with 19+ years hands-on experience (12+ freelance)
+specializing in
 enterprise modernization and cloud-native transformations. Currently serving as Cloud Architect at
 LBBW, contributing to "Phoenix" IT modernization for Germany's major state bank.
 
 **Core Expertise:**
 
+- **Hands-on Development:** Built production systems in Java, Golang, TypeScript – from framework
+  development to SDK implementation and application development
 - **Enterprise Architecture:** Legacy-to-cloud migrations, Azure/AWS/GCP platforms, cloud-native
   system design, platform engineering
 - **Technical Leadership:** Led teams of 5-9 developers, served as Product Owner and technical
@@ -74,7 +77,8 @@ specializing in:
 
 ### Cloud Platforms & DevOps
 
-**Azure:** Static Web Apps, Functions, Event Hubs, AKS, AD B2C, Document Intelligence with 5+ years experience
+**Azure:** Static Web Apps, Functions, Event Hubs, AKS, AD B2C, Document Intelligence
+with 5+ years experience
 **AWS:** EKS, Lambda, API Gateway, S3, SQS, CloudFormation with 7+ years experience
 **GCP:** Kubernetes Engine, Cloud Functions, Firebase integration
 
@@ -289,9 +293,9 @@ parallel technical supervision across "04 – Application Development" area
 
 ---
 
-### October 2021 — December 2024: Cloud Architect at Union Investment
+### October 2021 — December 2024: Software Lead & Cloud Architect at Union Investment
 
-*[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) | 
+*[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) |
 German Asset Management Company | Freelance | Remote*
 
 **Company Context:** Leading German asset management company requiring modernization of their
@@ -302,14 +306,18 @@ users, this platform was business-critical for corporate reputation and revenue 
 
 **Timeline:** 3+ year comprehensive transformation across four overlapping phases
 
+**Role:** Hands-on software lead combining architecture with active development - designed
+and deployed/ran microfrontend toolkit, developed Java SDK, implemented DevOps infrastructure,
+and coded production services
+
 **Team Leadership:** Managed teams of 5–7 developers, serving as technical Product Owner and agile
 coach
 
 **Technical Challenges:**
 
-- **Legacy complexity:** Overloaded monolith based on Liferay and FirstSpirit with eight 
+- **Legacy complexity:** Overloaded monolith based on Liferay and FirstSpirit with eight
   distinct domain boundaries identified through DDD analysis
-- **Scalability requirements:** Platform needed to serve as a modernization template for 
+- **Scalability requirements:** Platform needed to serve as a modernization template for
   the entire corporate group
 - **Team autonomy:** Architecture must enable independent development by functionally autonomous
   teams
@@ -339,7 +347,7 @@ coach
 
 **Microfrontend Framework Development (Dec 2021 – Mar 2022):**
 
-- **B2B Portal Container App:** Developed core container application enabling microfrontend
+- **B2B Portal Container App:** Built and coded core container application enabling microfrontend
   composition and runtime integration
 - **Technology Roadmap:** Created comprehensive technology roadmap for 3-year transformation
   initiative
@@ -404,7 +412,8 @@ coach
 
 **Development Excellence & Quality Assurance:**
 
-- Led development of the "microfrontend-toolkit" framework enabling Web Component-based Self-contained
+- Led development of the "microfrontend-toolkit" framework enabling
+  Web Component-based Self-contained
   systems implementation
 - Served as technical Product Owner defining tasks and sprint goals for agile development
 - Selected Azure Static Web App as runtime with Application Insights monitoring for lightweight,
@@ -506,7 +515,7 @@ coach
 
 **Key Technical Contributions:**
 
-- **Architecture Leadership:** Designed and led cloud-native transformation establishing 
+- **Architecture Leadership:** Designed and led cloud-native transformation establishing
   the SCS pattern as the corporate standard
 - **Framework Development:** Created reusable microfrontend toolkit enabling autonomous team
   development
@@ -620,16 +629,17 @@ Salesforce CRM
 **Key Contributions:**
 
 - Took on this part-time assignment alongside my work at
-  [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment)
+  [Union Investment](#october-2021--december-2024-software-lead--cloud-architect-at-union-investment)
   as it offered the opportunity to use Golang professionally for the first time
-- Sole developer for critical middleware component transferring Saloodo platform data to Salesforce
+- Sole engineer for a middleware component transferring Saloodo platform data to Salesforce
+  Lightning Cloud - architected, coded, tested, and operated entire system
   Lightning Cloud
 - Designed and implemented fault-tolerant, stateless architecture with continuous loop execution and
   automatic retry mechanisms
 - Achieved 70% test coverage on 2,776 lines of code with 5-second test execution time using
   Dockertest for PostgreSQL integration
 - Implemented multi-threading for handling ~10 million record synchronizations
-- Optimization of database queries using SQL EXPLAIN and subsequent adjustments to table schemas 
+- Optimization of database queries using SQL EXPLAIN and subsequent adjustments to table schemas
   and queries; this reduced SELECT times by up to 80%
 - Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect
   types)
@@ -698,7 +708,7 @@ into [Atlassian Bamboo Server CI/CD](https://www.atlassian.com/de/software/bambo
 **Implementation highlights:**
 
 - Implementation of Sharding for processing large numbers of results
-- Using DataTables for displaying endless number of metrics results  
+- Using DataTables for displaying endless number of metrics results
 
 **Technologies & Frameworks:**
 
