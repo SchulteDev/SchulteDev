@@ -38,7 +38,7 @@
   "dependencies": {
     "@actions/core": "2.0.2",
     "@anthropic-ai/sdk": "0.71.2",
-    "axios": "1.13.2",
+    "axios": "1.13.3",
     "consola": "3.4.2",
     "dotenv": "17.2.3",
     "fs-extra": "11.3.3",
