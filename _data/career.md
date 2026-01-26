@@ -746,7 +746,7 @@ into [Atlassian Bamboo Server CI/CD](https://www.atlassian.com/de/software/bambo
 
 ---
 
-### August 2018 — October 2019: Cloud Consultant at Trusted Shops
+### August 2018 — October 2019: Senior Software Engineer at Trusted Shops
 
 *[Trusted Shops](https://www.trustedshops.com) | Freelance | Cologne*
 
