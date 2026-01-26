@@ -4,7 +4,7 @@ Raw professional data and credentials for Markus Schulte / SchulteDev portfolio.
 
 ## Structure
 
-- **[career.md](career.md)** — Complete professional timeline (18+ years)
+- **[career.md](career.md)** — Complete professional timeline
 - **[credentials/](credentials/)** — Certificates, references, assessments
 
 ## Usage
