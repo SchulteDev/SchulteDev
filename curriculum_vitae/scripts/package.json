@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/SchulteDev/SchulteDev",
   "dependencies": {
-    "@actions/core": "2.0.2",
+    "@actions/core": "2.0.3",
     "@anthropic-ai/sdk": "0.71.2",
     "axios": "1.13.3",
     "consola": "3.4.2",
