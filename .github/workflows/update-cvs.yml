@@ -75,7 +75,7 @@ jobs:
       - name: Run unit tests
         run: npm run test:coverage
       - name: Publish test results
-        uses: dorny/test-reporter@v2
+        uses: dorny/test-reporter@v3
         if: ${{ !cancelled() }}
         with:
           name: Unit Tests
