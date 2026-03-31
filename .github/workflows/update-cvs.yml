@@ -18,11 +18,11 @@ on:
       api_model:
         description: 'Claude Model'
         required: true
-        default: 'claude-sonnet-4-5'
+        default: 'claude-sonnet-4-6'
         type: choice
         options:
-          - claude-opus-4-5-20251101
-          - claude-sonnet-4-5
+          - claude-opus-4-6
+          - claude-sonnet-4-6
 
 env:
   CAREER_FILE: ${{ github.workspace }}/_data/career.md
