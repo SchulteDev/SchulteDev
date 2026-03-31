@@ -19,6 +19,7 @@
       "Use \\vspace{} for vertical spacing fine-tuning.",
       "Include flexible content sections for page tuning.",
       "Valid, compilable LuaLaTeX with standard LuaLaTeX packages only.",
+      "Use xcolor with svgnames option. Use only svgnames predefined colors, no \\definecolor.",
       "LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.",
       "Prioritize most recent and impactful experiences, teaser the leftover experiences.",
       "Absolutely truthful and factual regarding career data, dont oversell."
