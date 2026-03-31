@@ -116,7 +116,7 @@ jobs:
       matrix:
         cv_type: [ anti, professional ]
     outputs:
-      mode: ${{ steps.transform.outputs.mode }}
+      mode: ${{ steps.update-cv.outputs.mode }}
     defaults:
       run:
         working-directory: curriculum_vitae/scripts
