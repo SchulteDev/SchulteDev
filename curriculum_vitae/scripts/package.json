@@ -40,7 +40,7 @@
     "@anthropic-ai/sdk": "0.95.0",
     "consola": "3.4.2",
     "dotenv": "17.4.2",
-    "fs-extra": "11.3.4",
+    "fs-extra": "11.3.5",
     "simple-git": "3.36.0",
     "zod": "4.4.3"
   },
