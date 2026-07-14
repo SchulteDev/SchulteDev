@@ -67,7 +67,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 4.0.5
+          ruby-version: 4.0.6
           bundler-cache: true
           working-directory: ./schulte-development_de
       - name: Setup Pages
