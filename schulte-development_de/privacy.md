@@ -6,7 +6,7 @@ title: Datenschutzerklärung
 
 Stand: September 2026
 
-# 1. Verantwortlicher
+## 1. Verantwortlicher
 
 Verantwortlicher im Sinne des Art. 4 Nr. 7 DSGVO ist:
 
@@ -22,7 +22,7 @@ Ein Datenschutzbeauftragter ist nicht bestellt. Die Voraussetzungen des § 38 Ab
 vor, da in der Regel nicht mindestens 20 Personen ständig mit der automatisierten Verarbeitung
 personenbezogener Daten beschäftigt sind.
 
-# 2. Grundsätzliches
+## 2. Grundsätzliches
 
 Diese Erklärung gilt für die Website <https://schulte-development.de> und die dort erreichbaren
 Unterseiten. Die Website ist ein reines Informationsangebot. Sie enthält keine Registrierung, kein
@@ -38,7 +38,7 @@ Aufruf der Website wird daher keine Verbindung zu Servern Dritter aufgebaut, und
 
 Der Abruf der Website erfolgt ausschließlich verschlüsselt über HTTPS (TLS).
 
-# 3. Hosting und Server-Logfiles
+## 3. Hosting und Server-Logfiles
 
 Die Website wird bei **GitHub Pages** gehostet, einem Dienst der
 
@@ -78,7 +78,7 @@ Auswertung des Nutzerverhaltens erfolgt nicht.
 
 Zur Übermittlung in die USA siehe Ziffer 7.
 
-# 4. Kontaktaufnahme per E-Mail
+## 4. Kontaktaufnahme per E-Mail
 
 Wenn Sie mich per E-Mail kontaktieren, werden die von Ihnen übermittelten Daten (Ihre E-Mail-Adresse,
 gegebenenfalls Ihr Name sowie der Inhalt Ihrer Nachricht) verarbeitet, um Ihre Anfrage zu bearbeiten.
@@ -97,7 +97,7 @@ Erreichung des Zwecks nicht mehr erforderlich sind, spätestens wenn sich aus de
 dass der Sachverhalt abschließend geklärt ist. Gesetzliche Aufbewahrungspflichten – insbesondere die
 handels- und steuerrechtlichen Fristen nach § 257 HGB und § 147 AO – bleiben unberührt.
 
-# 5. Terminbuchung über Microsoft Bookings
+## 5. Terminbuchung über Microsoft Bookings
 
 Auf der Startseite finden Sie unter „Let's connect“ einen Link zur Online-Terminbuchung. Dieser Link
 führt zu **Microsoft Bookings** unter der Domain `outlook.office365.com`.
@@ -113,7 +113,7 @@ Anlass) zum Zweck der Terminvereinbarung und -durchführung.
 Die Buchungsdaten werden gelöscht, sobald sie für die Terminabwicklung nicht mehr erforderlich sind,
 vorbehaltlich gesetzlicher Aufbewahrungspflichten.
 
-# 6. Externe Links
+## 6. Externe Links
 
 Diese Website verlinkt auf externe Angebote, unter anderem LinkedIn, GitHub, Stack Overflow und
 Wikipedia. Diese Links sind reine Hyperlinks; es werden keine Inhalte der verlinkten Anbieter in die
@@ -123,7 +123,7 @@ jeweiligen Link aktiv anklicken.
 Für die Verarbeitung Ihrer Daten nach dem Verlassen dieser Website ist ausschließlich der jeweilige
 Anbieter verantwortlich. Bitte informieren Sie sich dort über den Umgang mit Ihren Daten.
 
-# 7. Empfänger und Übermittlung in Drittländer
+## 7. Empfänger und Übermittlung in Drittländer
 
 Über die oben genannten Dienstleister hinaus gebe ich Ihre Daten nicht an Dritte weiter, es sei denn,
 ich bin gesetzlich dazu verpflichtet.
@@ -142,7 +142,7 @@ Die Angemessenheit des Datenschutzniveaus für nach dem EU-U.S. Data Privacy Fra
 Unternehmen hat die Europäische Kommission mit Angemessenheitsbeschluss vom 10. Juli 2023
 festgestellt.
 
-# 8. Ihre Rechte als betroffene Person
+## 8. Ihre Rechte als betroffene Person
 
 Sie haben mir gegenüber die folgenden Rechte hinsichtlich der Sie betreffenden personenbezogenen
 Daten:
@@ -161,7 +161,7 @@ Verarbeitung bleibt unberührt.
 Zur Ausübung Ihrer Rechte genügt eine formlose Nachricht an die unter Ziffer 1 genannten
 Kontaktdaten.
 
-## Widerspruchsrecht nach Art. 21 DSGVO
+### Widerspruchsrecht nach Art. 21 DSGVO
 
 **Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen
 die Verarbeitung Sie betreffender personenbezogener Daten, die aufgrund von Art. 6 Abs. 1 lit. f
@@ -170,7 +170,7 @@ Gründe für die Verarbeitung dar, die Ihre Interessen, Rechte und Freiheiten ü
 die Verarbeitung nicht der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen, werde ich
 die betreffende Verarbeitung einstellen.**
 
-# 9. Beschwerderecht bei einer Aufsichtsbehörde
+## 9. Beschwerderecht bei einer Aufsichtsbehörde
 
 Unbeschadet anderweitiger Rechtsbehelfe haben Sie nach Art. 77 DSGVO das Recht, sich bei einer
 Datenschutz-Aufsichtsbehörde zu beschweren, insbesondere in dem Mitgliedstaat Ihres Aufenthaltsorts,
@@ -183,7 +183,7 @@ Kavalleriestraße 2–4
 40213 Düsseldorf  
 <https://www.ldi.nrw.de>
 
-# 10. Keine Pflicht zur Bereitstellung, keine automatisierte Entscheidungsfindung
+## 10. Keine Pflicht zur Bereitstellung, keine automatisierte Entscheidungsfindung
 
 Die Bereitstellung personenbezogener Daten ist weder gesetzlich noch vertraglich vorgeschrieben. Sie
 sind nicht verpflichtet, mir Daten bereitzustellen. Nehmen Sie keinen Kontakt auf, kann ich Ihre
@@ -193,7 +193,7 @@ technisch zwingend erforderlich, um die Website ausliefern zu können.
 Eine automatisierte Entscheidungsfindung einschließlich Profiling nach Art. 22 DSGVO findet nicht
 statt.
 
-# 11. Änderungen dieser Datenschutzerklärung
+## 11. Änderungen dieser Datenschutzerklärung
 
 Ich passe diese Datenschutzerklärung an, sobald Änderungen der Website oder der Rechtslage dies
 erforderlich machen. Es gilt jeweils die auf dieser Seite abrufbare Fassung.

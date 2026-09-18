@@ -1,19 +1,33 @@
 ---
-# Local override of beautiful-jekyll 6.0.1 _layouts/base.html.
+# Local override of beautiful-jekyll's _layouts/base.html.
 #
-# The ONLY change from upstream is the asset lists below: upstream loads
+# Forked from daattali/beautiful-jekyll@d1eb82a (default branch, 2026-05-25).
+# The HTML body below is byte-identical to that commit. Note that upstream's
+# own "Beautiful Jekyll 6.0.1" comment in the body is a stale label: the 6.0.1
+# tag is from 2023-06-08 and the default branch has moved a long way past it.
+# `remote_theme` in _config.yml is unpinned, so builds track that branch --
+# when it moves, re-check this file against upstream.
+#
+# The ONLY change from upstream is the asset lists below. Upstream loads
 # Bootstrap, Font Awesome, jQuery, Popper and two Google Fonts stylesheets from
 # public CDNs, which hands every visitor's IP address to Google, Cloudflare,
 # StackPath and jsDelivr before any consent is possible (see LG Muenchen I,
-# Az. 3 O 17493/20 on Google Fonts). All of it is now vendored under
-# /assets/vendor/ and served from this origin. The body below is verbatim
-# upstream -- keep it in sync when bumping the remote theme.
+# Az. 3 O 17493/20 on Google Fonts). All of it is vendored under
+# /assets/vendor/ and served from this origin instead.
 #
-# Load order is preserved exactly: _includes/head.html renders common-ext-css
-# before common-css, and _includes/footer-scripts.html renders common-ext-js
-# before common-js. The vendored scripts sit in common-ext-js (which emits a
-# plain <script src>) rather than common-js, because footer-scripts.html routes
-# any common-js path containing "jquery" through a document.write() guard.
+# Everything goes through common-css / common-js rather than the common-ext-*
+# keys, because _includes/head.html and _includes/footer-scripts.html pass
+# those through the `relative_url` filter, while the ext-* fallback branches
+# emit the value verbatim. Using ext-* would work today (baseurl is empty) but
+# would break every script the moment a baseurl were introduced, while the
+# stylesheets kept working -- a trap worth not leaving behind.
+#
+# Load order is unchanged from upstream: head.html renders common-ext-css
+# before common-css, and footer-scripts.html renders common-ext-js before
+# common-js, so with the ext-* lists absent the relative order below is what
+# ships. footer-scripts.html routes the jquery entry through a document.write()
+# guard that skips it if jQuery is already defined; that branch applies
+# relative_url too, and is upstream's intended mechanism for a local jQuery.
 
 common-css:
   - "/assets/vendor/bootstrap-4.4.1/bootstrap.min.css"
@@ -22,13 +36,10 @@ common-css:
   - "/assets/css/bootstrap-social.css"
   - "/assets/css/beautifuljekyll.css"
 
-# Same-origin despite the key name; see the note above.
-common-ext-js:
+common-js:
   - "/assets/vendor/jquery-3.5.1/jquery.slim.min.js"
   - "/assets/vendor/popper-1.16.0/popper.min.js"
   - "/assets/vendor/bootstrap-4.4.1/bootstrap.min.js"
-
-common-js:
   - "/assets/js/beautifuljekyll.js"
 ---
 

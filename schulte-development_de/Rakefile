@@ -1,37 +1,171 @@
 require 'html-proofer'
 require 'nokogiri'
 
+# A scheme-bearing or protocol-relative reference, i.e. one that leaves this origin.
+EXTERNAL = %r{\A(?:https?:)?//}.freeze
+
+# <link> rel values that actually fetch on page load. "canonical" and "alternate"
+# are metadata and are legitimately absolute -- jekyll-seo-tag emits them on every
+# page -- so they must not be flagged.
+FETCHING_LINK_RELS = %w[
+  stylesheet preload modulepreload prefetch prerender preconnect dns-prefetch
+  icon shortcut apple-touch-icon apple-touch-icon-precomposed mask-icon manifest
+].freeze
+
+# Attributes that cause a fetch before the visitor does anything. <a href> is
+# deliberately absent: an outbound link only discloses anything when clicked,
+# which is what privacy.md tells visitors.
+SUBRESOURCE_ATTRS = {
+  'script' => %w[src], 'img' => %w[src srcset], 'source' => %w[src srcset],
+  'iframe' => %w[src], 'embed' => %w[src], 'object' => %w[data],
+  'video' => %w[src poster], 'audio' => %w[src], 'track' => %w[src],
+  'input' => %w[src]
+}.freeze
+
+CSS_REF = %r{(?:url\(\s*['"]?|@import\s+(?:url\(\s*)?['"])((?:https?:)?//[^'")\s]+)}.freeze
+
+LEGAL_PAGES = {
+  # slug => strings the built page must contain
+  'imprint' => ['Schulte development', '5 DDG'],
+  'privacy' => ['Verantwortlicher', 'DSGVO']
+}.freeze
+
 task :test do
-  custom_checks
+  failures = []
+  failures.concat(no_external_subresources)
+  failures.concat(css_assets_resolve)
+  failures.concat(legal_pages_present_and_linked)
+  failures.concat(homepage_checks)
+  report(failures)
+  puts '✅ Custom checks passed'
 
   options = {
     :ignore_urls => [
-        /http:\/\/localhost:4000\/.*/,
-        /https:\/\/outlook\.office365\.com\/.*/,
-        /https:\/\/.*linkedin\.com\/.*/,
-        /https:\/\/stackoverflow\.com\/.*/
+      /http:\/\/localhost:4000\/.*/,
+      /https:\/\/outlook\.office365\.com\/.*/,
+      /https:\/\/.*linkedin\.com\/.*/,
+      /https:\/\/stackoverflow\.com\/.*/
     ],
     :disable_external => false
   }
 
-  HTMLProofer.check_directory("./_site", options).run
-  puts "✅ All tests passed"
+  HTMLProofer.check_directory('./_site', options).run
+  puts '✅ All tests passed'
 end
 
-def custom_checks
-  raise "index.html missing" unless File.exist?("./_site/index.html")
+# Standalone so CI can run it against the production build too. `make validate`
+# builds with the development url and the artifact that actually deploys is a
+# second, separate build -- this is the assertion that must hold for both.
+desc 'Assert the built site loads nothing from a third party'
+task :no_external do
+  report(no_external_subresources + css_assets_resolve)
+  puts '✅ No external sub-resources'
+end
 
-  doc = Nokogiri::HTML(File.read("./_site/index.html"))
-  h1 = doc.at_css('h1')
+def report(failures)
+  return if failures.empty?
 
-  raise "No h1 found" unless h1
-  raise "h1 doesn't start with 'Markus Schulte'" unless h1.text.strip.start_with?("Markus Schulte")
+  raise "#{failures.size} check(s) failed:\n  - #{failures.join("\n  - ")}"
+end
 
-  # Check imprint page
-  raise "imprint.html missing" unless File.exist?("./_site/imprint.html")
+# The single invariant this site depends on: every asset the browser fetches
+# without being asked comes from this origin. Each external one would send the
+# visitor's IP to a third party on page load, before any consent is possible
+# (see assets/vendor/README.md and the "keine Verbindung zu Servern Dritter"
+# claim in privacy.md).
+def no_external_subresources
+  offenders = []
 
-  imprint_doc = Nokogiri::HTML(File.read("./_site/imprint.html"))
-  raise "Imprint missing 'Schulte development' text" unless imprint_doc.text.include?("Schulte development")
+  Dir.glob('./_site/**/*.html').sort.each do |path|
+    doc = Nokogiri::HTML(File.read(path))
 
-  puts "✅ Custom checks passed"
+    doc.css('link[href]').each do |node|
+      next unless (node['rel'].to_s.downcase.split & FETCHING_LINK_RELS).any?
+      next unless node['href'] =~ EXTERNAL
+
+      offenders << %(#{path}: <link rel="#{node['rel']}" href="#{node['href']}">)
+    end
+
+    SUBRESOURCE_ATTRS.each do |tag, attrs|
+      doc.css(tag).each do |node|
+        attrs.each do |attr|
+          node[attr].to_s.split(/[\s,]+/).each do |candidate|
+            offenders << %(#{path}: <#{tag} #{attr}="#{candidate}">) if candidate =~ EXTERNAL
+          end
+        end
+      end
+    end
+
+    inline = doc.css('style').map(&:text) + doc.css('[style]').map { |n| n['style'] }
+    inline.compact.each do |css|
+      css.scan(CSS_REF).flatten.each { |ref| offenders << "#{path}: inline CSS #{ref}" }
+    end
+  end
+
+  # html-proofer never opens CSS, so an upstream theme stylesheet could pull
+  # Google Fonts back in via @import without any other check noticing.
+  Dir.glob('./_site/**/*.css').sort.each do |path|
+    File.read(path).scan(CSS_REF).flatten.each { |ref| offenders << "#{path}: #{ref}" }
+  end
+
+  offenders.uniq.map { |o| "External sub-resource: #{o}" }
+end
+
+# The vendored webfonts are referenced only from url() inside CSS, which
+# html-proofer does not read. Without this, a stray _config.yml exclude entry
+# could drop all of them and still build green.
+def css_assets_resolve
+  missing = []
+
+  Dir.glob('./_site/**/*.css').sort.each do |css_path|
+    File.read(css_path).scan(/url\(\s*['"]?([^'")]+)['"]?\s*\)/).flatten.each do |ref|
+      next if ref.start_with?('data:') || ref =~ EXTERNAL
+
+      target = ref.sub(/[?#].*\z/, '')
+      resolved = if target.start_with?('/')
+                   File.join('./_site', target)
+                 else
+                   File.expand_path(target, File.dirname(css_path))
+                 end
+      missing << "#{css_path} -> #{ref}" unless File.exist?(resolved)
+    end
+  end
+
+  missing.map { |m| "CSS references a file missing from _site: #{m}" }
+end
+
+# Both pages are legal obligations, and reachability is part of the obligation:
+# an unlinked privacy policy does not discharge Art. 13 GDPR.
+def legal_pages_present_and_linked
+  problems = []
+  return ['index.html missing'] unless File.exist?('./_site/index.html')
+
+  home = Nokogiri::HTML(File.read('./_site/index.html'))
+
+  LEGAL_PAGES.each do |slug, markers|
+    path = "./_site/#{slug}.html"
+    unless File.exist?(path)
+      problems << "#{slug}.html missing"
+      next
+    end
+
+    text = Nokogiri::HTML(File.read(path)).text
+    markers.each do |marker|
+      problems << "#{slug}.html is missing #{marker.inspect}" unless text.include?(marker)
+    end
+    problems << "No link to /#{slug} on the home page" if home.css("a[href='/#{slug}']").empty?
+  end
+
+  problems
+end
+
+def homepage_checks
+  return ['index.html missing'] unless File.exist?('./_site/index.html')
+
+  h1 = Nokogiri::HTML(File.read('./_site/index.html')).at_css('h1')
+  return ['No h1 found on the home page'] unless h1
+  return ["Home page h1 does not start with 'Markus Schulte': #{h1.text.strip}"] unless
+    h1.text.strip.start_with?('Markus Schulte')
+
+  []
 end

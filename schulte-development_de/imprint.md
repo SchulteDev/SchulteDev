@@ -4,7 +4,7 @@ css: /assets/main.css
 title: Impressum
 ---
 
-# Angaben gemäß § 5 DDG
+## Angaben gemäß § 5 DDG
 
 Markus Schulte  
 Schulte development  
@@ -16,9 +16,9 @@ E-Mail: [mail@schulte-development.de](mailto:mail@schulte-development.de)
 
 Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE293168170
 
-# Haftungsausschluss
+## Haftungsausschluss
 
-## Haftung für Links
+### Haftung für Links
 
 Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben.
 Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten

@@ -37,7 +37,6 @@ jobs:
           files_ignore: |
             schulte-development_de/docker-compose.yml
             schulte-development_de/Dockerfile
-            schulte-development_de/Makefile
 
   build_professional_homepage:
     runs-on: ubuntu-latest
@@ -83,6 +82,12 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+      - name: Re-assert no third-party assets in the production build
+        # "Validate" above tested a different build: this one has the production
+        # url and JEKYLL_ENV=production, which the theme uses to gate includes.
+        # This artifact is the one that deploys, so the no-third-party invariant
+        # has to be checked on it rather than on its development-mode sibling.
+        run: bundle exec rake no_external
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
@@ -106,7 +111,12 @@ jobs:
           set -x
           for i in {1..10}; do
             if curl -f "$url" | grep -q "Markus Schulte: Cloud Architect &amp; Software Engineer" && \
-               curl -f "${url}imprint"; then
+               curl -fsS "${url}imprint" | grep -q "5 DDG" && \
+               curl -fsS "${url}privacy" | grep -q "Verantwortlicher" && \
+               curl -fsS -o /dev/null "${url}assets/vendor/fonts/fonts.css" && \
+               curl -fsS -o /dev/null "${url}assets/vendor/fonts/files/lora_v37_0QIvMX1D_JOuMwr7Iw.woff2" && \
+               curl -fsS -o /dev/null "${url}assets/vendor/fontawesome-6.5.2/webfonts/fa-solid-900.woff2" && \
+               curl -fsS -o /dev/null "${url}assets/vendor/jquery-3.5.1/jquery.slim.min.js"; then
               echo "✅ Smoketest passed"
               exit 0
             fi

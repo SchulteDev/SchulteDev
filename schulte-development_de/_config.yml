@@ -10,21 +10,13 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Build and repo tooling has no business being served to visitors. Setting this
-# key replaces Jekyll's built-in list, so the defaults are repeated here.
+# Build and repo tooling has no business being served to visitors: Jekyll copies
+# any file without front matter straight into _site. Jekyll appends its own
+# defaults (Gemfile, Gemfile.lock, node_modules, vendor/bundle/, ...) to this
+# list rather than being replaced by it, so only site-specific entries belong
+# here. Patterns are anchored at the source root, which is why the nested
+# assets/vendor/README.md needs its own entry.
 exclude:
-  # Jekyll defaults
-  - .jekyll-cache/
-  - .sass-cache/
-  - Gemfile
-  - Gemfile.lock
-  - gemfiles/
-  - node_modules/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  # This site's tooling
   - Dockerfile
   - Makefile
   - README.md
