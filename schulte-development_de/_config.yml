@@ -9,6 +9,30 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
   - jekyll-sitemap
+
+# Build and repo tooling has no business being served to visitors. Setting this
+# key replaces Jekyll's built-in list, so the defaults are repeated here.
+exclude:
+  # Jekyll defaults
+  - .jekyll-cache/
+  - .sass-cache/
+  - Gemfile
+  - Gemfile.lock
+  - gemfiles/
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  # This site's tooling
+  - Dockerfile
+  - Makefile
+  - README.md
+  - Rakefile
+  - assets/vendor/README.md
+  - docker-compose.yml
+  - sonar-project.properties
+  - tools/
 remote_theme: daattali/beautiful-jekyll
 navbar-links:
   About Me: "/#about-me"
