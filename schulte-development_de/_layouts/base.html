@@ -1,0 +1,52 @@
+---
+# Local override of beautiful-jekyll 6.0.1 _layouts/base.html.
+#
+# The ONLY change from upstream is the asset lists below: upstream loads
+# Bootstrap, Font Awesome, jQuery, Popper and two Google Fonts stylesheets from
+# public CDNs, which hands every visitor's IP address to Google, Cloudflare,
+# StackPath and jsDelivr before any consent is possible (see LG Muenchen I,
+# Az. 3 O 17493/20 on Google Fonts). All of it is now vendored under
+# /assets/vendor/ and served from this origin. The body below is verbatim
+# upstream -- keep it in sync when bumping the remote theme.
+#
+# Load order is preserved exactly: _includes/head.html renders common-ext-css
+# before common-css, and _includes/footer-scripts.html renders common-ext-js
+# before common-js. The vendored scripts sit in common-ext-js (which emits a
+# plain <script src>) rather than common-js, because footer-scripts.html routes
+# any common-js path containing "jquery" through a document.write() guard.
+
+common-css:
+  - "/assets/vendor/bootstrap-4.4.1/bootstrap.min.css"
+  - "/assets/vendor/fontawesome-6.5.2/css/all.min.css"
+  - "/assets/vendor/fonts/fonts.css"
+  - "/assets/css/bootstrap-social.css"
+  - "/assets/css/beautifuljekyll.css"
+
+# Same-origin despite the key name; see the note above.
+common-ext-js:
+  - "/assets/vendor/jquery-3.5.1/jquery.slim.min.js"
+  - "/assets/vendor/popper-1.16.0/popper.min.js"
+  - "/assets/vendor/bootstrap-4.4.1/bootstrap.min.js"
+
+common-js:
+  - "/assets/js/beautifuljekyll.js"
+---
+
+<!DOCTYPE html>
+<html lang="{{ page.language | default: site.language | default: 'en' }}">
+<!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
+{% include head.html %}
+
+<body>
+  {% include gtm_body.html %}
+
+  {% include nav.html %}
+
+  {{ content }}
+
+  {% include footer.html %}
+
+  {% include footer-scripts.html %}
+
+</body>
+</html>
