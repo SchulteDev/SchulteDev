@@ -4,15 +4,17 @@ css: /assets/main.css
 title: Impressum
 ---
 
-# Angaben gemäß § 5 TMG
+# Angaben gemäß § 5 DDG
 
-Schulte development, Unter Gottes Gnaden 12, 50859 Köln
+Markus Schulte  
+Schulte development  
+Unter Gottes Gnaden 12  
+50859 Köln
 
-+49 178 721 7768
+Telefon: +49 178 721 7768  
+E-Mail: [mail@schulte-development.de](mailto:mail@schulte-development.de)
 
-[mail@schulte-development.de](mailto:mail@schulte-development.de)
-
-USt Id: DE 293168170
+Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE293168170
 
 # Haftungsausschluss
 
