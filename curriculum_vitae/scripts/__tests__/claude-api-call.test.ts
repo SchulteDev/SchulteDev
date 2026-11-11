@@ -1,25 +1,32 @@
 import fs from 'fs-extra'
 import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest'
 
-const {mockCreate} = vi.hoisted(() => ({mockCreate: vi.fn()}))
+const {mockStream} = vi.hoisted(() => ({mockStream: vi.fn()}))
 
-vi.mock('@anthropic-ai/sdk', () => ({
-  default: class {
-    messages = {create: mockCreate}
+vi.mock('@anthropic-ai/sdk', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@anthropic-ai/sdk')>()
+  return {
+    default: class {
+      static readonly APIError = actual.default.APIError
+      messages = {stream: mockStream}
+    }
   }
-}))
+})
 
+const {APIError} = await vi.importActual<typeof import('@anthropic-ai/sdk')>('@anthropic-ai/sdk')
 const {callClaudeApi, createApiRequest} = await import('../claude-api.js')
 const {getResponseFile} = await import('../config.js')
+const {default: logger} = await import('../logger.js')
 
-const toStream = (chunks: unknown[]) => (async function* () {
-  yield* chunks
-})()
-
-const textStream = (text: string, stopReason: string) => toStream([
-  {type: 'content_block_delta', delta: {type: 'text_delta', text}},
-  {type: 'message_delta', delta: {stop_reason: stopReason}, usage: {output_tokens: 10}},
-])
+const respondWith = (text: string, stopReason: string, stopDetails: unknown = null) =>
+  mockStream.mockReturnValue({
+    finalMessage: () => Promise.resolve({
+      content: [{type: 'thinking', thinking: '', signature: 'sig'}, {type: 'text', text, citations: null}],
+      stop_reason: stopReason,
+      stop_details: stopDetails,
+      usage: {input_tokens: 5, output_tokens: 10},
+    })
+  })
 
 describe('callClaudeApi with the API', () => {
   const responseFile = getResponseFile('professional')
@@ -33,48 +40,76 @@ describe('callClaudeApi with the API', () => {
     fs.removeSync(responseFile)
     vi.stubEnv('ANTHROPIC_API_KEY', 'test-key')
     vi.stubEnv('SKIP_API', 'false')
-    mockCreate.mockReset()
+    mockStream.mockReset()
   })
 
   afterEach(() => {
     vi.unstubAllEnvs()
+    vi.restoreAllMocks()
     for (const file of fs.readdirSync('tmp').filter(isApiLog)) {
       if (!existingLogs.has(file)) fs.removeSync(`tmp/${file}`)
     }
     fs.removeSync(responseFile)
   })
 
-  it('should send the request and save the response', async () => {
-    mockCreate.mockResolvedValue(textStream('\\documentclass{article}', 'end_turn'))
+  it('should stream the request and save the text of the final message', async () => {
+    respondWith('\\documentclass{article}', 'end_turn')
 
     await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(true)
 
-    expect(mockCreate).toHaveBeenCalledWith(createApiRequest('prompt'))
+    expect(mockStream).toHaveBeenCalledWith(createApiRequest('prompt'))
     const saved = fs.readJsonSync(responseFile)
-    expect(saved.content[0].text).toBe('\\documentclass{article}')
+    expect(saved.content).toEqual([{type: 'text', text: '\\documentclass{article}'}])
+    expect(saved.usage).toEqual({input_tokens: 5, output_tokens: 10})
   })
 
-  it.each(['refusal', 'max_tokens'])('should fail on stop_reason %s', async (stopReason) => {
-    mockCreate.mockResolvedValue(textStream('\\documentclass{art', stopReason))
+  it('should fail and log the category on a refusal', async () => {
+    const error = vi.spyOn(logger, 'error').mockImplementation(() => {})
+    respondWith('', 'refusal', {type: 'refusal', category: 'cyber', explanation: 'declined'})
+
+    await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(false)
+    expect(fs.existsSync(responseFile)).toBe(false)
+    expect(error).toHaveBeenCalledWith(expect.stringContaining('refusal, cyber): declined'))
+  })
+
+  it('should fail on a response truncated at max_tokens', async () => {
+    respondWith('\\documentclass{art', 'max_tokens')
 
     await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(false)
     expect(fs.existsSync(responseFile)).toBe(false)
   })
 
   it('should fail on an empty response', async () => {
-    mockCreate.mockResolvedValue(textStream('   ', 'end_turn'))
+    respondWith('   ', 'end_turn')
 
     await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(false)
   })
 
-  it('should fail when the API call throws', async () => {
-    mockCreate.mockRejectedValue(Object.assign(new Error('400 bad request'), {response: {status: 400}}))
+  it('should log status and request ID when the API returns an error', async () => {
+    const error = vi.spyOn(logger, 'error').mockImplementation(() => {})
+    mockStream.mockReturnValue({
+      finalMessage: () => Promise.reject(APIError.generate(
+        400,
+        {type: 'error', error: {type: 'invalid_request_error', message: 'bad model'}},
+        undefined,
+        new Headers({'request-id': 'req_123'})
+      ))
+    })
 
     await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(false)
+    expect(error).toHaveBeenCalledWith(expect.stringMatching(/\(400, request ID req_123\)/))
+  })
+
+  it('should log the message of other errors', async () => {
+    const error = vi.spyOn(logger, 'error').mockImplementation(() => {})
+    mockStream.mockReturnValue({finalMessage: () => Promise.reject(new Error('socket hang up'))})
+
+    await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(false)
+    expect(error).toHaveBeenCalledWith(expect.stringContaining('socket hang up'))
   })
 
   it('should fail without a prompt', async () => {
     await expect(callClaudeApi('', 'professional')).resolves.toBe(false)
-    expect(mockCreate).not.toHaveBeenCalled()
+    expect(mockStream).not.toHaveBeenCalled()
   })
 })

@@ -1,14 +1,7 @@
+import type {Message} from '@anthropic-ai/sdk/resources'
 import {describe, expect, it} from 'vitest'
 
 describe('claude-api', () => {
-  it('should clean thinking blocks', () => {
-    const content = 'Before <thinking>remove this</thinking> After'
-    const cleaned = content.replace(/<thinking>[\s\S]*?<\/thinking>/gi, '')
-
-    expect(cleaned).toBe('Before  After')
-    expect(cleaned).not.toContain('thinking')
-  })
-
   it('should remove code fences', () => {
     const content = '```latex\n\\documentclass{article}\n```'
     const cleaned = content.replace(/```(latex)?\n?/gi, '')
@@ -31,48 +24,23 @@ describe('createApiRequest', () => {
 
     expect(request.model).toBe(API_MODEL)
     expect(request.max_tokens).toBe(MAX_TOKENS)
-    expect(request.stream).toBe(true)
     expect(request.thinking).toEqual({type: 'adaptive'})
     expect(request.output_config).toEqual({effort: API_EFFORT})
     expect(JSON.stringify(request)).not.toContain('budget_tokens')
   })
 })
 
-describe('processApiStream', () => {
-  const toStream = (chunks: unknown[]) => (async function* () {
-    yield* chunks
-  })()
+describe('getResponseText', () => {
+  it('should join text blocks and skip thinking blocks', async () => {
+    const {getResponseText} = await import('../claude-api.js')
+    const message = {
+      content: [
+        {type: 'thinking', thinking: '', signature: 'sig'},
+        {type: 'text', text: 'Hello ', citations: null},
+        {type: 'text', text: 'World', citations: null},
+      ],
+    } as unknown as Message
 
-  it('should collect text, usage and stop reason', async () => {
-    const {processApiStream} = await import('../claude-api.js')
-    const result = await processApiStream(toStream([
-      {type: 'message_start', message: {model: 'claude-sonnet-5-5'}},
-      {type: 'content_block_delta', delta: {type: 'thinking_delta', thinking: ''}},
-      {type: 'content_block_delta', delta: {type: 'text_delta', text: 'Hello '}},
-      {type: 'content_block_delta', delta: {type: 'text_delta', text: 'World'}},
-      {type: 'message_delta', delta: {stop_reason: 'end_turn'}, usage: {output_tokens: 42}},
-    ]))
-
-    expect(result).toEqual({
-      content: 'Hello World',
-      usage: {output_tokens: 42},
-      stopReason: 'end_turn',
-      stopDetails: null,
-    })
-  })
-
-  it('should surface refusal and truncation stop reasons', async () => {
-    const {processApiStream} = await import('../claude-api.js')
-    const refused = await processApiStream(toStream([
-      {type: 'message_delta', delta: {stop_reason: 'refusal', stop_details: {type: 'refusal', category: 'cyber'}}},
-    ]))
-    const truncated = await processApiStream(toStream([
-      {type: 'content_block_delta', delta: {type: 'text_delta', text: '\\documentclass'}},
-      {type: 'message_delta', delta: {stop_reason: 'max_tokens'}},
-    ]))
-
-    expect(refused.stopReason).toBe('refusal')
-    expect(refused.stopDetails?.category).toBe('cyber')
-    expect(truncated.stopReason).toBe('max_tokens')
+    expect(getResponseText(message)).toBe('Hello World')
   })
 })
