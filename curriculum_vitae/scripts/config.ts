@@ -4,19 +4,18 @@ import fs from 'fs-extra';
 import {z} from 'zod';
 import * as core from '@actions/core';
 import 'dotenv/config'; // Automatically load .env file
+import type {BetaOutputConfig} from '@anthropic-ai/sdk/resources/beta/messages';
 
-// Zod schema for environment variables
-// GitHub Actions passes unset workflow_dispatch inputs (e.g. on push) as empty strings
-const emptyToUndefined = (value: unknown): unknown => (value === '' ? undefined : value);
-
-export const API_EFFORT_LEVELS = ['low', 'medium', 'high', 'xhigh', 'max'] as const;
+export const API_EFFORT_LEVELS = ['low', 'medium', 'high', 'xhigh', 'max'] as const satisfies
+  readonly NonNullable<BetaOutputConfig['effort']>[];
 export type ApiEffort = typeof API_EFFORT_LEVELS[number];
 
+// Zod schema for environment variables
 const EnvSchema = z.object({
   CAREER_FILE: z.string().default('../../_data/career.md'),
-  API_MODEL: z.preprocess(emptyToUndefined, z.string().default('claude-sonnet-5-5')),
+  API_MODEL: z.string().default('claude-sonnet-5-5'),
   // Thinking depth for adaptive thinking (Claude 5.5 models no longer accept budget_tokens)
-  API_EFFORT: z.preprocess(emptyToUndefined, z.enum(API_EFFORT_LEVELS).default('xhigh')),
+  API_EFFORT: z.enum(API_EFFORT_LEVELS).default('xhigh'),
   // Upper bound for thinking + LaTeX output; requests are streamed, so a high ceiling is safe
   MAX_TOKENS: z.coerce.number().positive().default(64000),
   MIN_CONTENT_LENGTH: z.coerce.number().positive().default(500),
@@ -26,7 +25,9 @@ const EnvSchema = z.object({
   CI: z.coerce.boolean().default(false),
 });
 
-const env = EnvSchema.parse(process.env);
+// GitHub Actions passes unset workflow_dispatch inputs (e.g. on push) as empty strings: treat them as unset
+const definedEnv = Object.fromEntries(Object.entries(process.env).filter(([, value]) => value !== ''));
+const env = EnvSchema.parse(definedEnv);
 
 // File paths
 export const CAREER_FILE: string = env.CAREER_FILE;

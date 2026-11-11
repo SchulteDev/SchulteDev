@@ -25,19 +25,14 @@ describe('config', () => {
       vi.resetModules()
     })
 
-    const loadConfig = async (env: Record<string, string | undefined>) => {
+    const loadConfig = async (env: Record<string, string>) => {
       vi.resetModules()
       for (const [key, value] of Object.entries(env)) vi.stubEnv(key, value)
       return import('../config.js')
     }
 
-    it('should default to Claude Sonnet 5.5 at xhigh effort', async () => {
-      const config = await loadConfig({API_MODEL: undefined, API_EFFORT: undefined})
-      expect(config.API_MODEL).toBe('claude-sonnet-5-5')
-      expect(config.API_EFFORT).toBe('xhigh')
-    })
-
-    it('should treat empty workflow inputs as unset', async () => {
+    // Empty values (as GitHub Actions passes unset inputs) also keep a local .env from leaking in via dotenv
+    it('should default to Claude Sonnet 5.5 at xhigh effort for empty workflow inputs', async () => {
       const config = await loadConfig({API_MODEL: '', API_EFFORT: ''})
       expect(config.API_MODEL).toBe('claude-sonnet-5-5')
       expect(config.API_EFFORT).toBe('xhigh')

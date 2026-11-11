@@ -3,7 +3,7 @@
 import fs from 'fs-extra';
 import Anthropic from '@anthropic-ai/sdk';
 import {TextBlock} from '@anthropic-ai/sdk/resources';
-import type {MessageCreateParamsStreaming} from '@anthropic-ai/sdk/resources/beta/messages';
+import type {BetaRefusalStopDetails, MessageCreateParamsStreaming} from '@anthropic-ai/sdk/resources/beta/messages';
 import {
   API_EFFORT,
   API_MODEL,
@@ -68,7 +68,7 @@ const logClaudeResponse = (response: any, cvType: CvType, userPrompt: string): v
   fs.writeJsonSync(logFile, {
     timestamp: new Date().toISOString(),
     cvType,
-    model: API_MODEL,
+    requestedModel: API_MODEL,
     request: {
       userPrompt: userPrompt.slice(0, 200) + (userPrompt.length > 200 ? '...' : ''),
       maxTokens: MAX_TOKENS,
@@ -93,6 +93,7 @@ interface StreamResult {
   content: string;
   usage: any;
   stopReason: string | null;
+  stopDetails: BetaRefusalStopDetails | null;
   servedBy: string | null;
 }
 
@@ -100,6 +101,7 @@ export const processApiStream = async (stream: AsyncIterable<any>): Promise<Stre
   let completeResponse = '';
   let usage = null;
   let stopReason: string | null = null;
+  let stopDetails: BetaRefusalStopDetails | null = null;
   let servedBy: string | null = null;
 
   for await (const chunk of stream) {
@@ -108,16 +110,16 @@ export const processApiStream = async (stream: AsyncIterable<any>): Promise<Stre
     } else if (chunk.type === 'content_block_start' && chunk.content_block?.type === 'fallback') {
       // Server-side fallback: the declined model's partial text is kept and the fallback model continues it
       servedBy = chunk.content_block.to?.model ?? servedBy;
-      logger.warn(`${chunk.content_block.from?.model} declined, continuing with ${servedBy}`);
     } else if (chunk.type === 'content_block_delta' && chunk.delta?.type === 'text_delta') {
       completeResponse += chunk.delta.text;
     } else if (chunk.type === 'message_delta') {
       if (chunk.usage) usage = chunk.usage;
       if (chunk.delta?.stop_reason) stopReason = chunk.delta.stop_reason;
+      if (chunk.delta?.stop_details) stopDetails = chunk.delta.stop_details;
     }
   }
 
-  return { content: completeResponse, usage, stopReason, servedBy };
+  return { content: completeResponse, usage, stopReason, stopDetails, servedBy };
 };
 
 export const createApiRequest = (userPrompt: string): MessageCreateParamsStreaming => ({
@@ -139,9 +141,14 @@ const saveApiResponse = (response: any, cvType: CvType, userPrompt: string): voi
   logClaudeResponse(response, cvType, userPrompt);
 };
 
-const validateApiResponse = (content: string, stopReason: string | null, cvType: CvType): boolean => {
+const validateApiResponse = (
+  {content, stopReason, stopDetails}: StreamResult,
+  cvType: CvType
+): boolean => {
   if (stopReason === 'refusal') {
-    logger.error(`Claude declined the request for ${cvType} CV (stop_reason: refusal)`);
+    const reason = stopDetails?.category ?? 'unknown category';
+    const explanation = stopDetails?.explanation ? `: ${stopDetails.explanation}` : '';
+    logger.error(`Claude declined the request for ${cvType} CV (refusal, ${reason})${explanation}`);
     return false;
   }
   if (stopReason === 'max_tokens') {
@@ -164,16 +171,18 @@ const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => 
 
     logger.debug('Starting streaming response...');
     const stream = await anthropic.beta.messages.create(request);
-    const { content: completeResponse, usage, stopReason, servedBy } = await processApiStream(stream);
+    const result = await processApiStream(stream);
+    const { content: completeResponse, usage, servedBy } = result;
 
-    if (!validateApiResponse(completeResponse, stopReason, cvType)) {
+    if (!validateApiResponse(result, cvType)) {
       return false;
     }
     if (servedBy && servedBy !== API_MODEL) {
-      logger.info(`Response for ${cvType} CV was served by ${servedBy}`);
+      logger.warn(`${API_MODEL} declined, response for ${cvType} CV was served by fallback ${servedBy}`);
     }
 
     const response = {
+      model: servedBy ?? API_MODEL,
       content: [{ type: 'text', text: completeResponse }],
       usage: usage
     };

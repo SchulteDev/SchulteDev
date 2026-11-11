@@ -9,7 +9,7 @@ vi.mock('@anthropic-ai/sdk', () => ({
   }
 }))
 
-const {callClaudeApi} = await import('../claude-api.js')
+const {callClaudeApi, createApiRequest} = await import('../claude-api.js')
 const {API_MODEL, getResponseFile} = await import('../config.js')
 
 const toStream = (chunks: unknown[]) => (async function* () {
@@ -45,21 +45,22 @@ describe('callClaudeApi with the API', () => {
     fs.removeSync(responseFile)
   })
 
-  it('should send the adaptive-thinking request through the beta endpoint and save the response', async () => {
+  it('should send the request through the beta endpoint and save the response', async () => {
     mockCreate.mockResolvedValue(textStream('\\documentclass{article}', 'end_turn'))
 
     await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(true)
 
-    const request = mockCreate.mock.calls[0][0]
-    expect(request.thinking).toEqual({type: 'adaptive'})
-    expect(request.fallbacks).toBe('default')
-    expect(fs.readJsonSync(responseFile).content[0].text).toBe('\\documentclass{article}')
+    expect(mockCreate).toHaveBeenCalledWith(createApiRequest('prompt'))
+    const saved = fs.readJsonSync(responseFile)
+    expect(saved.content[0].text).toBe('\\documentclass{article}')
+    expect(saved.model).toBe(API_MODEL)
   })
 
-  it('should accept a response served by the fallback model', async () => {
+  it('should record the fallback model that served the response', async () => {
     mockCreate.mockResolvedValue(textStream('\\documentclass{article}', 'end_turn', 'claude-fallback'))
 
     await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(true)
+    expect(fs.readJsonSync(responseFile).model).toBe('claude-fallback')
   })
 
   it.each(['refusal', 'max_tokens'])('should fail on stop_reason %s', async (stopReason) => {

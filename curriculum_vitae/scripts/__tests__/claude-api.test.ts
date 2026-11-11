@@ -65,6 +65,7 @@ describe('processApiStream', () => {
       content: 'Hello World',
       usage: {output_tokens: 42},
       stopReason: 'end_turn',
+      stopDetails: null,
       servedBy: 'claude-sonnet-5-5',
     })
   })
@@ -89,7 +90,7 @@ describe('processApiStream', () => {
   it('should surface refusal and truncation stop reasons', async () => {
     const {processApiStream} = await import('../claude-api.js')
     const refused = await processApiStream(toStream([
-      {type: 'message_delta', delta: {stop_reason: 'refusal'}},
+      {type: 'message_delta', delta: {stop_reason: 'refusal', stop_details: {type: 'refusal', category: 'cyber'}}},
     ]))
     const truncated = await processApiStream(toStream([
       {type: 'content_block_delta', delta: {type: 'text_delta', text: '\\documentclass'}},
@@ -97,6 +98,7 @@ describe('processApiStream', () => {
     ]))
 
     expect(refused.stopReason).toBe('refusal')
+    expect(refused.stopDetails?.category).toBe('cyber')
     expect(truncated.stopReason).toBe('max_tokens')
   })
 })
