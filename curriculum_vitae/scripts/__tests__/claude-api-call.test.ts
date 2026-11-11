@@ -24,11 +24,13 @@ const textStream = (text: string, stopReason: string, model = API_MODEL) => toSt
 
 describe('callClaudeApi with the API', () => {
   const responseFile = getResponseFile('professional')
+  // Only touch files callApi writes: other test files run in parallel and use tmp/ too
+  const isApiLog = (file: string) => file.startsWith('claude-response-professional-')
   let existingLogs: Set<string>
 
   beforeEach(() => {
     fs.ensureDirSync('tmp')
-    existingLogs = new Set(fs.readdirSync('tmp'))
+    existingLogs = new Set(fs.readdirSync('tmp').filter(isApiLog))
     fs.removeSync(responseFile)
     vi.stubEnv('ANTHROPIC_API_KEY', 'test-key')
     vi.stubEnv('SKIP_API', 'false')
@@ -37,9 +39,10 @@ describe('callClaudeApi with the API', () => {
 
   afterEach(() => {
     vi.unstubAllEnvs()
-    for (const file of fs.readdirSync('tmp')) {
+    for (const file of fs.readdirSync('tmp').filter(isApiLog)) {
       if (!existingLogs.has(file)) fs.removeSync(`tmp/${file}`)
     }
+    fs.removeSync(responseFile)
   })
 
   it('should send the adaptive-thinking request through the beta endpoint and save the response', async () => {
