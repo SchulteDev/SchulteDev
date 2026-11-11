@@ -71,7 +71,7 @@ jobs:
           tag_name: cvs-latest
           name: "Latest CVs - Markus Schulte"
           body: |
-            🤖 Auto-generated CVs (AI Model: Claude Sonnet 5.5 / Opus 5.5)
+            🤖 Auto-generated CVs (AI Model: Claude)
 
             📄 **Download Links:**
             - [Professional CV](https://github.com/${{ github.repository }}/releases/latest/download/markus-schulte-dev-professional-cv.pdf) - Traditional format highlighting achievements
