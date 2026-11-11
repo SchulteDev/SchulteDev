@@ -97,29 +97,34 @@ interface StreamResult {
   servedBy: string | null;
 }
 
-export const processApiStream = async (stream: AsyncIterable<any>): Promise<StreamResult> => {
-  let completeResponse = '';
-  let usage = null;
-  let stopReason: string | null = null;
-  let stopDetails: BetaRefusalStopDetails | null = null;
-  let servedBy: string | null = null;
-
-  for await (const chunk of stream) {
-    if (chunk.type === 'message_start') {
-      servedBy = chunk.message?.model ?? null;
-    } else if (chunk.type === 'content_block_start' && chunk.content_block?.type === 'fallback') {
+const applyStreamEvent = (result: StreamResult, chunk: any): void => {
+  switch (chunk.type) {
+    case 'message_start':
+      result.servedBy = chunk.message?.model ?? null;
+      break;
+    case 'content_block_start':
       // Server-side fallback: the declined model's partial text is kept and the fallback model continues it
-      servedBy = chunk.content_block.to?.model ?? servedBy;
-    } else if (chunk.type === 'content_block_delta' && chunk.delta?.type === 'text_delta') {
-      completeResponse += chunk.delta.text;
-    } else if (chunk.type === 'message_delta') {
-      if (chunk.usage) usage = chunk.usage;
-      if (chunk.delta?.stop_reason) stopReason = chunk.delta.stop_reason;
-      if (chunk.delta?.stop_details) stopDetails = chunk.delta.stop_details;
-    }
+      if (chunk.content_block?.type === 'fallback') {
+        result.servedBy = chunk.content_block.to?.model ?? result.servedBy;
+      }
+      break;
+    case 'content_block_delta':
+      if (chunk.delta?.type === 'text_delta') result.content += chunk.delta.text;
+      break;
+    case 'message_delta':
+      result.usage = chunk.usage ?? result.usage;
+      result.stopReason = chunk.delta?.stop_reason ?? result.stopReason;
+      result.stopDetails = chunk.delta?.stop_details ?? result.stopDetails;
+      break;
   }
+};
 
-  return { content: completeResponse, usage, stopReason, stopDetails, servedBy };
+export const processApiStream = async (stream: AsyncIterable<any>): Promise<StreamResult> => {
+  const result: StreamResult = {content: '', usage: null, stopReason: null, stopDetails: null, servedBy: null};
+  for await (const chunk of stream) {
+    applyStreamEvent(result, chunk);
+  }
+  return result;
 };
 
 export const createApiRequest = (userPrompt: string): MessageCreateParamsStreaming => ({
