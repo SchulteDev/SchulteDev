@@ -57,4 +57,4 @@ DRY_RUN=true npm run cv:test  # Integration test, no file changes
 **Required**: `ANTHROPIC_API_KEY`  
 **Optional**: `CV_TYPES`, `SKIP_API`, `DRY_RUN`, `GIT_DIFF_RANGE`  
 **Model**: `API_MODEL` (default `claude-sonnet-5-5`; the workflow also offers `claude-opus-5-5`),
-`API_EFFORT` (adaptive-thinking effort `low`–`max`, default `high`), `MAX_TOKENS` (default `64000`)
+`API_EFFORT` (adaptive-thinking effort `low`–`max`, default `xhigh`), `MAX_TOKENS` (default `64000`)

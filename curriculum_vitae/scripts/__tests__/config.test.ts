@@ -31,22 +31,22 @@ describe('config', () => {
       return import('../config.js')
     }
 
-    it('should default to Claude Sonnet 5.5 at high effort', async () => {
+    it('should default to Claude Sonnet 5.5 at xhigh effort', async () => {
       const config = await loadConfig({API_MODEL: undefined, API_EFFORT: undefined})
       expect(config.API_MODEL).toBe('claude-sonnet-5-5')
-      expect(config.API_EFFORT).toBe('high')
+      expect(config.API_EFFORT).toBe('xhigh')
     })
 
     it('should treat empty workflow inputs as unset', async () => {
       const config = await loadConfig({API_MODEL: '', API_EFFORT: ''})
       expect(config.API_MODEL).toBe('claude-sonnet-5-5')
-      expect(config.API_EFFORT).toBe('high')
+      expect(config.API_EFFORT).toBe('xhigh')
     })
 
     it('should accept an explicit model and effort', async () => {
-      const config = await loadConfig({API_MODEL: 'claude-opus-5-5', API_EFFORT: 'xhigh'})
+      const config = await loadConfig({API_MODEL: 'claude-opus-5-5', API_EFFORT: 'medium'})
       expect(config.API_MODEL).toBe('claude-opus-5-5')
-      expect(config.API_EFFORT).toBe('xhigh')
+      expect(config.API_EFFORT).toBe('medium')
     })
 
     it('should reject an unknown effort level', async () => {

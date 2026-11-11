@@ -16,7 +16,7 @@ const EnvSchema = z.object({
   CAREER_FILE: z.string().default('../../_data/career.md'),
   API_MODEL: z.preprocess(emptyToUndefined, z.string().default('claude-sonnet-5-5')),
   // Thinking depth for adaptive thinking (Claude 5.5 models no longer accept budget_tokens)
-  API_EFFORT: z.preprocess(emptyToUndefined, z.enum(API_EFFORT_LEVELS).default('high')),
+  API_EFFORT: z.preprocess(emptyToUndefined, z.enum(API_EFFORT_LEVELS).default('xhigh')),
   // Upper bound for thinking + LaTeX output; requests are streamed, so a high ceiling is safe
   MAX_TOKENS: z.coerce.number().positive().default(64000),
   MIN_CONTENT_LENGTH: z.coerce.number().positive().default(500),
