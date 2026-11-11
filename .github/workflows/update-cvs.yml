@@ -18,11 +18,20 @@ on:
       api_model:
         description: 'Claude Model'
         required: true
-        default: 'claude-sonnet-4-6'
+        default: 'claude-sonnet-5-5'
         type: choice
         options:
-          - claude-opus-4-6
-          - claude-sonnet-4-6
+          - claude-opus-5-5
+          - claude-sonnet-5-5
+      api_effort:
+        description: 'Thinking effort'
+        required: true
+        default: 'high'
+        type: choice
+        options:
+          - medium
+          - high
+          - xhigh
 
 env:
   CAREER_FILE: ${{ github.workspace }}/_data/career.md
@@ -138,6 +147,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           API_MODEL: ${{ github.event.inputs.api_model }}
+          API_EFFORT: ${{ github.event.inputs.api_effort }}
           REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
         run: npm run cv:update:${{ matrix.cv_type }}
       - name: Validate LaTeX (compilation test)

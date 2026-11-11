@@ -2,8 +2,10 @@
 
 import fs from 'fs-extra';
 import Anthropic from '@anthropic-ai/sdk';
-import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
+import {TextBlock} from '@anthropic-ai/sdk/resources';
+import type {MessageCreateParamsStreaming} from '@anthropic-ai/sdk/resources/beta/messages';
 import {
+  API_EFFORT,
   API_MODEL,
   CvType,
   getCvFile,
@@ -69,7 +71,8 @@ const logClaudeResponse = (response: any, cvType: CvType, userPrompt: string): v
     model: API_MODEL,
     request: {
       userPrompt: userPrompt.slice(0, 200) + (userPrompt.length > 200 ? '...' : ''),
-      maxTokens: MAX_TOKENS
+      maxTokens: MAX_TOKENS,
+      effort: API_EFFORT
     },
     response
   }, {spaces: 2});
@@ -86,30 +89,48 @@ const shouldUseMock = (): { useMock: boolean; reason: string } => {
   return {useMock: false, reason: ''};
 };
 
-const processApiStream = async (stream: any): Promise<{ content: string; usage: any }> => {
+interface StreamResult {
+  content: string;
+  usage: any;
+  stopReason: string | null;
+  servedBy: string | null;
+}
+
+export const processApiStream = async (stream: AsyncIterable<any>): Promise<StreamResult> => {
   let completeResponse = '';
   let usage = null;
+  let stopReason: string | null = null;
+  let servedBy: string | null = null;
 
   for await (const chunk of stream) {
-    if (chunk.type === 'content_block_delta' && chunk.delta?.type === 'text_delta') {
+    if (chunk.type === 'message_start') {
+      servedBy = chunk.message?.model ?? null;
+    } else if (chunk.type === 'content_block_start' && chunk.content_block?.type === 'fallback') {
+      // Server-side fallback: the declined model's partial text is kept and the fallback model continues it
+      servedBy = chunk.content_block.to?.model ?? servedBy;
+      logger.warn(`${chunk.content_block.from?.model} declined, continuing with ${servedBy}`);
+    } else if (chunk.type === 'content_block_delta' && chunk.delta?.type === 'text_delta') {
       completeResponse += chunk.delta.text;
-    } else if (chunk.type === 'message_delta' && chunk.usage) {
-      usage = chunk.usage;
+    } else if (chunk.type === 'message_delta') {
+      if (chunk.usage) usage = chunk.usage;
+      if (chunk.delta?.stop_reason) stopReason = chunk.delta.stop_reason;
     }
   }
 
-  return { content: completeResponse, usage };
+  return { content: completeResponse, usage, stopReason, servedBy };
 };
 
-const createApiRequest = (userPrompt: string): MessageCreateParams => ({
+export const createApiRequest = (userPrompt: string): MessageCreateParamsStreaming => ({
   model: API_MODEL,
   max_tokens: MAX_TOKENS,
   messages: [{ role: 'user', content: userPrompt }],
   stream: true,
-  thinking: {
-    type: "enabled",
-    budget_tokens: Math.min(20000, Math.floor(MAX_TOKENS * 0.4))
-  }
+  // Claude 5.5 models reject budget_tokens; adaptive thinking depth is controlled via effort
+  thinking: { type: 'adaptive' },
+  output_config: { effort: API_EFFORT },
+  // On a safety-classifier refusal, let the API continue on its default fallback model
+  betas: ['server-side-fallback-2026-07-01'],
+  fallbacks: 'default'
 });
 
 const saveApiResponse = (response: any, cvType: CvType, userPrompt: string): void => {
@@ -118,7 +139,15 @@ const saveApiResponse = (response: any, cvType: CvType, userPrompt: string): voi
   logClaudeResponse(response, cvType, userPrompt);
 };
 
-const validateApiResponse = (content: string, cvType: CvType): boolean => {
+const validateApiResponse = (content: string, stopReason: string | null, cvType: CvType): boolean => {
+  if (stopReason === 'refusal') {
+    logger.error(`Claude declined the request for ${cvType} CV (stop_reason: refusal)`);
+    return false;
+  }
+  if (stopReason === 'max_tokens') {
+    logger.error(`Response for ${cvType} CV was truncated at MAX_TOKENS=${MAX_TOKENS}`);
+    return false;
+  }
   if (!content?.trim()) {
     logger.error(`Invalid API response for ${cvType} CV: empty response`);
     return false;
@@ -127,18 +156,21 @@ const validateApiResponse = (content: string, cvType: CvType): boolean => {
 };
 
 const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => {
-  logger.info(`Calling Claude ${API_MODEL} API for ${cvType} CV...`);
+  logger.info(`Calling Claude ${API_MODEL} API (effort: ${API_EFFORT}) for ${cvType} CV...`);
 
   try {
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
     const request = createApiRequest(userPrompt);
 
     logger.debug('Starting streaming response...');
-    const stream = await anthropic.messages.create(request);
-    const { content: completeResponse, usage } = await processApiStream(stream);
+    const stream = await anthropic.beta.messages.create(request);
+    const { content: completeResponse, usage, stopReason, servedBy } = await processApiStream(stream);
 
-    if (!validateApiResponse(completeResponse, cvType)) {
+    if (!validateApiResponse(completeResponse, stopReason, cvType)) {
       return false;
+    }
+    if (servedBy && servedBy !== API_MODEL) {
+      logger.info(`Response for ${cvType} CV was served by ${servedBy}`);
     }
 
     const response = {
