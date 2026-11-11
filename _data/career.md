@@ -28,13 +28,21 @@ target documents for particular audiences or purposes.
 
 **Software Engineer & Cloud Architect** with 19+ years hands-on experience (12+ freelance)
 specializing in
-enterprise modernization and cloud-native transformations. Currently serving as Cloud Architect at
-LBBW, contributing to "Phoenix" IT modernization for Germany's major state bank.
+enterprise modernization and cloud-native transformations. Currently back at Union Investment
+(since April 2026) as IT architect for three teams of the funds squad, hands-on in the team
+building the public financial calculators. In parallel I run BitterQuant, a private ML research
+project on systematic trading on AWS. Previously Cloud Architect at LBBW for the "Phoenix" IT
+modernization.
+
+My way of working has changed: I work **agent-first** – coding agents write most of the code
+under my supervision, while I keep architecture, scope and quality decisions.
 
 **Core Expertise:**
 
-- **Hands-on Development:** Built production systems in Java, Golang, TypeScript – from framework
-  development to SDK implementation and application development
+- **Agentic Coding:** Daily use of coding agents (Claude Code) – parallel sessions, custom skills,
+  hooks, automated agentic PR review
+- **Hands-on Development:** Built production systems in Java, Golang, TypeScript, Python – from
+  framework development to SDK implementation and application development
 - **Enterprise Architecture:** Legacy-to-cloud migrations, Azure/AWS/GCP platforms, cloud-native
   system design, platform engineering
 - **Technical Leadership:** Led teams of 5-9 developers, served as Product Owner and technical
@@ -42,7 +50,8 @@ LBBW, contributing to "Phoenix" IT modernization for Germany's major state bank.
 - **Backend Engineering:** Java (19y), Golang (5y), TypeScript – from monoliths to microservices
 - **Cloud-Native Design:** Event-driven architecture, Self-contained Systems (SCS), distributed
   systems
-- **DevOps & AI Integration:** Infrastructure-as-Code, automated CI/CD, AI document processing
+- **DevOps & AI Integration:** Infrastructure-as-Code, automated CI/CD, AI document processing,
+  machine learning
 
 **Business Impact:** Delivered platforms serving 9M+ users, reduced deployment times from days to
 minutes, achieved 99.9% uptime in production systems, and established architecture templates adopted
@@ -59,7 +68,8 @@ enterprise environments. **Golang** has become my preferred language for cloud-n
 with 5+ years of professional experience, particularly in microservices and middleware systems. *
 *PHP** was my foundation (8+ years) during early career and social platform development. I also work
 with **TypeScript/JavaScript** for Node.js/NPM/pnpm applications and frontend integration when
-required.
+required, since 2026 also with React. **Python** has been a main language of mine since 2026,
+mainly for machine learning.
 
 ### Architecture & Design
 
@@ -77,9 +87,10 @@ specializing in:
 
 ### Cloud Platforms & DevOps
 
-**Azure:** Static Web Apps, Functions, Event Hubs, AKS, AD B2C, Document Intelligence
-with 5+ years experience
-**AWS:** EKS, Lambda, API Gateway, S3, SQS, CloudFormation with 7+ years experience
+**Azure:** Static Web Apps, Functions, Event Hubs, AKS, AD B2C, Document Intelligence, API
+Management, Front Door/WAF with 5+ years experience
+**AWS:** EKS, Lambda, API Gateway, S3, SQS, CloudFormation, CDK, ECS Fargate, SageMaker with 7+
+years experience
 **GCP:** Kubernetes Engine, Cloud Functions, Firebase integration
 
 **Infrastructure & Automation:**
@@ -112,10 +123,42 @@ Comprehensive test automation is fundamental to my development approach:
 
 I consistently apply modern software engineering practices:
 
-- **Code Quality:** Clean Architecture, Clean Code principles, Conventional Commits
+- **Code Quality:** Clean Architecture, Clean Code principles, Conventional Commits, SonarQube
+  quality gates
 - **Agile Methodologies:** Scrum, Kanban, SAFe with hands-on Product Owner experience
 - **API Design:** REST/HATEOAS, OAuth2, comprehensive documentation standards
-- **Monorepo Management:** Nx, Lerna, pnpm for complex multi-service projects
+- **Monorepo Management:** Nx, Lerna, pnpm, Turborepo for complex multi-service projects
+- **Architecture Decision Records:** ADRs as the default decision medium
+
+### Agentic Coding
+
+Since 2025 I build software primarily by directing coding agents (Claude Code) – first in private
+projects ([ConversationalAI4J](https://github.com/SchulteDev/ConversationalAI4J) from August 2025,
+[deye-microinverter-power-limit](https://github.com/SchulteDev/deye-microinverter-power-limit),
+[multi-resolution-timeseries-parquet](https://github.com/SchulteDev/multi-resolution-timeseries-parquet),
+BitterQuant), today as my default way of working. The agent writes most of the code; I own goals,
+architecture, scope, review and the go/no-go.
+
+**My assessment:** As an experienced engineer I can judge code reliably – that is the
+prerequisite. Agentic coding increased my throughput enormously, and in my experience quality even
+went up. I am most efficient when an AI programs under my supervision: it takes over
+straightforward work like tests and documentation, which lets me focus on the domain outcome.
+
+**How I work:**
+
+- Parallel agent sessions in separate git worktrees, subagents for research and review
+- Custom skills for recurring workflows (PR review, dependency updates, story writing), hooks as
+  guardrails, one versioned repository as single source of truth for agent configuration
+- Automated agentic PR review ("John review", see Personal Projects): labelling a PR triggers a
+  headless agent that reviews, pushes fixes and posts a verdict
+- MCP integrations (Azure DevOps, AWS, browser, documentation)
+- Same quality gates for agent-written code as for human-written code: review, coverage gates,
+  test pyramid
+- I push back on agent proposals with YAGNI/KISS arguments; architecture and trade-offs stay my
+  decision
+
+**Community:** Made Microsoft's [azure-devops-skills](https://github.com/microsoft/azure-devops-skills)
+installable as a Claude Code plugin (merged upstream, see Open-Source Contributions).
 
 ### Leadership & Team Management
 
@@ -136,6 +179,9 @@ organizational and leadership capabilities:
   serving as technical Product Owner
 - **Hiring & Onboarding:** Technical interviews, team assembly, and comprehensive developer
   onboarding across multiple technology stacks
+- **Architecture Governance:** Driving decisions through Architecture Decision Records – writing
+  ADRs, presenting them in architecture CoPs/ADR forums, and leading teams to decide and document
+  transparently instead of by implicit convention
 
 ### Specialized Expertise
 
@@ -179,10 +225,185 @@ organizational and leadership capabilities:
 - **2024:** Event-driven architecture, Algolia search
 - **2025:** R-methodology assessment, Cloud Center of Excellence,
   AI integration (Azure Document Intelligence), automated document processing
+- **2025-2026:** Agentic coding (Claude Code), Python ML stack (PyTorch, time-series foundation
+  models), React, SBOMs
 
 ## Professional Experience
 
-### November 2024 — October 2025: Cloud Architect at LBBW
+### April 2026 — Present: IT Architect & Platform Engineer at Union Investment
+
+*[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) | via percision services GmbH |
+Freelance | Part-Time | Remote, occasionally on-site in Frankfurt*
+
+**Context:** Return to Union Investment (after
+the [2021–2024 engagement](#october-2021--december-2024-software-lead--cloud-architect-at-union-investment))
+in the "Web Portals" domain. Main home is **Team Rechner**, which builds and operates the
+public financial calculators ("Modellrechner") on union-investment.de and in the B2B portal
+InvestmentWelt – each shipped as standalone React app and as Web Component, backed by a Quarkus
+platform integrating third-party calculation engines. Additionally supporting sibling teams of
+the funds squad (fonds-visual, Fondsdatenkiosk, SynFonIC).
+
+**Timeline:** Since 27 April 2026 (ongoing)
+
+**Motivation:** I was looking for a new engagement and Union Investment had a matching position.
+I already knew the environment from my previous engagement (modern, agile, Azure), and the new
+challenge – the calculators, and being the architect for three teams right from the start – was
+appealing. A mix of opportunity, an environment that is comfortable for me, and enough room to
+develop further.
+
+**Role:** IT architect for Fondsdatenkiosk (FDK), fonds-visual (F&V) and SynFonIC; main home
+and hands-on work in Team Rechner – there in practice owning architecture, CI/CD, release,
+infrastructure, test strategy and dependency hygiene, while also building features, running
+PoCs, writing ADRs and drafting stories. Top committer of the team's frontend monorepo since
+joining. End-user features are mostly built by the team under my architectural guidance; my own
+hands-on work focuses on architecture, delivery and quality – largely invisible to end users, but
+it is what lets a small team ship safely and often.
+
+**Technical Challenges:**
+
+- **Regulated delivery:** Releases gated by ITSM change management, security assessments,
+  penetration tests and DORA requirements
+- **Heterogeneous landscape:** Three generations of calculators across API Management, AKS and
+  third-party calculation engines
+- **Small team, many products:** 15+ calculators maintained by a small team, which makes
+  automation a necessity
+- **Takeover under deadline:** Operational takeover of a legacy conversational platform with a
+  fixed production date
+
+**Architecture Approach:** Minimal effort, established best practices, small tasks. I cut
+architecture work into small stories that each go from dev to prod on their own, in a mandatory
+order, and reuse what is already in place (existing SDKs, exporters, platform features) instead
+of introducing new components. Decisions are documented as ADRs and presented in the architecture
+CoP.
+
+**Architecture Success Story – Request Origin Attribution (Aug – Oct 2026):**
+
+- **Problem:** The 15+ calculators run as Web Components and iFrames on pages we do not control.
+  When a request reached the calculator backend, nobody could tell which calculator, in which
+  version, embedded where, had sent it – backend errors were not traceable to their origin
+- **Design:** The shared bootstrap attaches a W3C Trace Context and OpenTelemetry baggage (app,
+  version, embedding origin) to the existing backend calls; API Management lets the headers
+  through (CORS preflight), the backend writes them onto its spans and error logs and ships them
+  via the already existing Azure exporter
+- **Minimal effort:** One-time registration in the bootstrap – no change to any calculator app or
+  to the generated API client; no exporter in the browser; vendor-neutral via OpenTelemetry;
+  cookie-free and without personal data (origin yes, path and query no)
+- **Delivery:** Epic and four stories written by me with strict ordering (otherwise the CORS
+  preflight would have blocked all backend calls); implemented by a team colleague; live in
+  production since October 2026
+
+**Business Success Story – Conversational Platform Takeover (Sep – Nov 2026):**
+
+- **Situation:** A customer-facing conversational platform (guided advisory flows, e.g. for the
+  junior depot) built by an external agency had to move into the team's own operation by a fixed
+  production date
+- **Decision:** Instead of operating the platform's own runtime, the React client is taken over as
+  a static build inside the existing calculator monorepo – reusing its pipelines, release process,
+  post-deployment tests and hosting (documented as ADR)
+- **Result:** From first technical assessment (mid September) to production in ~4 weeks; the latest
+  content flow from the agency was integrated and released on the deadline day. The team now
+  operates the platform with its existing tooling instead of an additional runtime
+
+**Phase 1: Onboarding & Architecture Handover (Apr – Jun 2026)**
+
+- Took over the IT-architecture topics of Team Rechner from the previous architect
+- ADR for an asynchronous communication backbone based on Azure Event Hubs, presented in the
+  architecture Community of Practice
+- Introduced Renovate and code coverage reporting into the calculator monorepo
+- Backend: refactored the comparison of calculation engines, unit tests, framework upgrades
+
+**Phase 2: Delivery Platform (Jul – Aug 2026)**
+
+- Per-branch preview environments on Azure Static Web Apps
+- Team-internal release automation to test and production with ITSM change integration; first
+  major release v1.0.0
+- Terraform moved into the monorepo with automated checks and guards against destructive changes
+- Backend: Java 21 → 25, smoke integration tests, API test pipeline
+- Build and developer-experience overhaul of a sibling team's monorepo (caching, affected builds,
+  type-check gates, npm → pnpm), handed over after two months
+- ADRs for a PDF print service integration and for the use of Highcharts; architecture overview
+  of the calculator landscape
+- Organized a testing workshop to align the team on test types
+
+**Phase 3: Hardening, Security & Takeover (Sep – Nov 2026)**
+
+- Security: remediation of a penetration-test TLS finding that the platform could not fix
+  directly (cipher suites of Azure Static Web Apps are platform-managed) by switching on the
+  managed enterprise-grade edge instead of building own infrastructure; SBOMs across four
+  repositories; firewall and WAF in progress
+- Code quality: introduced SonarQube analysis to the calculator monorepo; driving SonarQube
+  vulnerability scanning for all teams I am architect for (requested by the architecture board)
+- Deployment verification: hourly post-deployment tests, automated version check per stage
+- Test quality: removed flaky waits, balanced e2e groups, coverage gates (80% per package plus
+  new code), test pyramid pruning
+- Accessible PDF PoC: compared four approaches, pdfkit produced PDF/UA-1 compliant output
+- Analyses: SEO/generative-AI optimization of Web Components, GitLab migration estimate
+
+**Measured Results & Achievements:**
+
+*Calculator monorepo (May vs. November 2026):*
+
+- **Dependency updates ~9× faster:** Median time-to-merge of Renovate PRs from ~2 h to 13 min (p90
+  from 69 h to 4 h); merged within one hour from 24% to 83%, abandoned from 8% to 3%. Before, Renovate
+  had been intermittently broken for months
+- **Unit tests 3×:** 538 → 1,659 test cases (54 → 206 test files); I authored two-thirds of the new
+  test files
+- **Coverage gates from zero:** 80% per-package floor plus 80% new-code bar in 17 packages; shared
+  library coverage 87% → 99.6%
+- **Faster, more honest CI:** Unit-test run 2.7× faster, slowest e2e group −29%, deploy step 45–81 s
+  → 26 s (own measurements in commit messages); automatic Playwright retries cut from 3 to 0
+  against deployed sites, so flaky tests surface instead of hiding
+- **Delivery:** 4–7 tracked production releases per month, run by the team itself since July
+  2026 (team trained on ITSM change process and release pipeline)
+- **Stakeholder previews without merging:** Before, changes had to be merged to main to be shown
+  to stakeholders; per-branch preview environments removed that
+- **Conversational platform takeover in ~4 weeks**, deadline met (see business success story above)
+- **Request origin attribution live** with a one-time bootstrap change and zero changes to the
+  15+ calculator apps (see success story above)
+
+*Calculator backend (Quarkus):*
+
+- **Real coverage made visible:** Reported line coverage 34% → 87% by fixing the measurement
+  (generated code and non-Quarkus tests were miscounted); wrote over half of the new unit tests
+- **Release pipeline ~3× shorter (estimated):** Instead of rebuilding and retesting the app three
+  times, one tested build is promoted through the stages; a Maven build and test run takes ~5 min
+  today, the whole release ~4.5 min (median, November 2026)
+- **Dependency-update runs no longer scan ~40 repositories:** Renovate runs of ~25 min each
+  scoped to the one repository they serve
+- **Monitoring that actually alerts:** Scheduled API tests failed silently (orange instead of red)
+  before; now a failing run alerts
+- **Leaner runtime:** Java 21 → 25 and a slimmer runtime image with 30% fewer OS packages
+
+*Sibling team's fund web components monorepo (Jul – Aug 2026):*
+
+- **CI cache work ~8 min → ~12 s**, cache overhead ~3 min → 8 s (cache size 6.6 GB → 242 MB)
+- **1,065 hidden type errors uncovered and fixed to zero**, type-check gate in CI and before every
+  commit, type checking 2.7× faster
+- **Automated dependency updates introduced** (Renovate, median merge time 2.5 → 0.6 days), 14
+  unused dependencies removed, npm → pnpm with 54% less CI cache transfer
+
+*Method: Azure DevOps PR data, git history and measurements recorded in my commit messages;
+pipeline run history is only retained for ~30 days, so no before/after for pipeline duration or
+success rate.*
+
+**Cross-team & Community Work:**
+
+- Participant in the architecture CoP (ADR forum), DevOps CoP and DevOps office hours
+- Contributions to the open-source [Solid design system](https://github.com/solid-design-system/solid)
+  used by the calculators
+
+**Technologies & Frameworks:**
+
+- **Frontend:** React, TypeScript, Vite, Web Components, Storybook, Highcharts, Solid Design System
+- **Backend:** Java 25, Quarkus
+- **Build:** pnpm, Turborepo, Nx
+- **Testing:** Vitest, Playwright, Bruno, coverage gates
+- **Cloud & Infra:** Azure Static Web Apps, Front Door/WAF, API Management, AKS, Docker, Terraform
+- **CI/CD & Quality:** Azure DevOps Pipelines, Renovate, SonarQube, CycloneDX SBOMs, ServiceNow
+
+---
+
+### November 2024 — December 2025: Cloud Architect at LBBW
 
 *[Landesbank Baden-Württemberg](https://en.wikipedia.org/wiki/Landesbank_Baden-W%C3%BCrttemberg) |
 Freelance | Remote*
@@ -192,8 +413,8 @@ Freelance | Remote*
 **Company Context:** Major German state bank and central institution for savings banks in
 Baden-Württemberg requiring enterprise-scale IT modernization
 
-**Timeline:** Since November 2024 (Skywalker platform development started 2023, production-unused
-during my engagement)
+**Timeline:** November 2024 – December 2025 (Skywalker platform development started 2023,
+production-unused during my engagement)
 
 **Team Structure:** 9 people in my team (one of 3 teams providing Skywalker platform access)
 
@@ -853,7 +1074,7 @@ Contributed to 13+ repositories including:
   Unfortunately, the IT architecture was not open to change. Since this project, I have been
   skeptical of microservices as an overarching IT architecture and prefer
   Self-contained Systems (as later implemented at
-  [Union Investment](#october-2021--december-2024-cloud-architect-at-union-investment)).
+  [Union Investment](#october-2021--december-2024-software-lead--cloud-architect-at-union-investment)).
 
 **Technologies & Frameworks:**
 
@@ -1132,10 +1353,73 @@ Contributed to 13+ repositories including:
 
 ## Personal Projects
 
-### 2025: ConversationalAI4J
+### January 2026 — Present: BitterQuant
+
+Private ML research project on systematic trading, following Rich Sutton's "Bitter Lesson":
+instead of hand-crafted features, a pre-trained time-series foundation model is fine-tuned on
+large-scale intraday US-equity data, and a rules-based strategy layer trades on its probabilistic
+forecasts. Paper trading since May 2026; landing page at [bitterquant.ai](https://bitterquant.ai).
+
+**Motivation:** I have been trading for more than 10 years and have repeatedly tried automated
+trading. At the same time, the Bitter Lesson has not let go of me – its implications are large.
+With BitterQuant I believe I have found a use case that is interesting to me and possibly
+profitable, and that I can try out myself – not only, but also, to learn.
+
+**What I built:**
+
+- **Monorepo** with ML engine, AWS infrastructure and website, one CI/CD pipeline
+- **ML engineering:** fine-tuning of time-series foundation models with PyTorch/Hugging Face,
+  GPU training on AWS SageMaker, model-agnostic backend to compare foundation models
+- **Trading system:** event-driven backtesting and live execution with NautilusTrader and the
+  Interactive Brokers API; low-cost serverless live runtime on AWS ECS Fargate
+- **Infrastructure-as-Code:** AWS CDK, least-privilege IAM
+- **Research rigor:** every decision as ADR, including negative results; pre-registered
+  hypotheses and held-out data; paper trading, not backtests, decides what goes live
+- **Built agent-first** with coding agents under my supervision
+
+**Lessons Learned:**
+
+- **Realistic simulation first:** Two promising approaches collapsed once execution was simulated
+  realistically – the simulator is the most important piece of a trading system
+- **Not knowing what works is an insight, too:** Documented null results prevented repeated dead
+  ends
+
+**Technologies:** Python, PyTorch, Hugging Face, pandas, NautilusTrader, AWS (SageMaker, ECS
+Fargate, S3, CDK, CodePipeline), Astro/TypeScript, Claude Code
+
+### July 2026 — Present: "John review" – Automated Agentic PR Review
+
+Side project to make coding agents useful for a whole team, not just for me.
+
+- **John review:** Labelling a pull request triggers a headless coding agent that reviews the
+  change, pushes one fix commit per finding and posts a verdict – unattended, on a timer
+- **Shared agent configuration:** One versioned repository as single source of truth for agent
+  instructions, skills, hooks and per-language settings, used across several repositories
+- **Encoded engineering rules:** YAGNI, KISS, minimal comments, LSP-first code navigation
+
+**Technologies:** Claude Code (headless), MCP, systemd, Bash
+
+### July 2026 — Present: multi-resolution-timeseries-parquet
+
+Years of high-frequency time-series in a browser chart – static Parquet tiers at multiple
+resolutions, no backend. Coded by AI agents under my supervision.
+
+**Technologies:** TypeScript, Parquet, static hosting  
+**Repository:** https://github.com/SchulteDev/multi-resolution-timeseries-parquet
+
+### March 2026 — July 2026: deye-microinverter-power-limit
+
+CLI to set the power output limit of Deye microinverters via Solarman V5 / Modbus. Coded by AI
+agents under my supervision.
+
+**Technologies:** Python, Modbus, Solarman V5  
+**Repository:** https://github.com/SchulteDev/deye-microinverter-power-limit
+
+### August 2025 — January 2026: ConversationalAI4J
 
 Java library for voice-enabled conversational AI using local models. Enables spoken conversations
 with LLMs through browser interface with complete speech-to-text and text-to-speech pipeline.
+My first project coded by AI agents (Claude Code) under my supervision.
 
 **Key Features:**
 
@@ -1242,7 +1526,45 @@ Visualistics in Koblenz.
     Interfaces
 - **GitHub:**
   - Personal userpage on GitHub: https://github.com/SchulteDev
-  - Open-source contributor
+  - Open-source contributor since 2013 (selected merged contributions below)
+
+### Open-Source Contributions
+
+Contributions usually arise from real project needs – I fix or document what blocked me.
+
+- **[renovatebot/renovate](https://github.com/renovatebot/renovate)** (2024–2026, 5 merged):
+  Azure Pipelines manager to include `.azuredevops` folder paths, monorepo presets (lerna-lite,
+  langchain4j, Solid design system), package replacement rule
+- **[microsoft/azure-devops-skills](https://github.com/microsoft/azure-devops-skills)** (2026):
+  [Made the repository installable as a Claude Code plugin](https://github.com/microsoft/azure-devops-skills/pull/15)
+  (merged)
+- **[microsoft/azure-devops-mcp](https://github.com/microsoft/azure-devops-mcp)** (2026):
+  [Reported](https://github.com/microsoft/azure-devops-mcp/issues/1612) and
+  [proposed a fix](https://github.com/microsoft/azure-devops-mcp/pull/1613) for PR updates
+  silently changing or dropping fields (issue resolved)
+- **[solid-design-system/solid](https://github.com/solid-design-system/solid)** (2024–2026):
+  README fixes (merged), tooltip hide-animation race-condition fix, proposals for Context7 docs
+  and shipping Agent Skills in npm packages
+- **[haumacher/phoneblock](https://github.com/haumacher/phoneblock)** (2025–2026, 3 merged):
+  Configurable call-retention policy with cleanup intervals, build fixes (DeepL plugins behind a
+  Maven profile)
+- **[pact-foundation/pact-jvm](https://github.com/pact-foundation/pact-jvm)** (2018–2019, 3
+  merged) and numerous Pact issues – contract-testing tooling I taught in workshops
+- **[cloudstark/quarkus-zalando-problem-extension](https://github.com/cloudstark/quarkus-zalando-problem-extension)**
+  (2020, 8 merged): Problem-API extensions (HTTP method, causal chains), smoke/integration tests,
+  Google Java style, Dependabot
+- **Documentation fixes:** [github/docs](https://github.com/github/docs) (Dependabot auto-merge,
+  lock files), [MicrosoftDocs/azure-docs](https://github.com/MicrosoftDocs/azure-docs) (Event Hubs),
+  [docker/docs](https://github.com/docker/docs),
+  [terraform-best-practices](https://github.com/ozbillwang/terraform-best-practices) (minimum AWS
+  permissions)
+- **Further merged PRs:** [composer/composer](https://github.com/composer/composer),
+  [doctrine/migrations](https://github.com/doctrine/migrations) (new configuration option),
+  [lerna-lite](https://github.com/lerna-lite/lerna-lite), [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version),
+  [smallrye-jwt](https://github.com/smallrye/smallrye-jwt),
+  [deeplearning4j-examples](https://github.com/deeplearning4j/deeplearning4j-examples) (LSTM
+  regression example), [jenkinsci/google-compute-engine-plugin](https://github.com/jenkinsci/google-compute-engine-plugin),
+  [pitest-junit5-plugin](https://github.com/pitest/pitest-junit5-plugin)
 
 ---
 
