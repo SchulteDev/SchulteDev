@@ -4,10 +4,10 @@ import fs from 'fs-extra';
 import {z} from 'zod';
 import * as core from '@actions/core';
 import 'dotenv/config'; // Automatically load .env file
-import type {BetaOutputConfig} from '@anthropic-ai/sdk/resources/beta/messages';
+import type {OutputConfig} from '@anthropic-ai/sdk/resources';
 
 export const API_EFFORT_LEVELS = ['low', 'medium', 'high', 'xhigh', 'max'] as const satisfies
-  readonly NonNullable<BetaOutputConfig['effort']>[];
+  readonly NonNullable<OutputConfig['effort']>[];
 export type ApiEffort = typeof API_EFFORT_LEVELS[number];
 
 // Zod schema for environment variables

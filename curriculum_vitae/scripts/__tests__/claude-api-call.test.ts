@@ -5,19 +5,18 @@ const {mockCreate} = vi.hoisted(() => ({mockCreate: vi.fn()}))
 
 vi.mock('@anthropic-ai/sdk', () => ({
   default: class {
-    beta = {messages: {create: mockCreate}}
+    messages = {create: mockCreate}
   }
 }))
 
 const {callClaudeApi, createApiRequest} = await import('../claude-api.js')
-const {API_MODEL, getResponseFile} = await import('../config.js')
+const {getResponseFile} = await import('../config.js')
 
 const toStream = (chunks: unknown[]) => (async function* () {
   yield* chunks
 })()
 
-const textStream = (text: string, stopReason: string, model = API_MODEL) => toStream([
-  {type: 'message_start', message: {model}},
+const textStream = (text: string, stopReason: string) => toStream([
   {type: 'content_block_delta', delta: {type: 'text_delta', text}},
   {type: 'message_delta', delta: {stop_reason: stopReason}, usage: {output_tokens: 10}},
 ])
@@ -45,7 +44,7 @@ describe('callClaudeApi with the API', () => {
     fs.removeSync(responseFile)
   })
 
-  it('should send the request through the beta endpoint and save the response', async () => {
+  it('should send the request and save the response', async () => {
     mockCreate.mockResolvedValue(textStream('\\documentclass{article}', 'end_turn'))
 
     await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(true)
@@ -53,14 +52,6 @@ describe('callClaudeApi with the API', () => {
     expect(mockCreate).toHaveBeenCalledWith(createApiRequest('prompt'))
     const saved = fs.readJsonSync(responseFile)
     expect(saved.content[0].text).toBe('\\documentclass{article}')
-    expect(saved.model).toBe(API_MODEL)
-  })
-
-  it('should record the fallback model that served the response', async () => {
-    mockCreate.mockResolvedValue(textStream('\\documentclass{article}', 'end_turn', 'claude-fallback'))
-
-    await expect(callClaudeApi('prompt', 'professional')).resolves.toBe(true)
-    expect(fs.readJsonSync(responseFile).model).toBe('claude-fallback')
   })
 
   it.each(['refusal', 'max_tokens'])('should fail on stop_reason %s', async (stopReason) => {

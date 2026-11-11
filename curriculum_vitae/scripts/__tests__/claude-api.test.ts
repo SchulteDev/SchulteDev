@@ -36,14 +36,6 @@ describe('createApiRequest', () => {
     expect(request.output_config).toEqual({effort: API_EFFORT})
     expect(JSON.stringify(request)).not.toContain('budget_tokens')
   })
-
-  it('should opt into server-side refusal fallbacks', async () => {
-    const {createApiRequest} = await import('../claude-api.js')
-    const request = createApiRequest('prompt')
-
-    expect(request.betas).toContain('server-side-fallback-2026-07-01')
-    expect(request.fallbacks).toBe('default')
-  })
 })
 
 describe('processApiStream', () => {
@@ -51,7 +43,7 @@ describe('processApiStream', () => {
     yield* chunks
   })()
 
-  it('should collect text, usage, stop reason and serving model', async () => {
+  it('should collect text, usage and stop reason', async () => {
     const {processApiStream} = await import('../claude-api.js')
     const result = await processApiStream(toStream([
       {type: 'message_start', message: {model: 'claude-sonnet-5-5'}},
@@ -66,25 +58,7 @@ describe('processApiStream', () => {
       usage: {output_tokens: 42},
       stopReason: 'end_turn',
       stopDetails: null,
-      servedBy: 'claude-sonnet-5-5',
     })
-  })
-
-  it('should report the fallback model when the requested model declines', async () => {
-    const {processApiStream} = await import('../claude-api.js')
-    const result = await processApiStream(toStream([
-      {type: 'message_start', message: {model: 'claude-sonnet-5-5'}},
-      {type: 'content_block_delta', delta: {type: 'text_delta', text: 'Part 1 '}},
-      {
-        type: 'content_block_start',
-        content_block: {type: 'fallback', from: {model: 'claude-sonnet-5-5'}, to: {model: 'claude-sonnet-5'}}
-      },
-      {type: 'content_block_delta', delta: {type: 'text_delta', text: 'Part 2'}},
-      {type: 'message_delta', delta: {stop_reason: 'end_turn'}},
-    ]))
-
-    expect(result.content).toBe('Part 1 Part 2')
-    expect(result.servedBy).toBe('claude-sonnet-5')
   })
 
   it('should surface refusal and truncation stop reasons', async () => {

@@ -2,8 +2,7 @@
 
 import fs from 'fs-extra';
 import Anthropic from '@anthropic-ai/sdk';
-import {TextBlock} from '@anthropic-ai/sdk/resources';
-import type {BetaRefusalStopDetails, MessageCreateParamsStreaming} from '@anthropic-ai/sdk/resources/beta/messages';
+import type {MessageCreateParamsStreaming, RefusalStopDetails, TextBlock} from '@anthropic-ai/sdk/resources';
 import {
   API_EFFORT,
   API_MODEL,
@@ -68,7 +67,7 @@ const logClaudeResponse = (response: any, cvType: CvType, userPrompt: string): v
   fs.writeJsonSync(logFile, {
     timestamp: new Date().toISOString(),
     cvType,
-    requestedModel: API_MODEL,
+    model: API_MODEL,
     request: {
       userPrompt: userPrompt.slice(0, 200) + (userPrompt.length > 200 ? '...' : ''),
       maxTokens: MAX_TOKENS,
@@ -93,37 +92,22 @@ interface StreamResult {
   content: string;
   usage: any;
   stopReason: string | null;
-  stopDetails: BetaRefusalStopDetails | null;
-  servedBy: string | null;
+  stopDetails: RefusalStopDetails | null;
 }
 
-const applyStreamEvent = (result: StreamResult, chunk: any): void => {
-  switch (chunk.type) {
-    case 'message_start':
-      result.servedBy = chunk.message?.model ?? null;
-      break;
-    case 'content_block_start':
-      // Server-side fallback: the declined model's partial text is kept and the fallback model continues it
-      if (chunk.content_block?.type === 'fallback') {
-        result.servedBy = chunk.content_block.to?.model ?? result.servedBy;
-      }
-      break;
-    case 'content_block_delta':
-      if (chunk.delta?.type === 'text_delta') result.content += chunk.delta.text;
-      break;
-    case 'message_delta':
+export const processApiStream = async (stream: AsyncIterable<any>): Promise<StreamResult> => {
+  const result: StreamResult = {content: '', usage: null, stopReason: null, stopDetails: null};
+
+  for await (const chunk of stream) {
+    if (chunk.type === 'content_block_delta' && chunk.delta?.type === 'text_delta') {
+      result.content += chunk.delta.text;
+    } else if (chunk.type === 'message_delta') {
       result.usage = chunk.usage ?? result.usage;
       result.stopReason = chunk.delta?.stop_reason ?? result.stopReason;
       result.stopDetails = chunk.delta?.stop_details ?? result.stopDetails;
-      break;
+    }
   }
-};
 
-export const processApiStream = async (stream: AsyncIterable<any>): Promise<StreamResult> => {
-  const result: StreamResult = {content: '', usage: null, stopReason: null, stopDetails: null, servedBy: null};
-  for await (const chunk of stream) {
-    applyStreamEvent(result, chunk);
-  }
   return result;
 };
 
@@ -134,10 +118,7 @@ export const createApiRequest = (userPrompt: string): MessageCreateParamsStreami
   stream: true,
   // Claude 5.5 models reject budget_tokens; adaptive thinking depth is controlled via effort
   thinking: { type: 'adaptive' },
-  output_config: { effort: API_EFFORT },
-  // On a safety-classifier refusal, let the API continue on its default fallback model
-  betas: ['server-side-fallback-2026-07-01'],
-  fallbacks: 'default'
+  output_config: { effort: API_EFFORT }
 });
 
 const saveApiResponse = (response: any, cvType: CvType, userPrompt: string): void => {
@@ -175,19 +156,15 @@ const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => 
     const request = createApiRequest(userPrompt);
 
     logger.debug('Starting streaming response...');
-    const stream = await anthropic.beta.messages.create(request);
+    const stream = await anthropic.messages.create(request);
     const result = await processApiStream(stream);
-    const { content: completeResponse, usage, servedBy } = result;
+    const { content: completeResponse, usage } = result;
 
     if (!validateApiResponse(result, cvType)) {
       return false;
     }
-    if (servedBy && servedBy !== API_MODEL) {
-      logger.warn(`${API_MODEL} declined, response for ${cvType} CV was served by fallback ${servedBy}`);
-    }
 
     const response = {
-      model: servedBy ?? API_MODEL,
       content: [{ type: 'text', text: completeResponse }],
       usage: usage
     };
