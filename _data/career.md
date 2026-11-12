@@ -538,9 +538,11 @@ users, this platform was business-critical for corporate reputation and revenue 
 
 **Timeline:** 3+ year comprehensive transformation across four overlapping phases
 
-**Role:** Hands-on software lead combining architecture with active development - designed
-and deployed/ran microfrontend toolkit, developed Java SDK, implemented DevOps infrastructure,
-and coded production services
+**Role:** Hands-on software lead of my team, combining architecture with active development -
+designed and deployed/ran microfrontend toolkit, developed Java SDK, implemented DevOps
+infrastructure, and coded production services. Not the lead of the overall modernization:
+architectural responsibility lay with Union Investment; as a key team member I proposed the
+microfrontend approach that was finally adopted.
 
 **Team Leadership:** Managed teams of 5–7 developers, serving as technical Product Owner and agile
 coach
@@ -596,8 +598,8 @@ coach
 
 **Beta Phase Management (Apr-Jun 2022):**
 
-- **Beta Planning & Implementation:** Led comprehensive beta phase planning and implementation for
-  microfrontend container initiative
+- **Beta Planning & Implementation:** Beta phase planning and implementation for the
+  microfrontend container initiative within my team
 - **Beta Phase Completion:** Successfully completed beta phase with full functionality validation
   and stakeholder sign-off
 - **Source Code Migration:** Completed InvestmentWelt source code migration from legacy systems to
@@ -637,16 +639,15 @@ coach
   Infotainer, and Fonds & Produkte domains
 - **Subdomain Staging Strategy:** Developed comprehensive staging strategy enabling independent
   domain development and deployment
-- **Layout & Deployment Planning:** Orchestrated multiple stage planning cycles covering layout
+- **Layout & Deployment Planning:** Coordinated multiple stage planning cycles covering layout
   standardization, versioning, and deployment strategies
 - **B2B Portal Deployment:** Planned and coordinated B2B portal deployment across multiple business
   domains
 
 **Development Excellence & Quality Assurance:**
 
-- Led development of the "microfrontend-toolkit" framework enabling
-  Web Component-based Self-contained
-  systems implementation
+- Developed the "microfrontend-toolkit" framework as software lead of my team, enabling
+  Web Component-based Self-contained systems implementation
 - Served as technical Product Owner defining tasks and sprint goals for agile development
 - Selected Azure Static Web App as runtime with Application Insights monitoring for lightweight,
   robust architecture
@@ -667,8 +668,7 @@ coach
 
 **Production Infrastructure & Deployment (Oct 2022 - June 2023):**
 
-- **Azure Production Setup:** Led complete B2B portal production deployment on Azure cloud
-  infrastructure
+- **Azure Production Setup:** B2B portal production deployment on Azure cloud infrastructure
 - **Staging Architecture:** Created and implemented comprehensive staging concept enabling
   controlled releases across development, integration, and production environments
 - **Security & Compliance:** Coordinated and supported penetration testing, implemented DDoS
@@ -679,7 +679,7 @@ coach
   certificate management
 - **Monitoring & Operations:** Established comprehensive application monitoring, created operational
   handbooks, and implemented production support procedures
-- **Go-Live Coordination:** Orchestrated December 2023 production go-live including load testing,
+- **Go-Live Coordination:** Coordinated the December 2023 production go-live including load testing,
   final preparations, and cross-team coordination
 - **Team Onboarding:** Led technical onboarding of new team members
 
@@ -719,7 +719,7 @@ coach
 - **Documentation Standards:** Maintained comprehensive technical documentation and created
   operations manuals for production support
 
-**Business Impact & Cross-Team Leadership:**
+**Business Impact & Cross-Team Coordination:**
 
 - **Requirements Analysis:** Conducted detailed impact assessments for IK-Online integration
   affecting multiple development teams
@@ -738,8 +738,8 @@ coach
   into the distributed architecture
 - **IK Shell Operations:** Managed transition analysis and release management for IK Shell
   operations, ensuring business continuity
-- **Final Go-Live Coordination:** Orchestrated final search go-live across all business domains with
-  comprehensive testing and validation
+- **Final Go-Live Coordination:** Coordinated the final search go-live across all business domains
+  with comprehensive testing and validation
 - **Comprehensive Handover:** Executed systematic handover of all technical components including
   documentation, operational procedures, and knowledge transfer
 - **Project Closure:** Completed cleanup activities, finalized documentation, and ensured
@@ -747,8 +747,8 @@ coach
 
 **Key Technical Contributions:**
 
-- **Architecture Leadership:** Designed and led cloud-native transformation establishing
-  the SCS pattern as the corporate standard
+- **Architecture Contribution:** Proposed the microfrontend approach that was finally adopted for
+  the cloud-native transformation, whose SCS pattern became the corporate standard
 - **Framework Development:** Created reusable microfrontend toolkit enabling autonomous team
   development
 - **Quality Engineering:** Established a comprehensive testing pyramid
@@ -1463,8 +1463,9 @@ personal website, and branding materials.
 
 ### January 2025 — May 2025: AI Document Processing for Tax Software
 
-Developed CLI application automating document capture using Azure Document Intelligence and
-integration with SteuerSparErklärung tax software document manager.
+Developed [Sse-BelMngr-Hermine](https://github.com/SchulteDev/Sse-BelMngr-Hermine), a CLI
+application automating document capture using Azure Document Intelligence and integration with
+SteuerSparErklärung tax software document manager.
 
 **Technologies:** Golang, Azure Document Intelligence, SQLite  
 **Repository:** https://github.com/SchulteDev/Sse-BelMngr-Hermine
@@ -1478,7 +1479,8 @@ multi-tenant architecture.
 
 ### January 2015 — July 2015: Crypto-Arbitrage Trading Bot
 
-Created automated trading algorithms for Bitcoin arbitrage with machine learning implementation.
+My first attempt at automated trading: created automated trading algorithms for Bitcoin arbitrage
+with machine learning implementation.
 
 **Technologies:** Java, xChange API, Weka, LibSVM, MySQL, JUnit
 
