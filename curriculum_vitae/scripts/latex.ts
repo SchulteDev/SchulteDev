@@ -24,5 +24,4 @@ export const extractLatex = (response: string): string => {
   return latex;
 };
 
-/** Makes LuaLaTeX write a tagged PDF/UA-2 */
 export const tagged = (latex: string): string => `${DOCUMENT_METADATA}\n${latex}`;
