@@ -25,11 +25,11 @@ jobs:
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
-      - name: Check the PDF against PDF/UA-2
+      - name: Check the PDF against PDF/UA-1
         uses: docker://verapdf/cli:v1.30.4
         continue-on-error: true
         with:
-          args: --flavour ua2 --format text --verbose markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
+          args: --flavour ua1 --format text --verbose markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
       - name: Upload CV PDF
         uses: actions/upload-artifact@v7
         with:

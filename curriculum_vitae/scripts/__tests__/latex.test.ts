@@ -54,6 +54,6 @@ describe('extractLatex', () => {
 
 describe('tagged', () => {
   it('should put the document metadata in front of the document class', () => {
-    assert.equal(tagged(document), `\\DocumentMetadata{lang=en,pdfstandard=ua-2,tagging=on}\n${document}`)
+    assert.equal(tagged(document), `\\DocumentMetadata{lang=en,pdfstandard=ua-1,tagging=on}\n${document}`)
   })
 })

@@ -3,7 +3,7 @@
 const DOCUMENT_START = String.raw`\documentclass`;
 const DOCUMENT_END = String.raw`\end{document}`;
 const MIN_LENGTH = 500;
-const DOCUMENT_METADATA = String.raw`\DocumentMetadata{lang=en,pdfstandard=ua-2,tagging=on}`;
+const DOCUMENT_METADATA = String.raw`\DocumentMetadata{lang=en,pdfstandard=ua-1,tagging=on}`;
 
 /** Drops code fences and any prose around the document; throws if there is no complete document */
 export const extractLatex = (response: string): string => {
