@@ -1,14 +1,20 @@
 ---
-layout: page
-css: /assets/main.css
 title: PHP Developer and Head of Development at werkenntwen
+engagement:
+  - "Permanent Position"
+technologies:
+  - "PHP"
+  - "Zend Framework"
+  - "MySQL"
+  - "Memcache"
+  - "Jenkins"
+  - "PHPUnit"
+  - "Selenium"
+  - "REST API"
+  - "Sphinx"
 ---
 
-### August 2007 — June 2014: PHP Developer and Head of Development at werkenntwen
-
-*Permanent Position*
-
-**Role & Contributions:**
+## Role & Contributions
 
 - Led architecture modernization, transforming a procedural codebase to an object-oriented,
   multi-layered MVC pattern.
@@ -20,14 +26,9 @@ title: PHP Developer and Head of Development at werkenntwen
 - Introduced Continuous Integration with Jenkins and established PHPUnit testing with high code
   coverage.
 
-**Business Impact:**
+## Business Impact
 
 - Successfully scaled the platform to support over 9 million registered users.
 - Reduced page load times by 60% through architecture modernization.
 - Improved development processes by introducing automated and manual testing procedures.
 - Managed and mentored development teams, fostering a high-performance environment.
-
-**Key Technologies:**
-PHP, Zend Framework, MySQL, Memcache, Jenkins, PHPUnit, Selenium, REST API, Sphinx.
-
-<span style="float: right;">[Back](/#my-career)</span>

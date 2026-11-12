@@ -1,10 +1,10 @@
 ---
-layout: page
-css: /assets/main.css
+layout: subpage
+back: "/#about-me"
 title: Education & Academic Background
 ---
 
-# University Education - Diplom Computer Science
+## University Education – Diplom Computer Science
 
 **University of Koblenz-Landau, Campus Koblenz** • 2004 — 2012
 
@@ -28,7 +28,7 @@ This interdisciplinary program provided a strong foundation in both theoretical 
 practical visual computing applications, which continues to inform my approach to modern software
 architecture and user experience design.
 
-# Continuous Learning
+## Continuous Learning
 
 Throughout my 19+ year career, I've kept learning through:
 
@@ -43,5 +43,3 @@ Throughout my 19+ year career, I've kept learning through:
 *My educational foundation in Computer Science, combined with extensive real-world
 experience, enables me to bridge the gap between theoretical computer science principles and
 practical enterprise solutions.*
-
-<span style="float: right;">[Back](/#about-me)</span>

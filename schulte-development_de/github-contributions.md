@@ -1,10 +1,8 @@
 ---
-layout: page
-css: /assets/main.css
+layout: subpage
+back: "/#my-contributions"
 title: GitHub Contributions
 ---
-
-# GitHub Contributions
 
 Visit my <a href="https://github.com/SchulteDev" target="_blank">GitHub profile</a>
 to see all my contributions.
@@ -45,6 +43,14 @@ My contributions usually arise from real project needs: I fix or document what b
 
 ## Tech Focus
 
-Java, Go, TypeScript, Python, Quarkus, Spring Boot, Docker, Terraform, Cloud Architecture
-
-<span style="float: right;">[Back](/#my-contributions)</span>
+<div class="tags-group">
+  <span class="tag">Java</span>
+  <span class="tag">Go</span>
+  <span class="tag">TypeScript</span>
+  <span class="tag">Python</span>
+  <span class="tag">Quarkus</span>
+  <span class="tag">Spring Boot</span>
+  <span class="tag">Docker</span>
+  <span class="tag">Terraform</span>
+  <span class="tag">Cloud Architecture</span>
+</div>

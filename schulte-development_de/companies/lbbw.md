@@ -1,14 +1,20 @@
 ---
-layout: page
-css: /assets/main.css
 title: Cloud Architect at LBBW
+engagement:
+  - "Freelance"
+  - "Remote"
+technologies:
+  - "Azure (AKS, Functions, Static Web Apps)"
+  - "Kubernetes"
+  - "Spring Boot"
+  - "Apache Tomcat"
+  - "Microsoft IIS"
+  - "Oracle"
+  - "MS-SQL"
+  - "PostgreSQL"
 ---
 
-### November 2024 — December 2025: Cloud Architect at LBBW
-
-*Freelance \| Remote*
-
-**Role & Contributions:**
+## Role & Contributions
 
 - IT-architectural responsibility for the "Phoenix" IT Modernization project, focusing on migration
   to an Azure-based platform.
@@ -23,16 +29,10 @@ title: Cloud Architect at LBBW
 - Created standardized technical templates and analysis processes for systematic application
   assessment.
 
-**Business Impact:**
+## Business Impact
 
 - Established a comprehensive assessment framework for large-scale enterprise cloud migration
   readiness.
 - Drove targeted platform enhancements, significantly improving overall enterprise cloud readiness.
 - Provided strategic guidance for platform modernization, enhancing operational efficiency for
   critical banking operations.
-
-**Key Technologies:**
-Azure (AKS, Functions, Static Web Apps), Kubernetes, Spring Boot, Apache Tomcat, Microsoft IIS,
-Oracle, MS-SQL, PostgreSQL.
-
-<span style="float: right;">[Back](/#my-career)</span>

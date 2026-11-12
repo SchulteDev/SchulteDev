@@ -1,14 +1,24 @@
 ---
-layout: page
-css: /assets/main.css
 title: Senior Engineer & DevOp at toom Baumarkt GmbH
+engagement:
+  - "Freelance"
+  - "Bonn"
+technologies:
+  - "Java"
+  - "Golang"
+  - "Docker"
+  - "Kubernetes"
+  - "Kafka"
+  - "REST"
+  - "OAuth2"
+  - "Bamboo"
+  - "Selenium"
+  - "Pact"
+  - "Swagger"
+  - "Apache JMeter"
 ---
 
-### October 2016 — September 2017: Senior Engineer & DevOp at toom Baumarkt GmbH
-
-*Freelance \| Bonn*
-
-**Role & Contributions:**
+## Role & Contributions
 
 - Lead Developer with cross-team quality leadership responsibilities in a Scrum team focused on
   microservices development.
@@ -18,14 +28,14 @@ title: Senior Engineer & DevOp at toom Baumarkt GmbH
   performance.
 - Containerized microservices with Docker and established CI/CD pipelines with Bamboo.
 
-**Business Impact:**
+## Business Impact
 
 - Delivered 5 production microservices, replacing monolithic components.
 - Reduced deployment time from days to hours through DevOps transformation.
 - Improved software quality by establishing comprehensive testing and metrics frameworks.
 - Achieved significant performance gains, including a 70% improvement in test execution speed.
 
-**Client Testimonials**
+## Client Testimonials
 
 Received formal technical and organizational recommendations from tarent solutions GmbH leadership:
 
@@ -36,19 +46,13 @@ Received formal technical and organizational recommendations from tarent solutio
     dimensions of domain, technology, and process and brought added value to the project at an early
     stage.
   </blockquote>
-  <cite>— Sebastian Mancke, tarent solutions GmbH (September 2017</cite>
+  <cite>— Sebastian Mancke, tarent solutions GmbH (September 2017)</cite>
 </div>
 
-**Key Technical Achievements:**
+## Key Technical Achievements
 
 - Enabled decoupled development of Java microservices, removing external dependencies
 - Accelerated end-to-end test execution by ~70% through optimization
 - Reduced Java microservice memory consumption via Garbage Collection tuning
 - Introduced comprehensive tools: Swagger, HtmlUnit, OWASP, Apache JMeter, Pact
 - Implemented metrics integration in pull request workflows
-
-**Key Technologies:**
-Java, Golang, Docker, Kubernetes, Kafka, REST, OAuth2, Bamboo, Selenium, Pact, Swagger, Apache
-JMeter.
-
-<span style="float: right;">[Back](/#my-career)</span>
