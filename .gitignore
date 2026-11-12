@@ -1,4 +1,6 @@
-/.claude/
+/.claude/*
+!/.claude/settings.json
+!/.claude/hooks/
 /.playwright-mcp/
 /tmp/
 /.env
