@@ -4,8 +4,8 @@ Self-hosted copies of the libraries and fonts the `beautiful-jekyll` theme needs
 anything from a third party. Versions are in the directory names.
 
 They are referenced from [`_layouts/base.html`](../../_layouts/base.html), a local override of the
-theme's layout. `remote_theme` is pinned to a commit: re-check that override against upstream before bumping
-it.
+theme's layout. `remote_theme` is pinned to a commit: re-check that override against upstream
+before bumping it.
 
 ## Updating
 
