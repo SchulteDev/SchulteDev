@@ -64,11 +64,10 @@ const createSharedSubstitutions = (shared: SharedConfig): Record<string, string>
   };
 };
 
-const substitute = (text: string, substitutions: Record<string, string>): string => {
-  // Function replacer: values contain LaTeX, whose `$` must not be read as a replacement pattern
-  return Object.entries(substitutions).reduce((result, [placeholder, value]) =>
-    result.replaceAll(placeholder, () => value), text);
-};
+// Single pass: inserted values (career data, current CV, diff) are never scanned for placeholders
+// again, and the function replacer keeps `$` in LaTeX from being read as a replacement pattern
+const substitute = (text: string, substitutions: Record<string, string>): string =>
+  text.replaceAll(/\{\{[A-Z_]+}}/g, placeholder => substitutions[placeholder] ?? placeholder);
 
 const loadPrompts = (): PromptsConfig => {
   if (cachedPrompts) return cachedPrompts;

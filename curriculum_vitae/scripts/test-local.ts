@@ -207,11 +207,6 @@ const main = async (): Promise<void> => {
   }
 };
 
-// Run main
-try {
-  await main();
-  logger.debug('Test local completed successfully');
-} catch (error: any) {
-  logger.error(`Unhandled error in test local: ${error.message}`);
-  process.exit(1);
-}
+// Run main (it handles its own errors and exits non-zero on failure)
+await main();
+logger.debug('Test local completed successfully');

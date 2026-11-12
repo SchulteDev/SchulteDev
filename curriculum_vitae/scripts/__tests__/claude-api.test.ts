@@ -1,21 +1,6 @@
 import type {Message} from '@anthropic-ai/sdk/resources'
 import {describe, expect, it} from 'vitest'
 
-describe('claude-api', () => {
-  it('should remove code fences', () => {
-    const content = '```latex\n\\documentclass{article}\n```'
-    const cleaned = content.replace(/```(latex)?\n?/gi, '')
-
-    expect(cleaned).toContain('\\documentclass{article}')
-    expect(cleaned).not.toContain('```')
-  })
-
-  it('should validate content length', () => {
-    expect('short'.length).toBeLessThan(500)
-    expect('a'.repeat(600).length).toBeGreaterThanOrEqual(500)
-  })
-})
-
 describe('createApiRequest', () => {
   it('should use adaptive thinking with effort instead of a thinking budget', async () => {
     const {createApiRequest} = await import('../claude-api.js')

@@ -220,11 +220,6 @@ const main = async (): Promise<void> => {
   }
 };
 
-// Run the main function
-try {
-  await main();
-  logger.debug('CV update completed successfully');
-} catch (error: any) {
-  logger.error(`Unhandled error in CV update: ${error.message}`);
-  process.exit(1);
-}
+// Run the main function (it handles its own errors and exits non-zero on failure)
+await main();
+logger.debug('CV update completed successfully');
