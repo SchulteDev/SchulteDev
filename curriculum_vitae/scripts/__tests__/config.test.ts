@@ -1,51 +1,57 @@
 import {afterEach, describe, expect, it, vi} from 'vitest'
-import {getCvFile, getResponseFile, getTempFile} from '../config.js'
+
+// Empty values (as GitHub Actions passes unset inputs) also keep a local .env from leaking in via dotenv
+const DEFAULTS = {API_MODEL: '', API_EFFORT: '', CV_TYPES: '', SKIP_API: '', MAX_TOKENS: '', CAREER_FILE: ''}
+
+const loadConfig = async (env: Record<string, string> = {}) => {
+  vi.resetModules()
+  for (const [key, value] of Object.entries({...DEFAULTS, ...env})) vi.stubEnv(key, value)
+  return import('../config.js')
+}
 
 describe('config', () => {
-  describe('file paths', () => {
-    it('should return correct CV file paths', () => {
-      expect(getCvFile('professional')).toBe('../markus-schulte-dev-professional-cv.tex')
-      expect(getCvFile('anti')).toBe('../markus-schulte-dev-anti-cv.tex')
-    })
-
-    it('should return correct response file paths', () => {
-      expect(getResponseFile('professional')).toBe('tmp/response_professional.json')
-      expect(getResponseFile('anti')).toBe('tmp/response_anti.json')
-    })
-
-    it('should return correct temp file paths', () => {
-      expect(getTempFile('professional')).toBe('tmp/temp_professional.tex')
-      expect(getTempFile('anti')).toBe('tmp/temp_anti.tex')
-    })
+  afterEach(() => {
+    vi.unstubAllEnvs()
+    vi.resetModules()
   })
 
-  describe('API settings', () => {
-    afterEach(() => {
-      vi.unstubAllEnvs()
-      vi.resetModules()
-    })
+  it('should default to all CV types via Claude Sonnet 5.5 at xhigh effort', async () => {
+    const config = await loadConfig()
+    expect(config.API_MODEL).toBe('claude-sonnet-5-5')
+    expect(config.API_EFFORT).toBe('xhigh')
+    expect(config.MAX_TOKENS).toBe(64000)
+    expect(config.CV_TYPES_TO_PROCESS).toEqual(['professional', 'anti'])
+    expect(config.SKIP_API).toBe(false)
+  })
 
-    const loadConfig = async (env: Record<string, string>) => {
-      vi.resetModules()
-      for (const [key, value] of Object.entries(env)) vi.stubEnv(key, value)
-      return import('../config.js')
-    }
+  it('should accept an explicit model and effort', async () => {
+    const config = await loadConfig({API_MODEL: 'claude-opus-5-5', API_EFFORT: 'medium'})
+    expect(config.API_MODEL).toBe('claude-opus-5-5')
+    expect(config.API_EFFORT).toBe('medium')
+  })
 
-    // Empty values (as GitHub Actions passes unset inputs) also keep a local .env from leaking in via dotenv
-    it('should default to Claude Sonnet 5.5 at xhigh effort for empty workflow inputs', async () => {
-      const config = await loadConfig({API_MODEL: '', API_EFFORT: ''})
-      expect(config.API_MODEL).toBe('claude-sonnet-5-5')
-      expect(config.API_EFFORT).toBe('xhigh')
-    })
+  it('should reject an unknown effort level', async () => {
+    await expect(loadConfig({API_EFFORT: 'extreme'})).rejects.toThrow()
+  })
 
-    it('should accept an explicit model and effort', async () => {
-      const config = await loadConfig({API_MODEL: 'claude-opus-5-5', API_EFFORT: 'medium'})
-      expect(config.API_MODEL).toBe('claude-opus-5-5')
-      expect(config.API_EFFORT).toBe('medium')
-    })
+  it('should parse a comma-separated list of CV types', async () => {
+    expect((await loadConfig({CV_TYPES: ' anti '})).CV_TYPES_TO_PROCESS).toEqual(['anti'])
+    expect((await loadConfig({CV_TYPES: 'anti, professional'})).CV_TYPES_TO_PROCESS)
+      .toEqual(['anti', 'professional'])
+  })
 
-    it('should reject an unknown effort level', async () => {
-      await expect(loadConfig({API_EFFORT: 'extreme'})).rejects.toThrow()
-    })
+  it('should reject an unknown CV type', async () => {
+    await expect(loadConfig({CV_TYPES: 'professional,funny'})).rejects.toThrow()
+  })
+
+  it('should read SKIP_API=false as false', async () => {
+    expect((await loadConfig({SKIP_API: 'false'})).SKIP_API).toBe(false)
+    expect((await loadConfig({SKIP_API: 'true'})).SKIP_API).toBe(true)
+  })
+
+  it('should point to the committed CV files', async () => {
+    const {getCvFile} = await loadConfig()
+    expect(getCvFile('professional')).toBe('../markus-schulte-dev-professional-cv.tex')
+    expect(getCvFile('anti')).toBe('../markus-schulte-dev-anti-cv.tex')
   })
 })

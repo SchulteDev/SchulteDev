@@ -1,11 +1,9 @@
-import { defineConfig } from 'vitest/config'
+import {defineConfig} from 'vitest/config'
 
 export default defineConfig({
   test: {
-    globals: true,
     environment: 'node',
     include: ['__tests__/*.test.ts'],
-    exclude: ['coverage', 'node_modules', 'tmp'],
     reporters: ['default', 'junit'],
     outputFile: {
       junit: './test-results.xml'
@@ -14,13 +12,9 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html', 'lcov'],
       reportsDirectory: './coverage',
-      exclude: [
-        'coverage/**',
-        'node_modules/**',
-        'tmp/**',
-        '**/*.test.ts',
-        '**/*.config.ts'
-      ]
+      // List every source file, including those no test imports
+      include: ['*.ts'],
+      exclude: ['*.config.ts']
     }
   }
 })

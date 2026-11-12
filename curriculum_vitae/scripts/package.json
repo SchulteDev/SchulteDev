@@ -6,12 +6,9 @@
   "scripts": {
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
     "clean": "rm -rf coverage/ node_modules/ tmp/ test-results.xml",
-    "cv:update": "tsx run-cv-update.ts",
-    "cv:update:professional": "CV_TYPES=professional tsx run-cv-update.ts",
-    "cv:update:anti": "CV_TYPES=anti tsx run-cv-update.ts",
-    "cv:test": "tsx test-local.ts",
-    "cv:test:full": "tsx test-local.ts full_rebuild"
+    "cv:update": "tsx cv-update.ts"
   },
   "repository": {
     "type": "git",
@@ -36,19 +33,16 @@
   },
   "homepage": "https://github.com/SchulteDev/SchulteDev",
   "dependencies": {
-    "@actions/core": "3.0.1",
     "@anthropic-ai/sdk": "1.8.0",
     "consola": "3.4.2",
     "dotenv": "18.0.10",
-    "fs-extra": "11.4.1",
-    "simple-git": "4.0.2",
     "zod": "4.6.7"
   },
   "devDependencies": {
-    "@types/fs-extra": "11.0.4",
     "@types/node": "26.6.6",
     "@vitest/coverage-v8": "5.1.0",
     "tsx": "4.23.15",
+    "typescript": "7.0.2",
     "vitest": "5.1.0"
   },
   "engines": {

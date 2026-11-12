@@ -1,118 +1,51 @@
-// prompts.ts - Prompt management utilities with Zod validation
+// prompts.ts - The prompt that turns the career data into a LuaLaTeX CV
 
-import fs from 'fs-extra';
-import {z} from 'zod';
-import logger from './logger.js';
-import {CvType} from './config.js';
+import type {CvType} from './config.js';
 
-// Zod schemas for prompts.json structure
-const SharedConfigSchema = z.object({
-  structure: z.object({
-    pages: z.number().positive(),
-    output: z.string(),
-  }),
-  pageLayout: z.array(z.string()),
-  constraints: z.array(z.string()),
-  templates: z.object({
-    fullRebuild: z.union([z.string(), z.array(z.string())]),
-    incremental: z.union([z.string(), z.array(z.string())]),
-  }),
-});
+const PAGES = 4;
 
-const CvConfigSchema = z.object({
-  cvType: z.string(),
-  fullRebuildInstructions: z.string(),
-  incrementalInstructions: z.string(),
-});
+const PAGE_LAYOUT = [
+  'Page 1: CV Header, CV summary, key impacts, skills overview table without borders.',
+  'Page 2: Recent roles LBBW, Union Investment, Saloodo, Trusted Shops with three or four bullet points each.',
+  'Page 3: Two or three relevant previous work experiences, mention remaining work experiences; relevant personal projects.',
+  'Page 4: Education, additional skills, career breaks; footer: AI disclaimer.',
+];
 
-const PromptsConfigSchema = z.object({
-  shared: SharedConfigSchema,
-  antiCv: CvConfigSchema,
-  professionalCv: CvConfigSchema,
-});
+const CONSTRAINTS = [
+  `Exactly ${PAGES} vertical, filled, dense pages.`,
+  'Use \\newpage after each page.',
+  `Monitor content density for exactly ${PAGES} pages.`,
+  'Fill pages densely - aim for minimal whitespace.',
+  'Use \\vfill for remaining white space distribution.',
+  'Use \\vspace{} for vertical spacing fine-tuning.',
+  'Include flexible content sections for page tuning.',
+  'Valid, compilable LuaLaTeX with standard LuaLaTeX packages only.',
+  'Colors: \\usepackage[svgnames]{xcolor}. Use only svgnames predefined colors, no \\definecolor.',
+  'LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.',
+  'Prioritize most recent and impactful experiences, teaser the leftover experiences.',
+  'Absolutely truthful and factual regarding career data, dont oversell.',
+];
 
-// Type inference from Zod schemas
-type SharedConfig = z.infer<typeof SharedConfigSchema>;
-type CvConfig = z.infer<typeof CvConfigSchema>;
-type PromptsConfig = z.infer<typeof PromptsConfigSchema>;
-
-let cachedPrompts: PromptsConfig | null = null;
-
-const PLACEHOLDERS = {
-  CAREER_DATA: '{{CAREER_DATA}}',
-  CURRENT_CV: '{{CURRENT_CV}}',
-  DIFF_DATA: '{{DIFF_DATA}}',
-  PAGES: '{{PAGES}}',
-  CV_TYPE: '{{CV_TYPE}}',
-  SHARED_PAGE_LAYOUT: '{{SHARED_PAGE_LAYOUT}}',
-  SHARED_CONSTRAINTS: '{{SHARED_CONSTRAINTS}}',
-  SHARED_OUTPUT: '{{SHARED_OUTPUT}}',
-  TYPE_SPECIFIC_INSTRUCTIONS: '{{TYPE_SPECIFIC_INSTRUCTIONS}}'
-} as const;
-
-const normalize = (prompt: string | string[]): string =>
-  Array.isArray(prompt) ? prompt.join('\n') : prompt;
-
-const createSharedSubstitutions = (shared: SharedConfig): Record<string, string> => ({
-  [PLACEHOLDERS.PAGES]: shared.structure.pages.toString(),
-  [PLACEHOLDERS.SHARED_PAGE_LAYOUT]: shared.pageLayout.join('\n'),
-  [PLACEHOLDERS.SHARED_CONSTRAINTS]: shared.constraints.join('\n'),
-  [PLACEHOLDERS.SHARED_OUTPUT]: shared.structure.output
-});
-
-const substitute = (text: string, substitutions: Record<string, string>): string => {
-  return Object.entries(substitutions).reduce((result, [placeholder, value]) =>
-    result.replace(new RegExp(placeholder.replace(/[{}]/g, '\\$&'), 'g'), value), text);
+const CV_STYLES: Record<CvType, {description: string; instructions: string}> = {
+  professional: {
+    description: 'Professional CV: Quantified impact, leadership, business value.',
+    instructions: 'Emphasize quantified achievements, business value. Use metrics, percentages, concrete numbers.',
+  },
+  anti: {
+    description: 'Anti-CV: Humorous lessons and failures, self-deprecating, still professional.',
+    instructions: 'Focus on failures, missed opportunities, growth moments. '
+      + 'Professional tone with self-deprecating humor that pokes fun at technology, too.',
+  },
 };
 
-const loadPrompts = (): PromptsConfig => {
-  if (cachedPrompts) return cachedPrompts;
-
-  try {
-    const rawData = JSON.parse(fs.readFileSync(`${process.cwd()}/prompts.json`, 'utf8'));
-
-    // Validate JSON structure with Zod
-    cachedPrompts = PromptsConfigSchema.parse(rawData);
-
-    logger.debug('Loaded and validated prompts from prompts.json');
-    return cachedPrompts!;
-  } catch (error: any) {
-    if (error instanceof z.ZodError) {
-      const errorMessage = error.issues.map(e => `${e.path.join('.')}: ${e.message}`).join(', ');
-      logger.error(`Prompts validation failed: ${errorMessage}`);
-      throw new Error(`Invalid prompts.json structure: ${error.issues[0]?.message}`);
-    }
-    logger.error(`Failed to load prompts: ${error.message}`);
-    throw new Error(`Prompts not found: ${error.message}`);
-  }
-};
-
-const getPromptConfig = (type: CvType, prompts: PromptsConfig): CvConfig =>
-  type === 'anti' ? prompts.antiCv : prompts.professionalCv;
-
-export const getFullRebuildPrompt = (type: CvType, careerData: string): string => {
-  const prompts = loadPrompts();
-  const config = getPromptConfig(type, prompts);
-  const sharedSubs = createSharedSubstitutions(prompts.shared);
-  const substitutions = {
-    ...sharedSubs,
-    [PLACEHOLDERS.CAREER_DATA]: careerData,
-    [PLACEHOLDERS.CV_TYPE]: config.cvType,
-    [PLACEHOLDERS.TYPE_SPECIFIC_INSTRUCTIONS]: substitute(config.fullRebuildInstructions, sharedSubs)
-  };
-  return substitute(normalize(prompts.shared.templates.fullRebuild), substitutions);
-};
-
-export const getIncrementalPrompt = (type: CvType, currentCv: string, diffData: string): string => {
-  const prompts = loadPrompts();
-  const config = getPromptConfig(type, prompts);
-  const sharedSubs = createSharedSubstitutions(prompts.shared);
-  const substitutions = {
-    ...sharedSubs,
-    [PLACEHOLDERS.CURRENT_CV]: currentCv,
-    [PLACEHOLDERS.DIFF_DATA]: diffData,
-    [PLACEHOLDERS.CV_TYPE]: config.cvType,
-    [PLACEHOLDERS.TYPE_SPECIFIC_INSTRUCTIONS]: substitute(config.incrementalInstructions, sharedSubs)
-  };
-  return substitute(normalize(prompts.shared.templates.incremental), substitutions);
+export const buildPrompt = (cvType: CvType, careerData: string): string => {
+  const {description, instructions} = CV_STYLES[cvType];
+  return [
+    `Create exactly ${PAGES}-page ${description}`,
+    `Full career data:\`\`\`markdown\n${careerData}\n\`\`\`.`,
+    `Page layout: ${PAGE_LAYOUT.join('\n')}`,
+    `Constraints: ${CONSTRAINTS.join('\n')}`,
+    instructions,
+    'Output: LuaLaTeX code only.',
+  ].join('\n');
 };
