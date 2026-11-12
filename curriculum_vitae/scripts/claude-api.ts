@@ -37,29 +37,29 @@ const createMockResponse = (cvType: CvType): void => {
   }, {spaces: 2});
 };
 
-const generateDefaultMockContent = (): string => `
-\\documentclass{article}
-\\usepackage[T1]{fontenc}
-\\usepackage{lmodern}
-\\usepackage{lastpage}
-\\begin{document}
-\\title{Mock CV}
-\\author{Test User}
-\\date{\\today}
-\\maketitle
-\\section{Education}
-\\begin{itemize}
-\\item PhD Computer Science, Test University, 2020
-\\item MS Computer Science, Test University, 2018
-\\item BS Computer Science, Test University, 2016
-\\end{itemize}
-\\section{Experience}
-\\begin{itemize}
-\\item Senior Developer, Test Company, 2020-Present
-\\item Developer, Another Company, 2018-2020
-\\item Intern, Yet Another Company, 2016-2018
-\\end{itemize}
-\\end{document}`.trim();
+const generateDefaultMockContent = (): string => String.raw`
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{lastpage}
+\begin{document}
+\title{Mock CV}
+\author{Test User}
+\date{\today}
+\maketitle
+\section{Education}
+\begin{itemize}
+\item PhD Computer Science, Test University, 2020
+\item MS Computer Science, Test University, 2018
+\item BS Computer Science, Test University, 2016
+\end{itemize}
+\section{Experience}
+\begin{itemize}
+\item Senior Developer, Test Company, 2020-Present
+\item Developer, Another Company, 2018-2020
+\item Intern, Yet Another Company, 2016-2018
+\end{itemize}
+\end{document}`.trim();
 
 const logClaudeResponse = (response: any, cvType: CvType, userPrompt: string): void => {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -196,7 +196,7 @@ const readResponseContent = (responseFile: string, cvType: CvType): string | nul
 
     const data = fs.readJsonSync(responseFile);
 
-    if (!data.content?.[0] || data.content[0].type !== 'text') {
+    if (data.content?.[0]?.type !== 'text') {
       logger.error(`Invalid response content for ${cvType} CV`);
       return null;
     }

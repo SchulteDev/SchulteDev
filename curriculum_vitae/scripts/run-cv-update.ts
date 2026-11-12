@@ -45,7 +45,7 @@ const validateLatex = (filePath: string, cvType: CvType): boolean => {
   }
 
   const content = fs.readFileSync(filePath, 'utf8');
-  const required = ['\\documentclass', '\\begin{document}', '\\end{document}'];
+  const required = [String.raw`\documentclass`, String.raw`\begin{document}`, String.raw`\end{document}`];
 
   for (const element of required) {
     if (!content.includes(element)) {
@@ -111,15 +111,7 @@ const setupCleanupHandlers = (): void => {
 };
 
 const determineMode = (): 'incremental' | 'full_rebuild' => {
-  let mode: 'incremental' | 'full_rebuild' = 'incremental';
-
-  // Check for GitHub Actions workflow dispatch
-  if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
-    mode = (process.env.REBUILD_MODE as 'incremental' | 'full_rebuild') || 'incremental';
-  } else {
-    // For local development, read REBUILD_MODE from .env file
-    mode = (process.env.REBUILD_MODE as 'incremental' | 'full_rebuild') || 'incremental';
-  }
+  const mode = (process.env.REBUILD_MODE as 'incremental' | 'full_rebuild') || 'incremental';
 
   if (mode !== 'incremental' && mode !== 'full_rebuild') {
     logger.error(`Invalid mode: ${mode}. Must be 'incremental' or 'full_rebuild'`);
@@ -145,7 +137,7 @@ const executeTransformation = async (mode: 'incremental' | 'full_rebuild'): Prom
       await transformFullRebuild();
       return 'full_rebuild';
     } catch (error: any) {
-      logger.error('Full rebuild transformation failed');
+      logger.error(`Full rebuild transformation failed: ${error.message}`);
       process.exit(1);
     }
   }
@@ -156,7 +148,7 @@ const executeTransformation = async (mode: 'incremental' | 'full_rebuild'): Prom
   try {
     await transformIncremental();
   } catch (error: any) {
-    logger.error('Incremental transformation failed');
+    logger.error(`Incremental transformation failed: ${error.message}`);
     process.exit(1);
   }
 
@@ -228,9 +220,5 @@ const main = async (): Promise<void> => {
 };
 
 // Run the main function
-main().then(() => {
-  logger.debug('CV update completed successfully');
-}).catch(error => {
-  logger.error(`Unhandled error in CV update: ${error.message}`);
-  process.exit(1);
-});
+await main();
+logger.debug('CV update completed successfully');

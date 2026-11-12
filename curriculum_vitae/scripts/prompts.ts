@@ -53,17 +53,20 @@ const PLACEHOLDERS = {
 const normalize = (prompt: string | string[]): string =>
   Array.isArray(prompt) ? prompt.join('\n') : prompt;
 
-const createSharedSubstitutions = (shared: SharedConfig): Record<string, string> => ({
-  [PLACEHOLDERS.PAGES]: shared.structure.pages.toString(),
-  [PLACEHOLDERS.SHARED_PAGE_LAYOUT]: shared.pageLayout.join('\n'),
-  [PLACEHOLDERS.SHARED_CONSTRAINTS]: shared.constraints.join('\n'),
-  [PLACEHOLDERS.SHARED_OUTPUT]: shared.structure.output
-});
-
-const substitute = (text: string, substitutions: Record<string, string>): string => {
-  return Object.entries(substitutions).reduce((result, [placeholder, value]) =>
-    result.replace(new RegExp(placeholder.replace(/[{}]/g, '\\$&'), 'g'), value), text);
+const createSharedSubstitutions = (shared: SharedConfig): Record<string, string> => {
+  // Shared texts contain {{PAGES}}
+  const pages = {[PLACEHOLDERS.PAGES]: shared.structure.pages.toString()};
+  return {
+    ...pages,
+    [PLACEHOLDERS.SHARED_PAGE_LAYOUT]: substitute(shared.pageLayout.join('\n'), pages),
+    [PLACEHOLDERS.SHARED_CONSTRAINTS]: substitute(shared.constraints.join('\n'), pages),
+    [PLACEHOLDERS.SHARED_OUTPUT]: substitute(shared.structure.output, pages)
+  };
 };
+
+// Single pass; function replacer keeps `$` in values literal
+const substitute = (text: string, substitutions: Record<string, string>): string =>
+  text.replaceAll(/\{\{[A-Z_]+}}/g, placeholder => substitutions[placeholder] ?? placeholder);
 
 const loadPrompts = (): PromptsConfig => {
   if (cachedPrompts) return cachedPrompts;

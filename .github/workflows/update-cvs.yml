@@ -97,7 +97,7 @@ jobs:
           path: curriculum_vitae/scripts/coverage/
           retention-days: 7
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
+        uses: sonarsource/sonarqube-scan-action@v8
         with:
           projectBaseDir: curriculum_vitae/scripts/
         env:
@@ -107,6 +107,12 @@ jobs:
           DRY_RUN: true
           SKIP_API: true
         run: npm run cv:test
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@v1
+        with:
+          scanMetadataReportFile: curriculum_vitae/scripts/.scannerwork/report-task.txt
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   update-cvs:
     runs-on: ubuntu-latest
