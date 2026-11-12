@@ -34,8 +34,8 @@ building the public financial calculators. In parallel I run BitterQuant, a priv
 project on systematic trading on AWS. Previously Cloud Architect at LBBW for the "Phoenix" IT
 modernization.
 
-My way of working has changed: I work **agent-first** – coding agents write most of the code
-under my supervision, while I keep architecture, scope and quality decisions.
+I work **agent-first**: coding agents write most of the code under my supervision; I keep
+architecture, scope and quality decisions.
 
 **Core Expertise:**
 
@@ -69,7 +69,7 @@ with 5+ years of professional experience, particularly in microservices and midd
 *PHP** was my foundation (8+ years) during early career and social platform development. I also work
 with **TypeScript/JavaScript** for Node.js/NPM/pnpm applications and frontend integration when
 required, since 2026 also with React. **Python** has been a main language of mine since 2026,
-mainly for machine learning.
+mainly for machine learning (PyTorch, pandas).
 
 ### Architecture & Design
 
@@ -84,6 +84,7 @@ specializing in:
 - **Platform assessment frameworks** for evaluating cloud platforms and migration readiness
 - **Web Components integration** patterns for microfrontend architectures
 - **Multi-cloud strategies** across AWS, Azure, and GCP platforms
+- **Visualizing architectures with diagrams** (draw.io) for teams and stakeholders
 
 ### Cloud Platforms & DevOps
 
@@ -225,8 +226,8 @@ organizational and leadership capabilities:
 - **2024:** Event-driven architecture, Algolia search
 - **2025:** R-methodology assessment, Cloud Center of Excellence,
   AI integration (Azure Document Intelligence), automated document processing
-- **2025-2026:** Agentic coding (Claude Code), Python ML stack (PyTorch, time-series foundation
-  models), React, SBOMs
+- **2025-2026:** Agentic coding (Claude Code), Python ML stack (PyTorch, pandas, time-series
+  foundation models), React, SBOMs
 
 ## Professional Experience
 
@@ -314,7 +315,8 @@ CoP.
 
 **Phase 2: Delivery Platform (Jul – Aug 2026)**
 
-- Per-branch preview environments on Azure Static Web Apps
+- Per-branch preview environments on Azure Static Web Apps, with post-deployment tests before
+  the merge to main
 - Team-internal release automation to test and production with ITSM change integration; first
   major release v1.0.0
 - Terraform moved into the monorepo with automated checks and guards against destructive changes
@@ -350,13 +352,17 @@ CoP.
   test files
 - **Coverage gates from zero:** 80% per-package floor plus 80% new-code bar in 17 packages; shared
   library coverage 87% → 99.6%
-- **Faster, more honest CI:** Unit-test run 2.7× faster, slowest e2e group −29%, deploy step 45–81 s
-  → 26 s (own measurements in commit messages); automatic Playwright retries cut from 3 to 0
-  against deployed sites, so flaky tests surface instead of hiding
+- **Faster, more honest CI:** Unit-test run 2.7× faster, slowest e2e group −29%; automatic Playwright
+  retries cut from 3 to 0 against deployed sites, so flaky tests surface instead of hiding
 - **Delivery:** 4–7 tracked production releases per month, run by the team itself since July
   2026 (team trained on ITSM change process and release pipeline)
-- **Stakeholder previews without merging:** Before, changes had to be merged to main to be shown
-  to stakeholders; per-branch preview environments removed that
+- **Preview environments per branch:** Before, changes had to be merged to main before
+  stakeholders could see them or tests could run against a deployed site. Now every preview branch
+  gets its own environment, including post-deployment tests; orphaned previews are deleted
+  automatically, so no stale public URLs stay reachable
+- **Faster, reliable deployments:** Deploy step 45–81 s → 26 s (deployment client without a
+  593 MB image pull on cold agents); deploy right after the build instead of queued behind the e2e chain;
+  post-deployment tests wait until the new version is actually served and verify it
 - **Conversational platform takeover in ~4 weeks**, deadline met (see business success story above)
 - **Request origin attribution live** with a one-time bootstrap change and zero changes to the
   15+ calculator apps (see success story above)
