@@ -33,6 +33,7 @@ task :test do
   failures.concat(css_assets_resolve)
   failures.concat(legal_pages_present_and_linked)
   failures.concat(homepage_checks)
+  failures.concat(company_pages_have_portfolio_entry)
   report(failures)
   puts '✅ Custom checks passed'
 
@@ -162,4 +163,12 @@ def homepage_checks
   []
 rescue JSON::ParserError => e
   ["Home page JSON-LD is not valid JSON: #{e.message}"]
+end
+
+# The company layout takes logo and period from _data/portfolio.yml by page URL.
+def company_pages_have_portfolio_entry
+  Dir.glob('./_site/companies/*.html').sort.filter_map do |path|
+    period = Nokogiri::HTML(File.read(path)).at_css('.company-period')
+    "#{path}: no matching entry in _data/portfolio.yml" if period.nil? || period.text.strip.empty?
+  end
 end

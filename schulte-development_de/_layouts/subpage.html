@@ -11,7 +11,7 @@ layout: page
   {% for link in site.navbar-links %}
     {% if link[1] == page.back %}{% assign back_label = link[0] %}{% endif %}
   {% endfor %}
-  <nav class="subpage-back">
+  <p class="subpage-back">
     <a href="{{ page.back | relative_url }}" class="cta-button secondary">&larr; Back to {{ back_label }}</a>
-  </nav>
+  </p>
 {% endif %}
