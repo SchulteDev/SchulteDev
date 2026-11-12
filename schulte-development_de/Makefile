@@ -42,12 +42,7 @@ validate: build
 
 test: validate
 
-# Podman targets (rootless)
-#
-# The image runs as `nobody` (UID/GID 65534). `--userns=keep-id:uid=65534,gid=65534`
-# maps the host user onto that UID, so files the container writes into the
-# bind-mounted folder (_site, .jekyll-cache, .jekyll-metadata) end up owned by
-# the host user. `:Z` relabels the bind mount for SELinux hosts (no-op elsewhere).
+# Podman targets (rootless); keep-id maps the host user to the image's `nobody`
 PODMAN_IMAGE := localhost/schulte-development-de:dev
 PODMAN_RUN := podman run --rm \
 	--userns=keep-id:uid=65534,gid=65534 \
