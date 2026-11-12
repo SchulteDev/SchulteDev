@@ -17,7 +17,7 @@ css: /assets/main.css
     </p>
     <div class="hero-actions">
       <a href="{{ '/#lets-connect' }}" class="cta-button">Let's connect</a>
-      <a href="{{ '/#my-career' }}" class="cta-button ghost">See my career</a>
+      <a href="{{ site.cv_url }}" class="cta-button ghost">Download CV (PDF)</a>
     </div>
     <p class="slogan">"Crafting solutions that thrive today and tomorrow"</p>
   </div>
@@ -199,6 +199,10 @@ completed with distinction.
   </li>
 {% endfor %}
 </ol>
+
+<div class="cta-section">
+  <a href="{{ site.cv_url }}" class="cta-button secondary">Download CV (PDF)</a>
+</div>
 
 # My Services
 
