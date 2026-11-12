@@ -9,6 +9,7 @@ WORKDIR /app
 
 COPY --chmod=444 Gemfile Gemfile.lock ./
 RUN bundle config set force_ruby_platform true && \
+    bundle config set frozen true && \
     bundle install
 
 USER nobody

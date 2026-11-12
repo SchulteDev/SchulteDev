@@ -96,6 +96,12 @@ jobs:
         env:
           SKIP_API: true
         run: npm run cv:update
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@v1
+        with:
+          scanMetadataReportFile: curriculum_vitae/scripts/.scannerwork/report-task.txt
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   update-cvs:
     runs-on: ubuntu-latest

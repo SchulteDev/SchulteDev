@@ -138,7 +138,7 @@ p {
 
 /* Only boxes with links (career section) have hover effects */
 .box:has(a) {
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
 }
 
@@ -298,7 +298,7 @@ p {
   font-size: 0.9rem;
   text-transform: capitalize;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .tag:hover {
@@ -378,7 +378,7 @@ p {
 
 .cta-button {
   display: inline-block;
-  background-color: #28a745;
+  background-color: #218838;
   color: white;
   padding: 1rem 2rem;
   border-radius: 50px;
@@ -386,18 +386,18 @@ p {
   font-size: 1.1rem;
   font-weight: 600;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 4px 10px rgba(33, 136, 56, 0.3);
 }
 
 .cta-button:hover {
-  background-color: #218838;
+  background-color: #1e7e34;
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+  box-shadow: 0 6px 15px rgba(33, 136, 56, 0.4);
 }
 
 .cta-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(40, 167, 69, 0.2);
+  box-shadow: 0 2px 5px rgba(33, 136, 56, 0.2);
 }
 
 .cta-button.secondary {
@@ -408,6 +408,30 @@ p {
 .cta-button.secondary:hover {
   background-color: #5a6268;
   box-shadow: 0 6px 15px rgba(108, 117, 125, 0.4);
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-section .slogan {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .box:has(a),
+  .tag,
+  .contact-box,
+  .cta-button {
+    transition: none;
+  }
+
+  .box:has(a):hover,
+  .tag:hover,
+  .contact-box:hover,
+  .cta-button:hover,
+  .cta-button:active {
+    transform: none;
+  }
 }
 
 /* ===== RESPONSIVE ===== */
