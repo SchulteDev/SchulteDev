@@ -4,7 +4,7 @@ css: /assets/main.css
 title: Cloud Architect at LBBW
 ---
 
-### November 2024 — Present: Cloud Architect at LBBW
+### November 2024 — December 2025: Cloud Architect at LBBW
 
 *Freelance \| Remote*
 

@@ -30,11 +30,12 @@ architecture and user experience design.
 
 # Continuous Learning
 
-Throughout my 18+ year career, I've maintained a commitment to continuous learning through:
+Throughout my 19+ year career, I've kept learning through:
 
-- Industry conferences and workshops
-- Cloud platform certifications (AWS, Azure, GCP)
-- Open source contributions and community engagement
+- Personal projects in new territory, such as fine-tuning time-series foundation models with
+  PyTorch on AWS SageMaker and building software agent-first with coding agents
+- Open-source contributions and answers on StackOverflow
+- Java SE 8 TechCheck (IKM, 2018): 93/100, 88th percentile
 - Technical leadership roles that require staying current with emerging technologies
 
 ---

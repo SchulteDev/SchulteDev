@@ -1,40 +1,66 @@
+- title: Union Investment
+  role: IT Architect & Platform Engineer
+  period: Apr 2026 — today
+  description: IT architect for three teams; dependency updates ~9× faster, 3× more unit tests and a platform takeover in ~4 weeks.
+  img: ui.svg
+  url: /companies/union-investment-2026
 - title: LBBW
-  description: Cloud Architect, established assessment framework for large-scale enterprise migration and enhanced Azure platform readiness.
+  role: Cloud Architect
+  period: Nov 2024 — Dec 2025
+  description: Assessment framework for migrating hundreds of legacy applications to the bank's Azure platform.
   img: lbbw.svg
   url: /companies/lbbw
 - title: Union Investment
-  description: Cloud Architect, reduced deployment time from days to minutes, achieved 99.9% uptime, and established corporate architecture templates.
+  role: Software Lead & Cloud Architect
+  period: Oct 2021 — Dec 2024
+  description: Deployments from days to 30 minutes, 99.9% uptime, Self-contained Systems adopted as group-wide template.
   img: ui.svg
   url: /companies/union-investment
-- title: Saloodo!
-  description: Middleware Engineer, achieved 100% production uptime for business-critical data synchronization with Salesforce.
+- title: Saloodo! (DHL Group)
+  role: Middleware Engineer
+  period: Dec 2021 — Nov 2024
+  description: Sole engineer of a Go middleware syncing ~10 million records to Salesforce with 100% production uptime.
   img: saloodo.svg
   url: /companies/saloodo
 - title: Atlassian Bamboo Add-ons
-  description: Creator of commercial add-ons, built a sustainable 7-year business with global reach and recurring revenue.
+  role: Creator
+  period: Jun 2016 — Dec 2023
+  description: Commercial code-quality add-ons, 83 customers in 15+ countries over seven years.
   img: bamboo.png
   url: /companies/atlassian-bamboo-add-ons
 - title: Sedo GmbH
-  description: Cloud Consultant, reduced infrastructure overhead by 60% through service consolidation and trained 12 developers in contract testing.
+  role: Cloud Consultant
+  period: Jan 2020 — Mar 2020
+  description: Consolidated services into one Quarkus service (−60% infrastructure overhead), trained 12 developers in contract testing.
   img: sedo.png
   url: /companies/sedo-gmbh
 - title: Trusted Shops
-  description: Cloud Consultant, modernized legacy systems, achieved scalability with AWS microservices, and enhanced quality with contract testing.
+  role: Senior Software Engineer
+  period: Aug 2018 — Oct 2019
+  description: Modernized JavaEE legacy towards AWS serverless and led contract testing with Pact across teams.
   img: trusted-shops.svg
   url: /companies/trusted-shops
 - title: Allianz Global Digital Factory
-  description: Senior JavaEE Developer, successfully deployed 3 applications to CloudFoundry and created company-standard API documentation.
+  role: Senior JavaEE Developer
+  period: Nov 2017 — Mar 2018
+  description: Three applications to CloudFoundry production, API documentation adopted as company standard.
   img: allianz.svg
   url: /companies/allianz-global-digital-factory
 - title: toom Baumarkt GmbH
-  description: Senior Engineer & DevOp, delivered 5 production microservices, reduced deployment time from days to hours, and improved software quality.
+  role: Senior Engineer & DevOp
+  period: Oct 2016 — Sep 2017
+  description: Five production microservices, deployments from days to hours, end-to-end tests ~70% faster.
   img: toom.svg
   url: /companies/toom-baumarkt
 - title: Early Freelancing Projects
-  description: Implemented automated CI/CD pipelines for 6+ companies and led cloud transition projects reducing infrastructure costs by 40%.
+  role: Multiple short-term contracts
+  period: Jan 2014 — Aug 2016
+  description: CI/CD pipelines for 6+ companies and AWS transitions cutting infrastructure costs by 40%.
   img: rocket-ship-svgrepo-com.svg
   url: /companies/early-freelancing-projects
 - title: werkenntwen
-  description: PHP Developer & Head of Development, scaled platform for 9+ million users, managed development team, and reduced page load times by 60%.
+  role: PHP Developer & Head of Development
+  period: Aug 2007 — Jun 2014
+  description: Scaled one of Germany's largest social networks to 9+ million users and led its development team.
   img: wkw.png
   url: /companies/werkenntwen
