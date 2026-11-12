@@ -22,6 +22,10 @@ describe('extractLatex', () => {
     assert.equal(extractLatex(`Here is your CV:\n\n${document}\n\nGood luck!`), document)
   })
 
+  it('should start at the document, not at a mention of \\documentclass in the prose', () => {
+    assert.equal(extractLatex(`Uses \\documentclass{article}:\n\`\`\`latex\n${document}\n\`\`\``), document)
+  })
+
   it('should end at the first \\end{document}, as LaTeX does', () => {
     assert.equal(extractLatex(`${document}\n\nNote: text after \\end{document} is ignored.`), document)
   })

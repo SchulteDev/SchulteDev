@@ -1,21 +1,9 @@
 import assert from 'node:assert/strict'
-import {describe, it, mock} from 'node:test'
-import Anthropic, {APIError} from '@anthropic-ai/sdk'
-import type {Message} from '@anthropic-ai/sdk/resources'
+import {describe, it} from 'node:test'
+import {APIError} from '@anthropic-ai/sdk'
 import {createApiRequest, getCompleteText, sendPrompt} from '../claude.ts'
 import {API_EFFORT, API_MODEL, MAX_TOKENS} from '../config.ts'
-
-const message = (text: string, stopReason: string, stopDetails: unknown = null) => ({
-  content: [{type: 'thinking', thinking: '', signature: 'sig'}, {type: 'text', text, citations: null}],
-  stop_reason: stopReason,
-  stop_details: stopDetails,
-  usage: {input_tokens: 5, output_tokens: 10},
-}) as unknown as Message
-
-const clientReturning = (finalMessage: () => Promise<Message>) => {
-  const stream = mock.fn((_request: unknown) => ({finalMessage}))
-  return {stream, client: {messages: {stream}} as unknown as Anthropic}
-}
+import {fakeClient as clientReturning, fakeMessage as message} from './fakes.ts'
 
 describe('createApiRequest', () => {
   it('should use adaptive thinking with effort instead of a thinking budget', () => {

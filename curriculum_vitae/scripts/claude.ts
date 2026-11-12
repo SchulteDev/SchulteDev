@@ -13,8 +13,7 @@ export const createApiRequest = (prompt: string): MessageStreamParams => ({
 });
 
 /** Streams the request (required for long outputs) and returns the final message */
-export const sendPrompt = async (prompt: string, client: Pick<Anthropic, 'messages'> = new Anthropic()):
-  Promise<Message> => {
+export const sendPrompt = async (prompt: string, client: Pick<Anthropic, 'messages'>): Promise<Message> => {
   try {
     return await client.messages.stream(createApiRequest(prompt)).finalMessage();
   } catch (error) {

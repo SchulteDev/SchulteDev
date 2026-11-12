@@ -3,11 +3,10 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
-import type Anthropic from '@anthropic-ai/sdk'
-import type {Message} from '@anthropic-ai/sdk/resources'
 import {type CvType, getCvFile} from '../config.ts'
 import {claudeGenerator, LOG_DIR, reuseCommittedCv, updateCv} from '../cv-update.ts'
 import {extractLatex} from '../latex.ts'
+import {fakeClient, fakeMessage} from './fakes.ts'
 
 const document = `\\documentclass{article}\n\\begin{document}\n${'x'.repeat(600)}\n\\end{document}`
 
@@ -51,18 +50,8 @@ describe('updateCv', () => {
 
 describe('claudeGenerator', () => {
   const logFile = `${LOG_DIR}/claude-response-anti.json`
-  const clientAnswering = (text: string, stopReason: string) => ({
-    messages: {
-      stream: () => ({
-        finalMessage: async () => ({
-          content: [{type: 'text', text, citations: null}],
-          stop_reason: stopReason,
-          stop_details: null,
-          usage: {input_tokens: 5, output_tokens: 10},
-        }) as unknown as Message
-      })
-    }
-  }) as unknown as Anthropic
+  const clientAnswering = (text: string, stopReason: string) =>
+    fakeClient(async () => fakeMessage(text, stopReason)).client
 
   afterEach(() => fs.rmSync(logFile, {force: true}))
 
@@ -71,8 +60,14 @@ describe('claudeGenerator', () => {
 
     assert.equal(await generate('the prompt', 'anti'), document)
     const log = JSON.parse(fs.readFileSync(logFile, 'utf8'))
-    assert.equal(log.prompt, 'the prompt...')
+    assert.equal(log.prompt, 'the prompt')
     assert.deepEqual(log.message.usage, {input_tokens: 5, output_tokens: 10})
+  })
+
+  it('should log only the start of a long prompt', async () => {
+    await claudeGenerator(clientAnswering(document, 'end_turn'))('x'.repeat(300), 'anti')
+
+    assert.equal(JSON.parse(fs.readFileSync(logFile, 'utf8')).prompt, `${'x'.repeat(200)}...`)
   })
 
   it('should log a truncated response before failing', async () => {

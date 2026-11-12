@@ -27,7 +27,7 @@ export const claudeGenerator = (client: Pick<Anthropic, 'messages'> = new Anthro
     const message = await sendPrompt(prompt, client);
     fs.mkdirSync(LOG_DIR, {recursive: true});
     fs.writeFileSync(`${LOG_DIR}/claude-response-${cvType}.json`, JSON.stringify(
-      {model: API_MODEL, effort: API_EFFORT, prompt: `${prompt.slice(0, 200)}...`, message}, null, 2));
+      {model: API_MODEL, effort: API_EFFORT, prompt: prompt.length > 200 ? `${prompt.slice(0, 200)}...` : prompt, message}, null, 2));
     return getCompleteText(message);
   };
 

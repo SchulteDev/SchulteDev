@@ -6,11 +6,12 @@ const MIN_LENGTH = 500;
 
 /** Drops code fences and any prose around the document; throws if there is no complete document */
 export const extractLatex = (response: string): string => {
-  const start = response.indexOf(DOCUMENT_START);
-  const end = start === -1 ? -1 : response.indexOf(DOCUMENT_END, start);
+  const firstStart = response.indexOf(DOCUMENT_START);
+  const end = firstStart === -1 ? -1 : response.indexOf(DOCUMENT_END, firstStart);
   if (end === -1) {
     throw new Error(`Response contains no complete LaTeX document (${DOCUMENT_START} ... ${DOCUMENT_END})`);
   }
+  const start = response.lastIndexOf(DOCUMENT_START, end);
 
   const latex = response.slice(start, end + DOCUMENT_END.length).replace(/\n{3,}/g, '\n\n');
   if (!latex.includes(String.raw`\begin{document}`)) {
