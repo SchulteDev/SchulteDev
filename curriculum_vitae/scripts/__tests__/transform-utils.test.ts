@@ -1,51 +1,44 @@
-import {describe, expect, it} from 'vitest'
-import {extractRelativePath, shouldSkipDiff} from '../transform-utils.js'
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest'
+import {execFileSync} from 'child_process'
+import {existsSync, readFileSync, rmSync} from 'fs'
+import {CAREER_FILE, DIFF_FILE, ensureDirectories, GIT_DIFF_RANGE} from '../config.js'
+import {generateGitDiff, shouldSkipDiff} from '../transform-utils.js'
+
+const {mockDiff} = vi.hoisted(() => ({mockDiff: vi.fn()}))
+
+vi.mock('simple-git', () => ({simpleGit: () => ({diff: mockDiff})}))
 
 describe('transform-utils', () => {
-  describe('extractRelativePath', () => {
-    it('should extract career.md path correctly', () => {
-      // Test Unix-style paths
-      expect(extractRelativePath('/some/path/_data/career.md')).toBe('_data/career.md')
-
-      // Test Windows-style paths with backslashes
-      const windowsPath = 'C:\\path\\_data\\career.md'
-      expect(extractRelativePath(windowsPath)).toBe('_data/career.md')
-
-      // Test relative paths
-      expect(extractRelativePath('../_data/career.md')).toBe('_data/career.md')
+  describe('generateGitDiff', () => {
+    beforeEach(() => {
+      ensureDirectories()
+      rmSync(DIFF_FILE, {force: true})
     })
 
-    it('should remove leading ../ from other paths', () => {
-      // Unix-style paths
-      expect(extractRelativePath('../some/file.txt')).toBe('some/file.txt')
-      expect(extractRelativePath('../path/to/file.md')).toBe('path/to/file.md')
-
-      // Windows-style paths
-      expect(extractRelativePath('..\\some\\file.txt')).toBe('some/file.txt')
-      expect(extractRelativePath('..\\path\\to\\file.md')).toBe('path/to/file.md')
+    afterEach(() => {
+      mockDiff.mockReset()
+      rmSync(DIFF_FILE, {force: true})
     })
 
-    it('should keep paths without ../ unchanged', () => {
-      // Unix-style paths
-      expect(extractRelativePath('path/to/file.txt')).toBe('path/to/file.txt')
-      expect(extractRelativePath('/absolute/path/file.md')).toBe('/absolute/path/file.md')
+    it('should diff CAREER_FILE as given and write the result to DIFF_FILE', async () => {
+      mockDiff.mockResolvedValue('+ new career entry')
 
-      // Windows-style paths - we normalize to forward slashes for consistency
-      expect(extractRelativePath('path\\to\\file.txt')).toBe('path/to/file.txt')
-      expect(extractRelativePath('C:\\absolute\\path\\file.md')).toBe('C:/absolute/path/file.md')
+      expect(await generateGitDiff()).toBe(true)
+      expect(mockDiff).toHaveBeenCalledWith([`HEAD~${GIT_DIFF_RANGE}`, 'HEAD', '--', CAREER_FILE])
+      expect(readFileSync(DIFF_FILE, 'utf8')).toBe('+ new career entry')
     })
 
-    it('should handle Windows-specific path formats', () => {
-      // Drive letters with different cases
-      expect(extractRelativePath('c:\\path\\_data\\career.md')).toBe('_data/career.md')
-      expect(extractRelativePath('D:\\path\\_data\\career.md')).toBe('_data/career.md')
+    it('should throw when git diff fails', async () => {
+      mockDiff.mockRejectedValue(new Error('bad revision'))
 
-      // UNC paths
-      expect(extractRelativePath('\\\\server\\share\\_data\\career.md')).toBe('_data/career.md')
+      await expect(generateGitDiff()).rejects.toThrow('Failed to generate git diff: bad revision')
+      expect(existsSync(DIFF_FILE)).toBe(false)
+    })
 
-      // Mixed separators
-      expect(extractRelativePath('C:\\path/_data/career.md')).toBe('_data/career.md')
-      expect(extractRelativePath('..\\path/_data/career.md')).toBe('path/_data/career.md')
+    it('should use a CAREER_FILE pathspec that git resolves to the tracked career file', () => {
+      // git resolves pathspecs relative to the working directory (the scripts folder)
+      const tracked = execFileSync('git', ['ls-files', '--full-name', '--error-unmatch', '--', CAREER_FILE], {encoding: 'utf8'})
+      expect(tracked.trim()).toBe('_data/career.md')
     })
   })
 

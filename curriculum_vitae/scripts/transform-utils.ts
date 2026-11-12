@@ -45,15 +45,15 @@ export const buildIncrementalPrompt = (cvType: CvType): string => {
 // Git operations
 export const generateGitDiff = async (): Promise<boolean> => {
   try {
-    const relativePath = extractRelativePath(CAREER_FILE);
     const range = `HEAD~${GIT_DIFF_RANGE}`;
 
-    logger.debug(`Generating git diff: ${range} HEAD -- ${relativePath}`);
+    // git resolves pathspecs relative to the working directory, so CAREER_FILE is passed unchanged
+    logger.debug(`Generating git diff: ${range} HEAD -- ${CAREER_FILE}`);
 
-    const diffResult = await git.diff([range, 'HEAD', '--', relativePath]);
+    const diffResult = await git.diff([range, 'HEAD', '--', CAREER_FILE]);
     fs.writeFileSync(DIFF_FILE, diffResult);
 
-    logger.debug(`Created diff file for ${relativePath}`);
+    logger.debug(`Created diff file for ${CAREER_FILE}`);
     return true;
   } catch (error: any) {
     logger.error(`Git diff error: ${error.message}`);
@@ -82,23 +82,6 @@ export const validateDiffContent = (): boolean => {
   }
 
   return true;
-};
-
-export const extractRelativePath = (filePath: string): string => {
-  // Normalize path for consistent processing
-  const normalizedPath = filePath.replaceAll('\\', '/');
-
-  // Special case: if the path is exactly _data/career.md or ends with /_data/career.md
-  // but not if it's a relative path like ../path/_data/career.md
-  if (normalizedPath === '_data/career.md' ||
-    normalizedPath.endsWith('/_data/career.md') && !normalizedPath.includes('../')) {
-    return '_data/career.md';
-  }
-
-  // Handle both Unix and Windows relative paths and normalize to forward slashes
-  return normalizedPath
-  .replace(/^\.\.\//, '') // Remove leading ../
-  .replace(/^\.\.\\/, ''); // Remove leading ..\ (already normalized but just in case)
 };
 
 export const shouldSkipDiff = (diffContent: string): boolean => {
