@@ -16,7 +16,6 @@ on:
           - claude-opus-5-5
           - claude-sonnet-5-5
 
-# Generation is paid and commits to main: queue overlapping runs instead of racing them
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
@@ -111,7 +110,6 @@ jobs:
   update-cvs:
     runs-on: ubuntu-latest
     needs: [changes, test_cv_scripts]
-    # Calls the paid Claude API: only on manual runs and on career data changes on main
     if: >-
       always() && needs.test_cv_scripts.result == 'success' && (github.event_name == 'workflow_dispatch'
       || (github.event_name == 'push' && github.ref_name == 'main' && needs.changes.outputs.career == 'true'))

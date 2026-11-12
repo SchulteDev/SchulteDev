@@ -26,7 +26,6 @@ export const claudeGenerator = (client: Pick<Anthropic, 'messages'> = new Anthro
   async (prompt, cvType) => {
     logger.info(`Calling Claude ${API_MODEL} (effort: ${API_EFFORT}) for the ${cvType} CV...`);
     const message = await sendPrompt(prompt, client);
-    // Written before validation: a refused or truncated response is the one worth reading
     fs.mkdirSync(LOG_DIR, {recursive: true});
     fs.writeFileSync(`${LOG_DIR}/claude-response-${cvType}.json`, JSON.stringify(
       {model: API_MODEL, effort: API_EFFORT, prompt: `${prompt.slice(0, 200)}...`, message}, null, 2));
@@ -47,7 +46,6 @@ const main = async (): Promise<void> => {
   if (SKIP_API) logger.info('SKIP_API=true: re-using the committed CVs instead of calling Claude');
   const generate = SKIP_API ? reuseCommittedCv : claudeGenerator();
 
-  // One at a time: two parallel max-effort streams risk rate limits, and the first failure stops the run
   for (const cvType of CV_TYPES_TO_PROCESS) {
     await updateCv(cvType, careerData, generate);
   }

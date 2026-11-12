@@ -1,11 +1,10 @@
 import {afterEach, describe, expect, it, vi} from 'vitest'
 
-// Empty values (as GitHub Actions passes unset inputs) also keep a local .env from leaking in via dotenv
-const DEFAULTS = {API_MODEL: '', API_EFFORT: '', CV_TYPES: '', SKIP_API: '', MAX_TOKENS: '', CAREER_FILE: ''}
+const UNSET = {API_MODEL: '', API_EFFORT: '', CV_TYPES: '', SKIP_API: '', MAX_TOKENS: '', CAREER_FILE: ''}
 
 const loadConfig = async (env: Record<string, string> = {}) => {
   vi.resetModules()
-  for (const [key, value] of Object.entries({...DEFAULTS, ...env})) vi.stubEnv(key, value)
+  for (const [key, value] of Object.entries({...UNSET, ...env})) vi.stubEnv(key, value)
   return import('../config.js')
 }
 

@@ -2,13 +2,11 @@
 
 const DOCUMENT_START = String.raw`\documentclass`;
 const DOCUMENT_END = String.raw`\end{document}`;
-// A complete CV is tens of KB; anything this short is a placeholder, not a CV
 const MIN_LENGTH = 500;
 
 /** Drops code fences and any prose around the document; throws if there is no complete document */
 export const extractLatex = (response: string): string => {
   const start = response.indexOf(DOCUMENT_START);
-  // LaTeX ignores everything after the first \end{document}, so must we
   const end = start === -1 ? -1 : response.indexOf(DOCUMENT_END, start);
   if (end === -1) {
     throw new Error(`Response contains no complete LaTeX document (${DOCUMENT_START} ... ${DOCUMENT_END})`);

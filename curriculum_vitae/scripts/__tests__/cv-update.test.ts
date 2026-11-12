@@ -81,11 +81,11 @@ describe('claudeGenerator', () => {
 })
 
 describe('reuseCommittedCv', () => {
-  it.each(['professional', 'anti'] as const)('should answer with the committed %s CV', async cvType => {
-    const answer = await reuseCommittedCv('ignored', cvType)
+  it.each(['professional', 'anti'] as const)(
+    'should answer with the committed %s CV, which extraction keeps unchanged', async cvType => {
+      const answer = await reuseCommittedCv('ignored', cvType)
 
-    expect(answer).toBe(fs.readFileSync(getCvFile(cvType), 'utf8'))
-    // The committed CVs pass extraction unchanged, so a SKIP_API run is a no-op
-    expect(extractLatex(answer)).toBe(answer)
-  })
+      expect(answer).toBe(fs.readFileSync(getCvFile(cvType), 'utf8'))
+      expect(extractLatex(answer)).toBe(answer)
+    })
 })

@@ -19,7 +19,7 @@ const EnvSchema = z.object({
   CV_TYPES: z.string().default(ALL_CV_TYPES.join(','))
     .transform(value => [...new Set(value.split(',').map(type => type.trim()))])
     .pipe(z.array(z.enum(ALL_CV_TYPES)).min(1)),
-  // Re-use the committed CVs instead of calling Claude: a free end-to-end run of the pipeline
+  // Use the committed CVs as the model's answer
   SKIP_API: z.stringbool().default(false),
 });
 

@@ -2,7 +2,6 @@ import {describe, expect, it} from 'vitest'
 import {buildPrompt} from '../prompts.js'
 
 describe('buildPrompt', () => {
-  // `$&` and `{{…}}` would be mangled by a string-replace template engine
   const careerData = '# Career\nCut costs by $&5k; templating {{PAGES}} stays verbatim'
 
   it.each(['professional', 'anti'] as const)('should embed the career data verbatim for the %s CV', cvType => {
