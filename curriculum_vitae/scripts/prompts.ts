@@ -13,14 +13,14 @@ const PAGE_LAYOUT = [
 
 const CONSTRAINTS = [
   `Exactly ${PAGES} vertical, filled, dense pages.`,
-  'Use \\newpage after each page.',
+  String.raw`Use \newpage after each page.`,
   `Monitor content density for exactly ${PAGES} pages.`,
   'Fill pages densely - aim for minimal whitespace.',
-  'Use \\vfill for remaining white space distribution.',
-  'Use \\vspace{} for vertical spacing fine-tuning.',
+  String.raw`Use \vfill for remaining white space distribution.`,
+  String.raw`Use \vspace{} for vertical spacing fine-tuning.`,
   'Include flexible content sections for page tuning.',
   'Valid, compilable LuaLaTeX with standard LuaLaTeX packages only.',
-  'Colors: \\usepackage[svgnames]{xcolor}. Use only svgnames predefined colors, no \\definecolor.',
+  String.raw`Colors: \usepackage[svgnames]{xcolor}. Use only svgnames predefined colors, no \definecolor.`,
   'LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.',
   'Prioritize most recent and impactful experiences, teaser the leftover experiences.',
   'Absolutely truthful and factual regarding career data, dont oversell.',

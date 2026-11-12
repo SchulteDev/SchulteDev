@@ -46,14 +46,14 @@ const main = async (): Promise<void> => {
   if (SKIP_API) logger.info('SKIP_API=true: re-using the committed CVs instead of calling Claude');
   const generate = SKIP_API ? reuseCommittedCv : claudeGenerator();
 
-  for (const cvType of CV_TYPES_TO_PROCESS) {
-    await updateCv(cvType, careerData, generate);
-  }
+  await Promise.all(CV_TYPES_TO_PROCESS.map(cvType => updateCv(cvType, careerData, generate)));
 };
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
-  main().catch((error: unknown) => {
+  try {
+    await main();
+  } catch (error) {
     logger.error(error instanceof Error ? error.message : error);
-    process.exit(1);
-  });
+    process.exitCode = 1;
+  }
 }

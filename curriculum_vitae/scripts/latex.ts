@@ -1,7 +1,7 @@
 // latex.ts - Cut the LaTeX document out of a model response
 
-const DOCUMENT_START = '\\documentclass';
-const DOCUMENT_END = '\\end{document}';
+const DOCUMENT_START = String.raw`\documentclass`;
+const DOCUMENT_END = String.raw`\end{document}`;
 // A complete CV is tens of KB; anything this short is a placeholder, not a CV
 const MIN_LENGTH = 500;
 
@@ -14,8 +14,8 @@ export const extractLatex = (response: string): string => {
   }
 
   const latex = response.slice(start, end + DOCUMENT_END.length).replace(/\n{3,}/g, '\n\n');
-  if (!latex.includes('\\begin{document}')) {
-    throw new Error('LaTeX document has no \\begin{document}');
+  if (!latex.includes(String.raw`\begin{document}`)) {
+    throw new Error(String.raw`LaTeX document has no \begin{document}`);
   }
   if (latex.length < MIN_LENGTH) {
     throw new Error(`LaTeX document is too short (${latex.length} < ${MIN_LENGTH} chars)`);
