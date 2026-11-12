@@ -17,11 +17,11 @@ describe('config', () => {
     Object.assign(process.env, originalEnv)
   })
 
-  it('should default to all CV types via Claude Sonnet 5.5 at xhigh effort', async () => {
+  it('should default to all CV types via Claude Sonnet 5.5 at high effort', async () => {
     const config = await loadConfig()
     assert.equal(config.API_MODEL, 'claude-sonnet-5-5')
-    assert.equal(config.API_EFFORT, 'xhigh')
-    assert.equal(config.MAX_TOKENS, 64000)
+    assert.equal(config.API_EFFORT, 'high')
+    assert.equal(config.MAX_TOKENS, 128000)
     assert.deepEqual(config.CV_TYPES_TO_PROCESS, ['professional', 'anti'])
     assert.equal(config.SKIP_API, false)
   })
