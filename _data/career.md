@@ -1439,13 +1439,13 @@ personal website, and branding materials.
 
 **Key Features:**
 
-- **AI-Powered CV Generation:** Automated CV creation using Claude 4
+- **AI-Powered CV Generation:** Automated CV creation using the Anthropic Claude API (Sonnet/Opus 5.5 since November 2026)
 - **GitHub Actions Automation:** Sophisticated CI/CD pipeline with validation, compilation, and
   release workflows
 - **LaTeX Document Generation:** Professional PDF generation with automated GitHub releases
 - **Repository Structure:** Organized monorepo containing professional data, website and CV scripts
 
-**Technologies:** Node.js, Jekyll, LaTeX/pdflatex, GitHub Actions, Anthropic Claude 4 API  
+**Technologies:** Node.js, Jekyll, LaTeX/pdflatex, GitHub Actions, Anthropic Claude API  
 **Repository:** https://github.com/SchulteDev/SchulteDev
 
 ### January 2025 — May 2025: AI Document Processing for Tax Software
