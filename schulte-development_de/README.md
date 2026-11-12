@@ -30,7 +30,7 @@ You can build, serve, and test the site locally using `make` commands or Podman.
 
 ### Using Podman (rootless, Linux)
 
-Requires only [Podman](https://podman.io/docs/installation).
+Requires only [Podman](https://podman.io/docs/installation) 4.3 or newer.
 
 - **Build & Serve:** `make podman-serve`, then open http://localhost:4000 (live reload enabled)
 - **Test:** `make podman-test` (includes validation and testing)

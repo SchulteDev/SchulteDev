@@ -46,7 +46,7 @@ test: validate
 PODMAN_IMAGE := localhost/schulte-development-de:dev
 PODMAN_RUN := podman run --rm \
 	--userns=keep-id:uid=65534,gid=65534 \
-	--volume "$(CURDIR)":/app:Z
+	--volume "$(CURDIR)":/app:z
 
 podman-build:
 	podman build --file Containerfile --tag $(PODMAN_IMAGE) .
