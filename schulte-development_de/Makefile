@@ -1,4 +1,4 @@
-.PHONY: help serve doctor clean build test validate docker-serve docker-test all
+.PHONY: help serve doctor clean build test validate podman-build podman-serve podman-test all
 
 # Default target
 help:
@@ -9,8 +9,9 @@ help:
 	@echo "  build        - Clean and build the site"
 	@echo "  validate     - Build and validate the site"
 	@echo "  test         - Run validation tests"
-	@echo "  docker-serve - Start development server in Docker"
-	@echo "  docker-test  - Run tests in Docker"
+	@echo "  podman-build - Build the development container image with Podman"
+	@echo "  podman-serve - Start development server in a rootless Podman container"
+	@echo "  podman-test  - Run validation tests in a rootless Podman container"
 	@echo "  all          - Run complete test suite"
 
 # Development targets
@@ -41,12 +42,23 @@ validate: build
 
 test: validate
 
-# Docker targets
-docker-serve:
-	docker-compose up --build
+# Podman targets (rootless); keep-id maps the host user to the image's `nobody`
+PODMAN_IMAGE := localhost/schulte-development-de:dev
+PODMAN_RUN := podman run --rm \
+	--userns=keep-id:uid=65534,gid=65534 \
+	--volume "$(CURDIR)":/app:z
 
-docker-test:
-	docker-compose run --build --rm test
+podman-build:
+	podman build --file Containerfile --tag $(PODMAN_IMAGE) .
+
+podman-serve: podman-build
+	$(PODMAN_RUN) -it \
+		--publish 127.0.0.1:4000:4000 \
+		--publish 127.0.0.1:35729:35729 \
+		$(PODMAN_IMAGE)
+
+podman-test: podman-build
+	$(PODMAN_RUN) $(PODMAN_IMAGE) make validate
 
 # Complete pipeline
 all: test
