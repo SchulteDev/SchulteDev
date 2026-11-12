@@ -6,7 +6,7 @@
   "scripts": {
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc",
     "clean": "rm -rf coverage/ node_modules/ tmp/ test-results.xml",
     "cv:update": "tsx cv-update.ts"
   },

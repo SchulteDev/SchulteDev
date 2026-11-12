@@ -16,6 +16,11 @@ on:
           - claude-opus-5-5
           - claude-sonnet-5-5
 
+# Generation is paid and commits to main: queue overlapping runs instead of racing them
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   # having "changes" job instead of GitHub action paths filtering for being usable as pull request check
   changes:

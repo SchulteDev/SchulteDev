@@ -27,7 +27,7 @@ export const sendPrompt = async (prompt: string, client: Pick<Anthropic, 'messag
   }
 };
 
-/** Joins the text blocks (thinking blocks are separate); throws on a refused, truncated or empty answer */
+/** Joins the text blocks (thinking blocks are separate); throws unless the answer is complete and non-empty */
 export const getCompleteText = (message: Message): string => {
   const {stop_reason: stopReason, stop_details: stopDetails} = message;
   if (stopReason === 'refusal') {
@@ -36,6 +36,9 @@ export const getCompleteText = (message: Message): string => {
   }
   if (stopReason === 'max_tokens') {
     throw new Error(`Response was truncated at MAX_TOKENS=${MAX_TOKENS}`);
+  }
+  if (stopReason !== 'end_turn') {
+    throw new Error(`Response is incomplete (stop reason: ${stopReason})`);
   }
 
   const text = message.content

@@ -79,6 +79,10 @@ describe('getCompleteText', () => {
     expect(() => getCompleteText(message('\\documentclass{art', 'max_tokens'))).toThrow(/truncated/)
   })
 
+  it.each(['model_context_window_exceeded', 'pause_turn'])('should fail on an incomplete response (%s)', stopReason => {
+    expect(() => getCompleteText(message('\\documentclass{art', stopReason))).toThrow(`stop reason: ${stopReason}`)
+  })
+
   it('should fail on an empty response', () => {
     expect(() => getCompleteText(message('   ', 'end_turn'))).toThrow(/empty/)
   })

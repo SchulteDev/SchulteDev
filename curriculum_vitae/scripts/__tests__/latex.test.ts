@@ -21,6 +21,10 @@ describe('extractLatex', () => {
     expect(extractLatex(`Here is your CV:\n\n${document}\n\nGood luck!`)).toBe(document)
   })
 
+  it('should end at the first \\end{document}, as LaTeX does', () => {
+    expect(extractLatex(`${document}\n\nNote: text after \\end{document} is ignored.`)).toBe(document)
+  })
+
   it('should collapse runs of blank lines', () => {
     const spaced = document.replace('\\begin{document}', '\n\n\n\\begin{document}')
     expect(extractLatex(spaced)).toBe(document.replace('\\begin{document}', '\n\\begin{document}'))

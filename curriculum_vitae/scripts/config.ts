@@ -15,9 +15,9 @@ const EnvSchema = z.object({
   API_MODEL: z.string().default('claude-sonnet-5-5'),
   API_EFFORT: z.enum(API_EFFORT_LEVELS).default('xhigh'),
   // Shared by thinking and the LaTeX output
-  MAX_TOKENS: z.coerce.number().positive().default(64000),
+  MAX_TOKENS: z.coerce.number().int().positive().default(64000),
   CV_TYPES: z.string().default(ALL_CV_TYPES.join(','))
-    .transform(value => value.split(',').map(type => type.trim()))
+    .transform(value => [...new Set(value.split(',').map(type => type.trim()))])
     .pipe(z.array(z.enum(ALL_CV_TYPES)).min(1)),
   // Re-use the committed CVs instead of calling Claude: a free end-to-end run of the pipeline
   SKIP_API: z.stringbool().default(false),

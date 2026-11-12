@@ -8,8 +8,9 @@ const MIN_LENGTH = 500;
 /** Drops code fences and any prose around the document; throws if there is no complete document */
 export const extractLatex = (response: string): string => {
   const start = response.indexOf(DOCUMENT_START);
-  const end = response.lastIndexOf(DOCUMENT_END);
-  if (start === -1 || end < start) {
+  // LaTeX ignores everything after the first \end{document}, so must we
+  const end = start === -1 ? -1 : response.indexOf(DOCUMENT_END, start);
+  if (end === -1) {
     throw new Error(`Response contains no complete LaTeX document (${DOCUMENT_START} ... ${DOCUMENT_END})`);
   }
 

@@ -40,6 +40,14 @@ describe('config', () => {
       .toEqual(['anti', 'professional'])
   })
 
+  it('should process a repeated CV type once', async () => {
+    expect((await loadConfig({CV_TYPES: 'anti,anti'})).CV_TYPES_TO_PROCESS).toEqual(['anti'])
+  })
+
+  it('should reject a fractional MAX_TOKENS', async () => {
+    await expect(loadConfig({MAX_TOKENS: '32000.5'})).rejects.toThrow()
+  })
+
   it('should reject an unknown CV type', async () => {
     await expect(loadConfig({CV_TYPES: 'professional,funny'})).rejects.toThrow()
   })
