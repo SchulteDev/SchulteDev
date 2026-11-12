@@ -7,19 +7,18 @@ css: /assets/main.css
   <img src="{{ '/assets/img/markus-schulte.jpg' }}" alt="Portrait of Markus Schulte" class="hero-photo"/>
   <div class="hero-text">
     <h1>Markus Schulte<span class="hero-role">Cloud Architect &amp; Software Engineer</span></h1>
-    <p>
-      19+ years hands-on (12+ as a freelancer) in enterprise modernization and cloud-native
-      transformation, from architecture to production code.
+    <p class="hero-tagline">
+      The architect who still ships: I modernize enterprise IT so small teams can deliver safely
+      and often, working agent-first.
     </p>
     <p>
-      Currently IT architect for three teams at Union Investment, hands-on in the team behind the
-      public financial calculators.
+      19+ years hands-on, 12+ as a freelancer. Currently IT architect for three teams at Union
+      Investment, hands-on in the team behind the public financial calculators.
     </p>
     <div class="hero-actions">
       <a href="{{ '/#lets-connect' }}" class="cta-button">Let's connect</a>
       <a href="{{ site.cv_url }}" class="cta-button ghost">Download CV (PDF)</a>
     </div>
-    <p class="slogan">"Crafting solutions that thrive today and tomorrow"</p>
   </div>
 </div>
 

@@ -111,11 +111,11 @@ a:hover {
   margin: 1.5rem 0 0;
 }
 
-.hero-section .slogan {
-  font-style: italic;
-  font-size: 1rem;
-  color: #b9c4ce;
-  margin: 1.5rem 0 0;
+.hero-section .hero-tagline {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--surface);
+  margin-bottom: 1rem;
 }
 
 /* ===== FACTS ===== */
@@ -549,6 +549,10 @@ a:hover {
 
   .hero-section p {
     font-size: 1rem;
+  }
+
+  .hero-section .hero-tagline {
+    font-size: 1.1rem;
   }
 
   .hero-actions {
