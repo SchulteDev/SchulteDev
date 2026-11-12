@@ -29,6 +29,8 @@ describe('buildPrompt', () => {
     assert.ok(buildPrompt('anti', '').includes('Use \\newpage after each page.'))
     assert.ok(buildPrompt('anti', '').includes('Headings: \\section* and \\subsection* only'))
     assert.ok(buildPrompt('professional', '').includes('never the before= or after= keys'))
+    assert.ok(buildPrompt('professional', '').includes('no \\hspace or other spacing commands'))
+    assert.ok(buildPrompt('anti', '').includes('Set pdftitle and pdfauthor with \\hypersetup.'))
     assert.ok(buildPrompt('anti', '').includes('Symbols in text mode (\\texttimes, \\textrightarrow'))
   })
 })
