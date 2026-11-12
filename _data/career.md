@@ -248,8 +248,7 @@ develop further.
 **Role:** IT architect for Fondsdatenkiosk (FDK), fonds-visual (F&V) and SynFonIC; main home
 and hands-on work in Team Rechner – there in practice owning architecture, CI/CD, release,
 infrastructure, test strategy and dependency hygiene, while also building features, running
-PoCs, writing ADRs and drafting stories. Top committer of the team's frontend monorepo since
-joining. End-user features are mostly built by the team under my architectural guidance; my own
+PoCs, writing ADRs and drafting stories. End-user features are mostly built by the team under my architectural guidance; my own
 hands-on work focuses on architecture, delivery and quality – largely invisible to end users, but
 it is what lets a small team ship safely and often.
 
@@ -341,8 +340,7 @@ CoP.
 - **Dependency updates ~9× faster:** Median time-to-merge of Renovate PRs from ~2 h to 13 min (p90
   from 69 h to 4 h); merged within one hour from 24% to 83%, abandoned from 8% to 3%. Before, Renovate
   had been intermittently broken for months
-- **Unit tests 3×:** 538 → 1,659 test cases (54 → 206 test files); I authored two-thirds of the new
-  test files
+- **Unit tests 3×:** 538 → 1,659 test cases (54 → 206 test files)
 - **Coverage gates from zero:** 80% per-package floor plus 80% new-code bar in 17 packages; shared
   library coverage 87% → 99.6%
 - **Faster, more honest CI:** Unit-test run 2.7× faster, slowest e2e group −29%; automatic Playwright
