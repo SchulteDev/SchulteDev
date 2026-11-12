@@ -133,33 +133,26 @@ I consistently apply modern software engineering practices:
 
 ### Agentic Coding
 
-Since 2025 I build software primarily by directing coding agents (Claude Code) – first in private
-projects ([ConversationalAI4J](https://github.com/SchulteDev/ConversationalAI4J) from August 2025,
+Since 2025 I build software by directing coding agents (Claude Code) – first in private projects
+([ConversationalAI4J](https://github.com/SchulteDev/ConversationalAI4J),
 [deye-microinverter-power-limit](https://github.com/SchulteDev/deye-microinverter-power-limit),
 [multi-resolution-timeseries-parquet](https://github.com/SchulteDev/multi-resolution-timeseries-parquet),
-BitterQuant), today as my default way of working. The agent writes most of the code; I own goals,
-architecture, scope, review and the go/no-go.
+BitterQuant), today by default. The agent writes most of the code; I own goals, architecture,
+review and the go/no-go.
 
 **My assessment:** As an experienced engineer I can judge code reliably – that is the
-prerequisite. Agentic coding increased my throughput enormously, and in my experience quality even
-went up. I am most efficient when an AI programs under my supervision: it takes over
-straightforward work like tests and documentation, which lets me focus on the domain outcome.
+prerequisite. My throughput increased enormously, in my experience with even higher quality. The
+agent takes over tests and documentation; I focus on the domain outcome.
 
 **How I work:**
 
-- Parallel agent sessions in separate git worktrees, subagents for research and review
-- Custom skills for recurring workflows (PR review, dependency updates, story writing), hooks as
-  guardrails, one versioned repository as single source of truth for agent configuration
-- Automated agentic PR review ("John review", see Personal Projects): labelling a PR triggers a
-  headless agent that reviews, pushes fixes and posts a verdict
-- MCP integrations (Azure DevOps, AWS, browser, documentation)
-- Same quality gates for agent-written code as for human-written code: review, coverage gates,
-  test pyramid
-- I push back on agent proposals with YAGNI/KISS arguments; architecture and trade-offs stay my
-  decision
+- Parallel sessions in git worktrees, subagents, custom skills, hooks as guardrails, MCP
+  integrations
+- Automated agentic PR review ("John review", see Personal Projects)
+- Same quality gates as for human-written code; architecture and trade-offs stay my decision
 
 **Community:** Made Microsoft's [azure-devops-skills](https://github.com/microsoft/azure-devops-skills)
-installable as a Claude Code plugin (merged upstream, see Open-Source Contributions).
+installable as a Claude Code plugin (merged upstream).
 
 ### Leadership & Team Management
 
@@ -244,7 +237,7 @@ InvestmentWelt – each shipped as standalone React app and as Web Component, ba
 platform integrating third-party calculation engines. Additionally supporting sibling teams of
 the funds squad (fonds-visual, Fondsdatenkiosk, SynFonIC).
 
-**Timeline:** Since 27 April 2026 (ongoing)
+**Timeline:** Since April 2026 (ongoing)
 
 **Motivation:** I was looking for a new engagement and Union Investment had a matching position.
 I already knew the environment from my previous engagement (modern, agile, Azure), and the new
@@ -401,7 +394,7 @@ success rate.*
 **Lessons Learned (so far):**
 
 - **Taking care of tech debt pays off:** Most of the measured results above come from paying down
-  technical debt – and the team profits from it every day
+  technical debt – and the team profits from it
 - **An autonomous, motivated team is gold:** Confirmed once again
 - **Separate operations teams create friction:** Here, operations is handled by dedicated teams.
   Every handover costs communication effort and brings together different working styles and
@@ -1388,7 +1381,7 @@ profitable, and that I can try out myself – not only, but also, to learn.
 - **Trading system:** event-driven backtesting and live execution with NautilusTrader and the
   Interactive Brokers API; low-cost serverless live runtime on AWS ECS Fargate
 - **Infrastructure-as-Code:** AWS CDK, least-privilege IAM
-- **Research rigor:** every decision as ADR, including negative results; pre-registered
+- **Research rigor:** decisions as ADRs, including negative results; pre-registered
   hypotheses and held-out data; paper trading, not backtests, decides what goes live
 - **Built agent-first** with coding agents under my supervision
 
