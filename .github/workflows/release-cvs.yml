@@ -59,17 +59,13 @@ jobs:
           name: professional-cv-pdf
           path: .
         continue-on-error: true
-      - name: Delete existing release and tag
-        run: |
-          gh release delete cvs-latest --yes || true
-          git push --delete origin cvs-latest || true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload PDFs to GitHub Releases
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: cvs-latest
-          name: "Latest CVs - Markus Schulte"
+          # Immutable releases never free a tag name again: one tag per run
+          tag_name: cvs-${{ github.run_number }}
+          target_commitish: ${{ github.sha }}
+          name: "CVs #${{ github.run_number }} - Markus Schulte"
           body: |
             🤖 Auto-generated CVs (AI Model: Claude)
 
