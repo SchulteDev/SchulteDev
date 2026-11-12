@@ -1527,7 +1527,9 @@ Visualistics in Koblenz.
 
 - **StackOverflow:**
   - Personal userpage on StackOverflow: https://stackoverflow.com/users/1645517/markus-schulte
-  - 4000+ reputation points demonstrating community contributions
+  - 4,807 reputation points, ~3.3 million people reached, 3 gold / 53 silver / 71 bronze badges,
+    57 answers and 57 questions (November 2026)
+  - Top tags: Java (score 187), Jenkins (76), Spring Boot (51), Maven (50), testing (18)
 - **Java SE 8 TechCheck (IKM):**
   - Test result:
     [Java SE 8 TechCheck (IKM)](credentials/2018_IKM%20TechCheck%20Java%20SE%208%20Markus%20Schulte%20test%20result.pdf)

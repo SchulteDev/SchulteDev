@@ -107,7 +107,7 @@ jobs:
           sleep 10
           set -x
           for i in {1..10}; do
-            if curl -f "$url" | grep -q "Markus Schulte: Cloud Architect &amp; Software Engineer" && \
+            if curl -f "$url" | grep -q "<h1>Markus Schulte" && \
                curl -fsS "${url}imprint" | grep -q "5 DDG" && \
                curl -fsS "${url}privacy" | grep -q "Verantwortlicher" && \
                curl -fsS -o /dev/null "${url}assets/vendor/fonts/fonts.css" && \

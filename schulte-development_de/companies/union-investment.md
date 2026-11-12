@@ -1,10 +1,10 @@
 ---
 layout: page
 css: /assets/main.css
-title: Cloud Architect at Union Investment
+title: Software Lead & Cloud Architect at Union Investment
 ---
 
-### October 2021 — December 2024: Cloud Architect at Union Investment
+### October 2021 — December 2024: Software Lead & Cloud Architect at Union Investment
 
 *Freelance \| Remote*
 
@@ -40,29 +40,22 @@ Based on comprehensive 360-degree feedback surveys (December 2021, June 2022, No
 <div class="testimonials-section">
 <div class="testimonial">
   <blockquote>
-    Markus Schulte has in his multi-year engagement in the web portals domain successfully deployed
-    his outstanding technical expertise and pronounced communicative talent across multiple teams as an
-    architect. His work approach was consistently characterized by professionalism, reliability, and
-    high quality.
+    In his multi-year engagement in the web portals domain, Markus Schulte very successfully applied
+    his outstanding technical expertise and pronounced communicative talent as an architect across
+    several teams. His work was always characterized by professionalism, reliability and high
+    quality. His structured approach and his ability to analyze complex architectures, share them
+    with the team and develop them to the 'next level' have greatly advanced the entire project. His
+    ability to convince and inspire colleagues about the opportunities and advantages of technical
+    solutions was decisive in setting common goals and achieving them as planned.
   </blockquote>
-  <cite>— Senior Colleague, Union Investment (2024)</cite>
-</div>
-
-<div class="testimonial">
-  <blockquote>
-    His structured approach and ability to analyze complex architectures, share knowledge with the
-    team, and develop them to the 'next level' have greatly advanced the entire project. His ability to
-    convince and inspire colleagues about the opportunities and advantages of technical solutions was
-    decisive in setting common goals and achieving them as planned.
-  </blockquote>
-  <cite>— Team Member, Union Investment (2024)</cite>
+  <cite>— Direct team colleague, 360° feedback (2024)</cite>
 </div>
 
 <div class="testimonial">
   <blockquote>
     Great that you were also easy to reach through informal channels. Thank you for your support.
   </blockquote>
-  <cite>— Project Stakeholder, Union Investment (2024)</cite>
+  <cite>— Colleague from the wider project, 360° feedback (2024)</cite>
 </div>
 </div>
 

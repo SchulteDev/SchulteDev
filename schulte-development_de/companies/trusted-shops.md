@@ -1,10 +1,10 @@
 ---
 layout: page
 css: /assets/main.css
-title: Cloud Consultant at Trusted Shops
+title: Senior Software Engineer at Trusted Shops
 ---
 
-### August 2018 — October 2019: Cloud Consultant at Trusted Shops
+### August 2018 — October 2019: Senior Software Engineer at Trusted Shops
 
 *Freelance \| Cologne*
 
