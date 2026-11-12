@@ -10,10 +10,15 @@
 
 ## 👨‍💻 About Me
 
-**Cloud Architect & Software Engineer** with **19+ years of experience** specializing in enterprise
-modernization and cloud-native transformations.
+**Cloud Architect & Software Engineer** with **19+ years of hands-on experience** (12+ as a
+freelancer) specializing in enterprise modernization and cloud-native transformations.
 
-I help enterprises transform legacy systems into modern, scalable architectures.
+I help enterprises transform legacy systems into modern, scalable architectures – with
+Self-contained Systems, event-driven integration and the quality gates that let small teams ship
+safely and often.
+
+I work **agent-first**: coding agents write most of the code under my supervision; I keep
+architecture, scope and quality decisions.
 
 🌐 Visit my professional homepage: [schulte-development.de](https://schulte-development.de/)
 
@@ -23,6 +28,7 @@ I help enterprises transform legacy systems into modern, scalable architectures.
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=java&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
 
 ![Jakarta EE](https://img.shields.io/badge/Jakarta_EE-007396?style=flat-square&logo=eclipse&logoColor=white)
@@ -31,6 +37,11 @@ I help enterprises transform legacy systems into modern, scalable architectures.
 ![Quarkus](https://img.shields.io/badge/Quarkus-4695EB?style=flat-square&logo=quarkus&logoColor=white)
 ![Micronaut](https://img.shields.io/badge/Micronaut-1ABC9C?style=flat-square&logo=micronaut&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat-square&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+
+![Claude Code](https://img.shields.io/badge/Claude_Code-D97757?style=flat-square&logo=claude&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
 
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
@@ -39,6 +50,9 @@ I help enterprises transform legacy systems into modern, scalable architectures.
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 ![Terraform](https://img.shields.io/badge/Terraform-623CE4?style=flat-square&logo=terraform&logoColor=white)
+![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-000000?style=flat-square&logo=opentelemetry&logoColor=white)
+![Renovate](https://img.shields.io/badge/Renovate-1A1F6C?style=flat-square&logo=renovate&logoColor=white)
+![SonarQube](https://img.shields.io/badge/SonarQube-4E9BCD?style=flat-square&logo=sonar&logoColor=white)
 
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
