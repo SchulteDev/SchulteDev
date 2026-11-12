@@ -86,7 +86,7 @@ export const validateDiffContent = (): boolean => {
 
 export const extractRelativePath = (filePath: string): string => {
   // Normalize path for consistent processing
-  const normalizedPath = filePath.replace(/\\/g, '/');
+  const normalizedPath = filePath.replaceAll('\\', '/');
 
   // Special case: if the path is exactly _data/career.md or ends with /_data/career.md
   // but not if it's a relative path like ../path/_data/career.md

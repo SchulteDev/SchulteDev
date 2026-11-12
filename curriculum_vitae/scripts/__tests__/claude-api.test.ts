@@ -11,8 +11,8 @@ describe('claude-api', () => {
   })
 
   it('should validate content length', () => {
-    expect('short'.length < 500).toBe(true)
-    expect('a'.repeat(600).length >= 500).toBe(true)
+    expect('short'.length).toBeLessThan(500)
+    expect('a'.repeat(600).length).toBeGreaterThanOrEqual(500)
   })
 })
 

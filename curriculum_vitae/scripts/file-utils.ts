@@ -30,7 +30,7 @@ export const safeFileCopy = (source: string, destination: string, description: s
     logger.info(`${description}: ${destination}`);
     return true;
   } catch (error: any) {
-    logger.warn(`Failed to create ${description.toLowerCase()}, continuing without it`);
+    logger.warn(`Failed to create ${description.toLowerCase()}, continuing without it: ${error.message}`);
     return false;
   }
 };

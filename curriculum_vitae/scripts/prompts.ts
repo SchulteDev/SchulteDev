@@ -61,8 +61,9 @@ const createSharedSubstitutions = (shared: SharedConfig): Record<string, string>
 });
 
 const substitute = (text: string, substitutions: Record<string, string>): string => {
+  // Function replacer: values contain LaTeX, whose `$` must not be read as a replacement pattern
   return Object.entries(substitutions).reduce((result, [placeholder, value]) =>
-    result.replace(new RegExp(placeholder.replace(/[{}]/g, '\\$&'), 'g'), value), text);
+    result.replaceAll(placeholder, () => value), text);
 };
 
 const loadPrompts = (): PromptsConfig => {

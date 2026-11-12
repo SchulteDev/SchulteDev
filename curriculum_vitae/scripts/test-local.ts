@@ -1,8 +1,8 @@
 // test-local.ts - Test CV generation locally
 
 import fs from 'fs-extra';
-import {exec} from 'child_process';
-import util from 'util';
+import {exec} from 'node:child_process';
+import util from 'node:util';
 import dotenv from 'dotenv';
 import {CAREER_FILE, getCvFile, getCvTypesToProcess} from './config.js';
 import logger from './logger.js';
@@ -208,9 +208,10 @@ const main = async (): Promise<void> => {
 };
 
 // Run main
-main().then(() => {
+try {
+  await main();
   logger.debug('Test local completed successfully');
-}).catch(error => {
+} catch (error: any) {
   logger.error(`Unhandled error in test local: ${error.message}`);
   process.exit(1);
-});
+}
