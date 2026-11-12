@@ -22,6 +22,7 @@ const CONSTRAINTS = [
   'Valid, compilable LuaLaTeX with standard LuaLaTeX packages only.',
   String.raw`Compiled as tagged PDF/UA-1: \DocumentMetadata is put in front of the document, do not write it.`,
   String.raw`Headings: \section* and \subsection* only, restyled with \@startsection, no titlesec, no \par inside a heading.`,
+  'Lists: enumitem layout keys only, never the before= or after= keys.',
   String.raw`Colors: \usepackage[svgnames]{xcolor}. Use only svgnames predefined colors, no \definecolor.`,
   'LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.',
   String.raw`Symbols in text mode (\texttimes, \textrightarrow, \textminus, \textasciitilde), never math mode.`,
