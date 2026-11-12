@@ -64,8 +64,15 @@ describe('getCompleteText', () => {
     assert.throws(() => getCompleteText(message('', 'refusal')), /\(refusal, unknown category\)$/)
   })
 
-  it('should fail on a response truncated at max_tokens', () => {
-    assert.throws(() => getCompleteText(message('\\documentclass{art', 'max_tokens')), /truncated/)
+  it('should report the thinking tokens of a response truncated at max_tokens', () => {
+    const truncated = message('', 'max_tokens')
+    truncated.usage = {...truncated.usage, output_tokens_details: {thinking_tokens: 64000}} as typeof truncated.usage
+
+    assert.throws(() => getCompleteText(truncated), /truncated at MAX_TOKENS=\d+ \(thinking tokens: 64000\)$/)
+  })
+
+  it('should fail on a response truncated at max_tokens without token details', () => {
+    assert.throws(() => getCompleteText(message('\\documentclass{art', 'max_tokens')), /\(thinking tokens: unknown\)$/)
   })
 
   for (const stopReason of ['model_context_window_exceeded', 'pause_turn']) {

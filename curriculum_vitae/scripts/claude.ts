@@ -34,7 +34,8 @@ export const getCompleteText = (message: Message): string => {
     throw new Error(`Claude declined the request (refusal, ${stopDetails?.category ?? 'unknown category'})${explanation}`);
   }
   if (stopReason === 'max_tokens') {
-    throw new Error(`Response was truncated at MAX_TOKENS=${MAX_TOKENS}`);
+    const thinkingTokens = message.usage.output_tokens_details?.thinking_tokens ?? 'unknown';
+    throw new Error(`Response was truncated at MAX_TOKENS=${MAX_TOKENS} (thinking tokens: ${thinkingTokens})`);
   }
   if (stopReason !== 'end_turn') {
     throw new Error(`Response is incomplete (stop reason: ${stopReason})`);
