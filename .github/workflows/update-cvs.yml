@@ -2,9 +2,8 @@ name: Update CVs
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ main ]
   pull_request:
-    branches: [ '*' ]
   workflow_dispatch:
     inputs:
       api_model:

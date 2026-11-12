@@ -2,9 +2,8 @@ name: schulte-development.de | Build; deploy if main
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ main ]
   pull_request:
-    branches: [ '*' ]
   workflow_dispatch:
 
 permissions:
