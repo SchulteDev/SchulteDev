@@ -207,6 +207,6 @@ const main = async (): Promise<void> => {
   }
 };
 
-// Run main (it handles its own errors and exits non-zero on failure)
+// Run main
 await main();
 logger.debug('Test local completed successfully');

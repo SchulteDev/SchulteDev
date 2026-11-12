@@ -378,7 +378,7 @@ p {
 
 .cta-button {
   display: inline-block;
-  background-color: #218838; /* white text needs >= 4.5:1 (WCAG AA) */
+  background-color: #218838;
   color: white;
   padding: 1rem 2rem;
   border-radius: 50px;

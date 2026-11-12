@@ -54,7 +54,7 @@ const normalize = (prompt: string | string[]): string =>
   Array.isArray(prompt) ? prompt.join('\n') : prompt;
 
 const createSharedSubstitutions = (shared: SharedConfig): Record<string, string> => {
-  // The shared texts contain {{PAGES}} themselves, so fill it in before they are inserted
+  // Shared texts contain {{PAGES}}
   const pages = {[PLACEHOLDERS.PAGES]: shared.structure.pages.toString()};
   return {
     ...pages,
@@ -64,8 +64,7 @@ const createSharedSubstitutions = (shared: SharedConfig): Record<string, string>
   };
 };
 
-// Single pass: inserted values (career data, current CV, diff) are never scanned for placeholders
-// again, and the function replacer keeps `$` in LaTeX from being read as a replacement pattern
+// Single pass; function replacer keeps `$` in values literal
 const substitute = (text: string, substitutions: Record<string, string>): string =>
   text.replaceAll(/\{\{[A-Z_]+}}/g, placeholder => substitutions[placeholder] ?? placeholder);
 

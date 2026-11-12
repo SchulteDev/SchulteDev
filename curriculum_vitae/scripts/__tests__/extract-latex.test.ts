@@ -3,7 +3,7 @@ import {afterEach, beforeEach, describe, expect, it} from 'vitest'
 import {extractLatex} from '../claude-api.js'
 import {getResponseFile, MIN_CONTENT_LENGTH} from '../config.js'
 
-// Uses the anti CV response file: claude-api-call.test.ts runs in parallel on the professional one
+// claude-api-call.test.ts uses the professional file
 const responseFile = getResponseFile('anti')
 const outputFile = 'tmp/extract-latex-test-anti.tex'
 

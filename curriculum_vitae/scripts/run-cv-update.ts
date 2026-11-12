@@ -111,7 +111,6 @@ const setupCleanupHandlers = (): void => {
 };
 
 const determineMode = (): 'incremental' | 'full_rebuild' => {
-  // REBUILD_MODE comes from the workflow_dispatch input in GitHub Actions, or from .env locally
   const mode = (process.env.REBUILD_MODE as 'incremental' | 'full_rebuild') || 'incremental';
 
   if (mode !== 'incremental' && mode !== 'full_rebuild') {
@@ -220,6 +219,6 @@ const main = async (): Promise<void> => {
   }
 };
 
-// Run the main function (it handles its own errors and exits non-zero on failure)
+// Run the main function
 await main();
 logger.debug('CV update completed successfully');
