@@ -4,11 +4,11 @@
   "description": "AI-powered Markus Schulte Dev CV generation and transformation scripts",
   "type": "module",
   "scripts": {
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
+    "test": "node --test \"__tests__/*.test.ts\"",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-exclude=\"__tests__/**\" --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=test-results.xml --test-reporter=lcov --test-reporter-destination=lcov.info \"__tests__/*.test.ts\"",
     "typecheck": "tsc",
-    "clean": "rm -rf coverage/ node_modules/ tmp/ test-results.xml",
-    "cv:update": "tsx cv-update.ts"
+    "clean": "rm -rf node_modules/ tmp/ lcov.info test-results.xml",
+    "cv:update": "node cv-update.ts"
   },
   "repository": {
     "type": "git",
@@ -40,13 +40,10 @@
   },
   "devDependencies": {
     "@types/node": "26.6.6",
-    "@vitest/coverage-v8": "5.1.0",
-    "tsx": "4.23.15",
-    "typescript": "7.0.2",
-    "vitest": "5.1.0"
+    "typescript": "7.0.2"
   },
   "engines": {
-    "node": ">=22.0.0",
-    "npm": ">=10.0.0"
+    "node": ">=26.0.0",
+    "npm": ">=11.0.0"
   }
 }

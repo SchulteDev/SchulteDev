@@ -2,7 +2,7 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import type {Message, MessageStreamParams, TextBlock} from '@anthropic-ai/sdk/resources';
-import {API_EFFORT, API_MODEL, MAX_TOKENS} from './config.js';
+import {API_EFFORT, API_MODEL, MAX_TOKENS} from './config.ts';
 
 export const createApiRequest = (prompt: string): MessageStreamParams => ({
   model: API_MODEL,

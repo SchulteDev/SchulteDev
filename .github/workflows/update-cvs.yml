@@ -83,12 +83,12 @@ jobs:
           name: test-results
           path: curriculum_vitae/scripts/test-results.xml
           retention-days: 7
-      - name: Upload coverage reports
+      - name: Upload coverage report
         uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: coverage-report
-          path: curriculum_vitae/scripts/coverage/
+          path: curriculum_vitae/scripts/lcov.info
           retention-days: 7
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v8

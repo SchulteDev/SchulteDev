@@ -1,12 +1,13 @@
+import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
+import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 import type Anthropic from '@anthropic-ai/sdk'
 import type {Message} from '@anthropic-ai/sdk/resources'
-import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest'
-import {getCvFile} from '../config.js'
-import {claudeGenerator, LOG_DIR, reuseCommittedCv, updateCv} from '../cv-update.js'
-import {extractLatex} from '../latex.js'
+import {type CvType, getCvFile} from '../config.ts'
+import {claudeGenerator, LOG_DIR, reuseCommittedCv, updateCv} from '../cv-update.ts'
+import {extractLatex} from '../latex.ts'
 
 const document = `\\documentclass{article}\n\\begin{document}\n${'x'.repeat(600)}\n\\end{document}`
 
@@ -21,19 +22,21 @@ describe('updateCv', () => {
   afterEach(() => fs.rmSync(path.dirname(cvFile), {recursive: true}))
 
   it('should prompt with the career data and write the extracted LaTeX', async () => {
-    const generate = vi.fn(async () => `Sure!\n\`\`\`latex\n${document}\n\`\`\``)
+    const generate = mock.fn(async (_prompt: string, _cvType: CvType) => `Sure!\n\`\`\`latex\n${document}\n\`\`\``)
 
     await updateCv('anti', 'Fell off a cloud in 2019', generate, cvFile)
 
-    expect(generate).toHaveBeenCalledWith(expect.stringContaining('Fell off a cloud in 2019'), 'anti')
-    expect(generate).toHaveBeenCalledWith(expect.stringContaining('Anti-CV'), 'anti')
-    expect(fs.readFileSync(cvFile, 'utf8')).toBe(document)
+    const [[prompt, cvType]] = generate.mock.calls.map(call => call.arguments)
+    assert.ok(prompt.includes('Fell off a cloud in 2019'))
+    assert.ok(prompt.includes('Anti-CV'))
+    assert.equal(cvType, 'anti')
+    assert.equal(fs.readFileSync(cvFile, 'utf8'), document)
   })
 
   it('should keep the current CV when the answer is no LaTeX document', async () => {
-    await expect(updateCv('professional', '', async () => 'Sorry', cvFile)).rejects.toThrow(/no complete LaTeX document/)
+    await assert.rejects(updateCv('professional', '', async () => 'Sorry', cvFile), /no complete LaTeX document/)
 
-    expect(fs.readFileSync(cvFile, 'utf8')).toBe('old CV')
+    assert.equal(fs.readFileSync(cvFile, 'utf8'), 'old CV')
   })
 
   it('should keep the current CV when generation fails', async () => {
@@ -41,8 +44,8 @@ describe('updateCv', () => {
       throw new Error('API down')
     }
 
-    await expect(updateCv('professional', '', generate, cvFile)).rejects.toThrow('API down')
-    expect(fs.readFileSync(cvFile, 'utf8')).toBe('old CV')
+    await assert.rejects(updateCv('professional', '', generate, cvFile), /API down/)
+    assert.equal(fs.readFileSync(cvFile, 'utf8'), 'old CV')
   })
 })
 
@@ -66,26 +69,27 @@ describe('claudeGenerator', () => {
   it('should return the answer text and log the response', async () => {
     const generate = claudeGenerator(clientAnswering(document, 'end_turn'))
 
-    await expect(generate('the prompt', 'anti')).resolves.toBe(document)
+    assert.equal(await generate('the prompt', 'anti'), document)
     const log = JSON.parse(fs.readFileSync(logFile, 'utf8'))
-    expect(log.prompt).toBe('the prompt...')
-    expect(log.message.usage).toEqual({input_tokens: 5, output_tokens: 10})
+    assert.equal(log.prompt, 'the prompt...')
+    assert.deepEqual(log.message.usage, {input_tokens: 5, output_tokens: 10})
   })
 
   it('should log a truncated response before failing', async () => {
     const generate = claudeGenerator(clientAnswering('\\documentclass{art', 'max_tokens'))
 
-    await expect(generate('the prompt', 'anti')).rejects.toThrow(/truncated/)
-    expect(JSON.parse(fs.readFileSync(logFile, 'utf8')).message.stop_reason).toBe('max_tokens')
+    await assert.rejects(generate('the prompt', 'anti'), /truncated/)
+    assert.equal(JSON.parse(fs.readFileSync(logFile, 'utf8')).message.stop_reason, 'max_tokens')
   })
 })
 
 describe('reuseCommittedCv', () => {
-  it.each(['professional', 'anti'] as const)(
-    'should answer with the committed %s CV, which extraction keeps unchanged', async cvType => {
+  for (const cvType of ['professional', 'anti'] as const) {
+    it(`should answer with the committed ${cvType} CV, which extraction keeps unchanged`, async () => {
       const answer = await reuseCommittedCv('ignored', cvType)
 
-      expect(answer).toBe(fs.readFileSync(getCvFile(cvType), 'utf8'))
-      expect(extractLatex(answer)).toBe(answer)
+      assert.equal(answer, fs.readFileSync(getCvFile(cvType), 'utf8'))
+      assert.equal(extractLatex(answer), answer)
     })
+  }
 })

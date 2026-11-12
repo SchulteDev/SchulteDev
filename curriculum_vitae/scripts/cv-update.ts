@@ -1,7 +1,6 @@
 // cv-update.ts - Entry point: regenerate the CVs from the career data
 
 import fs from 'node:fs';
-import {pathToFileURL} from 'node:url';
 import Anthropic from '@anthropic-ai/sdk';
 import {consola as logger} from 'consola';
 import {
@@ -12,10 +11,10 @@ import {
   type CvType,
   getCvFile,
   SKIP_API
-} from './config.js';
-import {getCompleteText, sendPrompt} from './claude.js';
-import {extractLatex} from './latex.js';
-import {buildPrompt} from './prompts.js';
+} from './config.ts';
+import {getCompleteText, sendPrompt} from './claude.ts';
+import {extractLatex} from './latex.ts';
+import {buildPrompt} from './prompts.ts';
 
 /** Turns a prompt into the model's answer, which contains the LaTeX document */
 export type Generator = (prompt: string, cvType: CvType) => Promise<string>;
@@ -51,7 +50,7 @@ const main = async (): Promise<void> => {
   }
 };
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (import.meta.main) {
   try {
     await main();
   } catch (error) {

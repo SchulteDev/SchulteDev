@@ -1,6 +1,6 @@
 // prompts.ts - The prompt that turns the career data into a LuaLaTeX CV
 
-import type {CvType} from './config.js';
+import type {CvType} from './config.ts';
 
 const PAGES = 4;
 

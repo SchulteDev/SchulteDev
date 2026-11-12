@@ -1,64 +1,67 @@
-import {afterEach, describe, expect, it, vi} from 'vitest'
+import assert from 'node:assert/strict'
+import {afterEach, describe, it} from 'node:test'
 
 const UNSET = {API_MODEL: '', API_EFFORT: '', CV_TYPES: '', SKIP_API: '', MAX_TOKENS: '', CAREER_FILE: ''}
+const originalEnv = {...process.env}
+let loads = 0
 
-const loadConfig = async (env: Record<string, string> = {}) => {
-  vi.resetModules()
-  for (const [key, value] of Object.entries({...UNSET, ...env})) vi.stubEnv(key, value)
-  return import('../config.js')
+// A new query string re-evaluates config.ts with the current environment
+const loadConfig = async (env: Record<string, string> = {}): Promise<typeof import('../config.ts')> => {
+  Object.assign(process.env, UNSET, env)
+  return import(`../config.ts?load=${loads++}`)
 }
 
 describe('config', () => {
   afterEach(() => {
-    vi.unstubAllEnvs()
-    vi.resetModules()
+    for (const key of Object.keys(UNSET)) delete process.env[key]
+    Object.assign(process.env, originalEnv)
   })
 
   it('should default to all CV types via Claude Sonnet 5.5 at xhigh effort', async () => {
     const config = await loadConfig()
-    expect(config.API_MODEL).toBe('claude-sonnet-5-5')
-    expect(config.API_EFFORT).toBe('xhigh')
-    expect(config.MAX_TOKENS).toBe(64000)
-    expect(config.CV_TYPES_TO_PROCESS).toEqual(['professional', 'anti'])
-    expect(config.SKIP_API).toBe(false)
+    assert.equal(config.API_MODEL, 'claude-sonnet-5-5')
+    assert.equal(config.API_EFFORT, 'xhigh')
+    assert.equal(config.MAX_TOKENS, 64000)
+    assert.deepEqual(config.CV_TYPES_TO_PROCESS, ['professional', 'anti'])
+    assert.equal(config.SKIP_API, false)
   })
 
   it('should accept an explicit model and effort', async () => {
     const config = await loadConfig({API_MODEL: 'claude-opus-5-5', API_EFFORT: 'medium'})
-    expect(config.API_MODEL).toBe('claude-opus-5-5')
-    expect(config.API_EFFORT).toBe('medium')
+    assert.equal(config.API_MODEL, 'claude-opus-5-5')
+    assert.equal(config.API_EFFORT, 'medium')
   })
 
   it('should reject an unknown effort level', async () => {
-    await expect(loadConfig({API_EFFORT: 'extreme'})).rejects.toThrow()
+    await assert.rejects(loadConfig({API_EFFORT: 'extreme'}))
   })
 
   it('should parse a comma-separated list of CV types', async () => {
-    expect((await loadConfig({CV_TYPES: ' anti '})).CV_TYPES_TO_PROCESS).toEqual(['anti'])
-    expect((await loadConfig({CV_TYPES: 'anti, professional'})).CV_TYPES_TO_PROCESS)
-      .toEqual(['anti', 'professional'])
+    assert.deepEqual((await loadConfig({CV_TYPES: ' anti '})).CV_TYPES_TO_PROCESS, ['anti'])
+    assert.deepEqual((await loadConfig({CV_TYPES: 'anti, professional'})).CV_TYPES_TO_PROCESS,
+      ['anti', 'professional'])
   })
 
   it('should process a repeated CV type once', async () => {
-    expect((await loadConfig({CV_TYPES: 'anti,anti'})).CV_TYPES_TO_PROCESS).toEqual(['anti'])
+    assert.deepEqual((await loadConfig({CV_TYPES: 'anti,anti'})).CV_TYPES_TO_PROCESS, ['anti'])
   })
 
   it('should reject a fractional MAX_TOKENS', async () => {
-    await expect(loadConfig({MAX_TOKENS: '32000.5'})).rejects.toThrow()
+    await assert.rejects(loadConfig({MAX_TOKENS: '32000.5'}))
   })
 
   it('should reject an unknown CV type', async () => {
-    await expect(loadConfig({CV_TYPES: 'professional,funny'})).rejects.toThrow()
+    await assert.rejects(loadConfig({CV_TYPES: 'professional,funny'}))
   })
 
   it('should read SKIP_API=false as false', async () => {
-    expect((await loadConfig({SKIP_API: 'false'})).SKIP_API).toBe(false)
-    expect((await loadConfig({SKIP_API: 'true'})).SKIP_API).toBe(true)
+    assert.equal((await loadConfig({SKIP_API: 'false'})).SKIP_API, false)
+    assert.equal((await loadConfig({SKIP_API: 'true'})).SKIP_API, true)
   })
 
   it('should point to the committed CV files', async () => {
     const {getCvFile} = await loadConfig()
-    expect(getCvFile('professional')).toBe('../markus-schulte-dev-professional-cv.tex')
-    expect(getCvFile('anti')).toBe('../markus-schulte-dev-anti-cv.tex')
+    assert.equal(getCvFile('professional'), '../markus-schulte-dev-professional-cv.tex')
+    assert.equal(getCvFile('anti'), '../markus-schulte-dev-anti-cv.tex')
   })
 })

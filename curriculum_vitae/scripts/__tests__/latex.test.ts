@@ -1,5 +1,6 @@
-import {describe, expect, it} from 'vitest'
-import {extractLatex} from '../latex.js'
+import assert from 'node:assert/strict'
+import {describe, it} from 'node:test'
+import {extractLatex} from '../latex.ts'
 
 const document = [
   '\\documentclass{article}',
@@ -10,39 +11,39 @@ const document = [
 
 describe('extractLatex', () => {
   it('should return a bare document unchanged', () => {
-    expect(extractLatex(document)).toBe(document)
+    assert.equal(extractLatex(document), document)
   })
 
   it('should drop code fences', () => {
-    expect(extractLatex(`\`\`\`latex\n${document}\n\`\`\``)).toBe(document)
+    assert.equal(extractLatex(`\`\`\`latex\n${document}\n\`\`\``), document)
   })
 
   it('should drop prose before and after the document', () => {
-    expect(extractLatex(`Here is your CV:\n\n${document}\n\nGood luck!`)).toBe(document)
+    assert.equal(extractLatex(`Here is your CV:\n\n${document}\n\nGood luck!`), document)
   })
 
   it('should end at the first \\end{document}, as LaTeX does', () => {
-    expect(extractLatex(`${document}\n\nNote: text after \\end{document} is ignored.`)).toBe(document)
+    assert.equal(extractLatex(`${document}\n\nNote: text after \\end{document} is ignored.`), document)
   })
 
   it('should collapse runs of blank lines', () => {
     const spaced = document.replace('\\begin{document}', '\n\n\n\\begin{document}')
-    expect(extractLatex(spaced)).toBe(document.replace('\\begin{document}', '\n\\begin{document}'))
+    assert.equal(extractLatex(spaced), document.replace('\\begin{document}', '\n\\begin{document}'))
   })
 
   it('should reject a document without an end', () => {
-    expect(() => extractLatex(document.replace('\\end{document}', ''))).toThrow(/no complete LaTeX document/)
+    assert.throws(() => extractLatex(document.replace('\\end{document}', '')), /no complete LaTeX document/)
   })
 
   it('should reject a response without LaTeX', () => {
-    expect(() => extractLatex('I cannot help with that.')).toThrow(/no complete LaTeX document/)
+    assert.throws(() => extractLatex('I cannot help with that.'), /no complete LaTeX document/)
   })
 
   it('should reject a document without a body', () => {
-    expect(() => extractLatex(document.replace('\\begin{document}', ''))).toThrow(/begin\{document\}/)
+    assert.throws(() => extractLatex(document.replace('\\begin{document}', '')), /begin\{document\}/)
   })
 
   it('should reject a placeholder-sized document', () => {
-    expect(() => extractLatex('\\documentclass{article}\\begin{document}Hi\\end{document}')).toThrow(/too short/)
+    assert.throws(() => extractLatex('\\documentclass{article}\\begin{document}Hi\\end{document}'), /too short/)
   })
 })
