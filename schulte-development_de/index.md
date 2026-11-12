@@ -1,7 +1,6 @@
 ---
 layout: page
 css: /assets/main.css
-share-description: "Markus Schulte, Cloud Architect & Software Engineer: hands-on enterprise modernization with Self-contained Systems, Azure, AWS and agent-first delivery."
 ---
 
 <div class="hero-section">
