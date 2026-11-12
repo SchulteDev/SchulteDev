@@ -9,7 +9,7 @@ AI-powered CV generation using Claude to transform [career data](../_data/career
 ## Workflows
 
 - [update-cvs.yml](../.github/workflows/update-cvs.yml): generates the CVs with Claude and commits the .tex files
-- [release-cvs.yml](../.github/workflows/release-cvs.yml): compiles the PDFs, reports their PDF/UA-2 conformance and publishes a GitHub release
+- [release-cvs.yml](../.github/workflows/release-cvs.yml): compiles the PDFs, reports their PDF/UA-1 conformance and publishes a GitHub release
 
 ## CV Types
 
