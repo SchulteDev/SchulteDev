@@ -1,0 +1,31 @@
+name: GitHub Workflows | SonarQube
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    environment: Sonar_SchulteDev_SchulteDev:github_workflows
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v8
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@v1
+        with:
+          scanMetadataReportFile: .scannerwork/report-task.txt
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
