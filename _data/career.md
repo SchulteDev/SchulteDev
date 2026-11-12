@@ -144,6 +144,10 @@ review and the go/no-go.
 prerequisite. My throughput increased enormously, in my experience with even higher quality. The
 agent takes over tests and documentation; I focus on the domain outcome.
 
+**Lesson learned:** Even with the best models it is still "garbage in, garbage out". Engineering
+best practices still apply, and the codebase needs a good developer and agent experience to stay
+maintainable and to evolve.
+
 **How I work:**
 
 - Parallel sessions in git worktrees, subagents, custom skills, hooks as guardrails, MCP
@@ -248,9 +252,9 @@ develop further.
 **Role:** IT architect for Fondsdatenkiosk (FDK), fonds-visual (F&V) and SynFonIC; main home
 and hands-on work in Team Rechner – there in practice owning architecture, CI/CD, release,
 infrastructure, test strategy and dependency hygiene, while also building features, running
-PoCs, writing ADRs and drafting stories. End-user features are mostly built by the team under my architectural guidance; my own
-hands-on work focuses on architecture, delivery and quality – largely invisible to end users, but
-it is what lets a small team ship safely and often.
+PoCs, writing ADRs and drafting stories. End-user features are mostly built by the team under my
+architectural guidance; my own hands-on work focuses on architecture, delivery and quality –
+largely invisible to end users, but it is what lets a small team ship safely and often.
 
 **Technical Challenges:**
 
