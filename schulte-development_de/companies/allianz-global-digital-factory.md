@@ -1,5 +1,6 @@
 ---
 title: Senior JavaEE Developer at Allianz Global Digital Factory
+share-description: "Senior JavaEE developer for Allianz Global Digital Factory: Java applications and REST/HATEOAS APIs on Cloud Foundry."
 engagement:
   - "Freelance"
   - "Munich"
@@ -13,18 +14,16 @@ technologies:
   - "Redis"
 ---
 
+**Context:** Via SinnerSchrader, I built applications for digital initiatives of Allianz Global
+Digital Factory on an AWS-hosted Cloud Foundry platform.
+
 ## Role & Contributions
 
-- Developed JavaEE applications for Allianz digital initiatives, focusing on robust backend
-  solutions.
-- Built and deployed applications to the AWS-hosted CloudFoundry platform.
-- Implemented REST/HATEOAS APIs with comprehensive documentation, setting a standard for the
-  company.
+- Developed Java EE and Spring Boot applications for Cloud Foundry.
+- Designed REST/HATEOAS APIs and documented them.
+- Mentored two junior developers in REST/HATEOAS.
 
-## Business Impact
+## Results
 
-- Successfully deployed multiple applications to production on CloudFoundry, enhancing Allianz's
-  digital capabilities.
-- Created API documentation that was adopted as a company-wide standard, improving development
-  efficiency.
-- Mentored junior developers, fostering internal talent and best practices in API development.
+- 3 applications deployed to production on Cloud Foundry.
+- The API documentation was adopted as the company standard.

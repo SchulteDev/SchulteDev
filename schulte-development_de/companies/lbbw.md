@@ -1,5 +1,6 @@
 ---
 title: Cloud Architect at LBBW
+share-description: "IT architecture for 10 of 30 applications in LBBW's modernization: legacy assessments and Azure target architectures for the bank's new platform."
 engagement:
   - "Freelance"
   - "Remote"
@@ -14,25 +15,31 @@ technologies:
   - "PostgreSQL"
 ---
 
+**Context:** Landesbank Baden-Württemberg, a major German state bank, modernized its IT in the
+"Phoenix" program (~80 people): applications were to move to "Skywalker", an Azure-based platform
+in development since 2023 and not yet used in production during my engagement. My team of nine was
+one of three that gave projects access to the platform.
+
 ## Role & Contributions
 
-- IT-architectural responsibility for the "Phoenix" IT Modernization project, focusing on migration
-  to an Azure-based platform.
-- Supported FirstMover migrations to Azure, defining Solution Design Templates and providing
-  implementation guidance.
-- Conducted technical software evaluations and delivered comprehensive solution architectures.
-- Identified technical debt and defined remediation strategies for complex legacy application
-  portfolios.
-- Led solution design workshops and communicated architectural decisions to business and IT
-  stakeholders.
-- Developed Azure migration strategies and enhanced cloud platform capabilities.
-- Created standardized technical templates and analysis processes for systematic application
-  assessment.
+- IT architecture for 10 of the 30 applications in the "Application Development" area: operational
+  steering, conformity with architecture standards, toolchain modernization.
+- Cataloged and assessed legacy applications (Spring Boot, Tomcat, IIS; Oracle, SQL Server,
+  PostgreSQL) for migration, using the "R" cloud-migration strategies and my own evaluation
+  templates.
+- Defined Solution Design Templates and applied them hands-on with the first applications migrating
+  to Azure.
+- Designed Azure target architectures for compatible applications (AKS, Azure Functions,
+  databases), including deployment, backup and monitoring concepts and cost estimates with the Azure
+  pricing calculator.
+- Identified gaps in the not-yet-productive platform and supported the initiatives to close them;
+  evaluated Elastisys Welkin as a platform alternative.
+- Led solution design workshops and presented designs and architecture decisions to business and IT
+  committees.
 
-## Business Impact
+## Results
 
-- Established a comprehensive assessment framework for large-scale enterprise cloud migration
-  readiness.
-- Drove targeted platform enhancements, significantly improving overall enterprise cloud readiness.
-- Provided strategic guidance for platform modernization, enhancing operational efficiency for
-  critical banking operations.
+- A standardized assessment process with templates for evaluating legacy applications for the
+  migration.
+- Solution Design Templates applied to the first migrating applications.
+- Platform gaps found in the assessments led to targeted Skywalker enhancements.

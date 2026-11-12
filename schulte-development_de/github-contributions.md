@@ -2,6 +2,7 @@
 layout: subpage
 back: "/#my-contributions"
 title: GitHub Contributions
+share-description: "Markus Schulte's open-source contributions to Renovate, Pact, Microsoft's Azure DevOps tooling and more, plus his own projects."
 ---
 
 Visit my <a href="https://github.com/SchulteDev" target="_blank">GitHub profile</a>

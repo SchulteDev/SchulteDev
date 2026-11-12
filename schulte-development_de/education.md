@@ -2,6 +2,7 @@
 layout: subpage
 back: "/#about-me"
 title: Education & Academic Background
+share-description: "Markus Schulte's education: Diplom in Computer Science (Computational Visualistics), University of Koblenz-Landau, completed with distinction."
 ---
 
 ## University Education – Diplom Computer Science
