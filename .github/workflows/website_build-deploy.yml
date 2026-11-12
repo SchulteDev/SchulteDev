@@ -72,7 +72,7 @@ jobs:
       - name: Validate
         run: make validate
       - name: Update Jekyll base URL
-        # jekyll-seo-tag reads the url from _config.yml.
+        # Canonical, share-image and sitemap URLs are built from this url.
         run: |
           sed -i 's|^url:.*|url: "${{ steps.pages.outputs.base_url }}"|' _config.yml
       - name: Build with Jekyll

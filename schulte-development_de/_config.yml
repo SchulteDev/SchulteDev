@@ -7,7 +7,6 @@ keywords: "Cloud Architect, Software Engineer, IT Architect, Self-contained Syst
 cv_url: "https://github.com/SchulteDev/SchulteDev/releases/latest/download/markus-schulte-dev-professional-cv.pdf"
 plugins:
   - jekyll-remote-theme
-  - jekyll-seo-tag
   - jekyll-sitemap
 
 # Tooling stays out of _site. Jekyll adds its own defaults; patterns are anchored at the source root.
