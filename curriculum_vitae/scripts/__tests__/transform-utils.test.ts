@@ -1,7 +1,7 @@
-import {afterEach, describe, expect, it, vi} from 'vitest'
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest'
 import {execFileSync} from 'child_process'
-import {existsSync, mkdirSync, readFileSync, rmSync} from 'fs'
-import {CAREER_FILE, DIFF_FILE, GIT_DIFF_RANGE} from '../config.js'
+import {existsSync, readFileSync, rmSync} from 'fs'
+import {CAREER_FILE, DIFF_FILE, ensureDirectories, GIT_DIFF_RANGE} from '../config.js'
 import {generateGitDiff, shouldSkipDiff} from '../transform-utils.js'
 
 const {mockDiff} = vi.hoisted(() => ({mockDiff: vi.fn()}))
@@ -10,13 +10,17 @@ vi.mock('simple-git', () => ({simpleGit: () => ({diff: mockDiff})}))
 
 describe('transform-utils', () => {
   describe('generateGitDiff', () => {
+    beforeEach(() => {
+      ensureDirectories()
+      rmSync(DIFF_FILE, {force: true})
+    })
+
     afterEach(() => {
       mockDiff.mockReset()
       rmSync(DIFF_FILE, {force: true})
     })
 
     it('should diff CAREER_FILE as given and write the result to DIFF_FILE', async () => {
-      mkdirSync('tmp', {recursive: true})
       mockDiff.mockResolvedValue('+ new career entry')
 
       expect(await generateGitDiff()).toBe(true)
