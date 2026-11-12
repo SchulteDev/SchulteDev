@@ -1,7 +1,27 @@
 ---
 layout: page
 css: /assets/main.css
+share-title: "Markus Schulte – Cloud Architect & Software Engineer"
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Markus Schulte",
+  "jobTitle": "Cloud Architect & Software Engineer",
+  "url": "{{ '/' | absolute_url }}",
+  "image": "{{ '/assets/img/markus-schulte.jpg' | absolute_url }}",
+  "address": { "@type": "PostalAddress", "addressLocality": "Cologne", "addressCountry": "DE" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Koblenz-Landau" },
+  "knowsAbout": ["Cloud architecture", "Self-contained Systems", "Azure", "AWS", "Java", "Go", "Agentic coding"],
+  "sameAs": [
+    "https://www.linkedin.com/in/markus-schulte",
+    "https://github.com/SchulteDev",
+    "https://stackoverflow.com/users/1645517/markus"
+  ]
+}
+</script>
 
 <div class="hero-section">
   <img src="{{ '/assets/img/markus-schulte.jpg' }}" alt="Portrait of Markus Schulte" class="hero-photo"/>
