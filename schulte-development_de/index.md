@@ -26,7 +26,7 @@ css: /assets/main.css
 <div class="facts">
   <div class="fact"><span class="fact-value">19+</span><span class="fact-label">years hands-on, 12+ as a freelancer</span></div>
   <div class="fact"><span class="fact-value">9M+</span><span class="fact-label">users on a platform I scaled</span></div>
-  <div class="fact"><span class="fact-value">83</span><span class="fact-label">customers in 15+ countries for my own product</span></div>
+  <div class="fact"><span class="fact-value">60</span><span class="fact-label">person-days saved by one well-founded architecture decision</span></div>
   <div class="fact"><span class="fact-value">30 min</span><span class="fact-label">urgent deployments, down from days</span></div>
 </div>
 
@@ -62,7 +62,7 @@ completed with distinction.
 
 <div class="values-section">
   <div class="value-item">
-    <img src="{{ '/assets/img/service-icons/programming.jpeg' }}" alt="Proven IT Principles Icon" class="value-icon"/>
+    <img src="{{ '/assets/img/service-icons/engineering.svg' }}" alt="Proven IT Principles Icon" class="value-icon"/>
     <h3>Proven IT Principles</h3>
     <p>
       Clean Code, Clean Architecture and "you build it, you run it" keep an IT landscape healthy in
@@ -70,7 +70,7 @@ completed with distinction.
     </p>
   </div>
   <div class="value-item">
-    <img src="{{ '/assets/img/service-icons/leadership.jpeg' }}" alt="Team Collaboration Icon" class="value-icon"/>
+    <img src="{{ '/assets/img/service-icons/leadership.svg' }}" alt="Team Collaboration Icon" class="value-icon"/>
     <h3>Effective Collaboration</h3>
     <p>
       Software is built by people. Giving the right people the right responsibilities makes an
@@ -233,7 +233,7 @@ completed with distinction.
     <a href="{{ '/stackoverflow-contributions' }}">
       <img src="{{ '/assets/img/logos/stackoverflow.svg' }}" alt="StackOverflow logo"/>
       <div class="box-title">StackOverflow</div>
-      <div class="box-desc">4,000+ reputation from answers on Java, Jenkins and Spring Boot</div>
+      <div class="box-desc">4,800+ reputation and ~3.3 million people reached with answers on Java, Jenkins and Spring Boot</div>
     </a>
   </div>
 </div>

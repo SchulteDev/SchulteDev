@@ -1,33 +1,32 @@
-- title: Agentic Coding
+- title: Cloud Architecture
   featured: true
+  img: cloud-architecture.svg
+  description: >
+    I design cloud-native systems and migration paths on Azure and AWS: Self-contained Systems,
+    event-driven integration and legacy-to-cloud assessments. Decisions are documented as ADRs and
+    cut into small steps that each reach production on their own.
+  skills: Azure, AWS, Self-contained Systems, Microfrontends, Event-driven, Cloud migration, ADRs
+- title: Hands-on Engineering
+  img: engineering.svg
+  description: >
+    19+ years of production code: Java is my mother tongue, Go my choice for cloud-native services,
+    TypeScript and React for the frontend, Python for machine learning.
+  skills: Java, Quarkus, Spring Boot, Go, TypeScript, React, Python
+- title: Agentic Coding
   img: agentic-coding.svg
   description: >
     I build software agent-first: coding agents write most of the code, I own goals, architecture,
     review and the go/no-go. I help teams do the same with shared agent configuration, guardrails
     and automated agentic PR review, held to the same quality gates as human-written code.
   skills: Claude Code, Skills & hooks, MCP, Parallel sessions, Agentic PR review, Shared agent configuration
-- title: Cloud Architecture
-  img: technical-cloud-architect.jpeg
-  description: >
-    I design cloud-native systems and migration paths on Azure and AWS: Self-contained Systems,
-    event-driven integration and legacy-to-cloud assessments. Decisions are documented as ADRs and
-    cut into small steps that each reach production on their own.
-  skills: Azure, AWS, Self-contained Systems, Microfrontends, Event-driven, Cloud migration, ADRs
 - title: Technical Leadership
-  img: leadership.jpeg
+  img: leadership.svg
   description: >
     I lead and mentor cross-functional teams of 5–9 developers as architect, technical Product
     Owner and agile coach, and keep business and IT stakeholders aligned.
   skills: Architecture governance, Mentoring, Stakeholder management, Product ownership, Team building, Hiring
-- title: Hands-on Engineering
-  img: programming.jpeg
-  description: >
-    19+ years of production code: Java is my mother tongue, Go my choice for cloud-native services,
-    TypeScript and React for the frontend, Python for machine learning. I work agent-first: coding
-    agents write most of the code, I own architecture, review and quality.
-  skills: Java, Quarkus, Spring Boot, Go, TypeScript, React, Python, Agentic coding
 - title: DevOps & Platform Engineering
-  img: devop.jpeg
+  img: devops.svg
   description: >
     You build it, you run it: CI/CD, Infrastructure-as-Code, preview environments, quality gates and
     automated dependency updates that let a small team ship safely and often.
