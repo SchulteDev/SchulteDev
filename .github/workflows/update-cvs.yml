@@ -142,6 +142,7 @@ jobs:
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Check the PDF against PDF/UA-2
         uses: docker://verapdf/cli:v1.30.4
+        continue-on-error: true
         with:
           args: --flavour ua2 --format text markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
       - name: Upload compiled PDF

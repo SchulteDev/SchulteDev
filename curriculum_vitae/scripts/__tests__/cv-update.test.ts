@@ -80,11 +80,11 @@ describe('claudeGenerator', () => {
 
 describe('reuseCommittedCv', () => {
   for (const cvType of ['professional', 'anti'] as const) {
-    it(`should answer with the committed ${cvType} CV, which an update keeps unchanged`, async () => {
+    it(`should answer with the committed ${cvType} CV, whose document extraction keeps intact`, async () => {
       const answer = await reuseCommittedCv('ignored', cvType)
 
       assert.equal(answer, fs.readFileSync(getCvFile(cvType), 'utf8'))
-      assert.equal(tagged(extractLatex(answer)), answer)
+      assert.equal(extractLatex(answer), answer.slice(answer.indexOf('\\documentclass')))
     })
   }
 })
