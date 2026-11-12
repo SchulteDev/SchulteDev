@@ -1,5 +1,6 @@
 ---
 title: Cloud Consultant at Sedo GmbH
+share-description: "Cloud consultant at Sedo: consolidated Spring Boot and Apache Camel services into one Quarkus service, cutting infrastructure overhead by 60%."
 engagement:
   - "Freelance"
   - "Cologne"
@@ -13,15 +14,16 @@ technologies:
   - "Docker"
 ---
 
+**Context:** Sedo, a domain trading platform, wanted to simplify its service landscape.
+
 ## Role & Contributions
 
 - Consolidated Spring Boot and Apache Camel services into a single Quarkus service.
-- Standardized REST API implementations across the platform.
-- Evaluated Knative for potential serverless architecture adoption.
-- Led workshops on contract testing (Pact) to enhance team capabilities.
+- Standardized the REST API implementations.
+- Evaluated Knative for serverless workloads on Kubernetes.
+- Ran contract-testing workshops with Pact.
 
-## Business Impact
+## Results
 
-- Reduced infrastructure overhead by 60% through service consolidation.
-- Improved development velocity by standardizing API patterns.
-- Enhanced team knowledge and quality practices through contract testing training.
+- Infrastructure overhead down 60% through the consolidation.
+- 12 developers trained in contract testing.

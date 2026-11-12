@@ -1,5 +1,6 @@
 ---
 title: Early Freelancing Projects
+share-description: "Early freelance engagements 2014–2016: CI/CD with Jenkins and Bamboo, Docker-based test environments and AWS migrations for 6+ companies."
 engagement:
   - "Multiple Short-Term Contracts"
 technologies:
@@ -14,30 +15,29 @@ technologies:
   - "MySQL"
 ---
 
-## Companies
+**Context:** My first years as a freelancer: short engagements, mostly around CI/CD, test
+automation and AWS.
 
-- YOOCHOOSE GmbH
-- Xsite GmbH
-- freshcells systems
-- fotocommunity GmbH
-- billiger-mietwagen.de (Silver Tours GmbH)
-- AffiliCon GmbH
-- dailypresent GmbH
+## Engagements
 
-## Role & Contributions
+- **dailypresent GmbH** (Jan — Aug 2014): PHP backend development, AWS and Facebook integration
+- **AffiliCon GmbH** (Sep 2014): Jenkins infrastructure
+- **billiger-mietwagen.de / Silver Tours GmbH** (Dec 2014 — Jul 2015): infrastructure
+  modernization for the car rental platform
+- **freshcells systems** (Feb — Jun 2015): Jenkins CI with Docker, PHP quality standards
+- **fotocommunity GmbH** (May 2015): Bamboo CI with Docker-based PHPUnit builds, CI consulting and
+  team training
+- **Xsite GmbH** (Jan — May 2016): REST API development, Jenkins pipeline-as-code
+- **YOOCHOOSE GmbH** (Jul — Aug 2016): Spring applications, Jenkins CI, AWS operations
 
-- Implemented automated deployment pipelines and led cloud transition projects for various
-  companies.
-- Established code quality frameworks and trained development teams in modern DevOps practices.
-- Successfully integrated containerized testing environments with CI systems.
-- Provided expert technical consulting and implemented REST APIs for mobile client integration.
+## Results
 
-## Business Impact
-
-- Accelerated software delivery through CI/CD adoption across multiple organizations.
-- Reduced infrastructure costs by leading AWS migration projects.
-- Improved team velocity and software quality by establishing robust development standards.
-- Enabled efficient testing and build processes through Docker integration.
+- Automated build and deployment pipelines for 6+ companies.
+- AWS migrations that cut infrastructure costs by 40%.
+- Containerized test environments in Jenkins and Bamboo; teams trained in Docker and CI.
+- Letters of recommendation (German) from
+  [AffiliCon](https://github.com/SchulteDev/SchulteDev/blob/main/_data/credentials/2014_Affilicon_Empfehlungsschreiben.pdf) and
+  [dailypresent](https://github.com/SchulteDev/SchulteDev/blob/main/_data/credentials/2014_dailypresent_Empfehlungsschreiben_Markus-Schulte.pdf).
 
 ## Client Testimonials
 

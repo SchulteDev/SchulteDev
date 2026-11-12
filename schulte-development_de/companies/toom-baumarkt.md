@@ -1,5 +1,6 @@
 ---
 title: Senior Engineer & DevOp at toom Baumarkt GmbH
+share-description: "Lead developer and cross-team quality lead at toom Baumarkt: Java and Go microservices, Docker and Bamboo CI/CD, end-to-end tests ~70% faster."
 engagement:
   - "Freelance"
   - "Bonn"
@@ -18,26 +19,33 @@ technologies:
   - "Apache JMeter"
 ---
 
+**Context:** Via tarent solutions, I was lead developer in toom Baumarkt's 8-person Scrum team
+"Butterkekse", which built and ran microservices under "you build it, you run it" in a project of
+four teams.
+
 ## Role & Contributions
 
-- Lead Developer with cross-team quality leadership responsibilities in a Scrum team focused on
-  microservices development.
-- Developed production microservices using Java and Golang, implementing business logic and
-  inter-microservice communication.
-- Led weekly cross-team quality initiatives, introducing integration tests and optimizing
-  performance.
-- Containerized microservices with Docker and established CI/CD pipelines with Bamboo.
+- Business logic and endpoints for user-facing and service-to-service communication, in Java and
+  Go.
+- Cross-team quality lead for all four teams: weekly quality rounds, integration tests along the
+  Maven lifecycle and the test pyramid.
+- Decoupled the development of the Java microservices from external dependencies and improved the
+  modularization of services and libraries.
+- Containerized the services with Docker and set up CI/CD with Bamboo; brought Swagger, HtmlUnit,
+  OWASP checks, Apache JMeter and metrics into pull requests.
+- Garbage-collection tuning; mentoring junior developers.
 
-## Business Impact
+## Results
 
-- Delivered 5 production microservices, replacing monolithic components.
-- Reduced deployment time from days to hours through DevOps transformation.
-- Improved software quality by establishing comprehensive testing and metrics frameworks.
-- Achieved significant performance gains, including a 70% improvement in test execution speed.
+- 5 production microservices replacing monolith components.
+- Deployments in hours instead of days.
+- End-to-end tests ~70% faster; lower memory use of the Java services.
 
 ## Client Testimonials
 
-Received formal technical and organizational recommendations from tarent solutions GmbH leadership:
+From the letters of recommendation by tarent solutions
+([technical](https://github.com/SchulteDev/SchulteDev/blob/main/_data/credentials/2017_tarent_Schulte_Empfehlungsschreiben_technisch.pdf),
+[organizational](https://github.com/SchulteDev/SchulteDev/blob/main/_data/credentials/2017_tarent_Schulte_Empfehlungsschreiben_prozess.pdf), German):
 
 <div class="testimonial">
   <blockquote>
@@ -48,11 +56,3 @@ Received formal technical and organizational recommendations from tarent solutio
   </blockquote>
   <cite>— Sebastian Mancke, tarent solutions GmbH (September 2017)</cite>
 </div>
-
-## Key Technical Achievements
-
-- Enabled decoupled development of Java microservices, removing external dependencies
-- Accelerated end-to-end test execution by ~70% through optimization
-- Reduced Java microservice memory consumption via Garbage Collection tuning
-- Introduced comprehensive tools: Swagger, HtmlUnit, OWASP, Apache JMeter, Pact
-- Implemented metrics integration in pull request workflows

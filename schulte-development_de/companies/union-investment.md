@@ -1,5 +1,6 @@
 ---
 title: Software Lead & Cloud Architect at Union Investment
+share-description: "Software lead at Union Investment: microfrontend toolkit, event-driven search and DevOps for the B2B platform InvestmentWelt; urgent deploys in 30 minutes."
 engagement:
   - "Freelance"
   - "Remote"
@@ -23,24 +24,38 @@ technologies:
   - "Playwright"
 ---
 
+**Context:** Union Investment, a leading German asset manager, modernized InvestmentWelt, its
+business-critical B2B sales platform for ~80,000 users, from a Liferay/FirstSpirit monolith into
+Self-contained Systems. Architectural responsibility lay with Union Investment; I was the hands-on
+software lead of my team.
+
 ## Role & Contributions
 
-- Led IT Landscape Modernization for a leading German asset management company, focusing on their
-  central B2B sales platform.
-- Managed teams of 5-7 developers, serving as technical Product Owner and agile coach.
-- Designed and implemented a microfrontend framework, enabling distributed development and team
-  autonomy.
-- Architected a centralized search solution consuming event streams from distributed Self-contained
-  Systems.
-- Established comprehensive DevOps practices, including Pipeline-as-Code and Infrastructure-as-Code.
+- Proposed the microfrontend approach that was adopted; designed and built the microfrontend
+  toolkit and the B2B portal container app on Web Components, with versioning and automated
+  publishing.
+- Technical Product Owner and agile coach for 5–7 developers; built a new cross-functional team
+  from the ground up and onboarded new members.
+- Azure platform: Static Web Apps with Application Insights, Azure AD B2C with a parallel-operation
+  concept for gradual domain migration, Terraform workloads, Pipeline-as-Code in Azure DevOps, a
+  staging concept, penetration-test support and DDoS protection.
+- Cross-system search: evaluated ElasticSearch against Algolia and chose Algolia; the domains
+  stream events through Azure Event Hubs and Azure Functions feed the search index. A Java SDK (CDI,
+  Avro, TestContainers) made publishing events simple for the domain teams; search microfrontends
+  in Lit.
+- Quality: SonarQube, a test pyramid with 1,000+ tests at 10-minute builds, automated dependency
+  updates with Dependabot and later Renovate.
+- Coordinated the December 2023 go-live and the final search go-live across all domains, then
+  handed over documentation, operations and knowledge in 2024.
 
-## Business Impact
+## Results
 
-- Reduced deployment time from several days to 30 minutes for urgent changes.
-- Achieved 99.9% uptime throughout production operation.
-- Implemented sub-second search response times across all domain boundaries.
-- Enabled autonomous team development with 10x faster deployment cycles.
-- Established architecture patterns adopted as a template for group-wide modernization initiatives.
+- Urgent changes deployed in 30 minutes instead of several days.
+- 99.9% uptime in production.
+- Sub-second search across all domain boundaries.
+- ~60 person-days saved by one decision: integrating Web Components right after the proof of
+  concept instead of exploring further options.
+- The Self-contained Systems pattern became the template for the group's modernization.
 
 ## Team Performance & 360° Feedback
 

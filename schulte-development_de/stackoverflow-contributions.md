@@ -2,6 +2,7 @@
 layout: subpage
 back: "/#my-contributions"
 title: StackOverflow Contributions
+share-description: "Markus Schulte on StackOverflow: 4,800+ reputation and ~3.3 million people reached with answers on Java, Jenkins and Spring Boot."
 ---
 
 Visit my <a href="https://stackoverflow.com/users/1645517/markus" target="_blank">StackOverflow
