@@ -12,12 +12,11 @@ plugins:
 
 # Tooling stays out of _site. Jekyll adds its own defaults; patterns are anchored at the source root.
 exclude:
-  - Dockerfile
+  - Containerfile
   - Makefile
   - README.md
   - Rakefile
   - assets/vendor/README.md
-  - docker-compose.yml
   - sonar-project.properties
   - tools/
 remote_theme: daattali/beautiful-jekyll
