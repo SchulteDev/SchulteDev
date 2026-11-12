@@ -1,4 +1,5 @@
 require 'html-proofer'
+require 'json'
 require 'nokogiri'
 
 # Absolute or protocol-relative URL, i.e. one that leaves this origin.
@@ -148,10 +149,17 @@ end
 def homepage_checks
   return ['index.html missing'] unless File.exist?('./_site/index.html')
 
-  h1 = Nokogiri::HTML(File.read('./_site/index.html')).at_css('h1')
+  home = Nokogiri::HTML(File.read('./_site/index.html'))
+  h1 = home.at_css('h1')
   return ['No h1 found on the home page'] unless h1
   return ["Home page h1 does not start with 'Markus Schulte': #{h1.text.strip}"] unless
     h1.text.strip.start_with?('Markus Schulte')
 
+  json_ld = home.at_css('script[type="application/ld+json"]')
+  return ['No JSON-LD on the home page'] unless json_ld
+
+  JSON.parse(json_ld.text)
   []
+rescue JSON::ParserError => e
+  ["Home page JSON-LD is not valid JSON: #{e.message}"]
 end
