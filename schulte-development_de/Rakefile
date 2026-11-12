@@ -1,20 +1,16 @@
 require 'html-proofer'
 require 'nokogiri'
 
-# A scheme-bearing or protocol-relative reference, i.e. one that leaves this origin.
+# Absolute or protocol-relative URL, i.e. one that leaves this origin.
 EXTERNAL = %r{\A(?:https?:)?//}.freeze
 
-# <link> rel values that actually fetch on page load. "canonical" and "alternate"
-# are metadata and are legitimately absolute -- jekyll-seo-tag emits them on every
-# page -- so they must not be flagged.
+# Rels that fetch on page load; canonical/alternate are absolute metadata, not fetches.
 FETCHING_LINK_RELS = %w[
   stylesheet preload modulepreload prefetch prerender preconnect dns-prefetch
   icon shortcut apple-touch-icon apple-touch-icon-precomposed mask-icon manifest
 ].freeze
 
-# Attributes that cause a fetch before the visitor does anything. <a href> is
-# deliberately absent: an outbound link only discloses anything when clicked,
-# which is what privacy.md tells visitors.
+# Attributes that fetch on page load; <a href> only discloses on click.
 SUBRESOURCE_ATTRS = {
   'script' => %w[src], 'img' => %w[src srcset], 'source' => %w[src srcset],
   'iframe' => %w[src], 'embed' => %w[src], 'object' => %w[data],
@@ -53,9 +49,7 @@ task :test do
   puts '✅ All tests passed'
 end
 
-# Standalone so CI can run it against the production build too. `make validate`
-# builds with the development url and the artifact that actually deploys is a
-# second, separate build -- this is the assertion that must hold for both.
+# Separate task so CI can also run it on the production build.
 desc 'Assert the built site loads nothing from a third party'
 task :no_external do
   report(no_external_subresources + css_assets_resolve)
@@ -68,11 +62,7 @@ def report(failures)
   raise "#{failures.size} check(s) failed:\n  - #{failures.join("\n  - ")}"
 end
 
-# The single invariant this site depends on: every asset the browser fetches
-# without being asked comes from this origin. Each external one would send the
-# visitor's IP to a third party on page load, before any consent is possible
-# (see assets/vendor/README.md and the "keine Verbindung zu Servern Dritter"
-# claim in privacy.md).
+# An external sub-resource sends the visitor's IP to a third party before any consent.
 def no_external_subresources
   offenders = []
 
@@ -102,8 +92,7 @@ def no_external_subresources
     end
   end
 
-  # html-proofer never opens CSS, so an upstream theme stylesheet could pull
-  # Google Fonts back in via @import without any other check noticing.
+  # html-proofer doesn't read CSS.
   Dir.glob('./_site/**/*.css').sort.each do |path|
     File.read(path).scan(CSS_REF).flatten.each { |ref| offenders << "#{path}: #{ref}" }
   end
@@ -111,9 +100,7 @@ def no_external_subresources
   offenders.uniq.map { |o| "External sub-resource: #{o}" }
 end
 
-# The vendored webfonts are referenced only from url() inside CSS, which
-# html-proofer does not read. Without this, a stray _config.yml exclude entry
-# could drop all of them and still build green.
+# Webfonts are referenced only from CSS url(), which html-proofer doesn't read.
 def css_assets_resolve
   missing = []
 
@@ -134,8 +121,7 @@ def css_assets_resolve
   missing.map { |m| "CSS references a file missing from _site: #{m}" }
 end
 
-# Both pages are legal obligations, and reachability is part of the obligation:
-# an unlinked privacy policy does not discharge Art. 13 GDPR.
+# Legal pages must be reachable from the home page, not just built.
 def legal_pages_present_and_linked
   problems = []
   return ['index.html missing'] unless File.exist?('./_site/index.html')

@@ -1,4 +1,4 @@
-// PostToolUse (Edit|Write|MultiEdit): lists comment lines an edit added and repeats CLAUDE.md's comment rule.
+// PostToolUse (Edit|Write|MultiEdit): lists comment lines an edit added, with a one-line reminder.
 // Advisory only: prints additionalContext, always exits 0.
 
 const SLASH = /^\s*(\/\/|\/\*|\*(?!\/))|\s\/\/\s/;
@@ -9,7 +9,7 @@ const COMMENT = [
   [/\.tex$/, /(^|[^\\])%\s*\w/],
   [/\.html$/, /<!--|\{%-?\s*comment/],
 ];
-const MAX_LISTED = 8;
+const MAX_LISTED = 5;
 
 const addedText = (input) => {
   if (typeof input.content === 'string') return [input.content, ''];
@@ -47,10 +47,8 @@ process.stdin.on('end', () => {
   const listed = comments.slice(0, MAX_LISTED).map((l) => `  ${l}`).join('\n');
   const more = comments.length > MAX_LISTED ? `\n  ... and ${comments.length - MAX_LISTED} more` : '';
   const message =
-    `This edit to ${file} added comment lines:\n${listed}${more}\n` +
-    'Check each against CLAUDE.md: keep it only if its absence invites a wrong edit, as one line about ' +
-    'the code as it is now. Delete any that tells a story (history, earlier versions, review findings, ' +
-    'why something was changed, what the code no longer does); that belongs in the commit message or PR.';
+    `Comments added to ${file}:\n${listed}${more}\n` +
+    'Keep only those that prevent a wrong edit; story-telling (history, why it changed) goes in the commit/PR.';
 
   process.stdout.write(
     JSON.stringify({ hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: message } }),

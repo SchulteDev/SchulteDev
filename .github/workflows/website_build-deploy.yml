@@ -17,12 +17,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # having "changes" job instead of GitHub action paths filtering for being usable as pull request check
+  # A job instead of on.paths, so the workflow can be a required PR check.
   changes:
     runs-on: ubuntu-latest
-    # This job is skipped for workflow_dispatch.
-    #   In GitHub actions, follow up jobs have do use "always()" plus other conditions because of this.
-    #   See https://github.com/actions/runner/issues/2205 for details.
+    # Skipped on workflow_dispatch, so dependent jobs need always(): https://github.com/actions/runner/issues/2205
     if: github.event_name != 'workflow_dispatch'
     outputs:
       website: ${{ steps.changed-files.outputs.any_changed }}
@@ -75,7 +73,7 @@ jobs:
       - name: Validate
         run: make validate
       - name: Update Jekyll base URL
-        # Workaround, so jekyll-seo-tag uses production url, too
+        # jekyll-seo-tag reads the url from _config.yml.
         run: |
           sed -i 's|^url:.*|url: "${{ steps.pages.outputs.base_url }}"|' _config.yml
       - name: Build with Jekyll
@@ -83,10 +81,7 @@ jobs:
         env:
           JEKYLL_ENV: production
       - name: Re-assert no third-party assets in the production build
-        # "Validate" above tested a different build: this one has the production
-        # url and JEKYLL_ENV=production, which the theme uses to gate includes.
-        # This artifact is the one that deploys, so the no-third-party invariant
-        # has to be checked on it rather than on its development-mode sibling.
+        # Validate ran on the development build; this is the one that deploys.
         run: bundle exec rake no_external
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
