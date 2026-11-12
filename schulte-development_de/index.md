@@ -6,14 +6,14 @@ css: /assets/main.css
 <div class="hero-section">
   <img src="{{ '/assets/img/markus-schulte.jpg' }}" alt="Portrait of Markus Schulte" class="hero-photo"/>
   <div class="hero-text">
-    <h1>Markus Schulte<span class="hero-role">Cloud Architect &amp; Software Engineer</span></h1>
+    <h1>Markus Schulte <span class="hero-role">Cloud Architect &amp; Software Engineer</span></h1>
     <p class="hero-tagline">
       The architect who still ships: I modernize enterprise IT so small teams can deliver safely
       and often, working agent-first.
     </p>
     <p>
-      19+ years hands-on, 12+ as a freelancer. Currently IT architect for three teams at Union
-      Investment, hands-on in the team behind the public financial calculators.
+      Currently IT architect for three teams at Union Investment, hands-on in the team behind the
+      public financial calculators.
     </p>
     <div class="hero-actions">
       <a href="{{ '/#lets-connect' }}" class="cta-button">Let's connect</a>
@@ -95,8 +95,8 @@ completed with distinction.
   <div class="testimonial">
     <blockquote>
       "Mr. Schulte further advanced the technological environment of the project with his
-      outstanding expertise. Thanks to his very quick comprehension, he brought added value to the
-      project at an early stage."
+      outstanding expertise. Thanks to his very quick comprehension, he […] brought added value
+      to the project at an early stage."
     </blockquote>
     <cite>— Sebastian Mancke, tarent solutions GmbH (2017)</cite>
   </div>
