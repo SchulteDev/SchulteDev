@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import {describe, it} from 'node:test'
-import {extractLatex} from '../latex.ts'
+import {extractLatex, tagged} from '../latex.ts'
 
 const document = [
   '\\documentclass{article}',
@@ -49,5 +49,11 @@ describe('extractLatex', () => {
 
   it('should reject a placeholder-sized document', () => {
     assert.throws(() => extractLatex('\\documentclass{article}\\begin{document}Hi\\end{document}'), /too short/)
+  })
+})
+
+describe('tagged', () => {
+  it('should put the document metadata in front of the document class', () => {
+    assert.equal(tagged(document), `\\DocumentMetadata{lang=en,pdfstandard=ua-2,tagging=on}\n${document}`)
   })
 })

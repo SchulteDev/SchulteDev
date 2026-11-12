@@ -1,8 +1,9 @@
-// latex.ts - Cut the LaTeX document out of a model response
+// latex.ts - Cut the LaTeX document out of a model response and mark it for tagged PDF output
 
 const DOCUMENT_START = String.raw`\documentclass`;
 const DOCUMENT_END = String.raw`\end{document}`;
 const MIN_LENGTH = 500;
+const DOCUMENT_METADATA = String.raw`\DocumentMetadata{lang=en,pdfstandard=ua-2,tagging=on}`;
 
 /** Drops code fences and any prose around the document; throws if there is no complete document */
 export const extractLatex = (response: string): string => {
@@ -22,3 +23,6 @@ export const extractLatex = (response: string): string => {
   }
   return latex;
 };
+
+/** Makes LuaLaTeX write a tagged PDF/UA-2 */
+export const tagged = (latex: string): string => `${DOCUMENT_METADATA}\n${latex}`;

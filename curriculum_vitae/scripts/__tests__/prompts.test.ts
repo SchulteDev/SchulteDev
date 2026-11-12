@@ -27,5 +27,6 @@ describe('buildPrompt', () => {
 
   it('should keep LaTeX commands as single backslashes', () => {
     assert.ok(buildPrompt('anti', '').includes('Use \\newpage after each page.'))
+    assert.ok(buildPrompt('anti', '').includes('Headings: \\section* and \\subsection* only'))
   })
 })
