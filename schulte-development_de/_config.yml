@@ -16,10 +16,12 @@ exclude:
   - Makefile
   - README.md
   - Rakefile
+  - assets/img/service-icons/prompts.txt
   - assets/vendor/README.md
   - sonar-project.properties
   - tools/
-remote_theme: daattali/beautiful-jekyll
+# Pinned: re-check _layouts/base.html against upstream before bumping.
+remote_theme: daattali/beautiful-jekyll@7286eb8478fbd4265a6d2497c2e0f84d9a9326ba
 navbar-links:
   About Me: "/#about-me"
   Skills: "/#my-skillset"
