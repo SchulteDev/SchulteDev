@@ -53,12 +53,16 @@ const PLACEHOLDERS = {
 const normalize = (prompt: string | string[]): string =>
   Array.isArray(prompt) ? prompt.join('\n') : prompt;
 
-const createSharedSubstitutions = (shared: SharedConfig): Record<string, string> => ({
-  [PLACEHOLDERS.PAGES]: shared.structure.pages.toString(),
-  [PLACEHOLDERS.SHARED_PAGE_LAYOUT]: shared.pageLayout.join('\n'),
-  [PLACEHOLDERS.SHARED_CONSTRAINTS]: shared.constraints.join('\n'),
-  [PLACEHOLDERS.SHARED_OUTPUT]: shared.structure.output
-});
+const createSharedSubstitutions = (shared: SharedConfig): Record<string, string> => {
+  // The shared texts contain {{PAGES}} themselves, so fill it in before they are inserted
+  const pages = {[PLACEHOLDERS.PAGES]: shared.structure.pages.toString()};
+  return {
+    ...pages,
+    [PLACEHOLDERS.SHARED_PAGE_LAYOUT]: substitute(shared.pageLayout.join('\n'), pages),
+    [PLACEHOLDERS.SHARED_CONSTRAINTS]: substitute(shared.constraints.join('\n'), pages),
+    [PLACEHOLDERS.SHARED_OUTPUT]: substitute(shared.structure.output, pages)
+  };
+};
 
 const substitute = (text: string, substitutions: Record<string, string>): string => {
   // Function replacer: values contain LaTeX, whose `$` must not be read as a replacement pattern
