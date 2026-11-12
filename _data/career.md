@@ -392,6 +392,15 @@ success rate.*
 - Contributions to the open-source [Solid design system](https://github.com/solid-design-system/solid)
   used by the calculators
 
+**Lessons Learned (so far):**
+
+- **Taking care of tech debt pays off:** Most of the measured results above come from paying down
+  technical debt – and the team profits from it every day
+- **An autonomous, motivated team is gold:** Confirmed once again
+- **Separate operations teams create friction:** Here, operations is handled by dedicated teams.
+  Every handover costs communication effort and brings together different working styles and
+  assumptions – this confirms my conviction in "you build it, you run it"
+
 **Technologies & Frameworks:**
 
 - **Frontend:** React, TypeScript, Vite, Web Components, Storybook, Highcharts, Solid Design System
@@ -1379,6 +1388,8 @@ profitable, and that I can try out myself – not only, but also, to learn.
 
 **Lessons Learned:**
 
+- **New territory:** Most of the tech stack was new to me – how to train AI models, AWS
+  SageMaker, an Astro website on AWS (S3, CloudFront)
 - **Realistic simulation first:** Two promising approaches collapsed once execution was simulated
   realistically – the simulator is the most important piece of a trading system
 - **Not knowing what works is an insight, too:** Documented null results prevented repeated dead
