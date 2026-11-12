@@ -1,4 +1,4 @@
-[![schulte-development.de | Build; deploy if main](https://github.com/SchulteDev/SchulteDev/actions/workflows/schulte-development-de_build-deploy.yml/badge.svg)](https://github.com/SchulteDev/SchulteDev/actions/workflows/schulte-development-de_build-deploy.yml)
+[![schulte-development.de | Build; deploy if main](https://github.com/SchulteDev/SchulteDev/actions/workflows/website_build-deploy.yml/badge.svg)](https://github.com/SchulteDev/SchulteDev/actions/workflows/website_build-deploy.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SchulteDev_SchulteDev%3Aschulte-development_de&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=SchulteDev_SchulteDev%3Aschulte-development_de)
 
 # schulte-development.de website
