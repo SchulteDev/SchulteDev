@@ -17,12 +17,11 @@ plugins:
 # here. Patterns are anchored at the source root, which is why the nested
 # assets/vendor/README.md needs its own entry.
 exclude:
-  - Dockerfile
+  - Containerfile
   - Makefile
   - README.md
   - Rakefile
   - assets/vendor/README.md
-  - docker-compose.yml
   - sonar-project.properties
   - tools/
 remote_theme: daattali/beautiful-jekyll
