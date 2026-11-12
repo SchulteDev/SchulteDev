@@ -196,6 +196,17 @@ a:hover {
   transform: translateY(-3px);
 }
 
+.box-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.box.featured {
+  grid-column: 1 / -1;
+  border: 2px solid var(--accent);
+}
+
 .box .box-title {
   font-weight: 700;
   font-size: 1.15rem;
@@ -498,6 +509,23 @@ a:hover {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+  .box.featured {
+    flex-direction: row;
+  }
+
+  .box.featured img {
+    width: 220px;
+    height: auto;
+    border-bottom: none;
+    border-right: 1px solid var(--border-color);
+  }
+
+  .box.featured .box-title {
+    padding-top: 1.5rem;
+  }
+}
+
 @media (max-width: 767px) {
   .hero-section {
     flex-direction: column;

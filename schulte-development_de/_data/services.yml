@@ -1,3 +1,11 @@
+- title: Agentic Coding
+  featured: true
+  img: agentic-coding.svg
+  description: >
+    I build software agent-first: coding agents write most of the code, I own goals, architecture,
+    review and the go/no-go. I help teams do the same with shared agent configuration, guardrails
+    and automated agentic PR review, held to the same quality gates as human-written code.
+  skills: Claude Code, Skills & hooks, MCP, Parallel sessions, Agentic PR review, Shared agent configuration
 - title: Cloud Architecture
   img: technical-cloud-architect.jpeg
   description: >

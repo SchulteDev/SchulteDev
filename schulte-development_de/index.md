@@ -26,7 +26,7 @@ css: /assets/main.css
 <div class="facts">
   <div class="fact"><span class="fact-value">19+</span><span class="fact-label">years hands-on, 12+ as a freelancer</span></div>
   <div class="fact"><span class="fact-value">9M+</span><span class="fact-label">users on a platform I scaled</span></div>
-  <div class="fact"><span class="fact-value">99.9%</span><span class="fact-label">uptime of a B2B platform I led</span></div>
+  <div class="fact"><span class="fact-value">83</span><span class="fact-label">customers in 15+ countries for my own product</span></div>
   <div class="fact"><span class="fact-value">30 min</span><span class="fact-label">urgent deployments, down from days</span></div>
 </div>
 
@@ -204,11 +204,13 @@ completed with distinction.
 
 <div class="page-section">
 {% for app in site.data.services %}
-  <div class="box">
+  <div class="box{% if app.featured %} featured{% endif %}">
     <img src="{{ '/assets/img/service-icons/' | append: app.img }}" alt="{{ app.title }} icon"/>
-    <div class="box-title">{{ app.title }}</div>
-    <div class="box-desc">{{ app.description }}</div>
-    <div class="box-skills">{{ app.skills }}</div>
+    <div class="box-body">
+      <div class="box-title">{{ app.title }}</div>
+      <div class="box-desc">{{ app.description }}</div>
+      <div class="box-skills">{{ app.skills }}</div>
+    </div>
   </div>
 {% endfor %}
 </div>

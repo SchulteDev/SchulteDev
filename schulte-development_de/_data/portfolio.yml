@@ -1,66 +1,66 @@
 - title: Union Investment
   role: IT Architect & Platform Engineer
   period: Apr 2026 — today
-  description: IT architect for three teams; dependency updates ~9× faster, 3× more unit tests and a platform takeover in ~4 weeks.
+  description: IT architect for three teams of the funds squad; hands-on in the team behind the public financial calculators, owning architecture, CI/CD, releases, infrastructure and test strategy.
   img: ui.svg
   url: /companies/union-investment-2026
 - title: LBBW
   role: Cloud Architect
   period: Nov 2024 — Dec 2025
-  description: Assessment framework for migrating hundreds of legacy applications to the bank's Azure platform.
+  description: "IT architecture for 10 of 30 applications in the bank's \"Phoenix\" modernization: assessing legacy applications for migration to its Azure platform, solution designs and workshops."
   img: lbbw.svg
   url: /companies/lbbw
 - title: Union Investment
   role: Software Lead & Cloud Architect
   period: Oct 2021 — Dec 2024
-  description: Deployments from days to 30 minutes, 99.9% uptime, Self-contained Systems adopted as group-wide template.
+  description: "Led the modernization of the B2B platform InvestmentWelt into Self-contained Systems: microfrontend toolkit, event-driven search, Java SDK and DevOps; technical Product Owner for 5–7 developers."
   img: ui.svg
   url: /companies/union-investment
 - title: Saloodo! (DHL Group)
   role: Middleware Engineer
   period: Dec 2021 — Nov 2024
-  description: Sole engineer of a Go middleware syncing ~10 million records to Salesforce with 100% production uptime.
+  description: "Part-time sole engineer: designed, built and operated a Go middleware that synchronizes platform data to Salesforce."
   img: saloodo.svg
   url: /companies/saloodo
 - title: Atlassian Bamboo Add-ons
   role: Creator
   period: Jun 2016 — Dec 2023
-  description: Commercial code-quality add-ons, 83 customers in 15+ countries over seven years.
+  description: Built, sold and maintained commercial Atlassian Marketplace add-ons that bring Checkstyle, PMD and FindBugs results into Bamboo CI.
   img: bamboo.png
   url: /companies/atlassian-bamboo-add-ons
 - title: Sedo GmbH
   role: Cloud Consultant
   period: Jan 2020 — Mar 2020
-  description: Consolidated services into one Quarkus service (−60% infrastructure overhead), trained 12 developers in contract testing.
+  description: Consolidated Spring Boot and Apache Camel services into one Quarkus service, standardized REST APIs, evaluated Knative and ran contract-testing workshops.
   img: sedo.png
   url: /companies/sedo-gmbh
 - title: Trusted Shops
   role: Senior Software Engineer
   period: Aug 2018 — Oct 2019
-  description: Modernized JavaEE legacy towards AWS serverless and led contract testing with Pact across teams.
+  description: "Modernized JavaEE legacy systems: AWS Lambda services, Salesforce and Zuora subscription integration, Terraform and contract testing with Pact."
   img: trusted-shops.svg
   url: /companies/trusted-shops
 - title: Allianz Global Digital Factory
   role: Senior JavaEE Developer
   period: Nov 2017 — Mar 2018
-  description: Three applications to CloudFoundry production, API documentation adopted as company standard.
+  description: Developed JavaEE and Spring Boot applications with REST/HATEOAS APIs for CloudFoundry on AWS.
   img: allianz.svg
   url: /companies/allianz-global-digital-factory
 - title: toom Baumarkt GmbH
   role: Senior Engineer & DevOp
   period: Oct 2016 — Sep 2017
-  description: Five production microservices, deployments from days to hours, end-to-end tests ~70% faster.
+  description: "Lead developer in a \"you build it, you run it\" Scrum team building Java and Go microservices; led quality work across four teams."
   img: toom.svg
   url: /companies/toom-baumarkt
 - title: Early Freelancing Projects
   role: Multiple short-term contracts
   period: Jan 2014 — Aug 2016
-  description: CI/CD pipelines for 6+ companies and AWS transitions cutting infrastructure costs by 40%.
+  description: "Short-term contracts: CI/CD setups with Jenkins and Bamboo, Docker test environments, AWS operations, PHP and Java backends."
   img: rocket-ship-svgrepo-com.svg
   url: /companies/early-freelancing-projects
 - title: werkenntwen
   role: PHP Developer & Head of Development
   period: Aug 2007 — Jun 2014
-  description: Scaled one of Germany's largest social networks to 9+ million users and led its development team.
+  description: "PHP developer, Head of Development and backend developer at one of Germany's largest social networks: architecture, scaling, REST API and team leadership."
   img: wkw.png
   url: /companies/werkenntwen
