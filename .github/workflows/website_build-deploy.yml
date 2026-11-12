@@ -2,18 +2,15 @@ name: schulte-development.de | Build; deploy if main
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ main ]
   pull_request:
-    branches: [ '*' ]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -41,6 +38,9 @@ jobs:
     environment: Sonar_SchulteDev_SchulteDev:schulte-development_de
     needs: changes
     if: always() && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.website == 'true')
+    permissions:
+      contents: read
+      pages: read
     defaults:
       run:
         working-directory: ./schulte-development_de
@@ -64,7 +64,6 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 4.0.9
           bundler-cache: true
           working-directory: ./schulte-development_de
       - name: Setup Pages
@@ -92,6 +91,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_professional_homepage
     if: always() && needs.build_professional_homepage.result == 'success' && github.ref_name == 'main'
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

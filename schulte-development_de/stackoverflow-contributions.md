@@ -12,7 +12,7 @@ profile</a> to see all my contributions.
 ## Overview
 
 **Reputation:** 4,727 points  
-**Member since:** 2012 (12+ years)  
+**Member since:** 2012 (14+ years)  
 **Impact:** ~3.0 million people reached  
 **Badges:** 3 gold, 51 silver, 69 bronze
 
