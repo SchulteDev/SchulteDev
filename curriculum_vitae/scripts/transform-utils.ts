@@ -85,20 +85,15 @@ export const validateDiffContent = (): boolean => {
 };
 
 export const extractRelativePath = (filePath: string): string => {
-  // Normalize path for consistent processing
-  const normalizedPath = filePath.replaceAll('\\', '/');
-
   // Special case: if the path is exactly _data/career.md or ends with /_data/career.md
   // but not if it's a relative path like ../path/_data/career.md
-  if (normalizedPath === '_data/career.md' ||
-    normalizedPath.endsWith('/_data/career.md') && !normalizedPath.includes('../')) {
+  if (filePath === '_data/career.md' ||
+    (filePath.endsWith('/_data/career.md') && !filePath.includes('../'))) {
     return '_data/career.md';
   }
 
-  // Handle both Unix and Windows relative paths and normalize to forward slashes
-  return normalizedPath
-  .replace(/^\.\.\//, '') // Remove leading ../
-  .replace(/^\.\.\\/, ''); // Remove leading ..\ (already normalized but just in case)
+  // Remove leading ../
+  return filePath.replace(/^\.\.\//, '');
 };
 
 export const shouldSkipDiff = (diffContent: string): boolean => {
