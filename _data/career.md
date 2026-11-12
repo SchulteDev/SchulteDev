@@ -1461,11 +1461,12 @@ personal website, and branding materials.
 **Technologies:** Node.js, Jekyll, LaTeX/pdflatex, GitHub Actions, Anthropic Claude API  
 **Repository:** https://github.com/SchulteDev/SchulteDev
 
-### January 2025 — May 2025: AI Document Processing for Tax Software
+### January 2025 — Present: AI Document Processing for Tax Software
 
 Developed [Sse-BelMngr-Hermine](https://github.com/SchulteDev/Sse-BelMngr-Hermine), a CLI
 application automating document capture using Azure Document Intelligence and integration with
-SteuerSparErklärung tax software document manager.
+SteuerSparErklärung tax software document manager. Built in the first half of 2025; since then
+small improvements each year when preparing the next tax return.
 
 **Technologies:** Golang, Azure Document Intelligence, SQLite  
 **Repository:** https://github.com/SchulteDev/Sse-BelMngr-Hermine
@@ -1480,7 +1481,8 @@ multi-tenant architecture.
 ### January 2015 — July 2015: Crypto-Arbitrage Trading Bot
 
 My first attempt at automated trading: created automated trading algorithms for Bitcoin arbitrage
-with machine learning implementation.
+with machine learning implementation. The same interest continues today in
+[BitterQuant](#january-2026--present-bitterquant).
 
 **Technologies:** Java, xChange API, Weka, LibSVM, MySQL, JUnit
 
