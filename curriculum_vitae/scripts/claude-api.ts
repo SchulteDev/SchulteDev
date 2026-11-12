@@ -92,7 +92,6 @@ export const createApiRequest = (userPrompt: string): MessageStreamParams => ({
   model: API_MODEL,
   max_tokens: MAX_TOKENS,
   messages: [{ role: 'user', content: userPrompt }],
-  // Claude 5.5 models reject budget_tokens; adaptive thinking depth is controlled via effort
   thinking: { type: 'adaptive' },
   output_config: { effort: API_EFFORT }
 });
