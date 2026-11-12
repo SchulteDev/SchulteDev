@@ -2,6 +2,8 @@
 
 import fs from 'node:fs';
 import {pathToFileURL} from 'node:url';
+import type Anthropic from '@anthropic-ai/sdk';
+import {consola as logger} from 'consola';
 import {
   API_EFFORT,
   API_MODEL,
@@ -13,17 +15,16 @@ import {
 } from './config.js';
 import {getCompleteText, sendPrompt} from './claude.js';
 import {extractLatex} from './latex.js';
-import {consola as logger} from 'consola';
 import {buildPrompt} from './prompts.js';
 
 /** Turns a prompt into the model's answer, which contains the LaTeX document */
 export type Generator = (prompt: string, cvType: CvType) => Promise<string>;
 
-const LOG_DIR = 'tmp';
+export const LOG_DIR = 'tmp';
 
-const generateWithClaude: Generator = async (prompt, cvType) => {
+export const claudeGenerator = (client?: Pick<Anthropic, 'messages'>): Generator => async (prompt, cvType) => {
   logger.info(`Calling Claude ${API_MODEL} (effort: ${API_EFFORT}) for the ${cvType} CV...`);
-  const message = await sendPrompt(prompt);
+  const message = await sendPrompt(prompt, client);
   // Written before validation: a refused or truncated response is the one worth reading
   fs.mkdirSync(LOG_DIR, {recursive: true});
   fs.writeFileSync(`${LOG_DIR}/claude-response-${cvType}.json`, JSON.stringify(
@@ -31,7 +32,7 @@ const generateWithClaude: Generator = async (prompt, cvType) => {
   return getCompleteText(message);
 };
 
-const reuseCommittedCv: Generator = async (_prompt, cvType) => fs.readFileSync(getCvFile(cvType), 'utf8');
+export const reuseCommittedCv: Generator = async (_prompt, cvType) => fs.readFileSync(getCvFile(cvType), 'utf8');
 
 export const updateCv = async (cvType: CvType, careerData: string, generate: Generator,
                                cvFile = getCvFile(cvType)): Promise<void> => {
@@ -43,7 +44,7 @@ export const updateCv = async (cvType: CvType, careerData: string, generate: Gen
 const main = async (): Promise<void> => {
   const careerData = fs.readFileSync(CAREER_FILE, 'utf8');
   if (SKIP_API) logger.info('SKIP_API=true: re-using the committed CVs instead of calling Claude');
-  const generate = SKIP_API ? reuseCommittedCv : generateWithClaude;
+  const generate = SKIP_API ? reuseCommittedCv : claudeGenerator();
 
   for (const cvType of CV_TYPES_TO_PROCESS) {
     await updateCv(cvType, careerData, generate);

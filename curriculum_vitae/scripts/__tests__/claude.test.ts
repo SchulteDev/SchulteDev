@@ -71,6 +71,10 @@ describe('getCompleteText', () => {
     expect(() => getCompleteText(refusal)).toThrow('(refusal, cyber): declined')
   })
 
+  it('should fail on a refusal without details', () => {
+    expect(() => getCompleteText(message('', 'refusal'))).toThrow(/\(refusal, unknown category\)$/)
+  })
+
   it('should fail on a response truncated at max_tokens', () => {
     expect(() => getCompleteText(message('\\documentclass{art', 'max_tokens'))).toThrow(/truncated/)
   })
