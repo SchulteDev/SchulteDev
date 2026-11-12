@@ -13,7 +13,7 @@ import {
   SKIP_API
 } from './config.ts';
 import {getCompleteText, sendPrompt} from './claude.ts';
-import {extractLatex} from './latex.ts';
+import {extractLatex, tagged} from './latex.ts';
 import {buildPrompt} from './prompts.ts';
 
 /** Turns a prompt into the model's answer, which contains the LaTeX document */
@@ -35,7 +35,7 @@ export const reuseCommittedCv: Generator = async (_prompt, cvType) => fs.readFil
 
 export const updateCv = async (cvType: CvType, careerData: string, generate: Generator,
                                cvFile = getCvFile(cvType)): Promise<void> => {
-  const latex = extractLatex(await generate(buildPrompt(cvType, careerData), cvType));
+  const latex = tagged(extractLatex(await generate(buildPrompt(cvType, careerData), cvType)));
   fs.writeFileSync(cvFile, latex);
   logger.success(`Updated the ${cvType} CV: ${cvFile} (${latex.length} chars)`);
 };

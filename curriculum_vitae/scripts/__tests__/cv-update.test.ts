@@ -5,7 +5,7 @@ import path from 'node:path'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 import {type CvType, getCvFile} from '../config.ts'
 import {claudeGenerator, LOG_DIR, reuseCommittedCv, updateCv} from '../cv-update.ts'
-import {extractLatex} from '../latex.ts'
+import {extractLatex, tagged} from '../latex.ts'
 import {fakeClient, fakeMessage} from './fakes.ts'
 
 const document = `\\documentclass{article}\n\\begin{document}\n${'x'.repeat(600)}\n\\end{document}`
@@ -20,7 +20,7 @@ describe('updateCv', () => {
 
   afterEach(() => fs.rmSync(path.dirname(cvFile), {recursive: true}))
 
-  it('should prompt with the career data and write the extracted LaTeX', async () => {
+  it('should prompt with the career data and write the extracted LaTeX as a tagged document', async () => {
     const generate = mock.fn(async (_prompt: string, _cvType: CvType) => `Sure!\n\`\`\`latex\n${document}\n\`\`\``)
 
     await updateCv('anti', 'Fell off a cloud in 2019', generate, cvFile)
@@ -29,7 +29,7 @@ describe('updateCv', () => {
     assert.ok(prompt.includes('Fell off a cloud in 2019'))
     assert.ok(prompt.includes('Anti-CV'))
     assert.equal(cvType, 'anti')
-    assert.equal(fs.readFileSync(cvFile, 'utf8'), document)
+    assert.equal(fs.readFileSync(cvFile, 'utf8'), tagged(document))
   })
 
   it('should keep the current CV when the answer is no LaTeX document', async () => {
@@ -80,11 +80,11 @@ describe('claudeGenerator', () => {
 
 describe('reuseCommittedCv', () => {
   for (const cvType of ['professional', 'anti'] as const) {
-    it(`should answer with the committed ${cvType} CV, which extraction keeps unchanged`, async () => {
+    it(`should answer with the committed ${cvType} CV, which extraction keeps from \\documentclass on`, async () => {
       const answer = await reuseCommittedCv('ignored', cvType)
 
       assert.equal(answer, fs.readFileSync(getCvFile(cvType), 'utf8'))
-      assert.equal(extractLatex(answer), answer)
+      assert.equal(extractLatex(answer), answer.slice(answer.indexOf('\\documentclass')))
     })
   }
 })

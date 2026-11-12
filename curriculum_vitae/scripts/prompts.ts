@@ -20,8 +20,11 @@ const CONSTRAINTS = [
   String.raw`Use \vspace{} for vertical spacing fine-tuning.`,
   'Include flexible content sections for page tuning.',
   'Valid, compilable LuaLaTeX with standard LuaLaTeX packages only.',
+  String.raw`Compiled as tagged PDF/UA-2: \DocumentMetadata is put in front of the document, do not write it.`,
+  String.raw`Headings: \section* and \subsection* only, restyled with \@startsection, no titlesec, no \par inside a heading.`,
   String.raw`Colors: \usepackage[svgnames]{xcolor}. Use only svgnames predefined colors, no \definecolor.`,
   'LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.',
+  String.raw`Symbols in text mode (\texttimes, \textrightarrow, \textminus, \textasciitilde), never math mode.`,
   'Prioritize most recent and impactful experiences, teaser the leftover experiences.',
   'Absolutely truthful and factual regarding career data, dont oversell.',
 ];
