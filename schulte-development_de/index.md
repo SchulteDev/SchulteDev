@@ -1,6 +1,5 @@
 ---
 layout: page
-css: /assets/main.css
 share-title: "Markus Schulte – Cloud Architect & Software Engineer"
 ---
 

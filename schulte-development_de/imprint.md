@@ -1,6 +1,5 @@
 ---
-layout: page
-css: /assets/main.css
+layout: subpage
 title: Impressum
 ---
 

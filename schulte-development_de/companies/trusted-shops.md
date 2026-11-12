@@ -1,14 +1,22 @@
 ---
-layout: page
-css: /assets/main.css
 title: Senior Software Engineer at Trusted Shops
+engagement:
+  - "Freelance"
+  - "Cologne"
+technologies:
+  - "AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch)"
+  - "Java"
+  - "Spring Boot"
+  - "Micronaut"
+  - "Pact"
+  - "Terraform"
+  - "Docker"
+  - "Twilio"
+  - "Salesforce"
+  - "Zuora"
 ---
 
-### August 2018 — October 2019: Senior Software Engineer at Trusted Shops
-
-*Freelance \| Cologne*
-
-**Role & Contributions:**
+## Role & Contributions
 
 - Led modernization of legacy systems and cloud-native transformation for an e-commerce trust
   provider.
@@ -19,15 +27,9 @@ title: Senior Software Engineer at Trusted Shops
   management.
 - Led Pact framework training and implementation to enhance quality assurance across microservices.
 
-**Business Impact:**
+## Business Impact
 
 - Successfully modernized legacy systems, reducing maintenance overhead.
 - Achieved scalability through microservices architecture on AWS, supporting business growth.
 - Prevented integration issues across teams by implementing contract testing.
 - Accelerated development through cloud-native CI/CD pipelines and reusable templates.
-
-**Key Technologies:**
-AWS (Lambda, API Gateway, EKS, S3, SQS, CloudWatch), Java, Spring Boot, Micronaut, Pact, Terraform,
-Docker, Twilio, Salesforce, Zuora.
-
-<span style="float: right;">[Back](/#my-career)</span>

@@ -1,14 +1,29 @@
 ---
-layout: page
-css: /assets/main.css
 title: Software Lead & Cloud Architect at Union Investment
+engagement:
+  - "Freelance"
+  - "Remote"
+technologies:
+  - "Azure (Static Web App, Functions, Event Hubs, AD B2C)"
+  - "JavaScript/TypeScript"
+  - "Node.js"
+  - "Java"
+  - "Lit framework"
+  - "Self-contained Systems (SCS)"
+  - "Microfrontends"
+  - "Microservices"
+  - "Event-driven Architecture"
+  - "Algolia"
+  - "Nx"
+  - "Lerna"
+  - "Terraform"
+  - "Docker"
+  - "SonarQube"
+  - "Jest"
+  - "Playwright"
 ---
 
-### October 2021 — December 2024: Software Lead & Cloud Architect at Union Investment
-
-*Freelance \| Remote*
-
-**Role & Contributions:**
+## Role & Contributions
 
 - Led IT Landscape Modernization for a leading German asset management company, focusing on their
   central B2B sales platform.
@@ -19,7 +34,7 @@ title: Software Lead & Cloud Architect at Union Investment
   Systems.
 - Established comprehensive DevOps practices, including Pipeline-as-Code and Infrastructure-as-Code.
 
-**Business Impact:**
+## Business Impact
 
 - Reduced deployment time from several days to 30 minutes for urgent changes.
 - Achieved 99.9% uptime throughout production operation.
@@ -27,7 +42,7 @@ title: Software Lead & Cloud Architect at Union Investment
 - Enabled autonomous team development with 10x faster deployment cycles.
 - Established architecture patterns adopted as a template for group-wide modernization initiatives.
 
-**Team Performance & 360° Feedback:**
+## Team Performance & 360° Feedback
 
 Based on comprehensive 360-degree feedback surveys (December 2021, June 2022, November 2024):
 
@@ -35,7 +50,7 @@ Based on comprehensive 360-degree feedback surveys (December 2021, June 2022, No
 - **Collaboration:** High ratings for pleasant working relationship, averaging 8.6/10 in 2024
 - **Leadership:** Strong ratings for driving topics forward (9/10 in 2024)
 
-**Client Testimonials**
+## Client Testimonials
 
 <div class="testimonials-section">
 <div class="testimonial">
@@ -58,10 +73,3 @@ Based on comprehensive 360-degree feedback surveys (December 2021, June 2022, No
   <cite>— Colleague from the wider project, 360° feedback (2024)</cite>
 </div>
 </div>
-
-**Key Technologies:**
-Azure (Static Web App, Functions, Event Hubs, AD B2C), JavaScript/TypeScript, Node.js, Java, Lit
-framework, Self-contained Systems (SCS), Microfrontends, Microservices, Event-driven Architecture,
-Algolia, Nx, Lerna, Terraform, Docker, SonarQube, Jest, Playwright.
-
-<span style="float: right;">[Back](/#my-career)</span>

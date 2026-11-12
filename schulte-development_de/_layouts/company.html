@@ -1,0 +1,22 @@
+---
+layout: subpage
+---
+
+{% assign slug = page.url | remove: ".html" %}
+{% assign company = site.data.portfolio | where: "url", slug | first %}
+<div class="company-meta">
+  <img src="{{ '/assets/img/logos/' | append: company.img | relative_url }}" alt="{{ company.title }} logo"/>
+  <div>
+    <div class="company-period">{{ company.period }}</div>
+    <ul class="company-engagement">
+      {% for item in page.engagement %}<li>{{ item }}</li>{% endfor %}
+    </ul>
+  </div>
+</div>
+
+{{ content }}
+
+<h2>Key Technologies</h2>
+<div class="tags-group">
+  {% for tech in page.technologies %}<span class="tag">{{ tech }}</span>{% endfor %}
+</div>

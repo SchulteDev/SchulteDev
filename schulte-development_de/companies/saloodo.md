@@ -1,14 +1,20 @@
 ---
-layout: page
-css: /assets/main.css
 title: Middleware Engineer at Saloodo! (DHL Group)
+engagement:
+  - "Freelance"
+  - "Part-Time"
+  - "Remote"
+technologies:
+  - "Golang"
+  - "PostgreSQL"
+  - "Salesforce Lightning Cloud"
+  - "Docker"
+  - "Kubernetes"
+  - "ELK Stack"
+  - "Dynatrace"
 ---
 
-### December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL Group)
-
-*Freelance \| Part-Time \| Remote*
-
-**Role & Contributions:**
+## Role & Contributions
 
 - Sole developer for a critical middleware component integrating Saloodo! platform data with
   Salesforce CRM.
@@ -19,14 +25,9 @@ title: Middleware Engineer at Saloodo! (DHL Group)
 - Owned the complete software lifecycle, including architecture, development, monitoring, and
   operations.
 
-**Business Impact:**
+## Business Impact
 
 - Achieved 100% production uptime throughout a 3-year tenure.
 - Enabled business-critical CRM functionality by maintaining seamless data synchronization.
 - Achieved near real-time data propagation despite database bottlenecks.
 - Demonstrated production-grade Golang expertise in a mission-critical environment.
-
-**Key Technologies:**
-Golang, PostgreSQL, Salesforce Lightning Cloud, Docker, Kubernetes, ELK Stack, Dynatrace.
-
-<span style="float: right;">[Back](/#my-career)</span>
