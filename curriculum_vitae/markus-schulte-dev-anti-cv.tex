@@ -1,339 +1,216 @@
-\DocumentMetadata{lang=en,pdfstandard=ua-2,tagging=on}
+\DocumentMetadata{lang=en,pdfstandard=ua-1,tagging=on}
 \documentclass[10pt,a4paper]{article}
-
-\usepackage[a4paper,left=1.5cm,right=1.5cm,top=1.3cm,bottom=1.3cm]{geometry}
+\usepackage[a4paper,top=1.2cm,bottom=1.2cm,left=1.6cm,right=1.6cm,nohead,nofoot]{geometry}
 \usepackage{fontspec}
-\setmainfont{TeX Gyre Heros}
+\usepackage[english]{babel}
 \usepackage[svgnames]{xcolor}
-\usepackage{microtype}
-\usepackage{array}
 \usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{microtype}
 \usepackage{hyperref}
 
-\hypersetup{
-  colorlinks=true,
-  urlcolor=SteelBlue,
-  linkcolor=SteelBlue,
-  pdftitle={Markus Schulte: The Anti-CV},
-  pdfauthor={Markus Schulte},
-  pdfsubject={Anti-CV: lessons, failures and growth moments of a Cloud Architect and Software Engineer},
-  pdfkeywords={Anti-CV, Cloud Architect, Software Engineer, Lessons Learned},
-  pdfdisplaydoctitle=true
-}
+\setmainfont{lmsans10-regular.otf}[BoldFont=lmsans10-bold.otf,ItalicFont=lmsans10-oblique.otf,BoldItalicFont=lmsans10-boldoblique.otf,Ligatures=TeX]
+
+\hypersetup{colorlinks=true,urlcolor=SteelBlue,linkcolor=SteelBlue}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2pt}
+\setlength{\tabcolsep}{4pt}
+\emergencystretch=2em
+
+\setlist[itemize]{label=\textcolor{FireBrick}{\textbullet},leftmargin=1.1em,labelsep=0.4em,itemsep=0.8pt,parsep=0pt,topsep=1.5pt,partopsep=0pt}
 
 \makeatletter
-\renewcommand\section{\@startsection{section}{1}{\z@}%
-  {-1.5ex \@plus -.4ex \@minus -.2ex}%
-  {0.5ex \@plus .2ex}%
-  {\normalfont\large\bfseries\color{MidnightBlue}}}
-\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-  {-1.0ex \@plus -.3ex \@minus -.1ex}%
-  {-0.6em}%
-  {\normalfont\normalsize\bfseries\color{DarkSlateBlue}}}
+\renewcommand{\section}{\@startsection{section}{1}{\z@}{-6pt plus -1pt}{3pt}{\normalfont\large\bfseries\color{MidnightBlue}}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}{-4pt plus -1pt}{1.5pt}{\normalfont\normalsize\bfseries\color{FireBrick}}}
 \makeatother
 
-\setlist[itemize]{leftmargin=1.1em,labelsep=0.4em,topsep=1pt,partopsep=0pt,itemsep=1pt,parsep=0pt,label={\textcolor{SteelBlue}{\textbullet}}}
-
-\newcommand{\role}[2]{\subsection*{#1}{\small\color{DimGray}\hfill #2}\par}
-\newcommand{\context}[1]{{\small\itshape\color{DarkSlateGray}#1}\par}
-\newcommand{\lesson}[1]{{\small\color{DarkRed}\textbf{Lesson learned:} #1}\par}
+\newcommand{\arr}{\textrightarrow}
+\newcommand{\when}[1]{\hfill\textcolor{DimGray}{\normalfont\small #1}}
+\newcommand{\flexfill}{\vfill\kern0pt}
 
 \begin{document}
+\fontsize{9.5}{11.3}\selectfont
 
-%======================= PAGE 1 =======================
-{\fontsize{26}{30}\selectfont\bfseries\color{MidnightBlue}Markus Schulte}\par
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\fontsize{24}{28}\selectfont\bfseries\textcolor{MidnightBlue}{Markus Schulte}\hfill\fontsize{15}{18}\selectfont\textcolor{FireBrick}{The Anti-CV}\par}
+\textbf{Freelance Cloud Architect \& Software Engineer} \textbar{} Cologne, Germany \textbar{} 19+ years in, 12+ of them freelance\par
+\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} \textbar{} \href{https://schulte-development.de}{schulte-development.de} \textbar{} \href{https://www.linkedin.com/in/markus-schulte/}{linkedin.com/in/markus-schulte} \textbar{} \href{https://github.com/SchulteDev}{github.com/SchulteDev}\par
+\textit{Lessons, failures and course corrections --- the parts a normal CV edits out.}\par
 \vspace{2pt}
-{\large\color{SteelBlue}The Anti-CV: 19 Years of Lessons, Failures \& Things I Would Do Differently}\par
-\vspace{3pt}
-{\small Freelance Cloud Architect \& Software Engineer \textbullet{} Cologne, Germany \textbullet{}
-\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} \textbullet{}
-\href{https://schulte-development.de}{schulte-development.de}\\
-\href{https://www.linkedin.com/in/markus-schulte/}{LinkedIn: markus-schulte} \textbullet{}
-\href{https://github.com/SchulteDev}{GitHub: SchulteDev} \textbullet{}
-\href{https://stackoverflow.com/users/1645517/markus-schulte}{Stack Overflow: Markus Schulte}}\par
-\vspace{2pt}
-{\color{SteelBlue}\rule{\linewidth}{0.8pt}}\par
+\noindent\textcolor{MidnightBlue}{\rule{\linewidth}{0.8pt}}
 
 \section*{Summary}
-Software Engineer and Cloud Architect with 19+ years of hands-on experience (12+ as a freelancer), most of
-it spent modernizing systems that other people --- and, admittedly, sometimes I --- built. Since April 2026
-back at Union Investment as IT architect for three teams of the funds squad, hands-on in the team that
-builds the public financial calculators. Before that, Cloud Architect in LBBW's ``Phoenix'' IT
-modernization. On the side I run BitterQuant, a private ML research project on systematic trading, where
-the market reviews my hypotheses more harshly than any architecture board ever did. I work agent-first:
-coding agents write most of the code, I keep architecture, scope and quality decisions --- and the
-responsibility. My official slogan is ``Crafting solutions that thrive today and tomorrow.'' This document
-is about yesterday: the failures, wrong turns and growth moments that my regular CV politely leaves out.
+A normal CV is a highlight reel; this is the outtakes folder, kept in version control. I am a software engineer and cloud architect (19+ years, 12+ as a freelancer) focused on enterprise modernization and cloud-native transformation. Since April 2026 I am back at Union Investment as IT architect for three teams of the funds squad, hands-on in the team behind the public financial calculators. In parallel I run BitterQuant, a private ML research project on systematic trading on AWS. Before that I was Cloud Architect on LBBW's ``Phoenix'' IT modernization. I work agent-first: coding agents write most of the code under my supervision, and I keep the architecture, scope and quality decisions --- and therefore the blame.
 
-\vfill
-\section*{Key Impacts --- Including the Fine Print}
+\textbf{How to read this:} each role lists what worked, what did not, and what I would do differently. Numbers are real and taken from my career records; opinions are mine and have aged at different speeds.
+
+\flexfill
+\section*{Key Impacts (with the Footnotes the Slide Deck Left Out)}
 \begin{itemize}
-  \item \textbf{9M+ members} on wer-kennt-wen.de, one of Germany's largest social networks, on an
-        architecture I helped scale. The company ceased operations on 30 June 2014. I like to believe
-        these two facts are unrelated.
-  \item \textbf{99.9\% uptime} for InvestmentWelt, Union Investment's B2B portal --- for 80,000 users.
-        A small audience, but a business-critical one with zero tolerance for excuses.
-  \item \textbf{100\% uptime over three years} for a Golang middleware at Saloodo! (DHL Group) --- a
-        component I later concluded should never have existed. Flawless execution of a questionable idea.
-  \item \textbf{Deployments from days to 30 minutes} for urgent changes at Union Investment, from days
-        to hours at toom in 2016. Real progress --- though ``days'' should never have been the baseline.
-  \item \textbf{Dependency updates \textasciitilde9\texttimes{} faster} (median 2\,h \textrightarrow{} 13\,min)
-        in 2026 --- largely because Renovate had been intermittently broken for months. The biggest
-        speedups come from un-breaking things.
-  \item \textbf{Backend coverage 34\% \textrightarrow{} 87\%} --- by fixing the measurement, which had
-        miscounted generated code, not by writing tests. Honest metrics are underrated, and sometimes flattering.
-  \item \textbf{\textasciitilde60 person-days saved} by going straight to Web Components after one PoC instead
-        of studying every alternative. I call it ``bias for action''; a stricter architect might call it luck.
-  \item \textbf{1,065 hidden type errors} uncovered and fixed to zero in a TypeScript monorepo that had been
-        building happily without a type-check gate. Compiling is not the same as being correct.
+  \item \textbf{Union Investment 2021--2024:} urgent-change deployments from several days to 30 minutes, 99.9\% uptime, 1000+ tests in a 10-minute build. \emph{Footnote:} 80,000 users --- ``only'' --- yet business-critical, and I led my team, not the overall modernization.
+  \item \textbf{werkenntwen 2007--2014:} architecture scaled for a social network with 9+ million members, page load times \textminus60\%. \emph{Footnote:} I picked the wrong search engine on the way (page~3), and the company closed in 2014, which limits my long-term maintenance stories.
+  \item \textbf{Saloodo 2021--2024:} 100\% production uptime for a sole-developer Go middleware syncing \textasciitilde10 million records. \emph{Footnote:} a Lambda-based design could probably have made the whole thing unnecessary.
+  \item \textbf{Calculator monorepo 2026:} Renovate time-to-merge \textasciitilde2~h \arr{} 13~min, unit tests 538 \arr{} 1,659, backend line coverage 34\% \arr{} 87\%. \emph{Footnote:} the last one came from fixing the measurement, not the code. Sometimes the best improvement is a better ruler.
+  \item \textbf{Atlassian Bamboo add-ons 2016--2023:} a 7-year product business with 83 customers in 15+ countries. \emph{Footnote:} a niche inside a niche; all customers would have fit into one large conference room.
 \end{itemize}
 
-\vfill
-\section*{Skills Overview --- With Honest Footnotes}
-{\small
-\renewcommand{\arraystretch}{1.12}
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{5.9cm}>{\raggedright\arraybackslash}p{9.0cm}@{}}
-\textbf{\color{SteelBlue}Area} & \textbf{\color{SteelBlue}What I actually use} & \textbf{\color{SteelBlue}Honest footnote}\\
-\textbf{Java (19y)} & Spring Boot, Quarkus, Micronaut, JavaEE; Java 25 in production & My programming mother tongue. IKM test: 88th percentile --- so some test takers apparently speak it better.\\
-\textbf{Golang (5y)} & Middleware, CLIs, cobra/viper, sqlx, dockertest & Learned professionally by taking a part-time gig mainly because it was in Go. Honest motive, good result.\\
-\textbf{PHP (8+y)} & Zend Framework, PHPUnit, Memcache, MySQL & Self-taught from a PHP reference around 2000. First product: a forum for my friends. Code review not recommended.\\
-\textbf{TypeScript, React, Python} & Node.js, pnpm, Lit, Vite; React and PyTorch/pandas since 2026 & React and Python both entered my life in 2026. Late to two parties --- luckily, both are still going.\\
-\textbf{Cloud} & Azure (5+y), AWS (7+y), GCP (the lightest of the three) & Three hyperscalers, three consoles, three different names for the same load balancer.\\
-\textbf{Kubernetes} & AKS, EKS, Helm, ArgoCD & Experienced --- and skeptical since 2016. A tool for platform providers, overkill for your single app.\\
-\textbf{Architecture} & SCS, event-driven, microfrontends, ADRs, R-methodology & Fan of Self-contained Systems, thanks to microservices showing me what I did not want.\\
-\textbf{Testing \& DevOps} & JUnit, Pact, Playwright, Terraform, CDK, Renovate, Jenkins & Stopped counting Jenkins setups at 6+ companies. Pact evangelist; flaky tests fear me.\\
-\textbf{Agentic coding} & Claude Code: parallel sessions, skills, hooks, MCP & Agents write most of my code. ``Garbage in, garbage out'' survived the AI revolution unharmed.\\
-\textbf{Leadership} & Teams of 5--9, Product Owner, mentoring, hiring & Head of Development in 2008 without sufficient management experience. Learned the human factor the hard way.\\
-\end{tabular}
-}
+\flexfill
+\section*{Skills Overview --- Claims vs.\ Reality}
+{\fontsize{9}{10.5}\selectfont\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{5.2cm}>{\raggedright\arraybackslash}X@{}}
+\textbf{Area} & \textbf{On paper} & \textbf{Off paper} \\
+Java & 19+ years, my programming mother tongue & Native speaker, which means I know exactly how verbose it can get. \\
+Golang & 5+ years, preferred for cloud-native services & Preferred by someone who has typed \texttt{if err != nil} more often than he admits. \\
+PHP & 8+ years, where it all began & Self-taught from a printed reference in 2000--2003; the security of my first forums shall remain unaudited. \\
+TypeScript, React, Python & TypeScript daily; React and Python (PyTorch, pandas) since 2026 & Late to both: a beginner's mind plus 19 years of habits to unlearn. \\
+Cloud & Azure 5+ years, AWS 7+ years, GCP (GKE, Cloud Functions, Firebase) & Three consoles, three names for the same load balancer, zero favorite billing pages. \\
+Testing & JUnit, Pact, Playwright, Selenium, Dockertest & Believer, which is why I enjoy deleting the retries that used to hide flaky tests. \\
+Architecture & Self-contained Systems, event-driven design, microfrontends, ADRs & Writes ADRs for everything, including regrets and negative results. \\
+Agentic coding & Claude Code since 2025: parallel sessions, skills, hooks & The agent types; I decide and own the result. Garbage in, garbage out --- just faster. \\
+Leadership & Teams of 5--9, interim Product Owner, Head of Development & Learned on the job, in exactly that order: job first, learning second (see page~3). \\
+\end{tabularx}}
 
+\flexfill
+\textbf{Slogan:} ``Crafting solutions that thrive today and tomorrow'' --- today: tested; tomorrow: pending review by future me.
 \vfill
 \newpage
 
-%======================= PAGE 2 =======================
-\section*{Recent Roles --- What Went Right, and What I Learned When It Did Not}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Recent Roles --- What Worked, What Didn't, What I Would Change}
 
-\role{IT Architect \& Platform Engineer, Union Investment}{Apr 2026 -- present}
-\context{Via percision services \textbullet{} part-time, remote \textbullet{} architect for three funds-squad teams; hands-on in Team Rechner (15+ public financial calculators: React, Web Components, Quarkus, Azure)}
+\subsection*{IT Architect \& Platform Engineer at Union Investment\when{Apr 2026 -- present}}
 \begin{itemize}
-  \item Found Renovate intermittently broken for months and revived it: median merge time of dependency PRs
-        \textasciitilde2\,h \textrightarrow{} 13\,min. Unit tests 538 \textrightarrow{} 1,659; coverage gates where there were none.
-  \item Reported backend coverage jumped 34\% \textrightarrow{} 87\% by fixing the measurement. Playwright retries cut
-        3 \textrightarrow{} 0, silently ``orange'' monitors now turn red: CI got more honest, which at first looks like worse.
-  \item A pen test flagged a TLS issue we could not fix: Azure Static Web Apps manages its own cipher suites.
-        Fix: switch on the managed enterprise-grade edge instead of building our own infrastructure.
-  \item Took over an agency-built conversational platform in \textasciitilde4 weeks by reusing our monorepo and
-        pipelines; the agency's latest content flow shipped on the deadline day itself.
+  \item Architect for three funds-squad teams and hands-on in Team Rechner: 15+ public financial calculators, each shipped as React app and as Web Component, backed by a Quarkus platform.
+  \item \textbf{Win:} request-origin attribution via W3C Trace Context and OpenTelemetry baggage, live since October 2026 with zero changes to the calculator apps (stories written by me, built by a colleague). \textbf{Near-miss:} the stories had to run in strict order, otherwise the CORS preflight would have blocked every backend call.
+  \item \textbf{Win:} took over a conversational advisory platform from an external agency and had it in production in about 4 weeks as a static build inside the existing monorepo. The best new component is the one you do not add.
+  \item \textbf{Unglamorous truth:} most measured results are tech-debt payoffs: Renovate median time-to-merge \textasciitilde2~h \arr{} 13~min, unit tests 538 \arr{} 1,659, automatic Playwright retries 3 \arr{} 0 so flaky tests stop hiding. Users notice nothing --- which is the point, and the pitch problem.
 \end{itemize}
-\lesson{Separate operations teams create friction --- every handover costs communication. ``You build it, you run it'' remains my conviction.}
 
-\vfill
-\role{Cloud Architect, LBBW (Landesbank Baden-W\"urttemberg)}{Nov 2024 -- Dec 2025}
-\context{Freelance, remote \textbullet{} ``Phoenix'' IT modernization (\textasciitilde80 people) \textbullet{} migration to the Azure-based ``Skywalker'' platform \textbullet{} team of 9}
+\flexfill
+\subsection*{Cloud Architect at LBBW (``Phoenix'' modernization)\when{Nov 2024 -- Dec 2025}}
 \begin{itemize}
-  \item Architectural responsibility for 10 of 30 applications, all headed for a platform that stayed
-        production-unused for my entire engagement --- like planning the move into a house still under construction.
-  \item Cataloged hundreds of legacy applications (Spring Boot, Tomcat, IIS; Oracle, MS-SQL) via R-methodology with
-        reusable templates; cost estimates with the Azure Calculator, the most optimistic stakeholder in any cloud project.
-  \item Evaluated Elastisys Welkin as an alternative and identified Skywalker's platform gaps. Daily toolchain: Citrix,
-        Webex, Confluence, draw.io --- my diagram-to-deployment ratio has never been higher.
+  \item Architect for 10 of 30 applications in the ``Phoenix'' modernization (\textasciitilde80 people), in a team of 9, migrating to the Azure-based ``Skywalker'' platform with Solution Design templates.
+  \item Catalogued hundreds of legacy applications (Spring Boot, Tomcat, IIS; Oracle, MS-SQL, PostgreSQL) with the R-methodology, plus Azure Calculator cost analyses. I now dream in spreadsheets and price tiers.
+  \item Evaluated Elastisys Welkin as a vendor-flexibility alternative and ran platform gap analyses; presented designs to business and IT committees. Architecture is mostly translation.
+  \item \textbf{Honest caveat:} Skywalker was not yet used in production during my engagement, so my success stories are, strictly speaking, forecasts. Diagrams never have outages.
 \end{itemize}
-\lesson{Architecture without a running platform is a well-documented hypothesis. Finding platform gaps early is the cheapest way to test it.}
 
-\vfill
-\role{Software Lead \& Cloud Architect, Union Investment}{Oct 2021 -- Dec 2024}
-\context{Freelance, remote \textbullet{} B2B portal InvestmentWelt (80,000 users) \textbullet{} Liferay/FirstSpirit monolith \textrightarrow{} Self-contained Systems \textbullet{} teams of 5--7}
+\flexfill
+\subsection*{Software Lead \& Cloud Architect at Union Investment\when{Oct 2021 -- Dec 2024}}
 \begin{itemize}
-  \item Built the microfrontend toolkit and Azure platform: 1,000+ tests in 10-minute builds, 99.9\% uptime, urgent
-        deploys from days to 30 minutes; the pattern became the group-wide modernization template.
-  \item Went straight to Web Components after one successful PoC instead of exploring alternatives: \textasciitilde60
-        person-days saved. Option analysis is valuable until it costs more than the options.
-  \item Unified search across autonomous domains first looked impossible; the boring answer --- pub/sub on Azure Event
-        Hubs feeding Algolia --- was exactly right. The complexity was mostly in my head.
-  \item 360\textdegree{} feedback: technical competence 9--10/10, communication 3/5 in early rounds, plus requests to slow
-        down for less technical stakeholders and to keep opening up to criticism. Printing it here counts as practice.
+  \item Hands-on software lead of my team (5--7 developers): microfrontend-toolkit, Java SDK for Azure Event Hubs, Terraform, pipelines. I proposed the microfrontend approach that was adopted; architecture ownership lay with the client.
+  \item Cross-system search looked impossible at first; the answer was plain Pub/Sub on Azure Event Hubs feeding Algolia (chosen over ElasticSearch after evaluation). Panic scales worse than Event Hubs.
+  \item Went with Web Components right after the first PoC and skipped the full option analysis: roughly 60 person-days saved. I still write ADRs --- I just know a little better when to stop.
+  \item Hardest call: parting with team members who did not fit despite integration attempts. There is no Pact contract test for that interface.
 \end{itemize}
-\lesson{Team composition decides success. Removing members who did not fit despite integration attempts was hard --- and necessary.}
 
-\vfill
-\role{Middleware Engineer, Saloodo! (DHL Group)}{Dec 2021 -- Nov 2024}
-\context{Freelance, part-time, remote, alongside Union Investment \textbullet{} sole engineer \textbullet{} Golang, PostgreSQL, Salesforce, Kubernetes}
+\flexfill
+\subsection*{Middleware Engineer at Saloodo! (DHL Group), part-time\when{Dec 2021 -- Nov 2024}}
 \begin{itemize}
-  \item Took the assignment mainly to use Golang professionally for the first time. Honest motive; the client still got
-        a well-tested middleware out of it.
-  \item Designed, coded, tested and operated a sync of \textasciitilde10M records to Salesforce: 100\% uptime over three
-        years, SELECTs up to 80\% faster after SQL EXPLAIN sessions, the full test suite in 5 seconds.
-  \item The source schema had wrong types and malformed JSON, so error tolerance went everywhere. My code was robust
-        largely because the data was not.
+  \item Took the job to finally use Go professionally. Sole developer of a middleware syncing \textasciitilde10 million records from Saloodo's platform to Salesforce: design, code, tests, operations.
+  \item 70\% coverage on 2,776 lines with 5-second Dockertest runs, SELECT times down by up to 80\% via EXPLAIN, ELK and Dynatrace monitoring, 100\% production uptime over three years.
+  \item \textbf{Plot twist:} the middleware was architecturally unnecessary. Saloodo's core ran on AWS, so eventing with Lambda could have been cheaper, simpler and faster. A flawless answer to the wrong question, plus malformed-JSON handling everywhere.
 \end{itemize}
-\lesson{The middleware was architecturally unnecessary: with Saloodo! on AWS, eventing with Lambda would have been cheaper, simpler and more robust. Three years of flawless operation of something that should not have existed.}
 
-\vfill
-\role{Senior Software Engineer, Trusted Shops}{Aug 2018 -- Oct 2019}
-\context{Freelance, Cologne \textbullet{} Subscription team, then MARS unit \textbullet{} AWS Lambda, Micronaut, Terraform, Salesforce, Zuora, Twilio}
+\flexfill
+\subsection*{Senior Software Engineer at Trusted Shops\when{Aug 2018 -- Oct 2019}}
 \begin{itemize}
-  \item First real microservices landscape: simple changes rippled through many services, and missing tests and
-        automation made maintenance painful. The architecture was not open to change; my opinion was.
-  \item Contributed to 13+ repositories: Zuora/Salesforce subscription integration, Twilio SMS delivery, and a reusable
-        AWS Java Lambda template in Micronaut flavor.
-  \item Led Pact contract-testing training across teams --- effectively treating the symptoms of the architecture I just complained about.
+  \item Helped move a JavaEE6 monolith toward AWS serverless (Lambda, API Gateway, S3, SQS, Terraform); integrated Salesforce, Zuora and Twilio; built a reusable Micronaut Lambda template.
+  \item First real microservices architecture: simple changes touched many services, tests and automation were thin, and the architecture was not open to change. Result: a lasting preference for Self-contained Systems.
+  \item Led Pact contract-testing training across teams and applied Clean Code principles to 13+ repositories.
 \end{itemize}
-\lesson{Since then I am skeptical of microservices as an overarching architecture and prefer Self-contained Systems.}
-
 \vfill
 \newpage
 
-%======================= PAGE 3 =======================
-\section*{Earlier Experience --- Where Most Lessons Were Paid For}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Earlier Roles --- Where My Mistakes Were Cheaper}
 
-\role{Head of Development \& Developer, wer-kennt-wen.de}{Aug 2007 -- Jun 2014}
-\context{Permanent position \textbullet{} PHP Developer \textrightarrow{} Head of Development (Oct 2008 -- Mar 2010) \textrightarrow{} Backend Developer \textbullet{} social network with 9M+ members, acquired by RTL interactive in 2009, closed on 30 June 2014}
+\subsection*{PHP Dev, Head of Development, Backend Dev at werkenntwen\when{Aug 2007 -- Jun 2014}}
 \begin{itemize}
-  \item Became Head of Development without sufficient management experience. The company and I both assumed technical
-        competence would translate into leadership. It did not, at least not automatically: I underestimated the human
-        factor, then learned it through training and reflection and settled on a laissez-faire style that suited me and the team.
-  \item Chose Sphinx over ElasticSearch because Sphinx was familiar and ElasticSearch's features seemed exotic.
-        ElasticSearch became the industry standard, and the platform later migrated to it --- while I was back as a
-        Backend Developer, with a front-row seat. Familiarity is a feature, not a strategy.
-  \item Did help it scale: procedural PHP \textrightarrow{} OOP/MVC with Zend Framework, table partitioning, extensive Memcache,
-        page load times \textminus60\%, Jenkins CI, and a REST API described in WADL --- a format history has since politely forgotten.
-  \item Studied in parallel; my Diplom took until 2012. A 9M-member platform beat lectures as a teacher, but not as a schedule.
-\end{itemize}
-\lesson{Being good at the work does not make you good at leading the people who do it. And when two tools compete, ask which one will matter in five years.}
-
-\vfill
-\role{Senior Engineer \& DevOp, toom Baumarkt (via tarent)}{Oct 2016 -- Sep 2017}
-\context{Freelance, Bonn \textbullet{} 8-member Scrum team ``Butterkekse'' (butter biscuits) \textbullet{} ``you build it, you run it'' \textbullet{} Java, Golang, Kafka, Docker, Bamboo}
-\begin{itemize}
-  \item Delivered 5 production microservices replacing monolith components --- one year before Trusted Shops showed me the downside of doing that everywhere.
-  \item First encounter with docker-compose and Kubernetes. Verdict then and now: too complex for both operations and
-        application developers to run individual applications. I have not changed my mind, and Kubernetes has not changed either.
-  \item End-to-end tests \textasciitilde70\% faster, Java memory reduced via GC tuning, weekly cross-team quality initiative
-        across 4 teams; two letters of recommendation from tarent.
+  \item One of Germany's largest social networks (9+ million members). I helped turn procedural code into a layered, object-oriented Zend-based architecture, built a REST API with WADL for mobile, and scaled with table partitioning and Memcache; page load times dropped 60\%.
+  \item \textbf{Failure \#1 --- Head of Development (2008--2010):} I took the role without management experience; the company and I both assumed technical competence would translate into leadership. It does not. Training and reflection led me to a laissez-faire style that suited me and the team --- which sounds much better when done on purpose and called ``team autonomy''.
+  \item \textbf{Failure \#2 --- Sphinx over ElasticSearch:} I chose Sphinx because I knew it; ElasticSearch seemed exotic. It became the industry standard, and the platform migrated to it when I returned as Backend Developer. I got to migrate my own conservative choice.
+  \item Introduced Jenkins CI, PHPUnit coverage analysis, Selenium tests and Xdebug profiling; implemented brute-force, XSS, CSRF and SQL-injection protection. I stayed until the lights went out on 30 June 2014.
 \end{itemize}
 
-\vfill
-\role{Creator of Atlassian Bamboo Server Add-ons}{Jun 2016 -- Dec 2023}
-\context{Self-employed product business \textbullet{} Java, Atlassian SDK, OSGi, jQuery, DataTables}
+\flexfill
+\subsection*{Senior Engineer \& DevOp at toom Baumarkt (via tarent)\when{Oct 2016 -- Sep 2017}}
 \begin{itemize}
-  \item Commercial Marketplace add-ons bringing Checkstyle, PMD, CPD and FindBugs results into Bamboo Server: 83 customers
-        in 15+ countries, from startups to enterprises with 200+ Bamboo agents, 7 years of recurring license revenue.
-  \item First-mover advantage in a niche (code quality reports) inside a niche (Bamboo Server). Built sharding and
-        DataTables to display an endless number of findings --- because developers produce them endlessly.
-\end{itemize}
-\lesson{A product business teaches support, licensing and customer empathy --- and that being first in a small market still means a small market.}
-
-\vfill
-\role{Further Experience}{the short version}
-\begin{itemize}
-  \item \textbf{Sedo GmbH} (2020, Cologne): consolidated Spring Boot and Apache Camel services into one Quarkus service
-        (\textminus60\% infrastructure overhead), trained 12 developers in Pact, evaluated Knative. The microservice skeptic, merging microservices.
-  \item \textbf{Allianz Global Digital Factory} (2017--2018, via SinnerSchrader, Munich): JavaEE/Spring Boot on CloudFoundry,
-        3 applications to production, REST/HATEOAS docs adopted as standard. HATEOAS: the part of REST everyone cites and few implement.
-  \item \textbf{Early freelancing} (2014--2016): dailypresent, AffiliCon, billiger-mietwagen.de, fotocommunity, freshcells,
-        Xsite, YOOCHOOSE. Short contracts, CI/CD for 6+ companies --- Jenkins became a recurring character in my life.
+  \item Lead developer in an 8-member ``you build it, you run it'' Scrum team plus weekly quality leadership across 4 teams; delivered 5 production microservices (Java, Go) replacing monolith components.
+  \item Cut end-to-end test time by \textasciitilde70\%, tuned garbage collection to reduce memory use, brought deployments from days to hours, and added Swagger, HtmlUnit, OWASP and JMeter checks to pull requests.
+  \item \textbf{Unresolved grudge:} my first docker-compose and Kubernetes encounter convinced me that Kubernetes is too complex for operations and developers alike --- a tool for IT operations solution providers. I remain skeptical. I have nevertheless used it on EKS, AKS and GKE since. Consistency is overrated.
 \end{itemize}
 
-\vfill
-\section*{Personal Projects --- Where I Fail on My Own Budget}
+\flexfill
+\subsection*{Creator of Atlassian Bamboo Server Add-ons (self-employed)\when{Jun 2016 -- Dec 2023}}
 \begin{itemize}
-  \item \textbf{BitterQuant} (2026 -- present): ML research on systematic trading after Rich Sutton's ``Bitter Lesson'' ---
-        fine-tuning time-series foundation models on intraday US-equity data; NautilusTrader, Interactive Brokers, SageMaker,
-        ECS Fargate, CDK. Two promising approaches collapsed once execution was simulated realistically. Paper trading since
-        May 2026, because backtests are where strategies go to look good. Null results are documented as ADRs, so I stop rediscovering them.
-  \item \textbf{Crypto-arbitrage trading bot} (2015): Java, Weka, LibSVM. My first serious attempt at automated trading.
-        ``Repeatedly tried'' is how I describe the decade between it and BitterQuant.
-  \item \textbf{ConversationalAI4J} (2025--2026): Java library for spoken conversations with local LLMs (Whisper.cpp, Piper,
-        Ollama). My first project coded by AI agents --- mostly it taught me how to supervise them.
-  \item \textbf{John review} (2026 -- present): labelling a pull request triggers a headless coding agent that reviews it, pushes
-        one fix commit per finding and posts a verdict. I automated the most pedantic reviewer I know: me.
-  \item \textbf{Smaller tools}: CLI to limit Deye microinverter output via Modbus (2026); browser charts over years of
-        time-series from static Parquet tiers, no backend (2026); Azure Document Intelligence filing documents for tax software
-        (2025) --- the AI sorts my receipts, the taxes remain due; Jenkins--GitHub integration PoC on Google Cloud (2018).
+  \item Java/OSGi add-ons bringing Checkstyle, PMD, CPD and FindBugs results into Atlassian Bamboo Server, with sharding for large result sets. 83 customers in 15+ countries over 7 years, up to enterprise scale (200+ agents).
+  \item \textbf{Honest market sizing:} the target audience was people who wanted static analysis in Bamboo. ``First-mover advantage'' in a niche is a polite phrase for a very small market.
 \end{itemize}
 
+\flexfill
+\subsection*{Also in the Archive (details and mistakes on request)}
+\textbf{Sedo} (Cloud Consultant, Jan--Mar 2020): merged Spring Boot and Apache Camel services into one Quarkus service, evaluated Knative, ran Pact workshops. \textbf{Allianz Global Digital Factory} (Senior JavaEE Developer, Nov 2017--Mar 2018): CloudFoundry and REST/HATEOAS. \textbf{Seven short freelance gigs} (2014--2016: YOOCHOOSE, Xsite, freshcells, fotocommunity, billiger-mietwagen.de, AffiliCon, dailypresent): PHP, Spring, AWS and a suspicious amount of Jenkins and Bamboo setup.
+
+\flexfill
+\section*{Personal Projects --- Failing on My Own Budget}
+\begin{itemize}
+  \item \textbf{BitterQuant (Jan 2026 -- present):} private ML research on systematic trading: fine-tuned time-series foundation models (PyTorch, SageMaker), NautilusTrader with Interactive Brokers, serverless live runtime on ECS Fargate, CDK. Most of the stack was new to me. Paper trading since May 2026 --- so my profits are, for now, on paper.
+  \item \textbf{Failure log:} two promising approaches collapsed once execution was simulated realistically. Null results are documented as ADRs, so I can fail only once per idea.
+  \item \textbf{Crypto-arbitrage bot (2015):} my first automated-trading attempt (Java, xChange, Weka, LibSVM). Eleven years later I am scratching the same itch with better tools.
+  \item \textbf{ConversationalAI4J (Aug 2025 -- Jan 2026):} Java library for voice conversations with local LLMs (Whisper.cpp, Piper, Ollama, langchain4j) --- my first project coded by Claude Code. I learned to review code from a very fast colleague who never sleeps.
+  \item \textbf{Agent tooling:} ``John review'' lets a labelled pull request trigger a headless agent that reviews it, pushes one fix commit per finding and posts a verdict. Plus a Deye microinverter CLI and a Parquet time-series viewer, all agent-coded under supervision.
+\end{itemize}
 \vfill
 \newpage
 
-%======================= PAGE 4 =======================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Education}
-\role{Diplom in Computer Science, University of Koblenz-Landau}{2004 -- 2012}
-\context{Overall mark: distinction \textbullet{} focus: Computational Visualistics and Software Engineering \textbullet{} equivalent to a Master of Science}
-Standard duration this was not: from 2007 on I worked part-time and sometimes full-time as a developer, and my studies took
-the back seat. In return, I graduated with years of production experience. Choosing Computational Visualistics was, honestly,
-a direct consequence of discovering computer games.
-
-\vfill
-\role{Abitur, Gymnasium Haren (Ems)}{2003}
-\context{Advanced courses: Mathematics and Physics}
-My school IT education peaked in sixth grade with a typing course --- which was also my last contact with a school PC.
-Between 2000 and 2003 I taught myself PHP from a reference and built homepages, including a forum for my friends and later
-one for my graduating class. Security was, let us say, a later lesson.
-
-\vfill
-\section*{Certifications, Community \& Evidence}
 \begin{itemize}
-  \item \textbf{IKM Java SE 8 TechCheck} (2018): 93/100, 88th percentile, overall assessment ``Strong''.
-  \item \textbf{Stack Overflow}: 4,807 reputation, \textasciitilde3.3 million people reached, 57 answers and exactly 57 questions ---
-        perfectly balanced between helping and needing help. Top tags: Java, Jenkins, Spring Boot, Maven.
-  \item \textbf{Open source} since 2013, usually because something blocked me: Renovate (5 merged), Microsoft azure-devops-skills
-        (made installable as a Claude Code plugin), azure-devops-mcp (reported PR updates silently dropping fields, proposed the fix),
-        pact-jvm (3 merged), quarkus-zalando-problem-extension (8 merged), docs for GitHub, Azure and Docker.
-        My contribution history is essentially a map of my frustrations.
+  \item \textbf{Diplom in Computer Science} (equivalent to an MSc), University of Koblenz-Landau, 2004--2012, with distinction; focus on Computational Visualistics and Software Engineering. It took longer than planned because I worked as a developer from 2007, part-time and sometimes full-time. Time-to-degree: poor. Time-to-first-job: excellent.
+  \item \textbf{Abitur} 2003, Gymnasium Haren (Ems), advanced courses in mathematics and physics. My entire school IT curriculum was a typing course in sixth grade; I taught myself PHP from a reference book in 2000--2003 and built forums for friends and my graduating class. Computer games then led me to Computational Visualistics.
 \end{itemize}
 
-\vfill
-\section*{Additional Skills (and Their Side Effects)}
+\flexfill
+\section*{Additional Skills}
 \begin{itemize}
-  \item \textbf{Architecture Decision Records}: my default decision medium, including negative results. Writing down why
-        something failed is half of not doing it again; presenting ADRs in architecture CoPs is the other half.
-  \item \textbf{Agentic coding}: parallel sessions in git worktrees, subagents, custom skills, hooks as guardrails, MCP. Same
-        quality gates as for human code; architecture, trade-offs and the go/no-go stay with me.
-  \item \textbf{Communication}: draw.io diagrams for teams and stakeholders. Feedback says my explanations can run too fast
-        for less technical audiences --- diagrams are my mitigation, slowing down is the work in progress.
-  \item \textbf{Agile \& enablement}: Scrum, Kanban, SAFe, hands-on Product Owner, testing and contract-testing workshops,
-        onboarding of new team members, DevOps CoP and office hours.
+  \item \textbf{Practices:} ADRs as default decision medium (presented in architecture CoPs), Clean Architecture, Conventional Commits, SonarQube gates, Renovate and Dependabot, Scrum, Kanban, SAFe, Product Owner experience.
+  \item \textbf{Tooling:} Terraform, Helm, Docker, Azure DevOps, GitHub Actions, Jenkins; OpenTelemetry, ELK, Grafana, Dynatrace, Application Insights.
+  \item \textbf{Open source:} merged contributions to Renovate (5), quarkus-zalando-problem-extension (8), pact-jvm (3), phoneblock (3), Solid design system, and Microsoft's azure-devops-skills (installable as Claude Code plugin). Plenty of documentation fixes for GitHub, Azure and Docker: I fix what blocked me, and the docs usually blocked me first.
+  \item \textbf{StackOverflow:} 4,807 reputation, \textasciitilde3.3 million people reached, 3 gold / 53 silver / 71 bronze badges, 57 answers and 57 questions (November 2026). I asked exactly as many questions as I answered --- balanced, as all things should be.
+  \item \textbf{Java SE 8 TechCheck (IKM):} 93/100, 88th percentile (June 2018). The missing seven points remain classified.
 \end{itemize}
 
-\vfill
+\flexfill
+\section*{Honest Feedback (Three 360-Degree Surveys, 2021--2024)}
+\begin{itemize}
+  \item Technical competence rated 5/5 in 2021--2022 and 9--10/10 in 2024. Communication frequency rated 3/5 in 2021--2022, with some wishing for more accessible explanations for less technical stakeholders.
+  \item \textbf{Growth areas, verbatim in spirit:} consider the pace of technical explanations for less technical audiences, and continue developing openness to critical feedback. Both are on my personal backlog as ``important, not urgent'' --- which I know is the problem.
+  \item The flip side of a praised trait: ``stands up for the right things and doesn't shy away from conflicts''. Apparently it is the same trait.
+\end{itemize}
+
+\flexfill
 \section*{Career Breaks}
 \begin{itemize}
-  \item \textbf{Apr 2020 -- Sep 2021: Parental leave} during the COVID-19 lockdowns, coinciding with an industry-wide slowdown
-        in freelance projects. The most demanding stakeholders of my career, and no retrospectives allowed.
-  \item \textbf{Aug 2015 -- Dec 2015: Travel break}, exploring different countries and cultures.
-  \item \textbf{Aug 2003 -- Mar 2004: Mandatory military service}, air force: basic training at the Nassau-Dietz Barracks
-        (Budel, NL), then Hopsten airbase (Rheine, DE).
+  \item \textbf{Apr 2020 -- Sep 2021, parental leave:} during COVID-19 lockdowns and an industry-wide project slowdown. Best project of my career so far, no Jira board required.
+  \item \textbf{Aug -- Dec 2015, travel break:} exploring other countries and cultures. Production survived without me.
+  \item \textbf{Aug 2003 -- Mar 2004, military service (air force):} basic training in Budel (NL), then Hopsten airbase. Early lesson: ``hurry up and wait'' is also a project methodology.
 \end{itemize}
 
-\vfill
-\section*{Lessons, Condensed}
+\flexfill
+\section*{Lessons I Keep Relearning}
 \begin{itemize}
-  \item Paying down technical debt produces most of the measurable wins --- and the team profits most.
-  \item The boring, proven solution usually beats the clever one. Pub/sub was enough.
-  \item Familiar is not the same as right: ask which tool will matter in five years.
-  \item Before building a component flawlessly, ask whether it should exist at all.
-  \item Fix the measurement before celebrating the number --- in coverage as in trading.
-  \item Simulate reality before trusting results; paper trading beats beautiful backtests.
-  \item An autonomous, motivated team is gold; team composition needs decisive leadership.
-  \item Agents multiply output, not judgment: garbage in, garbage out still applies.
+  \item Familiar is not the same as right (Sphinx), and technical skill does not automatically make a leader.
+  \item The straightforward solution usually wins: Pub/Sub for search, a static build for the conversational platform.
+  \item Quality investments pay back fast, even for a team of one; and tech debt is where most of my measurable wins hide.
+  \item Garbage in, garbage out --- the best AI models included. Engineering practices still apply, and the simulator is the most important piece of a trading system.
+  \item Every handover costs communication effort, which keeps me a ``you build it, you run it'' believer.
 \end{itemize}
 
-\vfill
-\section*{Why Hire Someone Who Lists His Failures?}
-Because every lesson on these pages was paid for once, so the next client does not have to pay for it again. If that sounds
-useful, reach me at \href{mailto:mail@schulte-development.de}{mail@schulte-development.de}.
-
-\vfill
-{\color{SteelBlue}\rule{\linewidth}{0.5pt}}\par
-{\footnotesize\color{DimGray}\textbf{AI disclaimer:} This Anti-CV was generated with AI assistance (Anthropic Claude) from my
-structured career record, as part of my automated CV pipeline. All facts, figures and dates come from that record; the
-self-deprecating tone is deliberate, and the jokes are a human--machine joint venture. My conventional CV covers the same
-career with fewer confessions. Garbage in, garbage out --- if you find an error, the input was mine.}\par
-
-\newpage
+\flexfill
+\noindent\textcolor{DimGray}{\rule{\linewidth}{0.4pt}}\par
+{\footnotesize\itshape AI disclaimer: this document was drafted with the help of an AI assistant from my structured career records and reviewed by me. Facts come from my records; punchlines are negotiable. More at schulte-development.de.\par}
 \end{document}
