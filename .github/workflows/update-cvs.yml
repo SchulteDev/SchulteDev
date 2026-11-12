@@ -7,14 +7,6 @@ on:
     branches: [ '*' ]
   workflow_dispatch:
     inputs:
-      rebuild_mode:
-        description: 'CV Generation Mode'
-        required: true
-        default: 'full_rebuild'
-        type: choice
-        options:
-          - incremental
-          - full_rebuild
       api_model:
         description: 'Claude Model'
         required: true
@@ -24,10 +16,9 @@ on:
           - claude-opus-5-5
           - claude-sonnet-5-5
 
-env:
-  CAREER_FILE: ${{ github.workspace }}/_data/career.md
-  ANTI_CV_FILE: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-anti-cv.tex
-  PROFESSIONAL_CV_FILE: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-professional-cv.tex
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   # having "changes" job instead of GitHub action paths filtering for being usable as pull request check
@@ -38,24 +29,25 @@ jobs:
     #   See https://github.com/actions/runner/issues/2205 for details.
     if: github.event_name != 'workflow_dispatch'
     outputs:
-      cv: ${{ steps.changed-files.outputs.any_changed }}
+      scripts: ${{ steps.changed-files.outputs.scripts_any_changed }}
+      career: ${{ steps.changed-files.outputs.career_any_changed }}
     steps:
       - uses: actions/checkout@v7
       - uses: tj-actions/changed-files@v47
         id: changed-files
         with:
-          files: |
-            .github/workflows/update-cvs.yml
-            _data/**
-            curriculum_vitae/scripts/**
-          files_ignore: |
-            curriculum_vitae/*-cv.tex
+          files_yaml: |
+            scripts:
+              - .github/workflows/update-cvs.yml
+              - curriculum_vitae/scripts/**
+            career:
+              - _data/career.md
 
   test_cv_scripts:
     runs-on: ubuntu-latest
     environment: Sonar_SchulteDev_SchulteDev:curriculum_vitae_scripts
     needs: changes
-    if: always() && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.cv == 'true')
+    if: always() && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.scripts == 'true' || needs.changes.outputs.career == 'true')
     defaults:
       run:
         working-directory: curriculum_vitae/scripts
@@ -72,6 +64,8 @@ jobs:
           node-version-file: 'curriculum_vitae/scripts/.nvmrc'
       - name: Install dependencies
         run: npm ci
+      - name: Type check
+        run: npm run typecheck
       - name: Run unit tests
         run: npm run test:coverage
       - name: Publish test results
@@ -89,12 +83,12 @@ jobs:
           name: test-results
           path: curriculum_vitae/scripts/test-results.xml
           retention-days: 7
-      - name: Upload coverage reports
+      - name: Upload coverage report
         uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: coverage-report
-          path: curriculum_vitae/scripts/coverage/
+          path: curriculum_vitae/scripts/lcov.info
           retention-days: 7
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v8
@@ -102,11 +96,10 @@ jobs:
           projectBaseDir: curriculum_vitae/scripts/
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Test CV update with dry run
+      - name: Smoke test CV update without the API
         env:
-          DRY_RUN: true
           SKIP_API: true
-        run: npm run cv:test
+        run: npm run cv:update
       - name: SonarQube Quality Gate check
         uses: sonarsource/sonarqube-quality-gate-action@v1
         with:
@@ -117,20 +110,18 @@ jobs:
   update-cvs:
     runs-on: ubuntu-latest
     needs: [changes, test_cv_scripts]
-    if: always() && needs.test_cv_scripts.result == 'success' && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.cv == 'true')
+    if: >-
+      always() && needs.test_cv_scripts.result == 'success' && (github.event_name == 'workflow_dispatch'
+      || (github.event_name == 'push' && github.ref_name == 'main' && needs.changes.outputs.career == 'true'))
     strategy:
       matrix:
         cv_type: [ anti, professional ]
-    outputs:
-      mode: ${{ steps.update-cv.outputs.mode }}
     defaults:
       run:
         working-directory: curriculum_vitae/scripts
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
-        with:
-          fetch-depth: 2
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
@@ -140,43 +131,40 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Update CV
-        id: update-cv
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          API_MODEL: ${{ github.event.inputs.api_model }}
-          REBUILD_MODE: ${{ github.event.inputs.rebuild_mode }}
-        run: npm run cv:update:${{ matrix.cv_type }}
+          API_MODEL: ${{ inputs.api_model }}
+          CV_TYPES: ${{ matrix.cv_type }}
+        run: npm run cv:update
       - name: Validate LaTeX (compilation test)
-        if: success() && steps.update-cv.outputs.mode != 'skip'
         uses: xu-cheng/latex-action@v4
         with:
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Upload compiled PDF
-        if: success() && steps.update-cv.outputs.mode != 'skip'
         uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.cv_type }}-cv-pdf
           path: markus-schulte-dev-${{ matrix.cv_type }}-cv.pdf
           retention-days: 7
       - name: Upload updated .tex file
-        if: success() && steps.update-cv.outputs.mode != 'skip'
         uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.cv_type }}-tex-file
           path: curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           retention-days: 7
-      - name: Upload build artifacts
+      - name: Upload Claude response log
         uses: actions/upload-artifact@v7
-        if: always() && steps.update-cv.outputs.mode != 'skip'
+        if: always()
         with:
           name: cv-update-logs-${{ matrix.cv_type }}-${{ github.run_id }}
           path: curriculum_vitae/scripts/tmp/
+          if-no-files-found: ignore
           retention-days: 7
 
   commit-changes:
     needs: update-cvs
-    if: always() && needs.update-cvs.result == 'success' && needs.update-cvs.outputs.mode != 'skip' && github.ref_name == 'main'
+    if: always() && needs.update-cvs.result == 'success' && github.ref_name == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -196,5 +184,5 @@ jobs:
       - name: Commit updated LaTeX files
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: "fix(cv): Update CVs (Mode: ${{ github.event.inputs.rebuild_mode == 'full_rebuild' && 'Full Rebuild' || 'Incremental Update' }})"
+          commit_message: "fix(cv): Update CVs"
           file_pattern: "curriculum_vitae/markus-schulte-dev-*.tex"

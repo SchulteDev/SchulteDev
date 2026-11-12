@@ -1,28 +1,31 @@
-import {describe, expect, it} from 'vitest'
+import assert from 'node:assert/strict'
+import {describe, it} from 'node:test'
+import {buildPrompt} from '../prompts.ts'
 
-describe('prompt builders', () => {
-  it('should fill every placeholder of the incremental prompt', async () => {
-    const {getIncrementalPrompt} = await import('../prompts.js')
-    const prompt = getIncrementalPrompt('professional', 'CURRENT-CV-MARKER', 'DIFF-MARKER')
+describe('buildPrompt', () => {
+  const careerData = '# Career\nCut costs by $&5k; templating {{PAGES}} stays verbatim'
 
-    expect(prompt).toContain('CURRENT-CV-MARKER')
-    expect(prompt).toContain('DIFF-MARKER')
-    expect(prompt).not.toMatch(/\{\{[A-Z_]+}}/)
+  for (const cvType of ['professional', 'anti'] as const) {
+    it(`should embed the career data verbatim for the ${cvType} CV`, () => {
+      assert.ok(buildPrompt(cvType, careerData).includes(`\`\`\`markdown\n${careerData}\n\`\`\``))
+    })
+  }
+
+  it('should fill in the page count everywhere', () => {
+    const prompt = buildPrompt('professional', '')
+    assert.doesNotMatch(prompt, /\{\{|\$\{/)
+    assert.ok(prompt.includes('Create exactly 4-page Professional CV'))
+    assert.ok(prompt.includes('Exactly 4 vertical, filled, dense pages.'))
   })
 
-  it('should fill every placeholder of the full rebuild prompt', async () => {
-    const {getFullRebuildPrompt} = await import('../prompts.js')
-    const prompt = getFullRebuildPrompt('anti', 'CAREER-MARKER')
-
-    expect(prompt).toContain('CAREER-MARKER')
-    expect(prompt).not.toMatch(/\{\{[A-Z_]+}}/)
+  it('should use the instructions of the requested CV type', () => {
+    assert.ok(buildPrompt('professional', '').includes('Use metrics, percentages, concrete numbers.'))
+    assert.ok(!buildPrompt('professional', '').includes('Anti-CV'))
+    assert.ok(buildPrompt('anti', '').includes('self-deprecating humor'))
+    assert.ok(!buildPrompt('anti', '').includes('Professional CV'))
   })
 
-  it('should insert values verbatim, without $ patterns or placeholders inside them being replaced', async () => {
-    const {getIncrementalPrompt} = await import('../prompts.js')
-    const latex = String.raw`$$E = mc^2$$ costs \$5 $& $' $1 {{CV_TYPE}} {{PAGES}}`
-    const prompt = getIncrementalPrompt('professional', latex, 'diff')
-
-    expect(prompt).toContain(latex)
+  it('should keep LaTeX commands as single backslashes', () => {
+    assert.ok(buildPrompt('anti', '').includes('Use \\newpage after each page.'))
   })
 })

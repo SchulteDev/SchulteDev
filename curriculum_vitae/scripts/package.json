@@ -4,14 +4,11 @@
   "description": "AI-powered Markus Schulte Dev CV generation and transformation scripts",
   "type": "module",
   "scripts": {
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "clean": "rm -rf coverage/ node_modules/ tmp/ test-results.xml",
-    "cv:update": "tsx run-cv-update.ts",
-    "cv:update:professional": "CV_TYPES=professional tsx run-cv-update.ts",
-    "cv:update:anti": "CV_TYPES=anti tsx run-cv-update.ts",
-    "cv:test": "tsx test-local.ts",
-    "cv:test:full": "tsx test-local.ts full_rebuild"
+    "test": "node --test \"__tests__/*.test.ts\"",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-exclude=\"__tests__/**\" --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=test-results.xml --test-reporter=lcov --test-reporter-destination=lcov.info \"__tests__/*.test.ts\"",
+    "typecheck": "tsc",
+    "clean": "rm -rf node_modules/ tmp/ lcov.info test-results.xml",
+    "cv:update": "node cv-update.ts"
   },
   "repository": {
     "type": "git",
@@ -36,23 +33,17 @@
   },
   "homepage": "https://github.com/SchulteDev/SchulteDev",
   "dependencies": {
-    "@actions/core": "3.0.1",
     "@anthropic-ai/sdk": "1.8.0",
     "consola": "3.4.2",
     "dotenv": "18.0.10",
-    "fs-extra": "11.4.1",
-    "simple-git": "4.0.2",
     "zod": "4.6.7"
   },
   "devDependencies": {
-    "@types/fs-extra": "11.0.4",
     "@types/node": "26.6.6",
-    "@vitest/coverage-v8": "5.1.0",
-    "tsx": "4.23.15",
-    "vitest": "5.1.0"
+    "typescript": "7.0.2"
   },
   "engines": {
-    "node": ">=22.0.0",
-    "npm": ">=10.0.0"
+    "node": ">=26.0.0",
+    "npm": ">=11.0.0"
   }
 }
