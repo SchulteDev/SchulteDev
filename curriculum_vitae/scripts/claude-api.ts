@@ -2,8 +2,9 @@
 
 import fs from 'fs-extra';
 import Anthropic from '@anthropic-ai/sdk';
-import {MessageCreateParams, TextBlock} from '@anthropic-ai/sdk/resources';
+import type {Message, MessageStreamParams, TextBlock} from '@anthropic-ai/sdk/resources';
 import {
+  API_EFFORT,
   API_MODEL,
   CvType,
   getCvFile,
@@ -69,7 +70,8 @@ const logClaudeResponse = (response: any, cvType: CvType, userPrompt: string): v
     model: API_MODEL,
     request: {
       userPrompt: userPrompt.slice(0, 200) + (userPrompt.length > 200 ? '...' : ''),
-      maxTokens: MAX_TOKENS
+      maxTokens: MAX_TOKENS,
+      effort: API_EFFORT
     },
     response
   }, {spaces: 2});
@@ -86,30 +88,12 @@ const shouldUseMock = (): { useMock: boolean; reason: string } => {
   return {useMock: false, reason: ''};
 };
 
-const processApiStream = async (stream: any): Promise<{ content: string; usage: any }> => {
-  let completeResponse = '';
-  let usage = null;
-
-  for await (const chunk of stream) {
-    if (chunk.type === 'content_block_delta' && chunk.delta?.type === 'text_delta') {
-      completeResponse += chunk.delta.text;
-    } else if (chunk.type === 'message_delta' && chunk.usage) {
-      usage = chunk.usage;
-    }
-  }
-
-  return { content: completeResponse, usage };
-};
-
-const createApiRequest = (userPrompt: string): MessageCreateParams => ({
+export const createApiRequest = (userPrompt: string): MessageStreamParams => ({
   model: API_MODEL,
   max_tokens: MAX_TOKENS,
   messages: [{ role: 'user', content: userPrompt }],
-  stream: true,
-  thinking: {
-    type: "enabled",
-    budget_tokens: Math.min(20000, Math.floor(MAX_TOKENS * 0.4))
-  }
+  thinking: { type: 'adaptive' },
+  output_config: { effort: API_EFFORT }
 });
 
 const saveApiResponse = (response: any, cvType: CvType, userPrompt: string): void => {
@@ -118,32 +102,59 @@ const saveApiResponse = (response: any, cvType: CvType, userPrompt: string): voi
   logClaudeResponse(response, cvType, userPrompt);
 };
 
-const validateApiResponse = (content: string, cvType: CvType): boolean => {
-  if (!content?.trim()) {
+// Thinking blocks are separate content blocks; only the text blocks carry the LaTeX
+export const getResponseText = (message: Message): string =>
+  message.content
+    .filter((block): block is TextBlock => block.type === 'text')
+    .map(block => block.text)
+    .join('');
+
+const validateApiResponse = (message: Message, content: string, cvType: CvType): boolean => {
+  const {stop_reason: stopReason, stop_details: stopDetails} = message;
+  if (stopReason === 'refusal') {
+    const reason = stopDetails?.category ?? 'unknown category';
+    const explanation = stopDetails?.explanation ? `: ${stopDetails.explanation}` : '';
+    logger.error(`Claude declined the request for ${cvType} CV (refusal, ${reason})${explanation}`);
+    return false;
+  }
+  if (stopReason === 'max_tokens') {
+    logger.error(`Response for ${cvType} CV was truncated at MAX_TOKENS=${MAX_TOKENS}`);
+    return false;
+  }
+  if (!content.trim()) {
     logger.error(`Invalid API response for ${cvType} CV: empty response`);
     return false;
   }
   return true;
 };
 
+const logApiError = (error: unknown, cvType: CvType): void => {
+  if (error instanceof Anthropic.APIError) {
+    const status = error.status ?? 'no status';
+    logger.error(`API call failed for ${cvType} CV (${status}, request ID ${error.requestID ?? 'n/a'}): ${error.message}`);
+  } else {
+    logger.error(`API call failed for ${cvType} CV: ${error instanceof Error ? error.message : String(error)}`);
+  }
+};
+
 const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => {
-  logger.info(`Calling Claude ${API_MODEL} API for ${cvType} CV...`);
+  logger.info(`Calling Claude ${API_MODEL} API (effort: ${API_EFFORT}) for ${cvType} CV...`);
 
   try {
-    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-    const request = createApiRequest(userPrompt);
+    // Reads ANTHROPIC_API_KEY from the environment
+    const anthropic = new Anthropic();
 
     logger.debug('Starting streaming response...');
-    const stream = await anthropic.messages.create(request);
-    const { content: completeResponse, usage } = await processApiStream(stream);
+    const message = await anthropic.messages.stream(createApiRequest(userPrompt)).finalMessage();
+    const completeResponse = getResponseText(message);
 
-    if (!validateApiResponse(completeResponse, cvType)) {
+    if (!validateApiResponse(message, completeResponse, cvType)) {
       return false;
     }
 
     const response = {
       content: [{ type: 'text', text: completeResponse }],
-      usage: usage
+      usage: message.usage
     };
 
     saveApiResponse(response, cvType, userPrompt);
@@ -151,11 +162,8 @@ const callApi = async (userPrompt: string, cvType: CvType): Promise<boolean> => 
     logger.success(`API response received for ${cvType} CV`);
     logger.debug(`Response length: ${completeResponse.length} chars`);
     return true;
-  } catch (error: any) {
-    logger.error(`API call failed for ${cvType} CV: ${error.message}`);
-    if (error.response) {
-      logger.error('Response:', JSON.stringify(error.response).slice(0, 500));
-    }
+  } catch (error: unknown) {
+    logApiError(error, cvType);
     return false;
   }
 };
@@ -206,8 +214,7 @@ const readResponseContent = (responseFile: string, cvType: CvType): string | nul
 const cleanLatexContent = (text: string, cvType: CvType): string => {
   const originalLength = text.length;
 
-  // Remove thinking blocks and code fences
-  text = text.replace(/<(extended_)?thinking>[\s\S]*?<\/(extended_)?thinking>/gi, '');
+  // Remove code fences
   text = text.replace(/```(latex)?\n?/gi, '');
   text = text.trim().replace(/\n{3,}/g, '\n\n');
 

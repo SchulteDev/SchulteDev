@@ -1,14 +1,7 @@
+import type {Message} from '@anthropic-ai/sdk/resources'
 import {describe, expect, it} from 'vitest'
 
 describe('claude-api', () => {
-  it('should clean thinking blocks', () => {
-    const content = 'Before <thinking>remove this</thinking> After'
-    const cleaned = content.replace(/<thinking>[\s\S]*?<\/thinking>/gi, '')
-
-    expect(cleaned).toBe('Before  After')
-    expect(cleaned).not.toContain('thinking')
-  })
-
   it('should remove code fences', () => {
     const content = '```latex\n\\documentclass{article}\n```'
     const cleaned = content.replace(/```(latex)?\n?/gi, '')
@@ -20,5 +13,34 @@ describe('claude-api', () => {
   it('should validate content length', () => {
     expect('short'.length < 500).toBe(true)
     expect('a'.repeat(600).length >= 500).toBe(true)
+  })
+})
+
+describe('createApiRequest', () => {
+  it('should use adaptive thinking with effort instead of a thinking budget', async () => {
+    const {createApiRequest} = await import('../claude-api.js')
+    const {API_EFFORT, API_MODEL, MAX_TOKENS} = await import('../config.js')
+    const request = createApiRequest('prompt')
+
+    expect(request.model).toBe(API_MODEL)
+    expect(request.max_tokens).toBe(MAX_TOKENS)
+    expect(request.thinking).toEqual({type: 'adaptive'})
+    expect(request.output_config).toEqual({effort: API_EFFORT})
+    expect(JSON.stringify(request)).not.toContain('budget_tokens')
+  })
+})
+
+describe('getResponseText', () => {
+  it('should join text blocks and skip thinking blocks', async () => {
+    const {getResponseText} = await import('../claude-api.js')
+    const message = {
+      content: [
+        {type: 'thinking', thinking: '', signature: 'sig'},
+        {type: 'text', text: 'Hello ', citations: null},
+        {type: 'text', text: 'World', citations: null},
+      ],
+    } as unknown as Message
+
+    expect(getResponseText(message)).toBe('Hello World')
   })
 })

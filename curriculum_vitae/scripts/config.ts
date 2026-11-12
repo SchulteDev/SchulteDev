@@ -4,12 +4,19 @@ import fs from 'fs-extra';
 import {z} from 'zod';
 import * as core from '@actions/core';
 import 'dotenv/config'; // Automatically load .env file
+import type {OutputConfig} from '@anthropic-ai/sdk/resources';
+
+export const API_EFFORT_LEVELS = ['low', 'medium', 'high', 'xhigh', 'max'] as const satisfies
+  readonly NonNullable<OutputConfig['effort']>[];
+export type ApiEffort = typeof API_EFFORT_LEVELS[number];
 
 // Zod schema for environment variables
 const EnvSchema = z.object({
   CAREER_FILE: z.string().default('../../_data/career.md'),
-  API_MODEL: z.string().default('claude-sonnet-4-6'),
-  MAX_TOKENS: z.coerce.number().positive().default(12000),
+  API_MODEL: z.string().default('claude-sonnet-5-5'),
+  API_EFFORT: z.enum(API_EFFORT_LEVELS).default('xhigh'),
+  // Shared by thinking and the LaTeX output
+  MAX_TOKENS: z.coerce.number().positive().default(64000),
   MIN_CONTENT_LENGTH: z.coerce.number().positive().default(500),
   GIT_DIFF_RANGE: z.coerce.number().positive().default(1),
   CREATE_BACKUP: z.coerce.boolean().default(false),
@@ -17,7 +24,9 @@ const EnvSchema = z.object({
   CI: z.coerce.boolean().default(false),
 });
 
-const env = EnvSchema.parse(process.env);
+// GitHub Actions passes unset workflow_dispatch inputs (e.g. on push) as empty strings: treat them as unset
+const definedEnv = Object.fromEntries(Object.entries(process.env).filter(([, value]) => value !== ''));
+const env = EnvSchema.parse(definedEnv);
 
 // File paths
 export const CAREER_FILE: string = env.CAREER_FILE;
@@ -27,6 +36,7 @@ export const DIFF_FILE: string = 'tmp/career_changes.diff';
 
 // API Configuration
 export const API_MODEL: string = env.API_MODEL;
+export const API_EFFORT: ApiEffort = env.API_EFFORT;
 export const MAX_TOKENS: number = env.MAX_TOKENS;
 export const MIN_CONTENT_LENGTH: number = env.MIN_CONTENT_LENGTH;
 
