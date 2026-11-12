@@ -41,8 +41,8 @@ architecture, scope and quality decisions.
 
 - **Agentic Coding:** Daily use of coding agents (Claude Code) – parallel sessions, custom skills,
   hooks, automated agentic PR review
-- **Hands-on Development:** Built production systems in Java, Golang, TypeScript, Python – from
-  framework development to SDK implementation and application development
+- **Hands-on Development:** Built production systems in Java, Golang, TypeScript – from framework
+  development to SDK implementation and application development
 - **Enterprise Architecture:** Legacy-to-cloud migrations, Azure/AWS/GCP platforms, cloud-native
   system design, platform engineering
 - **Technical Leadership:** Led teams of 5-9 developers, served as Product Owner and technical
@@ -259,7 +259,8 @@ largely invisible to end users, but it is what lets a small team ship safely and
 **Technical Challenges:**
 
 - **Regulated delivery:** Releases gated by ITSM change management, security assessments,
-  penetration tests and DORA requirements
+  penetration tests and DORA (EU Digital Operational Resilience Act)
+  requirements
 - **Heterogeneous landscape:** Three generations of calculators across API Management, AKS and
   third-party calculation engines
 - **Small team, many products:** 15+ calculators maintained by a small team, which makes
@@ -306,7 +307,7 @@ CoP.
 - Took over the IT-architecture topics of Team Rechner from the previous architect
 - ADR for an asynchronous communication backbone based on Azure Event Hubs, presented in the
   architecture Community of Practice
-- Introduced Renovate and code coverage reporting into the calculator monorepo
+- Got Renovate working again and introduced code coverage reporting in the calculator monorepo
 - Backend: refactored the comparison of calculation engines, unit tests, framework upgrades
 
 **Phase 2: Delivery Platform (Jul – Aug 2026)**
@@ -365,7 +366,7 @@ CoP.
 *Calculator backend (Quarkus):*
 
 - **Real coverage made visible:** Reported line coverage 34% → 87% by fixing the measurement
-  (generated code and non-Quarkus tests were miscounted); wrote over half of the new unit tests
+  (generated code and non-Quarkus tests were miscounted)
 - **Release pipeline ~3× shorter (estimated):** Instead of rebuilding and retesting the app three
   times, one tested build is promoted through the stages; a Maven build and test run takes ~5 min
   today, the whole release ~4.5 min (median, November 2026)
@@ -1363,6 +1364,34 @@ Contributed to 13+ repositories including:
 
 ## Personal Projects
 
+### July 2026 — Present: "John review" – Automated Agentic PR Review
+
+Side project to make coding agents useful for a whole team, not just for me.
+
+- **John review:** Labelling a pull request triggers a headless coding agent that reviews the
+  change, pushes one fix commit per finding and posts a verdict – unattended, on a timer
+- **Shared agent configuration:** One versioned repository as single source of truth for agent
+  instructions, skills, hooks and per-language settings, used across several repositories
+- **Encoded engineering rules:** YAGNI, KISS, minimal comments, LSP-first code navigation
+
+**Technologies:** Claude Code (headless), MCP, systemd, Bash
+
+### July 2026 — Present: multi-resolution-timeseries-parquet
+
+Years of high-frequency time-series in a browser chart – static Parquet tiers at multiple
+resolutions, no backend. Coded by AI agents under my supervision.
+
+**Technologies:** TypeScript, Parquet, static hosting  
+**Repository:** https://github.com/SchulteDev/multi-resolution-timeseries-parquet
+
+### March 2026 — July 2026: deye-microinverter-power-limit
+
+CLI to set the power output limit of Deye microinverters via Solarman V5 / Modbus. Coded by AI
+agents under my supervision.
+
+**Technologies:** Python, Modbus, Solarman V5  
+**Repository:** https://github.com/SchulteDev/deye-microinverter-power-limit
+
 ### January 2026 — Present: BitterQuant
 
 Private ML research project on systematic trading, following Rich Sutton's "Bitter Lesson":
@@ -1398,34 +1427,6 @@ profitable, and that I can try out myself – not only, but also, to learn.
 
 **Technologies:** Python, PyTorch, Hugging Face, pandas, NautilusTrader, AWS (SageMaker, ECS
 Fargate, S3, CDK, CodePipeline), Astro/TypeScript, Claude Code
-
-### July 2026 — Present: "John review" – Automated Agentic PR Review
-
-Side project to make coding agents useful for a whole team, not just for me.
-
-- **John review:** Labelling a pull request triggers a headless coding agent that reviews the
-  change, pushes one fix commit per finding and posts a verdict – unattended, on a timer
-- **Shared agent configuration:** One versioned repository as single source of truth for agent
-  instructions, skills, hooks and per-language settings, used across several repositories
-- **Encoded engineering rules:** YAGNI, KISS, minimal comments, LSP-first code navigation
-
-**Technologies:** Claude Code (headless), MCP, systemd, Bash
-
-### July 2026 — Present: multi-resolution-timeseries-parquet
-
-Years of high-frequency time-series in a browser chart – static Parquet tiers at multiple
-resolutions, no backend. Coded by AI agents under my supervision.
-
-**Technologies:** TypeScript, Parquet, static hosting  
-**Repository:** https://github.com/SchulteDev/multi-resolution-timeseries-parquet
-
-### March 2026 — July 2026: deye-microinverter-power-limit
-
-CLI to set the power output limit of Deye microinverters via Solarman V5 / Modbus. Coded by AI
-agents under my supervision.
-
-**Technologies:** Python, Modbus, Solarman V5  
-**Repository:** https://github.com/SchulteDev/deye-microinverter-power-limit
 
 ### August 2025 — January 2026: ConversationalAI4J
 
