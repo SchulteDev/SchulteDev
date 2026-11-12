@@ -14,12 +14,12 @@ website.
 - [Jekyll](https://jekyllrb.com) static site generator
   - [Beautiful-Jekyll](https://beautifuljekyll.com) as the Jekyll theme
 - [GitHub Pages](https://pages.github.com/) hosting
-- Docker for development
+- [Podman](https://podman.io) (rootless) for local development
 - Automated CI/CD workflows
 
 ## Local Development
 
-You can build, serve, and test the site locally using `make` commands or Docker.
+You can build, serve, and test the site locally using `make` commands or Podman.
 
 ### Using Make (requires Ruby and Jekyll installed locally)
 
@@ -28,7 +28,15 @@ You can build, serve, and test the site locally using `make` commands or Docker.
 - **Validate:** `make validate` (runs Jekyll doctor + html-proofer + custom tests)
 - **Test:** `make test`
 
-### Using Docker
+### Using Podman (rootless, Linux)
 
-- **Build & Serve:** `make docker-serve`
-- **Test:** `make docker-test` (includes validation and testing)
+Requires only [Podman](https://podman.io/docs/installation); no local Ruby needed.
+
+- **Build & Serve:** `make podman-serve`, then open http://localhost:4000 (live reload enabled)
+- **Test:** `make podman-test` (includes validation and testing)
+- **Build image only:** `make podman-build`
+
+The image is built from the `Containerfile`. The site folder is bind-mounted to `/app` with
+`--userns=keep-id:uid=65534,gid=65534`, so the container's `nobody` user maps to your host user and
+generated files (`_site/`, `.jekyll-cache/`) stay owned by you. The `:Z` mount option relabels
+the folder on SELinux-enforcing hosts (e.g. Fedora). Ports are published on `127.0.0.1` only.

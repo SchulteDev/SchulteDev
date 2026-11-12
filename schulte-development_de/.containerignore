@@ -1,0 +1,7 @@
+.jekyll-cache/
+_site/
+.jekyll-metadata
+
+# Container build files (to avoid recursive copying)
+.containerignore
+Containerfile

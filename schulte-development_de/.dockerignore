@@ -1,7 +1,0 @@
-.jekyll-cache/
-_site/
-
-# Docker files (to avoid recursive copying)
-.dockerignore
-docker-compose.yml
-Dockerfile
