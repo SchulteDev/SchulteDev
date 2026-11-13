@@ -15,8 +15,8 @@ describe('buildPrompt', () => {
     const prompt = buildPrompt('professional', '')
     assert.doesNotMatch(prompt, /\{\{|\$\{/)
     assert.ok(prompt.includes('The CV ends on page 4: running onto page 5 is the failure to avoid'))
-    assert.ok(prompt.includes('a page holds 63 lines of about 100 characters'))
-    assert.ok(prompt.includes('Size the content to about 232 of the 252 lines'))
+    assert.ok(prompt.includes('a page holds about 57 lines of text, a full line about 115 characters'))
+    assert.ok(prompt.includes('Size the content to about 205 of the 228 lines of text'))
   })
 
   it('should describe only the requested CV type', () => {
