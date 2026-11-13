@@ -1,288 +1,274 @@
 \DocumentMetadata{lang=en,pdfstandard=ua-1,tagging=on}
 \documentclass[10pt,a4paper]{article}
-
-\usepackage[a4paper,top=1.3cm,bottom=1.3cm,left=1.5cm,right=1.5cm]{geometry}
-\usepackage{fontspec}
-\renewcommand{\familydefault}{\sfdefault}
+\usepackage[margin=1.5cm]{geometry}
 \usepackage[svgnames]{xcolor}
 \usepackage{enumitem}
 \usepackage{array}
 \usepackage{hyperref}
-
 \hypersetup{
-  pdftitle={Markus Schulte -- Curriculum Vitae},
+  pdftitle={Markus Schulte - Curriculum Vitae},
   pdfauthor={Markus Schulte},
-  pdfsubject={Curriculum Vitae: Cloud Architect and Software Engineer},
-  pdfkeywords={Cloud Architect, Software Engineer, Azure, AWS, Java, Golang, Agentic Coding},
-  pdfdisplaydoctitle=true,
   colorlinks=true,
-  linkcolor=MidnightBlue,
-  urlcolor=MidnightBlue
+  urlcolor=SteelBlue,
+  linkcolor=SteelBlue
 }
 
-\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
-\renewcommand{\arraystretch}{1.12}
+\setlength{\parskip}{2pt}
 
-% ---------- Headings via \@startsection ----------
+\setlist[itemize]{leftmargin=1.2em, labelsep=0.4em, topsep=1pt, partopsep=0pt, itemsep=1pt, parsep=0pt}
+
 \makeatletter
 \renewcommand\section{\@startsection{section}{1}{\z@}%
-  {-2.0ex \@plus -0.4ex \@minus -0.2ex}%
-  {0.7ex \@plus 0.1ex}%
+  {-1.6ex \@plus -0.4ex \@minus -0.2ex}%
+  {0.7ex \@plus 0.2ex}%
   {\normalfont\large\bfseries\color{MidnightBlue}}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-  {-1.3ex \@plus -0.3ex \@minus -0.1ex}%
-  {0.3ex \@plus 0.1ex}%
+  {-1.2ex \@plus -0.3ex \@minus -0.2ex}%
+  {0.3ex}%
   {\normalfont\normalsize\bfseries\color{DarkSlateGray}}}
 \makeatother
 
-% ---------- Lists ----------
-\setlist[itemize]{leftmargin=1.1em, labelsep=0.4em, itemsep=0.6pt, parsep=0pt,
-  topsep=1.5pt, partopsep=0pt, label={\textcolor{SteelBlue}{\textbullet}}}
-
-% ---------- Helpers ----------
-\newcommand{\ca}{\textasciitilde}
-\newcommand{\kpi}[1]{\textbf{\textcolor{MidnightBlue}{#1}}}
-\newcommand{\sk}[1]{\textbf{\textcolor{MidnightBlue}{#1}}}
-\newcommand{\ctx}[1]{{\small\color{DimGray}\itshape #1\par}\vspace{1pt}}
-\newcommand{\tech}[1]{\vspace{1pt}{\footnotesize\color{DimGray}\textbf{Stack:} #1\par}}
+\newcommand{\roleinfo}[1]{{\small\itshape\color{DimGray}#1\par}}
 
 \begin{document}
 
-% =====================================================================
-% PAGE 1: Header, Summary, Key Impacts, Skills Overview
-% =====================================================================
-{\fontsize{24}{28}\selectfont\bfseries\color{MidnightBlue} Markus Schulte\par}
-\vspace{3pt}
-{\large\color{DarkSlateGray} Freelance Cloud Architect \& Software Engineer\par}
-\vspace{4pt}
-{\small Cologne, Germany \textbar{}
-\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} \textbar{}
-\href{tel:+4917872177768}{+49 178 7217768} \textbar{}
-\href{https://schulte-development.de}{schulte-development.de}\par
-\href{https://www.linkedin.com/in/markus-schulte/}{linkedin.com/in/markus-schulte} \textbar{}
-\href{https://github.com/SchulteDev}{github.com/SchulteDev} \textbar{}
-\href{https://stackoverflow.com/users/1645517/markus-schulte}{stackoverflow.com/users/1645517/markus-schulte}\par}
-\vspace{3pt}
-{\small\itshape\color{DimGray} ``Crafting solutions that thrive today and tomorrow''\par}
-\vspace{2pt}
-{\color{SteelBlue}\rule{\linewidth}{1pt}}\par
+% ===================== CV HEADER =====================
+\begin{center}
+{\LARGE\bfseries\color{MidnightBlue} Markus Schulte}\\[3pt]
+{\large Freelance Cloud Architect \& Software Engineer}\\[3pt]
+Cologne, Germany \textbullet\ \href{mailto:mail@schulte-development.de}{mail@schulte-development.de} \textbullet\ +49 178 7217768 \textbullet\ \href{https://schulte-development.de}{schulte-development.de}\\
+\href{https://www.linkedin.com/in/markus-schulte/}{linkedin.com/in/markus-schulte} \textbullet\ \href{https://github.com/SchulteDev}{github.com/SchulteDev} \textbullet\ \href{https://stackoverflow.com/users/1645517/markus-schulte}{stackoverflow.com/users/1645517/markus-schulte}\\[3pt]
+{\itshape\color{DimGray} ``Crafting solutions that thrive today and tomorrow''}
+\end{center}
 
-\section*{Professional Profile}
-Software engineer and cloud architect with \textbf{19+ years of hands-on experience} (12+ as freelancer)
-in enterprise modernization and cloud-native transformation across banking, asset management,
-logistics, e-commerce and social networks. Since April 2026 \textbf{IT architect for three teams} of the
-funds squad at Union Investment, hands-on in the team that builds and operates \textbf{15+ public
-financial calculators} under DORA, penetration-test and ITSM change requirements. Previously cloud
-architect in LBBW's ``Phoenix'' IT modernization (\ca{}80 people) and software lead in the modernization
-of Union Investment's B2B portal InvestmentWelt, whose Self-contained Systems pattern became the
-template for group-wide modernization. I work \textbf{agent-first}: coding agents (Claude Code) write
-most of the code under my supervision -- goals, architecture, review and the go/no-go stay with me.
-In parallel I run BitterQuant, a private ML research project on systematic trading on AWS.
+% ===================== SUMMARY =====================
+\section*{Professional Summary}
+Software engineer and cloud architect with 19+ years of hands-on experience (12+ as a freelancer), specializing in
+enterprise modernization and cloud-native transformation, from a social network with 9M+ members to regulated
+banking and asset management. Currently IT architect for three teams of the funds squad at Union Investment,
+hands-on in the team that builds the public financial calculators; previously cloud architect in LBBW's
+``Phoenix'' IT modernization. Led teams of 5--9 developers as software lead, technical Product Owner and Head of
+Development. Working agent-first: coding agents (Claude Code) write most of the code under my supervision, while I
+own architecture, scope, quality and the go/no-go. In parallel I run BitterQuant, a private ML research project on
+systematic trading on AWS.
 
+% ===================== KEY IMPACTS =====================
 \section*{Key Impacts}
 \begin{itemize}
-  \item \kpi{9M+ users:} scaled one of Germany's largest social networks as developer and Head of Development; page load times \textminus{}60\%
-  \item \kpi{Days \textrightarrow{} 30 minutes} deployment for urgent changes, \kpi{99.9\% uptime} and sub-second cross-domain search (Union Investment B2B portal)
-  \item \kpi{100\% uptime over 3 years} as sole engineer of a Golang middleware synchronizing \ca{}10M records to Salesforce (DHL Group)
-  \item \kpi{\ca{}9\texttimes{} faster dependency updates} (median 2\,h \textrightarrow{} 13\,min) and \kpi{3\texttimes{} unit tests} (538 \textrightarrow{} 1,659) from May to November 2026
-  \item \kpi{\ca{}4 weeks} from first technical assessment to production for a customer-facing platform takeover -- fixed deadline met
-  \item \kpi{60 person-days saved} by one well-founded architecture decision; \kpi{1000+ tests} with \kpi{10-minute builds} via parallelization
-  \item \kpi{10 of 30 applications} under IT-architectural responsibility in an \ca{}80-person bank modernization program (LBBW)
-  \item \kpi{83 customers in 15+ countries} for my own commercial Atlassian Marketplace add-ons, sustained over 7 years
-  \item \kpi{\textminus{}60\% infrastructure overhead} by consolidating services into one Quarkus service; \kpi{12 developers} trained in contract testing
-  \item \kpi{Up to 80\% faster} SQL SELECTs via EXPLAIN-driven tuning; \kpi{teams of 5--7 developers} led as software lead and technical PO
+  \item \textbf{Scale:} Scaled the architecture of the social network wer-kennt-wen.de for 9M+ registered users; page
+        load times reduced by 60\% through architecture modernization.
+  \item \textbf{Delivery speed:} Cut deployment time on Union Investment's B2B portal from several days to 30 minutes
+        for urgent changes (10\texttimes{} faster deployment cycles) at 99.9\% uptime in production.
+  \item \textbf{Corporate template:} Proposed the microfrontend approach whose Self-contained Systems pattern became
+        the corporate standard for group-wide modernization; a single well-founded decision saved 60 person-days.
+  \item \textbf{Reliability:} 100\% production uptime over 3 years as sole engineer of Saloodo!'s (DHL Group)
+        Salesforce middleware synchronizing \textasciitilde10M records; SELECT times reduced by up to 80\%.
+  \item \textbf{Engineering throughput (2026):} Dependency updates merged \textasciitilde9\texttimes{} faster (median
+        \textasciitilde2\,h \textrightarrow\ 13\,min), unit tests tripled (538 \textrightarrow\ 1,659), 80\% coverage
+        gates in 17 packages, 4--7 production releases per month run by the team itself.
+  \item \textbf{Deadline delivery:} Moved a customer-facing conversational platform from an external agency into the
+        team's own operation in \textasciitilde4 weeks; the fixed production date was met.
+  \item \textbf{CI efficiency:} Sibling team's CI cache work \textasciitilde8\,min \textrightarrow\ \textasciitilde12\,s
+        (cache 6.6\,GB \textrightarrow\ 242\,MB); 1,065 hidden type errors fixed to zero.
+  \item \textbf{Enterprise migration:} IT-architectural responsibility for 10 of 30 applications in LBBW's
+        \textasciitilde80-person modernization; assessment framework for hundreds of legacy applications.
+  \item \textbf{Business value:} Built and ran a commercial Atlassian Marketplace add-on business for 7 years with
+        83 customers across 15+ countries.
 \end{itemize}
 
+% ===================== SKILLS OVERVIEW =====================
 \section*{Skills Overview}
-\begin{tabular}{@{}p{2.8cm}>{\raggedright\arraybackslash}p{\dimexpr\linewidth-2.8cm-2\tabcolsep\relax}@{}}
-\sk{Agentic Coding} & Daily Claude Code use: parallel sessions in git worktrees, subagents, custom skills, hooks as guardrails, MCP integrations, automated agentic PR review; same quality gates as for human-written code \\
-\sk{Languages} & Java (19 years, ``mother tongue''), Golang (5+ years), TypeScript/JavaScript, Python (PyTorch, pandas), PHP (8+ years, early career) \\
-\sk{Architecture} & Self-contained Systems, microfrontends with Web Components, event-driven architecture, legacy modernization, R-methodology migration assessment, ADR-based governance, multi-cloud \\
-\sk{Azure} & 5+ years: Static Web Apps, Functions, Event Hubs, AKS, API Management, Front Door/WAF, AD B2C, Application Insights, Document Intelligence \\
-\sk{AWS / GCP} & AWS 7+ years: Lambda, ECS Fargate, EKS, SageMaker, API Gateway, S3, SQS, CloudFormation, CDK; GCP: GKE, Cloud Functions, Firebase \\
-\sk{DevOps \& IaC} & Terraform, Helm, Docker, Kubernetes, Azure DevOps, GitHub Actions, Jenkins, Bamboo, ArgoCD, Renovate, SonarQube, CycloneDX SBOMs \\
-\sk{Frameworks} & Spring Boot, Quarkus, Micronaut, JavaEE, Node.js; React, Lit, Vite, Storybook; Nx, Turborepo, Lerna, pnpm \\
-\sk{Testing} & JUnit, Mockito, Vitest, Jest, Playwright, Selenium, Pact contract testing, Testcontainers, Dockertest, coverage gates \\
-\sk{Data \& Messaging} & PostgreSQL, MySQL, Oracle, MS-SQL, Redis; Kafka, Azure Event Hubs, SQS; Algolia, ElasticSearch \\
-\sk{Observability} & OpenTelemetry, Azure Application Insights, ELK Stack, Grafana, Prometheus, Dynatrace, CloudWatch \\
-\sk{Leadership} & Software lead, technical Product Owner, agile coach (Scrum, Kanban, SAFe), hiring and onboarding, workshops, architecture CoPs \\
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}p{3.2cm}p{14.3cm}@{}}
+\textbf{Languages} & Java (19 years), Golang (5 years), TypeScript/JavaScript, Python (ML, since 2026), PHP (8+ years, early career) \\
+\textbf{Architecture} & Self-contained Systems, event-driven architecture, microservices, microfrontends with Web Components, legacy modernization, R-methodology migration assessment, ADRs \\
+\textbf{Azure (5+ years)} & Static Web Apps, Functions, Event Hubs, AKS, AD B2C, API Management, Front Door/WAF, Document Intelligence \\
+\textbf{AWS (7+ years)} & Lambda, EKS, ECS Fargate, API Gateway, S3, SQS, CloudFormation, CDK, SageMaker; GCP: GKE, Cloud Functions \\
+\textbf{DevOps \& IaC} & Terraform, Helm, Docker, Kubernetes, Azure DevOps, GitHub Actions, Jenkins, Renovate, SonarQube, CycloneDX SBOMs \\
+\textbf{Backend} & Spring Boot, Quarkus, Micronaut, JavaEE, Node.js; Kafka, Azure Event Hubs, SQS \\
+\textbf{Frontend \& Build} & React, Web Components, Lit, Vite, Storybook; Nx, Turborepo, Lerna, pnpm \\
+\textbf{Data \& Search} & PostgreSQL, MySQL, Oracle, MS-SQL, Redis, Algolia, ElasticSearch \\
+\textbf{Testing} & JUnit, Mockito, Jest, Vitest, Playwright, Selenium, Pact contract testing, Testcontainers, Dockertest \\
+\textbf{Observability} & OpenTelemetry, Azure Application Insights, ELK Stack, Grafana, Dynatrace \\
+\textbf{AI \& ML} & Claude Code (agent-first), MCP, PyTorch, Hugging Face, pandas, AWS SageMaker, Azure Document Intelligence \\
+\textbf{Leadership} & Teams of 5--9, technical Product Owner, Head of Development, agile coaching, hiring and onboarding, workshops \\
 \end{tabular}
 
-\vfill
-\newpage
-
-% =====================================================================
-% PAGE 2: Recent Roles
-% =====================================================================
+% ===================== RECENT ROLES =====================
 \section*{Recent Professional Experience}
 
-\subsection*{IT Architect \& Platform Engineer, \textcolor{SteelBlue}{Union Investment} \hfill \textnormal{\small Apr 2026 -- present}}
-\ctx{Freelance via percision services GmbH, part-time, remote and Frankfurt. Architect for three teams of the funds squad; hands-on in Team Rechner (15+ public financial calculators as React apps and Web Components, Quarkus backend) under ITSM, pen-test and DORA requirements.}
+\subsection*{IT Architect \& Platform Engineer, Union Investment \hfill {\normalfont\color{DimGray} Apr 2026 -- present}}
+\roleinfo{Freelance via percision services GmbH, part-time, remote and Frankfurt \textbar\ Architect for three teams of
+the funds squad; hands-on in Team Rechner (15+ public financial calculators, React and Web Components, Quarkus backend)}
 \begin{itemize}
-  \item \textbf{Delivery platform:} per-branch preview environments with post-deployment tests and team-run release automation with ITSM integration \textrightarrow{} 4--7 production releases per month; deploy step 45--81\,s \textrightarrow{} 26\,s
-  \item \textbf{Tech-debt paydown (May \textrightarrow{} Nov 2026):} Renovate median time-to-merge \ca{}2\,h \textrightarrow{} 13\,min, unit tests 538 \textrightarrow{} 1,659, 80\% coverage gates in 17 packages; release pipeline \ca{}3\texttimes{} shorter (estimated)
-  \item \textbf{Business delivery:} took over an agency-built conversational advisory platform in \ca{}4 weeks by integrating it as static build into the existing monorepo (ADR) -- deadline met, no extra runtime to operate
-  \item \textbf{Observability \& security:} request origin attribution via OpenTelemetry with zero changes to 15+ apps; pen-test TLS finding resolved via managed edge; SBOMs in 4 repositories; sibling team CI cache \ca{}8\,min \textrightarrow{} 12\,s
-\end{itemize}
-\tech{React, TypeScript, Java 25, Quarkus, Azure Static Web Apps, API Management, AKS, Front Door/WAF, Terraform, Azure DevOps, Playwright, SonarQube}
-
-\subsection*{Cloud Architect, \textcolor{SteelBlue}{LBBW -- Landesbank Baden-W\"urttemberg} \hfill \textnormal{\small Nov 2024 -- Dec 2025}}
-\ctx{Freelance, remote. ``Phoenix'' IT modernization (\ca{}80 people): migration of the application portfolio to the Azure-based ``Skywalker'' platform; member of a 9-person team, one of three providing platform access.}
-\begin{itemize}
-  \item IT-architectural responsibility for \textbf{10 of 30 applications} in area ``04 -- Application Development''; architecture decisions presented to business and IT committees
-  \item Built assessment templates and processes (R-methodology) to catalog \textbf{hundreds of legacy applications} (Spring Boot, Tomcat, IIS; Oracle, MS-SQL, PostgreSQL) for migration readiness
-  \item Defined the Solution Design Template for FirstMover migrations: Azure component design (AKS, Functions, databases), deployment, backup and monitoring concepts, cost forecasts
-  \item Platform gap analysis of the not yet productive Skywalker platform driving targeted enhancements; evaluated Elastisys Welkin as vendor-flexible alternative
-\end{itemize}
-\tech{Azure (AKS, Functions, Static Web Apps), Kubernetes, Spring Boot, Tomcat, IIS, Oracle, MS-SQL, PostgreSQL, Azure Calculator, draw.io}
-
-\subsection*{Software Lead \& Cloud Architect, \textcolor{SteelBlue}{Union Investment} \hfill \textnormal{\small Oct 2021 -- Dec 2024}}
-\ctx{Freelance, remote. Modernization of the business-critical B2B sales portal InvestmentWelt (80,000 users) from a Liferay/FirstSpirit monolith with 8 domains to Self-contained Systems; overall architecture owned by Union Investment.}
-\begin{itemize}
-  \item Proposed the microfrontend approach that was adopted; built the toolkit and container app -- the SCS pattern became the template for group-wide modernization; going straight to Web Components after the PoC saved \ca{}60 person-days
-  \item Software lead, technical PO and agile coach for \textbf{5--7 developers}; built a new cross-functional team from scratch; 360-degree feedback: technical competence 9--10/10 (2024)
-  \item Deployment for urgent changes cut from several days to \textbf{30 minutes}; \textbf{99.9\% uptime}; 1000+ tests with 10-minute builds; Terraform, Pipeline-as-Code, automated dependency updates
-  \item Cross-domain search: Azure Event Hubs and Functions feeding Algolia with \textbf{sub-second responses}; Java SDK (CDI, Avro, Testcontainers) for publishing teams
-\end{itemize}
-\tech{TypeScript, Lit, Web Components, Java, Azure Static Web Apps, Functions, Event Hubs, AD B2C, Application Insights, Algolia, Terraform, Nx, Lerna}
-
-\subsection*{Middleware Engineer, \textcolor{SteelBlue}{Saloodo! (DHL Group)} \hfill \textnormal{\small Dec 2021 -- Nov 2024}}
-\ctx{Freelance, part-time alongside Union Investment, remote. Sole engineer of the middleware synchronizing the digital freight platform with Salesforce -- from requirements to operations.}
-\begin{itemize}
-  \item Designed a stateless, fault-tolerant Golang service with automatic retries -- \textbf{100\% production uptime over 3 years} for business-critical CRM data
-  \item Multi-threaded full sync of \textbf{\ca{}10M records} plus near real-time propagation within minutes; SELECT times cut by \textbf{up to 80\%} via EXPLAIN-driven schema and query tuning
-  \item 70\% test coverage on 2,776 LOC with 5-second test runs (Dockertest, PostgreSQL); robust handling of malformed upstream data; monitoring with ELK and Dynatrace
-\end{itemize}
-\tech{Golang, PostgreSQL, Salesforce Bulk API, Docker, Kubernetes, ArgoCD, GitHub Actions}
-
-\subsection*{Senior Software Engineer, \textcolor{SteelBlue}{Trusted Shops} \hfill \textnormal{\small Aug 2018 -- Oct 2019}}
-\ctx{Freelance, Cologne. Subscription team and MARS unit; modernization from a JavaEE6 monolith towards AWS serverless services.}
-\begin{itemize}
-  \item Salesforce/Zuora subscription integration for the customer portal: self-service upgrade center, debit memo and invoice automation on AWS Lambda
-  \item Evaluated SMS providers, selected Twilio and implemented SMS delivery; designed the invite reminder architecture and load-tested the scheduler
-  \item Reusable AWS Java Lambda template (Micronaut) adopted team-wide; led Pact contract-testing training; Clean Code refactoring across 13+ repositories
-\end{itemize}
-\tech{Java, Spring Boot, Micronaut, AWS (Lambda, API Gateway, S3, SQS, EKS), Terraform, Docker, Pact, Grafana, CloudWatch}
-
-\vfill
-\newpage
-
-% =====================================================================
-% PAGE 3: Earlier Experience, Further Roles, Personal Projects
-% =====================================================================
-\section*{Earlier Experience}
-
-\subsection*{Cloud Consultant, \textcolor{SteelBlue}{Sedo GmbH} \hfill \textnormal{\small Jan 2020 -- Mar 2020}}
-\ctx{Freelance, Cologne. Domain trading platform.}
-\begin{itemize}
-  \item Consolidated Spring Boot and Apache Camel services into a single Quarkus service -- \textbf{60\% less infrastructure overhead}
-  \item Standardized REST API implementations; evaluated Knative for serverless workloads on Kubernetes
-  \item Led Pact contract-testing workshops, \textbf{training 12 developers}
+  \item Own architecture, CI/CD, release, infrastructure and test strategy of the calculator monorepo; decisions
+        documented as ADRs and presented in the architecture CoP (Event Hubs backbone, PDF print service, Highcharts).
+  \item Delivery platform: per-branch preview environments with post-deployment tests and release automation with
+        ITSM change integration; 4--7 production releases per month run by the team; deploy step 45--81\,s
+        \textrightarrow\ 26\,s.
+  \item Quality: Renovate PRs merged within one hour 24\% \textrightarrow\ 83\%; unit tests 538 \textrightarrow\ 1,659;
+        backend coverage made visible 34\% \textrightarrow\ 87\%; release pipeline \textasciitilde3\texttimes{} shorter
+        (estimated).
+  \item Regulated delivery (DORA, penetration tests): fixed a TLS finding via managed enterprise-grade edge, SBOMs in
+        four repositories; request-origin attribution via OpenTelemetry with zero changes to 15+ calculator apps.
 \end{itemize}
 
-\subsection*{Senior Engineer \& DevOps, \textcolor{SteelBlue}{toom Baumarkt (via tarent solutions)} \hfill \textnormal{\small Oct 2016 -- Sep 2017}}
-\ctx{Freelance, Bonn. Lead developer in an 8-member Scrum team (``you build it, you run it'') with cross-team quality responsibility for 4 teams.}
+\subsection*{Cloud Architect, LBBW \hfill {\normalfont\color{DimGray} Nov 2024 -- Dec 2025}}
+\roleinfo{Landesbank Baden-W\"urttemberg, freelance, remote \textbar\ ``Phoenix'' IT modernization
+(\textasciitilde80 people): migration to the Azure-based ``Skywalker'' platform; team of 9}
 \begin{itemize}
-  \item Delivered \textbf{5 production microservices} (Java, Golang) replacing monolith components; Docker and Bamboo CI/CD cut deployment time from days to hours
-  \item Accelerated end-to-end test execution by \textbf{\ca{}70\%} and reduced Java memory consumption through garbage-collection tuning
-  \item Led weekly cross-team quality initiatives; introduced integration tests, Swagger, OWASP checks, JMeter and PR metrics; mentored junior developers
-  \item Received two formal letters of recommendation (technical and process) from tarent
+  \item IT-architectural responsibility for 10 of 30 applications in area ``04 -- Application Development'';
+        presented technical designs to business and IT committees.
+  \item Established an assessment framework (R-methodology, templates, standardized analysis) to catalog hundreds of
+        legacy applications (Spring Boot, Tomcat, IIS; Oracle, MS-SQL, PostgreSQL) for migration.
+  \item Defined the Solution Design Template for FirstMover migrations to Azure and guided its application; specified
+        Azure components (AKS, Functions, databases) and forecast costs with Azure Calculator.
+  \item Identified gaps in the production-unused Skywalker platform, driving enhancements; evaluated Elastisys Welkin
+        as a strategic platform alternative for vendor flexibility.
 \end{itemize}
 
-\subsection*{Head of Development \& Backend Developer, \textcolor{SteelBlue}{werkenntwen} \hfill \textnormal{\small Aug 2007 -- Jun 2014}}
-\ctx{Permanent position. wer-kennt-wen.de, one of Germany's largest social networks (9M+ members, acquired by RTL interactive in 2009). PHP Developer 2007--2008, Head of Development 2008--2010, Backend Developer 2010--2014.}
+\subsection*{Software Lead \& Cloud Architect, Union Investment \hfill {\normalfont\color{DimGray} Oct 2021 -- Dec 2024}}
+\roleinfo{Freelance, remote \textbar\ Modernization of the business-critical B2B sales platform InvestmentWelt
+(80,000 users) from a Liferay/FirstSpirit monolith; teams of 5--7 as technical Product Owner and agile coach}
 \begin{itemize}
-  \item Head of Development with full personnel responsibility: recruiting, onboarding, performance evaluation, roadmap and change-request management, release management
-  \item Led the move from procedural code to object-oriented multi-layer MVC (Zend Framework); \textbf{page load times reduced by 60\%}
-  \item Scaled the platform for \textbf{9M+ users} via table partitioning, extensive Memcache and query tuning; REST API (WADL) and mobile portal
-  \item Introduced Jenkins CI, PHPUnit with coverage, Selenium, code reviews and metrics; security hardening against XSS, CSRF, SQL injection and brute force
+  \item Proposed the microfrontend approach that was adopted; built the microfrontend toolkit and container app;
+        choosing Web Components directly after the PoC saved \textasciitilde60 person-days.
+  \item Coordinated the December 2023 production go-live on Azure Static Web Apps (Terraform, Azure DevOps, AD B2C
+        parallel operation): deployments from several days to 30 minutes, 99.9\% uptime.
+  \item Designed cross-domain search: domains stream events via Event Hubs, Azure Functions feed Algolia (chosen over
+        ElasticSearch); custom Java SDK (CDI, Avro, Testcontainers); sub-second search across all domains.
+  \item Built team ``Portastruktur'' from the ground up; test pyramid with 1,000+ tests at 10-minute builds;
+        360-degree feedback 2024: technical competence rated 9--10/10.
 \end{itemize}
 
-\section*{Further Experience}
+\subsection*{Middleware Engineer, Saloodo! (DHL Group) \hfill {\normalfont\color{DimGray} Dec 2021 -- Nov 2024}}
+\roleinfo{Freelance, part-time, remote \textbar\ Sole engineer of the Golang middleware synchronizing the digital
+freight platform with Salesforce Lightning Cloud}
 \begin{itemize}
-  \item \textbf{Atlassian Bamboo Server Add-ons}, own product business (Jun 2016 -- Dec 2023): Checkstyle, PMD, CPD and FindBugs integration; \textbf{83 customers in 15+ countries}, up to enterprise setups with 200+ Bamboo agents; 7 years of recurring license revenue
-  \item \textbf{Allianz Global Digital Factory} via SinnerSchrader, Senior JavaEE Developer (Nov 2017 -- Mar 2018): 3 applications to CloudFoundry production; REST/HATEOAS API documentation adopted as company standard; mentored 2 junior developers
-  \item \textbf{Early freelancing} (2014 -- 2016): YOOCHOOSE, Xsite, freshcells, fotocommunity, billiger-mietwagen.de, AffiliCon, dailypresent -- CI/CD pipelines for 6+ companies (Jenkins, Bamboo, Docker), REST APIs, AWS cloud transition reducing infrastructure costs by 40\%
+  \item Architected, coded, tested and operated the entire system: fault-tolerant, stateless design with automatic
+        retries, achieving 100\% production uptime over 3 years.
+  \item Multi-threaded synchronization of \textasciitilde10M records; SQL EXPLAIN-driven query and schema optimization
+        cut SELECT times by up to 80\%; near real-time propagation within minutes.
+  \item 70\% test coverage on 2,776 lines of code with 5-second test runs (Dockertest, PostgreSQL); monitoring with
+        ELK Stack and Dynatrace; deployment via ArgoCD on Kubernetes.
 \end{itemize}
 
-% FLEX: personal projects can be shortened or extended for page tuning
-\section*{Personal Projects}
+\subsection*{Senior Software Engineer, Trusted Shops \hfill {\normalfont\color{DimGray} Aug 2018 -- Oct 2019}}
+\roleinfo{Freelance, Cologne \textbar\ E-commerce trust provider: modernization of JavaEE6 systems towards
+cloud-native AWS in the Subscription and MARS teams}
 \begin{itemize}
-  \item \textbf{BitterQuant} (Jan 2026 -- present, \href{https://bitterquant.ai}{bitterquant.ai}): private ML research on systematic trading following Sutton's ``Bitter Lesson'' -- fine-tuning time-series foundation models (PyTorch, Hugging Face) on large-scale intraday US-equity data with GPU training on SageMaker; event-driven backtesting and live execution (NautilusTrader, Interactive Brokers) on low-cost serverless ECS Fargate; AWS CDK with least-privilege IAM; ADRs including null results, pre-registered hypotheses; paper trading since May 2026
-  \item \textbf{John review} (Jul 2026 -- present): labelling a pull request triggers a headless coding agent that reviews the change, pushes one fix commit per finding and posts a verdict; one versioned agent configuration (skills, hooks, rules) shared across repositories
-  \item \textbf{ConversationalAI4J} (Aug 2025 -- Jan 2026): Java 21/Spring Boot library for spoken conversations with local LLMs (Ollama, langchain4j, Whisper.cpp, Piper, WebSockets); my first agent-coded project
-  \item \textbf{Sse-BelMngr-Hermine} (2025 -- present): Golang CLI automating tax document capture with Azure Document Intelligence and SQLite for the SteuerSparErkl\"arung document manager
-  \item \textbf{multi-resolution-timeseries-parquet} and \textbf{deye-microinverter-power-limit} (2026): years of high-frequency time series in a browser chart from static Parquet tiers without backend; Python CLI controlling Deye microinverters via Modbus -- both agent-coded
-  \item \textbf{SchulteDev portfolio}: monorepo with AI-assisted CV generation (Anthropic Claude API), LaTeX builds and GitHub Actions releases
+  \item Built serverless AWS solutions (Lambda, API Gateway, S3, SQS) with Terraform modules and continuous
+        deployment; integrated Salesforce, Zuora (invoicing, debit memos) and Twilio SMS.
+  \item Created a reusable AWS Java Lambda template (Micronaut) adopted team-wide; designed the invite reminder
+        architecture and load-tested the invite-scheduler-service.
+  \item Led Pact contract-testing training across multiple teams; applied Clean Code across 13+ repositories;
+        metrics in Grafana with Prometheus and CloudWatch.
 \end{itemize}
 
-\vfill
-\newpage
+% ===================== PREVIOUS EXPERIENCE =====================
+\section*{Previous Experience}
 
-% =====================================================================
-% PAGE 4: Education, Additional Skills, Career Breaks, Disclaimer
-% =====================================================================
+\subsection*{Senior Engineer \& DevOp, toom Baumarkt \hfill {\normalfont\color{DimGray} Oct 2016 -- Sep 2017}}
+\roleinfo{Freelance via tarent solutions GmbH, Bonn \textbar\ Lead developer in an 8-member Scrum team following
+``you build it, you run it''}
+\begin{itemize}
+  \item Delivered 5 production microservices (Java, Golang) replacing monolith components; Docker and Bamboo CI/CD
+        reduced deployment time from days to hours.
+  \item Led weekly cross-team quality initiatives across 4 teams; introduced integration tests, Pact, Swagger, OWASP
+        and JMeter into pull request workflows.
+  \item Accelerated end-to-end test execution by \textasciitilde70\% and reduced memory consumption through garbage
+        collection tuning; received formal technical and process letters of recommendation.
+\end{itemize}
+
+\subsection*{PHP Developer \& Head of Development, wer-kennt-wen.de \hfill {\normalfont\color{DimGray} Aug 2007 -- Jun 2014}}
+\roleinfo{Permanent position \textbar\ One of Germany's largest social networks (9M+ members, acquired by RTL
+interactive in 2009); Head of Development Oct 2008 -- Mar 2010}
+\begin{itemize}
+  \item Head of Development with full personnel responsibility: recruitment, onboarding, performance evaluation,
+        roadmap, change-request and release management, code reviews and software metrics.
+  \item Scaled the platform for 9M+ users with table partitioning, Memcache and query optimization; moved from
+        procedural code to object-oriented MVC (Zend Framework), reducing page load times by 60\%.
+  \item Built a REST API (WADL) and HTML mobile portal; introduced Jenkins CI, PHPUnit coverage and Selenium tests;
+        implemented protection against XSS, CSRF, SQL injection and brute force.
+\end{itemize}
+
+\subsection*{Creator of Atlassian Bamboo Server Add-ons \hfill {\normalfont\color{DimGray} Jun 2016 -- Dec 2023}}
+\roleinfo{Self-employed product business \textbar\ Commercial Atlassian Marketplace add-ons for code quality metrics}
+\begin{itemize}
+  \item Built and maintained Java add-ons integrating Checkstyle, PMD, CPD and FindBugs into Bamboo CI, with sharding
+        for large result sets.
+  \item 83 customers across 15+ countries, from startups to enterprises with 200+ Bamboo agents; recurring license
+        revenue over 7 years.
+\end{itemize}
+
+\subsection*{Further Experience}
+\textbf{Sedo GmbH} (Cloud Consultant, 2020): consolidated Spring Boot and Apache Camel services into one Quarkus
+service, reducing infrastructure overhead by 60\%; trained 12 developers in contract testing.
+\textbf{Allianz Global Digital Factory} (via SinnerSchrader, 2017--2018): 3 applications deployed to CloudFoundry;
+REST/HATEOAS API documentation adopted as company standard.
+\textbf{Early freelancing} (2014--2016): YOOCHOOSE, Xsite, freshcells, fotocommunity, billiger-mietwagen.de,
+AffiliCon, dailypresent; CI/CD pipelines for 6+ companies with Jenkins, Bamboo, Docker and AWS.
+
+% ===================== PERSONAL PROJECTS =====================
+\section*{Relevant Personal Projects}
+\begin{itemize}
+  \item \textbf{BitterQuant} (Jan 2026 -- present, \href{https://bitterquant.ai}{bitterquant.ai}): ML research on
+        systematic trading following Sutton's ``Bitter Lesson'': fine-tuning time-series foundation models (PyTorch,
+        Hugging Face) on intraday US-equity data with GPU training on SageMaker; event-driven backtesting and live
+        execution with NautilusTrader and Interactive Brokers on ECS Fargate; AWS CDK with least-privilege IAM;
+        pre-registered hypotheses and ADRs including negative results; paper trading since May 2026.
+  \item \textbf{John review} (Jul 2026 -- present): labelling a pull request triggers a headless coding agent that
+        reviews the change, pushes one fix commit per finding and posts a verdict; one versioned agent configuration
+        shared across several repositories (Claude Code, MCP, systemd).
+  \item \textbf{\href{https://github.com/SchulteDev/ConversationalAI4J}{ConversationalAI4J}} (2025 -- 2026): Java 21
+        library for spoken conversations with local LLMs (Ollama, langchain4j, Whisper.cpp, Piper); first project
+        built agent-first.
+  \item \textbf{\href{https://github.com/SchulteDev/Sse-BelMngr-Hermine}{Sse-BelMngr-Hermine}} (2025 -- present):
+        Golang CLI automating document capture for tax software with Azure Document Intelligence and SQLite.
+  \item \textbf{Agent-built tools} (2026): browser charts over years of high-frequency time-series from static Parquet
+        tiers without backend (TypeScript); Python CLI limiting Deye microinverter output via Modbus.
+\end{itemize}
+
+% ===================== EDUCATION =====================
 \section*{Education}
-\subsection*{Diplom in Computer Science (equivalent to M.Sc.), \textcolor{SteelBlue}{University of Koblenz-Landau} \hfill \textnormal{\small 2004 -- 2012}}
-Graduated \textbf{with distinction} on September 27, 2012. Focus on Computational Visualistics and Software
-Engineering: software architecture, web technologies, algorithms, database systems, human-computer
-interaction. Longer duration due to parallel part- and full-time work as software developer since 2007.
+\textbf{Diplom in Computer Science} (equivalent to M.Sc.), University of Koblenz-Landau \hfill 2004 -- 2012\\
+Overall mark: distinction; focus on computational visualistics and software engineering; studied while working as a
+software developer from 2007.
 
-\subsection*{Abitur, \textcolor{SteelBlue}{Gymnasium Haren (Ems)} \hfill \textnormal{\small 2003}}
-Advanced courses in mathematics and physics; self-taught PHP from 2000 onwards.
+\textbf{Abitur}, Gymnasium Haren (Ems) \hfill 2003\\
+Advanced courses in mathematics and physics.
 
-\section*{Certifications \& Recognition}
+% ===================== ADDITIONAL SKILLS =====================
+\section*{Additional Skills \& Recognition}
 \begin{itemize}
-  \item \textbf{Java SE 8 TechCheck (IKM), 2018:} 93/100, 88th percentile, overall assessment ``Strong''; strong in object orientation, generics, concurrency, memory management
-  \item \textbf{StackOverflow:} 4,807 reputation, \ca{}3.3M people reached, 3 gold / 53 silver / 71 bronze badges; top tags Java, Jenkins, Spring Boot, Maven
-  \item \textbf{360-degree feedback} (Union Investment, 2021 -- 2024): technical competence 5/5 and 9--10/10; ``Excellent technical expertise and pronounced communicative talent''; ``Structured approach has greatly advanced the entire project''
-  \item \textbf{References:} employment references from werkenntwen; letters of recommendation from tarent (2), AffiliCon and dailypresent
+  \item \textbf{Agentic coding:} parallel Claude Code sessions in git worktrees, subagents, custom skills, hooks as
+        guardrails, MCP integrations; same quality gates as for human-written code.
+  \item \textbf{Architecture governance:} ADRs as the default decision medium, presented in architecture CoPs and ADR
+        forums; architecture diagrams with draw.io for teams and stakeholders.
+  \item \textbf{Development practices:} Clean Architecture, Clean Code, Conventional Commits, REST/HATEOAS, OAuth2,
+        Domain-Driven Design analysis, Scrum, Kanban, SAFe.
+  \item \textbf{Mentoring:} workshops on contract testing, testing strategy and architecture patterns; technical
+        interviews and developer onboarding across multiple technology stacks.
+  \item \textbf{StackOverflow:} 4,807 reputation, \textasciitilde3.3 million people reached, 3 gold, 53 silver and
+        71 bronze badges; top tags Java, Jenkins, Spring Boot, Maven.
+  \item \textbf{Java SE 8 TechCheck (IKM, 2018):} 93/100, 88th percentile, overall assessment ``Strong''.
+  \item \textbf{Open source (since 2013):} merged contributions to Renovate (5), microsoft/azure-devops-skills
+        (installable as Claude Code plugin), pact-jvm (3), quarkus-zalando-problem-extension (8), phoneblock (3);
+        fix proposal for microsoft/azure-devops-mcp; documentation fixes for GitHub, Azure and Docker docs.
 \end{itemize}
 
-\section*{Open-Source Contributions}
-Contributor since 2013, usually driven by real project needs:
-\textbf{renovatebot/renovate} (5 merged: Azure Pipelines manager, monorepo presets),
-\textbf{microsoft/azure-devops-skills} (made installable as Claude Code plugin, merged),
-\textbf{microsoft/azure-devops-mcp} (bug report and fix proposal, resolved),
-\textbf{quarkus-zalando-problem-extension} (8 merged), \textbf{pact-jvm} (3 merged),
-\textbf{phoneblock} (3 merged), \textbf{Solid design system}; documentation fixes for github/docs,
-azure-docs and docker/docs; further merged PRs to composer, doctrine/migrations, lerna-lite,
-smallrye-jwt and pitest-junit5-plugin.
-
-\section*{Additional Skills}
-\begin{itemize}
-  \item \textbf{Architecture governance:} ADRs as default decision medium, presented in architecture CoPs and ADR forums; draw.io diagrams for teams and stakeholders
-  \item \textbf{Regulated delivery:} DORA, ITSM change management, penetration-test remediation, WAF, SBOMs, OAuth2, SSO with Azure AD B2C
-  \item \textbf{Platform engineering:} monorepos (Nx, Turborepo, Lerna, pnpm), build caching and affected builds, release automation, automated dependency updates
-  \item \textbf{Quality engineering:} test pyramid, contract testing, coverage gates, flaky-test elimination, SonarQube quality gates, Clean Code, Conventional Commits
-  \item \textbf{Machine learning:} PyTorch, Hugging Face, pandas, SageMaker, time-series foundation models, realistic execution simulation
-  \item \textbf{Enterprise integration:} Salesforce, Zuora, Twilio, Magnolia CMS, Celum, WebTrekk, Algolia, Azure Document Intelligence
-\end{itemize}
-
-% FLEX: working principles can be removed or extended for page tuning
-\section*{Working Principles}
-\begin{itemize}
-  \item \textbf{Paying down tech debt pays off} -- most measured 2026 results came from it, and the whole team profits
-  \item \textbf{Simple, proven solutions first:} minimal effort, reuse of existing platform features, small stories from dev to prod
-  \item \textbf{You build it, you run it:} autonomous, motivated teams with Self-contained Systems over pervasive microservices
-  \item \textbf{Agents need engineering:} ``garbage in, garbage out'' -- best practices and good developer experience still decide
-\end{itemize}
-
+% ===================== CAREER BREAKS =====================
 \section*{Career Breaks}
-\begin{itemize}
-  \item \textbf{Apr 2020 -- Sep 2021:} Parental leave during the COVID-19 pandemic
-  \item \textbf{Aug 2015 -- Dec 2015:} Personal travel break
-  \item \textbf{Aug 2003 -- Mar 2004:} Mandatory military service, German Air Force
-\end{itemize}
+\textbf{Parental leave} \hfill Apr 2020 -- Sep 2021\\
+During COVID-19 lockdowns, combining family time with an industry-wide slowdown in freelance projects.
 
-\vfill
-{\color{LightSteelBlue}\rule{\linewidth}{0.6pt}}\par
-\vspace{2pt}
-{\footnotesize\color{DimGray}\textit{AI disclaimer:} This CV was generated with AI assistance from Markus Schulte's own
-comprehensive and factual career record. All figures and statements are taken from that record;
-metrics reflect measurements documented during the respective engagements.\par}
-\newpage
+\textbf{Personal travel break} \hfill Aug 2015 -- Dec 2015\\
+\textbf{Military service}, German Air Force \hfill Aug 2003 -- Mar 2004
+
+\vspace{8pt}
+{\footnotesize\itshape\color{DimGray} AI disclaimer: This CV was generated with AI assistance (Anthropic Claude API)
+from Markus Schulte's structured career data; all facts and figures are taken from that data.\par}
 
 \end{document}
