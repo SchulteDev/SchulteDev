@@ -11,12 +11,11 @@ describe('buildPrompt', () => {
     })
   }
 
-  it('should fill in the page count and the line budget', () => {
+  it('should fill in the page count everywhere', () => {
     const prompt = buildPrompt('professional', '')
     assert.doesNotMatch(prompt, /\{\{|\$\{/)
-    assert.ok(prompt.includes('The CV ends on page 4: running onto page 5 is the failure to avoid'))
-    assert.ok(prompt.includes('a page holds about 57 lines of text, a full line about 115 characters'))
-    assert.ok(prompt.includes('Size the content to about 205 of the 228 lines of text'))
+    assert.ok(prompt.includes('Exactly 4 vertical, filled, dense pages.'))
+    assert.ok(prompt.includes('Monitor content density for exactly 4 pages.'))
   })
 
   it('should describe only the requested CV type', () => {
@@ -33,8 +32,7 @@ describe('buildPrompt', () => {
   })
 
   it('should keep LaTeX commands as single backslashes', () => {
-    assert.ok(buildPrompt('anti', '').includes('no \\newpage, \\clearpage or \\pagebreak, and no tabular, minipage or \\parbox taller than five lines'))
-    assert.ok(buildPrompt('anti', '').includes('\\documentclass[10pt,a4paper]{article} with 1.5cm margins'))
+    assert.ok(buildPrompt('anti', '').includes('Use \\newpage after each page.'))
     assert.ok(buildPrompt('anti', '').includes('Headings: \\section* and \\subsection* only'))
     assert.ok(buildPrompt('professional', '').includes('never the before= or after= keys'))
     assert.ok(buildPrompt('professional', '').includes('no \\hspace or other spacing commands'))
