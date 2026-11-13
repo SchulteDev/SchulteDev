@@ -113,6 +113,7 @@ jobs:
       always() && needs.test_cv_scripts.result == 'success' && (github.event_name == 'workflow_dispatch'
       || (github.event_name == 'push' && github.ref_name == 'main' && needs.changes.outputs.career == 'true'))
     strategy:
+      fail-fast: false
       matrix:
         cv_type: [ anti, professional ]
     defaults:

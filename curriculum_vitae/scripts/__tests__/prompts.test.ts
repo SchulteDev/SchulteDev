@@ -33,7 +33,7 @@ describe('buildPrompt', () => {
   })
 
   it('should keep LaTeX commands as single backslashes', () => {
-    assert.ok(buildPrompt('anti', '').includes('no \\newpage, \\clearpage or \\pagebreak and no minipage or \\parbox around a section'))
+    assert.ok(buildPrompt('anti', '').includes('no \\newpage, \\clearpage or \\pagebreak, and no tabular, minipage or \\parbox taller than five lines'))
     assert.ok(buildPrompt('anti', '').includes('\\documentclass[10pt,a4paper]{article} with 1.5cm margins'))
     assert.ok(buildPrompt('anti', '').includes('Headings: \\section* and \\subsection* only'))
     assert.ok(buildPrompt('professional', '').includes('never the before= or after= keys'))
