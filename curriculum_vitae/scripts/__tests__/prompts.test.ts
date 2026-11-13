@@ -15,7 +15,9 @@ describe('buildPrompt', () => {
     const prompt = buildPrompt('professional', '')
     assert.doesNotMatch(prompt, /\{\{|\$\{/)
     assert.ok(prompt.includes('Create exactly 4-page Professional CV'))
-    assert.ok(prompt.includes('Exactly 4 vertical, filled, dense pages.'))
+    assert.ok(prompt.includes('At most 4 pages: a page 5 is the worst outcome'))
+    assert.ok(prompt.includes('63 lines per page'))
+    assert.ok(prompt.includes('232 lines in total, no more.'))
   })
 
   it('should use the instructions of the requested CV type', () => {
@@ -26,7 +28,8 @@ describe('buildPrompt', () => {
   })
 
   it('should keep LaTeX commands as single backslashes', () => {
-    assert.ok(buildPrompt('anti', '').includes('Use \\newpage after each page.'))
+    assert.ok(buildPrompt('anti', '').includes('No \\newpage, \\clearpage or \\pagebreak: LaTeX breaks the pages.'))
+    assert.ok(buildPrompt('anti', '').includes('\\documentclass[10pt,a4paper]{article} with 1.5cm margins'))
     assert.ok(buildPrompt('anti', '').includes('Headings: \\section* and \\subsection* only'))
     assert.ok(buildPrompt('professional', '').includes('never the before= or after= keys'))
     assert.ok(buildPrompt('professional', '').includes('no \\hspace or other spacing commands'))
