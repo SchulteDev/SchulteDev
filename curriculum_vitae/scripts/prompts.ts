@@ -9,7 +9,7 @@ const LINES_PER_PAGE = 57;
 const LINE_BUDGET = Math.round(PAGES * LINES_PER_PAGE * 0.9);
 
 const CONTENT = [
-  'CV Header, CV summary, key impacts, skills overview table without borders.',
+  'CV Header, CV summary, key impacts, skills overview that looks like a two-column table without borders but is set as a list, so that it can break across pages.',
   'Recent roles LBBW, Union Investment, Saloodo, Trusted Shops with three or four bullet points each.',
   'Two or three relevant previous work experiences, mention remaining work experiences; relevant personal projects.',
   'Education, additional skills, career breaks; footer: AI disclaimer.',
@@ -19,7 +19,7 @@ const CONSTRAINTS = [
   `The CV ends on page ${PAGES}: running onto page ${PAGES + 1} is the failure to avoid, unused room at the end of page ${PAGES} is fine.`,
   String.raw`\documentclass[10pt,a4paper]{article} with 1.5cm margins at the default line spacing: next to its headings and spacing, a page holds about ${LINES_PER_PAGE} lines of text, a full line about 115 characters.`,
   `Size the content to about ${LINE_BUDGET} of the ${PAGES * LINES_PER_PAGE} lines of text, each heading, table row and wrapped line counting as one: the count is an estimate, and the slack keeps a miscount from running onto page ${PAGES + 1}.`,
-  String.raw`Let LaTeX place the page breaks: no \newpage, \clearpage or \pagebreak and no minipage or \parbox around a section, because a forced break or an unbreakable block leaves the rest of a page empty.`,
+  String.raw`Let LaTeX place the page breaks: no \newpage, \clearpage or \pagebreak, and no tabular, minipage or \parbox taller than five lines, because a forced break or a block LaTeX cannot break leaves the rest of a page empty.`,
   'Standard LuaLaTeX packages only.',
   String.raw`Compiled as tagged PDF/UA-1: \DocumentMetadata is put in front of the document, do not write it.`,
   String.raw`Headings: \section* and \subsection* only, restyled with \@startsection, no titlesec, no \par inside a heading.`,
