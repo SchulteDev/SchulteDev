@@ -11,6 +11,9 @@ focusing on technical details and professional growth rather than marketing lang
 This document is intentionally comprehensive and detailed to serve as a complete reference.
 Condensation, analysis, and summarization are performed downstream when creating specific 
 target documents for particular audiences or purposes.
+
+Maintained by hand outside this repo: GULP profile (German and English) and LinkedIn profile
+(English and German).
 -->
 
 # Professional Career of Markus Schulte
