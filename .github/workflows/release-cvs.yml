@@ -23,6 +23,7 @@ jobs:
       - name: Compile CV LaTeX to PDF
         uses: xu-cheng/latex-action@v4
         with:
+          docker_image: ghcr.io/xu-cheng/texlive-alpine:20261001
           root_file: ${{ github.workspace }}/curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Check the PDF against PDF/UA-1

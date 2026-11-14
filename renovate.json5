@@ -8,8 +8,8 @@
   customManagers: [
     {
       customType: 'regex',
-      managerFilePatterns: ['/(^|/)compile-pdf\\.sh$/'],
-      matchStrings: ['image=(?<depName>[^:\\s]+):(?<currentValue>\\S+)'],
+      managerFilePatterns: ['/(^|/)compile-pdf\\.sh$/', '/(^|/)release-cvs\\.yml$/'],
+      matchStrings: ['(?<depName>ghcr\\.io/xu-cheng/texlive-alpine):(?<currentValue>\\d+)'],
       datasourceTemplate: 'docker',
     },
   ],
