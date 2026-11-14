@@ -5,6 +5,7 @@
 # Markus Schulte (Schulte development) CV Generation
 
 AI-powered CV generation using Claude to transform [career data](../_data/career.md) into LuaLaTeX documents.
+The layout is fixed in [cv-preamble.tex](scripts/cv-preamble.tex); Claude writes the document body.
 
 ## Workflows
 

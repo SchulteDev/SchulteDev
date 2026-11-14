@@ -1,27 +1,27 @@
-// latex.ts - Cut the LaTeX document out of a model response and mark it for tagged PDF output
+// latex.ts - Cut the CV body out of a model response and put it into the fixed CV preamble
 
-const DOCUMENT_START = String.raw`\documentclass`;
-const DOCUMENT_END = String.raw`\end{document}`;
+import fs from 'node:fs';
+
+const BODY_START = String.raw`\begin{document}`;
+const BODY_END = String.raw`\end{document}`;
 const MIN_LENGTH = 500;
-const DOCUMENT_METADATA = String.raw`\DocumentMetadata{lang=en,pdfstandard=ua-1,tagging=on}`;
 
-/** Drops code fences and any prose around the document; throws if there is no complete document */
-export const extractLatex = (response: string): string => {
-  const firstStart = response.indexOf(DOCUMENT_START);
-  const end = firstStart === -1 ? -1 : response.indexOf(DOCUMENT_END, firstStart);
+export const PREAMBLE = fs.readFileSync(new URL('cv-preamble.tex', import.meta.url), 'utf8').trimEnd();
+
+/** Drops code fences, prose and any preamble around the body; throws if there is no complete body */
+export const extractBody = (response: string): string => {
+  const firstStart = response.indexOf(BODY_START);
+  const end = firstStart === -1 ? -1 : response.indexOf(BODY_END, firstStart);
   if (end === -1) {
-    throw new Error(`Response contains no complete LaTeX document (${DOCUMENT_START} ... ${DOCUMENT_END})`);
+    throw new Error(`Response contains no complete document body (${BODY_START} ... ${BODY_END})`);
   }
-  const start = response.lastIndexOf(DOCUMENT_START, end);
+  const start = response.lastIndexOf(BODY_START, end) + BODY_START.length;
 
-  const latex = response.slice(start, end + DOCUMENT_END.length).replace(/\n{3,}/g, '\n\n');
-  if (!latex.includes(String.raw`\begin{document}`)) {
-    throw new Error(String.raw`LaTeX document has no \begin{document}`);
+  const body = response.slice(start, end).trim().replace(/\n{3,}/g, '\n\n');
+  if (body.length < MIN_LENGTH) {
+    throw new Error(`Document body is too short (${body.length} < ${MIN_LENGTH} chars)`);
   }
-  if (latex.length < MIN_LENGTH) {
-    throw new Error(`LaTeX document is too short (${latex.length} < ${MIN_LENGTH} chars)`);
-  }
-  return latex;
+  return body;
 };
 
-export const tagged = (latex: string): string => `${DOCUMENT_METADATA}\n${latex}`;
+export const toDocument = (body: string): string => `${PREAMBLE}\n\n${BODY_START}\n${body}\n${BODY_END}\n`;
