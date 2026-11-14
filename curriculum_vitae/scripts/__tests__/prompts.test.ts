@@ -38,6 +38,7 @@ describe('buildPrompt', () => {
   it('should keep LaTeX commands as single backslashes', () => {
     assert.ok(buildPrompt('anti', '').includes('Page 1: \\cvheader, CV summary'))
     assert.ok(buildPrompt('anti', '').includes('No vertical spacing commands (\\vspace, \\vfill, \\newpage)'))
+    assert.ok(buildPrompt('anti', '').includes('Heading titles: text, font commands and \\hfill only.'))
     assert.ok(buildPrompt('anti', '').includes('Start the body with \\hypersetup{pdftitle={...},pdfauthor={...}}.'))
     assert.ok(buildPrompt('anti', '').includes('Symbols in text mode (\\texttimes, \\textrightarrow'))
   })

@@ -26,6 +26,10 @@ describe('extractBody', () => {
     assert.equal(extractBody(`Starts with \\begin{document}:\n\`\`\`latex\n${document}\n\`\`\``), body)
   })
 
+  it('should skip prose that quotes \\begin{document} to \\end{document}', () => {
+    assert.equal(extractBody(`The body, from \\begin{document} to \\end{document}:\n\`\`\`latex\n${document}\n\`\`\``), body)
+  })
+
   it('should end at the first \\end{document}, as LaTeX does', () => {
     assert.equal(extractBody(`${document}\n\nNote: text after \\end{document} is ignored.`), body)
   })

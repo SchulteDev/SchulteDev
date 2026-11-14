@@ -19,6 +19,7 @@ const CONSTRAINTS = [
   'Include flexible content sections for page tuning.',
   String.raw`Structure with the preamble's commands: \cvsection for sections, \cvrole for roles and degrees, \subsection* for other subheadings, itemize for lists.`,
   String.raw`No vertical spacing commands (\vspace, \vfill, \newpage): the preamble spaces the content.`,
+  String.raw`Heading titles: text, font commands and \hfill only. Lists: itemize without options.`,
   String.raw`No packages, colors or definitions: the preamble is fixed.`,
   String.raw`Start the body with \hypersetup{pdftitle={...},pdfauthor={...}}.`,
   'LaTeX commands for all symbols, not Unicode characters.',

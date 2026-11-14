@@ -8,16 +8,17 @@ const MIN_LENGTH = 500;
 
 export const PREAMBLE = fs.readFileSync(new URL('cv-preamble.tex', import.meta.url), 'utf8').trimEnd();
 
-/** Drops code fences, prose and any preamble around the body; throws if there is no complete body */
+/** The longest span from a \begin{document} to the next \end{document}, so prose quoting either is skipped */
 export const extractBody = (response: string): string => {
-  const firstStart = response.indexOf(BODY_START);
-  const end = firstStart === -1 ? -1 : response.indexOf(BODY_END, firstStart);
-  if (end === -1) {
+  const candidates = response.split(BODY_START).slice(1)
+    .filter(part => part.includes(BODY_END))
+    .map(part => part.slice(0, part.indexOf(BODY_END)));
+  if (candidates.length === 0) {
     throw new Error(`Response contains no complete document body (${BODY_START} ... ${BODY_END})`);
   }
-  const start = response.lastIndexOf(BODY_START, end) + BODY_START.length;
+  const longest = candidates.reduce((a, b) => (b.length > a.length ? b : a));
 
-  const body = response.slice(start, end).trim().replace(/\n{3,}/g, '\n\n');
+  const body = longest.trim().replace(/\n{3,}/g, '\n\n');
   if (body.length < MIN_LENGTH) {
     throw new Error(`Document body is too short (${body.length} < ${MIN_LENGTH} chars)`);
   }
