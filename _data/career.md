@@ -1270,7 +1270,7 @@ Contributed to 13+ repositories including:
 
 ### August 2007 — June 2014: PHP Developer and Head of Development at werkenntwen
 
-*wer-kennt-wen.de (lemonline media ltd. / werkenntwen GmbH) | Permanent Position*
+*wer-kennt-wen.de (lemonline media ltd. / werkenntwen GmbH) | Permanent Position, part-time and full-time over the years*
 
 **Company Context:**
 
@@ -1281,7 +1281,7 @@ Contributed to 13+ repositories including:
 
 **Career Path:**
 
-- PHP Developer (Aug 2007 — Oct 2008)
+- PHP Developer (Aug 2007 — Oct 2008, part-time)
 - Head of Development (Oct 2008 — Mar 2010)
 - Backend Developer (Apr 2010 — Jun 30 2014)
 
