@@ -5,10 +5,11 @@ import path from 'node:path'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 import {type CvType, getCvFile} from '../config.ts'
 import {claudeGenerator, LOG_DIR, reuseCommittedCv, updateCv} from '../cv-update.ts'
-import {extractLatex, tagged} from '../latex.ts'
+import {extractBody, toDocument} from '../latex.ts'
 import {fakeClient, fakeMessage} from './fakes.ts'
 
-const document = `\\documentclass{article}\n\\begin{document}\n${'x'.repeat(600)}\n\\end{document}`
+const body = 'x'.repeat(600)
+const document = `\\begin{document}\n${body}\n\\end{document}`
 
 describe('updateCv', () => {
   let cvFile: string
@@ -20,7 +21,7 @@ describe('updateCv', () => {
 
   afterEach(() => fs.rmSync(path.dirname(cvFile), {recursive: true}))
 
-  it('should prompt with the career data and write the extracted LaTeX as a tagged document', async () => {
+  it('should prompt with the career data and write the extracted body into the fixed preamble', async () => {
     const generate = mock.fn(async (_prompt: string, _cvType: CvType) => `Sure!\n\`\`\`latex\n${document}\n\`\`\``)
 
     await updateCv('anti', 'Fell off a cloud in 2019', generate, cvFile)
@@ -29,11 +30,11 @@ describe('updateCv', () => {
     assert.ok(prompt.includes('Fell off a cloud in 2019'))
     assert.ok(prompt.includes('Anti-CV'))
     assert.equal(cvType, 'anti')
-    assert.equal(fs.readFileSync(cvFile, 'utf8'), tagged(document))
+    assert.equal(fs.readFileSync(cvFile, 'utf8'), toDocument(body))
   })
 
   it('should keep the current CV when the answer is no LaTeX document', async () => {
-    await assert.rejects(updateCv('professional', '', async () => 'Sorry', cvFile), /no complete LaTeX document/)
+    await assert.rejects(updateCv('professional', '', async () => 'Sorry', cvFile), /no complete document body/)
 
     assert.equal(fs.readFileSync(cvFile, 'utf8'), 'old CV')
   })
@@ -71,7 +72,7 @@ describe('claudeGenerator', () => {
   })
 
   it('should log a truncated response before failing', async () => {
-    const generate = claudeGenerator(clientAnswering('\\documentclass{art', 'max_tokens'))
+    const generate = claudeGenerator(clientAnswering('\\begin{docu', 'max_tokens'))
 
     await assert.rejects(generate('the prompt', 'anti'), /truncated/)
     assert.equal(JSON.parse(fs.readFileSync(logFile, 'utf8')).message.stop_reason, 'max_tokens')
@@ -80,11 +81,11 @@ describe('claudeGenerator', () => {
 
 describe('reuseCommittedCv', () => {
   for (const cvType of ['professional', 'anti'] as const) {
-    it(`should answer with the committed ${cvType} CV, which extraction keeps from \\documentclass on`, async () => {
+    it(`should answer with the committed ${cvType} CV, whose body extraction keeps`, async () => {
       const answer = await reuseCommittedCv('ignored', cvType)
 
       assert.equal(answer, fs.readFileSync(getCvFile(cvType), 'utf8'))
-      assert.equal(extractLatex(answer), answer.slice(answer.indexOf('\\documentclass')))
+      assert.ok(answer.includes(extractBody(answer)))
     })
   }
 })

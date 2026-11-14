@@ -1,27 +1,28 @@
-// latex.ts - Cut the LaTeX document out of a model response and mark it for tagged PDF output
+// latex.ts - Cut the CV body out of a model response and put it into the fixed CV preamble
 
-const DOCUMENT_START = String.raw`\documentclass`;
-const DOCUMENT_END = String.raw`\end{document}`;
+import fs from 'node:fs';
+
+const BODY_START = String.raw`\begin{document}`;
+const BODY_END = String.raw`\end{document}`;
 const MIN_LENGTH = 500;
-const DOCUMENT_METADATA = String.raw`\DocumentMetadata{lang=en,pdfstandard=ua-1,tagging=on}`;
 
-/** Drops code fences and any prose around the document; throws if there is no complete document */
-export const extractLatex = (response: string): string => {
-  const firstStart = response.indexOf(DOCUMENT_START);
-  const end = firstStart === -1 ? -1 : response.indexOf(DOCUMENT_END, firstStart);
-  if (end === -1) {
-    throw new Error(`Response contains no complete LaTeX document (${DOCUMENT_START} ... ${DOCUMENT_END})`);
-  }
-  const start = response.lastIndexOf(DOCUMENT_START, end);
+export const PREAMBLE = fs.readFileSync(new URL('cv-preamble.tex', import.meta.url), 'utf8').trimEnd();
 
-  const latex = response.slice(start, end + DOCUMENT_END.length).replace(/\n{3,}/g, '\n\n');
-  if (!latex.includes(String.raw`\begin{document}`)) {
-    throw new Error(String.raw`LaTeX document has no \begin{document}`);
+/** The longest span from a \begin{document} to the next \end{document}, so prose quoting either is skipped */
+export const extractBody = (response: string): string => {
+  const candidates = response.split(BODY_START).slice(1)
+    .filter(part => part.includes(BODY_END))
+    .map(part => part.slice(0, part.indexOf(BODY_END)));
+  if (candidates.length === 0) {
+    throw new Error(`Response contains no complete document body (${BODY_START} ... ${BODY_END})`);
   }
-  if (latex.length < MIN_LENGTH) {
-    throw new Error(`LaTeX document is too short (${latex.length} < ${MIN_LENGTH} chars)`);
+  const longest = candidates.reduce((a, b) => (b.length > a.length ? b : a));
+
+  const body = longest.trim().replace(/\n{3,}/g, '\n\n');
+  if (body.length < MIN_LENGTH) {
+    throw new Error(`Document body is too short (${body.length} < ${MIN_LENGTH} chars)`);
   }
-  return latex;
+  return body;
 };
 
-export const tagged = (latex: string): string => `${DOCUMENT_METADATA}\n${latex}`;
+export const toDocument = (body: string): string => `${PREAMBLE}\n\n${BODY_START}\n${body}\n${BODY_END}\n`;

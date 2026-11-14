@@ -1,32 +1,28 @@
-// prompts.ts - The prompt that turns the career data into a LuaLaTeX CV
+// prompts.ts - The prompt that turns the career data into the body of a LuaLaTeX CV
 
 import type {CvType} from './config.ts';
+import {PREAMBLE} from './latex.ts';
 
 const PAGES = 4;
 
 const PAGE_LAYOUT = [
-  'Page 1: CV Header, CV summary, key impacts, skills overview table without borders.',
+  String.raw`Page 1: \cvheader, CV summary, key impacts (a cvkpis row of five \kpi figures, then bullets), skills overview (cvskills).`,
   'Page 2: Recent roles LBBW, Union Investment, Saloodo, Trusted Shops with three or four bullet points each.',
   'Page 3: Two or three relevant previous work experiences, mention remaining work experiences; relevant personal projects.',
-  'Page 4: Education, additional skills, career breaks; footer: AI disclaimer.',
+  String.raw`Page 4: Education, additional skills, career breaks; \cvdisclaimer: AI disclaimer.`,
 ];
 
 const CONSTRAINTS = [
-  `Exactly ${PAGES} vertical, filled, dense pages.`,
-  String.raw`Use \newpage after each page.`,
-  `Monitor content density for exactly ${PAGES} pages.`,
-  'Fill pages densely - aim for minimal whitespace.',
-  String.raw`Use \vfill for remaining white space distribution.`,
-  String.raw`Use \vspace{} for vertical spacing fine-tuning.`,
+  String.raw`Exactly ${PAGES} pages: \pagebreak after each of the first ${PAGES - 1} pages.`,
+  'Every page full, none overflowing: a page takes about 6,500 characters of LaTeX source, the body about 26,000; '
+  + 'the preamble stretches the spacing to the page bottom.',
   'Include flexible content sections for page tuning.',
-  'Standard LuaLaTeX packages only.',
-  String.raw`Compiled as tagged PDF/UA-1: \DocumentMetadata is put in front of the document, do not write it.`,
-  String.raw`Headings: \section* and \subsection* only, restyled with \@startsection, no titlesec, no \par inside a heading.`,
-  String.raw`Heading titles hold text, font and color commands and \hfill only, no \hspace or other spacing commands.`,
-  String.raw`Set pdftitle and pdfauthor with \hypersetup.`,
-  'Lists: enumitem layout keys only, never the before= or after= keys.',
-  String.raw`Colors: \usepackage[svgnames]{xcolor}. Use only svgnames predefined colors, no \definecolor.`,
-  'LuaLaTeX bundled fonts only. LaTeX commands for all symbols, not Unicode characters.',
+  String.raw`Structure with the preamble's commands: \cvsection for sections, \cvrole for roles and degrees, \subsection* for other subheadings, itemize for lists.`,
+  String.raw`No vertical spacing commands (\vspace, \vfill, \newpage): the preamble spaces the content.`,
+  String.raw`Heading titles: text, font commands and \hfill only. Lists: itemize without options.`,
+  String.raw`No packages, colors or definitions: the preamble is fixed.`,
+  String.raw`Start the body with \hypersetup{pdftitle={...},pdfauthor={...}}.`,
+  'LaTeX commands for all symbols, not Unicode characters.',
   String.raw`Symbols in text mode (\texttimes, \textrightarrow, \textminus, \textasciitilde), never math mode.`,
   'Facts come from the career data only: nothing invented, nothing oversold.',
 ];
@@ -39,8 +35,9 @@ const CV_STYLES: Record<CvType, string> = {
 
 export const buildPrompt = (cvType: CvType, careerData: string): string => [
   `Career data:\n\`\`\`markdown\n${careerData}\n\`\`\``,
-  `From this career data, create a LuaLaTeX ${CV_STYLES[cvType]}`,
+  `From this career data, write the body of a LuaLaTeX ${CV_STYLES[cvType]}`,
+  `Fixed preamble:\n\`\`\`latex\n${PREAMBLE}\n\`\`\``,
   `Page layout:\n${PAGE_LAYOUT.join('\n')}`,
   `Constraints:\n${CONSTRAINTS.join('\n')}`,
-  'Output: LuaLaTeX code only.',
+  String.raw`Output: the document body only, from \begin{document} to \end{document}.`,
 ].join('\n');
