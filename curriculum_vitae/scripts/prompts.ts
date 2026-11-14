@@ -14,7 +14,8 @@ const PAGE_LAYOUT = [
 
 const CONSTRAINTS = [
   String.raw`Exactly ${PAGES} pages: \pagebreak after each of the first ${PAGES - 1} pages.`,
-  'Every page full, none overflowing: a page holds about 65 lines of 135 characters; the preamble stretches the spacing to the page bottom.',
+  'Every page full, none overflowing: a page takes about 6,500 characters of LaTeX source, the body about 26,000; '
+  + 'the preamble stretches the spacing to the page bottom.',
   'Include flexible content sections for page tuning.',
   String.raw`Structure with the preamble's commands: \cvsection for sections, \cvrole for roles and degrees, \subsection* for other subheadings, itemize for lists.`,
   String.raw`No vertical spacing commands (\vspace, \vfill, \newpage): the preamble spaces the content.`,
