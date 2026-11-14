@@ -21,7 +21,7 @@ Maintained by hand outside this repo: GULP profile (German and English) and Link
 - **Freelance Cloud Architect & Software Engineer**
 - **Location:** Cologne, Germany
 - **Contact:** <a href="mailto:mail@schulte-development.de">mail@schulte-development.de</a> |
-  <a href="tel:+4917872177768">+49 178 7217768</a>
+  <a href="tel:+491787217768">+49 178 7217768</a>
 - **Website:** https://schulte-development.de
 - **LinkedIn:** https://www.linkedin.com/in/markus-schulte/
 - **GitHub:** https://github.com/SchulteDev
