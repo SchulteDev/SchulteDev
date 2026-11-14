@@ -20,11 +20,11 @@ shift $((OPTIND - 1))
 (($#)) || usage
 
 for tex in "$@"; do
-  src=$(realpath "$tex")
+  src=$(realpath -e "$tex")
   out=${outdir:-$(dirname "$src")}
   mkdir -p "$out"
   podman run --rm \
-    --volume "$(dirname "$src")":/src:ro,z \
+    --volume "$src":"/src/$(basename "$src")":ro,z \
     --volume "$(realpath "$out")":/out:z \
     --workdir /src \
     "$image" \

@@ -6,6 +6,10 @@ on:
     paths:
       - '.github/workflows/release-cvs.yml'
       - 'curriculum_vitae/*-cv.tex'
+  pull_request:
+    paths:
+      - '.github/workflows/release-cvs.yml'
+      - 'curriculum_vitae/*-cv.tex'
   workflow_dispatch:
 
 permissions:
@@ -48,7 +52,7 @@ jobs:
 
   create-release:
     needs: compile-cvs
-    if: contains(needs.compile-cvs.result, 'success')
+    if: github.event_name != 'pull_request' && contains(needs.compile-cvs.result, 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
