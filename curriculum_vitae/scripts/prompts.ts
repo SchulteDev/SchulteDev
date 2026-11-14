@@ -20,8 +20,9 @@ const CONSTRAINTS = [
   String.raw`Heading titles: text, font commands and \hfill only. Lists: itemize without options.`,
   String.raw`No packages, colors or definitions: the preamble is fixed.`,
   String.raw`Start the body with \hypersetup{pdftitle={...},pdfauthor={...}}.`,
-  'LaTeX commands for all symbols, not Unicode characters.',
-  String.raw`Symbols in text mode (\texttimes, \textrightarrow, \textminus, \textasciitilde), never math mode.`,
+  String.raw`Symbols: the font has only \textrightarrow, \textleftarrow, \texttimes, \textminus, \textpm, \textasciitilde, `
+  + String.raw`\textbullet, \textbar, \textendash, \textemdash, \textdegree, \texteuro, \textellipsis and the escapes \% \& \# \$ \_; `
+  + 'no other symbol commands, no Unicode symbols, no math mode.',
   'Facts come from the career data only: nothing invented, nothing oversold.',
 ];
 

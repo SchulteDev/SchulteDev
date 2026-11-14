@@ -40,6 +40,7 @@ describe('buildPrompt', () => {
     assert.ok(buildPrompt('anti', '').includes('No vertical spacing commands (\\vspace, \\vfill, \\newpage)'))
     assert.ok(buildPrompt('anti', '').includes('Heading titles: text, font commands and \\hfill only.'))
     assert.ok(buildPrompt('anti', '').includes('Start the body with \\hypersetup{pdftitle={...},pdfauthor={...}}.'))
-    assert.ok(buildPrompt('anti', '').includes('Symbols in text mode (\\texttimes, \\textrightarrow'))
+    assert.ok(buildPrompt('anti', '').includes('Symbols: the font has only \\textrightarrow, \\textleftarrow, \\texttimes,'))
+    assert.ok(buildPrompt('anti', '').includes('\\textellipsis and the escapes \\% \\& \\# \\$ \\_; no other symbol commands'))
   })
 })
