@@ -26,3 +26,13 @@ npm run typecheck
 SKIP_API=true npm run cv:update   # without API calls
 npm run cv:update                 # needs ANTHROPIC_API_KEY
 ```
+
+### Local PDF Build
+
+In this directory, compiles like [release-cvs.yml](../.github/workflows/release-cvs.yml), needing only
+rootless [Podman](https://podman.io). Each PDF lands next to its `.tex` file, or in the `-o` directory:
+
+```bash
+scripts/compile-pdf.sh *-cv.tex
+scripts/compile-pdf.sh -o /tmp/cv old-cv.tex
+```
