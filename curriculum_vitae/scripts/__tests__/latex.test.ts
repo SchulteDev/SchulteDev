@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import {describe, it} from 'node:test'
 import {extractBody, PREAMBLE, toDocument} from '../latex.ts'
 
-const body = `\\cvsection{Profile}\n${'x'.repeat(600)}`
+const body = `\\cvsection{Profile}\n${'x'.repeat(600)}${'\n\\pagebreak\nx'.repeat(3)}`
 const document = `\\begin{document}\n${body}\n\\end{document}`
 
 describe('extractBody', () => {
@@ -69,5 +69,38 @@ describe('PREAMBLE', () => {
 describe('toDocument', () => {
   it('should put the body into the fixed preamble', () => {
     assert.equal(toDocument(body), `${PREAMBLE}\n\n${document}\n`)
+  })
+
+  for (const [rule, forbidden] of [
+    ['vertical spacing', '\\vspace{4pt}'],
+    ['vertical spacing', '\\vfill'],
+    ['vertical spacing', '\\newpage'],
+    ['packages, colors or definitions', '\\usepackage{titlesec}'],
+    ['packages, colors or definitions', '\\definecolor{Red}{HTML}{FF0000}'],
+    ['packages, colors or definitions', '\\newcommand{\\x}{y}'],
+    ['list options', '\\begin{itemize}[leftmargin=*]'],
+    ['list options', '\\begin{enumerate}[before=x]'],
+  ]) {
+    it(`should reject ${forbidden} in the body as ${rule}`, () => {
+      assert.throws(() => toDocument(`${body}\n${forbidden}`), new RegExp(`breaks the preamble's rules: ${rule}`))
+    })
+  }
+
+  it('should allow the preamble\'s own commands', () => {
+    assert.doesNotThrow(() => toDocument(`\\hypersetup{pdftitle={CV}}\n${body}\n\\begin{itemize}\n\\item \\cvdisclaimer{AI}\n\\end{itemize}`))
+  })
+
+  it('should ignore comments, but not escaped percent signs', () => {
+    assert.doesNotThrow(() => toDocument(`${body}\n% flexible: no \\vspace or \\pagebreak here`))
+    assert.throws(() => toDocument(`${body}\n50\\% faster\\vfill`), /vertical spacing/)
+  })
+
+  it('should reject a body with another number of pages', () => {
+    assert.throws(() => toDocument(`${body}\n\\pagebreak`), /4 instead of 3 \\pagebreak/)
+    assert.throws(() => toDocument(body.replaceAll('\\pagebreak', '')), /0 instead of 3 \\pagebreak/)
+  })
+
+  it('should name every broken rule', () => {
+    assert.throws(() => toDocument(`\\vfill\\usepackage{x}`), /vertical spacing, packages, colors or definitions, 0 instead of 3/)
   })
 })

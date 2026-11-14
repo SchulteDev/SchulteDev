@@ -1,9 +1,7 @@
 // prompts.ts - The prompt that turns the career data into the body of a LuaLaTeX CV
 
 import type {CvType} from './config.ts';
-import {PREAMBLE} from './latex.ts';
-
-const PAGES = 4;
+import {PAGES, PREAMBLE} from './latex.ts';
 
 const PAGE_LAYOUT = [
   String.raw`Page 1: \cvheader, CV summary, key impacts (a cvkpis row of five \kpi figures, then bullets), skills overview (cvskills).`,
