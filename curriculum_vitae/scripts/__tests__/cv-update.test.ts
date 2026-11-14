@@ -8,7 +8,7 @@ import {claudeGenerator, LOG_DIR, reuseCommittedCv, updateCv} from '../cv-update
 import {extractBody, toDocument} from '../latex.ts'
 import {fakeClient, fakeMessage} from './fakes.ts'
 
-const body = 'x'.repeat(600)
+const body = `${'x'.repeat(600)}${'\n\\pagebreak\nx'.repeat(3)}`
 const document = `\\begin{document}\n${body}\n\\end{document}`
 
 describe('updateCv', () => {
@@ -35,6 +35,12 @@ describe('updateCv', () => {
 
   it('should keep the current CV when the answer is no LaTeX document', async () => {
     await assert.rejects(updateCv('professional', '', async () => 'Sorry', cvFile), /no complete document body/)
+
+    assert.equal(fs.readFileSync(cvFile, 'utf8'), 'old CV')
+  })
+
+  it('should keep the current CV when the body breaks the preamble\'s rules', async () => {
+    await assert.rejects(updateCv('professional', '', async () => document.replace('xxx', '\\vfill\n'), cvFile), /vertical spacing/)
 
     assert.equal(fs.readFileSync(cvFile, 'utf8'), 'old CV')
   })
@@ -81,11 +87,11 @@ describe('claudeGenerator', () => {
 
 describe('reuseCommittedCv', () => {
   for (const cvType of ['professional', 'anti'] as const) {
-    it(`should answer with the committed ${cvType} CV, whose body extraction keeps`, async () => {
+    it(`should answer with the committed ${cvType} CV, which keeps the preamble and its rules`, async () => {
       const answer = await reuseCommittedCv('ignored', cvType)
 
       assert.equal(answer, fs.readFileSync(getCvFile(cvType), 'utf8'))
-      assert.ok(answer.includes(extractBody(answer)))
+      assert.equal(toDocument(extractBody(answer)), answer)
     })
   }
 })
