@@ -914,7 +914,7 @@ Salesforce CRM
 - **Data storage:** PostgreSQL, Salesforce Lightning Cloud, Salesforce Bulk API
 - **CI/CD:** GitHub Actions, Travis CI, ArgoCD, Release Please Bot, Dependabot
 - **Runtime**: Docker, ArgoCD, Kubernetes
-- **Monitoring:** ELK Stack (Kibana), Dynatrace
+- **Monitoring:** ELK Stack (Kibana), Dynatrace, PagerDuty
 - **Architecture:** Event-driven middleware, bulk data processing, continuous synchronization
 
 ---
