@@ -1,5 +1,5 @@
 ---
-title: Senior Engineer & DevOp at toom Baumarkt GmbH
+title: Lead Developer & DevOps Engineer at toom Baumarkt GmbH
 share-description: "Lead developer and cross-team quality lead at toom Baumarkt: Java and Go microservices, Docker and Bamboo CI/CD, end-to-end tests ~70% faster."
 engagement:
   - "Freelance"

@@ -1,6 +1,6 @@
 ---
 layout: page
-share-title: "Markus Schulte – Cloud Architect & Software Engineer"
+share-title: "Markus Schulte – Freelance Cloud Architect & Software Engineer, Cologne"
 ---
 
 <script type="application/ld+json">
@@ -8,7 +8,7 @@ share-title: "Markus Schulte – Cloud Architect & Software Engineer"
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "{{ site.author }}",
-  "jobTitle": "Cloud Architect & Software Engineer",
+  "jobTitle": "Freelance Cloud Architect & Software Engineer",
   "url": "{{ '/' | absolute_url }}",
   "image": "{{ site.avatar | absolute_url }}",
   "address": { "@type": "PostalAddress", "addressLocality": "Cologne", "addressCountry": "DE" },
@@ -25,7 +25,7 @@ share-title: "Markus Schulte – Cloud Architect & Software Engineer"
 <div class="hero-section">
   <img src="{{ site.avatar | relative_url }}" alt="Portrait of Markus Schulte" class="hero-photo"/>
   <div class="hero-text">
-    <h1>Markus Schulte <span class="hero-role">Cloud Architect &amp; Software Engineer</span></h1>
+    <h1>Markus Schulte <span class="hero-role">Freelance Cloud Architect &amp; Software Engineer</span></h1>
     <p class="hero-tagline">
       The architect who still ships: I modernize enterprise IT so small teams can deliver safely
       and often, working agent-first.
@@ -33,6 +33,10 @@ share-title: "Markus Schulte – Cloud Architect & Software Engineer"
     <p>
       Currently IT architect for three teams at Union Investment, hands-on in the team behind the
       public financial calculators.
+    </p>
+    <p>
+      Based in Cologne, at home in regulated environments: banking and asset management, releases
+      under DORA requirements and ITSM change management.
     </p>
     <div class="hero-actions">
       <a href="{{ '/#lets-connect' }}" class="cta-button">Let's connect</a>

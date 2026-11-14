@@ -1130,7 +1130,7 @@ Contributed to 13+ repositories including:
 
 ---
 
-### October 2016 — September 2017: Senior Engineer & DevOp at toom Baumarkt GmbH
+### October 2016 — September 2017: Lead Developer & DevOps Engineer at toom Baumarkt GmbH
 
 *via tarent solutions GmbH | Freelance | Bonn*
 

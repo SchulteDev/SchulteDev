@@ -39,7 +39,7 @@ defaults:
       path: ""
     values:
       css: /assets/main.css
-      share-description: "Markus Schulte, Cloud Architect & Software Engineer: hands-on enterprise modernization with Self-contained Systems, Azure, AWS and agent-first delivery."
+      share-description: "Markus Schulte, freelance Cloud Architect & Software Engineer in Cologne: hands-on enterprise modernization in regulated environments (banking, asset management) with Azure, AWS and agent-first delivery."
   - scope:
       path: "companies"
     values:
