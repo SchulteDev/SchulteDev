@@ -79,6 +79,7 @@ describe('toDocument', () => {
     ['packages, colors or definitions', '\\definecolor{Red}{HTML}{FF0000}'],
     ['packages, colors or definitions', '\\newcommand{\\x}{y}'],
     ['list options', '\\begin{itemize}[leftmargin=*]'],
+    ['list options', '\\begin{enumerate}[before=x]'],
   ]) {
     it(`should reject ${forbidden} in the body as ${rule}`, () => {
       assert.throws(() => toDocument(`${body}\n${forbidden}`), new RegExp(`breaks the preamble's rules: ${rule}`))
@@ -87,6 +88,11 @@ describe('toDocument', () => {
 
   it('should allow the preamble\'s own commands', () => {
     assert.doesNotThrow(() => toDocument(`\\hypersetup{pdftitle={CV}}\n${body}\n\\begin{itemize}\n\\item \\cvdisclaimer{AI}\n\\end{itemize}`))
+  })
+
+  it('should ignore comments, but not escaped percent signs', () => {
+    assert.doesNotThrow(() => toDocument(`${body}\n% flexible: no \\vspace or \\pagebreak here`))
+    assert.throws(() => toDocument(`${body}\n50\\% faster\\vfill`), /vertical spacing/)
   })
 
   it('should reject a body with another number of pages', () => {
