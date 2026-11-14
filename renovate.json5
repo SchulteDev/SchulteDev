@@ -4,5 +4,13 @@
     'config:recommended',
     ':disableDependencyDashboard'
   ],
-  automerge: true
+  automerge: true,
+  customManagers: [
+    {
+      customType: 'regex',
+      managerFilePatterns: ['/(^|/)compile-pdf\\.sh$/'],
+      matchStrings: ['image=(?<depName>[^:\\s]+):(?<currentValue>\\S+)'],
+      datasourceTemplate: 'docker',
+    },
+  ],
 }
