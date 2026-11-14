@@ -4,5 +4,13 @@
     'config:recommended',
     ':disableDependencyDashboard'
   ],
-  automerge: true
+  automerge: true,
+  customManagers: [
+    {
+      customType: 'regex',
+      managerFilePatterns: ['/(^|/)compile-pdf\\.sh$/', '/(^|/)(release|update)-cvs\\.yml$/'],
+      matchStrings: ['(?<depName>ghcr\\.io/xu-cheng/texlive-alpine):(?<currentValue>\\d+)'],
+      datasourceTemplate: 'docker',
+    },
+  ],
 }
