@@ -881,8 +881,9 @@ Salesforce CRM
   small, separate entities instead of a few comprehensive ones
 - 580 commits and 77 releases (v3.0.0 to v4.1.1, November 2024), versioned with Conventional
   Commits and Release Please
-- Two variants: delta sync via the Salesforce Bulk API (demo and production) and a CSV export to
-  Salesforce Marketing Cloud via SFTP (production)
+- My part was the bulk variant: delta sync via the Salesforce Bulk API (demo and production). The
+  repository also contains a CSV export to Salesforce Marketing Cloud via SFTP, which was not my
+  project
 - Generics-based design (`Transferrer[T Entity]`, Go 1.23) with 12 transferrers run in dependency
   order, e.g. Customer → Account, Shipment → Opportunity, ShipmentOffer → Quote, ShipmentDeal →
   Order, Payment, NPS answers, and shipment filters → SearchAlert
@@ -893,11 +894,10 @@ Salesforce CRM
   automatic retry mechanisms; the last transfer time per stage and entity lives in Salesforce
   Custom Settings, so the service can be stopped and restarted at any time, and a full sync is the
   same code path with that time reset
-- Final code base of 7,668 lines of Go, 2,442 of them in 30 test files with 116 test functions;
-  database tests run against a real PostgreSQL via Dockertest, and the whole suite passes in about
-  16 seconds including the database startup. Statement coverage of the final code: 69.7% in the
-  data-selection package, the core of the bulk variant; 20.8% overall, as the SFTP variant and the
-  CLI have no tests
+- The bulk variant and its shared utilities: 2,587 lines of Go plus 2,442 lines of tests in 30
+  files with 116 test functions; database tests run against a real PostgreSQL via Dockertest, and
+  the suite passes in about 16 seconds including the database startup. Statement coverage of the
+  final code: 69.7% in the data-selection package, the core of the bulk variant
 - Used parallel bulk processing in Salesforce for throughput, switched Quotes back to serial mode
   after lock failures, and stepped full syncs through time ranges to avoid `TooManyLockFailure`
 - Ran and documented full re-syncs (durations, failed records, memory needs) in the project wiki
@@ -937,10 +937,8 @@ Salesforce CRM
 **Technologies & Frameworks:**
 
 - **Golang:** Go 1.23 with generics, cobra/viper (CLI), logrus (structured JSON logging), sqlx and
-  lib/pq (database), go-force (Salesforce Bulk API), pkg/sftp and gocsv (Marketing Cloud export),
-  stretchr/testify & ory/dockertest (testing)
-- **Data storage:** PostgreSQL, Salesforce (Bulk API, Custom Settings), Salesforce Marketing Cloud
-  (SFTP)
+  lib/pq (database), go-force (Salesforce Bulk API), stretchr/testify & ory/dockertest (testing)
+- **Data storage:** PostgreSQL, Salesforce (Bulk API, Custom Settings)
 - **CI/CD:** GitHub Actions (build, tests, golangci-lint, go vet, gofmt), Travis CI (Docker image
   build and push to AWS ECR), Release Please, Dependabot with auto-merge
 - **Runtime**: Docker (multi-stage build on distroless), Kubernetes, ArgoCD
