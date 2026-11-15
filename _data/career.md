@@ -57,8 +57,8 @@ architecture, scope and quality decisions.
   machine learning
 
 **Business Impact:** Delivered platforms serving 9M+ users, reduced deployment times from days to
-minutes, achieved 99.9% uptime in production systems, and established architecture templates adopted
-across enterprise organizations.
+minutes, ran the InvestmentWelt platform without downtime during operating hours, and established
+architecture templates adopted across enterprise organizations.
 
 **My Slogan:** "Crafting solutions that thrive today and tomorrow"
 
@@ -769,7 +769,7 @@ coach
 **Business Impact:**
 
 - **Deployment Speed:** Reduced deployment time from several days to 30 minutes for urgent changes
-- **Platform Reliability:** Achieved 99.9% uptime throughout production operation
+- **Platform Reliability:** No downtime during operating hours while I was on the project
 - **Search Performance:** Implemented sub-second search response times across all domain boundaries
 - **Team Productivity:**
   - Enabled autonomous team development with 10x faster deployment cycles
