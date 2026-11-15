@@ -55,10 +55,10 @@
     {\small\color{Mist}\hypersetup{urlcolor=white}#4\\#5\par}%
     \vspace{2pt}}}}\par
   \vspace{2pt}{\color{Teal}\rule{\linewidth}{1.6pt}}\par}
-\newcommand{\cvsection}[1]{\section*{#1\hspace{0.5em}{\color{Teal}\hrulefill}}}
+\newcommand{\cvsection}[1]{\section*{#1\hspace{0.5em}{\color{Teal}\hrulefill}}\addcontentsline{toc}{section}{#1}}
 % #1 title | organisation, #2 dates, #3 context line
 \newcommand{\cvrole}[3]{%
-  \subsection*{#1\hfill\normalfont\small\color{Muted}#2}%
+  \subsection*{#1\hfill\normalfont\small\color{Muted}#2}\addcontentsline{toc}{subsection}{#1}%
   {\small\color{Muted}#3\par}}
 \newenvironment{cvkpis}{\par\vspace{2pt}\noindent}{\par\vspace{2pt}}
 % #1 figure, #2 what it measures
