@@ -893,8 +893,11 @@ Salesforce CRM
   automatic retry mechanisms; the last transfer time per stage and entity lives in Salesforce
   Custom Settings, so the service can be stopped and restarted at any time, and a full sync is the
   same code path with that time reset
-- Final code base of 7,668 lines of Go, 2,442 of them in 30 test files; database tests run against
-  a real PostgreSQL via Dockertest
+- Final code base of 7,668 lines of Go, 2,442 of them in 30 test files with 116 test functions;
+  database tests run against a real PostgreSQL via Dockertest, and the whole suite passes in about
+  16 seconds including the database startup. Statement coverage of the final code: 69.7% in the
+  data-selection package, the core of the bulk variant; 20.8% overall, as the SFTP variant and the
+  CLI have no tests
 - Used parallel bulk processing in Salesforce for throughput, switched Quotes back to serial mode
   after lock failures, and stepped full syncs through time ranges to avoid `TooManyLockFailure`
 - Ran and documented full re-syncs (durations, failed records, memory needs) in the project wiki
