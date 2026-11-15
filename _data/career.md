@@ -206,8 +206,10 @@ organizational and leadership capabilities:
 **2007-2014: Foundation Years**
 
 - **2007:** Java, PHP, MySQL, Apache, Linux
-- **2008:** Team leadership, Zend Framework
-- **2010:** Jenkins CI/CD, PHPUnit testing
+- **2008:** Team leadership, Zend Framework, Sphinx search, MySQL partitioning
+- **2009:** REST API with WADL, HTML mobile portal
+- **2010:** PHPUnit testing
+- **2011:** Jenkins CI/CD
 - **2012:** REST APIs, JSON
 
 **2014-2018: Cloud & Modernization**
@@ -221,8 +223,9 @@ organizational and leadership capabilities:
 **2019-Present: Enterprise Cloud-Native**
 
 - **2019:** AWS EKS, serverless (Lambda)
-- **2021:** Azure platform, Golang production use
-- **2022-2023:** Azure enterprise migration, SCS patterns, Web Components, Microfrontends
+- **2021:** Azure platform
+- **2022-2023:** Golang production use, Azure enterprise migration, SCS patterns, Web Components,
+  Microfrontends
 - **2024:** Event-driven architecture, Algolia search
 - **2025:** R-methodology assessment, Cloud Center of Excellence,
   AI integration (Azure Document Intelligence), automated document processing
@@ -852,10 +855,13 @@ Salesforce CRM
 
 **Technical Challenges:**
 
-- **Scale:** Periodic full data synchronization of ~10 million records requiring database query
-  optimization and multi-threading
-- **Real-time sync:** Near real-time propagation of data updates from Saloodo to Salesforce with
-  minimal latency
+- **Scale:** Periodic full data synchronization of millions of records per entity, e.g. 5.95
+  million Quotes in 10h41m and 3.73 million Shipments in 4h36m (January 2024), with a 12 GiB memory
+  limit; a full sync of six years of Quotes ran out of memory
+- **Real-time sync:** Near real-time delta propagation of data updates from Saloodo to Salesforce
+  with minimal latency
+- **Salesforce lock contention:** Parallel bulk processing on the Salesforce side caused
+  `TooManyLockFailure` errors for some objects
 - **Data inconsistency:** Saloodo's database schema contained numerous inconsistencies including
   incorrect types and malformed JSON values requiring robust error handling
 - **Solo ownership:** As the sole developer, responsible for architecture decisions, implementation,
@@ -866,14 +872,36 @@ Salesforce CRM
 - Took on this part-time assignment alongside my work at
   [Union Investment](#october-2021--december-2024-software-lead--cloud-architect-at-union-investment)
   as it offered the opportunity to use Golang professionally for the first time
-- Sole engineer for a middleware component transferring Saloodo platform data to Salesforce
-  Lightning Cloud - architected, coded, tested, and operated entire system
-  Lightning Cloud
+- Onboarding from the contract start in December 2021 until July 2022 took about 1–2 days per
+  month: access was granted slowly, and scope and setup had to be clarified before development
+  could start
+- Sole engineer for a middleware component ("Salooforce") transferring Saloodo platform data to
+  Salesforce - architected, coded, tested, and operated entire system
+- Rewrote the middleware from scratch as Salooforce v3 (first commits July 2022, merged September
+  2022): its predecessor v2, started by another developer, had never gone live. v3 transfers many
+  small, separate entities instead of a few comprehensive ones
+- 580 commits and 77 releases (v3.0.0 to v4.1.1, November 2024), versioned with Conventional
+  Commits and Release Please
+- My part was the bulk variant: delta sync via the Salesforce Bulk API (demo and production). The
+  repository also contains a CSV export to Salesforce Marketing Cloud via SFTP, which was not my
+  project
+- Generics-based design (`Transferrer[T Entity]`, Go 1.23) with 12 transferrers run in dependency
+  order, e.g. Customer → Account, Shipment → Opportunity, ShipmentOffer → Quote, ShipmentDeal →
+  Order, Payment, NPS answers, and shipment filters → SearchAlert
+- Business features: Payment entity (June 2023), Order–Opportunity link (September 2023),
+  SearchAlerts from shipment filters (December 2023), and restricting the transfer to the EU tenant,
+  to carriers and DHL shippers, and to DHL orders (v4.1.0, September 2024)
 - Designed and implemented fault-tolerant, stateless architecture with continuous loop execution and
-  automatic retry mechanisms
-- Achieved 70% test coverage on 2,776 lines of code with 5-second test execution time using
-  Dockertest for PostgreSQL integration
-- Implemented multi-threading for handling ~10 million record synchronizations
+  automatic retry mechanisms; the last transfer time per stage and entity lives in Salesforce
+  Custom Settings, so the service can be stopped and restarted at any time, and a full sync is the
+  same code path with that time reset
+- The bulk variant and its shared utilities: 2,587 lines of Go plus 2,442 lines of tests in 30
+  files with 116 test functions; database tests run against a real PostgreSQL via Dockertest, and
+  the suite passes in about 16 seconds including the database startup. Statement coverage of the
+  final code: 69.7% in the data-selection package, the core of the bulk variant
+- Used parallel bulk processing in Salesforce for throughput, switched Quotes back to serial mode
+  after lock failures, and stepped full syncs through time ranges to avoid `TooManyLockFailure`
+- Ran and documented full re-syncs (durations, failed records, memory needs) in the project wiki
 - Optimization of database queries using SQL EXPLAIN and subsequent adjustments to table schemas
   and queries; this reduced SELECT times by up to 80%
 - Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect
@@ -909,13 +937,14 @@ Salesforce CRM
 
 **Technologies & Frameworks:**
 
-- **Golang:** cobra/viper (CLI), logrus (logging), sqlx (database),
-  stretchr/testify & testify/dockertest (testing)
-- **Data storage:** PostgreSQL, Salesforce Lightning Cloud, Salesforce Bulk API
-- **CI/CD:** GitHub Actions, Travis CI, ArgoCD, Release Please Bot, Dependabot
-- **Runtime**: Docker, ArgoCD, Kubernetes
-- **Monitoring:** ELK Stack (Kibana), Dynatrace, PagerDuty
-- **Architecture:** Event-driven middleware, bulk data processing, continuous synchronization
+- **Golang:** Go 1.23 with generics, cobra/viper (CLI), logrus (structured JSON logging), sqlx and
+  lib/pq (database), go-force (Salesforce Bulk API), stretchr/testify & ory/dockertest (testing)
+- **Data storage:** PostgreSQL, Salesforce (Bulk API, Custom Settings)
+- **CI/CD:** GitHub Actions (build, tests, golangci-lint, go vet, gofmt), Travis CI (Docker image
+  build and push to AWS ECR), Release Please, Dependabot with auto-merge
+- **Runtime**: Docker (multi-stage build on distroless), Kubernetes, ArgoCD
+- **Monitoring:** ELK Stack (Kibana on Elastic Cloud), Dynatrace, PagerDuty
+- **Architecture:** Polling delta synchronization, bulk data processing, continuous synchronization
 
 ---
 
@@ -1268,9 +1297,10 @@ Contributed to 13+ repositories including:
 
 ---
 
-### August 2007 — June 2014: PHP Developer and Head of Development at werkenntwen
+### July 2007 — June 2014: PHP Developer and Head of Development at werkenntwen
 
-*wer-kennt-wen.de (lemonline media ltd. / werkenntwen GmbH) | Permanent Position, part-time and full-time over the years*
+*wer-kennt-wen.de (lemonline media ltd. / werkenntwen GmbH) | Freelance, then employed; full-time
+and part-time over the years*
 
 **Company Context:**
 
@@ -1281,20 +1311,38 @@ Contributed to 13+ repositories including:
 
 **Career Path:**
 
-- PHP Developer (Aug 2007 — Oct 2008, part-time)
-- Head of Development (Oct 2008 — Mar 2010)
-- Backend Developer (Apr 2010 — Jun 30 2014)
+- Freelance PHP Developer (Jul 27 — Oct 14 2007, part-time, ~25–31 hours per month): PHP/MySQL
+  development of the platform for lemonline media ltd. in Koblenz; first tasks were ticket
+  categories and templates in the support backend
+- PHP Developer ("Programmierer", Oct 15 2007 — Oct 15 2008, employed full-time, 40 hours per week;
+  first contract fixed-term for six months)
+- Head of Development (Oct 16 2008 — Mar 31 2010, permanent, full-time)
+- Backend Developer (Apr 1 2010 — Jun 30 2014, part-time: as a working student until July 2012,
+  then at 50–80%; from January 2014 in parallel with my first freelance project at
+  [dailypresent](#january-2014--august-2016-early-freelancing-projects))
+
+I stepped down as Head of Development to concentrate on finishing my studies. In my resignation
+letter (December 2009) I called the role a unique opportunity that had given me a lot of
+experience.
 
 **Key Development Contributions:**
 
 - **Architecture modernization:** Led transformation from procedural to object-oriented architecture
   using multi-layered MVC patterns
-- **Framework migration:** Migrated complete group system and messaging system from legacy code to
-  Zend Framework
-- **API development:** Created REST-compliant API with WADL description for mobile platform
-- **Mobile platform:** Developed HTML mobile portal and API foundation
-- **Scaling solutions:** Implemented vertical/horizontal table partitioning and extensive Memcache
-  deployment
+- **Framework migration:** Restructured the group system into classes (2008) and migrated the
+  group and messaging systems from legacy code to Zend Framework; introduced the Zend autoloader
+  (January 2008), extracted the in-house extension library "Frame" (December 2008) and kept Zend
+  Framework up to date (1.7 to 1.11, 2009 — 2012)
+- **API development:** Concept for a mobile platform based on a new REST-capable API with WADL
+  description (2009); later API endpoints for the mobile clients, e.g. messages and galleries (2010)
+- **Mobile platform:** Started the HTML mobile portal on Zend Framework (December 2008) and was the
+  top committer of its repository
+- **Scaling solutions:** Implemented vertical and horizontal table partitioning (April 2008) and
+  extended the existing Memcache usage, e.g. contact IDs and user data (from October 2007)
+- **Asynchronous processing:** Moved the asynchronous user deletion onto a newly developed queue,
+  with unit tests (2012)
+- **PHP upgrades:** Migrations to new PHP versions, including the evaluation and preparation for
+  PHP 5.4 (2012)
 - **Database query optimizations:** Regular use of SQL-EXPLAIN and subsequent query improvement
 - **Security implementation:** Deployed comprehensive security measures (Brute-force protection,
   XSS, CSRF, SQL-injection prevention, ACL)
@@ -1321,38 +1369,53 @@ Contributed to 13+ repositories including:
 - **Technology Decision: Sphinx vs. ElasticSearch:** Selected Sphinx search engine over
   ElasticSearch due to familiarity, despite ElasticSearch offering more advanced features that
   seemed exotic at the time. This conservative choice proved suboptimal as ElasticSearch's feature
-  set became industry standard. The platform later migrated from Sphinx to ElasticSearch during my
-  return as Backend Developer, validating that the more innovative choice would have been better
-  long-term.
+  set became industry standard. In 2012, while I was a backend developer, colleagues migrated the
+  platform from Sphinx to ElasticSearch, validating that the more innovative choice would have been
+  better long-term.
 
 **Technical Achievements:**
 
-- **CI/CD implementation:** Introduced Continuous Integration using Jenkins (expanded from PHP to
-  Java projects)
-- **Testing excellence:** Achieved high PHPUnit test coverage with CodeCoverage analysis
+- **CI/CD implementation:** Introduced Continuous Integration with Jenkins (October 2011) and ran
+  the Jenkins environment largely on my own; it was later also used for Java projects. The PHP
+  build ran lint, phploc, pdepend, phpmd, phpcs, phpcpd, phpdox and PHPUnit; I parallelized the
+  unit-test suites in one Jenkins job (2012) and moved the unit tests into their own repository
+  (2012)
+- **Testing:** Measured PHPUnit code coverage with CodeCoverage in Jenkins (May 2014, platform-wide:
+  29.5% of lines overall, 41% in the shared libraries); wrote controller tests (2011)
 - **Performance optimization:** Utilized Xdebug profiling for performance improvements
-- **Search integration:** Evaluated and implemented Sphinx for scalable search functionality
-- **Parallel processing:** Created parallelized PHP command-line execution environment
+- **Search integration:** Evaluated several search products and introduced Sphinx (September
+  2008): reworked user search, profile search rolled out gradually starting at 1%, group member
+  search (February 2009)
+- **Parallel processing:** Created parallelized PHP command-line execution environment (parallel
+  cron tasks, 2009)
 - **High availability:** Implemented measures to increase platform reliability
 - **SEO optimization:** Applied search engine optimization strategies
 
 **Impact:**
 
 - **Platform scalability:** Successfully scaled architecture for 9+ million registered users
+- **Contribution:** 10,720 commits in the company's SVN repositories (August 2007 — April 2014),
+  7,378 of them among the 90,144 revisions of the main platform repository (second-most of 46
+  authors); top committer of the mobile and "Frame" library repositories. The platform code base
+  had grown to ~512,000 lines of PHP by 2014, with 27 developers working on it between 2010 and
+  2014
 - **Team leadership:** Managed development team with full personnel responsibility
 - **Performance improvements:** Reduced page load times by 60% through architecture modernization
 - **Process improvement:** Introduced automated and manual testing procedures including Selenium
 
 **Technologies & Frameworks:**
 
-- **Backend:** PHP, Zend Framework, OOP architecture, MVC patterns
+- **Backend:** PHP 5 (up to 5.4), Zend Framework 1 (1.7 — 1.11), Smarty, OOP architecture, MVC
+  patterns
 - **Database:** MySQL with advanced partitioning and optimization
 - **Caching:** Memcache implementation for performance scaling
-- **CI/CD:** Jenkins, automated deployment pipelines
-- **Testing:** PHPUnit, Selenium, automated quality assurance
+- **CI/CD:** Jenkins with Ant, automated deployment pipelines
+- **Testing:** PHPUnit (3.4 to 3.7), Selenium, automated quality assurance
+- **Code quality:** phpcs, phpmd, pdepend, phpcpd, phploc, StatSVN, CodeCoverage
 - **APIs:** REST API development, WADL documentation
 - **Search:** Sphinx search engine integration
-- **Monitoring:** Xdebug profiling, StatSVN, phploc metrics
+- **Version control and tickets:** SVN, Mantis
+- **Monitoring:** Xdebug profiling
 
 **Employment References:**
 
@@ -1497,21 +1560,41 @@ with machine learning implementation. The same interest continues today in
 
 - **Degree:**
   [Diplom in Computer Science](credentials/2012_Markus%20Schulte%20Diploma%20computer%20science%20certificate%20Diplom%20Informatik.pdf)
-- **Overall Mark:** Distinction (magna cum laude equivalent)
+- **Title:** Diplom-Informatiker (Dipl.-Inform.)
+- **Degree Programme:** Computational Visualistics (Computervisualistik)
+- **Overall Mark:** Distinction ("mit Auszeichnung": requires a very good thesis and an overall
+  grade of 1.2 or better)
+- **Enrolled:** April 2004
+- **Intermediate Diploma (Vordiplom):** September 29, 2006
 - **Graduation:** September 27, 2012
 - **University:** University of Koblenz-Landau, Campus Koblenz
 - **Faculty:** Computer Science Department
-- **Focus:** Computational Visualistics and Software Engineering
-- **Key Areas:** Software architecture, web technologies, algorithms, database systems,
-  Human-Computer Interaction
+- **Coursework:** Computer graphics, photorealistic computer graphics, image processing, software
+  engineering I and II, software architecture, databases, programming, software ergonomics,
+  human-computer interaction, cryptography, media technology
+- **Diploma Thesis (2011 — 2012):** "Aspektorientierung in PHP" (aspect-oriented programming in
+  PHP). Compared AspectJ, Ruby metaprogramming and context-oriented programming, evaluated PHP
+  Reflection and Traits as alternatives (unsuitable), and analysed existing PHP AOP projects (none
+  met the requirements). Built my own AOP framework "YAPAF", which weaves aspects into code at load
+  time by combining a PHP stream wrapper with an autoloader, demonstrated with dependency injection
+  implemented as an aspect. Conclusion: easy to use, but far less powerful than AspectJ and without
+  IDE support. The topic came from my work at werkenntwen: the plan was to apply it to the
+  platform's ORM and profiler code
+- **Studienarbeit (2008):** "Open Presenter", an open-source Java3D application that reads PDF
+  slides and animates the slide transitions in 3D, with an add-on interface for custom transitions
+  (Institute for Computational Visualistics, computer graphics group)
+- **Project Practical (2007):** Team leader in a hierarchically organised student team project
+  (project lead, team leaders, QA managers) on rendering in computer graphics, built in C++
+- **Seminars:** Theories of play (2007), GSM encryption and its attacks (2007), media literacy in
+  schools with a talk on a video game (2009)
 - **Extended Duration:** The degree program took longer than standard duration as I worked part-time
   and sometimes full-time as a software developer
-  [starting in 2007](#august-2007--june-2014-php-developer-and-head-of-development-at-werkenntwen),
+  [starting in 2007](#july-2007--june-2014-php-developer-and-head-of-development-at-werkenntwen),
   which delayed my studies but provided valuable practical experience alongside academic learning.
 
 *The German [Diplom](https://en.wikipedia.org/wiki/Diplom) degree is equivalent to a Master of
-Science and was awarded with distinction, representing academic excellence in the field of Computer
-Science with specialization in Computational Visualistics.*
+Science. Computational Visualistics is a computer science degree programme focused on computer
+graphics and image processing.*
 
 ### 2003: Abitur (German high school diploma)
 
@@ -1524,8 +1607,21 @@ subjects and took math and physics as advanced courses in high school.
 
 I had my first contact with IT during my school years. In the sixth grade, I attended a typing
 course. Unfortunately, this was my last contact with PCs at school. Later, in the years 2000-2003, I
-taught myself PHP using a PHP reference. Equipped with this knowledge, I created homepages including
-a forum for my friend group and later for my graduating class.
+taught myself PHP using a PHP reference. Equipped with this knowledge, I built community websites
+from scratch in PHP 4 and MySQL, without frameworks:
+
+- **BmPVG (early 2000s — 2007):** Website of my friend group ("Bier mit Pommes Vernichter Gruppe"),
+  of which I was a founding member. It went through five major versions, from static HTML with a
+  Flash intro (v2.0) to a PHP community site (v5.0, ~5,400 lines of PHP, 12 MySQL tables) with
+  login, admin area, public and internal forums, photo galleries, guestbook, shoutbox, news,
+  calendar and a self-written visitor counter. Between 2004 and 2006 it counted 10,596 visits and
+  collected 374 photos and 199 shoutbox posts. Later Flash intros and countdowns made with SWiSHmax
+  (2006, 2007)
+- **abi2003haren.de (2003 — 2005):** Website of my graduating class, run by me as webmaster:
+  ~6,900 lines of PHP in 78 files, 19 MySQL tables, cookie-based login, profiles with per-field
+  privacy settings, an admin area, news, calendar, public and internal forums, guestbook and photo
+  galleries. 65 classmate profiles, 740 profile comments and 267 forum threads; ~3,900 visits from
+  July to December 2003; still online in 2005
 
 Typically, I also discovered computer games for myself. This led to my decision to study Computer
 Visualistics in Koblenz.
