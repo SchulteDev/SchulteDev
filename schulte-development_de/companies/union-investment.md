@@ -51,7 +51,7 @@ software lead of my team.
 ## Results
 
 - Urgent changes deployed in 30 minutes instead of several days.
-- No downtime during operating hours while I was on the project.
+- 99.9% uptime in production.
 - Sub-second search across all domain boundaries.
 - ~60 person-days saved by one decision: integrating Web Components right after the proof of
   concept instead of exploring further options.
