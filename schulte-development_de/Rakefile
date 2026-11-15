@@ -44,6 +44,8 @@ task :test do
       /https:\/\/.*linkedin\.com\/.*/,
       /https:\/\/stackoverflow\.com\/.*/
     ],
+    # A server error is the linked site's outage, not a broken link
+    :ignore_status_codes => (500..599).to_a,
     :disable_external => false
   }
 
