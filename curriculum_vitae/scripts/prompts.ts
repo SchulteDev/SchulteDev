@@ -18,10 +18,14 @@ const PAGE_LAYOUTS: Record<CvType, string[]> = {
   ],
 };
 
-const constraints = (pages: number): string[] => [
+// The model writes past the budget of a short CV and short of a long one's
+const PAGE_CHARS: Record<CvType, number> = {professional: 6500, anti: 5000};
+
+const constraints = (pages: number, pageChars: number): string[] => [
   String.raw`Exactly ${pages} pages: \pagebreak at the end of every page but the last.`,
-  `Fill every page, but an overflowing page fails the build: a page takes about 5,000 characters of LaTeX source, `
-  + `the body about ${(pages * 5000).toLocaleString('en-US')}; the preamble stretches the spacing to the page bottom.`,
+  `Fill every page, but an overflowing page fails the build: a page takes about ${pageChars.toLocaleString('en-US')} `
+  + `characters of LaTeX source, the body about ${(pages * pageChars).toLocaleString('en-US')}; `
+  + 'the preamble stretches the spacing to the page bottom.',
   'Each fact once: fill pages with more depth from the career data, never with repetition.',
   'Include flexible content sections for page tuning.',
   'Roles newest first in every section.',
@@ -48,6 +52,6 @@ export const buildPrompt = (cvType: CvType, careerData: string): string => [
   `From this career data, write the body of a LuaLaTeX ${CV_STYLES[cvType]}`,
   `Fixed preamble:\n\`\`\`latex\n${PREAMBLE}\n\`\`\``,
   `Page layout:\n${PAGE_LAYOUTS[cvType].join('\n')}`,
-  `Constraints:\n${constraints(PAGES[cvType]).join('\n')}`,
+  `Constraints:\n${constraints(PAGES[cvType], PAGE_CHARS[cvType]).join('\n')}`,
   String.raw`Output: the document body only, from \begin{document} to \end{document}.`,
 ].join('\n');

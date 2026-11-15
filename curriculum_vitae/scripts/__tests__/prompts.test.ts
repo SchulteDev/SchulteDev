@@ -11,7 +11,7 @@ describe('buildPrompt', () => {
     assert.ok(prompt.includes(`\`\`\`latex\n${PREAMBLE}\n\`\`\``))
   })
 
-  for (const [cvType, pages, budget] of [['professional', 4, '20,000'], ['anti', 2, '10,000']] as const) {
+  for (const [cvType, pages, budget] of [['professional', 4, '26,000'], ['anti', 2, '10,000']] as const) {
     it(`should lay out ${pages} pages for the ${cvType} CV`, () => {
       const prompt = buildPrompt(cvType, '')
       assert.ok(prompt.includes(`Exactly ${pages} pages`))
