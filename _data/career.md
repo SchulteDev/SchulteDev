@@ -787,8 +787,8 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
 - **Collaboration:** Consistently high ratings for pleasant working relationship (5/5 in 2021-2022,
   averaging 8.6/10 in 2024)
 - **Communication:** Consistently rated for appropriate balance in communication frequency (3/5 in
-  2021-2022) with some noting a desire for more accessible explanations for less technical
-  stakeholders
+  2021-2022, the ideal value on a scale from too little to too much) with some noting a desire for
+  more accessible explanations for less technical stakeholders
 - **Progress & Leadership:** Strong ratings for driving topics forward at appropriate pace (3-4/5 in
   2021-2022, 9/10 in 2024)
 - **Key Feedback Themes:**
