@@ -224,7 +224,8 @@ organizational and leadership capabilities:
 
 - **2019:** AWS EKS, serverless (Lambda)
 - **2021:** Azure platform
-- **2022-2023:** Golang production use, Azure enterprise migration, SCS patterns, Web Components, Microfrontends
+- **2022-2023:** Golang production use, Azure enterprise migration, SCS patterns, Web Components,
+  Microfrontends
 - **2024:** Event-driven architecture, Algolia search
 - **2025:** R-methodology assessment, Cloud Center of Excellence,
   AI integration (Azure Document Intelligence), automated document processing
@@ -888,8 +889,8 @@ Salesforce CRM
   order, e.g. Customer → Account, Shipment → Opportunity, ShipmentOffer → Quote, ShipmentDeal →
   Order, Payment, NPS answers, and shipment filters → SearchAlert
 - Business features: Payment entity (June 2023), Order–Opportunity link (September 2023),
-  SearchAlerts from shipment filters (December 2023), restriction of the transfer to the EU tenant,
-  carriers and DHL shippers, and DHL orders only (v4.1.0, September 2024)
+  SearchAlerts from shipment filters (December 2023), and restricting the transfer to the EU tenant,
+  to carriers and DHL shippers, and to DHL orders (v4.1.0, September 2024)
 - Designed and implemented fault-tolerant, stateless architecture with continuous loop execution and
   automatic retry mechanisms; the last transfer time per stage and entity lives in Salesforce
   Custom Settings, so the service can be stopped and restarted at any time, and a full sync is the
@@ -1383,8 +1384,8 @@ experience.
   29.5% of lines overall, 41% in the shared libraries); wrote controller tests (2011)
 - **Performance optimization:** Utilized Xdebug profiling for performance improvements
 - **Search integration:** Evaluated several search products and introduced Sphinx (September
-  2008): user search with a gradual rollout starting at 1% of traffic, group member search
-  (February 2009)
+  2008): reworked user search, profile search rolled out gradually starting at 1%, group member
+  search (February 2009)
 - **Parallel processing:** Created parallelized PHP command-line execution environment (parallel
   cron tasks, 2009)
 - **High availability:** Implemented measures to increase platform reliability
@@ -1613,8 +1614,9 @@ from scratch in PHP 4 and MySQL, without frameworks:
   of which I was a founding member. It went through five major versions, from static HTML with a
   Flash intro (v2.0) to a PHP community site (v5.0, ~5,400 lines of PHP, 12 MySQL tables) with
   login, admin area, public and internal forums, photo galleries, guestbook, shoutbox, news,
-  calendar and a self-written visitor counter. Between 2004 and 2006 it logged 10,596 visits, 374
-  photos and 199 shoutbox posts. Later Flash intros and countdowns made with SWiSHmax (2006, 2007)
+  calendar and a self-written visitor counter. Between 2004 and 2006 it counted 10,596 visits and
+  collected 374 photos and 199 shoutbox posts. Later Flash intros and countdowns made with SWiSHmax
+  (2006, 2007)
 - **abi2003haren.de (2003 — 2005):** Website of my graduating class, run by me as webmaster:
   ~6,900 lines of PHP in 78 files, 19 MySQL tables, cookie-based login, profiles with per-field
   privacy settings, an admin area, news, calendar, public and internal forums, guestbook and photo
