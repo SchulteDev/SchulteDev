@@ -25,7 +25,7 @@ describe('buildPrompt', () => {
   it('should describe only the requested CV type', () => {
     assert.ok(buildPrompt('professional', '').includes('write the body of a LuaLaTeX Professional CV: quantified impact'))
     assert.ok(!buildPrompt('professional', '').includes('Anti-CV'))
-    assert.ok(buildPrompt('anti', '').includes('write the body of a LuaLaTeX Anti-CV: failures'))
+    assert.ok(buildPrompt('anti', '').includes('write the body of a LuaLaTeX Anti-CV: humorous lessons and failures'))
     assert.ok(!buildPrompt('anti', '').includes('Professional CV'))
   })
 
