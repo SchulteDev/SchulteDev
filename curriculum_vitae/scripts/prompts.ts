@@ -5,7 +5,7 @@ import {PAGES, PREAMBLE} from './latex.ts';
 
 const PAGE_LAYOUT = [
   String.raw`Page 1: \cvheader, CV summary, key impacts (a cvkpis row of five \kpi figures, then bullets), skills overview (cvskills).`,
-  'Page 2: Recent roles LBBW, Union Investment, Saloodo, Trusted Shops with three or four bullet points each.',
+  'Page 2: Recent roles at Union Investment, LBBW, Saloodo, Trusted Shops with three or four bullet points each.',
   'Page 3: Two or three relevant previous work experiences, mention remaining work experiences; relevant personal projects.',
   String.raw`Page 4: Education, additional skills, career breaks; \cvdisclaimer: AI disclaimer.`,
 ];
@@ -14,7 +14,9 @@ const CONSTRAINTS = [
   String.raw`Exactly ${PAGES} pages: \pagebreak after each of the first ${PAGES - 1} pages.`,
   'Every page full, none overflowing: a page takes about 6,500 characters of LaTeX source, the body about 26,000; '
   + 'the preamble stretches the spacing to the page bottom.',
+  'Each fact once: fill pages with more depth from the career data, never with repetition.',
   'Include flexible content sections for page tuning.',
+  'Roles newest first in every section.',
   String.raw`Structure with the preamble's commands: \cvsection for sections, \cvrole for roles and degrees, \subsection* for other subheadings, itemize for lists.`,
   String.raw`No vertical spacing commands (\vspace, \vfill, \newpage): the preamble spaces the content.`,
   String.raw`Heading titles: text, font commands and \hfill only. Lists: itemize without options.`,
@@ -27,7 +29,8 @@ const CONSTRAINTS = [
 ];
 
 const CV_STYLES: Record<CvType, string> = {
-  professional: 'Professional CV: quantified impact, leadership and business value, backed by metrics, percentages and concrete numbers.',
+  professional: 'Professional CV: quantified impact, leadership and business value, backed by metrics, percentages and concrete numbers; '
+    + 'key figures are business outcomes, not engineering metrics.',
   anti: 'Anti-CV: failures, missed opportunities and growth moments, '
     + 'in a professional tone with self-deprecating humor that pokes fun at technology, too.',
 };
