@@ -72,98 +72,102 @@
   \vspace{2pt}{\footnotesize\color{Muted}#1\par}}
 
 \begin{document}
-\hypersetup{pdftitle={Anti-CV of Markus Schulte},pdfauthor={Markus Schulte}}
+\hypersetup{pdftitle={Markus Schulte - Anti-CV},pdfauthor={Markus Schulte}}
 
-\cvheader{Markus Schulte}{Anti-CV: Freelance Cloud Architect \& Software Engineer}{Cologne, Germany}{\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} \textbar{} +49 178 7217768}{\href{https://schulte-development.de}{schulte-development.de} \textbar{} \href{https://github.com/SchulteDev}{github.com/SchulteDev} \textbar{} \href{https://www.linkedin.com/in/markus-schulte/}{linkedin.com/in/markus-schulte}}
+\cvheader{Markus Schulte}{Freelance Cloud Architect \& Software Engineer}{Anti-CV \textbar{} Cologne, Germany}{\href{mailto:mail@schulte-development.de}{mail@schulte-development.de} \textbar{} \href{tel:+491787217768}{+49 178 7217768}}{\href{https://schulte-development.de}{schulte-development.de} \textbar{} \href{https://www.linkedin.com/in/markus-schulte/}{LinkedIn} \textbar{} \href{https://github.com/SchulteDev}{GitHub}}
 
-\cvsection{Summary (Mostly Things That Went Sideways)}
-Nineteen-plus years of Java (12+ of them freelance), five of Golang, and a lasting skepticism of Kubernetes, which I use anyway. Since 2025 coding agents write most of my code, so my main contribution is saying \emph{no} to a very fast colleague. Architecture style: minimal effort, small stories, reuse what exists. Below are the failures, detours and wrong turns behind the polished CV. The one with only successes is available on request.
+\cvsection{Summary, or: Why Hire Someone Who Has Seen This Go Wrong}
+19+ years of software engineering (12+ freelance), most of it spent learning what not to do and then writing it down as an ADR. Java is my mother tongue, nowadays spoken with a Golang accent. I am back at Union Investment as architect for three teams. Since 2025 I work agent-first: coding agents write most of the code, and I keep architecture, scope and the go/no-go. On the side I run an ML trading project that, for now, trades only with paper money.
 
-\cvsection{Key Impacts (Figures I Would Rather Not Frame)}
+\cvsection{Key Impacts: Mistakes Were Made, Measurably}
 \begin{cvkpis}
-\kpi{34\%}{line coverage reported, until I fixed the ruler (real: 87\%)}
-\kpi{1,065}{hidden type errors in a sibling monorepo}
-\kpi{12 GiB}{RAM limit; six years of Quotes still ran out}
-\kpi{3 \textrightarrow{} 0}{Playwright retries, so flaky tests stop hiding}
-\kpi{593 MB}{image pulled on cold agents per deploy}
+\kpi{1,065}{hidden type errors, found in a sibling monorepo}
+\kpi{29.5\%}{line coverage I measured at wer-kennt-wen, 2014}
+\kpi{34\%}{coverage reported for a backend that really had 87\%}
+\kpi{10h41m}{to sync 5.95 million quotes}
+\kpi{1}{wrong search engine, chosen for familiarity}
 \end{cvkpis}
 \begin{itemize}
-\item The dependency bot had been intermittently broken for months. Once revived, median Renovate merge time fell from \textasciitilde{}2 h to 13 min. Updates are fast when somebody lets them in.
-\item Unit tests: 538 \textrightarrow{} 1,659 test cases, with coverage gates from zero (shared library 87\% \textrightarrow{} 99.6\%). The green builds have lost their alibi.
-\item Scheduled API tests used to fail silently (orange, not red). Now a failing run alerts, a feature known elsewhere as ``monitoring''.
+\item \textbf{Alerting by color:} scheduled API tests failed silently (orange, not red). Now a failing run actually alerts.
+\item \textbf{CI that tells the truth:} automatic Playwright retries cut from 3 to 0 against deployed sites, so flaky tests fail in public instead of hiding.
+\item \textbf{Dependency bot, off and on:} Renovate had been broken intermittently for months. Once it worked, median merge time fell from 2 h to 13 min.
+\item \textbf{Cold-start tax:} the deploy step pulled a 593 MB image on cold agents. Now it takes 26 s instead of 45--81 s.
+\item \textbf{Garbage in, garbage out:} even with the best coding agents this still holds. Good engineering practice and a good developer experience (for agents, too) are still required.
 \end{itemize}
 
-\cvsection{Recent Roles (Lessons Billed by the Day)}
-\cvrole{Union Investment: Architect, Lead, Architect Again}{Apr 2026 -- now, Oct 2021 -- Dec 2024}{Freelance, remote \textbar{} financial calculators and the B2B portal InvestmentWelt}
+\cvsection{Recent Roles: Scenes of the Incidents}
+
+\cvrole{IT Architect at Union Investment, Twice}{2026 -- now, 2021 -- 2024}{Freelance \textbar{} Remote \textbar{} InvestmentWelt 2021--2024, public financial calculators since April 2026}
 \begin{itemize}
-\item 2026: back for round two as architect for three teams. A small team maintains 15+ calculators, so automation is survival, not hobby. A pen-test TLS finding on platform-managed ciphers was fixed by switching on the managed edge instead of building my own, my favorite kind of infrastructure project: the one I did not build.
-\item 2021\textendash 2024: hands-on lead, explicitly \emph{not} the lead of the modernization. I proposed the microfrontend approach that was adopted, then built the toolkit. Skipping the options analysis for Web Components after one PoC saved \textasciitilde{}60 person-days: my best optimization was thinking less.
+\item \textbf{2026:} a pen test flagged weak TLS cipher suites that Azure Static Web Apps manages itself. My fix: switch on the managed enterprise-grade edge instead of building infrastructure. Laziness, filed as architecture.
+\item \textbf{2021--2024:} three 360-degree surveys rated my technical competence 9--10/10 in 2024. The areas for growth: explain at a slower pace to less technical stakeholders, and be more open to critical feedback.
 \end{itemize}
 
-\cvrole{LBBW: Cloud Architect, Production Not Included}{Nov 2024 -- Dec 2025}{Freelance, remote \textbar{} ``Phoenix'' modernization, \textasciitilde{}80 people, Azure ``Skywalker'' platform}
+\cvrole{Cloud Architect at LBBW (Phoenix)}{Nov 2024 -- Dec 2025}{Freelance \textbar{} Remote \textbar{} \textasciitilde80 people, migration to the Azure-based Skywalker platform}
 \begin{itemize}
-\item Supported migrations to a platform that sat unused in production during my engagement. I wrote the Solution Design Template, applied it to the FirstMovers and identified platform gaps. Unsurprisingly, there were gaps.
-\item Cataloged hundreds of legacy applications with the R-methodology, owned architecture for 10 of 30 applications and evaluated Elastisys Welkin as a possible plan B. Costs came from the Azure Calculator, the art of being precisely wrong.
+\item Architect for 10 of 30 applications moving to Skywalker, a platform that was production-unused during my engagement: a very safe place to be wrong.
+\item Cataloged hundreds of legacy applications with the R-methodology, identified platform gaps and evaluated Elastisys Welkin as a plan B.
 \end{itemize}
 
-\cvrole{Saloodo!: Sole Engineer of an Unnecessary Middleware}{Dec 2021 -- Nov 2024}{Freelance, part-time, remote \textbar{} Golang middleware to Salesforce}
+\cvrole{Middleware Engineer at Saloodo! (DHL Group)}{Dec 2021 -- Nov 2024}{Freelance \textbar{} Part-time \textbar{} Remote \textbar{} Golang, Salesforce}
 \begin{itemize}
-\item Took the gig to finally use Go professionally, and rewrote ``Salooforce'' after v2 never went live: 580 commits, 77 releases, 100\% uptime. My own verdict: since the core ran on AWS, eventing and Lambda would have been cheaper and simpler. I built a very robust answer to a question nobody needed to ask.
-\item Full syncs: 5.95 million Quotes in 10 h 41 min, 3.73 million Shipments in 4 h 36 min. Parallel bulk jobs caused \texttt{TooManyLockFailure} until Quotes went back to serial mode. With malformed JSON in the source database, ``near real-time'' became ``within minutes''.
+\item Sole engineer of ``Salooforce'': rewrote it as v3 because v2 never went live. 580 commits, 77 releases, and one full sync of six years of quotes that ran out of memory at 12 GiB.
+\item 100\% production uptime for three years, for a middleware that, as I later concluded, should not have existed: eventing with AWS Lambda would have been cheaper, simpler and faster.
 \end{itemize}
 
-\cvrole{Trusted Shops: My First Encounter with Real Microservices}{Aug 2018 -- Oct 2019}{Freelance, Cologne \textbar{} JavaEE6 monolith to AWS, Salesforce, Zuora}
+\cvrole{Senior Software Engineer at Trusted Shops}{Aug 2018 -- Oct 2019}{Freelance \textbar{} Cologne \textbar{} JavaEE6 monolith to AWS, Salesforce, Zuora}
 \begin{itemize}
-\item Simple changes touched many services, tests and automation were thin, and the architecture was not open to change. Since then I have been skeptical of microservices as an overarching architecture and prefer Self-contained Systems.
-\item The rest: Zuora invoices, Twilio SMS (after evaluating providers), a Micronaut Lambda template and Pact training, which is how you teach teams to stop breaking each other's promises.
+\item My first real microservices architecture: simple changes touched many services, tests and automation were thin, and the architecture was not open to change. Since then I prefer Self-contained Systems.
+\item Built Lambdas with Terraform, a Micronaut Lambda template and an SMS integration (Twilio). Taught Pact so that integration surprises show up in tests rather than in invoices.
 \end{itemize}
 \pagebreak
 
-\cvsection{Earlier Roles (The Archaeological Layer)}
+\cvsection{Earlier Detours, Newest First}
 \begin{itemize}
-\item \textbf{Bamboo add-on vendor (Jun 2016 \textendash{} Dec 2023):} Checkstyle, PMD, CPD and FindBugs integration for Atlassian Bamboo. Seven years and 83 customers in 15+ countries: global reach, if you count the countries separately.
-\item \textbf{Sedo (Jan \textendash{} Mar 2020):} Merged Spring Boot and Camel services into one Quarkus service (infrastructure overhead \textminus 60\%), evaluated Knative and taught Pact to 12 developers. The only job where my task was to make things disappear.
-\item \textbf{Allianz Global Digital Factory (Nov 2017 \textendash{} Mar 2018):} JavaEE and CloudFoundry, three applications to production, REST/HATEOAS APIs (an acronym that deserves its own glossary). The API docs became a company standard, and two juniors survived my HATEOAS mentoring.
-\item \textbf{toom Baumarkt (Oct 2016 \textendash{} Sep 2017):} Lead developer in an 8-member ``you build it, you run it'' team: five microservices in Java and Go, Ruby and Shell when forced, end-to-end tests \textasciitilde{}70\% faster. My first docker-compose, then Kubernetes, which I still find too complex for ops and developers alike: a tool for ops solution providers.
-\item \textbf{Early freelancing (Jan 2014 \textendash{} Aug 2016):} Seven short contracts, four involving Jenkins and one Bamboo. If it built nightly, I was probably there. Claimed outcomes: CI/CD for 6+ companies and an AWS migration that cut infrastructure costs by 40\%.
-\item \textbf{werkenntwen (Jul 2007 \textendash{} Jun 2014):} PHP developer, then Head of Development (Oct 2008 \textendash{} Mar 2010). Management and I both assumed technical skill would translate into leadership. I stepped down to finish my studies and landed on a laissez-faire style. I picked Sphinx over ElasticSearch because it was familiar, and colleagues migrated to ElasticSearch in 2012. In May 2014 I measured PHPUnit coverage: 29.5\% of lines. Along the way: 10,720 commits and \textasciitilde{}512,000 lines of PHP for 9+ million members, until the company closed on 30 June 2014.
+\item \textbf{Sedo (2020):} merged Spring Boot and Apache Camel services into one Quarkus service (microservices in reverse, \textminus60\% infrastructure overhead), evaluated Knative and taught Pact to 12 developers.
+\item \textbf{Allianz Global Digital Factory (2017--2018):} five months of JavaEE on CloudFoundry: three applications live, REST/HATEOAS docs adopted as company standard.
+\item \textbf{toom Baumarkt (2016--2017):} lead developer of the ``Butterkekse'' team, E2E tests \textasciitilde70\% faster. My first Kubernetes: still skeptical, it looks like a tool for ops solution providers, not for application teams.
+\item \textbf{Bamboo add-ons (2016--2023):} commercial Checkstyle, PMD and FindBugs plug-ins with 83 customers in 15+ countries over 7+ years: global reach, one customer at a time.
+\item \textbf{Early freelancing (2014--2016):} seven short contracts, mostly ``please install Jenkins'' (CI at 6+ companies). Cloud transitions cut infrastructure costs by 40\%.
+\item \textbf{wer-kennt-wen (2007--2014):} 9+ million members, 10,720 commits, and a Head of Development role I took without management experience, assuming technical skill would translate. It did not, so I stepped down to finish my studies. The company closed on my last day.
 \end{itemize}
 
-\cvsection{Personal Projects (Hobbies with Version Control)}
+\cvsection{Side Projects (Unpaid, Unrepentant)}
+\cvrole{BitterQuant}{Jan 2026 -- now}{Python, PyTorch, AWS SageMaker, NautilusTrader, Interactive Brokers}
 \begin{itemize}
-\item \textbf{John review (Jul 2026 \textendash{} now):} Labelling a pull request wakes a headless coding agent that reviews, pushes one fix commit per finding and posts a verdict, unattended. Automated nitpicking, so nobody has to be the bad cop.
-\item \textbf{BitterQuant (Jan 2026 \textendash{} now):} A fine-tuned time-series foundation model for systematic US-equity trading, my second automation attempt after a 2015 Bitcoin arbitrage bot. Two promising approaches collapsed once execution was simulated realistically. Null results are documented as ADRs, and profit remains a hypothesis (paper trading since May 2026).
-\item \textbf{ConversationalAI4J (Aug 2025 \textendash{} Jan 2026):} Voice chats with local LLMs via Whisper.cpp, Piper and Ollama, my first agent-coded project. Lesson: even with the best models it is ``garbage in, garbage out''.
+\item Fine-tunes a time-series foundation model, paper trading since May 2026. Two promising approaches collapsed under realistic execution simulation; at least the documented null results prevent repeated dead ends.
+\end{itemize}
+\cvrole{Sse-BelMngr-Hermine}{Jan 2025 -- now}{Golang, Azure Document Intelligence, SQLite}
+\begin{itemize}
+\item AI document capture for tax software, built in the first half of 2025 and improved since then only when the next tax return forces me to.
+\end{itemize}
+\cvrole{Crypto-Arbitrage Trading Bot}{Jan -- Jul 2015}{Java, xChange API, Weka, LibSVM}
+\begin{itemize}
+\item My first attempt at automated trading, Bitcoin arbitrage with machine learning. A decade later, BitterQuant is the sequel.
 \end{itemize}
 
-\cvsection{Skills (Self-Assessed, Statistically Biased)}
+\cvsection{Skills, Graded Honestly}
 \begin{cvskills}
-Java, Go, Python & Java 19+ years, Golang 5+, Python since 2026 (learned while training models) \\
-Cloud & AWS 7+ years, Azure 5+, GCP in passing \\
-Architecture & Self-contained Systems, event-driven design, ADRs; skeptical of microservices and Kubernetes \\
-Quality & Pact, Playwright, JUnit; 1000+ tests in 10-minute builds, because waiting is not a hobby \\
-Agentic coding & Claude Code with git worktrees, custom skills and hooks as guardrails \\
-Public record & StackOverflow: 4,807 reputation, 57 answers and 57 questions, a perfectly balanced ledger \\
+Mother tongues & Java (19+ years), Golang (5+), PHP (8+, where it all started), TypeScript, Python since 2026 (PyTorch, pandas) \\
+Clouds & Azure (5+ years), AWS (7+), GCP in a supporting role; Terraform and Helm throughout \\
+Healthy doubts & Kubernetes (used, distrusted since 2016) and microservices as an overarching architecture \\
+Agents & Claude Code with parallel sessions, hooks and an automated PR reviewer (``John review'') \\
+Social proof & StackOverflow: 4,807 reputation, 57 answers and 57 questions, 71 bronze badges \\
 \end{cvskills}
 
-\cvsection{Open Source (Fixing What Blocked Me)}
+\cvsection{Education}
+\cvrole{Diplom-Informatiker, Computational Visualistics}{2004 -- 2012}{University of Koblenz-Landau \textbar{} distinction (``mit Auszeichnung'')}
 \begin{itemize}
-\item Renovate (5 merged PRs), Pact (3), a Quarkus problem extension (8), and doc fixes for GitHub, Docker and Azure: I patch the tools I depend on. Also made Microsoft's azure-devops-skills installable as a Claude Code plugin.
+\item Eight years, because I worked as a developer from 2007 alongside studying. Thesis on aspect-oriented programming in PHP: my own framework YAPAF turned out easy to use but far less powerful than AspectJ and without IDE support.
+\item Abitur 2003 (advanced courses math and physics), after teaching myself PHP 4 from a reference: my class website ran to \textasciitilde6,900 lines of PHP in 78 files.
 \end{itemize}
 
-\cvsection{Education (Duration: Negotiable)}
-\cvrole{Diplom Computer Science, mit Auszeichnung}{2004 -- 2012}{University of Koblenz-Landau \textbar{} Computational Visualistics \textbar{} equivalent to a Master of Science}
+\cvsection{Career Breaks, Planned and Otherwise}
 \begin{itemize}
-\item Eight years, because I worked as a developer from 2007. Thesis on aspect-oriented PHP: I built my own framework, YAPAF, and concluded it was easy to use but far less powerful than AspectJ, and without IDE support.
-\item Abitur 2003: taught myself PHP 4 and built my friend group's site through five major versions. Its visitor counter reported 10,596 visits.
+\item \textbf{Apr 2020 -- Sep 2021:} parental leave, during COVID-19 lockdowns and an industry-wide project slowdown.
+\item \textbf{Aug -- Dec 2015:} travel break, exploring countries and cultures.
+\item \textbf{Aug 2003 -- Mar 2004:} mandatory military service in the air force (basic training in Budel, NL, then Hopsten airbase).
 \end{itemize}
 
-\cvsection{Career Breaks (Scheduled Downtime)}
-\begin{itemize}
-\item Parental leave, Apr 2020 \textendash{} Sep 2021: family time met a pandemic slowdown.
-\item Travel break, Aug \textendash{} Dec 2015: zero deployments.
-\item Military service, Aug 2003 \textendash{} Mar 2004: air force, a hierarchy with no retrospectives.
-\end{itemize}
-
-\cvdisclaimer{AI disclaimer: this Anti-CV was drafted by an AI from my career records and reviewed by me. The facts are real, and only the framing is satirical. A conventional CV is available on request.}
+\cvdisclaimer{This anti-CV was written by an AI assistant from my factual career data. The facts are true; the humor is in the framing. The serious CV is a separate document.}
 \end{document}
