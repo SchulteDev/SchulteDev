@@ -8,9 +8,10 @@ const KEY_IMPACTS = String.raw`key impacts (a cvkpis row of five \kpi figures, t
 const PAGE_LAYOUTS: Record<CvType, string[]> = {
   professional: [
     String.raw`Page 1: \cvheader, CV summary, ${KEY_IMPACTS}, skills overview (cvskills).`,
-    'Page 2: Recent roles at Union Investment, LBBW, Saloodo, Trusted Shops with three or four bullet points each.',
-    'Page 3: Two or three relevant previous work experiences, mention remaining work experiences; relevant personal projects.',
-    String.raw`Page 4: Education, additional skills, career breaks; \cvdisclaimer: AI disclaimer.`,
+    'Page 2: Experience as one section, newest first: Union Investment, LBBW, Saloodo, Trusted Shops with three or four bullet points each, '
+    + 'less relevant roles in between in brief.',
+    'Page 3: Experience continued; relevant personal projects.',
+    String.raw`Page 4: Education in brief (degree, grade, thesis title), additional skills, career breaks; \cvdisclaimer: AI disclaimer.`,
   ],
   anti: [
     String.raw`Page 1: \cvheader, CV summary, ${KEY_IMPACTS}, recent roles at Union Investment, LBBW, Saloodo, Trusted Shops with two bullet points each.`,
@@ -44,7 +45,8 @@ const CV_STYLES: Record<CvType, string> = {
   professional: 'Professional CV: quantified impact, leadership and business value, backed by metrics, percentages and concrete numbers; '
     + 'key figures are business outcomes, not engineering metrics.',
   anti: 'Anti-CV: humorous lessons and failures, self-deprecating, still professional, poking fun at technology, too: '
-    + 'a punchline in most bullets, ironic section titles; the facts stay true, the humor is in the framing.',
+    + 'a punchline in most bullets, ironic section titles; the facts stay true, the humor is in the framing; '
+    + 'key figures are failures and detours, not successes.',
 };
 
 export const buildPrompt = (cvType: CvType, careerData: string): string => [
