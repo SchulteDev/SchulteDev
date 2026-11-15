@@ -8,7 +8,7 @@ import {claudeGenerator, LOG_DIR, reuseCommittedCv, updateCv} from '../cv-update
 import {extractBody, toDocument} from '../latex.ts'
 import {fakeClient, fakeMessage} from './fakes.ts'
 
-const body = `${'x'.repeat(600)}${'\n\\pagebreak\nx'.repeat(3)}`
+const body = `${'x'.repeat(600)}\n\\pagebreak\nx`
 const document = `\\begin{document}\n${body}\n\\end{document}`
 
 describe('updateCv', () => {
@@ -30,7 +30,7 @@ describe('updateCv', () => {
     assert.ok(prompt.includes('Fell off a cloud in 2019'))
     assert.ok(prompt.includes('Anti-CV'))
     assert.equal(cvType, 'anti')
-    assert.equal(fs.readFileSync(cvFile, 'utf8'), toDocument(body))
+    assert.equal(fs.readFileSync(cvFile, 'utf8'), toDocument(body, 'anti'))
   })
 
   it('should keep the current CV when the answer is no LaTeX document', async () => {
@@ -40,7 +40,7 @@ describe('updateCv', () => {
   })
 
   it('should keep the current CV when the body breaks the preamble\'s rules', async () => {
-    await assert.rejects(updateCv('professional', '', async () => document.replace('xxx', '\\vfill\n'), cvFile), /vertical spacing/)
+    await assert.rejects(updateCv('anti', '', async () => document.replace('xxx', '\\vfill\n'), cvFile), /vertical spacing/)
 
     assert.equal(fs.readFileSync(cvFile, 'utf8'), 'old CV')
   })
@@ -91,7 +91,7 @@ describe('reuseCommittedCv', () => {
       const answer = await reuseCommittedCv('ignored', cvType)
 
       assert.equal(answer, fs.readFileSync(getCvFile(cvType), 'utf8'))
-      assert.equal(toDocument(extractBody(answer)), answer)
+      assert.equal(toDocument(extractBody(answer), cvType), answer)
     })
   }
 })

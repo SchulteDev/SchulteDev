@@ -3,16 +3,28 @@
 import type {CvType} from './config.ts';
 import {PAGES, PREAMBLE} from './latex.ts';
 
-const PAGE_LAYOUT = [
-  String.raw`Page 1: \cvheader, CV summary, key impacts (a cvkpis row of five \kpi figures, then bullets), skills overview (cvskills).`,
-  'Page 2: Recent roles at Union Investment, LBBW, Saloodo, Trusted Shops with three or four bullet points each.',
-  'Page 3: Two or three relevant previous work experiences, mention remaining work experiences; relevant personal projects.',
-  String.raw`Page 4: Education, additional skills, career breaks; \cvdisclaimer: AI disclaimer.`,
-];
+const KEY_IMPACTS = String.raw`key impacts (a cvkpis row of five \kpi figures, then bullets)`;
 
-const CONSTRAINTS = [
-  String.raw`Exactly ${PAGES} pages: \pagebreak after each of the first ${PAGES - 1} pages.`,
-  'Every page full, none overflowing: a page takes about 6,500 characters of LaTeX source, the body about 26,000; '
+const PAGE_LAYOUTS: Record<CvType, string[]> = {
+  professional: [
+    String.raw`Page 1: \cvheader, CV summary, ${KEY_IMPACTS}, skills overview (cvskills).`,
+    'Page 2: Recent roles at Union Investment, LBBW, Saloodo, Trusted Shops with three or four bullet points each.',
+    'Page 3: Two or three relevant previous work experiences, mention remaining work experiences; relevant personal projects.',
+    String.raw`Page 4: Education, additional skills, career breaks; \cvdisclaimer: AI disclaimer.`,
+  ],
+  anti: [
+    String.raw`Page 1: \cvheader, CV summary, ${KEY_IMPACTS}, recent roles at Union Investment, LBBW, Saloodo, Trusted Shops with two bullet points each.`,
+    String.raw`Page 2: Earlier roles as one list with a bullet per role, three personal projects, skills overview (cvskills), education, career breaks; \cvdisclaimer: AI disclaimer.`,
+  ],
+};
+
+// The model writes past the budget of a short CV and short of a long one's
+const PAGE_CHARS: Record<CvType, number> = {professional: 6500, anti: 5000};
+
+const constraints = (pages: number, pageChars: number): string[] => [
+  String.raw`Exactly ${pages} pages: \pagebreak at the end of every page but the last.`,
+  `Fill every page, but an overflowing page fails the build: a page takes about ${pageChars.toLocaleString('en-US')} `
+  + `characters of LaTeX source, the body about ${(pages * pageChars).toLocaleString('en-US')}; `
   + 'the preamble stretches the spacing to the page bottom.',
   'Each fact once: fill pages with more depth from the career data, never with repetition.',
   'Include flexible content sections for page tuning.',
@@ -39,7 +51,7 @@ export const buildPrompt = (cvType: CvType, careerData: string): string => [
   `Career data:\n\`\`\`markdown\n${careerData}\n\`\`\``,
   `From this career data, write the body of a LuaLaTeX ${CV_STYLES[cvType]}`,
   `Fixed preamble:\n\`\`\`latex\n${PREAMBLE}\n\`\`\``,
-  `Page layout:\n${PAGE_LAYOUT.join('\n')}`,
-  `Constraints:\n${CONSTRAINTS.join('\n')}`,
+  `Page layout:\n${PAGE_LAYOUTS[cvType].join('\n')}`,
+  `Constraints:\n${constraints(PAGES[cvType], PAGE_CHARS[cvType]).join('\n')}`,
   String.raw`Output: the document body only, from \begin{document} to \end{document}.`,
 ].join('\n');

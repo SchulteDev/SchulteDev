@@ -159,6 +159,11 @@ jobs:
           name: ${{ matrix.cv_type }}-tex-file
           path: curriculum_vitae/markus-schulte-dev-${{ matrix.cv_type }}-cv.tex
           retention-days: 7
+      - name: Check the page count
+        run: |
+          expected=$(node --input-type=module -e "const {PAGES} = await import('./latex.ts'); console.log(PAGES['${{ matrix.cv_type }}'])")
+          actual=$(grep -oE '\([0-9]+ pages?' "${{ github.workspace }}/markus-schulte-dev-${{ matrix.cv_type }}-cv.log" | grep -oE '[0-9]+')
+          [ "$actual" = "$expected" ] || { echo "::error::$actual pages instead of $expected"; exit 1; }
       - name: Upload Claude response log
         uses: actions/upload-artifact@v7
         if: always()
