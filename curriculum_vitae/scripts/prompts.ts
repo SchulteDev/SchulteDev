@@ -31,8 +31,8 @@ const CONSTRAINTS = [
 const CV_STYLES: Record<CvType, string> = {
   professional: 'Professional CV: quantified impact, leadership and business value, backed by metrics, percentages and concrete numbers; '
     + 'key figures are business outcomes, not engineering metrics.',
-  anti: 'Anti-CV: failures, missed opportunities and growth moments, '
-    + 'in a professional tone with self-deprecating humor that pokes fun at technology, too.',
+  anti: 'Anti-CV: humorous lessons and failures, self-deprecating, still professional, poking fun at technology, too: '
+    + 'a punchline in most bullets, ironic section titles; the facts stay true, the humor is in the framing.',
 };
 
 export const buildPrompt = (cvType: CvType, careerData: string): string => [
