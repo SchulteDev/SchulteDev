@@ -4,28 +4,25 @@ import {PREAMBLE} from '../latex.ts'
 import {buildPrompt} from '../prompts.ts'
 
 describe('buildPrompt', () => {
-  const careerData = '# Career\nCut costs by $&5k; templating {{PAGES}} stays verbatim'
+  it('should embed the career data and the preamble verbatim', () => {
+    const careerData = '# Career\nCut costs by $&5k; templating {{PAGES}} stays verbatim'
+    const prompt = buildPrompt('anti', careerData)
+    assert.ok(prompt.includes(`\`\`\`markdown\n${careerData}\n\`\`\``))
+    assert.ok(prompt.includes(`\`\`\`latex\n${PREAMBLE}\n\`\`\``))
+  })
 
-  for (const cvType of ['professional', 'anti'] as const) {
-    it(`should embed the career data verbatim for the ${cvType} CV`, () => {
-      assert.ok(buildPrompt(cvType, careerData).includes(`\`\`\`markdown\n${careerData}\n\`\`\``))
+  for (const [cvType, pages, budget] of [['professional', 4, '20,000'], ['anti', 2, '10,000']] as const) {
+    it(`should lay out ${pages} pages for the ${cvType} CV`, () => {
+      const prompt = buildPrompt(cvType, '')
+      assert.ok(prompt.includes(`Exactly ${pages} pages`))
+      assert.ok(prompt.includes(`the body about ${budget}`))
+      assert.ok(prompt.includes(`Page ${pages}: `) && !prompt.includes(`Page ${pages + 1}: `))
+      assert.doesNotMatch(prompt, /\$\{|\\\\[a-z]/)
     })
   }
 
-  it('should show the fixed preamble the body goes into', () => {
-    assert.ok(buildPrompt('professional', '').includes(`\`\`\`latex\n${PREAMBLE}\n\`\`\``))
-  })
-
-  it('should fill in the page count everywhere', () => {
-    const prompt = buildPrompt('professional', '')
-    assert.doesNotMatch(prompt, /\{\{|\$\{/)
-    assert.ok(prompt.includes('Exactly 4 pages: \\pagebreak after each of the first 3 pages.'))
-  })
-
   it('should describe only the requested CV type', () => {
-    assert.ok(buildPrompt('professional', '').includes('write the body of a LuaLaTeX Professional CV: quantified impact'))
     assert.ok(!buildPrompt('professional', '').includes('Anti-CV'))
-    assert.ok(buildPrompt('anti', '').includes('write the body of a LuaLaTeX Anti-CV: humorous lessons and failures'))
     assert.ok(!buildPrompt('anti', '').includes('Professional CV'))
   })
 
@@ -33,14 +30,5 @@ describe('buildPrompt', () => {
     const prompt = buildPrompt('anti', 'CAREER')
     assert.ok(prompt.indexOf('CAREER') < prompt.indexOf('From this career data'))
     assert.ok(prompt.endsWith('Output: the document body only, from \\begin{document} to \\end{document}.'))
-  })
-
-  it('should keep LaTeX commands as single backslashes', () => {
-    assert.ok(buildPrompt('anti', '').includes('Page 1: \\cvheader, CV summary'))
-    assert.ok(buildPrompt('anti', '').includes('No vertical spacing commands (\\vspace, \\vfill, \\newpage)'))
-    assert.ok(buildPrompt('anti', '').includes('Heading titles: text, font commands and \\hfill only.'))
-    assert.ok(buildPrompt('anti', '').includes('Start the body with \\hypersetup{pdftitle={...},pdfauthor={...}}.'))
-    assert.ok(buildPrompt('anti', '').includes('Symbols: the font has only \\textrightarrow, \\textleftarrow, \\texttimes,'))
-    assert.ok(buildPrompt('anti', '').includes('\\textellipsis and the escapes \\% \\& \\# \\$ \\_; no other symbol commands'))
   })
 })

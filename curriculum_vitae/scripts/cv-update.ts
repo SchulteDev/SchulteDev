@@ -35,7 +35,7 @@ export const reuseCommittedCv: Generator = async (_prompt, cvType) => fs.readFil
 
 export const updateCv = async (cvType: CvType, careerData: string, generate: Generator,
                                cvFile = getCvFile(cvType)): Promise<void> => {
-  const latex = toDocument(extractBody(await generate(buildPrompt(cvType, careerData), cvType)));
+  const latex = toDocument(extractBody(await generate(buildPrompt(cvType, careerData), cvType)), cvType);
   fs.writeFileSync(cvFile, latex);
   logger.success(`Updated the ${cvType} CV: ${cvFile} (${latex.length} chars)`);
 };

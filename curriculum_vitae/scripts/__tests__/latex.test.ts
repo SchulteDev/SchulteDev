@@ -68,7 +68,7 @@ describe('PREAMBLE', () => {
 
 describe('toDocument', () => {
   it('should put the body into the fixed preamble', () => {
-    assert.equal(toDocument(body), `${PREAMBLE}\n\n${document}\n`)
+    assert.equal(toDocument(body, 'professional'), `${PREAMBLE}\n\n${document}\n`)
   })
 
   for (const [rule, forbidden] of [
@@ -82,25 +82,26 @@ describe('toDocument', () => {
     ['list options', '\\begin{enumerate}[before=x]'],
   ]) {
     it(`should reject ${forbidden} in the body as ${rule}`, () => {
-      assert.throws(() => toDocument(`${body}\n${forbidden}`), new RegExp(`breaks the preamble's rules: ${rule}`))
+      assert.throws(() => toDocument(`${body}\n${forbidden}`, 'professional'), new RegExp(`breaks the preamble's rules: ${rule}`))
     })
   }
 
   it('should allow the preamble\'s own commands', () => {
-    assert.doesNotThrow(() => toDocument(`\\hypersetup{pdftitle={CV}}\n${body}\n\\begin{itemize}\n\\item \\cvdisclaimer{AI}\n\\end{itemize}`))
+    assert.doesNotThrow(() => toDocument(`\\hypersetup{pdftitle={CV}}\n${body}\n\\begin{itemize}\n\\item \\cvdisclaimer{AI}\n\\end{itemize}`, 'professional'))
   })
 
   it('should ignore comments, but not escaped percent signs', () => {
-    assert.doesNotThrow(() => toDocument(`${body}\n% flexible: no \\vspace or \\pagebreak here`))
-    assert.throws(() => toDocument(`${body}\n50\\% faster\\vfill`), /vertical spacing/)
+    assert.doesNotThrow(() => toDocument(`${body}\n% flexible: no \\vspace or \\pagebreak here`, 'professional'))
+    assert.throws(() => toDocument(`${body}\n50\\% faster\\vfill`, 'professional'), /vertical spacing/)
   })
 
-  it('should reject a body with another number of pages', () => {
-    assert.throws(() => toDocument(`${body}\n\\pagebreak`), /4 instead of 3 \\pagebreak/)
-    assert.throws(() => toDocument(body.replaceAll('\\pagebreak', '')), /0 instead of 3 \\pagebreak/)
+  it('should reject a body with another number of pages than its CV type', () => {
+    assert.throws(() => toDocument(`${body}\n\\pagebreak`, 'professional'), /4 instead of 3 \\pagebreak/)
+    assert.throws(() => toDocument(body.replaceAll('\\pagebreak', ''), 'professional'), /0 instead of 3 \\pagebreak/)
+    assert.throws(() => toDocument(body, 'anti'), /3 instead of 1 \\pagebreak/)
   })
 
   it('should name every broken rule', () => {
-    assert.throws(() => toDocument(`\\vfill\\usepackage{x}`), /vertical spacing, packages, colors or definitions, 0 instead of 3/)
+    assert.throws(() => toDocument(`\\vfill\\usepackage{x}`, 'professional'), /vertical spacing, packages, colors or definitions, 0 instead of 3/)
   })
 })
