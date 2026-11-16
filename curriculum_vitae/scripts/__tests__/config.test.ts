@@ -17,9 +17,9 @@ describe('config', () => {
     Object.assign(process.env, originalEnv)
   })
 
-  it('should default to all CV types via Claude Sonnet 5.5 at high effort', async () => {
+  it('should default to all CV types via Claude Opus 5.5 at high effort', async () => {
     const config = await loadConfig()
-    assert.equal(config.API_MODEL, 'claude-sonnet-5-5')
+    assert.equal(config.API_MODEL, 'claude-opus-5-5')
     assert.equal(config.API_EFFORT, 'high')
     assert.equal(config.MAX_TOKENS, 128000)
     assert.deepEqual(config.CV_TYPES_TO_PROCESS, ['professional', 'anti'])
@@ -27,8 +27,8 @@ describe('config', () => {
   })
 
   it('should accept an explicit model and effort', async () => {
-    const config = await loadConfig({API_MODEL: 'claude-opus-5-5', API_EFFORT: 'medium'})
-    assert.equal(config.API_MODEL, 'claude-opus-5-5')
+    const config = await loadConfig({API_MODEL: 'claude-sonnet-5-5', API_EFFORT: 'medium'})
+    assert.equal(config.API_MODEL, 'claude-sonnet-5-5')
     assert.equal(config.API_EFFORT, 'medium')
   })
 
