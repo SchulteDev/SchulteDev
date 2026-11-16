@@ -447,15 +447,17 @@ production-unused during my engagement)
 **Team Structure:** 9 people in my team (one of 3 teams providing Skywalker platform access)
 
 **Scope of Responsibility:** IT-architectural responsibility for 10 of 30 applications under
-parallel technical supervision across "04 – Application Development" area
+parallel technical supervision, first in the "04 – Application Development" area, from March 2025
+in the team "MIA – Migration, Innovation & Adaption" after a small internal restructuring of the
+teams
 
 **Course of the engagement:**
 
 - **November – December 2024:** Start on November 7; studies on the IT platform target picture,
   private/public/hybrid cloud, regulatory requirements (MaRisk, BAIT) and tenders; CI/CD demo
 - **January 2025:** Kick-off of "Phoenix" on January 14
-- **From March 2025:** Contract scope moved to the team "MIA – Migration, Innovation & Adaption" of
-  the "PublicCloud" project. My Azure Solution Design Templates as of March 2025: the general
+- **From March 2025:** Team MIA within the "PublicCloud" project. My Azure Solution Design
+  Templates as of March 2025: the general
   template (incl. business case and SIEM integration), FirstMovers Camunda and MicroCore, a new one
   for WPP with a pre-check questionnaire; one migration failed on an Azure SQL linked server to
   Oracle
@@ -1273,7 +1275,8 @@ Contributed to 13+ repositories including:
 "prefcenter" backend at the beginning of April 2018
 
 **Projects (as billed in February and March 2018):** "GDF Journey Digital Customer
-Communications" (SinnerSchrader Munich) and "AktivDepot@MyInvest" (SinnerSchrader Frankfurt)
+Communications" (SinnerSchrader Munich) and, as a very small side project, "AktivDepot@MyInvest"
+(SinnerSchrader Frankfurt)
 
 **Key Contributions:**
 
