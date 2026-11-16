@@ -38,7 +38,7 @@ const constraints = (pages: number, pageChars: number): string[] => [
   String.raw`Symbols: the font has only \textrightarrow, \textleftarrow, \texttimes, \textminus, \textpm, \textasciitilde, `
   + String.raw`\textbullet, \textbar, \textendash, \textemdash, \textdegree, \texteuro, \textellipsis and the escapes \% \& \# \$ \_; `
   + 'no other symbol commands, no Unicode symbols, no math mode.',
-  'Facts come from the career data only: nothing invented, nothing oversold.',
+  'Facts come from the career data only: nothing invented, nothing oversold; every number keeps the scope it has there.',
 ];
 
 const CV_STYLES: Record<CvType, string> = {
