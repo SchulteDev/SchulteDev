@@ -12,7 +12,7 @@ export const API_EFFORT_LEVELS = ['low', 'medium', 'high', 'xhigh', 'max'] as co
 
 const EnvSchema = z.object({
   CAREER_FILE: z.string().default('../../_data/career.md'),
-  API_MODEL: z.string().default('claude-sonnet-5-5'),
+  API_MODEL: z.string().default('claude-opus-5-5'),
   API_EFFORT: z.enum(API_EFFORT_LEVELS).default('high'),
   // Shared by thinking and the LaTeX output
   MAX_TOKENS: z.coerce.number().int().positive().default(128000),
