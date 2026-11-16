@@ -237,8 +237,9 @@ organizational and leadership capabilities:
 
 ### April 2026 — Present: IT Architect & Platform Engineer at Union Investment
 
-*[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) | via percision services GmbH |
-Freelance | Part-Time | Remote, occasionally on-site in Frankfurt*
+*[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) | via percision services GmbH
+([adesso](https://en.wikipedia.org/wiki/Adesso_SE) Group) | Freelance | Part-Time | Remote,
+occasionally on-site in Frankfurt*
 
 **Context:** Return to Union Investment (after
 the [2021–2024 engagement](#october-2021--december-2024-software-lead--cloud-architect-at-union-investment))
@@ -343,14 +344,12 @@ CoP.
   vulnerability scanning for all teams I am architect for (requested by the architecture board)
 - Deployment verification: hourly post-deployment tests, automated version check per stage
 - Test quality: removed flaky waits, balanced e2e groups, coverage gates (a floor per package plus
-  an 80% bar for new code), test pyramid pruning
+  an 80% bar for new code), test pyramid pruning, screenshot tests for three calculators
+- Mutation testing (November 2026): StrykerJS for the monorepo's shared business logic; incremental
+  Pitest in the backend, where a history file re-tests only changed mutants, so a build takes 1–2
+  min longer instead of 10 min (first run: 2,035 mutants, test strength 84%)
 - Accessible PDF PoC: compared four approaches, pdfkit produced PDF/UA-1 compliant output
 - Analyses: SEO/generative-AI optimization of Web Components, GitLab migration estimate
-- Screenshot tests for three calculators with pixel-difference caps (September 2026)
-- Coding-agent tooling for the teams: made a fork of Microsoft's Azure DevOps agent skills
-  installable as a Claude Code plugin and added four skills that record verified behaviour of the
-  Azure DevOps MCP server for pull requests, PR validation, pipeline runs and pipeline YAML
-  (September 2026)
 
 **Measured Results & Achievements:**
 
@@ -452,19 +451,15 @@ parallel technical supervision across "04 – Application Development" area
 
 **Course of the engagement:**
 
-- **November – December 2024:** Start on November 7, 2024; studies on the IT platform target
-  picture, a market analysis of private, public and hybrid cloud, regulatory requirements (MaRisk,
-  BAIT) and tenders; on site in Stuttgart on November 19–20; CI/CD demo on December 2, 2024
-- **January – February 2025:** Kick-off of "Phoenix" on January 14, 2025; on site in Stuttgart in
-  January
-- **From March 2025:** The contract scope moved to the team "MIA – Migration, Innovation &
-  Adaption" of the transformation project "PublicCloud". The sprint review of March 25, 2025 lists
-  my Azure Solution Design Templates: the general Azure design template (incl. business case and
-  SIEM integration), templates applied to the FirstMovers Camunda and MicroCore, a new one for
-  WPP with a pre-check questionnaire, and one migration that failed on a linked server from Azure
-  SQL to an Oracle database
-- Contract extended in steps (January – February, March – June, March – September, March –
-  December 2025), ending on December 31, 2025
+- **November – December 2024:** Start on November 7; studies on the IT platform target picture,
+  private/public/hybrid cloud, regulatory requirements (MaRisk, BAIT) and tenders; CI/CD demo
+- **January 2025:** Kick-off of "Phoenix" on January 14
+- **From March 2025:** Contract scope moved to the team "MIA – Migration, Innovation & Adaption" of
+  the "PublicCloud" project. My Azure Solution Design Templates as of March 2025: the general
+  template (incl. business case and SIEM integration), FirstMovers Camunda and MicroCore, a new one
+  for WPP with a pre-check questionnaire; one migration failed on an Azure SQL linked server to
+  Oracle
+- Contract extended in steps until December 31, 2025
 
 **Service Offering & Core Responsibilities:**
 
@@ -564,15 +559,16 @@ parallel technical supervision across "04 – Application Development" area
 *[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) |
 German Asset Management Company | Freelance | Remote*
 
-**Contracts:** Successive direct orders from Union Investment (October 2021 – January 2023), then
-via Pezula Projects & Experts GmbH (February 2023 – December 2024). The first order (October –
-December 2021) was "concept creation / architecture and process design", with process models,
-architecture analyses and decision documents as deliverables. From January 2022 the order read "B2B
-portals project: DevOps, architecture, development", with the technical goals of building the
-platform infrastructure, a sub-domain for information management incl. data migration, a search and
-qualification SCS, and integrating the existing portals (DVO, ADC, IW, UMP) into the target
-architecture. From 2023: deriving the IT target picture from business requirements and building the
-platform infrastructure, incl. the B2B staging concept and access-restricted documents.
+**Contracts:** Direct orders from Union Investment until January 2023, then via Pezula Projects &
+Experts GmbH. Scope as ordered:
+
+- **Oct – Dec 2021:** Architecture and process design, delivered as process models, architecture
+  analyses and decision documents
+- **2022:** DevOps, architecture and development for the B2B portals: platform infrastructure, an
+  information-management sub-domain incl. data migration, a search SCS, and integrating the
+  existing portals (DVO, ADC, IW, UMP)
+- **2023 – 2024:** IT target picture from business requirements; platform infrastructure incl. the
+  B2B staging concept and access-restricted documents
 
 **Company Context:** Leading German asset management company requiring modernization of their
 central B2B sales platform [InvestmentWelt](https://investmentwelt.de/). Despite serving only 80,000
@@ -632,14 +628,12 @@ coach
 - **Framework Evaluation:** Conducted detailed analysis of microfrontend composition options,
   frameworks, and architectural patterns: single-spa, import maps, Web Component isolation, Angular
   and React container prototypes (December 2021 – February 2022)
-- **Site Composition Decision (January 2022):** My decision document weighing the CMS approach
-  (Magnolia composes the site, the status quo) against a dedicated container app composing
-  microfrontends.
-  Outcome: container approach in principle, CMS approach as fallback, final decision after
-  reviewing a concrete container implementation. Reasons for the container: separation of concerns,
-  independent teams, loose coupling, and Magnolia is no SCS but mixes CMS, layout and portal
-  composition; risks: new technology without internal experience, UX consistency, complexity,
-  performance
+- **Site Composition Decision (January 2022):** My decision document: Magnolia composing the site
+  (status quo) vs. a dedicated container app composing microfrontends. Outcome: container in
+  principle, Magnolia as fallback, final decision after a concrete container implementation. For
+  the container: separation of concerns, independent teams, loose coupling, and Magnolia is no SCS
+  but mixes CMS, layout and portal composition; risks: no internal experience, UX consistency,
+  complexity, performance
 - **DevOps Strategy:** Planned beta deployment strategy and established DevOps foundations for
   distributed development
 - **E2E Testing Strategy:** Assessed end-to-end testing approaches for distributed frontend
@@ -733,13 +727,12 @@ coach
 - **Azure Production Setup:** B2B portal production deployment on Azure cloud infrastructure
 - **Staging Architecture:** Created and implemented comprehensive staging concept enabling
   controlled releases across development, integration, and production environments
-- **Security & Compliance:** Coordinated and supported penetration testing (acceptance pentest of
-  the B2B portal from June 6, 2023), analysed the DDoS exposure of the shell and layout and
-  documented why no extra protection was needed (April 2023: no running service, Static Web Apps
-  served from a CDN with Azure's basic DDoS protection, behind Front Door and the Azure AD B2C
-  proxy), and established security monitoring
-- **MVP Milestone:** On July 13, 2023, team Portastruktur reported all MVP topics implemented and
-  deployed, not yet rolled out to end users
+- **Security & Compliance:** Coordinated and supported penetration testing (acceptance pentest from
+  June 2023); analysed the DDoS exposure and documented why no extra protection was needed (April
+  2023: no running service, Static Web Apps on a CDN with Azure's basic DDoS protection, behind
+  Front Door and the AD B2C proxy); established security monitoring
+- **MVP Milestone:** On July 13, 2023, all MVP topics were implemented and deployed, not yet rolled
+  out to end users
 - **Infrastructure as Code:** Integrated Terraform deployment pipelines via Azure DevOps enabling
   reproducible infrastructure management
 - **Custom Domain Management:** Configured and managed custom domain setup with DNS routing and SSL
@@ -754,26 +747,22 @@ coach
 
 **Cross-System Search Architecture (July 2023 – Dec 2024):**
 
-- **Timeline:** First ideas on distributed vs. central search in November 2021, search PoC
-  kick-off in December 2022, search initiative from August 2023, architecture essay in December
-  2023, implementation February – November 2024
+- **Timeline:** First ideas November 2021, PoC kick-off December 2022, search initiative from
+  August 2023, architecture essay December 2023, implementation February – November 2024
 - **Challenge:** Modernize monolithic legacy search while preserving team autonomy and ensuring
   unified user experience across distributed domains
-- **Alternatives (Q3 2023):** One global search for all web portals, a global search per portal, a
-  search API contract that teams push to, or search microfrontends per team, compared on mixed
-  results, global filtering and typo tolerance, coupling between sub-domains, need for own search
-  teams, and where domain knowledge and ranking live
+- **Alternatives (Q3 2023):** One global search, one search per portal, a search API teams push
+  to, or search microfrontends per team; compared on mixed results, filtering and typo tolerance,
+  coupling between sub-domains, and where domain knowledge and ranking live
 - **Solution:** Designed centralized search architecture consuming event streams from distributed
-  Self-contained Systems. The architecture essay rejected crawling (results depend on the user's
-  permissions and must be current) and passive indexing (needs all content in one place), chose
-  active indexing, and hid Algolia behind a search SCS so the engine stays replaceable; the search
-  SCS delivers two microfrontends (search input with overlay, results page) instead of components
-  in the shared design system, which would have coupled the teams too tightly
-- **Event Backbone Decision:** Azure Event Hubs instead of Service Bus or Event Grid, Premium tier
-  from the start (Standard allows only 10 hubs per namespace and 25 schema versions), log
-  compaction, schema registry and event-carried state transfer. Motive, as documented in the
-  project history: wiring five to eight sources point-to-point into each consumer, as done before,
-  was an anti-pattern
+  Self-contained Systems. The essay rejected crawling (results depend on permissions and must be
+  current) and passive indexing (needs all content in one place) in favour of active indexing,
+  with Algolia hidden behind a search SCS to stay replaceable. The SCS ships two microfrontends
+  (search input, results page) rather than design-system components, which would couple the teams
+- **Event Backbone Decision:** Azure Event Hubs over Service Bus and Event Grid; Premium tier from
+  the start (Standard allows only 10 hubs per namespace and 25 schema versions), log compaction,
+  schema registry, event-carried state transfer. Motive: the previous point-to-point wiring of five
+  to eight sources into each consumer was an anti-pattern
 - **Event-driven Architecture:** Modeled data flow where autonomous teams stream domain models as
   events, with centralized search consuming multiple streams
 - **Search Engine Evaluation:** Conducted comprehensive evaluation of ElasticSearch vs. Algolia,
@@ -784,11 +773,9 @@ coach
   publishing/subscription overhead while maintaining team independence
 - **Technical Implementation:** Built solution using Azure Event Hubs with JavaScript Azure
   Functions consuming data from Azure Event Hubs and pushing the data to Algolia
-- **Java Library for Publishing Teams (June – August 2024):** Java 21 library (Gradle, published to
-  a Maven registry) shipping the Avro schemas with typed access for type-safe event serialization,
-  plus tests showing teams how to send and consume events with the Azure Event Hubs SDK and
-  CDI-based dependency injection, run with JUnit and Testcontainers against the Event Hubs emulator
-  and Azurite
+- **Java Library for Publishing Teams (June – August 2024):** Java 21 library with typed access to
+  the Avro schemas, plus example tests for sending and consuming events with the Event Hubs SDK and
+  CDI, run with Testcontainers against the Event Hubs emulator and Azurite
 - **Microfrontend Integration:** Developed search microfrontends using Lit framework with pnpm
   package management for optimal performance
 - **Rollout:** Event Hubs on the dev stage in July 2024, test and production pipelines in
@@ -800,11 +787,9 @@ coach
   updates across the entire platform (March 2023); switched to Renovate bot in July/August 2024
 - **Build Optimization:** Implemented toolkit build optimizations and created Lerna DevOps pipeline
   for monorepo management
-- **Smoke Tests (from May 2023):** Created the smoke-test repository: 8 Playwright journeys against
-  the deployed stage (AD B2C login, navigation per access rights, every microfrontend, consent
-  kept between the old and new InvestmentWelt), about 60 assertions, run in Chrome, Edge and
-  Firefox; mandatory after each sub-domain deployment to the test stage, triggered from other
-  pipelines via a PowerShell invoker
+- **Smoke Tests (from May 2023):** 8 Playwright journeys against the deployed stage (login,
+  navigation per access rights, every microfrontend, consent across old and new InvestmentWelt),
+  about 60 assertions in Chrome, Edge and Firefox; mandatory after each sub-domain deployment
 - **Testing & Quality:** Enhanced smoketest coverage and improved DevOps pipeline reliability for
   continuous integration
 - **Maintenance Excellence:** Reduced toolkit dependencies and established sustainable software
@@ -825,11 +810,10 @@ coach
 
 **Project Completion & Handover (July – December 2024):**
 
-- **Search Outcome:** In September 2024 it was decided to minimize the effort on Event Hubs and
-  Algolia search. The components were deployed to production, but replacing the existing search
-  stopped because of open data-privacy issues, and no hypercare phase took place. In my status
-  report of December 2024 I listed the open work, e.g. tombstones for GDPR-compliant deletion and
-  separate access keys per event hub, and noted a possible move to Confluent Kafka
+- **Search Outcome:** In September 2024 the effort on Event Hubs and Algolia search was cut back.
+  The components went to production, but replacing the existing search stopped over open
+  data-privacy issues, without hypercare. My December 2024 status report lists the open work (e.g.
+  tombstones for GDPR deletion, access keys per event hub) and a possible move to Confluent Kafka
 - **Magnolia CMS Integration:** Connected Magnolia CMS content to the event backbone and Algolia
   search (September 2024)
 - **F&P Team Consulting:** Provided ramp-up consulting support for Fonds & Produkte team integration
@@ -979,11 +963,9 @@ Salesforce CRM
 - Rewrote the middleware from scratch as Salooforce v3 (first commits July 2022, merged September
   2022): its predecessor v2, started by another developer, had never gone live. v3 transfers many
   small, separate entities instead of a few comprehensive ones
-- Production go-live of v3 in November 2023, after alpha releases from July 2023, sandbox testing
-  with the Salesforce admin and go-live preparation in October 2023: release candidates from
-  November 2, go-live on November 6, final 3.0.0 on November 13, 2023. v4.0.0 followed in July
-  2024; v4.1.0 (September 2024) went to production on October 24, 2024, followed by a full sync on
-  November 6–7 and v4.1.1 on November 12, 2024
+- Production go-live of v3 on November 6, 2023, after alpha releases from July 2023 and sandbox
+  testing with the Salesforce admin; v4.1.0 went live on October 24, 2024, followed by a full sync
+  and v4.1.1 in November 2024
 - 580 commits and 77 releases (v3.0.0 to v4.1.1, November 2024), versioned with Conventional
   Commits and Release Please
 - My part was the bulk variant: delta sync via the Salesforce Bulk API (demo and production). The
@@ -1006,14 +988,12 @@ Salesforce CRM
 - Used parallel bulk processing in Salesforce for throughput, switched Quotes back to serial mode
   after lock failures, and stepped full syncs through time ranges to avoid `TooManyLockFailure`
 - Ran and documented full re-syncs (durations, failed records, memory needs) in the project wiki
-- After go-live: deleted surplus customers in Salesforce with SOQL for large data volumes
-  (November – December 2023) and supported a database instance change on the Saloodo side
-- Estimate for 2024 (December 2023): further development, run and maintenance, and ideas such as
-  Bulk API v2 instead of v1, replacing go-force, and Custom Metadata Types for the last transfer
+- After go-live: deleted surplus customers in Salesforce via SOQL for large data volumes
+  (November – December 2023)
+- Proposed for 2024: Bulk API v2, replacing go-force, Custom Metadata Types for the last transfer
   time
-- Ending: phasing out the contract was discussed in July 2024; in September and October 2024 I
-  wrote the profile for a successor, interviewed candidates and handed over; last time sheet
-  entry on November 12, 2024
+- Ending: contract phase-out discussed in July 2024; in September – October 2024 I wrote the
+  successor profile, interviewed candidates and handed over; last work on November 12, 2024
 - Optimization of database queries using SQL EXPLAIN and subsequent adjustments to table schemas
   and queries; this reduced SELECT times by up to 80%
 - Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect
@@ -1067,10 +1047,9 @@ Salesforce CRM
 **Product:** Commercial Atlassian Marketplace add-ons integrating code quality metrics
 into [Atlassian Bamboo Server CI/CD](https://www.atlassian.com/de/software/bamboo)
 
-**Timeline:** Development started in April 2016 (project generated with `atlas-create-bamboo-plugin`
-on April 15, 2016), first release 0.1.0 in May 2016, first 1.x release for the Marketplace in
-May/June 2016. Most of the work happened in 2016 and 2017 (1,071 of 1,241 commits), followed by
-maintenance releases until 2.0.11 (July 2020) and dependency updates in December 2022.
+**Timeline:** Development from April 15, 2016, first Marketplace release (1.x) in May/June 2016.
+Most work in 2016 and 2017 (1,071 of 1,241 commits), then maintenance releases until 2.0.11 (July
+2020) and dependency updates in December 2022.
 
 **Key Achievements:**
 
@@ -1086,32 +1065,25 @@ maintenance releases until 2.0.11 (July 2020) and dependency updates in December
   (200+ Bamboo agents), according to the Atlassian Marketplace
 - Revenue generation: Sustainable 7-year business with recurring license revenue
 - Market validation: First-mover advantage in Bamboo code quality integration
-- Technical adoption: Enabled quality gates for Java projects in Bamboo ecosystem
+- Technical adoption: Enabled quality gates for Java and PHP projects in Bamboo ecosystem
 
 **Implementation highlights:**
 
-- Architecture: a parent/core split (May 2016) with one Maven module per tool plus two bundles
-  (basic and Java). The core holds the generic XML report task, a JSON REST endpoint per tool, the
-  plan and job result panels, the license check and charts of the results over time
-- Parsing moved into a separate library, `metric-tools-analyser` (June 2017 – July 2020, releases up
-  to 2.3.6, OSGi-ready since September 2017): one parser module per tool, with an in-memory result
-  store
-- Splitting large result files into parts (June 2017), each stored as Bamboo build custom data and
-  loaded separately in the UI; the part size was tuned several times to limit the data
-  transferred per XHR request
-- Using DataTables for displaying endless number of metrics results: job results rendered from a
-  JSON data container into DataTables with the Buttons and RowGroup extensions (November 2017)
-- Links from a PMD violation to the file in GitHub, Bitbucket or Stash (November 2017)
-- Kept up with Bamboo releases: from Bamboo 5.12 (2016) via 6.x (2018) and 7.0 (2020) to 9.0 in the
-  last build (2022); minimum Bamboo 5.15 from November 2017; Java 8 throughout
-- Commercial licensing through the Atlassian UPM licensing API, with pricing per remote-agent tier
-  derived from Atlassian's own prices
-- 27 tagged releases of the add-ons (1.1.10 in October 2017 to 2.0.11 in July 2020) and 27 of the
-  library, released with the Maven release plugin from Jenkins
-- Quality: the add-ons analysed themselves in CI (Checkstyle, PMD, CPD, FindBugs), plus PIT
-  mutation testing, JaCoCo and OWASP dependency-check in the Jenkinsfile; ArchUnit tests in the
-  library; a manual release checklist covering the oldest and newest supported Bamboo, a remote
-  agent and a missing license
+- Architecture: one Maven module per tool plus a basic and a Java bundle on a shared core (XML
+  report task, JSON REST endpoint per tool, result panels, license check, charts over time)
+- Parsing moved into a separate library, `metric-tools-analyser` (June 2017 – July 2020), with
+  one parser module per tool
+- Large result files split into parts (June 2017), stored as Bamboo build custom data and loaded
+  separately to limit the data per XHR request
+- Using DataTables for displaying endless number of metrics results, with the Buttons and RowGroup
+  extensions (November 2017); links from a violation to the file in GitHub, Bitbucket or Stash
+- Kept up with Bamboo from 5.12 (2016) to 9.0 (2022), on Java 8 throughout
+- Licensing via the Atlassian UPM API, priced per remote-agent tier
+- 27 tagged releases each of the add-ons (1.1.10, October 2017, to 2.0.11, July 2020) and the
+  library, released from Jenkins
+- Quality: the add-ons analysed themselves in CI, plus PIT mutation testing, JaCoCo and OWASP
+  dependency-check; ArchUnit in the library; a release checklist covering the oldest and newest
+  supported Bamboo, a remote agent and a missing license
 
 **Technologies & Frameworks:**
 
@@ -1132,13 +1104,11 @@ maintenance releases until 2.0.11 (July 2020) and dependency updates in December
 
 **Course of the engagement:**
 
-- **January 2020:** Technical setup and overview of the technologies in use and their alternatives;
-  PoC of a `whoami` endpoint for the CAS login with the Kubernetes function frameworks Kubeless and
-  OpenFaaS; Knative PoC (microk8s, then Minikube: scaling, tracing, eventing) and its presentation
-  to the team; architecture advice for domain management and parking
-- **February 2020:** Quarkus evaluation and PoC, which became the new `domain-service-v3`: read
-  endpoints first, then delete, DTO mapping, GraalVM native image, CORS, logging, JWT
-  authentication with database fixtures for local development
+- **January 2020:** PoCs with the Kubernetes function frameworks Kubeless and OpenFaaS, then
+  Knative (scaling, tracing, eventing), presented to the team; architecture advice for domain
+  management and parking
+- **February 2020:** Quarkus PoC that became the new `domain-service-v3`: REST endpoints, DTO
+  mapping, GraalVM native image, JWT authentication
 - **March 2020:** Native-image build on Jenkins, Kubernetes deployment to integration and stage,
   DELETE endpoint with contract tests, cookie authentication; a native-image problem with the
   MySQL HA setup; presentations on consumer-driven contract testing with Pact (March 23) and on
@@ -1431,11 +1401,9 @@ Communications" (SinnerSchrader Munich) and "AktivDepot@MyInvest" (SinnerSchrade
     billed as programming work; I gave notice for private reasons in April 2015, last working day
     July 24, 2015
 - **AffiliCon GmbH (Sep 2014):** Jenkins infrastructure setup
-  - Offer (August 2014): run the existing PHPUnit tests, which developers ran locally on the console
-    against a local MySQL, in Jenkins as CI server, with e-mail notifications and optional metrics
-    (code coverage, phpmd, phpcpd); about three person-days on site, done on September 3, 4 and 12
-  - Jenkins on a Vagrant VM; the job runs Composer, then Ant, with a PHPUnit CI configuration per
-    test module, published as xUnit results; documented so the developers could run it themselves
+  - Three days on site: the PHPUnit tests, until then run locally against a local MySQL, moved to
+    Jenkins on a Vagrant VM (Composer, Ant, xUnit results, e-mail notifications, optional coverage,
+    phpmd, phpcpd metrics), documented so the developers could run it themselves
   - [Letter of Recommendation](credentials/2014_Affilicon_Empfehlungsschreiben.pdf) (German)
 - **dailypresent GmbH (Jan—Aug 2014):** PHP backend development, AWS/Facebook integration, in parallel
   to werkenntwen; part-time (in April 2014 about four hours each morning)
@@ -1835,7 +1803,9 @@ Contributions usually arise from real project needs – I fix or document what b
   langchain4j, Solid design system), package replacement rule
 - **[microsoft/azure-devops-skills](https://github.com/microsoft/azure-devops-skills)** (2026):
   [Made the repository installable as a Claude Code plugin](https://github.com/microsoft/azure-devops-skills/pull/15)
-  (merged)
+  (merged); in [my fork](https://github.com/SchulteDev/azure-devops-skills) four more skills that
+  record verified behaviour of the Azure DevOps MCP server for pull requests, PR validation,
+  pipeline runs and pipeline YAML
 - **[microsoft/azure-devops-mcp](https://github.com/microsoft/azure-devops-mcp)** (2026):
   [Reported](https://github.com/microsoft/azure-devops-mcp/issues/1612) and
   [proposed a fix](https://github.com/microsoft/azure-devops-mcp/pull/1613) for PR updates
