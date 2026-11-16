@@ -17,7 +17,7 @@ code-quality results into the Atlassian Bamboo Server CI.
 
 - Built, sold and maintained Java add-ons for Checkstyle, PMD, CPD and FindBugs results (Atlassian
   SDK, OSGi).
-- Sharding to process large result sets; DataTables to browse any number of findings.
+- Large result files split into parts; DataTables to browse any number of findings.
 - Distribution and licensing via the Atlassian Marketplace; maintained for more than seven years.
 
 ## Results

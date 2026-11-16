@@ -345,9 +345,9 @@ CoP.
 - Deployment verification: hourly post-deployment tests, automated version check per stage
 - Test quality: removed flaky waits, balanced e2e groups, coverage gates (a floor per package plus
   an 80% bar for new code), test pyramid pruning, screenshot tests for three calculators
-- Mutation testing (November 2026): StrykerJS for the monorepo's shared business logic; incremental
-  Pitest in the backend, where a history file re-tests only changed mutants, so a build takes 1–2
-  min longer instead of 10 min (first run: 2,035 mutants, test strength 84%)
+- Mutation testing (November 2026): StrykerJS for the monorepo's shared business logic; Pitest in
+  the backend, incremental via a history file: 1–2 min per build instead of 10 min for a full run
+  (2,035 mutants, test strength 84%)
 - Accessible PDF PoC: compared four approaches, pdfkit produced PDF/UA-1 compliant output
 - Analyses: SEO/generative-AI optimization of Web Components, GitLab migration estimate
 
@@ -642,7 +642,7 @@ coach
   planning (February 2022: taking over the source code from the previous agency; March 2022: build
   pipeline, Maven build, firewall rules, dependencies without Nexus)
 
-**Phase 2: Framework Development and Platform Implementation (May 2022 – Apr 2023)**
+**Phase 2: Framework Development and Platform Implementation (Mar 2022 – Apr 2023)**
 
 **Beta Phase Management (Mar-Jun 2022):**
 
@@ -745,7 +745,7 @@ coach
   configuration and the production auth domain in the same week)
 - **Team Onboarding:** Led technical onboarding of new team members
 
-**Cross-System Search Architecture (July 2023 – Dec 2024):**
+**Cross-System Search Architecture (Dec 2022 – Dec 2024):**
 
 - **Timeline:** First ideas November 2021, PoC kick-off December 2022, search initiative from
   August 2023, architecture essay December 2023, implementation February – November 2024
@@ -790,8 +790,7 @@ coach
 - **Smoke Tests (from May 2023):** 8 Playwright journeys against the deployed stage (login,
   navigation per access rights, every microfrontend, consent across old and new InvestmentWelt),
   about 60 assertions in Chrome, Edge and Firefox; mandatory after each sub-domain deployment
-- **Testing & Quality:** Enhanced smoketest coverage and improved DevOps pipeline reliability for
-  continuous integration
+- **Testing & Quality:** Improved DevOps pipeline reliability for continuous integration
 - **Maintenance Excellence:** Reduced toolkit dependencies and established sustainable software
   maintenance practices
 - **Documentation Standards:** Maintained comprehensive technical documentation and created

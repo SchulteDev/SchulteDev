@@ -13,7 +13,6 @@ technologies:
   - "Java 25"
   - "Quarkus"
   - "pnpm"
-  - "Turborepo"
   - "Nx"
   - "Vitest"
   - "Playwright"
