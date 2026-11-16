@@ -24,11 +24,11 @@ automation and AWS.
 - **AffiliCon GmbH** (Sep 2014): Jenkins infrastructure
 - **billiger-mietwagen.de / Silver Tours GmbH** (Dec 2014 — Jul 2015): infrastructure
   modernization for the car rental platform
-- **freshcells systems** (Feb — Jun 2015): Jenkins CI with Docker, PHP quality standards
+- **freshcells systems** (Mar — Jul 2015): Jenkins CI with Docker, PHP quality standards
 - **fotocommunity GmbH** (May 2015): Bamboo CI with Docker-based PHPUnit builds, CI consulting and
   team training
 - **Xsite GmbH** (Jan — May 2016): REST API development, Jenkins pipeline-as-code
-- **YOOCHOOSE GmbH** (Jul — Aug 2016): Spring applications, Jenkins CI, AWS operations
+- **YOOCHOOSE GmbH** (May — Aug 2016): Spring applications, Jenkins CI, AWS operations
 
 ## Results
 

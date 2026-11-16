@@ -3,6 +3,7 @@ title: Software Lead & Cloud Architect at Union Investment
 share-description: "Software lead at Union Investment: microfrontend toolkit, event-driven search and DevOps for the B2B platform InvestmentWelt; urgent deploys in 30 minutes."
 engagement:
   - "Freelance"
+  - "via Pezula Projects & Experts GmbH from 2023"
   - "Remote"
 technologies:
   - "Azure (Static Web App, Functions, Event Hubs, AD B2C)"
@@ -62,9 +63,9 @@ software lead of my team.
 
 Based on comprehensive 360-degree feedback surveys (December 2021, June 2022, November 2024):
 
-- **Technical Competence:** Consistently rated 9-10/10 by team members and stakeholders in 2024
+- **Technical Competence:** Averaging 9.5/10 by team members and stakeholders in 2024
 - **Collaboration:** High ratings for pleasant working relationship, averaging 8.6/10 in 2024
-- **Leadership:** Strong ratings for driving topics forward (9/10 in 2024)
+- **Leadership:** Strong ratings for driving topics forward (averaging 9.3/10 in 2024)
 
 ## Client Testimonials
 
