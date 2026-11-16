@@ -1258,8 +1258,8 @@ Contributed to 13+ repositories including:
 - **Cloud:** AWS Lambda (serverless), EKS (Kubernetes), API Gateway, CloudFormation, S3, SQS
 - **Integration:** Salesforce, Zuora (subscription management), Twilio (SMS), MyTS customer portal
 - **Testing:** Pact (contract testing), JUnit, comprehensive test automation
-- **CI/CD:** Terraform (infrastructure as code), Docker, automated deployment pipelines, continuous
-  deployment
+- **CI/CD:** GitLab CI, Terraform (infrastructure as code), Docker, automated deployment pipelines,
+  continuous deployment
 - **Monitoring:** AWS CloudWatch, Grafana, application metrics and alerting
 - **Architecture:** Microservices, event-driven architecture, serverless functions,
   Infrastructure-as-Code
