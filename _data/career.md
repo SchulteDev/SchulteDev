@@ -48,7 +48,7 @@ architecture, scope and quality decisions.
   development to SDK implementation and application development
 - **Enterprise Architecture:** Legacy-to-cloud migrations, Azure/AWS/GCP platforms, cloud-native
   system design, platform engineering
-- **Technical Leadership:** Led teams of 5-9 developers, served as Product Owner and technical
+- **Technical Leadership:** Led teams of 4-9 developers, served as Product Owner and technical
   mentor
 - **Backend Engineering:** Java (19y), Golang (5y), TypeScript – from monoliths to microservices
 - **Cloud-Native Design:** Event-driven architecture, Self-contained Systems (SCS), distributed
@@ -167,7 +167,7 @@ installable as a Claude Code plugin (merged upstream).
 As IT architect, Head of Development, and interim Product Owner, I have developed strong
 organizational and leadership capabilities:
 
-- **Team Leadership:** Successfully managed cross-functional teams of 5-9 developers across multiple
+- **Team Leadership:** Successfully managed cross-functional teams of 4-9 developers across multiple
   enterprise transformations
 - **Team Building:** Built development teams from ground up, including comprehensive onboarding
   processes and agile workflow establishment
@@ -1544,9 +1544,9 @@ experience.
 **Impact:**
 
 - **Platform scalability:** Successfully scaled architecture for 9+ million registered users
-- **Contribution:** 10,720 commits in the company's SVN repositories (August 2007 — April 2014),
-  7,378 of them among the 90,144 revisions of the main platform repository (second-most of 46
-  authors); top committer of the mobile and "Frame" library repositories. The platform code base
+- **Contribution:** 10,720 commits across all of the company's SVN repositories (August 2007 —
+  April 2014). In the main platform repository alone: 7,378 of its 90,144 revisions, the
+  second-most of its 46 authors; top committer of the mobile and "Frame" library repositories. The platform code base
   had grown to ~512,000 lines of PHP by 2014, with 27 developers working on it between 2010 and
   2014
 - **Team leadership:** Managed development team with full personnel responsibility
