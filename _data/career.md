@@ -1547,11 +1547,12 @@ experience.
 **Impact:**
 
 - **Platform scalability:** Successfully scaled architecture for 9+ million registered users
-- **Contribution:** 10,720 commits across all of the company's SVN repositories (August 2007 —
-  April 2014). In the main platform repository alone: 7,378 of its 90,144 revisions, the
-  second-most of its 46 authors; top committer of the mobile and "Frame" library repositories. The platform code base
-  had grown to ~512,000 lines of PHP by 2014, with 27 developers working on it between 2010 and
-  2014
+- **Contribution:**
+  - 10,720 commits across all of the company's SVN repositories (August 2007 — April 2014)
+  - Main platform repository: 7,378 of its 90,144 revisions, the second-most of its 46 authors
+  - Top committer of the mobile and "Frame" library repositories
+  - The platform code base had grown to ~512,000 lines of PHP by 2014, with 27 developers working
+    on it between 2010 and 2014
 - **Team leadership:** Managed development team with full personnel responsibility
 - **Performance improvements:** Reduced page load times by 60% through architecture modernization
 - **Process improvement:** Introduced automated and manual testing procedures including Selenium
