@@ -19,8 +19,9 @@ technologies:
 
 ## Role & Contributions
 
-- Consolidated Spring Boot and Apache Camel services into a single Quarkus service: from a PoC in
-  February 2020 to a GraalVM native image on Kubernetes in March 2020.
+- Consolidated Spring Boot and Apache Camel services into a single Quarkus service.
+- Built the new Quarkus service `domain-service-v3` from a PoC in February 2020 to a GraalVM native
+  image on Kubernetes in March 2020.
 - Standardized the REST API implementations.
 - Evaluated Knative, Kubeless and OpenFaaS for serverless workloads on Kubernetes.
 - Ran contract-testing workshops with Pact.

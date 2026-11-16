@@ -3,7 +3,7 @@ title: Software Lead & Cloud Architect at Union Investment
 share-description: "Software lead at Union Investment: microfrontend toolkit, event-driven search and DevOps for the B2B platform InvestmentWelt; urgent deploys in 30 minutes."
 engagement:
   - "Freelance"
-  - "via Pezula from 2023"
+  - "via Pezula Projects & Experts GmbH from 2023"
   - "Remote"
 technologies:
   - "Azure (Static Web App, Functions, Event Hubs, AD B2C)"
