@@ -12,6 +12,7 @@ technologies:
   - "Pact"
   - "Terraform"
   - "Docker"
+  - "GitLab CI"
   - "Twilio"
   - "Salesforce"
   - "Zuora"
