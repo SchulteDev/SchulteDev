@@ -112,7 +112,8 @@ Comprehensive test automation is fundamental to my development approach:
 - **Integration testing:** Dockertest, comprehensive database testing
 - **Contract testing:** Pact framework for microservices integration
 - **End-to-end testing:** Selenium, Playwright, automated UI validation
-- **Build optimization:** Parallel test execution, 10-minute build cycles despite 1000+ tests
+- **Build optimization:** Parallel test execution, 10-minute build cycles despite about 630 test
+  cases run in several browsers plus about 490 screenshot comparisons
 
 ### Technical Stack
 
@@ -131,7 +132,7 @@ I consistently apply modern software engineering practices:
   quality gates
 - **Agile Methodologies:** Scrum, Kanban, SAFe with hands-on Product Owner experience
 - **API Design:** REST/HATEOAS, OAuth2, comprehensive documentation standards
-- **Monorepo Management:** Nx, Lerna, pnpm, Turborepo for complex multi-service projects
+- **Monorepo Management:** Nx, Lerna, pnpm for complex multi-service projects
 - **Architecture Decision Records:** ADRs as the default decision medium
 
 ### Agentic Coding
@@ -329,6 +330,8 @@ CoP.
 - ADRs for a PDF print service integration and for the use of Highcharts; architecture overview
   of the calculator landscape
 - Organized a testing workshop to align the team on test types
+- Backend spike: GraalVM native image (Mandrel, Java 25 on UBI9) as an alternative to the JVM
+  build; it produced a working binary but was not shipped, the release stays on the fast-jar
 
 **Phase 3: Hardening, Security & Takeover (Sep – Nov 2026)**
 
@@ -339,10 +342,15 @@ CoP.
 - Code quality: introduced SonarQube analysis to the calculator monorepo; driving SonarQube
   vulnerability scanning for all teams I am architect for (requested by the architecture board)
 - Deployment verification: hourly post-deployment tests, automated version check per stage
-- Test quality: removed flaky waits, balanced e2e groups, coverage gates (80% per package plus
-  new code), test pyramid pruning
+- Test quality: removed flaky waits, balanced e2e groups, coverage gates (a floor per package plus
+  an 80% bar for new code), test pyramid pruning
 - Accessible PDF PoC: compared four approaches, pdfkit produced PDF/UA-1 compliant output
 - Analyses: SEO/generative-AI optimization of Web Components, GitLab migration estimate
+- Screenshot tests for three calculators with pixel-difference caps (September 2026)
+- Coding-agent tooling for the teams: made a fork of Microsoft's Azure DevOps agent skills
+  installable as a Claude Code plugin and added four skills that record verified behaviour of the
+  Azure DevOps MCP server for pull requests, PR validation, pipeline runs and pipeline YAML
+  (September 2026)
 
 **Measured Results & Achievements:**
 
@@ -352,8 +360,10 @@ CoP.
   from 69 h to 4 h); merged within one hour from 24% to 83%, abandoned from 8% to 3%. Before, Renovate
   had been intermittently broken for months
 - **Unit tests 3×:** 538 → 1,659 test cases (54 → 206 test files)
-- **Coverage gates from zero:** 80% per-package floor plus 80% new-code bar in 17 packages; shared
-  library coverage 87% → 99.6%
+- **Coverage gates from zero:** A coverage floor in each of the 17 packages, set just under the
+  measured coverage of the business logic and raised by hand (80% by default for new packages),
+  plus an 80% lines and functions bar for every changed logic file; shared library coverage
+  87% → 99.6%
 - **Faster, more honest CI:** Unit-test run 2.7× faster, slowest e2e group −29%; automatic Playwright
   retries cut from 3 to 0 against deployed sites, so flaky tests surface instead of hiding
 - **Delivery:** 4–7 tracked production releases per month, run by the team itself since July
@@ -385,8 +395,10 @@ CoP.
 *Sibling team's fund web components monorepo (Jul – Aug 2026):*
 
 - **CI cache work ~8 min → ~12 s**, cache overhead ~3 min → 8 s (cache size 6.6 GB → 242 MB)
-- **1,065 hidden type errors uncovered and fixed to zero**, type-check gate in CI and before every
-  commit, type checking 2.7× faster
+- **Test files type-checked for the first time:** No tsconfig had ever covered the tests. Checking
+  them reported 1,065 errors, almost all caused by two tsconfig defects; after fixing those, the 29
+  real type errors in tests were fixed, down to zero. Type-check gate in CI and before every commit,
+  type checking 2.7× faster
 - **Automated dependency updates introduced** (Renovate, median merge time 2.5 → 0.6 days), 14
   unused dependencies removed, npm → pnpm with 54% less CI cache transfer
 
@@ -413,7 +425,7 @@ success rate.*
 
 - **Frontend:** React, TypeScript, Vite, Web Components, Storybook, Highcharts, Solid Design System
 - **Backend:** Java 25, Quarkus
-- **Build:** pnpm, Turborepo, Nx
+- **Build:** pnpm, Nx
 - **Testing:** Vitest, Playwright, Bruno, coverage gates
 - **Cloud & Infra:** Azure Static Web Apps, Front Door/WAF, API Management, AKS, Docker, Terraform
 - **CI/CD & Quality:** Azure DevOps Pipelines, Renovate, SonarQube, CycloneDX SBOMs, ServiceNow
@@ -423,7 +435,7 @@ success rate.*
 ### November 2024 — December 2025: Cloud Architect at LBBW
 
 *[Landesbank Baden-Württemberg](https://en.wikipedia.org/wiki/Landesbank_Baden-W%C3%BCrttemberg) |
-Freelance | Remote*
+via Questax Experts GmbH | Freelance | Remote, occasionally on-site in Stuttgart*
 
 **Project:** "Phoenix" IT Modernization (~80 people) - Migration to Azure-based "Skywalker" platform
 
@@ -437,6 +449,22 @@ production-unused during my engagement)
 
 **Scope of Responsibility:** IT-architectural responsibility for 10 of 30 applications under
 parallel technical supervision across "04 – Application Development" area
+
+**Course of the engagement:**
+
+- **November – December 2024:** Start on November 7, 2024; studies on the IT platform target
+  picture, a market analysis of private, public and hybrid cloud, regulatory requirements (MaRisk,
+  BAIT) and tenders; on site in Stuttgart on November 19–20; CI/CD demo on December 2, 2024
+- **January – February 2025:** Kick-off of "Phoenix" on January 14, 2025; on site in Stuttgart in
+  January
+- **From March 2025:** The contract scope moved to the team "MIA – Migration, Innovation &
+  Adaption" of the transformation project "PublicCloud". The sprint review of March 25, 2025 lists
+  my Azure Solution Design Templates: the general Azure design template (incl. business case and
+  SIEM integration), templates applied to the FirstMovers Camunda and MicroCore, a new one for
+  WPP with a pre-check questionnaire, and one migration that failed on a linked server from Azure
+  SQL to an Oracle database
+- Contract extended in steps (January – February, March – June, March – September, March –
+  December 2025), ending on December 31, 2025
 
 **Service Offering & Core Responsibilities:**
 
@@ -536,6 +564,16 @@ parallel technical supervision across "04 – Application Development" area
 *[Union Investment](https://en.wikipedia.org/wiki/Union_Investment) |
 German Asset Management Company | Freelance | Remote*
 
+**Contracts:** Successive direct orders from Union Investment (October 2021 – January 2023), then
+via Pezula Projects & Experts GmbH (February 2023 – December 2024). The first order (October –
+December 2021) was "concept creation / architecture and process design", with process models,
+architecture analyses and decision documents as deliverables. From January 2022 the order read "B2B
+portals project: DevOps, architecture, development", with the technical goals of building the
+platform infrastructure, a sub-domain for information management incl. data migration, a search and
+qualification SCS, and integrating the existing portals (DVO, ADC, IW, UMP) into the target
+architecture. From 2023: deriving the IT target picture from business requirements and building the
+platform infrastructure, incl. the B2B staging concept and access-restricted documents.
+
 **Company Context:** Leading German asset management company requiring modernization of their
 central B2B sales platform [InvestmentWelt](https://investmentwelt.de/). Despite serving only 80,000
 users, this platform was business-critical for corporate reputation and revenue generation.
@@ -550,7 +588,7 @@ infrastructure, and coded production services. Not the lead of the overall moder
 architectural responsibility lay with Union Investment; as a key team member I proposed the
 microfrontend approach that was finally adopted.
 
-**Team Leadership:** Managed teams of 5–7 developers, serving as technical Product Owner and agile
+**Team Leadership:** Managed teams of 4–6 developers, serving as technical Product Owner and agile
 coach
 
 **Technical Challenges:**
@@ -592,29 +630,41 @@ coach
 - **Technology Roadmap:** Created comprehensive technology roadmap for 3-year transformation
   initiative
 - **Framework Evaluation:** Conducted detailed analysis of microfrontend composition options,
-  frameworks, and architectural patterns
+  frameworks, and architectural patterns: single-spa, import maps, Web Component isolation, Angular
+  and React container prototypes (December 2021 – February 2022)
+- **Site Composition Decision (January 2022):** My decision document weighing the CMS approach
+  (Magnolia composes the site, the status quo) against a dedicated container app composing
+  microfrontends.
+  Outcome: container approach in principle, CMS approach as fallback, final decision after
+  reviewing a concrete container implementation. Reasons for the container: separation of concerns,
+  independent teams, loose coupling, and Magnolia is no SCS but mixes CMS, layout and portal
+  composition; risks: new technology without internal experience, UX consistency, complexity,
+  performance
 - **DevOps Strategy:** Planned beta deployment strategy and established DevOps foundations for
   distributed development
 - **E2E Testing Strategy:** Assessed end-to-end testing approaches for distributed frontend
   architecture
 - **Source Code Migration:** Organized InvestmentWelt source code migration strategy and execution
-  planning
+  planning (February 2022: taking over the source code from the previous agency; March 2022: build
+  pipeline, Maven build, firewall rules, dependencies without Nexus)
 
 **Phase 2: Framework Development and Platform Implementation (May 2022 – Apr 2023)**
 
-**Beta Phase Management (Apr-Jun 2022):**
+**Beta Phase Management (Mar-Jun 2022):**
 
 - **Beta Planning & Implementation:** Beta phase planning and implementation for the
-  microfrontend container initiative within my team
+  microfrontend container initiative within my team (refinement and planning in March 2022; the
+  container initiative ended with a retrospective and the change of stage on June 28, 2022)
 - **Beta Phase Completion:** Successfully completed beta phase with full functionality validation
   and stakeholder sign-off
 - **Source Code Migration:** Completed InvestmentWelt source code migration from legacy systems to
-  modern architecture
+  modern architecture (handover on June 30, 2022)
 
-**Team Building & Leadership (Jul 2022-Jan 2023):**
+**Team Building & Leadership (Jun 2022-Jan 2023):**
 
 - **Team Portastruktur Establishment:** Built and organized a new cross-functional
-  development team from the ground up
+  development team from the ground up (kick-off June 28–29, 2022; Jira board switched to Kanban in
+  September 2022)
 - **Agile Process Implementation:** Established team forum, implemented Kanban workflows, and
   managed stage transitions
 - **Multiple Team Onboarding:** Led technical onboarding for three new team members
@@ -633,7 +683,9 @@ coach
 - **Frontend-Monorepo Strategy:** Designed and implemented monorepo strategy enabling efficient
   multi-team development
 - **Azure Workload Architecture:** Established "X-Cutting" and "FMVXCUTTING" Azure workloads with
-  comprehensive Terraform infrastructure setup
+  comprehensive Terraform infrastructure setup (Terraform from February/March 2023: reusable
+  templates for Static Web Apps, Event Hubs, Node.js Azure Functions and storage, tested with
+  Terratest, versioned with tags and referenced by tag from the pipelines)
 - **Toolkit Versioning & Publishing:** Created versioning strategy and automated publishing
   processes for microfrontend toolkit
 - **Low-Level Architecture Design:** Developed detailed low-level architecture for microfrontend
@@ -660,15 +712,19 @@ coach
 - Assumed additional PO and agile coaching responsibilities during team transitions
 - Implemented comprehensive DevOps culture including Pipeline-as-Code in Azure DevOps and Terraform
   infrastructure definition
-- Established software quality standards through SonarQube metrics and comprehensive test pyramid
-  with 1000+ tests
+- Established software quality standards through SonarQube metrics (from March 2022, as quality
+  gate in the pipeline from September 2022) and a test pyramid of about 630 test cases at the end
+  of 2024 (Jest, Vitest and JUnit unit and integration tests, Playwright end-to-end tests): shell 265,
+  toolkit 195, search 129, Event Hubs 28 and 8 smoke tests. Playwright tests ran in two or three
+  browsers, about 900 runs in total, plus 488 screenshot comparisons in the shell. Playwright
+  replaced Cypress for end-to-end tests in 2023
 - Achieved 10-minute build times despite extensive test coverage through parallelization
-  optimization
-- Introduced automated dependency management via Renovate Bot enabling fully automated external
-  dependency updates
+  optimization: end-to-end tests sharded per microfrontend package (March – April 2024)
+- Introduced automated dependency management (Dependabot from March 2023, Renovate from July/August
+  2024) enabling fully automated external dependency updates
 - Implemented a parallel operation concept with Azure AD B2C authentication
   enabling gradual domain migration
-- Successfully launched "investmentwelt-shell" into production after 6 months
+- Launched "investmentwelt-shell" into production on December 6, 2023
 
 **Phase 3: Production Deployment and Cross-System Search (Oct 2022 – Dec 2024)**
 
@@ -677,8 +733,13 @@ coach
 - **Azure Production Setup:** B2B portal production deployment on Azure cloud infrastructure
 - **Staging Architecture:** Created and implemented comprehensive staging concept enabling
   controlled releases across development, integration, and production environments
-- **Security & Compliance:** Coordinated and supported penetration testing, implemented DDoS
-  protection for Azure Static Web Apps, and established security monitoring
+- **Security & Compliance:** Coordinated and supported penetration testing (acceptance pentest of
+  the B2B portal from June 6, 2023), analysed the DDoS exposure of the shell and layout and
+  documented why no extra protection was needed (April 2023: no running service, Static Web Apps
+  served from a CDN with Azure's basic DDoS protection, behind Front Door and the Azure AD B2C
+  proxy), and established security monitoring
+- **MVP Milestone:** On July 13, 2023, team Portastruktur reported all MVP topics implemented and
+  deployed, not yet rolled out to end users
 - **Infrastructure as Code:** Integrated Terraform deployment pipelines via Azure DevOps enabling
   reproducible infrastructure management
 - **Custom Domain Management:** Configured and managed custom domain setup with DNS routing and SSL
@@ -686,15 +747,33 @@ coach
 - **Monitoring & Operations:** Established comprehensive application monitoring, created operational
   handbooks, and implemented production support procedures
 - **Go-Live Coordination:** Coordinated the December 2023 production go-live including load testing,
-  final preparations, and cross-team coordination
+  final preparations, and cross-team coordination (dress rehearsal and load test on November
+  13–14, 2023, go-live of the investmentwelt-shell on December 6, 2023, followed by per-stage
+  configuration and the production auth domain in the same week)
 - **Team Onboarding:** Led technical onboarding of new team members
 
 **Cross-System Search Architecture (July 2023 – Dec 2024):**
 
+- **Timeline:** First ideas on distributed vs. central search in November 2021, search PoC
+  kick-off in December 2022, search initiative from August 2023, architecture essay in December
+  2023, implementation February – November 2024
 - **Challenge:** Modernize monolithic legacy search while preserving team autonomy and ensuring
   unified user experience across distributed domains
+- **Alternatives (Q3 2023):** One global search for all web portals, a global search per portal, a
+  search API contract that teams push to, or search microfrontends per team, compared on mixed
+  results, global filtering and typo tolerance, coupling between sub-domains, need for own search
+  teams, and where domain knowledge and ranking live
 - **Solution:** Designed centralized search architecture consuming event streams from distributed
-  Self-contained Systems
+  Self-contained Systems. The architecture essay rejected crawling (results depend on the user's
+  permissions and must be current) and passive indexing (needs all content in one place), chose
+  active indexing, and hid Algolia behind a search SCS so the engine stays replaceable; the search
+  SCS delivers two microfrontends (search input with overlay, results page) instead of components
+  in the shared design system, which would have coupled the teams too tightly
+- **Event Backbone Decision:** Azure Event Hubs instead of Service Bus or Event Grid, Premium tier
+  from the start (Standard allows only 10 hubs per namespace and 25 schema versions), log
+  compaction, schema registry and event-carried state transfer. Motive, as documented in the
+  project history: wiring five to eight sources point-to-point into each consumer, as done before,
+  was an anti-pattern
 - **Event-driven Architecture:** Modeled data flow where autonomous teams stream domain models as
   events, with centralized search consuming multiple streams
 - **Search Engine Evaluation:** Conducted comprehensive evaluation of ElasticSearch vs. Algolia,
@@ -705,19 +784,27 @@ coach
   publishing/subscription overhead while maintaining team independence
 - **Technical Implementation:** Built solution using Azure Event Hubs with JavaScript Azure
   Functions consuming data from Azure Event Hubs and pushing the data to Algolia
-- **Java SDK Implementation:** Designed and implemented custom Java SDK enabling simplified
-  Azure Event Hubs integration for consuming teams; streamlined event publishing workflow with
-  CDI-based dependency injection, comprehensive test coverage using JUnit and TestContainers,
-  and Avro schema integration for type-safe event serialization
+- **Java Library for Publishing Teams (June – August 2024):** Java 21 library (Gradle, published to
+  a Maven registry) shipping the Avro schemas with typed access for type-safe event serialization,
+  plus tests showing teams how to send and consume events with the Azure Event Hubs SDK and
+  CDI-based dependency injection, run with JUnit and Testcontainers against the Event Hubs emulator
+  and Azurite
 - **Microfrontend Integration:** Developed search microfrontends using Lit framework with pnpm
   package management for optimal performance
+- **Rollout:** Event Hubs on the dev stage in July 2024, test and production pipelines in
+  September 2024, Magnolia content connected via JSON-to-Avro conversion (September 2024)
 
 **DevOps & Quality Excellence:**
 
 - **Automated Dependency Management:** Introduced Dependabot for fully automated external dependency
-  updates across the entire platform; switched to Renovate bot later
+  updates across the entire platform (March 2023); switched to Renovate bot in July/August 2024
 - **Build Optimization:** Implemented toolkit build optimizations and created Lerna DevOps pipeline
   for monorepo management
+- **Smoke Tests (from May 2023):** Created the smoke-test repository: 8 Playwright journeys against
+  the deployed stage (AD B2C login, navigation per access rights, every microfrontend, consent
+  kept between the old and new InvestmentWelt), about 60 assertions, run in Chrome, Edge and
+  Firefox; mandatory after each sub-domain deployment to the test stage, triggered from other
+  pipelines via a PowerShell invoker
 - **Testing & Quality:** Enhanced smoketest coverage and improved DevOps pipeline reliability for
   continuous integration
 - **Maintenance Excellence:** Reduced toolkit dependencies and established sustainable software
@@ -733,21 +820,26 @@ coach
   teams (VisualVest, IK-Online, Fonds & Produkte)
 - **Production Operations:** Established reliable production operations with comprehensive
   monitoring, alerting, and incident response procedures
-- **Project Delivery:** Successfully delivered all project phases on schedule including complex
-  production deployment and search modernization
+- **Project Delivery:** Delivered the production deployment of the platform; the search
+  modernization reached production readiness, but not end users (see below)
 
 **Project Completion & Handover (July – December 2024):**
 
-- **Magnolia CMS Integration:** Successfully integrated Algolia search with existing Magnolia CMS
-  infrastructure, ensuring a seamless content management workflow
+- **Search Outcome:** In September 2024 it was decided to minimize the effort on Event Hubs and
+  Algolia search. The components were deployed to production, but replacing the existing search
+  stopped because of open data-privacy issues, and no hypercare phase took place. In my status
+  report of December 2024 I listed the open work, e.g. tombstones for GDPR-compliant deletion and
+  separate access keys per event hub, and noted a possible move to Confluent Kafka
+- **Magnolia CMS Integration:** Connected Magnolia CMS content to the event backbone and Algolia
+  search (September 2024)
 - **F&P Team Consulting:** Provided ramp-up consulting support for Fonds & Produkte team integration
   into the distributed architecture
 - **IK Shell Operations:** Managed transition analysis and release management for IK Shell
   operations, ensuring business continuity
-- **Final Go-Live Coordination:** Coordinated the final search go-live across all business domains
-  with comprehensive testing and validation
 - **Comprehensive Handover:** Executed systematic handover of all technical components including
-  documentation, operational procedures, and knowledge transfer
+  documentation, operational procedures, and knowledge transfer (handover workshops planned in
+  November 2024, Event Hubs workshop on December 5, 2024, cleanup of Azure DevOps and Azure
+  resources)
 - **Project Closure:** Completed cleanup activities, finalized documentation, and ensured
   sustainable long-term operations
 
@@ -758,7 +850,7 @@ coach
 - **Framework Development:** Created reusable microfrontend toolkit enabling autonomous team
   development
 - **Quality Engineering:** Established a comprehensive testing pyramid
-  with 1000+ tests and 10-minute build cycles
+  of about 630 test cases and 10-minute build cycles
 - **DevOps Implementation:** Built complete CI/CD pipeline with Infrastructure-as-Code and automated
   dependency management
 - **Event-driven Design:** Architected event streaming solution enabling unified search across
@@ -772,7 +864,7 @@ coach
 - **Platform Reliability:** No downtime during operating hours while I was on the project
 - **Search Performance:** Implemented sub-second search response times across all domain boundaries
 - **Team Productivity:**
-  - Enabled autonomous team development with 10x faster deployment cycles
+  - Enabled autonomous team development
   - A single well-founded decision saved 60 person-days
 - **Corporate Template:** Established architecture patterns adopted as template for group-wide
   modernization initiatives
@@ -782,15 +874,17 @@ coach
 **Team Performance & 360° Feedback:**
 Based on three comprehensive 360-degree feedback surveys (December 2021, June 2022, November 2024):
 
-- **Technical Competence:** Consistently rated 5/5 in 2021-2022 and 9-10/10 in 2024 by team members
-  and stakeholders
+- **Technical Competence:** Consistently rated 5/5 in 2021-2022 and averaging 9.5/10 in 2024 (range
+  7–10) by team members and stakeholders
 - **Collaboration:** Consistently high ratings for pleasant working relationship (5/5 in 2021-2022,
   averaging 8.6/10 in 2024)
 - **Communication:** Consistently rated for appropriate balance in communication frequency (3/5 in
   2021-2022, the ideal value on a scale from too little to too much) with some noting a desire for
-  more accessible explanations for less technical stakeholders
+  more accessible explanations for less technical stakeholders. In 2024, "communicates
+  professionally, adequately and comprehensively" was my lowest item, averaging 7.4/10 (range 5–10)
 - **Progress & Leadership:** Strong ratings for driving topics forward at appropriate pace (3-4/5 in
-  2021-2022, 9/10 in 2024)
+  2021-2022, averaging 9.3/10 in 2024)
+- **2024 survey:** 8 anonymous responses between November 21 and December 23, 2024, on a 0–10 scale
 - **Key Feedback Themes:**
   - "Brings comprehensive and practical knowledge in software development"
   - "Stands up for the right things and doesn't shy away from conflicts/discussions"
@@ -847,8 +941,8 @@ Based on three comprehensive 360-degree feedback surveys (December 2021, June 20
 
 ### December 2021 — November 2024: Middleware Engineer at Saloodo! (DHL Group)
 
-*[Saloodo!](https://www.saloodo.com) ([DHL](https://en.wikipedia.org/wiki/DHL) Group) | Freelance |
-Part-Time | Remote*
+*[Saloodo!](https://www.saloodo.com) ([DHL](https://en.wikipedia.org/wiki/DHL) Group) | via GULP
+(subcontractor for Hays AG) | Freelance | Part-Time | Remote*
 
 **Context:** Digital freight platform requiring seamless integration between operational systems and
 Salesforce CRM
@@ -872,14 +966,24 @@ Salesforce CRM
 - Took on this part-time assignment alongside my work at
   [Union Investment](#october-2021--december-2024-software-lead--cloud-architect-at-union-investment)
   as it offered the opportunity to use Golang professionally for the first time
+- The position was posted as "Salesforce API developer" with Go as a must, 1–3 days per month,
+  100% remote; the tasks in the contract: integrate new tables, add and replace fields
 - Onboarding from the contract start in December 2021 until July 2022 took about 1–2 days per
   month: access was granted slowly, and scope and setup had to be clarified before development
-  could start
+  could start (handover session from the previous developer on February 11, 2022)
+- September 2022: estimate for the first priority, covering environments, the new middleware on
+  demo and production, feature flags, a transferrer interface, error handling, bulk upload, and
+  25–30 entities
 - Sole engineer for a middleware component ("Salooforce") transferring Saloodo platform data to
   Salesforce - architected, coded, tested, and operated entire system
 - Rewrote the middleware from scratch as Salooforce v3 (first commits July 2022, merged September
   2022): its predecessor v2, started by another developer, had never gone live. v3 transfers many
   small, separate entities instead of a few comprehensive ones
+- Production go-live of v3 in November 2023, after alpha releases from July 2023, sandbox testing
+  with the Salesforce admin and go-live preparation in October 2023: release candidates from
+  November 2, go-live on November 6, final 3.0.0 on November 13, 2023. v4.0.0 followed in July
+  2024; v4.1.0 (September 2024) went to production on October 24, 2024, followed by a full sync on
+  November 6–7 and v4.1.1 on November 12, 2024
 - 580 commits and 77 releases (v3.0.0 to v4.1.1, November 2024), versioned with Conventional
   Commits and Release Please
 - My part was the bulk variant: delta sync via the Salesforce Bulk API (demo and production). The
@@ -902,6 +1006,14 @@ Salesforce CRM
 - Used parallel bulk processing in Salesforce for throughput, switched Quotes back to serial mode
   after lock failures, and stepped full syncs through time ranges to avoid `TooManyLockFailure`
 - Ran and documented full re-syncs (durations, failed records, memory needs) in the project wiki
+- After go-live: deleted surplus customers in Salesforce with SOQL for large data volumes
+  (November – December 2023) and supported a database instance change on the Saloodo side
+- Estimate for 2024 (December 2023): further development, run and maintenance, and ideas such as
+  Bulk API v2 instead of v1, replacing go-force, and Custom Metadata Types for the last transfer
+  time
+- Ending: phasing out the contract was discussed in July 2024; in September and October 2024 I
+  wrote the profile for a successor, interviewed candidates and handed over; last time sheet
+  entry on November 12, 2024
 - Optimization of database queries using SQL EXPLAIN and subsequent adjustments to table schemas
   and queries; this reduced SELECT times by up to 80%
 - Built robust error handling for Saloodo's inconsistent database schema (malformed JSON, incorrect
@@ -912,8 +1024,8 @@ Salesforce CRM
 
 **Impact:**
 
-- **100% production uptime** throughout 3-year tenure through fault-tolerant design and
-  comprehensive testing
+- **100% production uptime** from the go-live in November 2023 to the end of my engagement through
+  fault-tolerant design and comprehensive testing
 - **Business-critical operation:** Enabled Saloodo's CRM functionality by maintaining data
   synchronization between operational systems and Salesforce
 - **Near real-time performance:** Achieved data propagation within minutes despite Saloodo database
@@ -948,38 +1060,66 @@ Salesforce CRM
 
 ---
 
-### June 2016 — December 2023: Creator of Atlassian Bamboo Server Add-ons
+### April 2016 — December 2023: Creator of Atlassian Bamboo Server Add-ons
 
 *Self-Employed Product Business*
 
 **Product:** Commercial Atlassian Marketplace add-ons integrating code quality metrics
 into [Atlassian Bamboo Server CI/CD](https://www.atlassian.com/de/software/bamboo)
 
+**Timeline:** Development started in April 2016 (project generated with `atlas-create-bamboo-plugin`
+on April 15, 2016), first release 0.1.0 in May 2016, first 1.x release for the Marketplace in
+May/June 2016. Most of the work happened in 2016 and 2017 (1,071 of 1,241 commits), followed by
+maintenance releases until 2.0.11 (July 2020) and dependency updates in December 2022.
+
 **Key Achievements:**
 
 - Developed and maintained Java-based add-ons for Checkstyle, PMD, CPD, FindBugs integration
+- Also supported PHP tooling from the start: PHPMD (April 2016) and PHP_CodeSniffer via the
+  Checkstyle format (May 2016); SpotBugs followed in May 2018
 - Built sustainable business with global customer base
 - Maintained 7+ years of product reliability and customer satisfaction
 
 **Impact:**
 
 - Global reach: 83 customers across 15+ countries, from startups to enterprise
-  (200+ Bamboo agents)
+  (200+ Bamboo agents), according to the Atlassian Marketplace
 - Revenue generation: Sustainable 7-year business with recurring license revenue
 - Market validation: First-mover advantage in Bamboo code quality integration
 - Technical adoption: Enabled quality gates for Java projects in Bamboo ecosystem
 
 **Implementation highlights:**
 
-- Implementation of Sharding for processing large numbers of results
-- Using DataTables for displaying endless number of metrics results
+- Architecture: a parent/core split (May 2016) with one Maven module per tool plus two bundles
+  (basic and Java). The core holds the generic XML report task, a JSON REST endpoint per tool, the
+  plan and job result panels, the license check and charts of the results over time
+- Parsing moved into a separate library, `metric-tools-analyser` (June 2017 – July 2020, releases up
+  to 2.3.6, OSGi-ready since September 2017): one parser module per tool, with an in-memory result
+  store
+- Splitting large result files into parts (June 2017), each stored as Bamboo build custom data and
+  loaded separately in the UI; the part size was tuned several times to limit the data
+  transferred per XHR request
+- Using DataTables for displaying endless number of metrics results: job results rendered from a
+  JSON data container into DataTables with the Buttons and RowGroup extensions (November 2017)
+- Links from a PMD violation to the file in GitHub, Bitbucket or Stash (November 2017)
+- Kept up with Bamboo releases: from Bamboo 5.12 (2016) via 6.x (2018) and 7.0 (2020) to 9.0 in the
+  last build (2022); minimum Bamboo 5.15 from November 2017; Java 8 throughout
+- Commercial licensing through the Atlassian UPM licensing API, with pricing per remote-agent tier
+  derived from Atlassian's own prices
+- 27 tagged releases of the add-ons (1.1.10 in October 2017 to 2.0.11 in July 2020) and 27 of the
+  library, released with the Maven release plugin from Jenkins
+- Quality: the add-ons analysed themselves in CI (Checkstyle, PMD, CPD, FindBugs), plus PIT
+  mutation testing, JaCoCo and OWASP dependency-check in the Jenkinsfile; ArchUnit tests in the
+  library; a manual release checklist covering the oldest and newest supported Bamboo, a remote
+  agent and a missing license
 
 **Technologies & Frameworks:**
 
-- Backend: Java, Atlassian SDK, OSGi framework
+- Backend: Java 8, Atlassian SDK (AMPS), OSGi framework, Spring Scanner
 - Frontend: Atlassian SDK, jQuery, [DataTables](https://datatables.net)
 - Build Systems: Maven, Bamboo API integration
-- Testing: JUnit, quality metrics parsing
+- Testing: JUnit 4 and 5, ArchUnit, PIT, JaCoCo, quality metrics parsing
+- CI/CD: Jenkins, Bitbucket Pipelines, Bitbucket (hosting)
 - Distribution: Atlassian Marketplace, UPM packaging
 
 **Link:** https://marketplace.atlassian.com/vendors/1213259
@@ -987,6 +1127,22 @@ into [Atlassian Bamboo Server CI/CD](https://www.atlassian.com/de/software/bambo
 ### January 2020 — March 2020: Cloud Consultant at Sedo GmbH
 
 *Domain Trading Platform | Freelance | Cologne*
+
+**Timeline:** January 6 – March 31, 2020, in "Team Unicorn" on a new domain management MVP
+
+**Course of the engagement:**
+
+- **January 2020:** Technical setup and overview of the technologies in use and their alternatives;
+  PoC of a `whoami` endpoint for the CAS login with the Kubernetes function frameworks Kubeless and
+  OpenFaaS; Knative PoC (microk8s, then Minikube: scaling, tracing, eventing) and its presentation
+  to the team; architecture advice for domain management and parking
+- **February 2020:** Quarkus evaluation and PoC, which became the new `domain-service-v3`: read
+  endpoints first, then delete, DTO mapping, GraalVM native image, CORS, logging, JWT
+  authentication with database fixtures for local development
+- **March 2020:** Native-image build on Jenkins, Kubernetes deployment to integration and stage,
+  DELETE endpoint with contract tests, cookie authentication; a native-image problem with the
+  MySQL HA setup; presentations on consumer-driven contract testing with Pact (March 23) and on
+  "Why Quarkus?" (March 30: REST, JWT, MySQL, OpenAPI, MicroProfile, GraalVM)
 
 **Key Contributions:**
 
@@ -1003,10 +1159,10 @@ into [Atlassian Bamboo Server CI/CD](https://www.atlassian.com/de/software/bambo
 
 **Technologies & Frameworks:**
 
-- **Platform:** Kubernetes, Knative (serverless evaluation)
-- **Backend:** Quarkus, Java 11, Apache Camel
+- **Platform:** Kubernetes, Knative, Kubeless and OpenFaaS (serverless evaluation)
+- **Backend:** Quarkus, GraalVM native image, Java 11, Apache Camel, MySQL, JWT
 - **Testing:** Pact (contract testing), JUnit
-- **Infrastructure:** Docker, Microservices architecture
+- **Infrastructure:** Docker, Jenkins, Microservices architecture
 
 ---
 
@@ -1027,6 +1183,10 @@ transformation
 
 **Phase 1: Subscription Team (August 2018 — April 2019)**
 
+Started on August 20, 2018 with an overview of MyTS, Salesforce and Zuora and a faster dev deploy
+script; kick-off of the Upgrade Center on August 23, 2018, then deserializing the Zuora product
+catalog (subscriptions, rate plans, rate plan charges) for it.
+
 **Core Projects:**
 
 - **Upgrade Center Development:** Built AddShop, AddOption, and AddLocalStore functionality for
@@ -1043,6 +1203,8 @@ transformation
 - **Quality Framework:** Designed technical QA phase concepts and testing strategies
 
 **Phase 2: MARS Unit (May 2019 — October 2019)**
+
+Separate contract for the MARS unit, dated May 2, 2019; last time sheet entry on October 24, 2019.
 
 **Advanced Projects:**
 
@@ -1136,7 +1298,13 @@ Contributed to 13+ repositories including:
 
 ### November 2017 — March 2018: Senior JavaEE Developer at Allianz Global Digital Factory
 
-*via SinnerSchrader Deutschland GmbH | Freelance | Munich*
+*via SinnerSchrader Deutschland GmbH | Freelance | Munich and Frankfurt*
+
+**Timeline:** November 6, 2017 – March 30, 2018, full-time on site at first; handover of the
+"prefcenter" backend at the beginning of April 2018
+
+**Projects (as billed in February and March 2018):** "GDF Journey Digital Customer
+Communications" (SinnerSchrader Munich) and "AktivDepot@MyInvest" (SinnerSchrader Frankfurt)
 
 **Key Contributions:**
 
@@ -1245,10 +1413,13 @@ Contributed to 13+ repositories including:
 
 *Multiple Short-Term Contracts*
 
-- **YOOCHOOSE GmbH (July—Aug 2016):** Spring applications, Jenkins CI, AWS operations
+- **YOOCHOOSE GmbH (May 31 — Aug 2016):** Spring applications, Jenkins CI, AWS operations; full-time
 - **Xsite GmbH (Jan—May 2016):** REST API development, Jenkins pipeline-as-code implementation
-- **freshcells systems (Feb—Jun 2015):** Jenkins CI with Docker, PHP quality standards
-- **fotocommunity GmbH (May 2015):** Atlassian Bamboo CI implementation
+  - Follow-up consulting in September 2016: a Jenkins job for a Laravel project
+- **freshcells systems (Mar—Jul 2015):** Jenkins CI with Docker, PHP quality standards; billed as
+  programming work, with tasks tracked in the client's Jira
+- **fotocommunity GmbH (May 2015):** Atlassian Bamboo CI implementation, three days on site in
+  Cologne (May 27–29, 2015)
   - Continuous Integration consulting and strategy development
   - Docker environment setup for PHPUnit test execution
   - Bamboo CI server configuration and deployment
@@ -1256,9 +1427,18 @@ Contributed to 13+ repositories including:
   - Team training on Docker and Bamboo environments
 - **billiger-mietwagen.de / Silver Tours GmbH (Dec 2014 — Jul 2015):** Infrastructure modernization
   for car rental platform https://www.billiger-mietwagen.de/
+  - Framework contract for work packages from October 28, 2014; first work in December 2014,
+    billed as programming work; I gave notice for private reasons in April 2015, last working day
+    July 24, 2015
 - **AffiliCon GmbH (Sep 2014):** Jenkins infrastructure setup
+  - Offer (August 2014): run the existing PHPUnit tests, which developers ran locally on the console
+    against a local MySQL, in Jenkins as CI server, with e-mail notifications and optional metrics
+    (code coverage, phpmd, phpcpd); about three person-days on site, done on September 3, 4 and 12
+  - Jenkins on a Vagrant VM; the job runs Composer, then Ant, with a PHPUnit CI configuration per
+    test module, published as xUnit results; documented so the developers could run it themselves
   - [Letter of Recommendation](credentials/2014_Affilicon_Empfehlungsschreiben.pdf) (German)
-- **dailypresent GmbH (Jan—Aug 2014):** PHP backend development, AWS/Facebook integration
+- **dailypresent GmbH (Jan—Aug 2014):** PHP backend development, AWS/Facebook integration, in parallel
+  to werkenntwen; part-time (in April 2014 about four hours each morning)
   - [Letter of Recommendation](credentials/2014_dailypresent_Empfehlungsschreiben_Markus-Schulte.pdf)
     (German)
 
