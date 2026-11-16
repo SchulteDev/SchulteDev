@@ -1398,7 +1398,10 @@ Communications" (SinnerSchrader Munich) and, as a very small side project, "Akti
   - Automated test builds using Docker containers
   - Team training on Docker and Bamboo environments
 - **billiger-mietwagen.de / Silver Tours GmbH (Dec 2014 — Jul 2015):** Infrastructure modernization
-  for car rental platform https://www.billiger-mietwagen.de/
+  for car rental platform https://www.billiger-mietwagen.de/, on site in Cologne
+  - Introduced automated database migrations and PSR standards; carried out a PHP upgrade
+  - Improved the development environment: introduced Vagrant, trained the team in PhpStorm
+  - Maintained and extended the Jenkins environment, including Docker-based builds
   - Framework contract for work packages from October 28, 2014; first work in December 2014,
     billed as programming work; I gave notice for private reasons in April 2015, last working day
     July 24, 2015

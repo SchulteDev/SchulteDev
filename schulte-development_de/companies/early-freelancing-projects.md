@@ -23,7 +23,9 @@ automation and AWS.
 - **dailypresent GmbH** (Jan — Aug 2014): PHP backend development, AWS and Facebook integration
 - **AffiliCon GmbH** (Sep 2014): Jenkins infrastructure
 - **billiger-mietwagen.de / Silver Tours GmbH** (Dec 2014 — Jul 2015): infrastructure
-  modernization for the car rental platform
+  modernization for the car rental platform: automated database migrations, PSR standards and a
+  PHP upgrade, Vagrant-based development environment and PhpStorm training, Jenkins with
+  Docker-based builds
 - **freshcells systems** (Mar — Jul 2015): Jenkins CI with Docker, PHP quality standards
 - **fotocommunity GmbH** (May 2015): Bamboo CI with Docker-based PHPUnit builds, CI consulting and
   team training
