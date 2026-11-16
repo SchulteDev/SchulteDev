@@ -13,7 +13,7 @@
 - title: Union Investment
   role: Software Lead & Cloud Architect
   period: Oct 2021 — Dec 2024
-  description: "Led the modernization of the B2B platform InvestmentWelt into Self-contained Systems: microfrontend toolkit, event-driven search, Java SDK and DevOps; technical Product Owner for 5–7 developers."
+  description: "Led the modernization of the B2B platform InvestmentWelt into Self-contained Systems: microfrontend toolkit, event-driven search, Java library and DevOps; technical Product Owner for 4–6 developers."
   img: ui.svg
   url: /companies/union-investment
 - title: Saloodo! (DHL Group)
@@ -24,7 +24,7 @@
   url: /companies/saloodo
 - title: Atlassian Bamboo Add-ons
   role: Creator
-  period: Jun 2016 — Dec 2023
+  period: Apr 2016 — Dec 2023
   description: Built, sold and maintained commercial Atlassian Marketplace add-ons that bring Checkstyle, PMD and FindBugs results into Bamboo CI.
   img: bamboo.png
   url: /companies/atlassian-bamboo-add-ons

@@ -34,19 +34,20 @@ software lead of my team.
 - Proposed the microfrontend approach that was adopted; designed and built the microfrontend
   toolkit and the B2B portal container app on Web Components, with versioning and automated
   publishing.
-- Technical Product Owner and agile coach for 5–7 developers; built a new cross-functional team
+- Technical Product Owner and agile coach for 4–6 developers; built a new cross-functional team
   from the ground up and onboarded new members.
 - Azure platform: Static Web Apps with Application Insights, Azure AD B2C with a parallel-operation
   concept for gradual domain migration, Terraform workloads, Pipeline-as-Code in Azure DevOps, a
-  staging concept, penetration-test support and DDoS protection.
+  staging concept, penetration-test support and a DDoS analysis.
 - Cross-system search: evaluated ElasticSearch against Algolia and chose Algolia; the domains
-  stream events through Azure Event Hubs and Azure Functions feed the search index. A Java SDK (CDI,
-  Avro, TestContainers) made publishing events simple for the domain teams; search microfrontends
-  in Lit.
-- Quality: SonarQube, a test pyramid with 1,000+ tests at 10-minute builds, automated dependency
-  updates with Dependabot and later Renovate.
-- Coordinated the December 2023 go-live and the final search go-live across all domains, then
-  handed over documentation, operations and knowledge in 2024.
+  stream events through Azure Event Hubs and Azure Functions feed the search index. A Java library
+  with the Avro schemas and example tests (CDI, Testcontainers) helped the domain teams publish
+  events; search microfrontends in Lit.
+- Quality: SonarQube, a test pyramid of about 630 test cases at 10-minute builds, automated
+  dependency updates with Dependabot and later Renovate.
+- Coordinated the December 2023 go-live; the search went to production in 2024 but was not rolled
+  out because of open data-privacy issues. Handed over documentation, operations and knowledge in
+  2024.
 
 ## Results
 
