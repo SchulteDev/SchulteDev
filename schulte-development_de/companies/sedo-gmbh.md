@@ -7,6 +7,7 @@ engagement:
 technologies:
   - "Quarkus"
   - "Java 11"
+  - "GraalVM native image"
   - "Apache Camel"
   - "Kubernetes"
   - "Knative"
@@ -18,9 +19,10 @@ technologies:
 
 ## Role & Contributions
 
-- Consolidated Spring Boot and Apache Camel services into a single Quarkus service.
+- Consolidated Spring Boot and Apache Camel services into a single Quarkus service: from a PoC in
+  February 2020 to a GraalVM native image on Kubernetes in March 2020.
 - Standardized the REST API implementations.
-- Evaluated Knative for serverless workloads on Kubernetes.
+- Evaluated Knative, Kubeless and OpenFaaS for serverless workloads on Kubernetes.
 - Ran contract-testing workshops with Pact.
 
 ## Results

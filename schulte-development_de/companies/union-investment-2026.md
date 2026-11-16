@@ -3,6 +3,7 @@ title: IT Architect & Platform Engineer at Union Investment
 share-description: "IT architect for three teams at Union Investment, hands-on in the team behind the public financial calculators: CI/CD, releases, infrastructure, tests."
 engagement:
   - "Freelance"
+  - "via percision services GmbH (adesso Group)"
   - "Part-Time"
   - "Remote, occasionally on-site in Frankfurt"
 technologies:

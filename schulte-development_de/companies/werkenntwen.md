@@ -2,7 +2,7 @@
 title: PHP Developer and Head of Development at werkenntwen
 share-description: "PHP developer and Head of Development at wer-kennt-wen.de, one of Germany's largest social networks, scaled to 9+ million users."
 engagement:
-  - "Permanent Position"
+  - "Freelance, then employed"
 technologies:
   - "PHP"
   - "Zend Framework"

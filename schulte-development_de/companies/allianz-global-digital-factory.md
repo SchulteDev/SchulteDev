@@ -3,6 +3,7 @@ title: Senior JavaEE Developer at Allianz Global Digital Factory
 share-description: "Senior JavaEE developer for Allianz Global Digital Factory: Java applications and REST/HATEOAS APIs on Cloud Foundry."
 engagement:
   - "Freelance"
+  - "via SinnerSchrader"
   - "Munich"
 technologies:
   - "Java"

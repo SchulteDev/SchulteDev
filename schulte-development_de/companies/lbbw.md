@@ -3,7 +3,8 @@ title: Cloud Architect at LBBW
 share-description: "IT architecture for 10 of 30 applications in LBBW's modernization: legacy assessments and Azure target architectures for the bank's new platform."
 engagement:
   - "Freelance"
-  - "Remote"
+  - "via Questax Experts GmbH"
+  - "Remote, occasionally on-site in Stuttgart"
 technologies:
   - "Azure (AKS, Functions, Static Web Apps)"
   - "Kubernetes"
@@ -22,13 +23,14 @@ one of three that gave projects access to the platform.
 
 ## Role & Contributions
 
-- IT architecture for 10 of the 30 applications in the "Application Development" area: operational
-  steering, conformity with architecture standards, toolchain modernization.
+- IT architecture for 10 of the 30 applications, first in the "Application Development" area, from
+  March 2025 in the team "MIA – Migration, Innovation & Adaption": operational steering, conformity
+  with architecture standards, toolchain modernization.
 - Cataloged and assessed legacy applications (Spring Boot, Tomcat, IIS; Oracle, SQL Server,
   PostgreSQL) for migration, using the "R" cloud-migration strategies and my own evaluation
   templates.
 - Defined Solution Design Templates and applied them hands-on with the first applications migrating
-  to Azure.
+  to Azure, e.g. Camunda and MicroCore.
 - Designed Azure target architectures for compatible applications (AKS, Azure Functions,
   databases), including deployment, backup and monitoring concepts and cost estimates with the Azure
   pricing calculator.
